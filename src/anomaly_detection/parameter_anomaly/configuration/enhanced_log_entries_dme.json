@@ -1,0 +1,350 @@
+[
+  {
+    "case": "ST60202112020023",
+    "module": "eds",
+    "file_name": "log-dsware_eds.50.log.2022-10-10_15-59-40.402",
+    "file_path": "D:\\perf_risk\\data\\02_01_04\\ST60202112020023\\decompress\\dsware\\log\\log-dsware_eds.50.log.2022-10-10_15-59-40\\log-dsware_eds.50.log.2022-10-10_15-59-40.402",
+    "line_content": "Get ns async failed, \"s:[13,\"ret(3).",
+    "template_id": 19,
+    "template": "Get ns async failed \"s : [ <NUM> \"ret ( <NUM> ) .",
+    "param_list": [
+      "13",
+      "3"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202201140040",
+    "module": "eds",
+    "file_name": "log-dsware_eds_11.log.2022-10-10_15-59-40.402",
+    "file_path": "D:\\perf_risk\\data\\02_01_04\\ST60202201140040\\decompress\\dsware\\log\\log-dsware_eds_11.log.2022-10-10_15-59-40\\log-dsware_eds_11.log.2022-10-10_15-59-40.402",
+    "line_content": "Get ns async failed, ret(-99999).",
+    "template_id": 2,
+    "template": "Get ns async failed ret ( <NUM> ) .",
+    "param_list": [
+      "-99999"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202201270005",
+    "module": "eds",
+    "file_name": "log-dsware_eds_11.log.2022-10-10_15-59-40.402",
+    "file_path": "D:\\perf_risk\\data\\02_01_04\\ST60202201270005\\decompress\\dsware\\log\\log-dsware_eds_11.log.2022-10-10_15-59-40\\log-dsware_eds_11.log.2022-10-10_15-59-40.402",
+    "line_content": "Get ns async failed, is_mgr_last:1 ret(3).",
+    "template_id": 223,
+    "template": "Get ns async failed is_mgr_last : <NUM> ret ( <NUM> ) .",
+    "param_list": [
+      "1",
+      "3"
+    ],
+    "param_pos": [1]
+  },
+  {
+    "case": "ST60202203280019",
+    "module": "eds",
+    "file_name": "log-dsware_eds_50.log.2022-07-22_19-54-52.474",
+    "file_path": "D:\\perf_risk\\data\\03_01_01\\ST60202203280019\\decompress\\dsware\\log\\log-dsware_eds_50.log.2022-07-22_19-54-52.474\\log-dsware_eds_50.log.2022-07-22_19-54-52.474",
+    "line_content": "[KVS]: readFPI failed of the status is 5, sgl is ((nil))",
+    "template_id": 535,
+    "template": "[ KVS ] : readFPI failed of the status is <NUM> sgl is ( ( nil ) )",
+    "param_list": [],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202203280019",
+    "module": "eds",
+    "file_name": "log-dsware_eds_50.log.2022-07-22_19-54-52.474",
+    "file_path": "D:\\perf_risk\\data\\03_01_01\\ST60202203280019\\decompress\\dsware\\log\\log-dsware_eds_50.log.2022-07-22_19-54-52.474\\log-dsware_eds_50.log.2022-07-22_19-54-52.474",
+    "line_content": "Failed to get block data from DB, s:[15, ERROR]",
+    "template_id": 547,
+    "template": "Failed to get block data from DB s : [ <NUM> ERROR ]",
+    "param_list": [],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202203280019",
+    "module": "eds",
+    "file_name": "log-dsware_eds_50.log.2022-07-22_19-54-52.474",
+    "file_path": "D:\\perf_risk\\data\\03_01_01\\ST60202203280019\\decompress\\dsware\\log\\log-dsware_eds_50.log.2022-07-22_19-54-52.474\\log-dsware_eds_50.log.2022-07-22_19-54-52.474",
+    "line_content": "print: 6992 messages suppressed.ReadSingleGrainFromDB,line=798.",
+    "template_id": 29,
+    "template": "print : <NUM> messages <*> line = <NUM>.",
+    "param_list": [
+      "6992",
+      "suppressed.ReadSingleGrainFromDB",
+      "798"
+    ],
+    "param_pos": [2]
+  },
+  {
+    "case": "ST60202208090016",
+    "module": "message_log",
+    "file_name": "dsware_java_11.log",
+    "file_path": "D:\\perf_risk\\data\\01_01_06\\ST60202208090016\\decompress\\messages\\log\\log-dsware_java_11.log.2022-09-07_13-43-31.144\\dsware_java_11.log",
+    "line_content": "PROTOCOL: get tenant cfg info by tenant_id failed, ret=: -1.",
+    "template_id": 780,
+    "template": "PROTOCOL : get tenant cfg info by tenant_id failed ret = : <NUM>.",
+    "param_list": [
+      "-1"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202210090023",
+    "module": "ccdb",
+    "file_name": "dsware_ccdb_server_5.log",
+    "file_path": "D:\\perf_risk\\data\\01_01_03\\ST60202210090023\\decompress\\log\\log\\dsware_ccdb_server_5.log",
+    "line_content": "Sqlite step sql fail(return code=10",
+    "template_id": 1049,
+    "template": "Sqlite step sql fail ( return code = <NUM>",
+    "param_list": [
+      "10"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202211100004",
+    "module": "eds",
+    "file_name": "log-dsware_eds.50.log.2022-10-10_15-59-40.402",
+    "file_path": "D:\\perf_risk\\data\\02_01_04\\ST60202211100004\\decompress\\dsware\\log\\log-dsware_eds.50.log.2022-10-10_15-59-40\\log-dsware_eds.50.log.2022-10-10_15-59-40.402",
+    "line_content": "Get ns async failed, mode(0, 0), restore(1) ret(3).",
+    "template_id": 1728,
+    "template": "Get ns async failed mode ( <NUM> <NUM> ) restore ( <NUM> ) ret ( <NUM> ) .",
+    "param_list": [
+      "0",
+      "0",
+      "1",
+      "3"
+    ],
+    "param_pos": [3]
+  },
+  {
+    "case": "ST60202212010010",
+    "module": "kmm-server",
+    "file_name": "dsware_kmm_server_0.log",
+    "file_path": "D:\\perf_risk\\data\\02_01_04\\ST60202212010010\\decompress\\log\\log\\dsware\\plog\\osd\\run\\dsware_kmm_server_0.log",
+    "line_content": "Local setup link succ, id (0).",
+    "template_id": 1986,
+    "template": "Local setup link succ id ( <NUM> ) .",
+    "param_list": [
+      "0"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202212010010",
+    "module": "kmm-server",
+    "file_name": "dsware_kmm_server_0.log",
+    "file_path": "D:\\perf_risk\\data\\02_01_04\\ST60202212010010\\decompress\\log\\log\\dsware\\plog\\osd\\run\\dsware_kmm_server_0.log",
+    "line_content": "Local setup link fail, ret (10).",
+    "template_id": 1985,
+    "template": "Local setup link fail ret ( <NUM> ) .",
+    "param_list": [
+      "10"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202212080015",
+    "module": "eds",
+    "file_name": "log-dsware_eds.50.log.2022-10-10_15-59-40.402",
+    "file_path": "D:\\perf_risk\\data\\02_01_04\\ST60202212080015\\decompress\\dsware\\log\\log-dsware_eds.50.log.2022-10-10_15-59-40\\log-dsware_eds.50.log.2022-10-10_15-59-40.402",
+    "line_content": "INDEX_ART art read plog fail ret=[4].",
+    "template_id": 1725,
+    "template": "INDEX_ART art read plog fail ret = [ <NUM> ] .",
+    "param_list": [
+      "4"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202301190012",
+    "module": "ccdb",
+    "file_name": "log-dsware_ccdb_server_0.log.2023-01-11_16-10-06.302",
+    "file_path": "D:\\perf_risk\\data\\02_01_04\\ST60202301190012\\decompress\\log\\log\\log-dsware_ccdb_server_0.log.2023-01-11_16-10-06.302\\log-dsware_ccdb_server_0.log.2023-01-11_16-10-06.302",
+    "line_content": "Cm create the RR pthread failed, ret=-1.",
+    "template_id": 2306,
+    "template": "Cm create the RR pthread failed ret = <NUM>.",
+    "param_list": [
+      "-1"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202305100026",
+    "module": "message_log",
+    "file_name": "dsware_dsware_osd_0.log",
+    "file_path": "D:\\perf_risk\\data\\01_01_10\\ST60202305100026\\decompress\\messages\\log\\dsware_dsware_osd_0.log",
+    "line_content": "Active Func 0xaaaad802e008 Trampoline proc failed.",
+    "template_id": 2368,
+    "template": "Active Func <HEX0x> Trampoline proc failed.",
+    "param_list": [
+      "0xaaaad802e008"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202305100026",
+    "module": "message_log",
+    "file_name": "dsware_dsware_osd_0.log",
+    "file_path": "D:\\perf_risk\\data\\01_01_10\\ST60202305100026\\decompress\\messages\\log\\dsware_dsware_osd_0.log",
+    "line_content": "Activating of Patch --USER_HP0101.pat failed, error code: 0x202727d1",
+    "template_id": 2370,
+    "template": "Activating of Patch --USER_HP0101.pat failed error code : <HEX0x>",
+    "param_list": [
+      "0x202727d1"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202305150035",
+    "module": "eds",
+    "file_name": "log-dsware_dsware_eds.log.2023-03-21_04-03-44",
+    "file_path": "D:\\perf_risk\\data\\01_01_05\\ST60202305150035\\decompress\\log\\log\\log\\log-dsware_dsware_eds.log.2023-03-21_04-03-44",
+    "line_content": "dci_size(1024)",
+    "template_id": 2371,
+    "template": "dci_size ( <NUM> )",
+    "param_list": [],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202305150035",
+    "module": "eds",
+    "file_name": "log-dsware_dsware_eds.log.2023-03-21_04-03-44",
+    "file_path": "D:\\perf_risk\\data\\01_01_05\\ST60202305150035\\decompress\\log\\log\\log\\log-dsware_dsware_eds.log.2023-03-21_04-03-44",
+    "line_content": "io detect send res, error code:0, request id:1152939100269637167, cmd type(587206690), start time:51104328939300240, end time:51104328939360900.fc wait time: 0, iops ok:1219, not ok:0m, sendtime:1148, aio block time:0,0.",
+    "template_id": 2379,
+    "template": "io detect send res error code : <NUM> request id : <MAC-HEX> cmd type ( <NUM> ) start time : <NUM> end time : <NUM>.fc wait time : <NUM> iops ok : <NUM> not ok : 0m sendtime : <NUM> aio block time : <NUM> <NUM>.",
+    "param_list": [
+      "0",
+      "1152939100269637167 ",
+      "587206690",
+      "51104328939300240",
+      "51104328939360900",
+      "0",
+      "1219",
+      "1148",
+      "0",
+      "0"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "ST60202309060028",
+    "module": "osd",
+    "file_name": "log-dsware_dsware_osd_0.log.2023-09-06_16-48-27.412",
+    "file_path": "D:\\perf_risk\\data\\03_01_01\\ST60202309060028\\decompress\\log\\log\\dsware\\plog\\osd\\bak\\log-dsware_dsware_osd_0.log.2023-09-06_16-48-27.412\\log-dsware_dsware_osd_0.log.2023-09-06_16-48-27.412",
+    "line_content": "pool id:0, osd idx:12 begin to start check, [auto_repair = 1]",
+    "template_id": 2610,
+    "template": "pool id : <NUM> osd idx : <NUM> begin to start check [ auto_repair = <NUM> ]",
+    "param_list": [],
+    "param_pos": [2]
+  },
+  {
+    "case": "ST60202309060028",
+    "module": "osd",
+    "file_name": "log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487",
+    "file_path": "D:\\perf_risk\\data\\03_01_01\\ST60202309060028\\decompress\\log\\log\\dsware\\plog\\osd\\bak\\log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487\\log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487",
+    "line_content": "plog(9223372036985897828)offset(0)len(524288) buf_cnt(5)shard_no(6)az_num(1) identify blocks error.",
+    "template_id": null,
+    "template": null,
+    "param_list": null,
+    "param_pos": null
+  },
+  {
+    "case": "ST60202309160011",
+    "module": "vbs",
+    "file_name": "dsware_dsware_vbs_272.log",
+    "file_path": "D:\\perf_risk\\data\\01_01_11\\ST60202309160011\\decompress\\DataCollect\\log\\192.168.6.182_20230918192538\\FusionStorage_base\\VBS_extend\\VBS\\dsware_dsware_vbs_272.log",
+    "line_content": "Critical fault: pid=3611291, tid=3612652, thrd=[NULL], sig = [11], SIGSEGV",
+    "template_id": 3441,
+    "template": "Critical fault : pid = <NUM> tid = <NUM> thrd = [ NULL ] sig = [ <NUM> ] SIGSEGV",
+    "param_list": [
+      "3611291",
+      "3612652",
+      "11"
+    ],
+    "param_pos": [2]
+  },
+  {
+    "case": "ST60202309160011",
+    "module": "vbs",
+    "file_name": "dsware_dsware_vbs_272.log",
+    "file_path": "D:\\perf_risk\\data\\01_01_11\\ST60202309160011\\decompress\\DataCollect\\log\\192.168.6.182_20230918192538\\FusionStorage_base\\VBS_extend\\VBS\\dsware_dsware_vbs_272.log",
+    "line_content": "RIP=0x5587b7a74afd value=0x3373373b44328b44 func=QosFillVolMsgBuf+0x8d file=/opt/dsware/vbs/bin/dsware_vbs",
+    "template_id": 3465,
+    "template": "RIP = <HEX0x> value = <HEX0x> func = QosFillVolMsgBuf+<HEX0x> file = /opt/dsware/vbs/bin/dsware_vbs",
+    "param_list": [
+      "0x5587b7a74afd",
+      "0x3373373b44328b44",
+      "0x8d"
+    ],
+    "param_pos": [2]
+  },
+  {
+    "case": "ST60202309160011",
+    "module": "vbs",
+    "file_name": "log-dsware_dsware_vbs_272.log.2023-09-18_19-23-40.503",
+    "file_path": "D:\\perf_risk\\data\\01_01_11\\ST60202309160011\\decompress\\DataCollect\\log\\192.168.6.182_20230918192538\\FusionStorage_base\\VBS_extend\\VBS\\log-dsware_dsware_vbs_272.log.2023-09-18_19-23-40.503\\log-dsware_dsware_vbs_272.log.2023-09-18_19-23-40.503",
+    "line_content": "RIP=0x5598f0a74afd value=0x3373373b44328b44 func=QosFillVolMsgBuf+0x8d file=/opt/dsware/vbs/bin/dsware_vbs",
+    "template_id": null,
+    "template": null,
+    "param_list": null,
+    "param_pos": null
+  },
+  {
+    "case": "ST60202309160011",
+    "module": "vbs",
+    "file_name": "log-dsware_dsware_vbs_272.log.2023-09-18_19-23-40.503",
+    "file_path": "D:\\perf_risk\\data\\01_01_11\\ST60202309160011\\decompress\\DataCollect\\log\\192.168.6.182_20230918192538\\FusionStorage_base\\VBS_extend\\VBS\\log-dsware_dsware_vbs_272.log.2023-09-18_19-23-40.503\\log-dsware_dsware_vbs_272.log.2023-09-18_19-23-40.503",
+    "line_content": "Critical fault: pid=466009, tid=466929, thrd=[NULL], sig = [11], SIGSEGV",
+    "template_id": null,
+    "template": null,
+    "param_list": null,
+    "param_pos": null
+  },
+  {
+    "case": "ST60202309230027",
+    "module": "osd",
+    "file_name": "log-dsware_dsware_osd_0.log.2023-09-06_17-18-21.025",
+    "file_path": "D:\\perf_risk\\data\\03_01_01\\ST60202309230027\\decompress\\log\\log\\dsware\\plog\\osd\\bak\\log-dsware_dsware_osd_0.log.2023-09-06_17-18-21.025\\log-dsware_dsware_osd_0.log.2023-09-06_17-18-21.025",
+    "line_content": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121006).",
+    "template_id": 4578,
+    "template": "req ( <MAC-HEX> ) plog ( <MAC-HEX> ) offset ( <NUM> ) dlen ( <NUM> ) ret ( <NUM> ) .",
+    "param_list": [
+      "9511883956703120396",
+      "9223372037379106158",
+      "8192",
+      "4096",
+      "-121006"
+    ],
+    "param_pos": [4]
+  },
+  {
+    "case": "ST60202311090017",
+    "module": "osd",
+    "file_name": "log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487",
+    "file_path": "D:\\perf_risk\\data\\03_01_01\\ST60202311090017\\decompress\\log\\log\\dsware\\plog\\osd\\bak\\log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487\\log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487",
+    "line_content": "increase crb vdb recovered(1), format flag from (12) --> (12).",
+    "template_id": 4582,
+    "template": "increase crb vdb recovered ( <NUM> ) format flag from ( <NUM> ) --> ( <NUM> ) .",
+    "param_list": [
+      "1",
+      "12",
+      "12"
+    ],
+    "param_pos": [2]
+  },
+  {
+    "case": "ST60202311090017",
+    "module": "osd",
+    "file_name": "log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487",
+    "file_path": "D:\\perf_risk\\data\\03_01_01\\ST60202311090017\\decompress\\log\\log\\dsware\\plog\\osd\\bak\\log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487\\log-dsware_dsware_osd_0.log.2023-09-06_17-17-53.487",
+    "line_content": "delta_tmp_plog_exist_process",
+    "template_id": 5164,
+    "template": "delta_tmp_plog_exist_process",
+    "param_list": [],
+    "param_pos": null
+  }
+]

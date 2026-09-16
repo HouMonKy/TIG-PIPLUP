@@ -1,0 +1,226 @@
+[
+  {
+    "template": "DIMM110 memory configuration error. Error code : <HEX0x> ( SN : 8426833E BN : <NUM> ) .",
+    "module": "sel",
+    "params": [
+      {
+        "param_pos": "7",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "0x0B1C"
+        ]
+      }
+    ],
+    "template_id": 94
+  },
+  {
+    "template": "ACPI is in the <*> state.",
+    "module": "sel",
+    "params": [
+      {
+        "param_pos": "4",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "soft-off"
+        ]
+      }
+    ],
+    "template_id": 2
+  },
+  {
+    "template": "DIMMO10 memory initialization error Error code : <HEX0x>.",
+    "module": "sel",
+    "params": [
+      {
+        "param_pos": "7",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "0x3000"
+        ]
+      }
+    ],
+    "template_id": 95
+  },
+  {
+    "template": "<*> memory initialization error. Error code : <HEX0x>.",
+    "module": "sel",
+    "params": [
+      {
+        "param_pos": "7",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "0x3000"
+        ]
+      }
+    ],
+    "template_id": 96
+  },
+  {
+    "template": "[ <NUM>.<NUM> ] be2net <NUM> : <NUM> : <NUM>.<NUM> : ERR : sliport <*> <HEX0x>.",
+    "module": "messages",
+    "params": [
+      {
+        "param_pos": "13",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "error1"
+        ]
+      }
+    ],
+    "template_id": 255
+  },
+  {
+    "template": "[ <NUM>.<NUM> ] INFO : NMI handler ( ghes notify nmi ) took too long to run : <NUM>.<NUM> msecs",
+    "module": "messages",
+    "params": [
+      {
+        "param_pos": "14",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "long"
+        ]
+      }
+    ],
+    "template_id": 184
+  },
+  {
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : SE-SDK;Description : sc chip [ <NUM> ] mbist error ret is <HEX0x>",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "29",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "0x38"
+        ]
+      }
+    ],
+    "template_id": 74
+  },
+  {
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : FAIL;Description : <HW-ERROR> [ FABRIC ] SC Init fail before FEISWAGT_START_SwfInitFailProc! error code = <HEX0x>",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "32",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "0xd105f2"
+        ]
+      }
+    ],
+    "template_id": 79
+  },
+  {
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : FAIL;Description : <HW-ERROR> [ FABRIC ] SC Init fail! error code = <HEX0x>",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "30",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "0xd105fd"
+        ]
+      }
+    ],
+    "template_id": 80
+  },
+  {
+    "template": "%%01FE1/<NUM>/FE_ERROR ( D ) : CID = <HEX0x>-Slot = <NUM>;<HW-ERROR> [ Slot <NUM> ] [ FE FE12 ] [ FEID <NUM> ] [ Module [ INIT ] ] . [ Description : [ PARAM = 0x [ <NUM> <NUM> <NUM> <NUM> ] [ NP1 ] Hiram Mtest result confirm fail. HiramId ( <NUM> ) Cbqid ( <NUM> ) ret = <HEX0x> ] ]",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "60",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "0x1"
+        ]
+      }
+    ],
+    "template_id": 81
+  },
+  {
+    "template": "%%01BGP/<NUM>/bgpBackwardTransition_active ( l ) : CID = <HEX0x>-alarmID = <HEX0x>;The BGP FSM moves from a higher numbered state to a lower numbered state. ( BgpPeerRemoteAddr = <MAC> : : <NUM> BgpPeerLastError = <NUM> BgpPeerState = <NUM> LocalIfName = - Reason = BGP receive notification Description = )",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "20",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "lower"
+        ]
+      }
+    ],
+    "template_id": 92
+  },
+  {
+    "template": "%%01BGP/<NUM>/hwBgpBackwardTransition_active ( l ) : CID = <HEX0x>-alarmID = <HEX0x>;The BGP FSM moves from a higher numbered state to a lower numbered state. ( BgpPeerRemoteAddr = <MAC> : : <NUM> InstanceId = <NUM> BgpPeerLastError = <NUM> BgpPeerState = <NUM> LocalIfName = - Reason = BGP receive notification Description = )",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "20",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "lower"
+        ]
+      }
+    ],
+    "template_id": 94
+  },
+  {
+    "template": "%%01BGP/<NUM>/bgpBackwardTransition_active ( l ) : CID = <HEX0x>-alarmID = <HEX0x>;TheBGP FSM moves from a higher numbered state to a lower numbered state. ( BgpPeerRemoteAddr = <MAC> : : <NUM> BgpPeerLastError = <NUM> BgpPeerState = <NUM> LocalIfName = - Reason = BGP receive notification Description = )",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "19",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "lower"
+        ]
+      }
+    ],
+    "template_id": 134
+  },
+  {
+    "template": "%%01DRIVER/<NUM>/HWPORTDOWNREASON ( l ) : CID = <HEX0x>-Slot = clc2/<NUM>;The physical statusof the Port1 on Card0 in slot clc2/<NUM> changed to Down. The possible cause is : LOCAL_FAULT",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "21",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "Down"
+        ]
+      }
+    ],
+    "template_id": 135
+  },
+  {
+    "template": "%%01FEI_SEC/<NUM>/SETCPCAR ( s ) : CID = <HEX0x>-Slot = <NUM>;The CP CAR dropped packets is detected to slide into a warning state ( TypeID = <NUM> ProtocolName = ARP Threshold = <NUM> Interval = <NUM> Dropped-Packets = <NUM> ) .Apr <NUM> <NUM> <NUM> : <NUM> : <NUM> ****-Jepco-NE8000-M8 %%01FEI_SEC/<NUM>/SETCPCAR ( s ) : CID = <HEX0x>-Slot = <NUM>;The CP CAR dropped packets is detected to slide into a warning state ( TypeID = <NUM> ProtocolName = CPACL-CAR-SOURCE-TRACE Threshold = <NUM> Interval = <NUM> Dropped-Packets = <NUM> ) .",
+    "module": "route",
+    "params": [
+      {
+        "param_pos": "12",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "dropped"
+        ]
+      }
+    ],
+    "template_id": 139
+  },
+  {
+    "template": "<*> ( l ) : CID = <HEX0x>;The MSTP process's port has been set to <*> state. ( ProcessID = <NUM> InstanceID = <NUM> PortID = <NUM> IfIndex = <NUM> PortName = Eth-Trunk12 PwName = - )",
+    "module": "eor",
+    "params": [
+      {
+        "param_pos": "15",
+        "detect_mode": "black_list",
+        "detect_detail": [
+          "discarding", "forwarding"
+        ]
+      }
+    ],
+    "template_id": 79
+  }
+]

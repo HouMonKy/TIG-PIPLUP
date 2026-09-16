@@ -1,0 +1,275 @@
+[
+  {
+    "case": "eo_sel_1_anomaly_232_sel.log",
+    "module": "sel",
+    "file_name": "eo_sel_1_anomaly_232_sel.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\eo_sel_1_anomaly_232_sel.log",
+    "line_content": "DIMM110 memory configuration error. Error code: 0x0B1C (SN:8426833E, BN:06200303).",
+    "template_id": 28,
+    "template": "DIMM110 memory configuration error. Error code : <HEX0x> ( SN : 8426833E BN : <NUM> ) .",
+    "param_list": [
+      "0x0B1C",
+      "06200303"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "eo_sel_3_anomaly_343_sel.log",
+    "module": "sel",
+    "file_name": "eo_sel_3_anomaly_343_sel.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\eo_sel_3_anomaly_343_sel.log",
+    "line_content": "DIMMO10 memory initialization error, Error code: 0x3000.",
+    "template_id": 75,
+    "template": "DIMMO10 memory initialization error Error code : <HEX0x>.",
+    "param_list": [
+      "0x3000"
+    ],
+    "param_pos": [0]
+  },
+  {
+    "case": "eo_sel_3_anomaly_343_sel.log",
+    "module": "sel",
+    "file_name": "eo_sel_3_anomaly_343_sel.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\eo_sel_3_anomaly_343_sel.log",
+    "line_content": "DIMMO11 memory initialization error. Error code: 0x3000.",
+    "template_id": 54,
+    "template": "<*> memory initialization error. Error code : <HEX0x>.",
+    "param_list": [
+      "DIMMO11",
+      "0x3000"
+    ],
+    "param_pos": [1]
+  },
+  {
+    "case": "messages_3_anomaly_944_messages.log",
+    "module": "messages",
+    "file_name": "messages_3_anomaly_944_messages.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\messages_3_anomaly_944_messages.log",
+    "line_content": " be2net 0000:03:00.2: ERR: sliport error1 0x9f000013.",
+    "template_id": 186,
+    "template": "be2net <NUM> : <NUM> : <NUM>.<NUM> : ERR : sliport <*> <HEX0x>.",
+    "param_list": [5],
+    "param_pos": null
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01FEI/7/FABRIC_PROC(D):CID=0x808d271b-Slot=21;Position:1/21;ModuleName:FABRIC:PROC Result:SE-SDK;Description:sc chip[2] mbist error, ret is 0x38",
+    "template_id": 191,
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : SE-SDK;Description : sc chip [ <NUM> ] mbist error ret is <HEX0x>",
+    "param_list": [
+      "7",
+      "0x808d271b",
+      "21",
+      "1",
+      "21",
+      "2",
+      "0x38"
+    ],
+    "param_pos": [6]
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01INFO/7/SUPPRESS_DIAGLOG(D):CID=0x8060040e;Last diagnostic message repeated 1 time, InfoID=160501827.",
+    "template_id": 192,
+    "template": "%%01INFO/<NUM>/SUPPRESS_DIAGLOG ( D ) : CID = <HEX0x>;Last diagnostic message repeated <NUM> time InfoID = <NUM>.",
+    "param_list": [
+      "7",
+      "0x8060040e",
+      "1",
+      "160501827"
+    ],
+    "param_pos": [1]
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01SPM/7/RPM_LS_DEBUG(D):CID=0x0-Slot=21;Rpmls debug information: [181218-09:03:16.184826] [BOOT][SIGN] BOOT SU Alter addr IpAddr:0xac100115!",
+    "template_id": 193,
+    "template": "%%01SPM/<NUM>/RPM_LS_DEBUG ( D ) : CID = <HEX0x>-Slot = <NUM>;Rpmls debug information : [ <NUM>-<NUM> : <NUM> : <NUM>.<NUM> ] [ BOOT ] [ SIGN ] BOOT SU Alter addr IpAddr : <HEX0x>!",
+    "param_list": [
+      "7",
+      "0x0",
+      "21",
+      "181218",
+      "09",
+      "03",
+      "16",
+      "184826",
+      "0xac100115"
+    ],
+    "param_pos": [1]
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01FEI/7/FABRIC_PROC(D):CID=0x808d271b-Slot=21;Position:1/21;ModuleName:FABRIC:PROC Result:SE-SDK;Description:sc chip[2] power up reset again success",
+    "template_id": 194,
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : SE-SDK;Description : sc chip [ <NUM> ] power up reset again success",
+    "param_list": [
+      "7",
+      "0x808d271b",
+      "21",
+      "1",
+      "21",
+      "2"
+    ],
+    "param_pos": [1]
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01FEI/7/FABRIC_PROC(D):CID=0x808d271b-Slot=21;Position:1/21;ModuleName:FABRIC:PROC Result:SE-SDK;Description:sc chip[2] se_drv_cfg_table_init success",
+    "template_id": 195,
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : SE-SDK;Description : sc chip [ <NUM> ] <*> success",
+    "param_list": [
+      "7",
+      "0x808d271b",
+      "21",
+      "1",
+      "21",
+      "2",
+      "se_drv_cfg_table_init"
+    ],
+    "param_pos": [1]
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01FEI/7/FABRIC_PROC(D):CID=0x808d271b-Slot=21;Position:1/21;ModuleName:FABRIC:PROC Result:FAIL;Description:Drive return error, file: libse6_init.c  line: 448. 0x38 0x20 0x2 0x0 0x0 0x0 0x0 0x0",
+    "template_id": 196,
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : FAIL;Description : Drive return error file : libse6_init.c line : <NUM>. <HEX0x> <HEX0x> <HEX0x> <HEX0x> <HEX0x> <HEX0x> <HEX0x> <HEX0x>",
+    "param_list": [
+      "7",
+      "0x808d271b",
+      "21",
+      "1",
+      "21",
+      "448",
+      "0x38",
+      "0x20",
+      "0x2",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0",
+      "0x0"
+    ],
+    "param_pos": [1]
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01FEI/7/FABRIC_PROC(D):CID=0x808d271b-Slot=21;Position:1/21;ModuleName:FABRIC:PROC Result:FAIL;Description:FEISWAGT Init ScChip[2] return fail!",
+    "template_id": 197,
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : FAIL;Description : FEISWAGT Init ScChip [ <NUM> ] return fail!",
+    "param_list": [
+      "7",
+      "0x808d271b",
+      "21",
+      "1",
+      "21",
+      "2"
+    ],
+    "param_pos": [1]
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01FEI/7/FABRIC_PROC(D):CID=0x808d271b-Slot=21;Position:1/21;ModuleName:FABRIC:PROC Result:FAIL;Description:<HW-ERROR>[FABRIC] SC Init fail,before FEISWAGT_START_SwfInitFailProc! error code =0xd105f2",
+    "template_id": 198,
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : FAIL;Description : <HW-ERROR> [ FABRIC ] SC Init fail before FEISWAGT_START_SwfInitFailProc! error code = <HEX0x>",
+    "param_list": [
+      "7",
+      "0x808d271b",
+      "21",
+      "1",
+      "21",
+      "0xd105f2"
+    ],
+    "param_pos": [5]
+  },
+  {
+    "case": "route_3_anomaly_3034_network.log",
+    "module": "route",
+    "file_name": "route_3_anomaly_3034_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_3_anomaly_3034_network.log",
+    "line_content": "%%01FEI/7/FABRIC_PROC(D):CID=0x808d271b-Slot=21;Position:1/21;ModuleName:FABRIC:PROC Result:FAIL;Description:<HW-ERROR>[FABRIC] SC Init fail! error code =0xd105fd",
+    "template_id": 199,
+    "template": "%%01FEI/<NUM>/FABRIC_PROC ( D ) : CID = <HEX0x>-Slot = <NUM>;Position : <NUM>/<NUM>;ModuleName : FABRIC : PROC Result : FAIL;Description : <HW-ERROR> [ FABRIC ] SC Init fail! error code = <HEX0x>",
+    "param_list": [
+      "7",
+      "0x808d271b",
+      "21",
+      "1",
+      "21",
+      "0xd105fd"
+    ],
+    "param_pos": [5]
+  },
+  {
+    "case": "route_4_anomaly_2735_network.log",
+    "module": "route",
+    "file_name": "route_4_anomaly_2735_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_4_anomaly_2735_network.log",
+    "line_content": "%%01FE1/3/FE_ERROR(D):CID=0x807f05c5-Slot=5;<HW-ERROR> [Slot 5] [FE FE12] [FEID 255] [Module [INIT]] .[Description:[PARAM=0x[0 0 0 0] [NP1] Hiram Mtest result confirm fail. HiramId(1) Cbqid(0), ret=0x1]]",
+    "template_id": 222,
+    "template": "%%01FE1/<NUM>/FE_ERROR ( D ) : CID = <HEX0x>-Slot = <NUM>;<HW-ERROR> [ Slot <NUM> ] [ FE FE12 ] [ FEID <NUM> ] [ Module [ INIT ] ] . [ Description : [ PARAM = 0x [ <NUM> <NUM> <NUM> <NUM> ] [ NP1 ] Hiram Mtest result confirm fail. HiramId ( <NUM> ) Cbqid ( <NUM> ) ret = <HEX0x> ] ]",
+    "param_list": [
+      "3",
+      "0x807f05c5",
+      "5",
+      "5",
+      "255",
+      "0",
+      "0",
+      "0",
+      "0",
+      "1",
+      "0",
+      "0x1"
+    ],
+    "param_pos": [11]
+  },
+  {
+    "case": "route_4_anomaly_2735_network.log",
+    "module": "route",
+    "file_name": "route_4_anomaly_2735_network.log",
+    "file_path": "D:\\Work\\CodeHub\\TIG_LogAnalysis\\dataset\\CN\\0813\\data_group_1\\output_logs\\route_4_anomaly_2735_network.log",
+    "line_content": "%%01FE1/3/FE_ERROR(D):CID=0x807f05c5-Slot=5;<HW-ERROR> [Slot 5] [FE FE12] [FEID 255] [Module [INIT]] .[Description:[PARAM=0x[0 0 0 0] Hiram Mtest result confirm fail. idnex(0) bank(0) row(0)]]",
+    "template_id": 223,
+    "template": "%%01FE1/<NUM>/FE_ERROR ( D ) : CID = <HEX0x>-Slot = <NUM>;<HW-ERROR> [ Slot <NUM> ] [ FE FE12 ] [ FEID <NUM> ] [ Module [ INIT ] ] . [ Description : [ PARAM = 0x [ <NUM> <NUM> <NUM> <NUM> ] Hiram Mtest result confirm fail. idnex ( <NUM> ) bank ( <NUM> ) row ( <NUM> ) ] ]",
+    "param_list": [
+      "3",
+      "0x807f05c5",
+      "5",
+      "5",
+      "255",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0",
+      "0"
+    ],
+    "param_pos": [1]
+  }
+]
