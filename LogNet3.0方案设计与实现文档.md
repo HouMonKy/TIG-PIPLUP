@@ -35,7 +35,7 @@
 LogNet3.0 是旨在实现对海量异构日志的**免人工配置解析**与**精准异常检测**的日志智能感知系统。系统通过三大核心技术点实现端到端的高性能日志分析能力：
 
 - **免人工配置异构日志解析**：基于自研 PIPLUP（Prefix-tree Indexed Parsing with LLM-assisted Universal Processing）算法，结合 LLM 智能格式学习引擎，实现对不同模块、不同格式日志的自动解析，无需人工逐模块配置正则规则。
-- **模板无关自适应参数异常检测**：离线使用 GLiNER 完成参数识别与知识治理，并训练共享 Conditional VAE/统计资产；在线确定性解析参数，精确命中参数知识表后执行检测，未命中直接通过并记录。
+- **模板无关自适应参数异常检测**：离线使用 GLiNER 完成参数识别与知识治理，并训练带类别条件的共享 VAE、生成统计检测配置；在线确定性解析参数，精确命中参数知识表后执行检测，未命中直接通过并记录。
 - **分词增强语义异常检测**：通过领域专用 BERT 分词器训练 + 滑动窗口多粒度嵌入 + 异常基线相似度匹配，实现日志内容的语义级异常检测。
 
 ### 代码仓库结构
@@ -158,7 +158,7 @@ Repo -down-> Detect
 | **上下文管理** | `src/data_process/log_context.py` | 管理全局状态：Drain 树映射、PIPLUP 实例、白名单、稳态学习、日志仓库 |
 | **日志解析** | `src/data_process/template_extractor/` | PIPLUP / Drain 双引擎日志模板提取，含预处理、后处理、LLM 智能格式学习 |
 | **语义异常检测** | `src/anomaly_detection/semantic_anomaly/` | 基于 BERT 嵌入 + 异常基线相似度匹配的日志内容异常检测 |
-| **参数异常检测** | `TIG-2026/dme_platform/{corpus,offline,detection}/` | 离线发布参数知识与共享 Conditional VAE/统计资产；在线精确查询，命中检测、未命中通过 |
+| **参数异常检测** | `TIG-2026/dme_platform/{corpus,offline,detection}/` | 离线发布参数知识、共享 VAE 和统计检测配置；在线精确查询，命中检测、未命中通过 |
 | **数量异常检测** | `src/anomaly_detection/quantitive_anomaly/` | 基于 k-sigma 留一法的日志频率突变检测 |
 | **结果融合** | `src/anomaly_detection/anomaly_detection.py` | 三路检测结果按三元组去重合并，生成异常事件与诊断报告 |
 | **模型层** | `src/anomaly_detection/semantic_anomaly/bert_model/` | LogNetMini（CPU）和 LogNetBig（NPU）双模型 |
@@ -575,7 +575,7 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 ### 技术概述
 
-参数异常检测采用“**离线治理、在线直检**”的知识驱动架构。离线侧识别参数、整理语义和检测约束，并发布参数知识表与检测资产；在线侧只进行确定性参数解析、知识表精确查询和策略检测，不按 `template_id` 路由，也不加载语义模型。
+参数异常检测采用“**离线治理、在线直检**”的知识驱动架构。离线侧识别参数、整理语义和检测约束，并发布参数知识表与检测配置包；在线侧只进行确定性参数解析、知识表精确查询和策略检测，不按 `template_id` 路由，也不加载语义模型。
 
 ```text
 离线态
@@ -583,24 +583,24 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
   → GLiNER 参数识别
   → 参数规范化、归类与人工复核
   → 参数知识表
-  → 共享 Conditional VAE / 统计检测资产
+  → 带类别条件的共享 VAE / 统计检测配置
 
 在线态
 原始日志
   → 确定性参数解析
   → 参数知识表精确查询
       ├─ 命中：按知识中的策略检测
-      └─ 未命中：记录 unknown，直接通过
+      └─ 未命中：记录为未知参数，直接通过
   → 参数级结果汇总为日志级结论
 ```
 
-模板无关的含义是：模板结构可以变化，只要日志中出现已经审核的参数名称，系统仍能使用同一份参数知识和检测资产；对于知识表之外的参数，在线不做语义猜测，而是留待下一轮离线治理。
+模板无关的含义是：模板结构可以变化，只要日志中出现已经审核的参数名称，系统仍能使用同一份参数知识和检测配置；对于知识表之外的参数，在线不做语义猜测，而是留待下一轮离线治理。
 
 | 模块 | 对应实现 | 主要职责 |
 |------|----------|----------|
-| 离线识别与治理 | `offline/model_adapters.py`、`corpus/parameter_gold.py` | 识别参数 span，生成并复核治理记录 |
+| 离线识别与治理 | `offline/model_adapters.py`、`corpus/parameter_gold.py` | 识别参数及其原文区间，生成并复核治理记录 |
 | 知识发布 | `corpus/parameter_knowledge_builder.py`、`detection/parameter_knowledge.py` | 发布可审核、可校验的参数知识包 |
-| 检测资产训练 | `offline/family_training.py`、`detection/family_assets.py` | 训练共享 Conditional VAE，校准每个 family 的检测配置 |
+| 检测配置训练 | `offline/family_training.py`、`detection/family_assets.py` | 训练共享 VAE，为每类参数校准检测方式和阈值 |
 | 在线检测 | `detection/param_parser.py`、`detection/online.py` | 解析参数、精确查询、执行策略并汇总结果 |
 
 ### 离线参数治理与知识发布
@@ -628,59 +628,59 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 }
 ```
 
-离线识别使用 `fastino/gliner2.5-multi-v1` 从日志中提取参数名、参数值及字符区间。模型输出必须能够回查原文；越界、文本不一致或非法实体类型直接拒绝。`Qwen3.5-0.8B` 可为 canonical、family、单位和检测策略等治理字段生成候选，但模型结果只能进入人工复核队列，不能直接发布。
+离线识别使用 `fastino/gliner2.5-multi-v1` 从日志中提取参数名、参数值及字符区间。模型输出必须能够回查原文；越界、文本不一致或非法实体类型直接拒绝。`Qwen3.5-0.8B` 可为标准参数名、参数类别、单位和检测策略等治理字段生成候选，但模型结果只能进入人工复核队列，不能直接发布。
 
-审核后的记录按 canonical 合并为参数知识条目。知识表保存参数别名、值类型、规范单位、检测策略、约束、关系和来源等信息，其中：
+审核后的记录按标准参数名（代码字段 `canonical`）合并为参数知识条目。知识表保存参数别名、值类型、规范单位、检测策略、约束、关系和来源等信息，其中：
 
 - `aliases` 决定线上哪些参数名可以精确命中；
 - `detector_policy` 决定命中后的主检测方式；
-- `vae_family` 决定连续数值参数进入哪个家族配置；
+- `vae_family` 决定连续数值参数进入哪个参数类别的检测配置；
 - `constraints` 和 `relation` 保存范围、枚举、单调性及参数间关系。
 
-同一 alias 不允许指向多个参数；存在冲突或尚未确认的条目保持 `needs_review`，线上不可命中。发布时对条目和知识包分别计算内容哈希，运行时校验失败即拒绝加载，不从离线语料临时重建。
+同一别名不允许指向多个参数；存在冲突或尚未确认的条目保持 `needs_review` 状态，线上不可命中。发布时对条目和知识包分别计算内容哈希，运行时校验失败即拒绝加载，不从离线语料临时重建。
 
-发布后的知识表同时交给检测资产训练模块和在线查询模块，成为离线与在线之间的唯一参数语义契约。
+发布后的知识表同时交给检测配置训练模块和在线查询模块，成为离线与在线之间唯一的参数定义依据。
 
-### 共享 Conditional VAE 与检测资产
+### 共享 VAE 与检测配置
 
 **输入示例**：
 
 ```text
-time_use          → family=duration，单位=ms
-wait_task_count   → family=nonnegative_count，单位=count
-capacity          → family=capacity_size，单位=byte
+time_use          → 耗时类（duration），单位=ms
+wait_task_count   → 非负计数类（nonnegative_count），单位=count
+capacity          → 容量类（capacity_size），单位=byte
 ```
 
 **输出示例**：
 
 ```text
-shared_model      → 一套 Conditional VAE 权重和 family_index
-canonical_stats   → 每个 canonical 独立的 median / MAD
-families          → 每个 family 的 chosen / threshold / error_calibration
-knowledge_hash    → 与参数知识表绑定
+共享模型          → 一套带参数类别条件的 VAE 权重
+参数统计          → 每个标准参数独立的中位数和 MAD
+类别配置          → 每类参数的最终检测方式、阈值和误差校准值
+知识版本哈希      → 与参数知识表绑定
 ```
 
-连续数值 family 共用一套 Conditional VAE，不再为每个 family 分别保存模型权重；但归一化、误差校准和报警阈值仍然隔离：
+适合数值建模的参数类别共用一套带类别条件的共享 VAE，不再为每类参数分别保存模型权重；但参数归一化、各类误差校准和报警阈值仍然隔离：
 
 | 维度 | 共享方式 |
 |------|----------|
-| 模型权重 | 所有 eligible family 共用一套 Conditional VAE |
-| family 条件 | one-hot 同时进入 encoder 和 decoder |
-| 参数尺度 | 每个 canonical 使用自己的 median/MAD，不跨参数借用 |
-| 重构误差校准 | 每个 family 独立计算 |
-| 报警阈值 | 每个 family 独立冻结 |
-| 上线选择 | 每个 family 独立选择 `shared_vae` 或 `statistical` |
+| 模型权重 | 所有适用的数值参数类别共用一套共享 VAE |
+| 类别信息 | 参数类别经过独热编码，同时提供给编码器和解码器 |
+| 参数尺度 | 每个标准参数使用自己的中位数和 MAD，不跨参数借用 |
+| 重构误差校准 | 每类参数独立计算 |
+| 报警阈值 | 每类参数独立冻结 |
+| 上线选择 | 每类参数独立选择共享 VAE 或稳健统计方法 |
 
 #### 参数归一化与条件重构
 
-不同行为家族和参数的绝对量级差异很大，因此先统一单位，再对每个 canonical 独立去尺度：
+不同参数类别和参数本身的绝对量级差异很大，因此先统一单位，再按每个标准参数独立去除尺度差异：
 
 ```text
-y = log1p(max(x_in_canonical_unit, 0))
-z = (y - median_canonical) / (1.4826 × MAD_canonical + ε)
+y = log1p(max(统一单位后的值, 0))
+z = (y - 当前参数的中位数) / (1.4826 × 当前参数的MAD + ε)
 ```
 
-共享模型输入为 `[z, zero_flag, one-hot(family)]`，decoder 使用 `[mu, one-hot(family)]` 重构 `[z, zero_flag]`。family 编号只作为 one-hot 条件，不作为连续数值输入；训练时按 family 平衡采样，避免样本较多的家族主导共享模型。
+共享模型输入由标准化数值、零值标记和参数类别的独热编码组成；解码时也带上相同的类别信息。类别编号不会被当作有大小关系的连续数值。训练时各参数类别等量采样，避免样本较多的类别主导共享模型。
 
 ID、地址、hash、CRC、枚举、状态、返回码、时间戳原值、序列和参数关系不进入共享 VAE，它们继续使用格式、集合、硬规则、序列或关系检测。
 
@@ -688,22 +688,22 @@ ID、地址、hash、CRC、枚举、状态、返回码、时间戳原值、序�
 
 训练数据按用途分为正常训练、正常验证、误差校准、决策校准和封存测试。模型、归一化统计与阈值冻结后，封存测试只用于最终评估。
 
-每个 family 比较三种方案：
+每个参数类别比较三种方案：
 
 | 方案 | 作用 |
 |------|------|
 | A：稳健统计 `abs(z)` | 基线与默认安全方案 |
-| B：per-family TinyVAE | 独立 VAE 对照 |
-| C：共享 Conditional VAE | 共享模型候选方案 |
+| B：每类一个 TinyVAE | 独立 VAE 对照 |
+| C：带类别条件的共享 VAE | 共享模型候选方案 |
 
-只有共享 VAE 相对统计基线具有稳定独立增益时，该 family 的 `chosen` 才设置为 `shared_vae`；否则选择 `statistical`。因此所有 family 共享模型权重，不等于强制所有 family 都走 VAE。
+只有共享 VAE 相对统计基线具有稳定独立增益时，该参数类别的最终检测方式（代码字段 `chosen`）才设置为 `shared_vae`；否则使用 `statistical` 稳健统计方法。因此共享一套模型权重，不等于强制所有参数类别都走 VAE。
 
-资产 schema v2 由 `shared_model`、`families` 和 `canonical_stats` 三部分组成，并绑定 `knowledge_hash`。在线侧：
+检测配置包的 v2 结构由共享模型、各参数类别的检测配置和各标准参数的归一化统计三部分组成，对应代码字段 `shared_model`、`families` 和 `canonical_stats`，并与参数知识表版本哈希绑定。在线侧：
 
-- `chosen=statistical`：使用 `abs(z)` 与该 family 阈值比较；
-- `chosen=shared_vae`：执行轻量纯 Python 条件 VAE 前向，将重构误差按该 family 的校准统计标准化后再与阈值比较。
+- 最终检测方式为 `statistical`：使用标准化数值的绝对值与该类别阈值比较；
+- 最终检测方式为 `shared_vae`：执行轻量纯 Python VAE 推理，将重构误差按该类别的校准值标准化后再与阈值比较。
 
-共享 VAE 推理失败、family 条件缺失、canonical 统计缺失或资产与知识表哈希不一致时均 fail closed，不静默回退到其他检测器。
+共享 VAE 推理失败、参数类别缺失、标准参数的归一化统计缺失，或者检测配置包与知识表版本不一致时，系统拒绝继续检测，不静默回退到其他检测器。
 
 ### 在线参数解析与检测
 
@@ -731,13 +731,13 @@ new layout :: time use=2000000(us), plane=1, extraFlag(9)
 
 在线解析器使用确定性词法扫描识别 `name=value`、`name:value`、`name(value)` 和裸数值等参数表达式，保留参数名、原值、单位以及半开字符区间 `[start,end)`。解析器不判断参数语义，是否进入检测完全由参数知识表决定。
 
-解析分两遍完成：第一遍优先接纳能被 `exact_lookup` 命中的参数；第二遍把剩余可解析候选记录为 unknown。查询只允许已审核 alias 精确命中，不使用 substring、编辑距离、名称片段推断或在线模型补判。
+解析分两遍完成：第一遍优先接纳能够在知识表中精确匹配的参数（代码接口 `exact_lookup`）；第二遍把剩余可解析候选记录为未知参数。查询只允许已审核别名精确命中，不使用子串、编辑距离、名称片段推断或在线模型补判。
 
 命中参数先完成数值和单位归一化，再根据 `detector_policy` 执行对应策略：
 
 | 策略 | 主要用途 |
 |------|----------|
-| `numeric_vae` | 调用 family 资产，实际执行该 family 的 `chosen` 检测器 |
+| `numeric_vae` | 调用数值检测配置，执行该参数类别最终选定的统计方法或共享 VAE |
 | `sequence` | 按日志流隔离状态，检查递增或非递减 |
 | `relation` | 检查同日志参数之间的大小、差值或引用关系 |
 | `categorical` / `hard_rule` | 检查枚举、固定值、返回码和范围 |
@@ -749,12 +749,12 @@ new layout :: time use=2000000(us), plane=1, extraFlag(9)
 ```text
 parameter_alert = hard_constraint_violation OR detector_score >= threshold
 
-任一 known 参数异常        → anomaly / known_parameter_anomaly
-存在 known 且全部正常      → normal / known_parameters_normal
-没有任何 known 参数命中    → normal / no_known_parameter
+任一已知参数异常            → anomaly / known_parameter_anomaly
+存在已知参数且全部正常      → normal / known_parameters_normal
+没有任何已知参数命中        → normal / no_known_parameter
 ```
 
-unknown 参数只记录并回流离线治理，不覆盖已知参数的异常结论，也不触发额外 AI 分支。输出同时携带参数区间、检测证据、`detector_kind`、阈值、知识版本、资产版本和各阶段耗时。
+未知参数只记录并回流离线治理，不覆盖已知参数的异常结论，也不触发额外 AI 分支。输出同时携带参数区间、检测证据、实际检测方式（代码字段 `detector_kind`）、阈值、知识版本、检测配置版本和各阶段耗时。
 
 ### 模块交互关系
 
@@ -771,33 +771,33 @@ participant "GLiNER2.5-multi" as GLiNER
 participant "参数治理" as Govern
 database "参数知识表" as Knowledge
 participant "共享 VAE 训练" as Training
-database "FamilyAssetBundle v2" as Assets
+database "检测配置包 v2" as Assets
 participant "在线参数解析" as Parser
 participant "策略执行与汇总" as Detect
 
 == 离线态 ==
-GLiNER -> Govern: 参数名/值 span 候选
-Govern -> Reviewer: canonical/family/policy/constraints 候选
+GLiNER -> Govern: 参数名/值及原文区间候选
+Govern -> Reviewer: 标准参数名/类别/策略/约束候选
 Reviewer -> Knowledge: 发布审核记录、版本和哈希
-Knowledge -> Training: eligible family 与 canonical 定义
-Training -> Assets: shared_model + family 配置 + canonical 统计
+Knowledge -> Training: 适用的参数类别与标准参数定义
+Training -> Assets: 共享模型 + 类别配置 + 参数统计
 
 == 在线态 ==
-Parser -> Knowledge: exact_lookup(parameter_name)
-Knowledge --> Parser: reviewed entry / miss
-Parser -> Detect: known 参数 + unknown 参数
-Detect -> Assets: predict(family, canonical, normalized_value)
-Assets --> Detect: detector_kind + score + alert
-Detect -> Detect: 汇总 known 参数结果
+Parser -> Knowledge: 精确匹配参数名
+Knowledge --> Parser: 已审核条目 / 未命中
+Parser -> Detect: 已知参数 + 未知参数
+Detect -> Assets: 按参数类别、标准参数名和规范值检测
+Assets --> Detect: 检测方式 + 分数 + 是否异常
+Detect -> Detect: 汇总已知参数结果
 
 @enduml
 ```
 
-模块之间通过两个只读资产衔接：参数知识表负责“这个参数是什么、应该怎样检测”，FamilyAssetBundle 负责“连续数值参数如何归一化、当前 family 使用哪种检测器及其阈值”。在线模块不读取治理语料，也不修改知识、模型或阈值。
+模块之间通过两个只读配置包衔接：参数知识表负责“这个参数是什么、应该怎样检测”，检测配置包（代码类 `FamilyAssetBundle`）负责“连续数值参数如何归一化、当前参数类别使用哪种检测器及其阈值”。在线模块不读取治理语料，也不修改知识、模型或阈值。
 
 ### 端到端检测示例
 
-离线阶段，GLiNER2.5-multi 从日志中识别 `time use` 及其值；治理人员确认其 canonical 为 `time_use`、family 为 `duration`、单位为毫秒，并发布参数知识。训练模块将该参数的正常数据按自身 median/MAD 归一化，与其他 eligible family 一起训练共享 Conditional VAE，再为 duration 独立冻结检测方式和阈值。
+离线阶段，GLiNER2.5-multi 从日志中识别 `time use` 及其值；治理人员确认其标准参数名为 `time_use`、属于耗时类、单位为毫秒，并发布参数知识。训练模块使用该参数自己的中位数和 MAD 完成归一化，再与其他适用的数值参数类别一起训练共享 VAE，最后为耗时类单独冻结检测方式和阈值。
 
 在线收到一条新结构日志：
 
@@ -805,9 +805,9 @@ Detect -> Detect: 汇总 known 参数结果
 new component summary :: plane=1 ; time use=2000000(us) ; extraFlag(9)
 ```
 
-解析器不查询模板 ID，而是直接提取三个参数。`plane` 和 `time use` 精确命中知识表，`extraFlag` 作为 unknown 记录；`time use` 完成单位换算后进入 duration 的 family 配置，并按其 `chosen` 执行统计或共享 VAE 检测。若该参数越过硬约束或冻结阈值，则日志判为 `known_parameter_anomaly`。
+解析器不查询模板 ID，而是直接提取三个参数。`plane` 和 `time use` 精确命中知识表，`extraFlag` 作为未知参数记录；`time use` 完成单位换算后进入耗时类检测配置，并按最终选定的方式执行统计或共享 VAE 检测。若该参数越过硬约束或冻结阈值，则日志判为 `known_parameter_anomaly`。
 
-这条主线保证了三点：参数知识只在离线生成，在线行为由审核资产确定；模板变化不影响已知参数检测；共享 VAE 减少重复权重，但不会牺牲 canonical 尺度和 family 阈值的隔离。
+这条主线保证了三点：参数知识只在离线生成，在线行为由已审核的配置决定；模板变化不影响已知参数检测；共享 VAE 减少重复权重，同时仍为每个标准参数保留独立尺度、为每类参数保留独立阈值。
 
 ## 关键技术点三：分词增强语义异常检测
 
