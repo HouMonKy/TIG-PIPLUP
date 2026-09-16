@@ -575,564 +575,744 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 ### 技术概述
 
-**模块输入示例**：
+参数异常检测采用“**离线治理、在线直检**”的知识驱动架构。模板仅作为离线分析参数语义和检测要求的上下文，不作为在线检测入口；在线侧不按 `template_id` 选择规则，也不加载语义模型。离线侧将参数识别结果治理为可审核、可版本化的参数知识表，并训练与知识表绑定的家族检测资产；在线侧只负责确定性解析、精确查询、策略执行和结果汇总。
 
-```json
+```text
+离线态
+日志样本与参数说明
+  → GLiNER 参数识别
+  → 参数规范化、归类与约束整理
+  → 一致性校验与人工复核
+  → 参数知识表发布
+  → 数值家族资产训练、校准与发布
+
+在线态
+原始日志
+  → 确定性参数解析
+  → 已审核参数知识表精确查询
+      ├─ hit：值归一化并按 detector_policy 检测
+      └─ miss：记录 unknown，不检测
+  → 参数级结果汇总
+  → 日志级结论与可观测信息
+```
+
+该架构的模板无关性体现在：只要日志中出现参数知识表已经登记的参数名称，无论日志常量文本、字段顺序或所属模板如何变化，该参数都可以进入相同的检测流程。反之，表外参数不会因名称中包含 `time`、`id`、`count` 等片段而被在线推断为已知参数。
+
+核心模块及职责如下：
+
+| 模块 | 主要输入 | 主要输出 | 职责 | 对应实现 |
+|------|----------|----------|------|----------|
+| 离线参数识别与治理 | 日志样本、参数说明、目标实体标签 | 参数候选与治理记录 | 使用 GLiNER 识别参数证据，完成规范化、归类和复核 | `offline/model_adapters.py`、`corpus/parameter_gold.py` |
+| 参数知识构建 | 审核后的治理记录 | 版本化知识包 | 合并 canonical、建立 alias 索引、校验冲突并计算哈希 | `corpus/parameter_knowledge_builder.py`、`detection/parameter_knowledge.py` |
+| 家族资产训练 | 参数知识、正常及异常样本 | 家族检测资产包 | 按数值行为家族训练、校准并选择 VAE 或统计方法 | `offline/family_training.py`、`detection/family_assets.py` |
+| 在线参数解析 | 原始日志、知识表查询函数 | known 参数与 unknown 参数 | 确定性扫描参数表达式，不依赖模板或模型 | `detection/param_parser.py` |
+| 在线检测执行 | known 参数、知识条目、家族资产 | 参数级检测结果 | 按 `detector_policy` 执行约束、序列、关系或数值检测 | `detection/online.py` |
+| 结果汇总 | 参数级结果与版本信息 | 日志级结果 | 汇总状态、原因码、证据、未知率和阶段耗时 | `detection/online.py` |
+
+下文按照数据从离线生产到在线消费的顺序介绍各模块，并在每个模块的开头给出输入输出示例，在结尾说明其与下游模块的衔接关系。
+
+### 离线参数识别与治理
+
+**模块职责**：从日志及参数说明中提取参数名、参数值和原文位置，形成参数治理候选；随后补充规范名、行为家族、值类型、单位、检测策略和约束。模型输出只作为候选证据，不能直接成为线上真值。
+
+**输入输出示例**：
+
+```text
+输入日志：
+Xnet send ..., time use=10772(us), SNO=100, plane=1, xnetRet=0.
+
+输入标签：
+["parameter name", "parameter value"]
+
+GLiNER 候选输出：
+parameter name  → "time use"
+parameter value → "10772"
+parameter name  → "SNO"
+parameter value → "100"
+
+治理输出：
+surface="time use"
+canonical="time_use"
+family="duration"
+value_kind=["integer"]
+canonical_unit="ms"
+detector_policy="numeric_vae"
+vae_family="duration"
+```
+
+该模块接收上游离线样本和参数说明，输出尚未发布的治理记录；治理记录经过校验和人工审核后，才交给参数知识构建模块。
+
+#### GLiNER 参数识别
+
+GLiNER 在离线阶段承担参数实体识别职责。模型接收完整日志文本和受控实体标签，输出参数名、参数值、字符起止位置及置信度。统一接入协议将模型结果转换为相同的 span 结构：
+
+```python
 {
-  "ts": 1725963825,
-  "source": "node-01",
-  "module": "xnet",
-  "object": "lwp-8",
-  "log_text": "Xnet send msg(0x25e...(mid:437) -- 0x247...(mid:297), time use=15280(us), SNO=2283111033000000001, reqSNO=0, msg type=1, plane=1, xnetRet=0."
+    "surface": "time use",
+    "entity_type": "parameter name",
+    "start": 15,
+    "end": 23,
+    "confidence": 0.91
 }
 ```
 
-**模块输出示例**：
+模型结果进入后续流程前必须完成原文锚定校验：字符区间采用半开区间 `[start, end)`，且 `log_text[start:end]` 必须与模型返回的表面文本一致。越界、空白、实体类型非法或无法回查原文的结果均标记为无效，不进入自动发布链路。
+
+GLiNER 不负责直接判断异常，也不参与在线推理。它的作用是为离线治理提供参数名和参数值候选，降低人工定位参数的成本。模型版本、阈值、设备、依赖和原始输出需要随候选结果保留，以便复现和审计。
+
+#### 参数规范化与行为归类
+
+有效 span 与参数说明合并后，形成统一治理记录。核心字段包括：
+
+| 字段 | 作用 |
+|------|------|
+| `surface` | 日志或说明中出现的原始参数名 |
+| `canonical` | 稳定的规范参数名，同时作为参数身份基础 |
+| `aliases` | 允许在线精确命中的已审核表面名集合 |
+| `family` | 参数的业务或行为类别 |
+| `value_kind` | integer、float、hex、enum、string 等值形态 |
+| `canonical_unit` | 在线归一后的统一单位 |
+| `detector_policy` | 在线主检测策略 |
+| `constraints` | 范围、固定值、合法集合等确定性约束 |
+| `vae_family` | 数值类参数对应的家族资产；不适用时为空 |
+| `relation` | 参数之间的比较、差值或引用关系 |
+
+`family` 与 `detector_policy` 分工不同：`family` 描述参数是什么，`detector_policy` 决定线上怎样检测。例如，时延参数可归入 `duration` 家族并路由到 `numeric_vae`；返回码可归入 `return_code` 家族并路由到 `hard_rule`。
+
+规范化过程不以“数值能否转换”为唯一依据。ID、地址、哈希、枚举、状态和返回码即使使用整数表示，也不能因此进入连续数值家族。该约束保证后续训练模块不会把无连续数值意义的参数送入 VAE 或统计分布检测。
+
+#### 约束与关系整理
+
+确定性检测要求在离线阶段结构化。知识记录支持以下主要形式：
+
+- `min`、`max`、`fixed`：上下界或固定值；
+- `domain`、`success_values`：允许集合或成功码集合；
+- `monotonic`、`monotonic_increasing`：序列单调性；
+- `max_ref`：当前参数不得超过同日志中的参考参数；
+- `relation`：`>=`、`in_or_ref`、`diff_close_zero`、`max_ref` 等参数间关系；
+- `allow_empty`、`valid_unix_timestamp`：格式或有效性要求。
+
+约束必须具有参数说明或人工确认依据。无法唯一确定的枚举集合、成功码或参数关系不能由模型臆造；这类记录保留为待复核状态。
+
+#### 校验与人工复核
+
+治理结果发布前至少检查以下内容：
+
+1. 参数名和值是否可以回查原文；
+2. canonical、类型、单位、family 与检测策略是否一致；
+3. 同一 canonical 在不同来源中的检测字段是否冲突；
+4. alias 是否同时指向多个 parameter_id；
+5. `numeric_vae` 是否仅绑定允许的数值家族；
+6. 约束和关系是否有明确来源。
+
+存在冲突或不确定字段的条目标记为 `needs_review`。模型置信度不能替代人工审核，模型输出也不能直接修改线上知识。只有审核通过的记录才允许被在线查询命中。
+
+完成审核后，治理记录交给参数知识构建模块；后者负责合并条目、生成索引并发布不可变知识包。
+
+### 参数知识构建与运行时加载
+
+**模块职责**：把审核后的治理记录合并为参数知识条目，检查 alias 唯一性和策略合法性，生成逐条哈希与知识包哈希；在线侧只加载发布产物，不读取离线语料，也不临时重建知识。
+
+**输入输出示例**：
+
+```text
+输入：
+同一 canonical 下的多条审核记录及 aliases
+
+输出知识条目：
+{
+  "parameter_id": "time_use",
+  "canonical": "time_use",
+  "aliases": ["time use"],
+  "family": "duration",
+  "value_kind": ["integer"],
+  "canonical_unit": "ms",
+  "detector_policy": "numeric_vae",
+  "constraints": {"min": 0, "max": 100000, "unit": "us"},
+  "vae_family": "duration",
+  "review_status": "reviewed",
+  "content_hash": "..."
+}
+```
+
+该模块位于离线治理和在线运行之间：上游提供审核记录，下游的家族训练模块与在线检测模块共同消费同一个知识版本。
+
+#### 知识条目合并
+
+知识构建器按 `canonical` 聚合治理记录，合并 aliases、值类型、来源和约束。family、检测策略、规范单位、VAE 家族和参数关系等影响检测行为的字段必须保持一致；出现冲突时拒绝发布，先进行人工消歧。
+
+同一 alias 只能属于一个 parameter_id。如果 alias 同时映射到多个参数，构建过程直接失败，不能把歧义带入在线查询。上下文只允许处理离线已经登记的歧义关系，不能用来创造表外参数。
+
+待复核条目可以保留在知识包中用于追踪，但不能在线命中。构建器将其检测策略置为 `ignore`、清除数值家族绑定，并标记 `review_pending`；运行时查询会把它作为未知治理项返回。
+
+#### 精确 alias 索引
+
+运行时知识表建立 `normalized alias → KnowledgeEntry` 的哈希索引。查询键只执行小写化和首尾空白清理；查询不执行 substring、编辑距离、模糊匹配、family 推断或模型预测。
+
+```python
+entry = knowledge.exact_lookup(normalized_name)
+
+if entry is None:
+    # 未登记或尚未审核
+    record_unknown()
+else:
+    # 已审核精确命中
+    dispatch(entry.detector_policy)
+```
+
+精确查询保证了线上行为确定、可解释和可回放。名称中带有语义提示但未登记的参数仍然 miss，不会因规则推断而获得检测权限。
+
+#### 版本与完整性校验
+
+知识包包含 Schema 版本、知识版本、来源信息、逐条 `content_hash` 和整体 `bundle_hash`。条目哈希覆盖 parameter_id、canonical、aliases、family、值类型、单位、检测策略、约束、关系、VAE 家族、来源、审核状态和 Schema 版本等检测相关字段。
+
+运行时按以下顺序加载：
+
+1. 检查资产文件是否存在且 JSON 可解析；
+2. 检查 Schema 版本是否兼容；
+3. 重算并核对每个条目的 `content_hash`；
+4. 重算并核对知识包 `bundle_hash`；
+5. 校验检测策略和 VAE 家族是否在允许集合中；
+6. 检查 parameter_id 和 alias 是否重复或冲突。
+
+任一步失败均抛出加载错误并停止启动。在线侧不得降级为从语料重建知识、临时推断或自动写回。
+
+知识包发布后产生两个下游：家族资产训练模块使用其数值家族定义生成检测资产；在线参数解析模块使用其精确索引判断 known 与 unknown。
+
+### 家族检测资产训练
+
+**模块职责**：读取知识表中被标记为 `numeric_vae` 且绑定 `vae_family` 的参数，按参数自身尺度完成稳健归一化，再在行为家族内训练和比较 VAE 与统计检测器，最终发布与知识表哈希绑定的家族资产。
+
+**输入输出示例**：
+
+```text
+输入：
+parameter_id = "time_use"
+vae_family = "duration"
+canonical_unit = "ms"
+normal_values = [8.2, 9.5, 10.7, 12.0, ...]
+
+输出：
+family = "duration"
+kind = "statistical" 或 "vae"
+canonical_stats["time_use"] = {median, mad, n}
+threshold = 冻结报警阈值
+knowledge_hash = 对应参数知识版本
+```
+
+该模块上游是参数知识表和离线样本，下游是在线检测执行模块。在线只加载已经选定、校准并封装好的家族资产，不参与训练和调参。
+
+#### 数值家族准入
+
+只有具有连续数值意义并显式绑定 `vae_family` 的参数进入本模块。主要家族包括时延、非负计数、容量大小和经过归一化的位置增量。以下参数不进入数值家族资产：
+
+- ID、地址、哈希和 CRC；
+- 枚举、flag、状态和返回码；
+- 需要比较前后关系的序列值；
+- 需要同日志多个字段联合判断的关系参数；
+- 仅做格式校验或明确忽略的参数。
+
+准入由知识表决定，训练模块不得根据值看起来像整数就自行改变检测策略。
+
+#### 参数内去尺度与家族聚合
+
+同一行为家族中的不同参数可能具有完全不同的绝对量级，因此不能直接混合原始值。当前设计先把值转换为规范单位，再对每个 canonical 分别计算训练期统计量：
+
+```text
+y = log1p(max(x_in_canonical_unit, 0))
+z = (y - median_canonical) /
+    (1.4826 × MAD_canonical + ε)
+```
+
+`median_canonical` 和 `MAD_canonical` 仅从该参数的正常训练数据估计。完成参数内去尺度后，才把同家族的 `z` 特征汇聚起来学习共同分布形状。运行时若资产中缺少某个 canonical 的统计量，必须失败，不能借用同家族其他参数的尺度。
+
+#### 五段数据生命周期
+
+训练流程将数据用途固定为五段：
+
+| 数据段 | 用途 |
+|--------|------|
+| `train_fit_normal` | 拟合参数统计量和家族模型 |
+| `validation_normal` | 选择训练轮次并恢复最佳 checkpoint |
+| `error_cal_normal` | 建立正常重构误差分布 |
+| `decision_cal_labeled` | 选择并冻结报警阈值 |
+| `test_sealed` | 在模型、归一化和阈值全部冻结后进行最终评估 |
+
+同一参数的近重复值不能跨用途泄漏。归一化统计只能从 `train_fit_normal` 计算，阈值只能在决策校准集选择，封存测试集不能用于继续调参。
+
+#### VAE 与统计基线选择
+
+每个 family 独立训练轻量 VAE，并至少使用多个固定种子记录稳定性。训练采用 AdamW、KL warm-up、梯度裁剪、验证集早停和最佳 checkpoint 恢复。与此同时，以 `|z|` 为异常分数建立稳健统计基线。
+
+两种方法使用相同的数据分区，在同一决策校准集上冻结阈值，再在相同封存测试集上做配对比较。只有 VAE 相对统计方法具有稳定、可重复的独立增益时，资产的 `kind` 才选择 `vae`；否则选择 `statistical`。因此知识表中的 `numeric_vae` 表示进入数值家族资产路由，并不强制每个家族最终都使用 VAE。
+
+#### 家族资产包
+
+每个家族资产记录：
+
+- `family` 与最终选择的 `kind`；
+- 冻结阈值和规范单位；
+- 各 canonical 的 median、MAD 与训练样本计数；
+- VAE 配置和权重（选择 VAE 时）；
+- 数据指纹、随机种子、评估指标和版本；
+- 资产内容哈希。
+
+家族资产包还保存 `knowledge_hash`。在线加载时，资产包必须与当前知识表完全匹配；缺少知识表声明的家族、单参数归一化统计缺失、资产哈希损坏或知识哈希不一致时均 fail closed。
+
+家族资产和知识包共同构成在线检测的只读输入。下一模块介绍在线如何从任意日志结构中找到这些知识能够识别的参数。
+
+### 在线确定性参数解析
+
+**模块职责**：扫描原始日志中的显式参数表达式，解析参数名、值、单位和字符区间；通过注入的精确查询函数优先解析已知参数，再记录未命中的可解析候选。该模块不依赖 Drain 模板，也不调用 GLiNER、Qwen 或其他语义模型。
+
+**输入输出示例**：
+
+```text
+输入：
+new layout :: time use=2000000(us), plane=1, extraFlag(9)
+
+输出 known：
+time use → raw_value="2000000", unit="us",
+           name_span=[14,22), value_span=[23,30)
+plane    → raw_value="1"
+
+输出 unknown：
+extraFlag → raw_value="9", review_hint="unknown"
+```
+
+该模块的上游是原始日志和已加载知识表；输出分为 known 与 unknown。known 交给值归一化和策略执行，unknown 仅进入结果记录和离线治理回流。
+
+#### 支持的参数表达式
+
+解析器采用模板无关词法扫描，支持：
+
+- `name=value`；
+- `name:value`；
+- `name(value)`，包括嵌套括号；
+- `name value` 的裸数值形式；
+- 最多三个 token 的多词参数名；
+- 数值、负数、浮点数和十六进制值；
+- 引号值及转义字符；
+- 紧邻数值的时间和容量单位；
+- 重复参数名；
+- 封闭连接词 `to`、`is`、`of` 连接的名称和值。
+
+参数名和值均保留半开字符区间 `[start, end)`，便于结果定位和原文复核。为减少普通文本误捕，`=` 和 `:` 后只接受数值、十六进制或引号字符串；裸值形式只接受数值或十六进制。
+
+#### 候选生成与两遍消解
+
+解析器先定位标识符锚点，在每个锚点生成最长优先的候选名。候选解析分两遍完成：
+
+1. **已知命中优先**：从左到右尝试候选，首个能够解析值且被 `exact_lookup` 命中的候选立即接纳；
+2. **未知记录**：在剩余未占用区域中，把最长可解析候选记录为 unknown，一个区域只保留一条。
+
+两遍设计避免日志中的普通前缀吞掉内部已登记参数，也避免 unknown 候选阻塞 known 参数。解析器只负责生成候选和读取值，“是不是已知参数”完全由知识表决定。
+
+#### known、review_pending 与 unknown
+
+查询结果分为三种状态：
+
+| 状态 | 含义 | 在线行为 |
+|------|------|----------|
+| `hit` | alias 已登记且审核通过 | 进入检测 |
+| `review_pending` | alias 已登记但尚未审核 | 按 unknown 返回，不检测 |
+| `unknown` | alias 未登记 | 按 unknown 返回，不检测 |
+
+任何 miss 都不能触发名称片段推断、模糊 family 匹配或在线模型补判。未知参数可以采样进入下一轮离线治理，但本次在线请求继续按照已知参数形成结论。
+
+解析完成后，在线检测模块先对全部 known 参数做值和单位归一化，再按照知识表中的策略执行检测。
+
+### 在线值归一化与策略执行
+
+**模块职责**：将 known 参数的原值转换为知识表声明的规范值，按 `detector_policy` 调用对应执行器，并生成包含分数、阈值和证据的参数级结果。
+
+**输入输出示例**：
+
+```text
+输入：
+surface="time use"
+raw_value="2000000"
+unit="us"
+canonical_unit="ms"
+detector_policy="numeric_vae"
+vae_family="duration"
+
+归一化：
+2000000 us → 2000 ms
+
+输出：
+canonical="time_use"
+normalized_value=2000.0
+score=...
+threshold=...
+alert=true/false
+evidence=["unit_convert:us->ms", "family_z=..."]
+```
+
+该模块接收参数解析模块输出的 known 参数、对应知识条目和家族资产，输出参数级 `ParamPrediction`；所有参数结果完成后，再交给日志级汇总模块。
+
+#### 值与单位归一化
+
+在线值解析支持整数、浮点数和带符号十六进制。知识条目声明规范单位后，时间值统一换算为毫秒，容量值统一换算为字节；每次换算同时写入 evidence。无法解析为数值的值保留原文，由对应策略决定是否只做格式检查或不评分。
+
+约束可能使用来源文档单位，因此在执行 `min`、`max` 或 `fixed` 比较前，也要把约束转换到 canonical unit，保证约束值和参数值处于同一量纲。
+
+#### 检测策略调度
+
+当前在线主路径只接受知识表白名单中的七类策略：
+
+| `detector_policy` | 执行逻辑 |
+|-------------------|----------|
+| `numeric_vae` | 先检查数值硬约束，再调用对应 `vae_family` 资产计算家族分数 |
+| `sequence` | 按 `(source, object, parameter_id)` 隔离状态，检测严格递增或非递减约束 |
+| `relation` | 在同一日志的 known 参数中查找引用参数，执行大小、差值或集合关系 |
+| `categorical` | 检查固定值或有限 `domain`；未登记集合时如实标记未裁决 |
+| `hard_rule` | 执行固定值、成功码、数值范围、时间戳有效性等确定性规则 |
+| `format_only` | 检查空值、整数、十六进制、文本等格式约束 |
+| `ignore` | 记录为已知策略，但不执行异常检测 |
+
+策略由离线知识决定，在线不根据参数值重新选择策略。遇到未知策略时直接报错，不静默回退。
+
+#### 数值家族检测
+
+`numeric_vae` 参数先执行知识条目中的硬约束，再从家族资产中读取本 canonical 的归一化统计和冻结阈值。运行时统一返回家族分数与报警结果：
+
+```text
+z = robust_normalize(value, canonical_stats)
+model_alert = abs(z) >= frozen_threshold
+parameter_alert = constraint_alert OR model_alert
+```
+
+若离线最终选择统计资产，分数直接使用稳健 `|z|`；若选择 VAE，资产包同时携带相应模型配置和权重。无论采用哪一种，线上都只消费已经冻结的资产，不在线重新估计统计量或阈值。
+
+#### 序列和关系检测
+
+序列检测状态按 `source + object + parameter_id` 隔离，避免不同日志流互相污染。首个观测只建立基线，后续观测根据知识约束检查严格递增或非递减；独立日志流开始时可以显式清空运行时序列状态。
+
+关系检测先完成同一日志全部 known 参数的值归一化，再执行第二遍策略计算，以保证被引用参数已经可用。引用参数缺失时记录 `not_judged`，不臆造参考值。当前支持的关系操作包括：
+
+- 当前值大于等于参考参数；
+- 当前值属于允许集合，否则必须满足参考参数关系；
+- 与参考参数的差值接近零；
+- 当前值不得超过参考参数。
+
+#### 参数级裁决
+
+参数级裁决采用“硬约束 OR 主检测器”的直接逻辑：
+
+```text
+constraint_alert = 任一已登记硬约束违反
+model_alert      = 主检测器分数达到冻结阈值
+parameter_alert  = constraint_alert OR model_alert
+```
+
+该路径不存在“是否进入 AI”的二次判断，也不进行跨参数类型的全局加权、投票或动态阈值调整。每个参数的 evidence 明确记录触发规则、家族分数、阈值、单位换算或无法裁决原因。
+
+所有参数级结果随后交给日志级汇总模块，形成稳定的外部状态和原因码。
+
+### 日志级汇总与可观测性
+
+**模块职责**：根据 known 参数的检测结果生成日志级状态，保留 unknown 参数、知识和模型版本、阶段耗时及参数级证据，为线上监控和离线治理回流提供统一输出。
+
+**输入输出示例**：
+
+```text
+输入：
+known_hits = [
+  {canonical: "time_use", alert: true, score: 6.2},
+  {canonical: "plane", alert: false, score: 0.0}
+]
+unknown_params = [
+  {surface: "extraFlag", review_hint: "unknown"}
+]
+
+输出：
+status="anomaly"
+reason_code="known_parameter_anomaly"
+score=6.2
+knowledge_version="..."
+knowledge_hash="..."
+family_model_versions={...}
+unknown_parameter_rate=...
+timings_ms={parse, lookup, detect, total}
+```
+
+该模块是在线链路的出口。结果交给上层异常检测编排器或接口层；其中的 unknown 样本可以异步进入下一轮离线治理，但不会改变本次已知参数的检测结论。
+
+#### 日志级状态机
+
+日志级判断只有三种业务路径：
+
+```python
+if known_hits and any(p.alert for p in known_hits):
+    status = "anomaly"
+    reason_code = "known_parameter_anomaly"
+elif known_hits:
+    status = "normal"
+    reason_code = "known_parameters_normal"
+else:
+    status = "normal"
+    reason_code = "no_known_parameter"
+```
+
+已知与未知参数同时出现时，只检测已知参数。未知参数不能把已知异常覆盖成通过，也不会触发额外语义分析。`no_known_parameter` 表示当前知识范围内没有可检测对象，不表示系统已经证明日志内容正常。
+
+#### 输出结构
+
+参数级输出保留：
+
+- parameter_id、canonical、surface 和规范化名称；
+- 原值、规范值、原单位和规范单位；
+- 参数名和值的字符区间；
+- detector_policy 与 vae_family；
+- alert、score、threshold 和 evidence。
+
+日志级输出保留：
+
+- `status`、`reason_code` 和汇总分数；
+- `known_hits` 与 `unknown_params`；
+- 知识版本、知识哈希和家族模型版本；
+- 参数解析路径；
+- parse、lookup、detect 和 total 阶段耗时；
+- unknown parameter rate。
+
+汇总分数取已触发异常参数中的最大分数；确定性硬规则即使没有连续模型分数，也通过 alert 和 evidence 完整表达异常原因。
+
+#### 关键监控指标
+
+方案重点监控以下指标：
+
+| 层级 | 指标 |
+|------|------|
+| 参数解析 | 候选数、解析成功率、span 可回查率 |
+| 知识覆盖 | known 数、unknown 数、review_pending 数、lookup coverage、unknown parameter rate |
+| 参数检测 | 各 policy 和 family 的 Precision、Recall、F1、正常误报率 |
+| 日志检测 | 日志级 Precision、Recall、F1 和混淆矩阵 |
+| 工程性能 | parse、lookup、detect、total 的 p50/p95、吞吐和内存 |
+| 资产治理 | 知识版本、资产版本、哈希校验失败次数、加载失败原因 |
+
+unknown 样本回流到离线治理后，重新经过 GLiNER 候选识别、规则校验和人工审核；只有发布新知识版本后，新的 alias 才能在后续在线请求中命中，从而形成受控闭环。
+
+### 模块交互与时序
+
+#### 离线发布时序
+
+离线链路由参数识别、知识发布和家族资产训练三个模块依次完成。GLiNER 提供候选而不直接发布；知识构建器只消费审核结果；家族训练使用发布后的知识定义，而不是重新推断参数类别。
+
+```plantuml
+@startuml Parameter_Offline_Flow
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+title 参数异常检测离线治理与资产发布
+
+actor "治理人员" as Reviewer
+participant "离线样本与参数说明" as Source
+participant "GLiNER Adapter\n参数识别" as GLiNER
+participant "参数治理\n规范化/归类/约束" as Govern
+participant "人工复核" as Review
+participant "Knowledge Builder\n知识构建" as Builder
+database "ParameterKnowledge\n参数知识包" as Knowledge
+participant "Family Training\n家族资产训练" as Training
+database "FamilyAssetBundle\n检测资产包" as Assets
+
+Source -> GLiNER: 日志文本 + 受控实体标签
+GLiNER --> Govern: 参数名/值 span、置信度、原始输出
+Govern -> Govern: 原文锚定、canonical、family、policy、constraints
+Govern -> Review: 候选记录 + 冲突/低置信项
+Reviewer -> Review: 审核与消歧
+Review -> Builder: reviewed / needs_review 治理记录
+Builder -> Builder: canonical 合并、alias 冲突校验、全字段 hash
+Builder -> Knowledge: 发布版本化知识包
+Knowledge -> Training: numeric_vae 条目、family、unit、constraints
+Training -> Training: 参数内归一、VAE/统计对照、阈值校准
+Training -> Assets: 发布绑定 knowledge_hash 的家族资产
+
+@enduml
+```
+
+#### 在线检测时序
+
+在线链路仅加载知识包和检测资产。参数解析器通过知识表查询函数完成两遍消解，检测器在全部 known 参数归一化后执行策略，最后生成日志级结果。
+
+```plantuml
+@startuml Parameter_Online_Flow
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+title 参数异常检测在线主路径
+
+actor "调用方" as Caller
+participant "OnlineDetector" as Online
+participant "ParamParser" as Parser
+participant "ParameterKnowledge" as Knowledge
+participant "Policy Executor" as Policy
+participant "FamilyAssetBundle" as Assets
+
+Caller -> Online: detect(log_text, source, object, ts)
+Online -> Parser: resolve_parameters(log_text, exact_lookup, lookup_status)
+
+loop 扫描参数候选
+    Parser -> Knowledge: exact_lookup(normalized_name)
+    alt 已审核 alias 命中
+        Knowledge --> Parser: KnowledgeEntry
+        Parser -> Parser: 解析值、单位与字符区间
+    else 未审核或表外
+        Knowledge --> Parser: review_pending / unknown
+        Parser -> Parser: 记录 unknown，不检测
+    end
+end
+
+Parser --> Online: known params + unknown params
+Online -> Online: 第一遍完成 known 值与单位归一
+
+loop 每个 known 参数
+    Online -> Policy: dispatch(detector_policy)
+    alt numeric_vae
+        Policy -> Assets: predict(vae_family, canonical, value)
+        Assets --> Policy: score, alert, threshold
+    else sequence / relation / categorical / hard_rule / format_only
+        Policy -> Policy: 执行已登记约束或运行时状态检查
+    else ignore
+        Policy -> Policy: 记录 not_detected
+    end
+    Policy --> Online: ParamPrediction
+end
+
+Online -> Online: any known alert → anomaly\nknown all normal → normal\nno known → normal/no_known_parameter
+Online --> Caller: OnlineResult
+
+@enduml
+```
+
+#### 模块接口关系
+
+| 源模块 | 目标模块 | 主要调用或数据 | 交互约束 |
+|--------|----------|----------------|----------|
+| GLiNER Adapter | 参数治理 | 统一 span 结构 | 输出必须回查原文，模型结果不是知识真值 |
+| 参数治理 | Knowledge Builder | 审核记录 | 冲突项不得自动发布 |
+| Knowledge Builder | ParameterKnowledge | 版本化 JSON bundle | 逐条哈希与 bundle hash 完整 |
+| ParameterKnowledge | Family Training | reviewed 数值家族条目 | 训练策略由知识字段决定 |
+| Family Training | FamilyAssetBundle | 家族资产 JSON | 必须绑定 knowledge_hash |
+| OnlineDetector | ParamParser | 日志、exact lookup、lookup status | 解析器不自行推断 family |
+| ParamParser | ParameterKnowledge | `exact_lookup(name)` | 只允许审核 alias 精确命中 |
+| OnlineDetector | Policy Executor | known 参数与 KnowledgeEntry | 先全部归一，再执行关系检测 |
+| Policy Executor | FamilyAssetBundle | family、canonical、规范值 | 缺资产或统计量时 fail closed |
+| OnlineDetector | 上层编排器 | OnlineResult | known/unknown、证据、版本和耗时完整返回 |
+
+### 复杂度、性能与运行边界
+
+#### 复杂度分析
+
+设日志长度为 `L`，解析得到的候选数为 `C`，已知命中参数数为 `K`：
+
+| 阶段 | 主要复杂度 | 说明 |
+|------|------------|------|
+| 词法扫描与候选解析 | 近似 O(L) | 标识符扫描，每个锚点最多生成有限个多词候选 |
+| 参数知识查询 | 平均 O(C) | 每个候选执行哈希表精确查询，单次平均 O(1) |
+| 值与单位归一化 | O(K) | 只处理已知参数 |
+| 确定性策略执行 | O(K) | 枚举、范围、格式和序列检查均为常数级 |
+| 关系检测 | O(K²) 最坏 | 当前实现按同日志 known 参数查找引用；通常 K 较小 |
+| 日志级汇总 | O(K) | 扫描参数告警与最大分数 |
+
+在线模块不加载 GLiNER、Qwen、NuNER、NuExtract、LLM 或 Transformers 语义栈。离线模型的体积和推理时延不会进入在线请求路径。
+
+#### Fail-closed 边界
+
+以下情况拒绝加载或执行，不能静默降级：
+
+- 参数知识资产缺失、JSON 损坏或 Schema 不兼容；
+- 条目哈希或知识包哈希不一致；
+- alias 冲突或检测策略不在白名单；
+- 知识表声明的数值家族资产缺失；
+- 家族资产与知识表哈希不匹配；
+- 家族资产或 bundle 哈希损坏；
+- family 中缺少当前 canonical 的归一化统计；
+- 运行时遇到未知检测策略。
+
+未知参数本身不属于系统故障：它按照产品契约记录为 unknown 并通过。Fail closed 针对的是已发布资产不完整或不可信，避免系统在错误资产上给出貌似正常的结果。
+
+#### 已知设计边界
+
+- 在线只检测知识表已覆盖并审核的参数，表外参数会漏检；该取舍通过 unknown rate 和离线回流显式管理。
+- 纯位置参数如果没有显式名称，只有在知识包已经发布确定性提取方式时才能识别，否则按 unknown 处理。
+- 未登记枚举集合、成功码或缺少引用参数的关系不能在线臆断，结果记录为 `not_judged`。
+- 序列检测依赖正确的 source 和 object 隔离；调用方需要为不同日志流提供稳定身份。
+- 模板无关指不依赖模板 ID 路由，不表示系统可以在没有参数知识的情况下理解任意新参数。
+
+### 端到端检测示例
+
+以下示例展示一个已知参数出现在新文本结构中时，离线知识如何驱动在线检测。
+
+#### 离线治理与发布
+
+离线样本包含：
+
+```text
+Xnet send ..., time use=10772(us), plane=1, xnetRet=0.
+```
+
+GLiNER 输出 `time use` 和 `10772` 的 span 候选。经过原文校验、参数说明解析和人工复核后，发布如下知识：
+
+```json
+{
+  "parameter_id": "time_use",
+  "canonical": "time_use",
+  "aliases": ["time use"],
+  "family": "duration",
+  "value_kind": ["integer"],
+  "canonical_unit": "ms",
+  "detector_policy": "numeric_vae",
+  "constraints": {"min": 0, "max": 100000, "unit": "us"},
+  "vae_family": "duration",
+  "review_status": "reviewed"
+}
+```
+
+家族训练模块读取该条目，把 `time_use` 的正常样本统一到毫秒并在 `log1p` 空间计算 median/MAD；随后与同一 duration 家族的规范化特征共同参与 VAE 和统计方法对照，最终发布冻结阈值及资产版本。
+
+#### 新模板中的已知参数
+
+在线收到从未出现过的文本结构：
+
+```text
+new component summary :: plane=1 ; time use=2000000(us) ; extraFlag(9)
+```
+
+处理过程如下：
+
+1. ParamParser 识别 `plane=1`、`time use=2000000(us)` 和 `extraFlag(9)`；
+2. `plane` 和 `time use` 精确命中已审核知识，`extraFlag` 未命中并记录为 unknown；
+3. `time use` 从 `2000000 us` 归一化为 `2000 ms`；
+4. categorical 执行器检查 `plane` 的合法集合；
+5. numeric family 执行器检查 `time_use` 的硬范围并计算 duration 家族分数；
+6. 若 `time_use` 达到冻结阈值，则该参数 alert；
+7. 日志结果为 `anomaly / known_parameter_anomaly`，同时返回 `extraFlag` 的 unknown 记录。
+
+该过程没有查询模板 ID，也没有调用在线语义模型，因此日志结构变化不会阻断已知参数检测。
+
+#### 只有未知参数
+
+若输入为：
+
+```text
+new component summary :: extraFlag(9) ; customCount=12
+```
+
+两个参数都无法精确命中已审核知识表，系统不会根据名称中的 `Flag` 或 `Count` 在线推断其 family。最终返回：
 
 ```json
 {
   "status": "normal",
-  "score": 0.08,
-  "strategies": {
-    "statistical": 0.04,
-    "sequence": 0.00,
-    "context": 0.08,
-    "vae": 0.03
-  },
-  "evidence": [],
-  "dq_issues": [],
-  "param_predictions": []
+  "reason_code": "no_known_parameter",
+  "known_hits": [],
+  "unknown_params": ["extraFlag", "customCount"]
 }
 ```
 
-**具体职责**：先用专家规则处理已知高确定性模式；规则未覆盖时，再完成模板无关解析、参数语义与行为建模、多策略检测、校准融合和参数区间定位。输出使用 `normal / anomaly / data_quality / parse_variant` 四态契约，避免把解析失败误报成业务异常。
-
-上一模块的解析与仓储能力负责形成通用日志结构；本模块直接消费原始日志和流身份，在内部建立更细粒度的参数角色。其结果随后参与第 8 章的跨类型异常合并与故障诊断。
-
-### 总体架构与正确检测逻辑
-
-#### 模块化架构
-
-```plantuml
-@startuml Parameter_Architecture
-!theme plain
-skinparam backgroundColor #FEFEFE
-skinparam shadowing false
-skinparam componentStyle rectangle
-skinparam linetype ortho
-
-title 模板无关参数异常检测模块
-
-component "DetectionPipeline\n生命周期与路由" as Pipeline
-component "RuleFallbackDetector\n专家规则主通道" as Rule
-component "TemplateFreeParser\n模板与槽位" as Parser
-component "语义与剖面\nGLiNER / 词典 / LLM" as Profile
-component "检测策略\n统计 / 序列 / 上下文 / VAE" as Strategies
-component "FusionEngine\n状态机与校准决策" as Fusion
-database "模型包与运行时状态" as Model
-
-Pipeline --> Rule
-Rule --> Parser : 未命中且 AI 开启
-Parser --> Profile
-Profile --> Strategies
-Strategies --> Fusion
-Pipeline --> Model : train / calibrate / save / load
-Fusion --> Pipeline : DetectionOutput
-
-@enduml
-```
-
-场景知识不写入通用检测核心，而由 `PluginSpec` 注入分隔符、masking 顺序、单位、哨兵、语义词典、操作名、参数角色和对象键。当前提供 DME 与 `generic_kv` 两个插件，用于验证核心逻辑能否跨场景复用。
-
-#### 检测流水线与逻辑校正
-
-原检测图存在四个问题：缺少规则优先分流；把动态阈值调整画成每条日志融合后的串行步骤；没有表达解析/值质量状态的优先级；也没有体现 AI 关闭时的安全拒判。正确流程如下。
-
-```plantuml
-@startuml Parameter_Detection_Pipeline
-!theme plain
-skinparam backgroundColor #FEFEFE
-skinparam shadowing false
-
-title 参数异常检测决策流
-
-start
-:输入 log_text + ts? + source/module/object?;
-
-:规则模糊匹配;
-if (规则命中?) then (是)
-  if (同一区间的规则结论冲突?) then (是)
-    :data_quality\nrule_conflict;
-  else (否)
-    if (受检值命中黑名单?) then (是)
-      :anomaly\n专家规则确定性裁决;
-    else (否)
-      :normal\n已知规则模式;
-    endif
-  endif
-  stop
-else (否)
-endif
-
-if (AI 检测开启?) then (否)
-  :data_quality\n规则未覆盖，拒绝猜测;
-  stop
-else (是)
-endif
-
-:冻结模板匹配与参数区间提取;
-if (解析成功?) then (否)
-  :data_quality\nfrozen_miss;
-  stop
-else (是)
-endif
-
-:值解析、冻结语义映射与角色剖面查询;
-if (值缺失、非法或截断?) then (是)
-  :data_quality\n值质量优先;
-  stop
-else (否)
-endif
-
-:统计 / 序列 / 上下文 / VAE\n（temporal 可选）;
-:策略校准映射 + 相关分组融合;
-:基础强证据/共识 OR\n融合概率 >= 冻结日志阈值;
-:合并同一区间参数证据\n并应用冻结参数阈值;
-
-if (达到业务异常条件?) then (是)
-  :anomaly;
-else (否)
-  :normal;
-endif
-stop
-
-@enduml
-```
-
-这里的“动态阈值”不是单条推理链路中的即时步骤。阈值有两种更新方式：
-
-- 决策校准阶段使用带外部真值的独立数据，选择日志级和参数级阈值，随后冻结进入模型包；
-- 运行反馈控制器只接受外部确认的 TP/FP/FN，并带调整上限与恶化回滚保护。
-
-因此，当前日志的检测结果不能反过来充当自身标签并修改当前阈值，否则会形成自证循环和数据泄漏。
-
-### 专家规则主通道
-
-**模块输入示例**：
-
-```text
-Get ns async failed ret ( -99999 ) .
-```
-
-**模块输出示例**：
-
-```json
-{
-  "status": "anomaly",
-  "score": 0.95,
-  "evidence": ["black_list:-99999"],
-  "param_predictions": [
-    {"role": "ret", "span": [26, 32], "raw_value": "-99999", "alert": true}
-  ]
-}
-```
-
-**具体职责**：对外部专家规则库中的已知模式作确定性裁决。规则命中后不再进入 AI，确保明确业务知识不被统计或模型分数稀释；未命中才把日志交给后续模板无关管道。
-
-#### 模糊匹配
-
-“模糊”只针对占位符值，而不是任意文本相似度：
-
-1. 模板和日志按空白分词，token 数必须一致；
-2. 固定 token 严格相等；
-3. `<NUM>`、`<HEX0x>`、`<MAC-HEX>`、`<*>` 按值形态匹配；
-4. 支持 `<NUM>.` 或 `prefix<HEX0x>` 等粘着前后缀，并同步收缩参数字符区间。
-
-`param_pos` 使用 0-based token 下标。配置偏差 1 位时只在 ±1 存在唯一占位符候选时容错；无候选或有歧义均拒绝加载。规则文件只支持已经实现的 `black_list` 模式，未知模式 fail-closed，避免“看似加载成功、实际不检测”。
-
-#### 裁决语义
-
-- 黑名单比较：数值按数值等值，十六进制忽略大小写，其他字符串精确比较；
-- 任一受检参数命中黑名单即异常；
-- 多规则对同一字符区间给出冲突结论时返回 `data_quality`，不依赖规则文件顺序；
-- 规则命中且值未命中黑名单时返回正常，这是规则库本身的已知模式语义。
-
-规则未命中时，控制权回到 `DetectionPipeline`，由它判断进入 AI 分支还是安全拒判。
-
-### 模板无关解析与统一参数表示
-
-**模块输入示例**：
-
-```text
-Xnet send msg(... time use=15280(us), SNO=2283111033000000001, reqSNO=0, ...).
-```
-
-**模块输出示例**：
-
-```json
-{
-  "matched": true,
-  "operation": "xnet_send",
-  "slot_values": [
-    {
-      "role": "time_use@tpl_pos",
-      "raw_value": "15280",
-      "unit": "us",
-      "source_span": [71, 76],
-      "value_state": "ok"
-    }
-  ]
-}
-```
-
-**具体职责**：训练态从正常日志学习模板和槽位，推理态只做冻结匹配；把每个参数转换为可追溯的 `ParameterObservation`。输出直接供语义、剖面和策略层消费。
-
-#### 训练态学习与推理态冻结
-
-`TemplateFreeParser` 使用 Drain3 聚类，但不要求调用方提供固定模板。masking 管线由场景插件提供。训练结束后解析器冻结，推理时不创建新簇：
-
-- 精确冻结匹配成功：输出参数值、模板位置和原文字符区间；
-- 精确匹配失败：尝试占位符形态软匹配，以识别 `<NUM>` 到 `<BIGNUM>` 等格式漂移；
-- 仍未匹配：返回 `frozen_miss`，由状态机路由为 `data_quality`。
-
-这种设计避免异常日志在推理期被学习成“新的正常模板”。
-
-#### 参数身份、值状态与位置
-
-参数稳定身份为 `operation|role`，其中 role 由参数名和模板 token 位置共同构成；同名参数可根据上下文区分为 `src.mid`、`dst.mid`。每个参数保留：
-
-- `raw_value` 与半开字符区间 `source_span=[start,end)`；
-- 已知单位下的归一化值；未知单位不强制换算；
-- `ok / zero / missing / invalid / sentinel` 五种值状态；
-- 语义类型、语义来源与置信度；
-- 流身份 `source × object`，用于隔离动态窗口。
-
-缺失和非法值绝不静默转成 0。解析结果接下来进入语义映射与正常剖面查询。
-
-### 语义映射与正常剖面
-
-**模块输入示例**：
-
-```json
-{
-  "operation": "xnet_send",
-  "role": "time_use@12",
-  "raw_value": "15280",
-  "unit": "us",
-  "left_context": "time use"
-}
-```
-
-**模块输出示例**：
-
-```json
-{
-  "semantic_type": "duration",
-  "source": "gliner",
-  "confidence": 0.86,
-  "profile_key": "xnet_send|time_use@12"
-}
-```
-
-**具体职责**：为结构化槽位补充“它是什么”和“正常情况下如何变化”两类信息。语义用于选择正确的特征与豁免逻辑，剖面为统计、序列、上下文和 VAE 提供正常基线。
-
-#### 三层语义路径
-
-语义提取按保守优先级执行：
-
-```text
-GLiNER（原文位置绑定 + 置信门槛）
-  → 拒绝或低置信时使用插件词典
-  → 仍未知时可选 LLM 补充
-  → 无可靠证据则保留 other
-```
-
-GLiNER 是特征服务，不是独立异常检测策略。模型输出必须能绑定到当前日志的目标字符区间，并通过原文一致性与单位冲突检查；LLM 仅补充未知或低置信角色，结果受类型白名单约束。未知参数不会因为语义未识别而被丢弃。
-
-训练期形成的 `(operation|role) → SemanticInference` 会冻结进模型包，推理期直接查表，不重复推断，以保证训练与推理表示一致。
-
-#### 剖面与行为证据
-
-`SlotProfileStore` 以 `operation|role` 累积数值范围、中位数、MAD、分位数和值频率。查找时优先使用样本充足的操作级剖面，冷启动才回退到语义类别先验。
-
-`BehaviorProfile` 独立判断枚举、高基数、序列、计数器等行为。identifier 只有在“高基数 + 非枚举 + 非序列”的行为证据成立时才豁免幅值检测，不能仅凭语义标签跳过检测。完成剖面查询后，各策略基于同一参数身份并行产出标准化证据。
-
-### 多策略参数检测
-
-**模块输入示例**：
-
-```json
-{
-  "operation": "xnet_send",
-  "observations": [{"role": "SNO@18", "raw_value": "2283111032999999000"}],
-  "stream": "node-01|lwp-8",
-  "enabled_strategies": ["statistical", "sequence", "context", "vae"]
-}
-```
-
-**模块输出示例**：
-
-```json
-[
-  {
-    "strategy": "sequence",
-    "score": 0.94,
-    "confidence": 0.90,
-    "evidence": ["sequence_regression"],
-    "param_predictions": [
-      {"role": "SNO@18", "span": [82, 101], "anomaly_score": 0.94}
-    ]
-  }
-]
-```
-
-**具体职责**：让不同证据源各自评分，但统一返回 `StrategyResult`；可定位策略必须附带 role、字符区间、原值和参数分数，供融合与参数级评估使用。
-
-| 策略 | 关键原理 | 输出粒度 | 默认行为 |
-|---|---|---|---|
-| statistical | 中位数/MAD 稳健偏差、分位数、哨兵丢失、负值、新枚举、常量与形态漂移 | 参数级 | 启用 |
-| sequence | 连续性回退/跳变、持续非零、积压、训练期学习的引用关系断裂 | 参数级 | 启用 |
-| context | 同一流近期窗口的条件基线，当前聚焦 duration | 参数级 | 启用，但不能单独裁决 |
-| vae | 全模板共享 DeepSets VAE 的重构误差 | 参数级 | 依赖 PyTorch、训练和误差校准 |
-| temporal | 事件时间窗口、乱序拒绝、CUSUM 变点 | 日志级 | 显式开启 |
-
-#### 稳健统计与序列规则
-
-统计策略优先使用中位数和 MAD，降低极端样本对基线的污染；对跨数量级参数在合适的数值域评分。序列策略保存流内状态，检测计数器回退、异常跳变、持续异常值以及引用关系断裂。重建豁免必须由插件显式提供对象级重启依据，普通 ID 变化不能自动获得豁免。
-
-#### 共享 VAE
-
-共享 VAE 不是“一模板一模型”，而是所有模板共用一套权重。编码器接收上下文特征和值特征，解码器只接收潜变量和上下文嵌入，不携带真实值旁路，确保重构任务有效。值特征覆盖：
-
-- 数值幅值、零值、哨兵和长度；
-- 稳定哈希投影与字符构成，使同长度字符串仍可区分；
-- 参数身份引用，使误差可映射回 role、原文区间和原值。
-
-正常误差基准按“角色 → 值类别 → 全局共享”逐级回退。VAE 不允许以单一高分直接裁决业务异常，用于控制其已知误报风险。
-
-各策略结果随后交给融合层；策略分数不是天然可比较的概率，必须经过校准或使用明确的基础规则。
-
-### 融合、状态机与参数定位
-
-**模块输入示例**：
-
-```json
-{
-  "parse": {"matched": true, "has_value_dq": false},
-  "strategy_results": [
-    {"strategy": "statistical", "score": 0.92},
-    {"strategy": "sequence", "score": 0.88},
-    {"strategy": "context", "score": 0.30}
-  ]
-}
-```
-
-**模块输出示例**：
-
-```json
-{
-  "status": "anomaly",
-  "score": 0.91,
-  "evidence": ["strong_statistical", "strategy_consensus"],
-  "param_predictions": [
-    {"role": "SNO@18", "span": [82, 101], "alert": true}
-  ]
-}
-```
-
-**具体职责**：按不可覆盖的状态优先级处理数据质量，再把策略分数转成最终业务结论，并把多策略证据合并到准确的原文参数区间。
-
-#### 四态与优先级
-
-| 状态 | 含义 | 典型触发 |
-|---|---|---|
-| `anomaly` | 业务参数异常 | 强单证据、策略共识或校准概率过阈值 |
-| `data_quality` | 无法可靠作业务判断 | 解析失败、未见非法值、参数缺失或截断 |
-| `parse_variant` | 在线接纳到新模板 | 仅显式在线学习路径产生 |
-| `normal` | 未发现异常 | 其余情况 |
-
-优先级固定为：**解析失败 > 值级数据质量 > 新模板事件 > 业务异常 > 正常**。校准概率不能把 DQ 或新模板事件覆盖成业务异常。
-
-#### 校准融合
-
-AI 基础判定由强单证据和策略共识构成；决策校准在此基础上增加概率路径：
-
-```text
-每策略原始分数
-  → 每策略校准映射
-  → 相关策略组内 max
-  → 组间 noisy-OR
-  → 融合概率与冻结日志阈值比较
-```
-
-最终业务判定为“基础判定成立”或“融合概率达到冻结阈值”。若校准条件不足，系统显式回退基础规则，不把未校准分数冒充概率。
-
-参数预测以原文字符区间对齐。同一区间的多策略证据先合并，再分别与对应策略的冻结参数阈值比较，任一有效证据过阈值即报警。这样既避免同一参数重复计数，也不会用日志级报警冒充参数命中。
-
-### 训练、校准与模型生命周期
-
-**模块输入示例**：
-
-```python
-pipe.train(train_fit)
-pipe.calibrate_error(train_error_cal)
-pipe.calibrate_fusion(train_decision_cal)
-pipe.save(model_dir)
-result = pipe.detect(log_text, ts=ts, source=source, object=object_id)
-```
-
-**模块输出示例**：
-
-```json
-{
-  "format_version": 5,
-  "feature_version": 2,
-  "plugin_id": "dme",
-  "n_train_logs": 160000,
-  "error_calibrated": true,
-  "decision_calibrated": true
-}
-```
-
-**具体职责**：明确分离“学正常模式”“估计正常误差”“选择最终决策阈值”和“冻结推理”四个阶段，防止训练数据、校准标签和测试数据互相泄漏。
-
-#### 三段训练生命周期
-
-| 阶段 | 数据 | 更新内容 | VAE 权重 |
-|---|---|---|---|
-| 正常拟合 `train` | 仅正常日志 | 模板、槽位剖面、序列/行为关系、VAE | 更新 |
-| 误差校准 `calibrate_error` | 独立正常日志 | 日志级与参数级正常重构误差基准 | 冻结 |
-| 决策校准 `calibrate_fusion` | 独立且带可信正常/异常标签的数据 | 策略映射、日志阈值、参数阈值 | 冻结 |
-| 固定测试 | 未参与设计的数据 | 只计算指标 | 冻结且不可调参 |
-
-规则命中的日志按真实路由直接裁决，不进入 AI 决策校准，也不推进回放窗口。校准与解释使用隔离副本，不能污染活跃运行时。
-
-#### 模型包与运行时隔离
-
-模型包格式为 v5，保存解析器、剖面、序列关系、行为证据、冻结语义、VAE 权重与误差基准、决策阈值、校准映射和反馈控制器。加载时校验格式版本、插件身份、配置签名、特征版本及必需文件摘要；任一不匹配即拒绝加载。
-
-动态状态按 `source × object × operation × role` 的语义隔离。开始新的独立日志流时必须调用 `reset_runtime()`；连续流不能逐条重置。需要连续恢复时必须同时保存运行时检查点。
-
-生命周期完成后，`DetectionOutput` 可稳定交给上层异常融合；模型重训、候选回放、切换和回滚通过插件路由器管理。
-
-### 模块交互关系
-
-| 上游模块 | 交互数据 | 下游模块 | 关键约束 |
-|---|---|---|---|
-| 调用方 / 日志接入 | `log_text, ts, source, module, object` | `DetectionPipeline` | 严格身份模式下 source、object 不得缺失 |
-| `DetectionPipeline` | 原始日志 | `RuleFallbackDetector` | 命中即终止 AI 路由 |
-| 规则通道 | 未命中 | `TemplateFreeParser` | AI 关闭时改为 DQ |
-| 解析器 | `ParseResult + slot_values` | 语义与剖面层 | 必须保留原文字符区间 |
-| 语义与剖面层 | `ParameterObservation` | 各检测策略 | 未知语义仍保留 |
-| 各检测策略 | `StrategyResult` | `FusionEngine` | 策略分数不是天然概率 |
-| 融合引擎 | `DetectionOutput` | 上层结果融合 / 参数对齐评估 | 状态优先级不可被校准覆盖 |
-| 模型生命周期 | 模型包与运行时检查点 | 新管道实例 / PluginRouter | 不兼容模型 fail-closed |
-
-### 复杂度、验证口径与已知边界
-
-| 环节 | 主要开销 | 说明 |
-|---|---|---|
-| 规则匹配 | O(R·T) | R 为规则数，T 为 token 数；命中后短路 |
-| 冻结模板匹配 | 近似 O(d+k) | d 为解析树深度，k 为候选簇 |
-| 统计/序列/上下文 | O(P) | P 为单条日志参数数，窗口状态增量更新 |
-| VAE | O(P·E) | E 为一次共享网络前向开销 |
-| 融合与区间合并 | O(S+Q log Q) | S 为策略数，Q 为参数预测数 |
-
-当前结果来自受控仿真与回归测试，只能证明接口、状态机、生命周期和评估链路按设计工作，不能等同于真实 DME 日志上的生产准确率。上线前仍需：
-
-- 用脱敏真实日志按时间、来源、对象和故障事件隔离训练/校准/测试；
-- 核验单位、码表、重建信号、正常范围和对象键；
-- 评估参数级精确率/召回率、每千条误报、事件级召回、首检延迟及 P95/P99 延迟；
-- 对高熵模板、合法边界值、未知枚举和结构漂移单独设验收集；
-- 先以只读旁路方式运行，再决定是否进入正式告警链路。
-
-### 端到端检测示例
-
-下面分别展示规则命中和规则未命中两条路径。
-
-#### 专家规则命中
-
-**输入**：
-
-```text
-Get ns async failed ret ( -99999 ) .
-```
-
-**交互过程**：
-
-1. `DetectionPipeline` 先调用规则检测器；
-2. 固定 token 与占位符形态匹配，提取 `ret=-99999` 及其原文区间；
-3. 数值等值命中黑名单；
-4. 直接输出 `anomaly`，不调用解析器、GLiNER、VAE 或融合校准。
-
-**输出**：
-
-```json
-{
-  "status": "anomaly",
-  "score": 0.95,
-  "strategies": {"rule_fallback": 0.95},
-  "evidence": ["template_id=10305", "ret in black_list"],
-  "param_predictions": [
-    {
-      "role": "ret",
-      "raw_value": "-99999",
-      "span": [26, 32],
-      "source": "rule_fallback",
-      "alert": true
-    }
-  ]
-}
-```
-
-#### AI 模板无关路径
-
-**输入**：
-
-```text
-Xnet send msg(... time use=15280(us), SNO=2283111032999999000, reqSNO=0, msg type=1, plane=1, xnetRet=0.
-```
-
-**交互过程**：
-
-1. 专家规则未命中，且 `use_ai_detection=true`；
-2. 冻结解析器匹配到 `xnet_send`，提取 `time_use`、`SNO`、`reqSNO` 等参数及字符区间；
-3. 冻结语义将 `time_use` 映射为 duration，行为剖面将 `SNO` 识别为序列；
-4. 统计策略判断耗时是否偏离正常剖面，序列策略检测 SNO 回退，其他策略提供补充证据；
-5. 融合器先检查 DQ，再应用强证据/共识与冻结阈值；
-6. 参数证据按 SNO 的原文区间合并，输出日志级异常和参数级定位。
-
-**示意输出**：
-
-```json
-{
-  "status": "anomaly",
-  "score": 0.94,
-  "strategies": {
-    "statistical": 0.22,
-    "sequence": 0.94,
-    "context": 0.12,
-    "vae": 0.31
-  },
-  "evidence": ["sequence_regression"],
-  "dq_issues": [],
-  "param_predictions": [
-    {
-      "role": "SNO@18",
-      "raw_value": "2283111032999999000",
-      "span": [82, 101],
-      "source": "sequence",
-      "anomaly_score": 0.94,
-      "alert": true
-    }
-  ]
-}
-```
-
-该输出继续进入第 8 章的跨类型结果融合；若解析失败或值缺失，则在本模块内以 `data_quality` 结束，不进入业务异常合并。
-
----
-
+该结果表示“当前参数知识范围内没有检测对象”，未知样本随后进入离线治理队列。完成识别、审核和新版本发布前，线上行为保持不变。
 
 ## 关键技术点三：分词增强语义异常检测
 
