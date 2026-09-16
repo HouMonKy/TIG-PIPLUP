@@ -1,0 +1,484 @@
+{
+    "eds": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "update": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "eds-f": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "message_log": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]<Content>",
+            "<Month> <Date> <Time> <Module> <Process>\\[<Id>\\]:<Content>",
+            "<Month> <Date> <Time> <Module> <Process>:<Content>",
+            "<Time> <Module> <Process>:<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Month", "Date", "Time"]
+    },
+    "message": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ExtendTime>\\]\\[\\]\\[<Id>\\]\\[<Level>\\]<Content>",
+            "\\[<Time>\\]\\[<ExtendTime>\\]\\[<Id>\\]\\[<Level>\\]<Content>",
+            "\\[<Time>\\]\\[<ExtendTime>\\]<Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "ccdb": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "fsm": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] <Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "zk": {
+        "log_format": [
+            "\\[<Date> <Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>",
+            "<Date>T<Time>,<microsecond> \\[<myid>\\] - <Level>  - <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date", "Time", "microsecond"]
+    },
+    "osd": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "plog": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "cm": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "nodesentry": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "deploy": {
+        "log_format": [
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "mdc": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "kmm-server": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "fma": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>",
+            "\\[<Time>\\]\\[<Leval>\\]<Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "rep": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>",
+            "\\[<Time>\\] \\[<Id>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "dpuc": {
+        "log_format": [
+            "\\[<Time>\\] \\[<address>\\] \\[<Process>\\] \\[<Level>\\]: <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "cfg": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "chimp-server": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "ls": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "osc": {
+        "log_format": [
+            "\\[<Time> UTC\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "oam-ftds": {
+        "log_format": [
+            "<Date> <Time> <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date", "Time"]
+    },
+    "haproxy": {
+        "log_format": [
+            "<Date>T<Time>.<microsecond> <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date", "Time", "microsecond"]
+    },
+    "beats": {
+        "log_format": [
+            "<Date>T<Time>.<microsecond> ERROR <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date", "Time", "microsecond"]
+    },
+    "cmsworker": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "deva": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "devm": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "diag_client": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "diag_server": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "djob": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "dlm": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "dpshm_server": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "euler-update": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Id>\\] \\[<process>\\] \\[<progress>\\] <Level>: <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "fdsa": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "hugepage": {
+        "log_format": [
+            "<Date> <Time> \\[<Id>\\] \\[<Line>\\] \\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date","Time"]
+    },
+    "infra_puma": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Id>\\] \\[<Level>\\]: <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "log_collect": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "oam-console": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "pangea_hwmgt_log": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Id>\\] \\[<Level>\\]: <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "pangea_nvme_log": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Id>\\] \\[<Level>\\]: <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "pangea_sas_log": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Id>\\] \\[<Level>\\]: <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "quanta": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "snm_daemon": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "snm": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "watchdog": {
+        "log_format": [
+            "<Time> \\[<Id>\\] \\[<Line>\\] \\[<Level>\\] <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "xtiger": {
+        "log_format": [
+            "\\[<Time>\\] <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "device-manager": {
+        "log_format": [
+            "<IP> \\[<Day>/<Month>/<Year>:<Time> \\+0800\\] <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Day", "Month", "Year", "Time"]
+    },
+    "oam-gaussdb": {
+        "log_format": [
+            "\\[<Time> CST\\] <Manager1> <Manager2> <IP>:  <Content>",
+            "\\[<Time> CST\\]   <Level>:  <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "pms": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "nma": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "nms": {
+        "log_format": [
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "ismcli": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "sysmonitor": {
+        "log_format": [
+            "<Date>T<Time>\\+08:00\\|<Level>\\|<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date","Time"]
+    },
+    "snmpagent": {
+        "log_format": [
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "cache": {
+        "log_format": [
+            "\\[<Time> CST\\] <Level> <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "daemon": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "dns": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "logmgr": {
+        "log_format": [
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "smio": {
+        "log_format": [
+            "\\[<Thu> <Month>  <Day> <Time> <Year>\\] <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Day", "Month", "Year", "Time"]
+    },
+    "ccdbx": {
+        "log_format": [
+            "<Date> <Time>.<microsecond>:\\[<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date","Time","microsecond"]
+    },
+    "fsa": {
+        "log_format": [
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "sys_data": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Id>\\] \\[<Level>\\]: <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "rdma_log": {
+        "log_format": [
+            "<Month>  <Date> <Time> <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Month","Date","Time"]
+    },
+    "ha": {
+        "log_format": [
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "ibase": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    },
+    "vbs": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"]
+    }
+}

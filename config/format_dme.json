@@ -1,0 +1,206 @@
+{
+    "eds": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]\\[<Module2>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "eds-f": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]\\[<Module2>\\]\\(<Module3>\\) <Server>:<Id> <Client>:<Id> d\\(<Detail1>\\)r\\(<Detail2>\\) <Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]\\[<Module2>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "message_log": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]<Content>",
+            "\\[<Time>\\]\\[<System>\\]:<Content>",
+            "<Month> <Date> <Hour> <Module1> <Module2>: \\[<Runtime>\\] <Drive> <PCI>: \\[<Module3>\\]<Content>",
+            "<Month> <Date> <Hour> <Module> <Process>\\[<Id>\\]:<Content>",
+            "<Month> <Date> <Hour> <Module> <Process>:<Content>",
+            "<Time> <Module> <Process>:<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "ccdb": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "kmm-server": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "vbs": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]\\[<Module2>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]<Content>",
+            "\\[<Time>\\]\\<<Id>\\><Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "fsm": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] \\[<Process1>\\] \\[<Process2>\\] - <Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<Process1>\\] \\[<module>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "zk": {
+        "log_format": [
+            "\\[<Date> <Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Num1>\\]\\[<Num2>\\]  \\[<Module>\\] - <Content>",
+            "<Date>T<Time>,<microsecond> \\[<myid>\\] - <Level>  \\[<Node>:<Component>@<Id>\\] - <Content>",
+            "<Date>T<Time>,<microsecond> \\[<myid>\\] - <Level>  \\[<Node>] - <Content>",
+            "<Date> <Time>,<microsecond> \\[<myid>\\] - <Level>  \\[<Node>] - <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date", "Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "osd": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]\\[<Module4>\\]\\[<Module5>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]\\[<Module4>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]\\[<Module2>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "plog": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]\\[<Module4>\\]\\[<Module5>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]\\[<Module4>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "cm": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module>\\]\\[<Module2>\\]\\[<Module3>\\]\\[<Module4>\\]\\[<Module5>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module>\\]\\[<Module2>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "nodesentry": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module>\\]\\[<Module2>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "Apache_2k": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "BGL_2k": {
+        "log_format": ["<Label> <Timestamp> <Date> <Node> <Time> <NodeRepeat> <Type> <Component> <Level> <Content>"],
+        "delimiter": ["[,]"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "Hadoop_2k": {
+        "log_format": [
+            "<Time><Level>\\[<Module>\\]<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "HealthApp_2k": {
+        "log_format": [
+            "<Module1>\\|<Module2>\\|<Module3>\\|<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Module1"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "Spark_2k": {
+        "log_format": [
+            "<Day> <Time> <Level> <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "Thunderbird_2k": {
+        "log_format": [
+            "- <Id> <Date> <Module> <Month> <Day> <Time> <Module2> <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Date"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+    "Zookeeper_2k": {
+        "log_format": [
+            "<Time> - <Level> \\[<Module>\\] - <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S.%f"
+    },
+        "sel": {
+        "log_format": [
+            "<Id>,<Time>,<Level>,<Event_code>,<Asserted_or_deasserted>,<Entity_type>:<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S"
+    },
+    "message": {
+        "log_format": [
+            "<Time>|<Level>|Kernel|\\[<Kernel_log_timestamp>\\]<Content>",
+            "<Time>|<Level>|<Component>|<Content>",
+            "<Month> <Date> <Hour> <Device> <Kernel>: \\[<Kernel_log_timestamp>\\]<content>",
+            "<Month> <Date> <Hour> <Device> <Component>:<content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%dT%H:%M:%S.%f%z"
+    },
+    "route": {
+        "log_format": [
+            "<<id>><Month> <Date> <Year> <Hour> <Device> <Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S%z"
+    }
+}

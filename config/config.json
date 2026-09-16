@@ -1,0 +1,10 @@
+{
+    "host": "127.0.0.1",
+    "port": 5001,
+    "persistence_time_minutes": 5,
+    "learning_switch": "off",
+    "learning_mode": "new",
+    "learning_time_hours": 24,
+    "persistence_duration": 86400000,
+    "print_invalid_log": false
+}

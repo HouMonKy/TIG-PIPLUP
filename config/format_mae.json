@@ -1,0 +1,47 @@
+{
+    "sel": {
+        "log_format": [
+            "<Id>,<Time>,<Level>,<Event_code>,<Asserted_or_deasserted>,<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S"
+    },
+    "messages": {
+        "log_format": [
+            "<Time> <IP> <File> <LEVEL> \\[<PID>\\] \\[<THREAD_NAME>\\] \\[<TID>\\] \\[<LINE>\\] \\[<REQ_ID>\\] \\[<INSTANCE_ID>\\]<Content>",
+            "<Time> <IP> <File> <LEVEL> \\[<PID>\\] \\[<THREAD_NAME>\\] \\[<TID>\\] \\[<LINE>\\] \\[<REQ_ID>\\]<Content>",
+            "<Time> <IP> <File> <LEVEL> \\[<type>\\] \\[<PID>\\] \\[<Thread_name>\\] \\[<Thread_id>\\]<Content>",
+            "<Time>\\|<Level>\\|<Kernel>\\|<Main>\\|<Id>\\|<Module>\\|:<Content>",
+            "<Time>\\|<Level>\\|<Kernel>\\|\\[<Kernel_log_timestamp>\\]<Content>",
+            "<Time>\\|<Level>\\|<Component>\\|<Content>",
+            "<Month> <Date> <Hour> <Device> <Kernel>: \\[<Kernel_log_timestamp>\\]<content>",
+            "<Time>\\|<Level>\\|<Kernel>\\[<Kernel_content>\\]\\|<code>\\[<code>\\]\\|rank\\|rank_copy\\|: <Content>",
+            "<Month> <Date> <Hour> <Device> <Component>:<content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%dT%H:%M:%S.%f%z"
+    },
+    "route": {
+        "log_format": [
+            "<<id>><Month> <Date> <Year> <Hour> <Device> <Content>",
+            "%%<id>/<id>/<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S%z"
+    },
+    "eor": {
+        "log_format": [
+            "<<id>><Month> <Date> <Year> <Hour> <Device> <Content>",
+            "<Type> :\\[<Content>\\]",
+            "%%<Object>/<id>/<Content>",
+            "%<Object>-<id>-<Content>",
+            "<MPU> %<Object>-<Content>"
+        ],
+        "delimiter": ["[,]"],
+        "time": ["Time"],
+        "time_format": "%Y-%m-%d %H:%M:%S%z"
+    }
+}

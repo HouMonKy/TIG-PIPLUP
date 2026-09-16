@@ -1,0 +1,507 @@
+{
+    "cfg": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID>\\]\\[<Level>\\]\\[<ID2>\\]\\[<progress>\\]<Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<ID2>\\] \\[<progress>\\] <Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S,%f %z",
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S:%f",
+            "%Y-%m-%d %H:%M:%S,%f"
+        ]
+    },
+    "deploy": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] \\[<process>\\] \\[<server>\\] \\[<ID1>\\] \\[<ID2>\\]<Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<Process>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\]\\[<Line>\\]\\[<ID1>\\]<Content>",
+            "\\[<Time>\\] \\[<Level>\\]  \\[<ID>\\] \\[<Process>\\] <Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<ID>\\] \\[<Process>\\] <Content>",
+            "<Time> : \\[<Line>\\] \\[<Level>\\] <Content>",
+            "\\[<Time>\\] \\[<Process>\\]\\[<Level>\\]: <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<Process>\\] <Content>",
+            "<Time> \\[<Level>\\] \\[<process>\\] \\[<Content>\\]",
+            "<Time>\\[<Level>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]:<Level>: <content>",
+            "\\[<Time>\\] \\[<time2>\\] <content>",
+            "\\[<Time>\\]\\[<Level>\\]<content>",
+            "\\[<Time>\\]\\^<IP>\\^-\\^<content>",
+            "\\[<Time>\\] <content>",
+            "\\[<Time>\\]<content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S:",
+            "%Y-%m-%d %H:%M:%S,%f %z",
+            "%Y-%m-%d %H:%M:%S,%f",
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%d/%b/%Y:%H:%M:%S %z",
+            "%Y-%m-%d %H:%M:%S:%f"
+        ]
+    },
+    "fdsa": {
+        "log_format": [
+            "\\[<Time>\\]\\[<process>\\]\\[<action>\\]\\[<Id2>\\]\\[<Level>\\] <Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<Process>\\]<Content>",
+            "\\[<Time>\\] \\[<process>\\] \\[<action>\\] \\[<Level>\\]: <Content>",
+            "\\[<Time>\\] \\[<Process>\\] \\[<action>\\] <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<action>\\] <Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S,%f"
+        ]
+    },
+    "fma": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID>\\]\\[<Level>\\]\\[<ID2>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<action>\\] <Content>",
+            "\\[<Time>\\]\\[<ID>\\]\\[<process>\\]<Content>",
+            "CST <Time> TIP: <process> : <Content>",
+            "CST <Time> DEBUG: <process> : <Content>",
+            "<Time> \\[<Level>\\] <Content>",
+            "\\[<Time>\\]<Content>"            
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "mdc": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]\\[<tid>\\]\\[<osd>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] <Content>",
+            "<Time>-, <Level>: <Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S:"
+        ]
+    },
+    "device-manager": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] \\[<Id2>\\] \\[<process>\\] <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\] <Content>",
+            "<ID> - - \\[<Time>\\] <Content>",
+            "<Time> \\[<Level>\\] <ID>:  <Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y/%m/%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S,%f",
+            "%Y-%m-%d %H:%M:%S %z",            
+            "%d/%b/%Y:%H:%M:%S %z"
+        ]
+    },
+    "ha": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID>\\]\\[<Level>\\]\\[<ID2>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<ID>\\] \\[<process>\\] <Content>",                    
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] <Content>",
+            "\\[<Time>\\]\\[<ID>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S,%f %z",
+            "%Y-%m-%d %H:%M:%S,%f"
+        ]
+    },
+    "fsa": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]\\[<tid>\\]\\[<osd>\\]<Content>",
+            "\\[<Level>\\] \\[<process>\\] \\[<Id>\\] \\[<id2>\\] \\(UTC\\) <Time>  DSWARE KMC <content>",
+            "\\[<Time>\\]\\[<ID>\\]\\[<Level>\\] \\[<id2>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]  \\[<Level>\\] \\[<id>\\] \\[<process>\\] <Content>",
+            "\\[<Time>\\] \\[<path>\\] \\[<process>\\] \\[<level>\\] <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<progress>\\] <Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S,%f",
+            "%Y-%m-%d %H:%M:%S:%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "fsm": {
+        "log_format": [
+            "\\[<Level>\\] \\[<process>\\] \\[<Id>\\] \\[<id2>\\] \\(UTC\\) <Time>  DSWARE KMC <content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<process>\\] \\[<progress>\\] - <Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<process>\\] \\[<progress>\\] <Content>",
+            "\\[<Time>\\] \\[<process>\\] \\[<Level>\\]: <Content>",
+            "\\[<Time>\\] \\[<process>\\] \\[<progress>\\] <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<progress>\\] <Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S,%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "ibase": {
+        "log_format": [
+            "\\[<Time>\\]\\[<process>\\]ISM: \\[<process2>\\]<Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%m/%d/%y %H:%M:%S"
+        ]
+    },
+    "ismcli": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Level>\\]\\[<Id>\\]\\[<process>\\]\\[\\] - <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\]\\[<ID>\\]<Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S.%f"
+        ]
+    },
+    "Messages": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID1>\\]\\[<ID2>\\]\\[<ID3>\\]\\[<ID4>\\]\\[<Level>\\]\\[<Content>\\]\\[<Module>\\]\\[<codeLine>\\]\\[<pidTid>\\]",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<ID2>\\]\\[<ID3>\\]\\[<Level>\\]\\[<Content>\\]\\[<Module>\\]\\[<codeLine>\\]\\[<pidTid>\\]",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<ID2>\\]\\[<Level>\\]\\[<Content>\\]\\[<Module>\\]\\[<codeLine>\\]\\[<pidTid>\\]",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Content>\\]\\[<Module>\\]\\[<codeLine>\\]\\[<pidTid>\\]",
+            "\\[<Time>\\]\\[<Level>\\]\\[<Content>\\]\\[<Module>\\]\\[<codeLine>\\]\\[<pidTid>\\]"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "nma": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID>\\]\\[<Level>\\]\\[<Id2>\\]\\[<processs>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] <Content>",
+            "\\[<Time>\\]\\[<ID>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "nms": {
+        "log_format": [
+            "<Time> nmsapp <Level> \\[<pid>\\] \\[<process>\\] \\[<tid>\\] \\[<id>\\] \\[<progress>\\] <Content>",
+            "<Time> node-manager <Level> \\[<pid>\\] \\[<process>\\] \\[<tid>\\] \\[<id>\\] \\[<progress>\\] <Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<process>\\] <Content>",            
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S %z",
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "pma": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID>\\]\\[<Level>\\]\\[<Id2>\\]\\[<processs>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] <Content>",
+            "\\[<Time>\\]\\[<ID>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\] <Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S CST"
+        ]
+    },
+    "pms": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] \\[<process>\\] \\[<progress>\\] \\[<pms>\\] <Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<process>\\] \\[<progress>\\] <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] <Content>",
+            "\\[<Time>\\] \\[<Level>\\] <Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S,%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "rep": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] \\[<process>\\] \\[<progress>\\] <Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "snmpagent": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\]\\[<FSM>\\]\\[<progress>\\] - <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] - <Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] <Content>",
+            "\\[<Time>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S.%f"
+        ]
+    },
+    "oam-console": {
+        "log_format": [
+            "\\[<Time>\\]\\[<process>\\]\\[<main>\\]\\[<Line>\\]\\[<Level>\\] <Content>",
+            "\\[<Time>\\]\\[<id1>\\]\\[<Level>\\]\\[<id2>\\]\\[<process>\\]<Content>",
+            "\\[<Level>\\] \\[<process>\\] \\[<Id>\\] \\[<id2>\\] \\(UTC\\) <Time>  DSWARE KMC <content>",
+            "\\[<Time>\\]  \\[<progress>\\] \\[<Id>\\] \\[<Level>\\] \\[<ID>\\] <Content>",
+            "\\[<Time>\\]  \\[<Level>\\] \\[<Id>\\] \\[<process>\\] <Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<Id>\\] \\[<process>\\] <Content>",
+            "\\[<Time>\\] \\[<ID>\\] \\[<Level>\\]: <Content>",
+            "\\[<Time>\\]\\[\\[<Level>\\] <Content>",
+            "<Time>----<Content>",
+            "\\[<Time>\\]: <content>",
+            "\\[<Time>\\]<content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S,%f %z",
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S:%f",
+            "%d/%b/%Y:%H:%M:%S %z",
+            "%Y-%m-%d %H:%M:%S,%f",
+            "%Y-%m-%d %H:%M:%S %z",
+            "%Y-%m-%d %H:%M:%S CST",
+            "%Y-%m-%d %H:%M:%S.%f UT",
+            "%Y/%m/%d %H:%M:%S"
+        ]
+    },
+    "oam-ftds": {
+        "log_format": [
+            "\\[<Time>\\] \\[<Level>\\] \\[<Id>\\] \\[<process>\\] <Content>",
+            "\\[<Time>\\] \\[<Level>\\] \\[<Id>\\] <Content>",
+            "<Time> : \\[<Line>\\] \\[<Level>\\] <Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S,%f",
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S,%f %z"
+        ]
+    },
+    "oam-gaussdb": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Level>\\]\\[<Id>\\] <Content>",
+            "\\[<Time>\\]<content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "omm_c": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID>\\]\\[<Level>\\]\\[<ID2>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\] \\[<ID>\\] \\[<Level>\\]: <Content>",
+            "\\[<Time>\\]\\[<ID>\\]\\[<process>\\] <Content>",           
+            "\\[<Time>\\]\\[<ID>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]<content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "osd": {
+        "log_format": [
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]\\[<Module4>\\]\\[<Module5>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<Module1>\\]\\[<Module2>\\]\\[<Module3>\\]\\[<Module4>\\]<Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]\\[<tid>\\]\\[<osd>\\]<Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]\\[<UMM>\\] <Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] <Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S",
+            "%Y-%m-%d %H:%M:%S.%f"
+        ]
+
+    },
+    "vbs": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]\\[<tid>\\]\\[<osd>\\]<Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]\\[<path>\\] <Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]\\[<process>\\] <Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]\\[<Level>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S"
+        ]
+    },
+    "eds": {
+        "log_format": [
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]\\[<tid>\\]\\[<osd>\\]<Content>",
+            "\\[<Time>\\]\\[<Id>\\]\\[<Level>\\]\\[<Process>\\]\\[<System>\\]\\[<Module1>\\]<Content>",
+            "\\[<Time>\\]\\[<ID1>\\]\\[<Level>\\]\\[<Id2>\\]\\[<process>\\]<Content>",
+            "\\[<Time>\\]\\[<process>\\]<Content>"
+        ],
+        "delimiter": [
+            "[,]"
+        ],
+        "time": [
+            "Time"
+        ],
+        "time_format": [
+            "%Y-%m-%d %H:%M:%S.%f",
+            "%Y-%m-%d %H:%M:%S:%f"
+        ]
+
+    }
+}
