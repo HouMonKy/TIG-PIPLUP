@@ -1,0 +1,53 @@
+{
+  "cold_no_template_cache": {
+    "lines": 3000,
+    "seconds": 0.4687,
+    "lines_per_sec": 6400.9,
+    "peak_mem_mb": 0.65,
+    "clusters": 14,
+    "distinct_templates": 18
+  },
+  "cold_with_template_cache": {
+    "lines": 3000,
+    "seconds": 0.1143,
+    "lines_per_sec": 26244.5,
+    "peak_mem_mb": 0.46,
+    "clusters": 14,
+    "distinct_templates": 18
+  },
+  "warm_template_cache": {
+    "lines": 3000,
+    "seconds": 0.0636,
+    "lines_per_sec": 47165.5,
+    "peak_mem_mb": 0.14,
+    "clusters": 14,
+    "distinct_templates": 18
+  },
+  "stream_batch_20lines": {
+    "batches": 50,
+    "avg_ms": 0.134,
+    "max_ms": 0.251
+  },
+  "state_size": {
+    "clusters": 14,
+    "pickle_mb": 0.003
+  },
+  "cache_size": {
+    "template_cache_entries": 79,
+    "light_cache_entries": 100
+  },
+  "cache_consistency": {
+    "mismatched_lines": 0
+  },
+  "ground_truth_eval": {
+    "base_templates": 12,
+    "distinct_output_templates": 18,
+    "over_split_groups": 3,
+    "over_merged_templates": 0,
+    "fixed_token_loss_lines": 254,
+    "fixed_token_loss_detail": {
+      "(2, ('ms',))": 254
+    },
+    "uncovered_lines": 0
+  }
+}
