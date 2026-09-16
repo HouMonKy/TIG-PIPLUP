@@ -1,11 +1,11 @@
-# LogNet3.0 方案设计与实现文档（V4）
+# LogNet3.0 方案设计与实现文档（V5）
 
 | 项目 | 内容 |
 |------|------|
 | 文档名称 | LogNet3.0 方案设计与实现文档 |
-| 版本 | V4.0 |
+| 版本 | V5.0 |
 | 适用产品 | DME（分布式存储）/ MAE（网络） |
-| 日期 | 2026-09-10 |
+| 日期 | 2026-09-15 |
 | 关键技术点 | 免人工配置异构日志解析、模板无关自适应参数异常检测、分词增强语义异常检测 |
 
 ---
@@ -35,15 +35,15 @@
 LogNet3.0 是面向 DME 分布式存储和 MAE 网络产品的日志智能感知系统，旨在实现对海量异构日志的**免人工配置解析**与**精准异常检测**。系统通过三大核心技术点实现端到端的高性能日志分析能力：
 
 - **免人工配置异构日志解析**：基于自研 PIPLUP（Prefix-tree Indexed Parsing with LLM-assisted Universal Processing）算法，结合 LLM 智能格式学习引擎，实现对不同模块、不同格式日志的自动解析，无需人工逐模块配置正则规则。
-- **模板无关自适应参数异常检测**：通过模糊匹配 + 多模式检测策略（黑名单/白名单/范围/孤立森林），在不依赖固定模板 ID 的前提下自动检测日志参数异常。
+- **模板无关自适应参数异常检测**：以外部专家规则作为高确定性主通道，规则未覆盖时由可开关的模板无关 AI 管道完成参数解析、正常剖面学习、多策略检测和校准融合，并将异常精确定位到原文字符区间。
 - **分词增强语义异常检测**：通过领域专用 BERT 分词器训练 + 滑动窗口多粒度嵌入 + 异常基线相似度匹配，实现日志内容的语义级异常检测。
 
 ### 1.2 功能矩阵
 
 | 场景 | 模板解析 | 数量异常 | 语义异常 | 参数异常 |
 |------|---------|---------|---------|---------|
-| DME & CN: CPU | PIPLUP / Drain | k-sigma | LogNetMini（轻量 BERT） | 多模式检测 |
-| DME & CN: NPU | PIPLUP / Drain | k-sigma | LogNetBig（MPNet 12层） | 多模式检测 |
+| DME & CN: CPU | PIPLUP / Drain | k-sigma | LogNetMini（轻量 BERT） | 规则优先 + 统计/序列/上下文/VAE可选 |
+| DME & CN: NPU | PIPLUP / Drain | k-sigma | LogNetBig（MPNet 12层） | 规则优先 + 统计/序列/上下文/VAE可选 |
 
 ### 1.3 代码仓库结构
 
@@ -70,7 +70,7 @@ TIG_LogAnalysis/
 │   │   │   │   ├── PIPLUP.py                 # PIPLUP 核心算法
 │   │   │   │   ├── template_miner.py         # Drain3 算法
 │   │   │   │   ├── template_miner_config.py  # Drain3 配置
-│   │   │   │   ├── preprocessing.py          # 预处理（24种正则）
+│   │   │   │   ├── preprocessing.py          # 预处理（30种活跃正则）
 │   │   │   │   ├── postprocessing.py         # 后处理（LUNAR 模板校正）
 │   │   │   │   ├── LogAutoParsingEngine.py   # LLM 智能格式学习引擎
 │   │   │   │   ├── extractor.py              # 格式提取器
@@ -114,6 +114,8 @@ TIG_LogAnalysis/
 └── design_doc/                      # 已有设计文档
 ```
 
+> **代码边界说明**：上述目录树对应 `TIG-PIPLUP` 主服务。第 5 章已按新设计迁移到 `TIG-2026/dme_platform/`，其通用核心位于 `core/` 和 `detection/`，场景知识位于 `plugins/`，规则库位于 `config/rule_fallback.json`。两个代码库的职责不在本文中混写为同一目录树。
+
 ---
 
 ## 2. 系统架构设计
@@ -123,132 +125,52 @@ TIG_LogAnalysis/
 ```plantuml
 @startuml LogNet3.0_Architecture
 !theme plain
-skinparam componentStyle rectangle
-skinparam packageStyle frame
 skinparam backgroundColor #FEFEFE
 skinparam shadowing false
-skinparam roundCorner 10
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
 skinparam linetype ortho
-skinparam nodesep 20
-skinparam ranksep 40
 
-title LogNet3.0 系统架构图
+title LogNet3.0 模块化架构
 
-cloud "外部调用方" as Ext #LightBlue
-note right of Ext: DME/MAE 日志采集系统\n或 离线评估工具
+actor "DME / MAE\n日志采集与离线工具" as Caller
 
-package "LogNet3.0 服务层" as Service {
-
-    package "接口层 (main.py)" as API {
-        component "POST /lognet_parse\n日志解析接口" as API_Parse
-        component "POST /abnormal-check\n异常检测接口" as API_Detect
-        component "POST /anomaly-check-all\n全量检测接口" as API_DetectAll
-    }
-
-    package "上下文管理 (LogContext)" as Ctx {
-        component "白名单管理" as WL
-        component "稳态学习引擎" as Learn
-        component "Drain 树管理器" as DrainMgr
-        component "PIPLUP 实例" as PIPLUP_Inst
-        component "日志格式解析器\n(LogFormatParser)" as FmtParser
-        component "日志模板仓库\n(LogTemplateRepository)" as Repo
-    }
-
-    package "日志解析模块" as Parse {
-        component "PIPLUP 算法引擎" as PIPLUP_Engine
-        component "Drain3 算法引擎" as Drain_Engine
-        component "LLM 智能格式学习\n(LogAutoParsingEngine)" as LLMEngine
-        component "预处理引擎\n(24种正则 + 自动剪枝)" as Preprocess
-        component "后处理引擎\n(LUNAR 模板校正)" as Postprocess
-        component "CRC32 双层缓存" as Cache
-    }
-
-    package "异常检测模块" as Detect {
-        component "语义异常检测器\n(SemanticAnomalyDetector)" as SemDetect
-        component "参数异常检测器\n(ParamAnomalyDetector)" as ParamDetect
-        component "数量异常检测器\n(QuantityAnomalyDetector)" as QtyDetect
-        component "结果融合器\n(merge_results)" as Merger
-        component "指纹库故障诊断" as Fingerprint
-    }
-
-    package "模型层" as Model {
-        component "LogNetMini\n(CPU: 1层 BERT, 64维)" as Mini
-        component "LogNetBig\n(NPU: MPNet 12层, 768维)" as Big
-        component "异常基线库\n(abn_baseline_*.json)" as Baseline
-        component "分词器\n(BERT Tokenizer)" as Tokenizer
-    }
+package "服务编排" {
+  component "REST 接口" as API
+  component "LogContext\n上下文与生命周期" as Context
 }
 
-database "持久化存储" as Persist #LightYellow
-note bottom of Persist: Drain 状态文件 (*.bin)\nPIPLUP 缓存 (*.pkl)\n白名单 (white_list_a4.json)\n异常基线 (abn_baseline_*.json)\n指纹库 (finger_print_lib.json)
+package "解析与结构化" {
+  component "格式识别\n正则 / LLM 降级" as Format
+  component "PIPLUP / Drain3\n模板与参数提取" as Parser
+  component "模板与时间窗仓库" as Repository
+}
 
-'========================
-' 主流程
-'========================
-Ext -down-> API
+package "异常检测" {
+  component "语义检测" as Semantic
+  component "参数检测\n规则优先 + AI 可选" as Parameter
+  component "数量检测" as Quantity
+  component "结果融合与故障诊断" as Fusion
+}
 
-API_Parse -down-> Ctx : 解析日志
-API_Detect -down-> Ctx : 获取数据
-API_DetectAll -down-> Ctx : 全量检测
+database "模型、基线、规则与运行时状态" as Store
 
-Ctx -down-> Parse : 调用解析引擎
-Ctx -down-> Detect : 触发异常检测
-
-'========================
-' 解析模块内部
-'========================
-PIPLUP_Inst -down-> PIPLUP_Engine
-DrainMgr -down-> Drain_Engine
-FmtParser -right-> LLMEngine : 格式未命中时
-PIPLUP_Engine -down-> Preprocess
-PIPLUP_Engine -down-> Postprocess
-PIPLUP_Engine -right-> Cache
-
-'========================
-' 检测模块内部
-'========================
-SemDetect -down-> Model
-ParamDetect -up-> Repo : 获取日志参数
-QtyDetect -up-> Repo : 获取时间窗统计
-SemDetect -right-> Merger
-ParamDetect -down-> Merger
-QtyDetect -left-> Merger
-Merger -down-> Fingerprint : DME 场景
-
-'========================
-' 持久化
-'========================
-Ctx -down-> Persist : 定时持久化
-Model -down-> Persist : 加载模型与基线
-
-'========================
-' 布局对齐
-'========================
-API_Parse -[hidden]right- API_DetectAll
-API_DetectAll -[hidden]right- API_Detect
-
-WL -[hidden]right- Learn
-Learn -[hidden]right- DrainMgr
-WL -[hidden]down- PIPLUP_Inst
-Learn -[hidden]down- FmtParser
-DrainMgr -[hidden]down- Repo
-PIPLUP_Inst -[hidden]right- FmtParser
-FmtParser -[hidden]right- Repo
-
-PIPLUP_Engine -[hidden]right- Drain_Engine
-Drain_Engine -[hidden]right- LLMEngine
-PIPLUP_Engine -[hidden]down- Preprocess
-Drain_Engine -[hidden]down- Postprocess
-LLMEngine -[hidden]down- Cache
-
-SemDetect -[hidden]right- ParamDetect
-ParamDetect -[hidden]right- QtyDetect
-
-Mini -[hidden]right- Big
-Big -[hidden]right- Baseline
-Baseline -[hidden]right- Tokenizer
-
-Parse -[hidden]right- Detect
+Caller --> API
+API --> Context
+Context --> Format
+Format --> Parser
+Parser --> Repository
+Repository --> Semantic
+Repository --> Parameter
+Repository --> Quantity
+Semantic --> Fusion
+Parameter --> Fusion
+Quantity --> Fusion
+Fusion --> API
+Context --> Store : 加载 / 持久化
+Semantic --> Store
+Parameter --> Store
+Quantity --> Store
 
 @enduml
 
@@ -262,7 +184,7 @@ Parse -[hidden]right- Detect
 | **上下文管理** | `src/data_process/log_context.py` | 管理全局状态：Drain 树映射、PIPLUP 实例、白名单、稳态学习、日志仓库 |
 | **日志解析** | `src/data_process/template_extractor/` | PIPLUP / Drain 双引擎日志模板提取，含预处理、后处理、LLM 智能格式学习 |
 | **语义异常检测** | `src/anomaly_detection/semantic_anomaly/` | 基于 BERT 嵌入 + 异常基线相似度匹配的日志内容异常检测 |
-| **参数异常检测** | `src/anomaly_detection/parameter_anomaly/` | 基于模板配置 + 模糊匹配的多模式参数异常检测 |
+| **参数异常检测** | `TIG-2026/dme_platform/` | 规则模糊匹配优先；未命中时进入可开关的模板无关 AI 管道，输出日志级状态和可定位的参数证据 |
 | **数量异常检测** | `src/anomaly_detection/quantitive_anomaly/` | 基于 k-sigma 留一法的日志频率突变检测 |
 | **结果融合** | `src/anomaly_detection/anomaly_detection.py` | 三路检测结果按三元组去重合并，生成异常事件与诊断报告 |
 | **模型层** | `src/anomaly_detection/semantic_anomaly/bert_model/` | LogNetMini（CPU）和 LogNetBig（NPU）双模型 |
@@ -272,101 +194,70 @@ Parse -[hidden]right- Detect
 
 ## 3. 模块交互与时序设计
 
-### 3.1 整体时序图：在线日志解析与异常检测
+### 3.1 核心交互时序
+
+原图同时展开格式降级、解析器内部、三路检测和诊断细节，难以看清模块边界。这里拆成“解析入库”和“检测融合”两条主链路；各算法内部流程在对应技术章节中说明。
+
+#### 3.1.1 解析入库
 
 ```plantuml
-@startuml LogNet3.0_Sequence_Online
+@startuml LogNet3.0_Sequence_Parse
 !theme plain
 skinparam backgroundColor #FEFEFE
 skinparam shadowing false
 
-title LogNet3.0 在线服务时序图：日志解析 + 异常检测
+title 日志解析与入库
 
-actor "外部调用方" as Caller
-participant "main.py\n(Flask)" as API
-participant "LogContext\n(上下文管理)" as Ctx
-participant "LogFormatParser\n(格式解析)" as Fmt
-participant "LogAutoParsingEngine\n(LLM引擎)" as LLM
-participant "PIPLUP\n(解析引擎)" as PIPLUP
-participant "LogTemplateRepository\n(日志仓库)" as Repo
-participant "AnomalyDetection\n(检测编排器)" as Orchest
-participant "SemanticDetector\n(语义检测)" as Sem
-participant "ParamDetector\n(参数检测)" as Param
-participant "QuantityDetector\n(数量检测)" as Qty
+actor "调用方" as Caller
+participant "REST 接口" as API
+participant "LogContext" as Context
+participant "格式识别" as Format
+participant "PIPLUP / Drain3" as Parser
+database "模板仓库" as Repo
 
-== 阶段一：日志解析 ==
-
-Caller -> API: POST /lognet_parse\n{logInfo: [{rawLog, module, source, logId}]}
-API -> Ctx: parse_logs_piplup_adapter(logInfo, context)
-
-loop 逐条日志
-    Ctx -> Fmt: load_data(module, log)
-    alt 格式匹配成功
-        Fmt --> Ctx: (timestamp, content)
-    else 格式未命中且 use_LLM=True
-        Ctx -> LLM: extract(log)
-        LLM -> LLM: 反思式 Prompt 生成\n(max_retries=3)
-        LLM --> Ctx: (timestamp, content)
-    else 正则降级
-        Ctx -> Ctx: TIME_PATTERN.search(log)
-    else 历史兜底
-        Ctx -> Ctx: last_valid_timestamp_ms
-    end
-end
-
-Ctx -> PIPLUP: parse_list(target_contents)
-PIPLUP -> PIPLUP: Level1: light_cache (CRC32预查)
-PIPLUP -> PIPLUP: Level2: template_cache (CRC32后查)
-PIPLUP -> PIPLUP: treeSearch → fastMatch → addSeqToPrefixTree
-PIPLUP --> Ctx: [模板字符串列表]
-
-loop 逐条结果
-    Ctx -> Ctx: generate_template_id(template)\nCRC32 → 32位整型
-    Ctx -> Repo: add(LogTemplateRelation)
-end
-
-Ctx -> Ctx: update_white_list(parse_results)\n[稳态学习期间]
-Ctx -> Ctx: persistence_piplup()\n[定时落盘]
-
-API --> Caller: {parsed_result: []}
-
-== 阶段二：异常检测 ==
-
-Caller -> API: POST /abnormal-check\n{startTime, endTime, windowSize, module, source}
-API -> Ctx: get_drain(module), get_white_list(module)
-API -> Orchest: AnomalyDetection.get_detector(mode="all")\n.anomaly_detection(source, module, ...)
-
-Orchest -> Repo: get_aggr_windows(start, end, window_size, module, source)
-Repo --> Orchest: List[AggrWindow]
-
-Orchest -> Repo: get_window_logs_by_module_and_source(...)
-Repo --> Orchest: List[LogTemplateRelation]
-
-group 三路并行检测
-    Orchest -> Sem: detect(source, module, k_sigma, window_map, ...)
-    Sem -> Sem: filter_english(template)\n→ tokenizer encode\n→ static_embed (滑动窗口)\n→ cosine similarity vs baseline\n→ threshold 判定
-    Sem --> Orchest: (semantic_data, semantic_event)
-
-    Orchest -> Qty: detect(source, module, k_sigma, window_map, ...)
-    Qty -> Qty: convert_window_map_to_input\n→ find_new_templates\n→ find_change_templates (k-sigma留一法)\n→ assign_scores (正态CDF)
-    Qty --> Orchest: (quantitative_data, quantitative_event)
-
-    Orchest -> Param: detect(log_entries, window_size, ...)
-    Param -> Param: (module, template_id)精确匹配\n+ _config_fuzzy_match模糊匹配\n→ _is_anomaly(black_list/white_list/range/IsolationForest)
-    Param --> Orchest: (parametric_data, parametric_event)
-end
-
-Orchest -> Orchest: merge_results(semantic, parametric, quantitative)\n按(template_id, log_id, timestamp)去重合并
-
-alt DME 产品
-    Orchest -> Orchest: 指纹库匹配\n(same_template 模糊匹配 + 权重累加)
-end
-
-Orchest --> API: (anomaly_data, anomaly_event[, reports])
-API --> Caller: {code:200, data: anomaly_data, event: anomaly_event}
+Caller -> API: POST /lognet_parse
+API -> Context: 解析批次
+Context -> Format: 分离 timestamp 与 content
+Format --> Context: 结构化日志正文
+Context -> Parser: parse_list(contents)
+Parser --> Context: template + parameters
+Context -> Repo: 保存模板关系与时间信息
+Context --> API: parsed_result
+API --> Caller: 解析结果
 
 @enduml
 ```
+
+#### 3.1.2 检测与融合
+
+```plantuml
+@startuml LogNet3.0_Sequence_Detect
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+title 异常检测与结果融合
+
+actor "调用方" as Caller
+participant "REST 接口" as API
+database "模板与时间窗仓库" as Repo
+participant "检测编排器" as Orchestrator
+participant "语义 / 参数 / 数量检测" as Detectors
+participant "融合与诊断" as Fusion
+
+Caller -> API: POST /abnormal-check
+API -> Repo: 查询时间窗日志与统计
+Repo --> API: logs + window_map
+API -> Orchestrator: detect(logs, window_map)
+Orchestrator -> Detectors: 调用已启用的检测模块
+Detectors --> Orchestrator: 标准化异常证据
+Orchestrator -> Fusion: 按日志身份合并、生成事件
+Fusion --> API: anomaly_data + anomaly_event + reports?
+API --> Caller: 检测结果
+
+@enduml
+```
+
 
 ### 3.2 模块间交互接口
 
@@ -379,10 +270,13 @@ API --> Caller: {code:200, data: anomaly_data, event: anomaly_event}
 | LogContext | LogTemplateRepository | `log_repository.add(LogTemplateRelation)` | `LogTemplateRelation(source, time, log_id, template_id, module, param_list)` | void |
 | AnomalyDetection | SemanticAnomalyDetector | `detect(source, module, k_sigma, window_map, template_cache, white_list_dict)` | 6参数 | `(data, event)` |
 | AnomalyDetection | QuantityAnomalyDetector | `detect(source, module, window_map, template_cache, white_list, k_sigma)` | 6参数 | `(data, event)` |
-| AnomalyDetection | ParamAnomalyDetector | `detect(log_entries, window_size, output_path)` | 3参数 | `(outliers, events, count)` |
+| AnomalyDetection / 离线评测器 | DetectionPipeline | `detect(log_text, ts=None, source=None, module=None, object=None)` | 原始日志、时间与流身份 | `DetectionOutput(status, score, evidence, param_predictions)` |
+| DetectionPipeline | RuleFallbackDetector | `match(log_text)` | 原始日志 | `None` 或确定性 `DetectionOutput` |
+| DetectionPipeline | TemplateFreeParser | `match(log_text)` | 规则未命中的原始日志 | `ParseResult`（含参数原文区间） |
+| DetectionPipeline | FusionEngine | `fuse(parse_result, strategy_results)` | 解析结果与标准化策略证据 | 四态 `DetectionOutput` |
 | AnomalyDetection | merge_results | `merge_results(semantic_data, parametric_data, quantitative_data)` | 3路结果列表 | `(combined_data, anomaly_event)` |
 | SemanticAnomalyDetector | LogNetMini/Big | `model(input_ids, attention_mask)` | Tensor | `embeddings / logits` |
-| ParamAnomalyDetector | config_build_*.json | `template_config_dict.get((module, template_id))` | `(module, template_id)` | 配置项 dict |
+| DetectionPipeline | model package v5 | `save(path)` / `load(path)` | 模型目录 | 可复现的冻结推理管道 |
 
 ---
 
@@ -395,6 +289,12 @@ API --> Caller: {code:200, data: anomaly_data, event: anomaly_event}
 ### 4.2 PIPLUP 算法核心设计
 
 PIPLUP（Prefix-tree Indexed Parsing with LLM-assisted Universal Processing）是自研的日志模板解析算法，核心代码位于 `src/data_process/template_extractor/parsing_algorithm/PIPLUP.py`。
+
+**模块输入示例**：`receive data from 192.168.1.100 failed, error code 0x80010001`
+
+**模块输出示例**：`receive data from <*> failed, error code <*>`，并关联对应模板簇。
+
+**具体职责**：消费格式识别模块分离出的日志正文，通过预处理、索引检索、相似度匹配和模板演化生成稳定模板。模板结果交给仓库及后续异常检测模块使用。
 
 #### 4.2.1 数据结构
 
@@ -444,7 +344,7 @@ else (否)
 endif
 
 
-:preprocess(content)\n预处理:\n24种正则替换变量为标签;
+:preprocess(content)\n预处理:\n活跃规则替换变量为标签;
 
 
 if (CRC32 template_cache 命中?) then (是)
@@ -555,6 +455,10 @@ self.st_dict = {
 
 `postprocessing.py` 实现模板规范化，主要规则包括：
 
+- **输入示例**：`path = "<*>.<*>"  status = <*>`
+- **输出示例**：`path = <*> status = <*>`
+- **职责**：消除聚类结果中由标点、连续占位符和赋值形式引入的伪差异，将规范化模板返回 PIPLUP 更新缓存和模板仓库。
+
 - 连续变量折叠：`<*>.<*>` → `<*>`，`<*>,<*>` → `<*>`
 - 赋值泛化：`= value` → `= <*>`
 - 标点包裹简化：`"<*>"` → `<*>`
@@ -562,21 +466,25 @@ self.st_dict = {
 
 ### 4.3 预处理引擎与自动剪枝
 
-#### 4.3.1 24种正则模式
+**模块输入示例**：`pid:53912,tid:53969 connect 192.168.1.1:8080`
 
-`preprocessing.py` 定义了覆盖 DME 存储日志的 24 种正则模式，按特定顺序执行：
+**模块输出示例**：pid:`<*>,tid:<*> connect <*>`，同时返回本条日志命中的模式类型。
 
-| 序号 | 模式名 | 正则 | 匹配目标示例 |
-|------|--------|------|-------------|
-| 1 | datetime_full | `\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}` | `[2026-02-04 11:39:58]` |
-| 2 | kernel_uptime | `(?<=\[)\s*\d+\.\d+(?=\])` | `[ 4247.652837]` |
-| 3 | epoch_ms_13d | `(?<=\[)\d{13}(?=\])` | `[1500001430000]` |
-| 4 | log_level | `\b(WARN\|ERR\|EMER\|INFO\|DBG)\b` | `ERR` |
-| 5 | code_line_num | `(?<=,)\d+(?=\])` | `[...,178]` 中的 `178` |
-| 6 | pid_tid_pair | `pid:\d+,tid:\d+` | `pid:53912,tid:53969` |
-| 7 | sn_parentheses | `(?<=sn\()[A-Za-z0-9]+(?=\))` | `sn(2102312HGY)` |
-| 8 | IPv4_port | `(\d+\.){3}\d+(:\d+)?` | `192.168.1.1:8080` |
-| 9-24 | ... | ... | path, block, Mac, IPv6, size 等 |
+**具体职责**：在 PIPLUP 检索前将高变参数替换为统一占位符，并从样本中自动筛选有效规则。处理后的 token 序列直接进入 PIPLUP 索引和相似度匹配。
+
+#### 4.3.1 活跃规则集与执行顺序
+
+`preprocessing.py` 当前的 DME `sequence` 含 30 种活跃规则。文档不展开每条正则的底层写法，只保留对算法结果有影响的分类和顺序原则：
+
+| 规则组 | 典型模式 | 目的 |
+|---|---|---|
+| 日志头与时间 | `datetime_full`、`kernel_uptime`、`epoch_ms_13d`、`log_level` | 先消除与业务模板无关的日志头差异 |
+| 运行时身份 | `pid_tid_pair`、`serial_num`、`device_serial` | 屏蔽进程、线程和设备实例波动 |
+| 结构化复合值 | `brace_hex_value_pair`、`hex_dump`、`embedded_hex`、`xnet_ctx_id` | 先匹配特化结构，避免被通用数字规则切碎 |
+| 地址与路径 | `url`、`IPv4_port`、`IPv6`、`Mac_address`、`path` | 统一网络与文件定位参数 |
+| 通用值 | `duration`、`size`、`numerical`、`weekday_months` | 作为后置通用兜底 |
+
+执行顺序遵循“复杂、特化模式优先，通用数字模式最后”。部分原业务正则已由 token 内结构合并机制承接，不再重复放入活跃规则集。
 
 #### 4.3.2 正则模式自动剪枝
 
@@ -598,6 +506,12 @@ else:
 ### 4.4 LLM 智能格式学习引擎
 
 `LogAutoParsingEngine.py` 实现了当预置正则无法匹配日志格式时，自动调用 LLM 生成新的正则规则。
+
+**模块输入示例**：一条现有格式规则无法分离时间戳和正文的原始日志。
+
+**模块输出示例**：`{"timestamp": "2026-09-15 10:00:00", "content": "disk read failed"}`，以及通过本地验证的候选格式规则。
+
+**具体职责**：只在本地格式规则未命中时生成候选规则，经回放验证成功后才供格式解析器使用。它解决日志头格式的冷启动问题，不参与模板聚类或异常判定。
 
 #### 4.4.1 核心流程
 
@@ -677,7 +591,7 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 **解析过程**：
 1. `LogFormatParser.load_data("osd", log)` 匹配 `format_chaos.json` 中 osd 的多组备选正则，提取 `timestamp=2026-02-04 11:39:58`, `content=receive data from ...`
-2. `preprocess(content)` 执行 24 种正则替换（`use_keys=False` 时替换为 `<*>`）：
+2. `preprocess(content)` 按剪枝后的活跃规则集执行替换（`use_keys=False` 时替换为 `<*>`）：
    - `192.168.1.100:8080` → `<*>`
    - `0x80010001` → `<*>`
    - `pid:53912,tid:53969` → `<*>`
@@ -690,691 +604,568 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 ## 5. 关键技术点二：模板无关自适应参数异常检测
 
-### 5.1 技术概述
+### 5.1 技术定位与对外契约
 
-传统参数异常检测依赖精确的 `template_id` 匹配与人工编写的正则规则，当模板发生微小变化或面对新域日志时检测即失效。新版方案通过 **GLiNER 零样本实体提取** + **VAE 变分自编码器重构检测** + **多策略融合引擎** 三层机制，实现真正的"模板无关"和"自适应"参数异常检测。
+该能力由 `TIG-2026/dme_platform/` 实现，当前定位是**参数异常检测验证平台**，不是已经完成生产化的告警服务。它不要求调用方预先提供固定模板 ID，而是从正常日志学习模板、参数角色和行为基线；同时保留外部专家规则作为最高优先级的确定性通道。
 
-系统提供两个版本：
-- **预研版（RND）**：GLiNER + VAE + 上下文分析 + 时序分析 + LLM 增强 + 多策略融合，追求检测精度上限
-- **生产版（REL）**：规则引擎 + 模式匹配器 + 参数提取器 + 可选 VAE 后处理，追求毫秒级响应与低资源消耗
+**模块输入示例**：
 
-### 5.2 系统架构核心设计
-
-系统采用模块化流水线设计，核心代码位于 `tech_evo/anomaly_detection/parameter_anomaly/`。
-
-#### 5.2.1 整体架构
-
-```
-预研版架构 (preresearch_version)
-┌─────────────────────────────────────────────────────────────────┐
-│  LogGenerator → SmartLogParser → SemanticExtractor              │
-│                   (Drain3)          (GLiNER + Regex)             │
-│                        │                        │               │
-│                        ▼                        ▼               │
-│                 FeatureEngineer ← 域感知特征映射                 │
-│                 (Robust Scaling + 特征权重)                      │
-│                        │                                        │
-│                        ▼                                        │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │            多策略融合检测引擎                                │   │
-│  │  VAE重构  │ 统计MAD/IQR │ 上下文分析 │ 时序分析 │ LLM分析 │   │
-│  │     │         │            │          │         │        │   │
-│  │     └─────────┴────────────┴──────────┴─────────┘        │   │
-│  │                    加权融合引擎                             │   │
-│  └──────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-
-生产版架构 (implemented_version)
-┌─────────────────────────────────────────────────────────────────┐
-│  日志输入 → SmartLogExtractor (参数提取器)                        │
-│              ├─ Drain3 模板聚类 (可选)                            │
-│              ├─ GLiNER NER 提取 (可选)                            │
-│              └─ 正则表达式提取 (必需)                              │
-│                    │                                             │
-│         ┌──────────┼──────────┐                                 │
-│         ▼          ▼          ▼                                 │
-│  RuleEngine  PatternMatcher  VAE Detector (可选)                │
-│  (规则)      (模式)           (VAE/Z-score 兜底)                 │
-│         └──────────┼──────────┘                                 │
-│                    ▼                                            │
-│             ResultFormatter → 输出 (JSON/CSV/Text)              │
-└─────────────────────────────────────────────────────────────────┘
+```json
+{
+  "ts": 1725963825,
+  "source": "node-01",
+  "module": "xnet",
+  "object": "lwp-8",
+  "log_text": "Xnet send msg(0x25e...(mid:437) -- 0x247...(mid:297), time use=15280(us), SNO=2283111033000000001, reqSNO=0, msg type=1, plane=1, xnetRet=0."
+}
 ```
 
-#### 5.2.2 检测流水线
+**模块输出示例**：
+
+```json
+{
+  "status": "normal",
+  "score": 0.08,
+  "strategies": {
+    "statistical": 0.04,
+    "sequence": 0.00,
+    "context": 0.08,
+    "vae": 0.03
+  },
+  "evidence": [],
+  "dq_issues": [],
+  "param_predictions": []
+}
+```
+
+**具体职责**：先用专家规则处理已知高确定性模式；规则未覆盖时，再完成模板无关解析、参数语义与行为建模、多策略检测、校准融合和参数区间定位。输出使用 `normal / anomaly / data_quality / parse_variant` 四态契约，避免把解析失败误报成业务异常。
+
+上一模块的解析与仓储能力负责形成通用日志结构；本模块直接消费原始日志和流身份，在内部建立更细粒度的参数角色。其结果随后参与第 8 章的跨类型异常合并与故障诊断。
+
+### 5.2 总体架构与正确检测逻辑
+
+#### 5.2.1 模块化架构
 
 ```plantuml
-@startuml Detection_Pipeline
+@startuml Parameter_Architecture
 !theme plain
 skinparam backgroundColor #FEFEFE
 skinparam shadowing false
-skinparam roundCorner 10
-skinparam ActivityBorderColor #555555
-skinparam ArrowColor #555555
+skinparam componentStyle rectangle
+skinparam linetype ortho
 
-title 参数异常检测流水线
+title 模板无关参数异常检测模块
 
-start
+component "DetectionPipeline\n生命周期与路由" as Pipeline
+component "RuleFallbackDetector\n专家规则主通道" as Rule
+component "TemplateFreeParser\n模板与槽位" as Parser
+component "语义与剖面\nGLiNER / 词典 / LLM" as Profile
+component "检测策略\n统计 / 序列 / 上下文 / VAE" as Strategies
+component "FusionEngine\n状态机与校准决策" as Fusion
+database "模型包与运行时状态" as Model
 
-:输入: 原始日志流;
-
-:SmartLogParser 解析\nDrain3 模板提取\n→ template_id, parameters;
-
-:SemanticExtractor 语义提取\n1. GLiNER 零样本 NER\n2. 正则表达式兜底增强\n→ entities dict;
-
-:FeatureEngineer 特征工程\n1. Robust Scaling 归一化\n2. 特征权重应用\n3. 统计/时序特征提取\n→ feature_vector;
-
-partition "多策略并行检测" {
-    fork
-        :VAE 重构检测\n编码→潜在空间→解码→重构误差;
-    fork again
-        :统计方法检测\nMAD / IQR / Z-score;
-    fork again
-        :上下文分析\n滑动窗口模式识别;
-    fork again
-        :时序分析\n趋势检测 + 变点检测;
-    end fork
-}
-
-:MultiStrategyFusion 多策略融合\n加权平均 / 投票 / 贝叶斯;
-
-:DynamicThresholdController\n动态阈值调整\nFP率>30%→提高阈值\nFN率>50%→降低阈值;
-
-:输出: (is_anomaly, score, analysis);
-
-stop
+Pipeline --> Rule
+Rule --> Parser : 未命中且 AI 开启
+Parser --> Profile
+Profile --> Strategies
+Strategies --> Fusion
+Pipeline --> Model : train / calibrate / save / load
+Fusion --> Pipeline : DetectionOutput
 
 @enduml
-
 ```
 
-### 5.3 GLiNER 零样本语义提取引擎
+场景知识不写入通用检测核心，而由 `PluginSpec` 注入分隔符、masking 顺序、单位、哨兵、语义词典、操作名、参数角色和对象键。当前提供 DME 与 `generic_kv` 两个插件，用于验证核心逻辑能否跨场景复用。
 
-`SemanticExtractor`（`semantic_extractor.py`）是"模板无关"的核心——摒弃传统正则配置，利用 GLiNER 通用命名实体识别模型，仅需提供标签列表即可从任意非结构化日志中提取参数。
+#### 5.2.2 检测流水线与逻辑校正
 
-#### 5.3.1 实体标签体系
-
-```python
-# semantic_extractor.py
-class SemanticExtractor:
-    # 基础实体标签（跨域通用）
-    BASE_LABELS = [
-        "duration", "status_code", "error_message", "ip_address", "hostname",
-        "username", "request_id", "memory_usage", "cpu_usage", "disk_usage"
-    ]
-
-    # 域特定实体标签
-    DOMAIN_LABELS = {
-        LogDomain.NETWORK: ["url_path", "http_method", "content_type",
-                            "user_agent", "cdn_location", "cache_status", ...],
-        LogDomain.STORAGE: ["database_name", "table_name", "query_type",
-                            "row_count", "lock_count", "replication_lag", ...],
-        LogDomain.COMPUTE: ["job_id", "task_id", "gpu_memory", "batch_size",
-                            "learning_rate", "model_name", "accuracy", ...],
-        LogDomain.SECURITY: ["auth_method", "risk_score", "threat_level",
-                             "vulnerability_count", "permission_level", ...],
-        LogDomain.MICROSERVICE: ["service_name", "circuit_breaker_status",
-                                 "queue_depth", "consumer_group", "rate_limit", ...],
-        LogDomain.IOT: ["sensor_id", "firmware_version", "battery_level",
-                        "signal_strength", "temperature", "humidity", ...],
-    }
-```
-
-**设计原理**：
-- 基础标签覆盖 10 种跨域通用参数类型，无需域信息即可工作
-- 域特定标签按 `LogDomain` 枚举扩展，支持 6 大域（网络/存储/计算/安全/微服务/IoT）
-- 新增标签只需在列表中追加，GLiNER 自动理解新标签语义——**零训练成本扩展**
-
-#### 5.3.2 双通道提取流程
-
-```python
-# semantic_extractor.py:158-185
-def extract(self, text: str) -> Dict[str, Any]:
-    entities = {}
-
-    # 1. GLiNER 零样本提取（主通道）
-    if self.use_gliner and self.gliner_model:
-        gliner_entities = self._extract_gliner(text)
-        entities.update(gliner_entities)
-
-    # 2. 正则表达式兜底/增强（辅助通道）
-    regex_entities = self._regex_extract(text)
-    for ent_type, ent_data in regex_entities.items():
-        # 保留置信度更高的结果
-        if ent_type not in entities or \
-           entities[ent_type]["confidence"] < ent_data["confidence"]:
-            entities[ent_type] = ent_data
-
-    # 3. 语义标准化
-    entities = self._normalize_entities(entities)
-    return entities
-```
+原检测图存在四个问题：缺少规则优先分流；把动态阈值调整画成每条日志融合后的串行步骤；没有表达解析/值质量状态的优先级；也没有体现 AI 关闭时的安全拒判。正确流程如下。
 
 ```plantuml
-@startuml GLiNER_Extract_Flow
+@startuml Parameter_Detection_Pipeline
 !theme plain
-title 双通道语义提取流程
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+title 参数异常检测决策流
 
 start
+:输入 log_text + ts? + source/module/object?;
 
-:输入: log_text;
-
-if (GLiNER 可用?) then (是)
-    :GLiNER.predict_entities(text, labels, threshold=0.3);
-    :返回实体列表\n[{label, text, score}, ...];
-    :标准化实体值\n_normalize_value();
+:规则模糊匹配;
+if (规则命中?) then (是)
+  if (同一区间的规则结论冲突?) then (是)
+    :data_quality\nrule_conflict;
+  else (否)
+    if (受检值命中黑名单?) then (是)
+      :anomaly\n专家规则确定性裁决;
+    else (否)
+      :normal\n已知规则模式;
+    endif
+  endif
+  stop
 else (否)
-    :跳过 GLiNER;
 endif
 
-:正则表达式兜底提取;
-note right
-  duration: took|cost|latency \d+ms
-  status: status|code \d{3}
-  ip: \d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}
-  error: error|failed|exception
-end note
+if (AI 检测开启?) then (否)
+  :data_quality\n规则未覆盖，拒绝猜测;
+  stop
+else (是)
+endif
 
-:置信度融合\n保留 GLiNER 与 Regex 中\n置信度更高的结果;
+:冻结模板匹配与参数区间提取;
+if (解析成功?) then (否)
+  :data_quality\nfrozen_miss;
+  stop
+else (是)
+endif
 
-:语义标准化\n_normalize_entities();
+:值解析、冻结语义映射与角色剖面查询;
+if (值缺失、非法或截断?) then (是)
+  :data_quality\n值质量优先;
+  stop
+else (否)
+endif
 
-:输出: entities dict\n{"duration": {value, confidence, source}};
+:统计 / 序列 / 上下文 / VAE\n（temporal 可选）;
+:策略校准映射 + 相关分组融合;
+:基础强证据/共识 OR\n融合概率 >= 冻结日志阈值;
+:合并同一区间参数证据\n并应用冻结参数阈值;
 
+if (达到业务异常条件?) then (是)
+  :anomaly;
+else (否)
+  :normal;
+endif
 stop
 
 @enduml
 ```
 
-**"模板无关"的体现**：
-- GLiNER 基于零样本 NER，不依赖任何预定义模板或 `template_id`
-- 正则兜底使用语义模式（如 `took|cost|latency`），而非位置索引
-- 即使日志格式完全变化，GLiNER 仍能通过语义理解提取参数
+这里的“动态阈值”不是单条推理链路中的即时步骤。阈值有两种更新方式：
 
-### 5.4 VAE 变分自编码器异常检测
+- 决策校准阶段使用带外部真值的独立数据，选择日志级和参数级阈值，随后冻结进入模型包；
+- 运行反馈控制器只接受外部确认的 TP/FP/FN，并带调整上限与恶化回滚保护。
 
-`AnomalyDetector`（`anomaly_detector.py`）使用 VAE 学习正常日志参数的潜在分布，通过重构概率判定异常。
+因此，当前日志的检测结果不能反过来充当自身标签并修改当前阈值，否则会形成自证循环和数据泄漏。
 
-#### 5.4.1 网络架构
+### 5.3 专家规则主通道
 
-```python
-# anomaly_detector.py:30-76
-class VAE(nn.Module):
-    def __init__(self, input_dim: int, hidden_dim: int = 64, latent_dim: int = 8):
-        super(VAE, self).__init__()
-        # Encoder: input_dim → hidden_dim → hidden_dim//2 → latent_dim
-        self.encoder = nn.Sequential(
-            nn.Linear(input_dim, hidden_dim),
-            nn.LeakyReLU(0.2),
-            nn.Dropout(0.2),
-            nn.Linear(hidden_dim, hidden_dim // 2),
-            nn.LeakyReLU(0.2),
-        )
-        self.fc_mu = nn.Linear(hidden_dim // 2, latent_dim)
-        self.fc_logvar = nn.Linear(hidden_dim // 2, latent_dim)
+**模块输入示例**：
 
-        # Decoder: latent_dim → hidden_dim//2 → hidden_dim → input_dim
-        self.decoder = nn.Sequential(
-            nn.Linear(latent_dim, hidden_dim // 2),
-            nn.LeakyReLU(0.2),
-            nn.Linear(hidden_dim // 2, hidden_dim),
-            nn.LeakyReLU(0.2),
-            nn.Linear(hidden_dim, input_dim),
-        )
-
-    def forward(self, x):
-        mu, logvar = self.encode(x)
-        z = self.reparameterize(mu, logvar)  # 重参数化采样
-        return self.decode(z), mu, logvar
+```text
+Get ns async failed ret ( -99999 ) .
 ```
 
-```
-Encoder                                          Decoder
-┌──────────────┐                                ┌──────────────────┐
-│ input_dim    │                                │ latent_dim       │
-│ (e.g. 68)    │                                │ (e.g. 8)         │
-│      │       │                                │      │           │
-│      ▼       │                                │      ▼           │
-│ hidden_dim   │     ┌──────────────┐           │ hidden_dim//2    │
-│ (e.g. 64)    │     │  reparameterize│          │ (e.g. 32)        │
-│      │       │     │  z = μ + ε·σ  │           │      │           │
-│      ▼       │     └──────┬───────┘           │      ▼           │
-│ hidden_dim//2│            │                   │ hidden_dim       │
-│ (e.g. 32)    │            │                   │ (e.g. 64)        │
-│      │       │            │                   │      │           │
-│   ┌──┴──┐    │            │                   │      ▼           │
-│   ▼     ▼    │            │                   │ input_dim        │
-│  μ    logvar │────────────┘                   │ (重构输出)        │
-│ (8)   (8)    │                                │                  │
-└──────────────┘                                └──────────────────┘
-  LeakyReLU(0.2) + Dropout(0.2)                   LeakyReLU(0.2)
-```
+**模块输出示例**：
 
-#### 5.4.2 损失函数
-
-```python
-# anomaly_detector.py:79-82
-def vae_loss_function(recon_x, x, mu, logvar, beta: float = 1.0):
-    MSE = nn.functional.mse_loss(recon_x, x, reduction='sum')
-    KLD = -0.5 * torch.sum(1 + logvar - mu.pow(2) - logvar.exp())
-    return MSE + beta * KLD
-```
-
-- **重构项（MSE）**：衡量解码器输出与输入的偏差，正常样本重构误差低
-- **正则项（KLD）**：约束潜在空间分布接近标准正态分布，防止过拟合
-- `beta` 参数控制两者权衡，`beta > 1`（β-VAE）鼓励更解耦的潜在表示
-
-#### 5.4.3 统计阈值兜底
-
-当 PyTorch 不可用时，自动降级为统计方法（`MockThresholds`）：
-
-```python
-# anomaly_detector.py:120-150
-class MockThresholds:
-    DURATION_WARNING = 500.0
-    DURATION_CRITICAL = 2000.0
-    DURATION_HIGH = 5000.0
-
-    WEIGHT_STATUS = 30.0
-    WEIGHT_DURATION = 35.0
-    WEIGHT_ERROR = 25.0
-    WEIGHT_ZSCORE = 10.0
-
-    ANOMALY_THRESHOLD = 25.0
-    ZSCORE_THRESHOLD = 3.0
-    IQR_MULTIPLIER = 1.5
-```
-
-| 统计方法 | 计算方式 | 判定条件 | 特点 |
-|---------|---------|---------|------|
-| Z-score | `\|x - mean\| / std` | > 3.0 | 简单快速，假设正态分布 |
-| IQR | `Q25 - 1.5·IQR` ~ `Q75 + 1.5·IQR` | 超出范围 | 不依赖分布假设 |
-| MAD | `\|x - median\| / MAD` | > 3.0 | 对极端异常值最鲁棒 |
-
-### 5.5 多策略融合引擎
-
-`MultiStrategyFusion`（`multi_strategy_fusion.py`）是"自适应"的核心——整合多种检测策略的结果，通过加权融合和共识机制降低误报率。
-
-#### 5.5.1 策略注册与权重
-
-```python
-# multi_strategy_fusion.py:29-38
-class DetectionStrategy(Enum):
-    VAE_RECONSTRUCTION = "vae_reconstruction"   # VAE 重构误差 - 高可靠
-    STATISTICAL = "statistical"                 # 统计方法 - 高可靠
-    CONTEXTUAL = "contextual"                   # 上下文分析 - 中可靠
-    TIME_SERIES = "time_series"                 # 时序分析 - 中可靠
-    LLM_ANALYSIS = "llm_analysis"               # LLM 分析 - 较低可靠
-    RULE_BASED = "rule_based"                   # 规则匹配 - 较低可靠
-    ISOLATION_FOREST = "isolation_forest"       # 孤立森林 - 中可靠
-    ONE_CLASS_SVM = "one_class_svm"             # 单类 SVM - 中可靠
-```
-
-```python
-# multi_strategy_fusion.py:61-70
-FusionConfig.weights = {
-    "vae_reconstruction": 0.30,    # 高可靠：深度学习重构，量化误差明确
-    "statistical": 0.20,           # 高可靠：数学统计，分布假设清晰
-    "contextual": 0.18,            # 中可靠：上下文关联分析
-    "time_series": 0.15,           # 中可靠：时序模式检测
-    "isolation_forest": 0.10,      # 中可靠：孤立森林
-    "one_class_svm": 0.05,         # 中可靠：单类 SVM
-    "llm_analysis": 0.02,          # 低可靠：LLM 可能误判
-    "rule_based": 0.00,            # 最低可靠：规则易产生 FP
+```json
+{
+  "status": "anomaly",
+  "score": 0.95,
+  "evidence": ["black_list:-99999"],
+  "param_predictions": [
+    {"role": "ret", "span": [26, 32], "raw_value": "-99999", "alert": true}
+  ]
 }
 ```
 
-**权重设计原理**：策略可靠性越高权重越大，VAE 重构（0.30）和统计方法（0.20）合计占 50%，确保数学上可验证的策略主导决策，LLM 和规则仅作为辅助参考。
+**具体职责**：对外部专家规则库中的已知模式作确定性裁决。规则命中后不再进入 AI，确保明确业务知识不被统计或模型分数稀释；未命中才把日志交给后续模板无关管道。
 
-#### 5.5.2 四种融合方法
+#### 5.3.1 模糊匹配
 
-```plantuml
-@startuml Fusion_Methods
-!theme plain
-skinparam backgroundColor #FEFEFE
-skinparam shadowing false
-skinparam roundCorner 10
-skinparam ActivityBorderColor #555555
-skinparam ArrowColor #555555
+“模糊”只针对占位符值，而不是任意文本相似度：
 
-title 四种融合方法对比
+1. 模板和日志按空白分词，token 数必须一致；
+2. 固定 token 严格相等；
+3. `<NUM>`、`<HEX0x>`、`<MAC-HEX>`、`<*>` 按值形态匹配；
+4. 支持 `<NUM>.` 或 `prefix<HEX0x>` 等粘着前后缀，并同步收缩参数字符区间。
 
-start
+`param_pos` 使用 0-based token 下标。配置偏差 1 位时只在 ±1 存在唯一占位符候选时容错；无候选或有歧义均拒绝加载。规则文件只支持已经实现的 `black_list` 模式，未知模式 fail-closed，避免“看似加载成功、实际不检测”。
 
-switch (融合方法?)
+#### 5.3.2 裁决语义
 
-case ( 加权平均 )
-    :final_score = Σ(score_i × weight_i) / Σ(weight_i);
-    :需满足:\n1. final_score >= 0.50\n2. ≥2个策略同意\n3. 平均置信度 >= 0.5\n4. 高置信度策略分数 >= 0.75;
+- 黑名单比较：数值按数值等值，十六进制忽略大小写，其他字符串精确比较；
+- 任一受检参数命中黑名单即异常；
+- 多规则对同一字符区间给出冲突结论时返回 `data_quality`，不依赖规则文件顺序；
+- 规则命中且值未命中黑名单时返回正常，这是规则库本身的已知模式语义。
 
-case ( 投票 )
-    :anomaly_votes = Σ(weight_i) for score_i >= 0.75;
-    :is_anomaly = votes/total >= 0.6;
+规则未命中时，控制权回到 `DetectionPipeline`，由它判断进入 AI 分支还是安全拒判。
 
-case ( 最大投票 )
-    :is_anomaly = (max_score >= 0.85)\nand (second_score >= 0.65)\nand (high_count >= 2);
+### 5.4 模板无关解析与统一参数表示
 
-case ( 贝叶斯融合 )
-    :posterior = (prior × likelihood)\n/ (prior × likelihood\n+ (1-prior) × (1-likelihood));
-    :is_anomaly = posterior >= 0.7;
+**模块输入示例**：
 
-endswitch
-
-stop
-
-@enduml
-
+```text
+Xnet send msg(... time use=15280(us), SNO=2283111033000000001, reqSNO=0, ...).
 ```
 
-#### 5.5.3 加权平均融合核心逻辑
+**模块输出示例**：
 
-```python
-# multi_strategy_fusion.py:188-311
-def _fuse_weighted_average(self, results):
-    total_weight = 0.0
-    weighted_score = 0.0
-    agreeing_strategies = []
-
-    for result in results:
-        weight = self.strategy_weights.get(key, 0.1)
-        weighted_score += result.score * weight
-        total_weight += weight
-        if result.score >= 0.75:  # 策略内阈值
-            agreeing_strategies.append(result)
-
-    final_score = weighted_score / total_weight
-
-    # 四条件全部满足才判定为异常
-    is_anomaly = (
-        final_score >= self.config.confidence_threshold and      # 综合分数达标
-        len(agreeing_strategies) >= self.config.min_strategies_agree and  # 策略共识
-        avg_confidence >= 0.5 and                                 # 置信度达标
-        (high_confidence_weight == 0 or high_conf_avg >= 0.75)   # 高置信度策略达标
-    )
-    return is_anomaly, final_score, analysis
-```
-
-**设计原理**：AND 逻辑确保所有条件同时满足才判定异常，牺牲部分召回率换取高精确率，减少误报。
-
-#### 5.5.4 动态阈值控制
-
-```python
-# run_pipeline.py:68-78
-@dataclass
-class DynamicThresholdController:
-    initial_threshold: float = 0.65
-    min_threshold: float = 0.50
-    max_threshold: float = 0.85
-    adjustment_step: float = 0.02
-    window_size: int = 50
-
-    def adjust_threshold():
-        # FP 率 > 30% → 提高阈值（更保守）
-        if fp_rate > 0.3:
-            current_threshold += adjustment_step
-        # FN 率 > 50% → 降低阈值（更敏感）
-        if fn_rate > 0.5:
-            current_threshold -= adjustment_step
-```
-
-**"自适应"的体现**：系统根据运行时的误报率（FP）和漏报率（FN）动态调整阈值，无需人工干预。
-
-#### 5.5.5 分层异常判定
-
-```python
-# 基于实体参数和策略评分的分层判定
-if entity_score >= 0.6:
-    is_anomaly = True                           # 实体参数明确异常
-elif entity_score >= 0.4:
-    is_anomaly = strategy_anomaly_count >= 2    # 需≥2个策略支持
-elif entity_score >= 0.2:
-    is_anomaly = strategy_anomaly_count >= 3    # 需≥3个策略支持
-else:
-    is_anomaly = strategy_anomaly_count >= 3    # 需多策略一致
-```
-
-### 5.6 特征工程
-
-`FeatureEngineer`（`feature_engineer.py`）将异构实体参数转化为 VAE 可处理的统一特征张量。
-
-#### 5.6.1 Robust Scaling 归一化
-
-```python
-# feature_engineer.py:28-36
-@dataclass
-class FeatureConfig:
-    normalize_method: str = "robust"       # 默认 Robust Scaling
-    feature_dim: int = 64
-    enable_temporal: bool = True
-    enable_statistical: bool = True
-    duration_threshold_ms: float = 2000.0
-```
-
-```python
-# Robust Scaling (对异常值不敏感)
-normalized = (value - median) / iqr
-# 限制到 [-3, 3] 范围，然后转换到 [0, 1]
-```
-
-**选择 Robust Scaling 而非 Z-Score 的原因**：中位数和 IQR 对极端异常值不敏感，避免异常样本本身污染归一化参数。
-
-#### 5.6.2 特征权重与正常范围
-
-```python
-# feature_engineer.py:61-83
-FEATURE_WEIGHTS = {
-    "duration": 2.5,      # 响应时间异常指示
-    "status_code": 2.0,   # HTTP状态码异常指示
-    "has_error": 3.0,     # 错误标识最重要
-    "retry_count": 1.8,   # 重试次数
-    "timeout": 2.5,       # 超时标识
-    "memory_usage": 1.5,  # 内存异常
-    "cpu_usage": 1.5,     # CPU异常
-}
-
-NORMAL_RANGES = {
-    "duration": (0, 2000),      # 0-2000ms 正常
-    "status_code": (200, 500),  # 2xx-4xx 正常
-    "cpu_usage": (0, 90),       # 0-90% 正常
-    "memory_usage": (0, 85),    # 0-85% 正常
-    "retry_count": (0, 3),      # 0-3次正常
+```json
+{
+  "matched": true,
+  "operation": "xnet_send",
+  "slot_values": [
+    {
+      "role": "time_use@tpl_pos",
+      "raw_value": "15280",
+      "unit": "us",
+      "source_span": [71, 76],
+      "value_state": "ok"
+    }
+  ]
 }
 ```
 
-### 5.7 上下文分析与时序分析
+**具体职责**：训练态从正常日志学习模板和槽位，推理态只做冻结匹配；把每个参数转换为可追溯的 `ParameterObservation`。输出直接供语义、剖面和策略层消费。
 
-#### 5.7.1 上下文异常模式
+#### 5.4.1 训练态学习与推理态冻结
 
-`ContextAnalyzer`（`context_analyzer.py`）通过滑动窗口识别参数间的上下文异常：
+`TemplateFreeParser` 使用 Drain3 聚类，但不要求调用方提供固定模板。masking 管线由场景插件提供。训练结束后解析器冻结，推理时不创建新簇：
 
-| 模式 | 描述 | 检测条件 |
-|------|------|---------|
-| `fast_failure` | 快速失败 | duration < 100ms 且 status >= 400 |
-| `slow_success` | 幽灵成功 | duration > 5000ms 且 200 <= status < 300 |
-| `degraded_performance` | 性能下降 | 持续上升趋势（梯度 > 阈值） |
-| `sudden_spike` | 突变异常 | Z-score > 3.0 |
+- 精确冻结匹配成功：输出参数值、模板位置和原文字符区间；
+- 精确匹配失败：尝试占位符形态软匹配，以识别 `<NUM>` 到 `<BIGNUM>` 等格式漂移；
+- 仍未匹配：返回 `frozen_miss`，由状态机路由为 `data_quality`。
 
-**示例**：`cost 5ms status 500` — 耗时极短但返回错误码，表明请求被提前拒绝，属于上下文异常。
+这种设计避免异常日志在推理期被学习成“新的正常模板”。
 
-#### 5.7.2 时序分析三重检测
+#### 5.4.2 参数身份、值状态与位置
 
-`TimeSeriesAnalyzer`（`time_series_analyzer.py`）对参数值序列执行三重统计检测：
+参数稳定身份为 `operation|role`，其中 role 由参数名和模板 token 位置共同构成；同名参数可根据上下文区分为 `src.mid`、`dst.mid`。每个参数保留：
+
+- `raw_value` 与半开字符区间 `source_span=[start,end)`；
+- 已知单位下的归一化值；未知单位不强制换算；
+- `ok / zero / missing / invalid / sentinel` 五种值状态；
+- 语义类型、语义来源与置信度；
+- 流身份 `source × object`，用于隔离动态窗口。
+
+缺失和非法值绝不静默转成 0。解析结果接下来进入语义映射与正常剖面查询。
+
+### 5.5 语义映射与正常剖面
+
+**模块输入示例**：
+
+```json
+{
+  "operation": "xnet_send",
+  "role": "time_use@12",
+  "raw_value": "15280",
+  "unit": "us",
+  "left_context": "time use"
+}
+```
+
+**模块输出示例**：
+
+```json
+{
+  "semantic_type": "duration",
+  "source": "gliner",
+  "confidence": 0.86,
+  "profile_key": "xnet_send|time_use@12"
+}
+```
+
+**具体职责**：为结构化槽位补充“它是什么”和“正常情况下如何变化”两类信息。语义用于选择正确的特征与豁免逻辑，剖面为统计、序列、上下文和 VAE 提供正常基线。
+
+#### 5.5.1 三层语义路径
+
+语义提取按保守优先级执行：
+
+```text
+GLiNER（原文位置绑定 + 置信门槛）
+  → 拒绝或低置信时使用插件词典
+  → 仍未知时可选 LLM 补充
+  → 无可靠证据则保留 other
+```
+
+GLiNER 是特征服务，不是独立异常检测策略。模型输出必须能绑定到当前日志的目标字符区间，并通过原文一致性与单位冲突检查；LLM 仅补充未知或低置信角色，结果受类型白名单约束。未知参数不会因为语义未识别而被丢弃。
+
+训练期形成的 `(operation|role) → SemanticInference` 会冻结进模型包，推理期直接查表，不重复推断，以保证训练与推理表示一致。
+
+#### 5.5.2 剖面与行为证据
+
+`SlotProfileStore` 以 `operation|role` 累积数值范围、中位数、MAD、分位数和值频率。查找时优先使用样本充足的操作级剖面，冷启动才回退到语义类别先验。
+
+`BehaviorProfile` 独立判断枚举、高基数、序列、计数器等行为。identifier 只有在“高基数 + 非枚举 + 非序列”的行为证据成立时才豁免幅值检测，不能仅凭语义标签跳过检测。完成剖面查询后，各策略基于同一参数身份并行产出标准化证据。
+
+### 5.6 多策略参数检测
+
+**模块输入示例**：
+
+```json
+{
+  "operation": "xnet_send",
+  "observations": [{"role": "SNO@18", "raw_value": "2283111032999999000"}],
+  "stream": "node-01|lwp-8",
+  "enabled_strategies": ["statistical", "sequence", "context", "vae"]
+}
+```
+
+**模块输出示例**：
+
+```json
+[
+  {
+    "strategy": "sequence",
+    "score": 0.94,
+    "confidence": 0.90,
+    "evidence": ["sequence_regression"],
+    "param_predictions": [
+      {"role": "SNO@18", "span": [82, 101], "anomaly_score": 0.94}
+    ]
+  }
+]
+```
+
+**具体职责**：让不同证据源各自评分，但统一返回 `StrategyResult`；可定位策略必须附带 role、字符区间、原值和参数分数，供融合与参数级评估使用。
+
+| 策略 | 关键原理 | 输出粒度 | 默认行为 |
+|---|---|---|---|
+| statistical | 中位数/MAD 稳健偏差、分位数、哨兵丢失、负值、新枚举、常量与形态漂移 | 参数级 | 启用 |
+| sequence | 连续性回退/跳变、持续非零、积压、训练期学习的引用关系断裂 | 参数级 | 启用 |
+| context | 同一流近期窗口的条件基线，当前聚焦 duration | 参数级 | 启用，但不能单独裁决 |
+| vae | 全模板共享 DeepSets VAE 的重构误差 | 参数级 | 依赖 PyTorch、训练和误差校准 |
+| temporal | 事件时间窗口、乱序拒绝、CUSUM 变点 | 日志级 | 显式开启 |
+
+#### 5.6.1 稳健统计与序列规则
+
+统计策略优先使用中位数和 MAD，降低极端样本对基线的污染；对跨数量级参数在合适的数值域评分。序列策略保存流内状态，检测计数器回退、异常跳变、持续异常值以及引用关系断裂。重建豁免必须由插件显式提供对象级重启依据，普通 ID 变化不能自动获得豁免。
+
+#### 5.6.2 共享 VAE
+
+共享 VAE 不是“一模板一模型”，而是所有模板共用一套权重。编码器接收上下文特征和值特征，解码器只接收潜变量和上下文嵌入，不携带真实值旁路，确保重构任务有效。值特征覆盖：
+
+- 数值幅值、零值、哨兵和长度；
+- 稳定哈希投影与字符构成，使同长度字符串仍可区分；
+- 参数身份引用，使误差可映射回 role、原文区间和原值。
+
+正常误差基准按“角色 → 值类别 → 全局共享”逐级回退。VAE 不允许以单一高分直接裁决业务异常，用于控制其已知误报风险。
+
+各策略结果随后交给融合层；策略分数不是天然可比较的概率，必须经过校准或使用明确的基础规则。
+
+### 5.7 融合、状态机与参数定位
+
+**模块输入示例**：
+
+```json
+{
+  "parse": {"matched": true, "has_value_dq": false},
+  "strategy_results": [
+    {"strategy": "statistical", "score": 0.92},
+    {"strategy": "sequence", "score": 0.88},
+    {"strategy": "context", "score": 0.30}
+  ]
+}
+```
+
+**模块输出示例**：
+
+```json
+{
+  "status": "anomaly",
+  "score": 0.91,
+  "evidence": ["strong_statistical", "strategy_consensus"],
+  "param_predictions": [
+    {"role": "SNO@18", "span": [82, 101], "alert": true}
+  ]
+}
+```
+
+**具体职责**：按不可覆盖的状态优先级处理数据质量，再把策略分数转成最终业务结论，并把多策略证据合并到准确的原文参数区间。
+
+#### 5.7.1 四态与优先级
+
+| 状态 | 含义 | 典型触发 |
+|---|---|---|
+| `anomaly` | 业务参数异常 | 强单证据、策略共识或校准概率过阈值 |
+| `data_quality` | 无法可靠作业务判断 | 解析失败、未见非法值、参数缺失或截断 |
+| `parse_variant` | 在线接纳到新模板 | 仅显式在线学习路径产生 |
+| `normal` | 未发现异常 | 其余情况 |
+
+优先级固定为：**解析失败 > 值级数据质量 > 新模板事件 > 业务异常 > 正常**。校准概率不能把 DQ 或新模板事件覆盖成业务异常。
+
+#### 5.7.2 校准融合
+
+AI 基础判定由强单证据和策略共识构成；决策校准在此基础上增加概率路径：
+
+```text
+每策略原始分数
+  → 每策略校准映射
+  → 相关策略组内 max
+  → 组间 noisy-OR
+  → 融合概率与冻结日志阈值比较
+```
+
+最终业务判定为“基础判定成立”或“融合概率达到冻结阈值”。若校准条件不足，系统显式回退基础规则，不把未校准分数冒充概率。
+
+参数预测以原文字符区间对齐。同一区间的多策略证据先合并，再分别与对应策略的冻结参数阈值比较，任一有效证据过阈值即报警。这样既避免同一参数重复计数，也不会用日志级报警冒充参数命中。
+
+### 5.8 训练、校准与模型生命周期
+
+**模块输入示例**：
 
 ```python
-# 1. Z-score 检测
-z_score = abs(value - mean) / std
-if z_score > 3.0: → 异常
-
-# 2. IQR 检测
-iqr = q75 - q25
-if value < q25 - 1.5*iqr or value > q75 + 1.5*iqr: → 异常
-
-# 3. MAD 检测 (对异常值更鲁棒)
-mad_score = abs(value - median) / mad
-if mad_score > 3.0: → 异常
+pipe.train(train_fit)
+pipe.calibrate_error(train_error_cal)
+pipe.calibrate_fusion(train_decision_cal)
+pipe.save(model_dir)
+result = pipe.detect(log_text, ts=ts, source=source, object=object_id)
 ```
 
-### 5.8 生产版轻量化设计
+**模块输出示例**：
 
-生产版（`implemented_version`）针对毫秒级响应场景进行轻量化设计。
-
-#### 5.8.1 规则引擎
-
-`rule_engine.py` 支持 5 种规则类型：
-
-| 类型 | 说明 | 操作符 |
-|------|------|--------|
-| threshold | 阈值规则 | gt, gte, lt, lte, eq, ne |
-| range | 范围规则 | in, not_in |
-| pattern | 模式规则 | contains, matches, eq, ne |
-| count | 计数规则 | gt, gte |
-| composite | 复合规则 | and, or |
-
-```python
-# rule_engine.py:56-71
-@dataclass
-class Rule:
-    name: str
-    type: RuleType
-    field: str           # 支持嵌套: "entity.duration"
-    operator: Operator
-    value: Any
-    severity: str = "warning"
-    conditions: List[Dict] = field(default_factory=list)
-    logic: str = "and"   # 复合规则逻辑
-    window_seconds: int = 0  # 时间窗口
+```json
+{
+  "format_version": 5,
+  "feature_version": 2,
+  "plugin_id": "dme",
+  "n_train_logs": 160000,
+  "error_calibrated": true,
+  "decision_calibrated": true
+}
 ```
 
-#### 5.8.2 模式匹配器
+**具体职责**：明确分离“学正常模式”“估计正常误差”“选择最终决策阈值”和“冻结推理”四个阶段，防止训练数据、校准标签和测试数据互相泄漏。
 
-`pattern_matcher.py` 预编译 11 种正则模式，支持三种匹配策略：
+#### 5.8.1 三段训练生命周期
 
-| 策略 | 说明 |
-|------|------|
-| `FIRST` | 只匹配第一个 |
-| `ALL` | 匹配所有 |
-| `COUNT` | 计数匹配 |
+| 阶段 | 数据 | 更新内容 | VAE 权重 |
+|---|---|---|---|
+| 正常拟合 `train` | 仅正常日志 | 模板、槽位剖面、序列/行为关系、VAE | 更新 |
+| 误差校准 `calibrate_error` | 独立正常日志 | 日志级与参数级正常重构误差基准 | 冻结 |
+| 决策校准 `calibrate_fusion` | 独立且带可信正常/异常标签的数据 | 策略映射、日志阈值、参数阈值 | 冻结 |
+| 固定测试 | 未参与设计的数据 | 只计算指标 | 冻结且不可调参 |
 
-**性能优化**：正则预编译 + LRU 结果缓存 + 短路匹配。
+规则命中的日志按真实路由直接裁决，不进入 AI 决策校准，也不推进回放窗口。校准与解释使用隔离副本，不能污染活跃运行时。
 
-#### 5.8.3 可选 VAE 后处理
+#### 5.8.2 模型包与运行时隔离
 
-```python
-# vae_para_detector.py
-# 模式 1: VAE 模式（有 PyTorch）
-#   变分自编码器重构检测
-# 模式 2: 统计模式（无 PyTorch）
-#   baseline_mean + 3 * baseline_std
-#   滑动窗口大小: 100
-```
+模型包格式为 v5，保存解析器、剖面、序列关系、行为证据、冻结语义、VAE 权重与误差基准、决策阈值、校准映射和反馈控制器。加载时校验格式版本、插件身份、配置签名、特征版本及必需文件摘要；任一不匹配即拒绝加载。
 
-### 5.9 复杂度与性能分析
+动态状态按 `source × object × operation × role` 的语义隔离。开始新的独立日志流时必须调用 `reset_runtime()`；连续流不能逐条重置。需要连续恢复时必须同时保存运行时检查点。
 
-| 环节 | 预研版复杂度 | 生产版复杂度 | 备注 |
-|------|------------|------------|------|
-| 日志解析 | O(d+k) Drain3 | O(d+k) Drain3 | d=树深度, k=候选簇 |
-| 实体提取 | O(n·L) GLiNER | O(n·R) 正则 | L=序列长度, R=正则数 |
-| 特征工程 | O(n·f) | O(n·f) | f=特征维度 |
-| VAE 检测 | O(n·E) | O(n·E) | E=网络前向计算 |
-| 统计检测 | O(n) | O(n) | 滑动窗口 |
-| 融合引擎 | O(n·S) | O(n·S) | S=策略数 |
-| **总吞吐量** | ~10K 条/秒 | ~100K 条/秒 | 生产版纯规则模式 |
-| **单条延迟** | ~10ms | ~0.1ms | |
-| **内存占用** | ~500MB | <100MB | 无 PyTorch 时 |
+生命周期完成后，`DetectionOutput` 可稳定交给上层异常融合；模型重训、候选回放、切换和回滚通过插件路由器管理。
 
-### 5.10 模板无关自适应的完整链路
+### 5.9 模块交互关系
 
-```plantuml
-@startuml Full_Link
-!theme plain
-title 模板无关自适应检测完整链路
+| 上游模块 | 交互数据 | 下游模块 | 关键约束 |
+|---|---|---|---|
+| 调用方 / 日志接入 | `log_text, ts, source, module, object` | `DetectionPipeline` | 严格身份模式下 source、object 不得缺失 |
+| `DetectionPipeline` | 原始日志 | `RuleFallbackDetector` | 命中即终止 AI 路由 |
+| 规则通道 | 未命中 | `TemplateFreeParser` | AI 关闭时改为 DQ |
+| 解析器 | `ParseResult + slot_values` | 语义与剖面层 | 必须保留原文字符区间 |
+| 语义与剖面层 | `ParameterObservation` | 各检测策略 | 未知语义仍保留 |
+| 各检测策略 | `StrategyResult` | `FusionEngine` | 策略分数不是天然概率 |
+| 融合引擎 | `DetectionOutput` | 上层结果融合 / 参数对齐评估 | 状态优先级不可被校准覆盖 |
+| 模型生命周期 | 模型包与运行时检查点 | 新管道实例 / PluginRouter | 不兼容模型 fail-closed |
 
-|提取阶段|
-:1. Drain3 模板提取\n自动聚类，无需预定义模板;
-:2. GLiNER 零样本 NER\n仅需标签列表，无需训练\n新域日志零配置适配;
-:3. 正则兜底增强\n双通道置信度融合;
+### 5.10 复杂度、验证口径与已知边界
 
-|特征阶段|
-:4. Robust Scaling 归一化\n对异常值不敏感;
-:5. 特征权重应用\n错误标识 > 延迟 > 状态码;
-:6. 正常范围过滤\n减少正常数据误判;
+| 环节 | 主要开销 | 说明 |
+|---|---|---|
+| 规则匹配 | O(R·T) | R 为规则数，T 为 token 数；命中后短路 |
+| 冻结模板匹配 | 近似 O(d+k) | d 为解析树深度，k 为候选簇 |
+| 统计/序列/上下文 | O(P) | P 为单条日志参数数，窗口状态增量更新 |
+| VAE | O(P·E) | E 为一次共享网络前向开销 |
+| 融合与区间合并 | O(S+Q log Q) | S 为策略数，Q 为参数预测数 |
 
-|检测阶段|
-:7. VAE 重构检测\n学习正常分布流形;
-:8. 统计三重检测\nZ-score + IQR + MAD;
-:9. 上下文分析\n快速失败/幽灵成功/性能退化;
-:10. 时序分析\n趋势检测 + 变点检测;
+当前结果来自受控仿真与回归测试，只能证明接口、状态机、生命周期和评估链路按设计工作，不能等同于真实 DME 日志上的生产准确率。上线前仍需：
 
-|融合阶段|
-:11. 加权平均融合\n四条件 AND 判定;
-:12. 动态阈值调整\nFP/FN 率自适应反馈;
-:13. 分层异常判定\n实体分数 × 策略共识数;
-
-|输出阶段|
-:14. 结果格式化\nis_anomaly + score + analysis;
-
-@enduml
-```
+- 用脱敏真实日志按时间、来源、对象和故障事件隔离训练/校准/测试；
+- 核验单位、码表、重建信号、正常范围和对象键；
+- 评估参数级精确率/召回率、每千条误报、事件级召回、首检延迟及 P95/P99 延迟；
+- 对高熵模板、合法边界值、未知枚举和结构漂移单独设验收集；
+- 先以只读旁路方式运行，再决定是否进入正式告警链路。
 
 ### 5.11 端到端检测示例
 
-**场景**：微服务域 API 请求延迟异常检测
+下面分别展示规则命中和规则未命中两条路径。
 
-**输入日志**：
+#### 5.11.1 专家规则命中
+
+**输入**：
+
+```text
+Get ns async failed ret ( -99999 ) .
 ```
-2026-09-10 10:23:45 Service call to user-service, status 200, cost 8500ms
+
+**交互过程**：
+
+1. `DetectionPipeline` 先调用规则检测器；
+2. 固定 token 与占位符形态匹配，提取 `ret=-99999` 及其原文区间；
+3. 数值等值命中黑名单；
+4. 直接输出 `anomaly`，不调用解析器、GLiNER、VAE 或融合校准。
+
+**输出**：
+
+```json
+{
+  "status": "anomaly",
+  "score": 0.95,
+  "strategies": {"rule_fallback": 0.95},
+  "evidence": ["template_id=10305", "ret in black_list"],
+  "param_predictions": [
+    {
+      "role": "ret",
+      "raw_value": "-99999",
+      "span": [26, 32],
+      "source": "rule_fallback",
+      "alert": true
+    }
+  ]
+}
 ```
 
-**检测过程**：
+#### 5.11.2 AI 模板无关路径
 
-1. **Drain3 解析**：模板 = `Service call to <IP>, status <NUM>, cost <NUM>ms`，参数 = `[user-service, 200, 8500]`
+**输入**：
 
-2. **GLiNER 提取**：
-   ```json
-   {
-     "duration": {"value": "8500ms", "confidence": 0.92, "source": "gliner"},
-     "status_code": {"value": "200", "confidence": 0.95, "source": "gliner"},
-     "service_name": {"value": "user-service", "confidence": 0.88, "source": "gliner"}
-   }
-   ```
+```text
+Xnet send msg(... time use=15280(us), SNO=2283111032999999000, reqSNO=0, msg type=1, plane=1, xnetRet=0.
+```
 
-3. **特征工程**：
-   - duration: 8500 → Robust Scaling → 0.92（超出正常范围 0-2000ms）
-   - status_code: 200 → 正常范围 → 0.15
-   - 特征权重：duration × 2.5 = 高权重异常信号
+**交互过程**：
 
-4. **多策略检测**：
-   | 策略 | 分数 | 判定 |
-   |------|------|------|
-   | VAE 重构 | 0.85 | 异常（重构误差大） |
-   | 统计 MAD | 0.90 | 异常（8500 远超中位数） |
-   | 上下文分析 | 0.70 | 异常（slow_success 模式：200 状态但 8500ms） |
-   | 时序分析 | 0.65 | 异常（Z-score = 4.2 > 3.0） |
+1. 专家规则未命中，且 `use_ai_detection=true`；
+2. 冻结解析器匹配到 `xnet_send`，提取 `time_use`、`SNO`、`reqSNO` 等参数及字符区间；
+3. 冻结语义将 `time_use` 映射为 duration，行为剖面将 `SNO` 识别为序列；
+4. 统计策略判断耗时是否偏离正常剖面，序列策略检测 SNO 回退，其他策略提供补充证据；
+5. 融合器先检查 DQ，再应用强证据/共识与冻结阈值；
+6. 参数证据按 SNO 的原文区间合并，输出日志级异常和参数级定位。
 
-5. **多策略融合**（加权平均）：
-   ```
-   final_score = (0.85×0.30 + 0.90×0.20 + 0.70×0.18 + 0.65×0.15) / 0.83
-              = 0.79
-   agreeing_strategies = 4 (全部 >= 0.75 的有 2 个)
-   ```
-   - `final_score 0.79 >= 0.50` ✓
-   - `agreeing_count 2 >= 2` ✓
-   - `avg_confidence >= 0.5` ✓
-   - **判定：异常**
+**示意输出**：
 
-6. **输出**：
-   ```json
-   {
-     "is_anomaly": true,
-     "score": 0.79,
-     "severity": "warning",
-     "matched_rules": ["slow_success"],
-     "entities": {"duration": "8500ms", "status_code": "200"},
-     "analysis": "幽灵成功模式：状态码200但耗时8500ms远超正常范围"
-   }
-   ```
+```json
+{
+  "status": "anomaly",
+  "score": 0.94,
+  "strategies": {
+    "statistical": 0.22,
+    "sequence": 0.94,
+    "context": 0.12,
+    "vae": 0.31
+  },
+  "evidence": ["sequence_regression"],
+  "dq_issues": [],
+  "param_predictions": [
+    {
+      "role": "SNO@18",
+      "raw_value": "2283111032999999000",
+      "span": [82, 101],
+      "source": "sequence",
+      "anomaly_score": 0.94,
+      "alert": true
+    }
+  ]
+}
+```
+
+该输出继续进入第 8 章的跨类型结果融合；若解析失败或值缺失，则在本模块内以 `data_quality` 结束，不进入业务异常合并。
 
 ---
+
 
 ## 6. 关键技术点三：分词增强语义异常检测
 
@@ -1385,6 +1176,12 @@ title 模板无关自适应检测完整链路
 ### 6.2 领域分词器训练流水线
 
 `pre_train/LogTokenizerTraining/` 实现了 6 步分词器训练流水线：
+
+**模块输入示例**：包含 `TP_IPC_SERVER_MAGIC_FAIL`、错误码和驼峰标识符的脱敏日志语料。
+
+**模块输出示例**：领域词表、SentencePiece 模型、扩展后的 BERT tokenizer 及 MLM 继续预训练权重。
+
+**具体职责**：从日志语料中发现需要整体保留的领域词，扩展通用词表并让模型适应日志文本分布。训练产物交给 LogNetMini/Big 加载。
 
 ```plantuml
 @startuml Tokenizer_Training
@@ -1436,6 +1233,12 @@ mlm_probability=0.15;
 
 ### 6.3 双模型架构
 
+**模块输入示例**：`input_ids + attention_mask`，内容由领域分词器编码。
+
+**模块输出示例**：token 级静态嵌入；NPU 版本可同时输出句子级嵌入和分类 logits。
+
+**具体职责**：为语义异常检测提供统一的向量表示；Mini 面向 CPU 低资源场景，Big 面向 NPU 吞吐和多头判定场景。
+
 #### 6.3.1 LogNetMini（CPU 场景）
 
 | 参数 | 值 | 说明 |
@@ -1462,6 +1265,12 @@ mlm_probability=0.15;
 **特点**：基于 MPNet 的 12 层大模型，同时输出 static（token 级）和 contextual（sentence 级）嵌入 + 分类 logits。
 
 ### 6.4 语义异常检测核心流程
+
+**模块输入示例**：`["metadata corruption found in <*> node"]`，输入前已由上游过滤白名单。
+
+**模块输出示例**：`{"templateId": 42, "anomalyType": ["semantic"], "summary": ["日志内容异常请检查"]}`。
+
+**具体职责**：对模板文本编码，构造多粒度短语嵌入，并与异常基线比较。输出的语义异常证据交给第 8 章融合，不直接生成故障结论。
 
 ```plantuml
 @startuml Semantic_Detection_Flow
@@ -1737,6 +1546,12 @@ metadata corruption found in <*> node
 
 数量异常检测器（`quantitive_detector.py`）基于两种策略：
 
+**模块输入示例**：某模板在连续时间窗中的计数 `[12, 11, 13, 12, 95]`，以及白名单和时间窗大小。
+
+**模块输出示例**：`{"templateId": 42, "timestamp": 1725963825, "log_count": 95, "score": 47}`。
+
+**具体职责**：从模板仓库按时间窗汇总出现次数，检测新模板和频次突变。结果与语义、参数检测使用同一日志身份交给融合模块。
+
 #### 7.1.1 新增模板检测
 
 ```python
@@ -1799,6 +1614,12 @@ def assign_scores(result_dict, order_key, max_score, min_score):
 
 `anomaly_detection.py:279-374` 的 `merge_results` 方法实现三路检测结果融合：
 
+**模块输入示例**：语义、参数、数量三路检测器输出的列表，元素均带 `template_id`、`log_id`、`timestamp`。
+
+**模块输出示例**：`{"logId": "L-7", "templateId": 42, "anomalyType": ["parametric", "semantic"]}`及对应时间窗事件。
+
+**具体职责**：按稳定日志身份去重、保留同一日志的多种异常类型，再按时间窗聚合成事件。DME 事件继续交给指纹库诊断。
+
 ```python
 @staticmethod
 def merge_results(semantic_data, parametric_data, quantitative_data):
@@ -1836,6 +1657,12 @@ def merge_results(semantic_data, parametric_data, quantitative_data):
 - 按时间戳聚合为 10 分钟时间窗的 `anomaly_event`
 
 ### 8.2 指纹库故障诊断（DME 专用）
+
+**模块输入示例**：一个时间窗内去重后的异常模板集合，以及指纹库中的线索模板、权重和案例阈值。
+
+**模块输出示例**：`{"caseID": "CASE_JH_023", "case_name": "控制器内部 CDR 芯片异常", "case_score": 1.12}`。
+
+**具体职责**：将异常事件中的模板与已知故障线索模糊匹配，累加权重并在达到案例阈值时生成诊断候选。该模块消费融合事件，输出仅是候选故障，不改写原始检测证据。
 
 ```python
 # anomaly_detection.py:91-115
@@ -1965,6 +1792,22 @@ Content-Type: application/json
 }
 ```
 
+### 9.4 参数检测管道接口
+
+当上层服务集成第 5 章的新参数检测能力时，应以 `DetectionPipeline.detect` 作为单条日志入口，而不再直接调用旧的 `ParamAnomalyDetector`。
+
+```python
+result = pipe.detect(
+    log_text,
+    ts=timestamp,
+    source="node-01",
+    module="xnet",
+    object="lwp-8",
+)
+```
+
+`module` 是元数据，`source × object` 用于隔离动态流状态。返回值至少包含 `status`、`score`、`strategies`、`evidence`、`dq_issues`、`strategy_details` 和 `param_predictions`。上层只将 `status=anomaly` 合并进业务异常；`data_quality` 和 `parse_variant` 应保留为独立状态。
+
 **响应体**：
 ```json
 {
@@ -1995,8 +1838,11 @@ Content-Type: application/json
 | `format_mae.json` | `config/` | MAE 网络日志格式定义 |
 | `time_format.json` | `config/` | 60+模块时间戳格式映射 |
 | `white_list_a4.json` | `config/` | 稳态白名单（按模块组织 template_id 列表） |
-| `config_build_dme.json` | `src/.../configuration/` | DME 参数检测配置 |
-| `config_build_mae.json` | `src/.../configuration/` | MAE 参数检测配置 |
+| `config_build_dme.json` | `src/.../configuration/` | 旧参数检测器的 DME 配置，仅供存量链路兼容 |
+| `config_build_mae.json` | `src/.../configuration/` | 旧参数检测器的 MAE 配置，仅供存量链路兼容 |
+| `rule_fallback.json` | `TIG-2026/dme_platform/config/` | 新参数检测的外部专家黑名单规则 |
+| `services.example.json` | `TIG-2026/dme_platform/config/` | GLiNER / LLM 服务配置示例，不包含密钥 |
+| 模型包 v5 | `TIG-2026/dme_platform/data/model_packages/` | 解析器、剖面、共享 VAE、校准阈值与完整性元数据 |
 | `abn_baseline_*.json` | `src/.../configurations/` | 语义异常基线向量 |
 | `finger_print_lib.json` | `src/.../configurations/` | DME 故障模式指纹库 |
 
@@ -2038,11 +1884,16 @@ Content-Type: application/json
 
 #### 10.2.4 参数检测参数
 
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `FUZZY_MATCH_ALPHA` | 0.6 | 模板模糊匹配相似度阈值 |
-| `contamination` | 0.1 | IsolationForest 污染率 |
-| `k_sigma` | 6 | k-sigma 参数（数量检测） |
+| 参数 | 作用 | 约束 |
+|------|------|------|
+| `use_ai_detection` | 规则未命中时是否进入 AI 管道 | 关闭时未覆盖日志返回 `data_quality` |
+| `enabled_strategies` | 选择 statistical / sequence / context / vae / temporal | temporal 显式开启；VAE 需依赖、训练和校准 |
+| `strict_identity` | 要求输入显式提供 source 与 object | 开启后缺失身份直接拒绝 |
+| `rule_fallback_path` | 指定外部专家规则库 | 规则内容摘要纳入实验与路由身份 |
+| `gliner_config` / `llm_config` | 配置可选语义服务 | 缺失或不可用时必须显式降级 |
+| 日志/参数决策阈值 | 将策略证据转成最终告警 | 由独立决策校准数据选择并冻结，不在单条推理中自更新 |
+
+`k_sigma` 仍属于第 7 章数量异常检测参数，不与新参数检测管道的决策阈值混用。
 
 ---
 
@@ -2098,6 +1949,12 @@ python src/data_process/offline_data_plugin/offline_detection_tool_with_piplup.p
 
 # 离线检测（MAE）
 python src/data_process/offline_data_plugin/offline_mae_detection_tool.py
+
+# 参数异常检测验证平台（在 TIG-2026 仓库根目录）
+python -m dme_platform.run
+
+# 训练/校准/固定测试的共享模型评估
+python -m dme_platform.detection.evaluate_shared_model --profile smoke
 ```
 
 ### 11.3 持久化机制
@@ -2108,6 +1965,8 @@ python src/data_process/offline_data_plugin/offline_mae_detection_tool.py
 | PIPLUP 缓存 | `config/persistence/{module}_piplup_cache.pkl` | 每 `persistence_time_minutes` 分钟 |
 | 白名单 | `config/white_list_a4.json` | 稳态学习期间，每 `persistence_time_minutes` 分钟 |
 | 模型权重 | `src/.../lognet-mini/model.pth` | 离线训练生成 |
+| 参数检测模型包 | `dme_platform/data/model_packages/` | 完成正常拟合、误差校准和决策校准后显式保存 |
+| 参数检测运行时检查点 | 模型包关联的 runtime snapshot | 仅连续流恢复时保存/加载 |
 
 ### 11.4 稳态学习生命周期
 
@@ -2197,12 +2056,17 @@ repeat while (学习周期未结束?) is (是)
 |------|------|---------|
 | **Precision** | 精准率 | TP / (TP + FP) |
 | **Recall** | 召回率 | TP / (TP + FN) |
+| **F1** | 精确率与召回率的调和平均 | 2PR / (P + R) |
+| **Accuracy** | 总体判定正确率 | (TP + TN) / 全部样本 |
 | **CompressionRate** | 压缩率 | 评测集日志总数 / 上报异常日志总数 |
 
 **三级统计粒度**：
 - **Event level**：以时间窗为单位统计 TP/FP/TN/FN
 - **Template level**：以模板为单位统计
 - **Log level**：以日志行为单位统计
+- **Parameter level**：以原文字符区间对齐具体参数，独立统计 TP/FP/FN
+
+参数检测还需单独报告正常误报率、解析成功率、参数对齐率、DQ 路由率、对齐冲突数和时序事件首检延迟。日志级告警不得代替参数级定位命中；`data_quality` 类案例应以 DQ 通道捕获率评估，不应强行计入业务异常召回。
 
 **Trade-off 策略**：
 - 供运维人员分析：优先保障 Precision
@@ -2240,9 +2104,10 @@ repeat while (学习周期未结束?) is (是)
 - `0.95 > 0.9` → **语义异常**
 
 **参数检测**：
-- 模糊匹配命中配置：`disk sector read error unrecoverable, sector <*>, retry count <*>, <*>`
-- `param_pos=5` → `sector 0x1A2B` 中的 `0x1A2B`
-- `detect_mode=black_list`, `0x1A2B` 在黑名单 → **参数异常**
+- 管道先调用外部专家规则库。本示例假设规则库已纳入该日志形态，并把 `sector` 的 `0x1A2B` 列为黑名单值。
+- 固定 token 与占位符形态匹配成功，参数提取同时记录 `0x1A2B` 在原日志中的字符区间。
+- 十六进制等值比较命中黑名单，直接输出 **参数异常**，不再进入 AI 分支。
+- 若规则未覆盖该日志，则由冻结解析器、剖面和多策略检测处理；解析失败必须返回 `data_quality`，不能沿用旧的模板 ID 相似度猜测。
 
 **数量检测**：
 - 该模板在 11:30-11:40 时间窗出现 15 次
@@ -2297,6 +2162,8 @@ repeat while (学习周期未结束?) is (是)
 
 PIPLUP 解析覆盖率较 Drain3 提升显著（尤其在格式不规则的日志模块上），CRC32 双层缓存在重复日志高占比场景下可将大部分解析降为 O(1) 查表。
 
+> 上述指标仅对应标明的 CN 数据批次，不代表第 5 章 `dme_platform` 的真实 DME 生产效果。参数检测当前以受控仿真和回归测试验证系统行为，上线结论需由独立脱敏真实数据评估给出。
+
 ---
 
 ## 附录
@@ -2331,7 +2198,12 @@ PIPLUP 解析覆盖率较 Drain3 提升显著（尤其在格式不规则的日�
 | 语义异常检测 | `src/anomaly_detection/semantic_anomaly/semantic_anomaly.py` |
 | LogNetMini 模型 | `src/anomaly_detection/semantic_anomaly/bert_model/LogNetMini.py` |
 | LogNetBig 模型 | `src/anomaly_detection/semantic_anomaly/bert_model/LogNetBig.py` |
-| 参数异常检测 | `src/anomaly_detection/parameter_anomaly/param_detector.py` |
+| 参数异常检测编排 | `TIG-2026/dme_platform/detection/pipeline.py` |
+| 专家规则主通道 | `TIG-2026/dme_platform/detection/rule_fallback.py` |
+| 参数解析与表示 | `TIG-2026/dme_platform/detection/log_parser.py`, `value_parser.py`, `core/parameter.py` |
+| 参数剖面与策略 | `TIG-2026/dme_platform/detection/slot_profile.py`, `behavior_profile.py`, `detectors.py`, `shared_vae.py` |
+| 参数检测融合 | `TIG-2026/dme_platform/detection/fusion.py` |
+| 参数检测模型包 | `TIG-2026/dme_platform/detection/model_io.py` |
 | 数量异常检测 | `src/anomaly_detection/quantitive_anomaly/quantitive_detector.py` |
 | 检测编排器 | `src/anomaly_detection/anomaly_detection.py` |
 | 评估指标 | `src/evaluation/ParserMetrics.py`, `src/evaluation/metrics.py`, `src/evaluation/LogAnalysis.py` |
