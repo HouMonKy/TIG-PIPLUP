@@ -619,15 +619,65 @@ class TestMaskDeletionLedger:
         assert len(set(result)) == 1
 
     def test_deleted_rules_not_in_sequence(self):
-        """台账完备性：6 条规则已删除；xnet_ctx_id 评估后保留。"""
+        """台账完备性：6 条结构承接删除 + 4 条纯冗余删除；xnet_ctx_id 评估后保留。"""
         deleted = {'underscore_composite_num', 'kv_compound_id', 'compound_num_id',
-                   'compound_hex_id', 'bracket_compound_id', 'underscore_num_suffix'}
+                   'compound_hex_id', 'bracket_compound_id', 'underscore_num_suffix',
+                   # 纯冗余（等价承接，非结构机制）：与既有规则替换区间相同或可归约
+                   'datetime_full', 'kernel_uptime', 'epoch_ms_13d', 'code_line_num'}
         assert deleted.isdisjoint(preprocessing.sequence)
         assert deleted.isdisjoint(preprocessing.regex_match)
         for rule, _, _ in preprocessing._CLEANUP_RULES:
             assert rule not in deleted
         # 评估后保留的规则
         assert 'xnet_ctx_id' in preprocessing.sequence
+
+    def test_datetime_full_deleted(self):
+        """原规则 \\b\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\b（整体日期时间）
+        → 承接：date + time 依次匹配产生 "<*> <*>"，_reduce_placeholders
+        归约为单个 "<*>"，输出与整体遮蔽逐字节一致（等价承接，非结构机制）。
+        正例：at 2026-02-04 11:39:58 job 88 done ×6 → at <*> job <*> done"""
+        logs = [f'at 2026-02-04 11:39:{58 - i} job {88 + i} done' for i in range(6)]
+        parser = make_parser(br_thresh=5)
+        result = parser.parse_list(logs)
+        assert set(result) == {'at <*> job <*> done'}
+        for line, tpl in zip(logs, result):
+            assert template_covers(tpl, line)
+
+    def test_epoch_ms_13d_deleted(self):
+        """原规则 (?<=\\[)\\d{13}(?=\\])（方括号内 13 位时间戳）
+        → 承接：numerical 对同一数字区间产生相同替换（替换区间相同 → 纯冗余）。
+        正例：[1500001430000] task 1001 done ×6 → [<*>] task <*> done"""
+        logs = [f'[{1500001430000 + i}] task {1001 + i} done' for i in range(6)]
+        parser = make_parser(br_thresh=5)
+        result = parser.parse_list(logs)
+        # [<*>] 头部块被日志头清理吞掉（与删除前行为一致，头部为噪声）
+        assert set(result) == {'task <*> done'}
+        for line, tpl in zip(logs, result):
+            assert template_covers(tpl, line.split('] ', 1)[1])
+
+    def test_code_line_num_deleted(self):
+        """原规则 (?<=,)\\d+(?=\\])（",178]" 动态行号）
+        → 承接：numerical 对同一数字区间产生相同替换（纯冗余）。
+        正例：行号漂移的 6 条日志归并为同一模板。"""
+        logs = [f'[cluster_view.c:procUpdateView,17{i}] node ok' for i in range(6)]
+        parser = make_parser(br_thresh=5)
+        result = parser.parse_list(logs)
+        assert len(set(result)) == 1
+        for line, tpl in zip(logs, result):
+            assert template_covers(tpl, line)
+
+    def test_kernel_uptime_deleted(self):
+        """原规则 (?<=\\[)\\s*\\d+\\.\\d+(?=\\])（方括号内内核运行时间）
+        → 承接：numerical 对浮点部分产生相同替换；内部前导空格产生的
+        "[ <*>]" 由放宽后的日志头清理（\\[\\s*<\\*>\\s*\\]）吸收。
+        正例：[ 4247.652837] app started ×6 → app started（头部整体清除）。"""
+        logs = [f'[ {4240 + i}.{652800 + i * 7}] app started' for i in range(6)]
+        parser = make_parser(br_thresh=5)
+        result = parser.parse_list(logs)
+        # 头部整体清除（与删除前行为一致，头部为噪声）
+        assert set(result) == {'app started'}
+        for line, tpl in zip(logs, result):
+            assert template_covers(tpl, line.split('] ', 1)[1])
 
 
 # =====================================================================
@@ -642,9 +692,22 @@ class TestProtectedBehavior:
             '2026-02-04 11:39:58 INFO pid:53912,tid:53969',
             use_keys=True,
         )
-        assert 'DATETIME_TAG' in result
+        # datetime_full 已删除：date + time 依次遮蔽 + 归约等价承接
+        assert 'DATE_TAG' in result
+        assert 'TIME_TAG' in result
         assert 'LOG_LEVEL_TAG' in result
         assert 'PID_TID_TAG' in result
+
+    def test_deleted_redundant_rules_not_in_sequence(self):
+        """台账完备性：4 条纯冗余规则已删除（等价承接验证见下方 ledger）。"""
+        deleted = {'datetime_full', 'kernel_uptime', 'epoch_ms_13d', 'code_line_num'}
+        assert deleted.isdisjoint(preprocessing.sequence)
+        assert deleted.isdisjoint(preprocessing.regex_match)
+
+    def test_header_bracket_cleanup_tolerates_inner_space(self):
+        """kernel_uptime 删除后，[ <浮点>] 头部仍需被日志头清理吞掉。"""
+        result = preprocessing.preprocess('[ 4247.652837] boot ok')
+        assert result == 'boot ok'
 
     def test_identical_lines_single_template(self):
         parser = make_parser()

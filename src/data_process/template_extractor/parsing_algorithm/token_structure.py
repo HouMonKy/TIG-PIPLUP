@@ -17,7 +17,10 @@
 - 骨架相同只提供有限相似度：结构符号约束对齐，不因括号冒号数量加分，
   必须搭配固定文本证据。
 """
-import regex as re
+import re
+
+# 注：regex 模块替换为标准库 re——本模块模式均为两者共有语法，
+# structure_similarity 在 seqDist 中按差分 token 高频调用。
 
 # ── 整体歧义守卫（模块级预编译） ──────────────────────────────
 _IPV6_RE = re.compile(

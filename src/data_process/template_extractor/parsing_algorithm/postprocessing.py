@@ -1,4 +1,8 @@
-import regex as re
+import re
+
+# 注：regex 模块替换为标准库 re——本模块的模式均为两者共有语法；
+# correct_single_template 在每次 update_sequence 时调用，标准库 re
+# 的模块级模式缓存命中路径明显更轻。
 path_delimiters = {  # reduced set of delimiters for tokenizing for checking the path-like strings
     r'\s', r'\,', r'\!', r'\;', r'\:',
     r'\=', r'\|', r'\"', r'\'',

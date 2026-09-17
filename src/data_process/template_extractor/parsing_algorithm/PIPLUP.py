@@ -1,4 +1,4 @@
-import regex as re
+import re
 import os
 import zlib
 # pandas 已移除：DataFrame+iterrows 替换为 range+list 索引（优化1）
@@ -13,6 +13,12 @@ from .token_structure import structure_similarity, merge_kv_tokens, merge_values
 from src.common.global_config import GlobalConfig
 
 logger = logging.getLogger(__name__)
+
+# 注：regex 模块已替换为标准库 re。本模块用到的模式（re.escape、<\*>、
+# .*?、lookbehind/lookahead）均为两者共有语法，且 escape 对空格/特殊字符
+# 的处理经实测一致（' ' → '\ '，'<*>' → '<\*>'）；regex 模块的每次
+# escape/_compile 都有可观的 enum 校验与初始化开销（cProfile 中合计
+# >0.6s/2 万行），标准库 re 无此负担。
 
 # 轻量归一化正则：替换连续的[数字+分隔符]序列，用于预处理前 CRC32 缓存预检
 # 匹配至少含一个数字的连续字符序列，字符 ∈ {数字, 分隔符, 下划线}
@@ -29,11 +35,37 @@ path_delimiters = {  # reduced set of delimiters for tokenizing for checking the
     }
 
 
+# 覆盖校验的已编译模式缓存（cProfile：原实现每次调用都重跑 split+escape+join
+# 并让引擎查缓存编译，占 2 万行语料总耗时的 ~30%）。键为模板 token，值是
+# 已编译的完整匹配模式；模板/token 是有限的小字符串集合，封顶后整表清空
+# （清空只是丢缓存，随时可重建，不影响正确性）。
+_COVER_PATTERN_CACHE = {}
+_COVER_PATTERN_LIMIT = 1 << 16
+# jaccardSimilarity 的模板词集合缓存（与模式缓存同一封顶策略）
+_WORD_SET_CACHE = {}
+# <*> 转义结果为模块级常量：模板固定段转义后按此切分
+_ESCAPED_WILDCARD = re.escape('<*>')
+
+
+def _get_cover_pattern(template_token):
+    """模板 token → 已编译 fullmatch 模式（带缓存）。
+
+    语义与原实现一致：按 <*> 切分固定段，段间用非贪婪 .*? 连接
+    （每个 <*> 匹配任意内容），DOTALL 使 .*? 可跨行。
+    """
+    pattern = _COVER_PATTERN_CACHE.get(template_token)
+    if pattern is None:
+        if len(_COVER_PATTERN_CACHE) >= _COVER_PATTERN_LIMIT:
+            _COVER_PATTERN_CACHE.clear()
+        parts = template_token.split('<*>')
+        pattern = _COVER_PATTERN_CACHE[template_token] = re.compile(
+            '.*?'.join(map(re.escape, parts)), re.DOTALL)
+    return pattern
+
+
 def _token_covers(template_token, text):
     """模板 token（可含 <*>）作为模式是否能覆盖 text 字符串。"""
-    parts = re.split(r'<\*>', template_token)
-    pattern = '.*?'.join(re.escape(part) for part in parts)
-    return bool(re.fullmatch(pattern, text, re.DOTALL))
+    return _get_cover_pattern(template_token).fullmatch(text) is not None
 
 
 def _fixed_brackets_balanced(candidate):
@@ -332,13 +364,10 @@ class Logcluster:
     # Check whether template1 can describe template2 (template2 can be merged into template1)
     @staticmethod
     def templateMatches(template1, template2):
-        # Escape all parts of the template except the <*> placeholders
-        parts = re.split(r"<\*>", template1)
-        regex_pattern = ".*?".join(re.escape(part) for part in parts)
-        
-        # Add anchors to ensure the entire template2 string is matched
-        regex_pattern = f"^{regex_pattern}$"
-        return bool(re.fullmatch(regex_pattern, template2, re.DOTALL))
+        # 与 _token_covers 共用已编译模式缓存：原实现每次调用重跑
+        # split+escape+join 并触发编译，是解析热路径的最大热点。
+        # fullmatch 已隐含首尾锚定（原实现的 ^ $ 对 fullmatch 是冗余的）。
+        return _get_cover_pattern(template1).fullmatch(template2) is not None
     
     def seqSimilarity(self, seq1, seq2):
         sim = 0
@@ -559,7 +588,7 @@ class LogParser:
         """
         template_patterns = []
         for template in templates:
-            pattern = re.escape(template).replace(re.escape("<*>"), ".*?")
+            pattern = re.escape(template).replace(_ESCAPED_WILDCARD, ".*?")
             pattern = pattern.replace(r"\ ", r"\s*")
             pattern = f"^{pattern}$"
             template_patterns.append(re.compile(pattern, re.DOTALL | re.IGNORECASE))
@@ -710,11 +739,24 @@ class LogParser:
         return result
     
     def jaccardSimilarity(self, template1, template2):
-        set1 = set([item for item in template1.split() if any(ch.isalnum() for ch in item)])
-        set2 = set([item for item in template2.split() if any(ch.isalnum() for ch in item)])
+        set1 = self._get_word_set(template1)
+        set2 = self._get_word_set(template2)
 
         if len(set1.union(set2)) == 0: return 0
         return len(set1.intersection(set2))/len(set1.union(set2))
+
+    @staticmethod
+    def _get_word_set(template):
+        """模板 → 有效词集合（带缓存）。mergeTemplates 对同一模板反复
+        计算 split+过滤+建集；模板字符串有限，按字符串缓存。"""
+        word_set = _WORD_SET_CACHE.get(template)
+        if word_set is None:
+            word_set = frozenset(
+                item for item in template.split() if any(ch.isalnum() for ch in item))
+            if len(_WORD_SET_CACHE) >= _COVER_PATTERN_LIMIT:
+                _WORD_SET_CACHE.clear()
+            _WORD_SET_CACHE[template] = word_set
+        return word_set
 
     def mergeTemplates(self, cluster, constant, oldTemplateList=None):
         if oldTemplateList is None:

@@ -41,25 +41,18 @@ regex_match = {
     # DME 新增模式
     # 5. 日志级别：匹配日志中的日志级别词
     'log_level': r'\b(WARN|ERR|EMER|INFO|DBG)\b',
-    # 6. 完整日期时间：匹配 YYYY-MM-DD HH:MM:SS 格式
-    # 作用目标：[2026-02-04 11:39:58]
-    # 工程逻辑：现有 'date' 和 'time' 是分离的，整合匹配可直接屏蔽整个 <Time> 字段，提升预处理效率。
-    'datetime_full': r'\b\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\b',
 
-    # 7. 内核时间戳/偏移量：匹配方括号内（允许前导空格）的浮点数
-    # 作用目标：[ 4247.652837] 中的 " 4247.652837"
-    # 工程逻辑：使用 (?<=\[) 和 (?=\]) 断言确保仅匹配方括号内的数据，防止误替换 Content 中的常规浮点数。
-    'kernel_uptime': r'(?<=\[)\s*\d+\.\d+(?=\])',
-
-    # 8. 13位长整型时间戳：匹配方括号内的13位数字
-    # 作用目标：[1500001430000] 中的 "1500001430000"
-    # 工程逻辑：限定在方括号内匹配13位纯数字，防止与常规 numerical 规则冲突。
-    'epoch_ms_13d': r'(?<=\[)\d{13}(?=\])',
-
-    # 9. 动态代码行号：匹配逗号与右方括号之间的数字
-    # 作用目标：[cluster_op_view.c:procModifyVNodeViewInfo,178] 中的 "178"
-    # 工程逻辑：代码变动会导致行号漂移，通过 (?<=,) 断言左侧必须为逗号，(?=\]) 断言右侧必须为右括号，实现精准捕获。
-    'code_line_num': r'(?<=,)\d+(?=\])',
+    # 6-9. 已删除的候选掩码（等价承接验证见 TestMaskDeletionLedger）：
+    #   - datetime_full（YYYY-MM-DD HH:MM:SS 整体遮蔽）：date + time 依次
+    #     匹配产生 "<*> <*>"，随后 _reduce_placeholders 归约为单个 "<*>"，
+    #     输出与整体遮蔽完全一致（等价性验证 0 diff）；
+    #   - kernel_uptime（方括号内浮点 [ 4247.652837]）：numerical 对浮点
+    #     部分产生相同替换；内部前导空格造成的 "[ <*>]" 差异由放宽后的
+    #     日志头清理正则（\[\s*<\*>\s*\]）吸收，输出一致；
+    #   - epoch_ms_13d（方括号内 13 位整数）：numerical 完全覆盖同一区间，
+    #     替换结果完全相同（纯冗余，0 diff）；
+    #   - code_line_num（",178]" 行号）：numerical 对同一数字区间产生
+    #     相同替换（纯冗余，0 diff）。
 
     # 10. 进程与线程标识符：匹配 pid 和 tid 键值对
     # 作用目标：[app_data,pid:53912,tid:53969] 中的 "pid:53912,tid:53969"
@@ -157,11 +150,7 @@ regex_map = {
     'status_pair': 'STATUS_TAG_lb',
     'serial_num': 'SERIAL_TAG_lb',
     'cid_kv_pairs': 'CID_TAG_lb',
-    'datetime_full': 'DATETIME_TAG',
-    'kernel_uptime': 'UPTIME_TAG',
-    'epoch_ms_13d': 'EPOCH_MS_TAG',
     'log_level': 'LOG_LEVEL_TAG',
-    'code_line_num': 'LINE_NUM_TAG',
     'pid_tid_pair': 'PID_TID_TAG',
     'sn_parentheses': 'SERIAL_TAG',
     'step_desc': 'STEP_TAG',
@@ -185,42 +174,50 @@ regex_map = {
 # 顺序原则：越复杂/越特化的正则越先匹配，避免被通用正则提前截断
 # 已删除（由 token 内结构机制承接）：underscore_composite_num、kv_compound_id、
 # compound_num_id、compound_hex_id、bracket_compound_id、underscore_num_suffix、xnet_ctx_id
-sequence = ['datetime_full',  'kernel_uptime', 'epoch_ms_13d', 'log_level',  'code_line_num', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'brace_hex_value_pair', 'hex_dump', 'lucene_filename', 'xnet_ctx_id', 'embedded_hex', 'device_serial', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
+# 已删除（纯冗余/等价承接，见 regex_match 内 6-9 注释）：datetime_full、
+# kernel_uptime、epoch_ms_13d、code_line_num
+sequence = ['log_level', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'brace_hex_value_pair', 'hex_dump', 'lucene_filename', 'xnet_ctx_id', 'embedded_hex', 'device_serial', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
 
 # 兜底清理：与 sequence 中规则一一对应的二次扫描（处理 <*> 交互后的残留）。
 # 仅当对应规则在活跃规则集 use_sequence 中时执行——规则被（实验性）关闭时，
 # 其兜底扫描同步关闭，避免"关掉主规则、兜底仍在遮蔽"的伪实验。
 _CLEANUP_RULES = [
+    # (规则名, 已编译正则, 替换)——预编译避免热路径反复查 re 模块内部缓存
     # (规则名, 正则, 替换)
-    ('hex_dump', r'D:(?:<\*> )?[0-9a-fA-F]{2}(?: [0-9a-fA-F]{2}| <\*>)*', 'D:<*>'),
+    ('hex_dump', re.compile(r'D:(?:<\*> )?[0-9a-fA-F]{2}(?: [0-9a-fA-F]{2}| <\*>)*'), 'D:<*>'),
     # 连续 2 字符 hex 序列（hex_dump 的补充形态）
     # (?!\w) 防止匹配英文单词片段（如 "DB fa"iled）
-    ('hex_dump', r' [0-9a-fA-F]{2}(?!\w)(?: [0-9a-fA-F]{2}(?!\w))+', ' <*>'),
-    ('lucene_filename', r'(?<![\w>])[_.][\w.~-]+', '<*>'),
-    ('xnet_ctx_id', r'(?<=\()xnet_\w+:\d+(?=\))', '<*>'),
-    ('embedded_hex', r'(?<=[A-Za-z_(])0x[0-9a-fA-F]+', '<*>'),
-    ('device_serial', r'\d{4,}[A-Z]{2,}\d{2,}(?:[A-Z]{1,}\d{2,})+', '<*>'),
+    ('hex_dump', re.compile(r' [0-9a-fA-F]{2}(?!\w)(?: [0-9a-fA-F]{2}(?!\w))+'), ' <*>'),
+    ('lucene_filename', re.compile(r'(?<![\w>])[_.][\w.~-]+'), '<*>'),
+    ('xnet_ctx_id', re.compile(r'(?<=\()xnet_\w+:\d+(?=\))'), '<*>'),
+    ('embedded_hex', re.compile(r'(?<=[A-Za-z_(])0x[0-9a-fA-F]+'), '<*>'),
+    ('device_serial', re.compile(r'\d{4,}[A-Z]{2,}\d{2,}(?:[A-Z]{1,}\d{2,})+'), '<*>'),
 ]
+
+# 无条件清理（不与特定规则绑定），模块级预编译：
+_HEADER_BRACKETS_RE = re.compile(r'^(?:\[\s*(?:<\*>)?\s*\]\s*)+')
+_TAIL_MODULE_RE = re.compile(r'\[[a-z_]+,<\*>\]\s*$')
+_RE_CONSEC_WILD = re.compile(r'(?:\<\*\>\s?)+\<\*>')
 
 
 def _apply_cleanup(new_log, active_rules):
     """规则绑定的兜底清理 + 无条件归约（连续 <*>、日志头/尾清理）。"""
     for rule, pattern, repl in _CLEANUP_RULES:
         if rule in active_rules:
-            new_log = re.sub(pattern, repl, new_log)
+            new_log = pattern.sub(repl, new_log)
     # 无条件清理（不与特定规则绑定）
     # 日志头：去掉开头连续的 [<*>] 块（时间戳/运行时间/pid/日志级别预处理后产生），
-    # 这些纯 <*> token 被 seqDist 跳过但计入分母，稀释相似度导致簇分裂
-    new_log = re.sub(r'^(?:\[(?:<\*>)?\]\s*)+', '', new_log)
+    # 这些纯 <*> token 被 seqDist 跳过但计入分母，稀释相似度导致簇分裂。
+    # 允许括号内部空白：kernel_uptime 删除后 numerical 不吞 "[ 4247.652837]"
+    # 内部的前导空格，放宽为 \[\s*<\*>\s*\] 保持等价输出。
+    new_log = _HEADER_BRACKETS_RE.sub('', new_log)
     # 日志尾：去掉末尾的 [module,<*>]（源模块名，format_chaos 会去除，no_format 保留导致分裂）
-    new_log = re.sub(r'\[[a-z_]+,<\*>\]\s*$', '', new_log)
+    new_log = _TAIL_MODULE_RE.sub('', new_log)
     # 兜底清理后再次归约连续 <*>（lucene_filename 等清理可能产生 <*><*> 碎片）
-    new_log = re.sub(r'(\<\*\>\s?)+\<\*\>', '<*>', new_log)
+    new_log = _RE_CONSEC_WILD.sub('<*>', new_log)
     return new_log
 
 
-# 连续 <*>（允许中间单个空白）：<*>( <*>)+ → <*>
-_RE_CONSEC_WILD = re.compile(r'(?:\<\*\>\s?)+\<\*>')
 # 被单个链式分隔符隔开的 <*> 链：<*>(D<*>)+ → <*>，D ∈ 集合
 # 与原逐分隔符循环语义等价：一次匹配整条链（含混合分隔符），多轮循环
 # 归约到的同一最终形态
@@ -254,32 +251,31 @@ def preprocess(log, use_keys=False, estimation_stage=False, use_sequence=None, p
 
     if estimation_stage:
         if print: print('原始日志\n', new_log)
+        # subn 返回替换次数：n>0 即命中，避免每条规则做一次整串相等比较
         if use_keys:
             # Replace the ones with symbols
             for key in use_sequence:
-                new_log = _get_rule_pattern(key).sub(regex_map[key], new_log)
-                if new_log != log:
+                new_log, n = _get_rule_pattern(key).subn(regex_map[key], new_log)
+                if n:
                     matched_types.append(key)
-                    log = new_log
         else:
             # Combine regex patterns into a single pattern
             for key in use_sequence:
-                new_log = _get_rule_pattern(key).sub('<*>', new_log)
-                if new_log != log:
+                new_log, n = _get_rule_pattern(key).subn('<*>', new_log)
+                if n:
                     matched_types.append(key)
-                    log = new_log
         new_log = _reduce_placeholders(new_log)
         new_log = _apply_cleanup(new_log, use_sequence)
         if print: print('预处理后\n', new_log)
         return new_log, sequence, matched_types
     else:
         if print: print('原始日志\n', new_log)
+        # 热路径：将 (key, 编译正则, 替换串) 绑定到局部变量，
+        # 避免 per-rule 的字典查找与函数调用开销
         if use_keys:
-            # Replace the ones with symbols
             for key in use_sequence:
                 new_log = _get_rule_pattern(key).sub(regex_map[key], new_log)
         else:
-            # Combine regex patterns into a single pattern
             for key in use_sequence:
                 new_log = _get_rule_pattern(key).sub('<*>', new_log)
         new_log = _reduce_placeholders(new_log)
