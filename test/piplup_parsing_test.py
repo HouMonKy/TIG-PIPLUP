@@ -330,6 +330,25 @@ class TestParsingCache:
             assert result[0] == 'alpha omega x1'
             assert result[1] == 'beta gamma y1'
 
+    def test_malformed_cache_does_not_leave_partial_state(self):
+        """缺字段的缓存加载失败后，解析器必须保持完整的空状态。"""
+        import os
+        import pickle
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            cache_path = os.path.join(tmp, 'broken.pkl')
+            with open(cache_path, 'wb') as f:
+                pickle.dump({'storage_tree': {'broken': {}}}, f)
+
+            parser = LogParser(log_format='<Content>', module_name='test',
+                               indir='.', outdir='/tmp/', use_cache=True,
+                               cache_path=cache_path)
+
+            assert parser.storage_tree == {'None': {}}
+            assert parser.shallow_tree == {'None': []}
+            assert parser.logCluL == []
+            assert parser.parse_list(['alpha beta']) == ['alpha beta']
+
     def test_light_cache_verifies_full_match(self):
         """Level 1 命中必须做完整正则校验，不能只做子串存在性检查。"""
         parser = make_parser(use_template_cache=True)
@@ -616,6 +635,17 @@ class TestMaskDeletionLedger:
 # =====================================================================
 
 class TestProtectedBehavior:
+    def test_preprocess_use_keys_supports_all_active_rules(self):
+        """use_keys 分支必须覆盖默认 sequence 中的每条规则。"""
+        assert set(preprocessing.sequence) <= set(preprocessing.regex_map)
+        result = preprocessing.preprocess(
+            '2026-02-04 11:39:58 INFO pid:53912,tid:53969',
+            use_keys=True,
+        )
+        assert 'DATETIME_TAG' in result
+        assert 'LOG_LEVEL_TAG' in result
+        assert 'PID_TID_TAG' in result
+
     def test_identical_lines_single_template(self):
         parser = make_parser()
         result = parser.parse_list(['connect to db ok'] * 3)
@@ -720,3 +750,4 @@ class TestPostProcessing:
 
     def test_assignment_masking(self):
         assert correct_single_template('id=abc123') == 'id=<*>'
+

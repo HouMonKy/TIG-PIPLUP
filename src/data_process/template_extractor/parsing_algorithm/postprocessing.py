@@ -53,12 +53,15 @@ def _fix_bracket_balance(template: str) -> str:
     if not fixes:
         return template
 
-    # 从后往前插入，避免位移
-    result = list(flat)
-    for pos, insert_ch in sorted(fixes, key=lambda x: -x[0]):
-        result.insert(pos, insert_ch)
-
-    result_str = ''.join(result)
+    # 从后往前插入改为按位置切片拼接，避免 O(n²) 的 list.insert
+    result_parts = []
+    last = 0
+    for pos, insert_ch in sorted(fixes):
+        result_parts.append(flat[last:pos])
+        result_parts.append(insert_ch)
+        last = pos
+    result_parts.append(flat[last:])
+    result_str = ''.join(result_parts)
 
     # 还原占位符
     idx = 0
@@ -132,9 +135,14 @@ def correct_single_template(template, user_strings=None):
             # if token.lower() == to_replace.lower():
                 # token = '<*>'
 
-        # Simplify the tokens
+        # Simplify the tokens (WV: word concatenated with variable)
+        # 仅塌缩两类： <*> 中嵌于词内（abc<*>def，无法用分隔符表达），
+        # 以及词部为纯数字的遮蔽碎片（123<*>）；保留边界上的词证据
+        # （结构合并输出 planeB<*> / fsi_snap_fs<*> 的公共前缀）
         if '<*>' in token:
-            token = '<*>'
+            word_parts = [p for p in token.split('<*>') if p]
+            if len(word_parts) >= 2 or all(p.isdigit() for p in word_parts):
+                token = '<*>'
 
         # collect the result
         new_tokens.append(token)
@@ -145,16 +153,10 @@ def correct_single_template(template, user_strings=None):
     # Reduce repetitive patterns
     # 排除结构性分隔符（括号、=）——这些分隔符承载语义结构信息，
     # structure_aware_merge 产生的 <*>)<*> 等模式应保留。
-    # 仅对链式分隔符（空格、逗号、分号、下划线等）进行归约。
-    _structural_delim = {r'\(', r'\)', r'\[', r'\]', r'\{', r'\}', r'\='}
-    _reduction_delims = path_delimiters.union(token_delimiters) - _structural_delim
-    while True:
-        prev = template
-        for delimiter in _reduction_delims:
-            pattern = r'<\*>%s<\*>'%delimiter
-            template = re.sub(r'%s'%pattern, '<*>', template)
-        if prev == template:
-            break
+    # 仅对链式分隔符（空格、逗号、分号、下划线等）进行归约；
+    # 单正则一次匹配整条 <*> 分隔符链（含混合分隔符），
+    # 与原逐分隔符多轮循环语义等价。
+    template = re.sub(r'<\*>(?:[\s,!:|"\'.\-+#@$%&_]<\*>)+', '<*>', template)
 
     # 兜底：修复 identifier<*>) → identifier(<*>) （半括号修正）
     # 注意：旧版正则 r'([a-zA-Z_]\w*)<\*\)' 缺少 >，实际匹配 identifier<*) 而非 identifier<*>)，已修复
