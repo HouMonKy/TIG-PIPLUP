@@ -35,37 +35,62 @@ path_delimiters = {  # reduced set of delimiters for tokenizing for checking the
     }
 
 
-# 覆盖校验的已编译模式缓存（cProfile：原实现每次调用都重跑 split+escape+join
-# 并让引擎查缓存编译，占 2 万行语料总耗时的 ~30%）。键为模板 token，值是
-# 已编译的完整匹配模式；模板/token 是有限的小字符串集合，封顶后整表清空
-# （清空只是丢缓存，随时可重建，不影响正确性）。
-_COVER_PATTERN_CACHE = {}
-_COVER_PATTERN_LIMIT = 1 << 16
-# jaccardSimilarity 的模板词集合缓存（与模式缓存同一封顶策略）
+# 模块级缓存统一封顶：超限整表清空（只丢缓存可重建，不影响正确性）
+_CACHE_LIMIT = 1 << 16
+# jaccardSimilarity 的模板词集合缓存
 _WORD_SET_CACHE = {}
 # <*> 转义结果为模块级常量：模板固定段转义后按此切分
 _ESCAPED_WILDCARD = re.escape('<*>')
 
 
-def _get_cover_pattern(template_token):
-    """模板 token → 已编译 fullmatch 模式（带缓存）。
+def _wildcard_fullmatch(template, text):
+    """线性通配符全匹配：判定 text 能否被 template（<*> 为通配）完整覆盖。
 
-    语义与原实现一致：按 <*> 切分固定段，段间用非贪婪 .*? 连接
-    （每个 <*> 匹配任意内容），DOTALL 使 .*? 可跨行。
+    等价于 re.fullmatch('.*?'.join(escape(段)), text, re.DOTALL)（按 <*>
+    切分的字面量段间用非贪婪任意内容连接），但改为贪心最早匹配：
+    首段必须为前缀，中间段依次取 >= 当前位置的最早出现，末段必须为
+    后缀且起点不早于前段终点。O(n×段数) 纯字符串查找，彻底消除
+    .*? 链在近似失配长行上的组合回溯。
+
+    贪心正确性（交换论证）：中间段取最早出现位置为后续段保留最大
+    空间，存在可行分解当且仅当贪心可行；全匹配下 .*? 的懒惰/贪婪
+    不改变匹配存在性。
     """
-    pattern = _COVER_PATTERN_CACHE.get(template_token)
-    if pattern is None:
-        if len(_COVER_PATTERN_CACHE) >= _COVER_PATTERN_LIMIT:
-            _COVER_PATTERN_CACHE.clear()
-        parts = template_token.split('<*>')
-        pattern = _COVER_PATTERN_CACHE[template_token] = re.compile(
-            '.*?'.join(map(re.escape, parts)), re.DOTALL)
-    return pattern
+    if template == text:
+        return True
+    if '<*>' not in template:
+        return False
+    segs = template.split('<*>')
+    n = len(text)
+
+    head = segs[0]
+    if head:
+        if not text.startswith(head):
+            return False
+        pos = len(head)
+    else:
+        pos = 0
+
+    for seg in segs[1:-1]:
+        if not seg:
+            continue
+        idx = text.find(seg, pos)
+        if idx == -1:
+            return False
+        pos = idx + len(seg)
+
+    tail = segs[-1]
+    if tail:
+        start = n - len(tail)
+        if start < pos:
+            return False
+        return text.startswith(tail, start)
+    return True
 
 
 def _token_covers(template_token, text):
     """模板 token（可含 <*>）作为模式是否能覆盖 text 字符串。"""
-    return _get_cover_pattern(template_token).fullmatch(text) is not None
+    return _wildcard_fullmatch(template_token, text)
 
 
 def _fixed_brackets_balanced(candidate):
@@ -367,7 +392,7 @@ class Logcluster:
         # 与 _token_covers 共用已编译模式缓存：原实现每次调用重跑
         # split+escape+join 并触发编译，是解析热路径的最大热点。
         # fullmatch 已隐含首尾锚定（原实现的 ^ $ 对 fullmatch 是冗余的）。
-        return _get_cover_pattern(template1).fullmatch(template2) is not None
+        return _wildcard_fullmatch(template1, template2)
     
     def seqSimilarity(self, seq1, seq2):
         sim = 0
@@ -517,6 +542,11 @@ class LogParser:
         # 模板数上千后每行都要做 O(桶) 次 seqDist（吞吐崩塌为百行/秒级，
         # 表现为"卡死"）；完全相同的行先查此索引 O(1) 直达簇。
         self._exact_index = {}
+        # seqDist 记忆化：扫桶时相同 (模板, 序列) 对的评分直接复用
+        self._seqdist_cache = {}
+        # 已登记常量键集：桶路由的成员判断依据（'None' 恒在），
+        # 仅由 _reindex_from_none 与 load_cache 重建登记
+        self._constant_keys = {'None'}
         # 初始化时执行且仅执行一次加载
         if self.use_cache:
             self.load_cache()
@@ -551,17 +581,51 @@ class LogParser:
                     cluster.br_thresh = self.br_thresh
                     cluster.logIDL = []
 
+                # ── 去重 + 重建桶（不能只重建 _exact_index）──
+                # 历史缓存可能包含：模板演化前遗留的同模板重复簇、
+                # 陈旧桶路由（簇按旧模板常量入桶后模板已变化）。
+                # 1) 按模板元组去重，命中计数累加，保留首个；
+                # 2) 以当前模板按统一路由规则重建 storage/shallow 两树；
+                # 3) _exact_index 同步重建。
+                unique = {}
+                deduped = []
+                for cluster in log_clusters:
+                    key = tuple(cluster.logTemplate)
+                    first = unique.get(key)
+                    if first is None:
+                        unique[key] = cluster
+                        deduped.append(cluster)
+                    else:
+                        first.hit_time += getattr(cluster, 'hit_time', 1)
+
+                storage_tree = {'None': {}}
+                shallow_tree = {'None': []}
+                exact_index = {}
+                constant_keys = {'None'}
+                for cluster in deduped:
+                    # 与 _reindex_from_none 登记规则一致：首个非 <*> token
+                    # 作为常量键，簇按此路由重建
+                    constant = 'None'
+                    for token in cluster.logTemplate:
+                        if '<*>' not in token:
+                            constant = token
+                            break
+                    if constant != 'None':
+                        constant_keys.add(constant)
+                    storage_tree.setdefault(constant, {}).setdefault(
+                        len(cluster.logTemplate), []).append(cluster)
+                    shallow_tree.setdefault(constant, []).append(cluster)
+                    exact_index.setdefault(tuple(cluster.logTemplate), cluster)
+                self._constant_keys = constant_keys
+
+                log_clusters = deduped
+
                 self.storage_tree = storage_tree
                 self.shallow_tree = shallow_tree
                 self.logCluL = log_clusters
                 self.template_cache = template_cache
                 self.light_cache = light_cache
-
-                # 重建精确模板索引（setdefault 保留首个簇，与桶内线性扫描
-                # 命中首个同模板簇的语义一致）
-                self._exact_index = {}
-                for cluster in log_clusters:
-                    self._exact_index.setdefault(tuple(cluster.logTemplate), cluster)
+                self._exact_index = exact_index
 
                 logger.debug(
                     f"[PIPLUP State] IO Load Triggered. Successfully loaded {len(self.logCluL)} clusters from cache.")
@@ -632,14 +696,18 @@ class LogParser:
         return -1
 
     def _bucket_constant(self, tokens):
-        """与 treeSearch/addSeqToPrefixTree 一致的常量提取：shallow_tree
-        键中第一个出现在 tokens 里的键，否则 'None'。"""
-        constant = 'None'
-        for token in self.shallow_tree.keys():
-            if token in tokens:
-                constant = token
-                break
-        return constant
+        """桶路由常量：tokens 中第一个**已登记**的常量键，否则 'None'。
+
+        只沿 tokens 自身顺序做集合成员判断（O(len(tokens))），不扫描
+        全部常量键——原实现遍历 shallow_tree 所有键找第一个命中，键多时
+        每行都是线性开销。语义要点：未登记的 token（通常是变量值）不
+        参与路由，避免按高熵变量值分桶导致永不合桶；常量键只由
+        _reindex_from_none 与缓存重建登记（模板稳定后的固定 token）。
+        """
+        for token in tokens:
+            if token in self._constant_keys:
+                return token
+        return 'None'
 
     def treeSearch(self, seq):
         # ── O(1) 精确命中快路径 ──
@@ -660,10 +728,9 @@ class LogParser:
         # Search on the second layer
         seqLen = len(seq)
 
-        if seqLen not in self.storage_tree[constant].keys():
+        logClustL = self.storage_tree.get(constant, {}).get(seqLen)
+        if not logClustL:
             return retLogClust, constant, seq
-        else:
-            logClustL = self.storage_tree[constant][seqLen]
 
         retLogClust, new_template = self.fastMatch(logClustL, seq)
 
@@ -671,26 +738,35 @@ class LogParser:
 
     def addSeqToPrefixTree(self, logClust):
         seqLen = len(logClust.logTemplate)
-        # Default first token is None
-        constant = 'None'
-        
-        for token in self.shallow_tree.keys(): 
-            if token in logClust.logTemplate: 
-                constant = token
-                break
+        constant = self._bucket_constant(logClust.logTemplate)
 
-        if seqLen not in self.storage_tree[constant].keys():
-            self.storage_tree[constant][seqLen] = [logClust]
-        else:
-            self.storage_tree[constant][seqLen].append(logClust)
+        self.storage_tree.setdefault(constant, {}).setdefault(seqLen, []).append(logClust)
+        self.shallow_tree.setdefault(constant, []).append(logClust)
 
-        self.shallow_tree[constant].append(logClust)
-        
         return constant
 
-    #seq1 is template
     def seqDist(self, seq1, seq2):
-        """簇模板与候选序列的 token 级相似度。
+        """seqDist 记忆化包装：同 (模板, 序列) 对的评分结果直接复用。
+
+        说明为什么用记忆化而不是更细的候选索引来避免扫桶：失配 token
+        仍可通过通配覆盖/结构相似度拿到高达 0.9 的部分分，任何"先过滤
+        再精算"的候选索引都无法同时保证不漏簇（admissible）——除非改变
+        匹配语义。而相同形态的行会反复与同一批簇模板比较，记忆化把
+        重复扫描的每步成本降为一次元组哈希，且零行为变化。
+        """
+        key = (tuple(seq1), tuple(seq2))
+        cached = self._seqdist_cache.get(key)
+        if cached is not None:
+            return cached
+        result = self._seqdist_compute(key[0], key[1])
+        if len(self._seqdist_cache) >= _CACHE_LIMIT:
+            self._seqdist_cache.clear()
+        self._seqdist_cache[key] = result
+        return result
+
+    @staticmethod
+    def _seqdist_compute(seq1, seq2):
+        """簇模板与候选序列的 token 级相似度（原实现，被 seqDist 记忆化）。
 
         token 相等计 1 分；不等时用共享的结构识别给部分分：
         - 同字段名（key:value/key=value）：字段名固定证据 + 值相似度
@@ -779,7 +855,7 @@ class LogParser:
         if word_set is None:
             word_set = frozenset(
                 item for item in template.split() if any(ch.isalnum() for ch in item))
-            if len(_WORD_SET_CACHE) >= _COVER_PATTERN_LIMIT:
+            if len(_WORD_SET_CACHE) >= _CACHE_LIMIT:
                 _WORD_SET_CACHE.clear()
             _WORD_SET_CACHE[template] = word_set
         return word_set
@@ -822,15 +898,14 @@ class LogParser:
             if '<*>' not in token:
                 constant = token
                 break
+        # 首个非 <*> token 登记为常量键（与原 shallow 键语义一致）：
+        # 此后含该 token 的行/簇才路由到对应桶
+        if constant != 'None':
+            self._constant_keys.add(constant)
 
-        seq_len = len(cluster.logTemplate)
-        # 1. Initialize the buckets
-        if constant in self.storage_tree.keys():
-            if seq_len not in self.storage_tree[constant].keys():
-                self.storage_tree[constant][seq_len] = []
-        else:
-            self.storage_tree[constant] = {seq_len: []}
-            self.shallow_tree[constant] = []
+        # 1. Initialize the buckets（storage/shallow 两树键必须成对创建）
+        self.storage_tree.setdefault(constant, {}).setdefault(len(cluster.logTemplate), [])
+        self.shallow_tree.setdefault(constant, [])
 
         # 2. Remove the clusters with the new constant from 'None' in both trees
         # 一次性收集再重建列表（保持原有顺序），替换逐个 list.remove 的
@@ -841,10 +916,8 @@ class LogParser:
                 moved_set = set(moved)
                 for cl in moved:
                     self.shallow_tree[constant].append(cl)
-                    if len(cl.logTemplate) in self.storage_tree[constant].keys():
-                        self.storage_tree[constant][len(cl.logTemplate)].append(cl)
-                    else:
-                        self.storage_tree[constant][len(cl.logTemplate)] = [cl]
+                    self.storage_tree[constant].setdefault(
+                        len(cl.logTemplate), []).append(cl)
                 self.shallow_tree['None'] = [
                     cl for cl in self.shallow_tree['None'] if cl not in moved_set]
                 for seq_len_key in list(self.storage_tree['None'].keys()):
