@@ -578,55 +578,56 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 参数异常检测采用“**研发阶段治理、生产阶段直检**”的知识驱动架构。研发阶段从日志样例和参数说明中沉淀参数知识，训练并发布检测资产；生产阶段只进行确定性参数解析、知识表精确查询和策略检测，不按 `template_id` 路由，也不加载语义模型。
 
 ```plantuml
-@startuml Parameter_Anomaly_Overview
+@startuml Parameter_Overview_Research
 !theme plain
-skinparam backgroundColor #FEFEFE
 skinparam shadowing false
-skinparam roundCorner 10
-skinparam ActivityBorderColor #555555
 skinparam ArrowColor #555555
+skinparam nodesep 20
+skinparam ranksep 30
 
-title 参数异常检测总体流程（研发治理 → 生产直检）
+title 研发阶段：参数治理与检测资产训练
 
-start
+rectangle "日志样例 + 参数说明" as src
+rectangle "参数识别与治理候选生成\n定位参数与原文区间" as identify
+rectangle "规则校验与人工复核" as review
+database "参数知识表\n身份 / 语义 / 检测定义" as knowledge
+rectangle "共享 VAE +\n稳健统计训练" as vae
+rectangle "确定性 / 状态检测策略\n(序列/枚举/返回码/ID等)" as rule
+database "检测配置包\n绑定知识版本哈希" as assets
 
-partition 研发阶段 {
-  :输入: 日志样例 + 参数说明;
+src -right-> identify
+identify -right-> review
+review -right-> knowledge
+knowledge -right-> vae : 连续数值
+knowledge -right-> rule : 其他参数类型
+vae -right-> assets
+rule -right-> assets
+@enduml
+```
 
-  :参数识别与治理候选生成\n定位参数名、参数值及原文区间\n生成标准参数名、类别、单位、\n检测策略等治理候选;
+```plantuml
+@startuml Parameter_Overview_Production
+!theme plain
+skinparam shadowing false
+skinparam ArrowColor #555555
+skinparam nodesep 20
+skinparam ranksep 30
 
-  :规则校验与人工复核;
+title 生产阶段：参数解析与策略直检
 
-  :发布参数知识表\n(参数身份 / 参数语义 / 检测定义);
+rectangle "原始日志" as log
+rectangle "确定性参数解析\n提取参数名、原值、单位、区间" as parse
+database "参数知识表\n精确查询" as query
+rectangle "值解析与单位归一化\n按 detector_policy 检测" as hit
+rectangle "记录为未知参数\n直接通过(回流治理)" as miss
+rectangle "参数级结果汇总\n为日志级结论" as agg
 
-  if (detector_policy?) then (连续数值)
-    :共享 VAE + 稳健统计训练;
-  else (序列/关系/枚举/返回码/ID/地址)
-    :确定性或状态检测策略;
-  endif
-
-  :发布检测配置包\n共享模型 + 类别配置 + 参数统计\n绑定知识版本哈希;
-}
-
-partition 生产阶段 {
-  :输入: 原始日志;
-
-  :确定性参数解析\n提取参数名、原值、单位、原文区间;
-
-  :参数知识表精确查询;
-
-  if (命中已审核参数?) then (是)
-    :值解析与单位归一化;
-    :按 detector_policy 执行策略检测;
-  else (否)
-    :记录为未知参数，直接通过\n(回流研发阶段治理);
-  endif
-
-  :参数级结果汇总为日志级结论;
-}
-
-stop
-
+log -right-> parse
+parse -right-> query
+query -right-> hit : 命中已审核参数
+query -right-> miss : 未命中
+hit -right-> agg
+miss -right-> agg
 @enduml
 ```
 
@@ -1198,32 +1199,36 @@ def bucketize_logs(self, logs, max_bucket_diff=20):
 ```plantuml
 @startuml Tokenizer_Enhancement
 !theme plain
+skinparam shadowing false
+skinparam ArrowColor #555555
+skinparam nodesep 20
+skinparam ranksep 30
+
 title 分词增强语义理解链路
 
-|训练阶段|
-:1. 领域实体挖掘
-TP_IPC_SERVER_MAGIC_FAIL → 保护为完整 Token;
-:2. BPE 训练
-在日志语料上学习子词单元;
-:3. 词表扩展
-将领域 Token 作为 user_defined_symbols
-加入 BERT 词表;
-:4. Embedding 初始化
-新 Token = 子词加权平均 + PCA正交化 + 范数匹配;
-:5. MLM 预训练
-在日志语料上继续训练，适应日志文本分布;
+package "训练阶段" {
+  rectangle "1. 领域实体挖掘\nTP_IPC_SERVER_MAGIC_FAIL\n→ 保护为完整 Token" as s1
+  rectangle "2. BPE 训练\n在日志语料上\n学习子词单元" as s2
+  rectangle "3. 词表扩展\n领域 Token 加入\nBERT 词表" as s3
+  rectangle "4. Embedding 初始化\n子词加权平均 +\nPCA正交化 + 范数匹配" as s4
+  rectangle "5. MLM 预训练\n适应日志文本分布" as s5
+  s1 -right-> s2
+  s2 -right-> s3
+  s3 -right-> s4
+  s4 -right-> s5
+}
 
-|推理阶段|
-:6. 领域分词器 tokenize
-TP_IPC_SERVER_MAGIC_FAIL → [TP_IPC_SERVER_MAGIC_FAIL]
-(而非 [TP, _IP, C, _SERVER, ...]);
-:7. 滑动窗口多粒度嵌入
-1~5-gram 嵌入捕获不同粒度的异常模式;
-:8. 异常基线相似度匹配
-与历史异常嵌入计算余弦相似度;
-:9. 三层 OR 判定
-静态 + 上下文 + 分类器互补;
+package "推理阶段" {
+  rectangle "6. 领域分词器 tokenize\n长领域词保留为完整 Token\n(不再切成 [TP, _IP, C, ...])" as s6
+  rectangle "7. 滑动窗口多粒度嵌入\n1~5-gram 嵌入捕获\n不同粒度的异常模式" as s7
+  rectangle "8. 异常基线相似度匹配\n与历史异常嵌入\n计算余弦相似度" as s8
+  rectangle "9. 三层 OR 判定\n静态 + 上下文 + 分类器互补" as s9
+  s6 -right-> s7
+  s7 -right-> s8
+  s8 -right-> s9
+}
 
+s5 -down-> s6
 @enduml
 ```
 
