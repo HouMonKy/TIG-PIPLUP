@@ -577,21 +577,57 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 参数异常检测采用“**研发阶段治理、生产阶段直检**”的知识驱动架构。研发阶段从日志样例和参数说明中沉淀参数知识，训练并发布检测资产；生产阶段只进行确定性参数解析、知识表精确查询和策略检测，不按 `template_id` 路由，也不加载语义模型。
 
-```text
-研发阶段
-日志与参数说明
-  → 参数识别与治理候选生成
-  → 规则校验与人工复核
-  → 发布参数知识表
-  → 训练并发布检测配置包
+```plantuml
+@startuml Parameter_Anomaly_Overview
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam ActivityBorderColor #555555
+skinparam ArrowColor #555555
 
-生产阶段
-原始日志
-  → 确定性参数解析
-  → 参数知识表精确查询
-      ├─ 命中：按知识中的策略检测
-      └─ 未命中：记录为未知参数，直接通过
-  → 参数级结果汇总为日志级结论
+title 参数异常检测总体流程（研发治理 → 生产直检）
+
+start
+
+partition 研发阶段 {
+  :输入: 日志样例 + 参数说明;
+
+  :参数识别与治理候选生成\n定位参数名、参数值及原文区间\n生成标准参数名、类别、单位、\n检测策略等治理候选;
+
+  :规则校验与人工复核;
+
+  :发布参数知识表\n(参数身份 / 参数语义 / 检测定义);
+
+  if (detector_policy?) then (连续数值)
+    :共享 VAE + 稳健统计训练;
+  else (序列/关系/枚举/返回码/ID/地址)
+    :确定性或状态检测策略;
+  endif
+
+  :发布检测配置包\n共享模型 + 类别配置 + 参数统计\n绑定知识版本哈希;
+}
+
+partition 生产阶段 {
+  :输入: 原始日志;
+
+  :确定性参数解析\n提取参数名、原值、单位、原文区间;
+
+  :参数知识表精确查询;
+
+  if (命中已审核参数?) then (是)
+    :值解析与单位归一化;
+    :按 detector_policy 执行策略检测;
+  else (否)
+    :记录为未知参数，直接通过\n(回流研发阶段治理);
+  endif
+
+  :参数级结果汇总为日志级结论;
+}
+
+stop
+
+@enduml
 ```
 
 模板无关的含义是：检测不依赖预置模板 ID。即使日志结构发生变化，只要其中出现已审核的参数名称，系统仍能复用同一份参数知识和检测配置；表外参数在生产阶段不做语义猜测，只记录并回流研发阶段治理。
@@ -705,12 +741,12 @@ new layout :: time use=2000000(us), plane=1, extraFlag(9)
 ### 5.5 模块交互关系
 
 ```plantuml
-@startuml Parameter_Anomaly_Flow
+@startuml Parameter_Governance_Sequence
 !theme plain
 skinparam backgroundColor #FEFEFE
 skinparam shadowing false
 
-title 参数知识驱动的研发阶段治理与生产阶段直检
+title 研发阶段：参数治理与检测资产训练
 
 actor "治理人员" as Reviewer
 participant "GLiNER2.5-multi" as GLiNER
@@ -718,17 +754,29 @@ participant "参数治理" as Govern
 database "参数知识表" as Knowledge
 participant "共享 VAE 训练" as Training
 database "检测配置包 v2" as Assets
-participant "生产参数解析" as Parser
-participant "策略执行与汇总" as Detect
 
-== 研发阶段 ==
 GLiNER -> Govern: 参数名、参数值及原文区间候选
 Govern -> Reviewer: 参数定义与检测策略候选
 Reviewer -> Knowledge: 发布审核记录、版本和哈希
 Knowledge -> Training: 适用的参数类别与标准参数定义
 Training -> Assets: 共享模型 + 类别配置 + 参数统计
 
-== 生产阶段 ==
+@enduml
+```
+
+```plantuml
+@startuml Parameter_Online_Sequence
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+title 生产阶段：参数解析与策略直检
+
+participant "生产参数解析" as Parser
+database "参数知识表" as Knowledge
+participant "策略执行与汇总" as Detect
+database "检测配置包 v2" as Assets
+
 Parser -> Knowledge: 精确匹配参数名
 Knowledge --> Parser: 已审核条目 / 未命中
 Parser -> Detect: 已知参数 + 未知参数
@@ -768,6 +816,8 @@ new component summary :: plane=1 ; time use=2000000(us) ; extraFlag(9)
 **模块输出示例**：领域词表、SentencePiece 模型、扩展后的 BERT tokenizer 及 MLM 继续预训练权重。
 
 **具体职责**：从日志语料中发现需要整体保留的领域词，扩展通用词表并让模型适应日志文本分布。训练产物交给 LogNetMini/Big 加载。
+
+#### 6.2.1 分词器训练流水线（6 步）
 
 ```plantuml
 @startuml Tokenizer_Training
@@ -813,6 +863,81 @@ epochs=3, batch_size=32
 learning_rate=5e-5
 mlm_probability=0.15;
 :输出: lognet-big-trained/;
+
+@enduml
+```
+
+#### 6.2.2 LogNetBig 增训（lognet_train_bgem3 分支）
+
+正式增训代码在 `lognet_train_bgem3` 分支。平台入口 `main.py` 负责下载日志数据集与基座模型、安装依赖，并以 `torch.distributed.launch` 多机多卡拉起训练脚本 `train_mlm_accelerate.py`（兼容 Ascend NPU，自动启用 bf16 混合精度）。增训默认学习率 5e-6，远小于 6.2.1 流水线的 5e-5；默认冻结基座模型，仅训练词嵌入（含新 token）与 lm_head，避免破坏基座权重。
+
+```plantuml
+@startuml LogNetBig_Finetune_Flow
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+skinparam roundCorner 10
+skinparam ActivityBorderColor #555555
+skinparam ArrowColor #555555
+
+title LogNetBig 增训流程
+
+start
+
+:平台入口 main.py\n下载日志数据集与基座模型\n安装依赖;
+
+:torch.distributed.launch\n多机多卡启动 train_mlm_accelerate.py;
+
+:初始化 Accelerator\n检测到 NPU 时启用 bf16 混合精度;
+
+:加载基座分词器\n读取 domain_tokens.json\n过滤词表外新词并 add_tokens\n逐词回读校验;
+
+:加载基座模型\nresize_token_embeddings\n新 token Embedding 初始化:\n子词加权平均 → PCA 部分正交化\n→ 范数匹配旧词表中位数;
+
+if (skip_training?) then (是)
+  :保存扩展词表后的 MLM 模型;
+  stop
+else (否)
+endif
+
+:递归发现 .log/.txt 文件\n读取全部非空日志行;
+
+if (data_sample_ratio < 1.0?) then (是)
+  :按比例采样;
+else (否)
+endif
+
+:固定种子行级划分\n训练集 / 验证集(2%);
+
+:构建 MLM 训练模型\n加载基座 MLM 权重\n覆盖为扩展后 Embedding;
+
+if (freeze_base_model?) then (是)
+  :冻结 encoder 与位置/段嵌入\n仅训练词嵌入(含新 token)与 lm_head;
+else (否)
+  :全部参数参与训练;
+endif
+
+:DataLoader + 动态 MLM 掩码\nmlm_probability=0.15\nAdamW + 线性预热调度\nlr=5e-6, weight_decay=0.1;
+
+repeat
+  :前向计算 loss → 反向传播\n梯度裁剪(1.0) → 参数更新;
+
+  if (到达评估步数?) then (是)
+    :验证集评估 eval loss;
+    if (创新低?) then (是)
+      :保存 best_model;
+    else (否)
+    endif
+  else (否)
+  endif
+
+repeat while (未达 max_train_steps?) is (是)
+
+:保存 final_model\n同步所有 rank 后销毁进程组;
+
+:训练产物回传 S3;
+
+stop
 
 @enduml
 ```
