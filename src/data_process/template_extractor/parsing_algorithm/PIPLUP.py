@@ -513,6 +513,10 @@ class LogParser:
         self.template_cache = {}
         # 轻量归一化缓存：预处理前用数字替换做 CRC32，跳过全量预处理
         self.light_cache = {}
+        # 精确模板索引：logTemplate 元组 → 簇。树搜索在桶内是线性扫描，
+        # 模板数上千后每行都要做 O(桶) 次 seqDist（吞吐崩塌为百行/秒级，
+        # 表现为"卡死"）；完全相同的行先查此索引 O(1) 直达簇。
+        self._exact_index = {}
         # 初始化时执行且仅执行一次加载
         if self.use_cache:
             self.load_cache()
@@ -552,6 +556,12 @@ class LogParser:
                 self.logCluL = log_clusters
                 self.template_cache = template_cache
                 self.light_cache = light_cache
+
+                # 重建精确模板索引（setdefault 保留首个簇，与桶内线性扫描
+                # 命中首个同模板簇的语义一致）
+                self._exact_index = {}
+                for cluster in log_clusters:
+                    self._exact_index.setdefault(tuple(cluster.logTemplate), cluster)
 
                 logger.debug(
                     f"[PIPLUP State] IO Load Triggered. Successfully loaded {len(self.logCluL)} clusters from cache.")
@@ -621,24 +631,40 @@ class LogParser:
                 return j
         return -1
 
-    def treeSearch(self, seq):
-        retLogClust = None
-        
-        # Find the frequent word
+    def _bucket_constant(self, tokens):
+        """与 treeSearch/addSeqToPrefixTree 一致的常量提取：shallow_tree
+        键中第一个出现在 tokens 里的键，否则 'None'。"""
         constant = 'None'
         for token in self.shallow_tree.keys():
-            if token in seq: 
+            if token in tokens:
                 constant = token
                 break
-        
+        return constant
+
+    def treeSearch(self, seq):
+        # ── O(1) 精确命中快路径 ──
+        # 完全相同的模板序列直接定位簇，绕过桶内线性扫描（桶达数千簇时
+        # 每行 O(桶) 次 seqDist 是吞吐崩塌的根源）。语义与 fastMatch 的
+        # 精确匹配分支一致：maxSim=1，new_template 取等值新列表
+        # （getTemplate 同样返回新列表——副本避免 logTemplate 与调用方
+        # 列表对象别名，防止 updateSequence 原地改写污染模板）。
+        exact = self._exact_index.get(tuple(seq))
+        if exact is not None:
+            return exact, self._bucket_constant(seq), seq[:]
+
+        retLogClust = None
+
+        # Find the frequent word
+        constant = self._bucket_constant(seq)
+
         # Search on the second layer
         seqLen = len(seq)
-        
+
         if seqLen not in self.storage_tree[constant].keys():
             return retLogClust, constant, seq
         else:
             logClustL = self.storage_tree[constant][seqLen]
-        
+
         retLogClust, new_template = self.fastMatch(logClustL, seq)
 
         return retLogClust, constant, new_template
@@ -807,18 +833,24 @@ class LogParser:
             self.shallow_tree[constant] = []
 
         # 2. Remove the clusters with the new constant from 'None' in both trees
+        # 一次性收集再重建列表（保持原有顺序），替换逐个 list.remove 的
+        # O(桶²) 实现——'None' 桶巨大时每次重索引可达秒级~分钟级
         if constant != 'None':
-            shallow_tree_copy = self.shallow_tree['None'].copy()
-            for cl in self.shallow_tree['None']:
-                if constant in cl.logTemplate:
+            moved = [cl for cl in self.shallow_tree['None'] if constant in cl.logTemplate]
+            if moved:
+                moved_set = set(moved)
+                for cl in moved:
                     self.shallow_tree[constant].append(cl)
                     if len(cl.logTemplate) in self.storage_tree[constant].keys():
                         self.storage_tree[constant][len(cl.logTemplate)].append(cl)
                     else:
                         self.storage_tree[constant][len(cl.logTemplate)] = [cl]
-                    self.storage_tree['None'][len(cl.logTemplate)].remove(cl)
-                    shallow_tree_copy.remove(cl)
-            self.shallow_tree['None'] = shallow_tree_copy
+                self.shallow_tree['None'] = [
+                    cl for cl in self.shallow_tree['None'] if cl not in moved_set]
+                for seq_len_key in list(self.storage_tree['None'].keys()):
+                    bucket = self.storage_tree['None'][seq_len_key]
+                    self.storage_tree['None'][seq_len_key] = [
+                        cl for cl in bucket if cl not in moved_set]
 
     def _register_cache_hit(self, cluster, logID, hit_clusters):
         """缓存命中共用维护：hit_time 递增、行号登记、阈值触发常量重索引。
@@ -932,6 +964,9 @@ class LogParser:
                 constant = self.addSeqToPrefixTree(newCluster)
                 self.mergeTemplates(newCluster, constant)
                 self.unsaved_updates += 1  # 变更计数器累加
+                # 登记精确模板索引（setdefault：若同键已存在则保留先登记者，
+                # 与桶内扫描命中首个同模板簇的语义一致）
+                self._exact_index.setdefault(tuple(logmessageL), newCluster)
 
             # Add the new log message to the existing cluster
             else:
@@ -939,6 +974,14 @@ class LogParser:
                 matchCluster.hit_time += 1
                 oldTemplate = matchCluster.logTemplate
                 matchCluster.logTemplate = newTemplate
+                # 维护精确模板索引：旧键仅在仍指向本簇时删除，
+                # 新键仅在未被占用时登记（保留先登记者）
+                old_key = tuple(oldTemplate)
+                if self._exact_index.get(old_key) is matchCluster:
+                    del self._exact_index[old_key]
+                new_key = tuple(newTemplate)
+                if new_key not in self._exact_index:
+                    self._exact_index[new_key] = matchCluster
                 constant = first_constant
                 # The template changed, update the list
                 oldTemplateList = matchCluster.templateList.copy()
