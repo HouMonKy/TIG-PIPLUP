@@ -818,7 +818,7 @@ new component summary :: plane=1 ; time use=2000000(us) ; extraFlag(9)
 
 **具体职责**：从日志语料中发现需要整体保留的领域词，扩展通用词表并让模型适应日志文本分布。训练产物交给 LogNetMini/Big 加载。
 
-#### 6.2.1 分词器训练流水线（6 步）
+#### 6.2.1 分词器训练流水线
 
 ```plantuml
 @startuml Tokenizer_Training
@@ -868,9 +868,7 @@ mlm_probability=0.15;
 @enduml
 ```
 
-#### 6.2.2 LogNetBig 增训（lognet_train_bgem3 分支）
-
-正式增训代码在 `lognet_train_bgem3` 分支。平台入口 `main.py` 负责下载日志数据集与基座模型、安装依赖，并以 `torch.distributed.launch` 多机多卡拉起训练脚本 `train_mlm_accelerate.py`（兼容 Ascend NPU，自动启用 bf16 混合精度）。增训默认学习率 5e-6，远小于 6.2.1 流水线的 5e-5；默认冻结基座模型，仅训练词嵌入（含新 token）与 lm_head，避免破坏基座权重。
+#### 6.2.2 LogNetBig 增训
 
 ```plantuml
 @startuml LogNetBig_Finetune_Flow
