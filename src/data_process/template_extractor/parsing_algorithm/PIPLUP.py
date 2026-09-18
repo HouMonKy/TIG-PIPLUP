@@ -39,8 +39,6 @@ path_delimiters = {  # reduced set of delimiters for tokenizing for checking the
 _CACHE_LIMIT = 1 << 16
 # jaccardSimilarity 的模板词集合缓存
 _WORD_SET_CACHE = {}
-# <*> 转义结果为模块级常量：模板固定段转义后按此切分
-_ESCAPED_WILDCARD = re.escape('<*>')
 
 
 def _wildcard_fullmatch(template, text):
@@ -91,6 +89,88 @@ def _wildcard_fullmatch(template, text):
 def _token_covers(template_token, text):
     """模板 token（可含 <*>）作为模式是否能覆盖 text 字符串。"""
     return _wildcard_fullmatch(template_token, text)
+
+
+class _ClusterPattern:
+    """簇模板的线性匹配器：复刻原正则 ^W1\\s*W2 .. <*> .. Wk$ 的
+    fullmatch + IGNORECASE + DOTALL 语义，无回溯。
+
+    语义对应关系（与原 _compile_regex_patterns 产出的模式一致）：
+    - 模板按 <*> 切段，段内按空白切词；<*> → 任意内容（原 .*?）
+    - 段内词间隙 → 任意空白串（原 \\s*，含 0 个）
+    - 大小写不敏感（模板词与文本预 lower；日志内容以 ASCII 为主，
+      极端 Unicode casefold 差异不覆盖——原正则同样不依赖）
+
+    零回溯的关键：词间隙必须全空白，且词首字符必为非空白——
+    下一词必须恰好起于上一个词之后的第一个非空白字符，间隙分解
+    唯一确定。通配区后的段首词按出现位置迭代（段内确定性匹配
+    失败才前进到下一出现位置）。
+    """
+
+    __slots__ = ('segments',)
+
+    def __init__(self, template):
+        # 每段：小写词列表；空段（连续 <*> / 首尾 <*>）→ 空列表
+        self.segments = [seg.lower().split() for seg in template.split('<*>')]
+
+    def fullmatch(self, text_l):
+        """对已 strip + lower 的文本做全匹配。"""
+        n = len(text_l)
+        segs = self.segments
+        # 首段：^ 锚定，从 0 起逐词确定性匹配
+        head = segs[0]
+        if head:
+            pos = self._match_words(text_l, n, head, 0)
+            if pos < 0:
+                return False
+        else:
+            pos = 0
+
+        if len(segs) == 1:
+            # 无通配：首段即末段，必须恰好覆盖全文
+            return pos == n
+
+        # 中间段：段首词在通配区后迭代出现位置（段内确定性匹配
+        # 失败才前进到下一出现位置；贪心最早成功为后续段留最大空间）
+        for i in range(1, len(segs) - 1):
+            words = segs[i]
+            if not words:
+                continue
+            p = text_l.find(words[0], pos)
+            while p != -1:
+                end = self._match_words(text_l, n, words, p)
+                if end >= 0:
+                    pos = end
+                    break
+                p = text_l.find(words[0], p + 1)
+            else:
+                return False
+
+        # 末段：$ 锚定并入出现位置迭代——段内匹配成功且恰好结束于
+        # 文本末尾才算命中（等价于正则对 .*? 的回溯推尾）
+        tail = segs[-1]
+        if not tail:
+            return True   # 模板以 <*> 结尾，无尾部锚
+        p = text_l.find(tail[0], pos)
+        while p != -1:
+            if self._match_words(text_l, n, tail, p) == n:
+                return True
+            p = text_l.find(tail[0], p + 1)
+        return False
+
+    @staticmethod
+    def _match_words(text_l, n, words, start):
+        """从 start 起确定性匹配词序列，返回末位置（已跳过词间空白），
+        失败返回 -1。首词必须恰在 start 处开始。"""
+        pos = start
+        for w in words:
+            if not text_l.startswith(w, pos):
+                return -1
+            pos += len(w)
+            # 词间/词后跳过空白串：下一词首字符非空白，起点唯一确定
+            while pos < n and text_l[pos].isspace():
+                pos += 1
+        return pos
 
 
 def _fixed_brackets_balanced(candidate):
@@ -654,19 +734,16 @@ class LogParser:
     @staticmethod
     def _compile_regex_patterns(templates: list) -> list:
         """
-        统一编译聚类簇的正则匹配模式，隔离分词器产生的特征畸变。
+        统一编译聚类簇的匹配模式，隔离分词器产生的特征畸变。
 
-        返回已编译对象而不是字符串，避免热路径每次 ``fullmatch`` 都走
-        regex 模块的全局缓存查询/潜在重编译。簇级缓存负责在模板变化时
-        失效，因此这里的编译成本只发生在每个模板世代的第一次匹配。
+        返回 _ClusterPattern 线性匹配器列表而非正则：原实现产出
+        \\s*.*?\\s* 重叠量词链（<*>→.*? 与模板空格→\\s* 均可匹配空白），
+        在"字面量前部吻合、结尾失配 + 空格对齐"的真实日志上发生组合
+        回溯（每行秒级以上，10 万行文件表现为卡死）。线性匹配器语义
+        等价且无回溯（等价性差分对拍见测试）。簇级缓存负责在模板变化
+        时失效，编译成本只发生在每个模板世代的第一次匹配。
         """
-        template_patterns = []
-        for template in templates:
-            pattern = re.escape(template).replace(_ESCAPED_WILDCARD, ".*?")
-            pattern = pattern.replace(r"\ ", r"\s*")
-            pattern = f"^{pattern}$"
-            template_patterns.append(re.compile(pattern, re.DOTALL | re.IGNORECASE))
-        return template_patterns
+        return [_ClusterPattern(t) for t in templates]
 
     # 簇级已编译模式缓存：WeakKeyDictionary，随簇对象回收自动释放，
     # 不进入 pickle 持久化；以 templateList 世代计数（_tpl_version）失效。
@@ -674,7 +751,7 @@ class LogParser:
     _PATTERN_CACHE = weakref.WeakKeyDictionary()
 
     def _get_cluster_patterns(self, cluster):
-        """取簇模板的已编译正则列表（带世代失效的复用）。"""
+        """取簇模板的匹配器列表（带世代失效的复用）。"""
         version = getattr(cluster, '_tpl_version', 0)
         entry = self._PATTERN_CACHE.get(cluster)
         if entry is not None and entry[0] == version:
@@ -686,12 +763,12 @@ class LogParser:
     @staticmethod
     def _regex_match_log(content: str, template_patterns: list) -> int:
         """
-        统一执行单行日志的正则比对
+        统一执行单行日志的模板比对
         返回: 命中模板在列表中的索引 index。若无命中，返回 -1。
         """
-        clean_content = str(content).strip()
+        clean_content = str(content).strip().lower()
         for j, pattern in enumerate(template_patterns):
-            if pattern.fullmatch(clean_content) is not None:
+            if pattern.fullmatch(clean_content):
                 return j
         return -1
 
