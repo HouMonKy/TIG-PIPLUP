@@ -389,8 +389,11 @@ def _lcp_lcs_merge(t1, t2, delimiters):
         if tail_start >= 0:
             tail = t1[tail_start:]
         else:
-            # LCS 区域内无分隔符，直接取完整 LCS
-            tail = t1[lcs_start:]
+            # LCS 区域内无分隔符：tail 仅为纯字母/数字片段，不承载结构
+            # 信息（分隔符是结构边界的证据）。保留会产生 <*>e、<*>er、
+            # <*>ate 等无意义残留——这些短后缀通配 token 在 seqDist 中
+            # 经 _token_covers 对任何同尾词给 0.9 分，引发过度归并。
+            tail = ''
 
     # Step 4.5: 中段补偿 — tail 为空时，在 LCP 之后寻找以非下划线分隔符开头的最长共同子串
     # 下划线 _ 连接的子部分（如 _14）通常是变量，不应作为中段起始边界，

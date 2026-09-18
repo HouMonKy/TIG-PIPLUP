@@ -24,6 +24,7 @@ from src.data_process.template_extractor.parsing_algorithm.PIPLUP import (
     LogParser,
     Logcluster,
     _structure_aware_merge,
+    _lcp_lcs_merge,
     _progressive_generalize,
     path_delimiters,
 )
@@ -533,6 +534,42 @@ class TestTokenStructure:
         # 不同骨架 → 0
         assert ts.structure_similarity('(a1)', '[a1]') == 0.0
 
+    def test_skeleton_preserves_alpha_prefix(self):
+        """数字段骨架保留字母前缀作为固定证据（eth0/eth1 同族标识符）。
+
+        原实现 [A-Za-z0-9_]*\\d[\\w.\\-]* 把整个标识符吞成 \\x00，
+        同族标识符因 fixed=0 全部 0 分，真实数据中数千对同源簇无法合并。"""
+        # 正例：仅数字段不同的同族标识符获得非零相似度
+        assert ts.structure_similarity('eth0', 'eth1') > 0
+        assert ts.structure_similarity('vcontroller_0', 'vcontroller_1') > 0
+        assert ts.structure_similarity('GROUP_0', 'GROUP_1') > 0
+        assert ts._skeleton('eth0') == 'eth\x00'
+        # 反例：字母主体不同 → 骨架不同 → 0（不误合并）
+        assert ts.structure_similarity('eth0', 'wlan0') == 0.0
+        assert ts.structure_similarity(
+            'Nfs4CreateUpdateIdNamehash', 'Nfs4CreateUpdateUidNamehash') == 0.0
+        # 纯词（无数字）不受影响
+        assert ts.structure_similarity('active', 'disable') == 0.0
+
+    def test_kv_key_digit_suffix_same_field(self):
+        """kv 字段名仅数字段不同（TS1/TS2）视为同字段名。"""
+        # 正例：编号后缀是变量位，字母主体是固定证据
+        assert ts.structure_similarity('TS1:operation', 'TS2:operation') == pytest.approx(1.0)
+        # 反例：字母主体不同 → 0
+        assert ts.structure_similarity('name:alice', 'age:alice') == 0.0
+
+    def test_lcp_lcs_merge_drops_delimiter_free_tail(self):
+        """LCS 区域无分隔符时丢弃纯字母尾巴，消除 <*>e 等合并伪影。"""
+        D = path_delimiters
+        # 纯单词合并不再残留无意义后缀
+        assert _structure_aware_merge('active', 'disable', D) != '<*>e'
+        for a, b in [('active', 'disable'), ('reader', 'writer'),
+                     ('create', 'update'), ('enable', 'disable')]:
+            merged = _lcp_lcs_merge(a, b, D)
+            assert merged == '<*>', (a, b, merged)
+        # 有分隔符的结构性尾巴仍保留
+        assert _lcp_lcs_merge('GlobalInfo;)', 'FrameInfo;)', D) == '<*>;)'
+
 
 # =====================================================================
 # 第六部分：掩码删减台账（原规则 → 承接机制 → 正例 → 防误合并反例）
@@ -685,6 +722,23 @@ class TestMaskDeletionLedger:
 # =====================================================================
 
 class TestProtectedBehavior:
+    def test_numerical_preserves_trailing_period(self):
+        """句点仅在后跟数字时才被数值规则消耗（句点是分隔符结构证据）。"""
+        # 正例：数字后紧跟非数字的句点不再被吞
+        assert preprocessing.preprocess(
+            'name:17500.objType', use_sequence=['numerical']) == 'name:<*>.objType'
+        assert preprocessing.preprocess(
+            'clusterId:0.Res', use_sequence=['numerical']) == 'clusterId:<*>.Res'
+        # 句尾句点保留（句子的结构证据）
+        assert preprocessing.preprocess(
+            'done in 5.', use_sequence=['numerical']) == 'done in <*>.'
+        # 真小数仍整体通配
+        assert preprocessing.preprocess(
+            'value is 3.14 ok', use_sequence=['numerical']) == 'value is <*> ok'
+        # size 的数字部分同步修复
+        assert preprocessing.preprocess(
+            'size 4.5KB ok', use_sequence=['size']) == 'size <*> ok'
+
     def test_preprocess_use_keys_supports_all_active_rules(self):
         """use_keys 分支必须覆盖默认 sequence 中的每条规则。"""
         assert set(preprocessing.sequence) <= set(preprocessing.regex_map)

@@ -32,8 +32,12 @@ _TIME_RE = re.compile(r'\d{1,2}:\d{2}(:\d{2})?([.,]\d+)?(?=[^\d:]|$)')
 _KEY_RE = re.compile(r'^[A-Za-z][A-Za-z0-9_.\-]*$')
 _HEX_CHARS = set('0123456789abcdefABCDEF')
 
-# 含数字的词段（复合标识符/数字链）→ 骨架中的变量位
-_VAR_RUN_RE = re.compile(r'[A-Za-z0-9_]*\d[\w.\-]*')
+# 数字段 → 骨架中的变量位。只替换数字段本身，保留字母前缀/下划线/
+# 点/连字符等固定文本证据（eth0 → 'eth\x00'，两骨架相同且 fixed>0
+# → 非零相似度）。原实现 [A-Za-z0-9_]*\d[\w.\-]* 会把整个标识符
+# 吞成 \x00，eth0/eth1、GROUP_0/GROUP_1 等同族标识符因 fixed=0
+# 全部得 0 分，真实数据中造成数千对同源簇无法合并。
+_VAR_RUN_RE = re.compile(r'\d+')
 
 
 def split_kv(token):
@@ -146,10 +150,13 @@ def structure_similarity(t1, t2):
     kv1, kv2 = split_kv(t1), split_kv(t2)
     if kv1 and kv2:
         (p1, k1, s1, v1), (p2, k2, s2, v2) = kv1, kv2
-        if k1 == k2 and s1 == s2 and p1 == p2:
+        # 字段名仅数字段不同（TS1/TS2、key1/key2）视为同字段名：
+        # 编号后缀是变量位，字母主体是固定证据
+        if (k1 == k2 or _strip_digits(k1) == _strip_digits(k2)) \
+                and s1 == s2 and p1 == p2:
             # 同字段名：字段名是固定证据，值是可变槽位
             return 0.5 + 0.5 * value_similarity(v1, v2)
-        # 字段名不同：结构不给分（保守，防止仅凭 key:value 形式归并）
+        # 字段名去数字后仍不同：结构不给分（保守，防止仅凭 key:value 形式归并）
         return 0.0
     return _skeleton_similarity(t1, t2)
 
