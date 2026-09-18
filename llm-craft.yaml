@@ -1,0 +1,53 @@
+version: 1.0
+metadata:
+  model_name: LogNetBig
+  description: LogNetBig
+  platform: ROMA_MA
+  engine: "PyTorch"
+  runtime:
+    specification:
+      - modelarts.bm.npu.arm.8snt9b1.i6l.d.c001
+      - modelarts.bm.npu.arm.8snt9b1.d.c002
+      - ceres.vm.npu.8*910b4.224u960g
+      - ceres.vm.npu.8*d910b.160u896g
+    minimum_driver_version: 7.1.0.5.220-23.0.3
+  images:
+    - name: modellink
+      regions:
+        - region: Xian
+          uid: 8d656bd3-7398-4b56-9876-093637af9a84
+          vid: 6af39ccd-18e2-4a6d-8666-8055d9d293b7
+    - name: package
+      regions:
+        - region: Xian
+          uid: 8d656bd3-7398-4b56-9876-093637af9a84
+          vid: 6af39ccd-18e2-4a6d-8666-8055d9d293b7
+    - name: predict
+      regions:
+        - region: Xian
+          uid: 8d656bd3-7398-4b56-9876-093637af9a84
+          vid: 6af39ccd-18e2-4a6d-8666-8055d9d293b7
+  codes:
+    - paths:
+        - source: /
+          target: /
+
+flow:
+  code_base_dir: /
+  stages:
+    - name: lognetbig_continue_pretrain
+      stage: finetune
+      metadata:
+        sft_type: full_batch
+      entrypoint: python $CODE_LOAD_PATH/main.py
+      hyperparameters:
+        - name: need_package
+          summary: need_package
+          description: 是否需要将推理态模型打zip包
+          type: list
+          default: "true"
+          options: [ "true", "false" ]
+      required_resource_spec:
+        npu_num: 8
+        npu_num_options: [ 8 ]
+      image: "{{rl_euler212_cp310_torch251_0725}}"
