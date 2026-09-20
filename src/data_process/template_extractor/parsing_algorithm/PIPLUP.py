@@ -560,15 +560,18 @@ class LogParser:
         assert len(seq1) == len(seq2)
         simTokens = 0
         numOfPar = 0
+        realDiff = 0  # 两个非通配符 token 不同的情况（如不同函数名），惩罚相似度
         for token1, token2 in zip(seq1, seq2):
             if '<*>' in token1:
-                if not any(ch.isalnum() for ch in token1): 
+                if not any(ch.isalnum() for ch in token1):
                     numOfPar += 1
                     continue
             if token1 == token2:
-                simTokens += 1 
+                simTokens += 1
+            elif '<*>' not in token1 and '<*>' not in token2:
+                realDiff += 1
 
-        retVal = float(simTokens) / len(seq1)
+        retVal = float(simTokens - realDiff) / len(seq1)
         return retVal, numOfPar
 
 
