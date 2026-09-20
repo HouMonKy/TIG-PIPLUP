@@ -116,15 +116,10 @@ regex_match = {
     #          (?<=[A-Za-z_]) 限定 0x 前面必须是字母或下划线（标识符内部），不匹配独立 0xNNNN。
     'embedded_hex': r'(?<=[A-Za-z_(])0x[0-9a-fA-F]+',
 
-    # 21c. xnet 上下文标识符：(xnet_r0_0_14:0) 中的 xnet_r0_0_14:0 —— 评估后保留
-    # 作用目标：(xnet_r0_0_14:0)Conn(...) → (<*>)Conn(...)
-    # 工程逻辑：用 lookbehind/lookahead 保留外层括号，避免 <*>Conn 产生后处理吞字。
-    # 评估结论（未删除）：整行单 token 形如 (xnet_x0_2_13:0)(num:5)server 时，
-    #   st_dict[1]=1 要求精确匹配，token 内结构评分无法促成归并；且变量位于
-    #   kv 的 key 位（节点 ID），结构机制不覆盖"key 本身可变"的场景。
-    #   多 token 场景已由结构机制承接（见 TestMaskDeletionLedger 正例），
-    #   单 token 场景保留本规则作为必要兼容路径。
-    'xnet_ctx_id': r'(?<=\()xnet_\w+:\d+(?=\))',
+    # 21c. xnet 上下文标识符 —— 已删除（生产数据 A/B 评估：零代价，见
+    # TestMaskDeletionLedger::test_xnet_ctx_id_deleted）。
+    # 多 token 场景由结构机制承接；单 token 场景（st_dict[1]=1 精确匹配）
+    # 为已知边界，若生产回归发现该形态成簇异常，恢复本规则即可。
 
     # 23. 设备序列号：数字与大写字母交替的混合序列号
     # 作用目标：2102312UCT10L8000290、2102313EDH10PA100243
@@ -162,7 +157,6 @@ regex_map = {
     'brace_hex_value_pair': 'HEX_PAIR_TAG',
     'hex_dump': 'HEX_DUMP_TAG',
     'lucene_filename': 'FILENAME_TAG',
-    'xnet_ctx_id': 'XNET_CTX_TAG',
     'embedded_hex': 'HEX_TAG',
     'device_serial': 'DEVICE_SERIAL_TAG',
 }
@@ -179,7 +173,7 @@ regex_map = {
 # compound_num_id、compound_hex_id、bracket_compound_id、underscore_num_suffix、xnet_ctx_id
 # 已删除（纯冗余/等价承接，见 regex_match 内 6-9 注释）：datetime_full、
 # kernel_uptime、epoch_ms_13d、code_line_num
-sequence = ['log_level', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'brace_hex_value_pair', 'hex_dump', 'lucene_filename', 'xnet_ctx_id', 'embedded_hex', 'device_serial', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
+sequence = ['log_level', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'brace_hex_value_pair', 'hex_dump', 'lucene_filename', 'embedded_hex', 'device_serial', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
 
 # 兜底清理：与 sequence 中规则一一对应的二次扫描（处理 <*> 交互后的残留）。
 # 仅当对应规则在活跃规则集 use_sequence 中时执行——规则被（实验性）关闭时，
@@ -192,7 +186,6 @@ _CLEANUP_RULES = [
     # (?!\w) 防止匹配英文单词片段（如 "DB fa"iled）
     ('hex_dump', re.compile(r' [0-9a-fA-F]{2}(?!\w)(?: [0-9a-fA-F]{2}(?!\w))+'), ' <*>'),
     ('lucene_filename', re.compile(r'(?<![\w>])[_.][\w.~-]+'), '<*>'),
-    ('xnet_ctx_id', re.compile(r'(?<=\()xnet_\w+:\d+(?=\))'), '<*>'),
     ('embedded_hex', re.compile(r'(?<=[A-Za-z_(])0x[0-9a-fA-F]+'), '<*>'),
     ('device_serial', re.compile(r'\d{4,}[A-Z]{2,}\d{2,}(?:[A-Z]{1,}\d{2,})+'), '<*>'),
 ]

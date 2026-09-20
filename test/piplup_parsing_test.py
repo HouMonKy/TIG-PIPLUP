@@ -638,39 +638,35 @@ class TestMaskDeletionLedger:
         result = parser.parse_list(logs)
         assert set(result) == {'task extend_<*> done'}
 
-    def test_xnet_ctx_id_evaluated_and_retained(self):
-        """原规则 (?<=\\()xnet_\\w+:\\d+(?=\\))（(xnet_r0_0_14:0)）—— 评估后保留。
+    def test_xnet_ctx_id_deleted(self):
+        """原规则 (?<=\\()xnet_\\w+:\\d+(?=\\))（(xnet_r0_0_14:0)）—— 生产数据
+        A/B 评估后删除（mask_ab_report：目标形态零命中，零代价）。
 
-        多 token 场景结构机制可承接（ctx (xnet_r0_{N}_14:0) linked 归并单簇）；
-        但整行单 token 形如 (xnet_x0_2_13:0)(num:5)server 时 st_dict[1]=1
-        要求精确匹配，且变量位于 kv 的 key 位，结构评分无法促成归并。
-        保留该规则作为单 token 场景的必要兼容路径。"""
-        # 多 token：结构机制承接（关闭掩码验证）
-        with MaskDisable({'xnet_ctx_id'}):
-            logs = [f'ctx (xnet_r0_{i}_14:0) linked' for i in range(6)]
-            parser = make_parser(br_thresh=5)
-            result = parser.parse_list(logs)
-            assert len(set(result)) == 1
-            for line, tpl in zip(logs, result):
-                assert template_covers(tpl, line)
-        # 单 token：掩码保留的必要性（开启掩码后单 token 变体归并）
-        logs = [f'(xnet_x0_{i}_13:0)(num:5)server' for i in range(6)]
-        parser = make_parser()
+        多 token 场景由结构机制承接：ctx (xnet_r0_{N}_14:0) linked 归并单簇，
+        模板覆盖原行。已知边界：整行单 token 形如 (xnet_x0_2_13:0)(num:5)server
+        时 st_dict[1]=1 要求精确匹配且变量位于 kv key 位，删除后该形态将按
+        取值分簇——生产回归若发现该形态成簇异常，恢复本规则即可。"""
+        # 多 token：结构机制承接（规则已删除，直接验证）
+        logs = [f'ctx (xnet_r0_{i}_14:0) linked' for i in range(6)]
+        parser = make_parser(br_thresh=5)
         result = parser.parse_list(logs)
         assert len(set(result)) == 1
+        for line, tpl in zip(logs, result):
+            assert template_covers(tpl, line)
 
     def test_deleted_rules_not_in_sequence(self):
-        """台账完备性：6 条结构承接删除 + 4 条纯冗余删除；xnet_ctx_id 评估后保留。"""
+        """台账完备性：6 条结构承接删除 + 4 条纯冗余删除 + xnet_ctx_id
+        （生产 A/B 零代价删除）；无保留候选。"""
         deleted = {'underscore_composite_num', 'kv_compound_id', 'compound_num_id',
                    'compound_hex_id', 'bracket_compound_id', 'underscore_num_suffix',
+                   'xnet_ctx_id',
                    # 纯冗余（等价承接，非结构机制）：与既有规则替换区间相同或可归约
                    'datetime_full', 'kernel_uptime', 'epoch_ms_13d', 'code_line_num'}
         assert deleted.isdisjoint(preprocessing.sequence)
         assert deleted.isdisjoint(preprocessing.regex_match)
+        assert deleted.isdisjoint(preprocessing.regex_map)
         for rule, _, _ in preprocessing._CLEANUP_RULES:
             assert rule not in deleted
-        # 评估后保留的规则
-        assert 'xnet_ctx_id' in preprocessing.sequence
 
     def test_datetime_full_deleted(self):
         """原规则 \\b\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}:\\d{2}\\b（整体日期时间）
