@@ -93,6 +93,8 @@ def main():
     p_gt.add_argument("--concurrency", type=int, default=1, help="裁决并发线程数（1=串行；>1 线程池加速 LLM IO）")
     p_gt.add_argument("--audit-consistent", type=int, default=0, help="一致行抽样审计数量（0=关闭；量化两版共识错误率，GT 可信度指标）")
     p_gt.add_argument("--no-eval", action="store_true", help="跳过自动评估（默认在 gt 结束时自动产出 eval_report.json）")
+    p_gt.add_argument("--human-annotations", default=None, help="人工标注回填文件（jsonl，{TaskID, template}；清单见 human_review_tasks.jsonl）")
+    p_gt.add_argument("--reuse-runs", action="store_true", help="复用上次 gt 落盘的 runs/（输入签名校验），跳过重复解析——人工标注回填时使用")
 
     # ===== answer 子命令 =====
     p_answer = subparsers.add_parser("answer", help="模块4：GT 冻结后评估任意算法")
@@ -166,6 +168,8 @@ def main():
             concurrency=args.concurrency,
             audit_consistent=args.audit_consistent,
             no_eval=args.no_eval,
+            human_annotations_path=args.human_annotations,
+            reuse_runs=args.reuse_runs,
         )
 
     elif args.subcommand == "answer":

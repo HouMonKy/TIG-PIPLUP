@@ -174,6 +174,35 @@ def _load_run_outputs(payload):
     return results, clusters
 
 
+def load_runs_dir(runs_dir, expect_input, expect_module, expect_scenarios,
+                  expect_lines=None):
+    """从 gt 模块落盘的 runs 目录加载两版结果，校验输入签名。
+
+    供 answer --reuse-runs 与 gt --reuse-runs 复用，跳过重复解析。
+    """
+    meta_path = Path(runs_dir) / "run_meta.json"
+    if meta_path.exists():
+        meta = json.loads(meta_path.read_text(encoding='utf-8'))
+        same = (meta.get('input_path') == str(expect_input)
+                and meta.get('module') == expect_module
+                and (meta.get('scenarios') or None) == (expect_scenarios or None))
+        if not same:
+            raise RuntimeError(
+                f"runs 目录输入签名不匹配（{meta_path}），请重新运行 gt 或去掉 --reuse-runs")
+
+    for label in ("piplup_orig", "piplup_opt"):
+        if not (Path(runs_dir) / f"{label}_result.jsonl").exists():
+            raise FileNotFoundError(f"runs 目录缺少 {label}_result.jsonl: {runs_dir}")
+
+    results_orig = load_jsonl(Path(runs_dir) / "piplup_orig_result.jsonl")
+    results_opt = load_jsonl(Path(runs_dir) / "piplup_opt_result.jsonl")
+    if expect_lines is not None and len(results_orig) != expect_lines:
+        raise RuntimeError(
+            f"runs 结果行数 {len(results_orig)} 与当前输入 {expect_lines} 不一致，"
+            "请重新运行 gt 或去掉 --reuse-runs")
+    return results_orig, results_opt
+
+
 def run_piplup_and_save(input_path, parser_module_path, output_dir, label,
                         module_name="Messages", cold_start=True, scenarios=None,
                         data_root=None, preprocessing_orig_path=None,

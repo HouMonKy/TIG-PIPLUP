@@ -35,7 +35,7 @@ from pathlib import Path
 
 from eval_pipeline._shared.data_loader import load_jsonl, write_jsonl, write_json
 from eval_pipeline._shared.metrics import normalize_template
-from eval_pipeline._shared.piplup_runner import run_piplup_pair
+from eval_pipeline._shared.piplup_runner import run_piplup_pair, load_runs_dir
 from eval_pipeline._shared.adjudication import (
     run_adjudication,
     ADJ_ORIGINAL, ADJ_OPTIMIZED, ADJ_EQUIVALENT, ADJ_NEITHER, ADJ_INSUFFICIENT,
@@ -141,6 +141,9 @@ def _compare_clusters(results_orig, results_opt, raw_map):
         norm_opt = normalize_template(r_opt['template'])
 
         if norm_orig == norm_opt:
+            # 一致簇的内容寻址 TaskID（CS_ 前缀）：人工标注/审计修正的统一挂载点
+            cluster_task_id = 'CS_' + hashlib.sha1(
+                norm_orig.encode('utf-8')).hexdigest()[:16].upper()
             gt_tasks.append({
                 'log_id': log_id,
                 'template': r_orig['template'],
@@ -148,11 +151,12 @@ def _compare_clusters(results_orig, results_opt, raw_map):
                 'adjudication': 'consistent',
                 'reason': '两版 PIPLUP 模板一致',
                 'confidence': 1.0,
+                'TaskID': cluster_task_id,
             })
             line_pairs.append({
                 'log_id': log_id, 'consistent': True,
                 'template_id_orig': tid_orig, 'template_id_opt': tid_opt,
-                'TaskID': '',
+                'TaskID': cluster_task_id,
             })
             continue
 
@@ -225,27 +229,63 @@ def _validate_synthesized(proposal: str, sample_logs: list) -> bool:
 
 
 def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
-                    results_orig: list, results_opt: list):
+                    results_orig: list, results_opt: list,
+                    human_map: dict = None, audit_corrections: dict = None,
+                    audit_failed_templates: set = None):
     """构建主/备双 GT 变体与排除行清单。
 
-    行级规则：
-    - consistent/original → 两变体同模板
-    - optimized           → 两变体均取优化版
-    - equivalent          → 主=原版，备=优化版（评估均值消除偏向）
-    - neither(合成通过)   → 两变体均取合成模板（EventId=crc32）
-    - 其余                → excluded_lines（pending/failed/insufficient/
-                             neither_invalid_proposal），计入覆盖率
+    GT 组装优先级（每个 TaskID）：
+    1. 人工标注（human_map，confidence=1.0，adjudication='human'）
+    2. 审计修正（audit_corrections，一致簇被判 incorrect 且合成通过）
+    3. LLM 裁决 original/optimized
+    4. 等价 equivalent → 双变体（主=原版，备=优化版；均值消除偏向）
+    5. neither 合成模板通过程序校验 → 两变体取合成模板
+    6. 审计判 incorrect 但合成未通过的一致簇 → excluded
+       （audit_synthesis_failed——已知错误不能留在 GT）
+    7. 其余 → excluded_lines（pending/failed/insufficient/
+       neither_invalid_proposal），计入覆盖率
 
     Returns:
-        (final_gt_main, final_gt_alt, excluded)
+        (final_gt_main, final_gt_alt, excluded, human_applied)
     """
     adj_map, task_map, failed_ids = _load_adjudication_results(out)
     orig_map = {r['log_id']: r for r in results_orig}
     opt_map = {r['log_id']: r for r in results_opt}
+    human_map = human_map or {}
+    audit_corrections = audit_corrections or {}
+    audit_failed_templates = audit_failed_templates or set()
 
-    final_gt = list(consistent_tasks)
-    final_gt_alt = list(consistent_tasks)
+    final_gt = []
+    final_gt_alt = []
     excluded = []
+    human_applied = 0
+
+    # 一致行：先查人工标注，再查审计修正
+    for t in consistent_tasks:
+        task_id = t['TaskID']
+        if task_id in human_map:
+            record = {**t, 'template': human_map[task_id],
+                      'template_id': zlib.crc32(human_map[task_id].encode('utf-8')),
+                      'adjudication': 'human', 'confidence': 1.0}
+            final_gt.append(record)
+            final_gt_alt.append(dict(record))
+            human_applied += 1
+            continue
+        if t['template'] in audit_corrections:
+            record = {**t, 'template': audit_corrections[t['template']],
+                      'template_id': zlib.crc32(audit_corrections[t['template']].encode('utf-8')),
+                      'adjudication': 'audit_synthesized'}
+            final_gt.append(record)
+            final_gt_alt.append(dict(record))
+            continue
+        if t['template'] in audit_failed_templates:
+            # 已知错误但合成未通过 → 排除，转人工标注清单
+            excluded.append({'log_id': t['log_id'],
+                             'reason': 'audit_synthesis_failed',
+                             'TaskID': task_id})
+            continue
+        final_gt.append(t)
+        final_gt_alt.append(dict(t))
 
     for lp in line_pairs:
         if lp['consistent']:
@@ -258,19 +298,29 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
             continue
 
         task_id = lp['TaskID']
+        base = {'log_id': log_id}
+        # 人工标注最高优先级（覆盖排除与 LLM 裁决）
+        if task_id in human_map:
+            record = {**base, 'template': human_map[task_id],
+                      'template_id': zlib.crc32(human_map[task_id].encode('utf-8')),
+                      'adjudication': 'human', 'confidence': 1.0}
+            final_gt.append(record)
+            final_gt_alt.append(dict(record))
+            human_applied += 1
+            continue
+
         adj = adj_map.get(task_id)
         if adj is None:
             reason = 'adjudication_failed' if task_id in failed_ids else 'pending'
-            excluded.append({'log_id': log_id, 'reason': reason, 'TaskID': task_id})
+            excluded.append({**base, 'reason': reason, 'TaskID': task_id})
             continue
 
         verdict = adj.get('Adjudication', '')
-        base = {
-            'log_id': log_id,
+        base.update({
             'adjudication': verdict,
             'reason': adj.get('Reason', ''),
             'confidence': adj.get('Confidence', 0),
-        }
+        })
 
         if verdict == ADJ_ORIGINAL:
             final_gt.append({**base, 'template': r_orig['template'],
@@ -305,7 +355,7 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
             excluded.append({'log_id': log_id, 'reason': verdict or 'unknown',
                              'TaskID': task_id})
 
-    return final_gt, final_gt_alt, excluded
+    return final_gt, final_gt_alt, excluded, human_applied
 
 
 def _audit_consistent_lines(out: Path, consistent_tasks: list, raw_map: dict,
@@ -313,9 +363,10 @@ def _audit_consistent_lines(out: Path, consistent_tasks: list, raw_map: dict,
     """抽样 K 个一致模板簇，LLM 审核模板是否正确代表样本行。
 
     量化"两版一起错"的共识错误率——GT 可信度的关键指标。
+    审计判 incorrect 时要求 LLM 合成 CorrectedTemplate，并做程序校验
+    （覆盖全部样本 + 固定词 ≥2）：通过则产出修正（GT 组装时替换），
+    不通过则该簇转入人工标注清单。
     """
-    from eval_pipeline._shared.llm_client import LLMClient
-
     # 按模板聚合一致行，取样本
     groups = {}
     for t in consistent_tasks:
@@ -323,15 +374,20 @@ def _audit_consistent_lines(out: Path, consistent_tasks: list, raw_map: dict,
     ranked = sorted(groups.items(), key=lambda kv: -len(kv[1]))
     sampled = ranked[:k]
     if not sampled:
-        return {'sampled': 0, 'incorrect': 0, 'error_rate': 0.0, 'details': []}
+        return {'sampled': 0, 'judged': 0, 'incorrect': 0, 'error_rate': 0.0,
+                'details': [], 'corrections': {}, 'failed_corrections': 0}
 
     audit_prompt = """你是日志模板质量审核员。给定一个模板与它所代表的多条原始日志，判断模板是否正确：
 - 模板只能使用 <*> 作为占位符
 - 正确 = 能匹配全部日志，且字段名/动作词等固定语义未被吞掉；ID/数字/时间/地址等动态值应使用 <*>
+- 若判定 incorrect，必须基于原始日志合成一个正确模板填入 CorrectedTemplate（程序会校验）
 只输出合法 JSON：
-{"Verdict": "correct|incorrect", "Reason": "简要说明", "Confidence": 0.9}"""
+{"Verdict": "correct|incorrect", "Reason": "简要说明", "Confidence": 0.9,
+ "CorrectedTemplate": "仅 incorrect 时填写，其余留空字符串"}"""
 
     details = []
+    corrections = {}   # 原模板 → 修正后模板（校验通过）
+    failed_corrections = 0
     incorrect = 0
     for template, log_ids in sampled:
         samples = [raw_map[lid] for lid in log_ids if lid in raw_map][:5]
@@ -342,7 +398,7 @@ def _audit_consistent_lines(out: Path, consistent_tasks: list, raw_map: dict,
                             'reason': 'dry-run', 'sample_lines': len(log_ids)})
             continue
         user_msg = f"模板:\n{template}\n\n原始日志:\n" + "\n".join(samples)
-        verdict, reason = 'skipped', ''
+        verdict, reason, corrected = 'skipped', '', ''
         try:
             raw = client.chat([
                 {"role": "system", "content": audit_prompt},
@@ -352,12 +408,22 @@ def _audit_consistent_lines(out: Path, consistent_tasks: list, raw_map: dict,
             if parsed and parsed.get('Verdict') in ('correct', 'incorrect'):
                 verdict = parsed['Verdict']
                 reason = parsed.get('Reason', '')
+                corrected = (parsed.get('CorrectedTemplate') or '').strip()
         except Exception as e:
             verdict, reason = 'error', str(e)
+
+        entry = {'template': template, 'verdict': verdict, 'reason': reason,
+                 'sample_lines': len(log_ids)}
         if verdict == 'incorrect':
             incorrect += 1
-        details.append({'template': template, 'verdict': verdict, 'reason': reason,
-                        'sample_lines': len(log_ids)})
+            # 修正闭环：程序校验（覆盖 + 固定词）
+            if corrected and _validate_synthesized(corrected, samples):
+                corrections[template] = corrected
+                entry['corrected'] = True
+            else:
+                failed_corrections += 1
+                entry['corrected'] = False
+        details.append(entry)
 
     n_judged = sum(1 for d in details if d['verdict'] in ('correct', 'incorrect'))
     result = {
@@ -366,10 +432,13 @@ def _audit_consistent_lines(out: Path, consistent_tasks: list, raw_map: dict,
         'incorrect': incorrect,
         'error_rate': (incorrect / n_judged) if n_judged else 0.0,
         'details': details,
+        'corrections': corrections,
+        'failed_corrections': failed_corrections,
     }
     write_json(out / "consistent_audit.json", result)
     logger.info(f"一致行审计: 抽样 {result['sampled']}，判定 {n_judged}，"
-                f"错误 {incorrect}（共识错误率 {result['error_rate']:.1%}）")
+                f"错误 {incorrect}（共识错误率 {result['error_rate']:.1%}），"
+                f"修正成功 {len(corrections)}，修正失败 {failed_corrections}")
     return result
 
 
@@ -394,25 +463,39 @@ def generate_gt(
     audit_consistent: int = 0,
     no_eval: bool = False,
     client=None,
+    human_annotations_path: str = None,
+    reuse_runs: bool = False,
 ):
-    """GT 生成主流程（一条命令产出 GT 工件包 + 两版质量评估报告）。"""
+    """GT 生成主流程（一条命令产出 GT 工件包 + 两版质量评估报告）。
+
+    human_annotations_path: 人工标注文件（jsonl，{TaskID, template, annotator?}），
+        优先级高于一切自动裁决；与 --reuse-runs 组合可在不重跑解析的情况下
+        让标注生效。human_review_tasks.jsonl 是标注工作清单（自动导出）。
+    reuse_runs: 复用上次 gt 落盘的 runs/（输入签名校验），跳过重复解析。
+    """
     out = Path(output_dir)
     out.mkdir(parents=True, exist_ok=True)
 
-    # ===== Step 1: 运行两版 PIPLUP（冷启动默认并行） =====
+    # ===== Step 1: 运行两版 PIPLUP（冷启动默认并行；--reuse-runs 跳过） =====
     print(f"\n{'='*60}")
     print(f"  Step 1: 运行两版 PIPLUP（行级解析结果落盘）")
     print(f"{'='*60}")
 
     run_dir = out / "runs"
-    results_orig, clusters_orig, results_opt, clusters_opt = run_piplup_pair(
-        input_path=input_path, output_dir=str(run_dir), module_name=module_name,
-        cold_start=cold_start, scenarios=scenarios, data_root=data_root,
-        piplup_orig_path=piplup_orig_path,
-        preprocessing_orig_path=preprocessing_orig_path,
-        postprocessing_orig_path=postprocessing_orig_path,
-        piplup_opt_path=piplup_opt_path,
-    )
+    if reuse_runs:
+        results_orig, results_opt = load_runs_dir(
+            run_dir, input_path, module_name, scenarios)
+        clusters_orig = clusters_opt = []
+        print(f"  复用已落盘结果: 原版 {len(results_orig)} 行 / 优化版 {len(results_opt)} 行")
+    else:
+        results_orig, clusters_orig, results_opt, clusters_opt = run_piplup_pair(
+            input_path=input_path, output_dir=str(run_dir), module_name=module_name,
+            cold_start=cold_start, scenarios=scenarios, data_root=data_root,
+            piplup_orig_path=piplup_orig_path,
+            preprocessing_orig_path=preprocessing_orig_path,
+            postprocessing_orig_path=postprocessing_orig_path,
+            piplup_opt_path=piplup_opt_path,
+        )
     write_json(run_dir / "run_meta.json", {
         'input_path': str(input_path),
         'module': module_name,
@@ -466,13 +549,48 @@ def generate_gt(
         summary = {"total_task_count": 0, "resolved_task_count": 0,
                    "failed_task_count": 0, "pending_task_count": 0}
 
-    # ===== Step 4: 生成双变体 GT 与排除行 =====
+    # ===== Step 4（可选）: 一致行抽样审计（先于 GT 组装，修正可回填） =====
+    audit_result = None
+    if audit_consistent > 0 and gt_tasks:
+        print(f"\n{'='*60}")
+        print(f"  Step 4: 一致行抽样审计（共识错误率 + 修正）")
+        print(f"{'='*60}")
+        if client is None:
+            from eval_pipeline._shared.llm_client import create_client
+            audit_client = create_client(config_path=llm_config_path,
+                                         mock=(not live), dry_run=dry_run)
+        else:
+            audit_client = client
+        audit_result = _audit_consistent_lines(
+            out, gt_tasks, raw_map, audit_client, audit_consistent, dry_run)
+        print(f"  审计: 抽样 {audit_result['sampled']}，"
+              f"共识错误率 {audit_result['error_rate']:.1%}，"
+              f"修正成功 {len(audit_result.get('corrections', {}))}，"
+              f"修正失败 {audit_result.get('failed_corrections', 0)}"
+              f"（失败簇转入人工标注清单）")
+
+    # ===== Step 5: 生成双变体 GT 与排除行（人工 > 审计修正 > 裁决 > 合成） =====
     print(f"\n{'='*60}")
-    print(f"  Step 4: 生成最终 GT（双变体）与排除行清单")
+    print(f"  Step 5: 生成最终 GT（双变体）与排除行清单")
     print(f"{'='*60}")
 
-    final_gt, final_gt_alt, excluded = _build_final_gt(
-        out, gt_tasks, line_pairs, results_orig, results_opt)
+    # 人工标注加载（TaskID → template）
+    human_map = {}
+    if human_annotations_path:
+        for rec in load_jsonl(human_annotations_path):
+            if rec.get('TaskID') and rec.get('template'):
+                human_map[rec['TaskID']] = rec['template'].strip()
+        print(f"  人工标注: {len(human_map)} 条")
+
+    audit_failed_templates = {
+        d['template'] for d in (audit_result or {}).get('details', [])
+        if d['verdict'] == 'incorrect' and not d.get('corrected')}
+    final_gt, final_gt_alt, excluded, human_applied = _build_final_gt(
+        out, gt_tasks, line_pairs, results_orig, results_opt,
+        human_map=human_map,
+        audit_corrections=(audit_result or {}).get('corrections', {}),
+        audit_failed_templates=audit_failed_templates,
+    )
 
     write_jsonl(out / "final_gt.jsonl", final_gt)
     write_jsonl(out / "final_gt_alt.jsonl", final_gt_alt)
@@ -484,24 +602,54 @@ def generate_gt(
     total_lines = len(line_pairs)
     gt_coverage = len(final_gt) / total_lines if total_lines else 0.0
     print(f"  GT: {len(final_gt)} 行（覆盖率 {gt_coverage:.1%}）"
-          f" | 排除 {len(excluded)} 行: {excluded_dist or '{}'}")
+          f" | 排除 {len(excluded)} 行: {excluded_dist or '{}'}"
+          f" | 人工标注生效 {human_applied} 条")
 
-    # ===== Step 5（可选）: 一致行抽样审计 =====
-    audit_result = None
-    if audit_consistent > 0 and gt_tasks:
-        print(f"\n{'='*60}")
-        print(f"  Step 5: 一致行抽样审计（共识错误率）")
-        print(f"{'='*60}")
-        if client is None:
-            from eval_pipeline._shared.llm_client import create_client
-            audit_client = create_client(config_path=llm_config_path,
-                                         mock=(not live), dry_run=dry_run)
-        else:
-            audit_client = client
-        audit_result = _audit_consistent_lines(
-            out, gt_tasks, raw_map, audit_client, audit_consistent, dry_run)
-        print(f"  审计: 抽样 {audit_result['sampled']}，"
-              f"共识错误率 {audit_result['error_rate']:.1%}")
+    # ===== 人工标注工作清单（排除行 + 审计未修复簇，自动导出） =====
+    # 排除行按 TaskID 聚合，附样本行与候选模板；人工填写后用
+    # --human-annotations 回填（优先级高于一切自动裁决）
+    review_tasks = []
+    grouped = {}
+    for e in excluded:
+        grouped.setdefault(e['TaskID'], []).append(e)
+    adj_map_r, task_map_r, _ = _load_adjudication_results(out)
+    for task_id, rows in sorted(grouped.items()):
+        t = task_map_r.get(task_id, {})
+        adj = adj_map_r.get(task_id, {})
+        log_ids = sorted({r['log_id'] for r in rows})
+        sample_logs = [raw_map.get(lid, '') for lid in log_ids if raw_map.get(lid, '')][:5]
+        candidates = {'original': t.get('piplup_ori', ''),
+                      'optimized': t.get('piplup_opt', '')}
+        if adj.get('ProposedTemplate'):
+            candidates['synthesized_rejected'] = adj['ProposedTemplate']
+        review_tasks.append({
+            'TaskID': task_id,
+            'kind': 'pair',
+            'reason': rows[0]['reason'],
+            'log_ids': log_ids,
+            'candidates': candidates,
+            'sample_log': sample_logs,
+        })
+    # 审计未修复簇：人工可直接针对一致簇标注
+    if audit_result:
+        for d in audit_result['details']:
+            if d['verdict'] == 'incorrect' and not d.get('corrected'):
+                cs_id = 'CS_' + hashlib.sha1(
+                    d['template'].encode('utf-8')).hexdigest()[:16].upper()
+                if not any(rt['TaskID'] == cs_id for rt in review_tasks):
+                    lid = next((t['log_id'] for t in consistent_tasks
+                                if t['template'] == d['template']), '')
+                    review_tasks.append({
+                        'TaskID': cs_id,
+                        'kind': 'consistent',
+                        'reason': 'audit_incorrect',
+                        'log_ids': [lid],
+                        'candidates': {'current_template': d['template']},
+                        'sample_log': [raw_map.get(lid, '')] if lid else [],
+                    })
+    write_jsonl(out / "human_review_tasks.jsonl", review_tasks)
+    print(f"  人工标注清单: {out / 'human_review_tasks.jsonl'}"
+          f"（{len(review_tasks)} 项，填写后用 --human-annotations 回填）")
 
     # ===== 汇总 =====
     gt_summary = {
@@ -517,11 +665,15 @@ def generate_gt(
         "gt_coverage": round(gt_coverage, 4),
         "excluded_lines": excluded_dist,
         "lines_without_counterpart": without_counterpart,
+        "human_annotations_applied": human_applied,
+        "audit_corrections_applied": len((audit_result or {}).get('corrections', {})),
         "synthesized_templates": sum(
             1 for r in final_gt if r.get('adjudication') == ADJ_NEITHER),
         "consistent_audit": ({'sampled': audit_result['sampled'],
                               'judged': audit_result['judged'],
-                              'error_rate': audit_result['error_rate']}
+                              'error_rate': audit_result['error_rate'],
+                              'corrections': len(audit_result.get('corrections', {})),
+                              'failed_corrections': audit_result.get('failed_corrections', 0)}
                              if audit_result else None),
     }
     write_json(out / "gt_summary.json", gt_summary)
