@@ -194,6 +194,13 @@ _CLEANUP_RULES = [
 _HEADER_BRACKETS_RE = re.compile(r'^(?:\[\s*(?:<\*>)?\s*\]\s*)+')
 _TAIL_MODULE_RE = re.compile(r'\[[a-z_]+,<\*>\]\s*$')
 _RE_CONSEC_WILD = re.compile(r'(?:\<\*\>\s?)+\<\*>')
+# brace 组残留归约：{<*>:...} → <*>。业务掩码下线后，"数值掩码只能遮
+# 冒号前段（后随 '_' 无词边界）"的残留形态——首段 hex 被 numerical 遮蔽
+# （后随 ':' 有边界），第二段 id + _N_N 后缀逐行变化，结构合并只能产出
+# {<*>:<*>_0_0} 这类混合残留。本归约在聚类前把整个 brace 组规范化为
+# 单一通配（无条件段，不受 estimation 过滤影响）。仅匹配引擎自产的
+# <\*> 残留组合（{<*>:开头），不触碰未遮蔽的原始值形态，误伤面收敛。
+_BRACE_ID_GROUP_RE = re.compile(r'\{<\*>(?::\w+)*\}')
 
 
 def _apply_cleanup(new_log, active_rules):
@@ -201,6 +208,10 @@ def _apply_cleanup(new_log, active_rules):
     for rule, pattern, repl in _CLEANUP_RULES:
         if rule in active_rules:
             new_log = pattern.sub(repl, new_log)
+    # 无条件清理（不与特定规则绑定）
+    # brace 组残留：{<*>:id_N_N} / {<*>} → <*>（须在连续 <*> 归约前执行，
+    # 多组连写产生的 <*><*><*> 才能一并归约）
+    new_log = _BRACE_ID_GROUP_RE.sub('<*>', new_log)
     # 无条件清理（不与特定规则绑定）
     # 日志头：去掉开头连续的 [<*>] 块（时间戳/运行时间/pid/日志级别预处理后产生），
     # 这些纯 <*> token 被 seqDist 跳过但计入分母，稀释相似度导致簇分裂。
