@@ -73,60 +73,60 @@ regex_match = {
     # 14. 子模块初始化描述：匹配 init module 与 begin/end 之间的动宾短语
     'fs_init_action': r'(?<=init module\s).*?(?=\s(?:begin|end\b))',
 
-    # 15. 下划线连接的复合数值 / 17. Key:复合标识符值 / 20. 方括号复合标识符 /
-    # 21b. 含 0x hex 复合标识符 / 21c. xnet 上下文标识符 / 22. 下划线数字后缀 /
-    # 24. 含数字复合标识符：
-    #   以上 7 条业务掩码已删除，由 token 内结构机制承接（见
-    #   parsing_algorithm/token_structure.py 与 PIPLUP._structure_aware_merge）：
-    #   - key:value/key=value 同字段名 → merge_values（数字组边界修剪）
-    #   - 裸复合标识符/数字链 → merge_values（公共前/后缀保留）
-    #   - 括号结构 → LCP/LCS 合并（中缀保留，如 (xnet_<*>:0)）
-    #   独立地址、时间、十六进制（embedded_hex 保留）等通用识别不受影响。
-    # 删除验证见 test/piplup_parsing_test.py::TestMaskDeletionLedger。
+    # # 15. 下划线连接的复合数值 / 17. Key:复合标识符值 / 20. 方括号复合标识符 /
+    # # 21b. 含 0x hex 复合标识符 / 21c. xnet 上下文标识符 / 22. 下划线数字后缀 /
+    # # 24. 含数字复合标识符：
+    # #   以上 7 条业务掩码已删除，由 token 内结构机制承接（见
+    # #   parsing_algorithm/token_structure.py 与 PIPLUP._structure_aware_merge）：
+    # #   - key:value/key=value 同字段名 → merge_values（数字组边界修剪）
+    # #   - 裸复合标识符/数字链 → merge_values（公共前/后缀保留）
+    # #   - 括号结构 → LCP/LCS 合并（中缀保留，如 (xnet_<*>:0)）
+    # #   独立地址、时间、十六进制（embedded_hex 保留）等通用识别不受影响。
+    # # 删除验证见 test/piplup_parsing_test.py::TestMaskDeletionLedger。
 
-    # 16. 大括号内十六进制:数值对：{hex:hex_N_N}
-    # 作用目标：{165879a000:165879a000_0_0}{133fe97aee:133fe97aee_0_0}
-    # 工程逻辑：numerical 的 \b[a-fA-F\d]{4,}\b 只替换冒号前的 hex 部分，
-    #          冒号后的 hex_N_N 因下划线连接而残留。整对替换避免碎片化。
-    'brace_hex_value_pair': r'\{[0-9a-fA-F]+:[0-9a-fA-F]+(?:_\d+)+\}',
+    # # 16. 大括号内十六进制:数值对：{hex:hex_N_N}
+    # # 作用目标：{165879a000:165879a000_0_0}{133fe97aee:133fe97aee_0_0}
+    # # 工程逻辑：numerical 的 \b[a-fA-F\d]{4,}\b 只替换冒号前的 hex 部分，
+    # #          冒号后的 hex_N_N 因下划线连接而残留。整对替换避免碎片化。
+    # 'brace_hex_value_pair': r'\{[0-9a-fA-F]+:[0-9a-fA-F]+(?:_\d+)+\}',
 
-    # 18. Hex dump 序列：D:后跟多个空格分隔的 2 字符十六进制值
-    # 作用目标：Line13 :0 D:01 0f c2 7f f0 0c e2 d8 a0  getRootBufForReadExc
-    # 工程逻辑：2 字符 hex（0f/c2/7f 等）不满足 numerical 的 {4,} 门槛，
-    #          作为常量残留导致每条 hex dump 日志独占一个簇。
-    #          D: 前缀 + 至少 2 个 hex 字节限定为 dump 格式，避免误匹配普通文本。
-    'hex_dump': r'D:[0-9a-fA-F]{2}(?: [0-9a-fA-F]{2})+',
+    # # 18. Hex dump 序列：D:后跟多个空格分隔的 2 字符十六进制值
+    # # 作用目标：Line13 :0 D:01 0f c2 7f f0 0c e2 d8 a0  getRootBufForReadExc
+    # # 工程逻辑：2 字符 hex（0f/c2/7f 等）不满足 numerical 的 {4,} 门槛，
+    # #          作为常量残留导致每条 hex dump 日志独占一个簇。
+    # #          D: 前缀 + 至少 2 个 hex 字节限定为 dump 格式，避免误匹配普通文本。
+    # 'hex_dump': r'D:[0-9a-fA-F]{2}(?: [0-9a-fA-F]{2})+',
 
-    # 19. Lucene 索引文件名/随机标识符：下划线或点开头的复合标识符
-    # 作用目标：_1l1.fdm、_1l1.fdt、_je.fdm、_kxl.si、_kxm.fdm、_1l1_Lucene90FieldsIndex-doc_ids_362.tmp、.nfs0000000001601900000013ac、_7VF~XYZFDM
-    # 工程逻辑：这类 token 以 _ 或 . 开头，内含字母数字点号下划线波浪号，
-    #          numerical 的 \b 无法在 _ 后形成词边界，path 无 / 不匹配，
-    #          导致每条日志的文件名残留在 logTemplate 中，seqDist 相似度不够，产生大量单命中簇。
-    #          (?<!\w) 确保前一个字符不是单词字符，避免误匹配 pool_key、modid 等字段名中的下划线。
-    'lucene_filename': r'(?<![\w>])[_.][\w.~-]+',
+    # # 19. Lucene 索引文件名/随机标识符：下划线或点开头的复合标识符
+    # # 作用目标：_1l1.fdm、_1l1.fdt、_je.fdm、_kxl.si、_kxm.fdm、_1l1_Lucene90FieldsIndex-doc_ids_362.tmp、.nfs0000000001601900000013ac、_7VF~XYZFDM
+    # # 工程逻辑：这类 token 以 _ 或 . 开头，内含字母数字点号下划线波浪号，
+    # #          numerical 的 \b 无法在 _ 后形成词边界，path 无 / 不匹配，
+    # #          导致每条日志的文件名残留在 logTemplate 中，seqDist 相似度不够，产生大量单命中簇。
+    # #          (?<!\w) 确保前一个字符不是单词字符，避免误匹配 pool_key、modid 等字段名中的下划线。
+    # 'lucene_filename': r'(?<![\w>])[_.][\w.~-]+',
 
-    # 20. 方括号内的复合标识符 / 21b. 含 0x 复合标识符 / 21c. xnet 上下文标识符 /
-    # 22. 下划线数字后缀 / 24. 含数字复合标识符：
-    #   均为已删除的候选掩码（承接关系见上方第 15 条注释与 TestMaskDeletionLedger）。
+    # # 20. 方括号内的复合标识符 / 21b. 含 0x 复合标识符 / 21c. xnet 上下文标识符 /
+    # # 22. 下划线数字后缀 / 24. 含数字复合标识符：
+    # #   均为已删除的候选掩码（承接关系见上方第 15 条注释与 TestMaskDeletionLedger）。
 
-    # 21. 标识符内嵌的 0x hex 值：RTOBJ_DP0x0_RV0xffff
-    # 作用目标：RTOBJ_DP0x0_RV0xffff、RTSETOBJ_DP0x0、DP0x0_RV0x12
-    # 工程逻辑：0x hex 值嵌入下划线连接的标识符中，numerical 的 \b 无法在字母后匹配 0x，
-    #          导致不同 hex 值的标识符残留，日志分裂为不同簇。
-    #          (?<=[A-Za-z_]) 限定 0x 前面必须是字母或下划线（标识符内部），不匹配独立 0xNNNN。
-    'embedded_hex': r'(?<=[A-Za-z_(])0x[0-9a-fA-F]+',
+    # # 21. 标识符内嵌的 0x hex 值：RTOBJ_DP0x0_RV0xffff
+    # # 作用目标：RTOBJ_DP0x0_RV0xffff、RTSETOBJ_DP0x0、DP0x0_RV0x12
+    # # 工程逻辑：0x hex 值嵌入下划线连接的标识符中，numerical 的 \b 无法在字母后匹配 0x，
+    # #          导致不同 hex 值的标识符残留，日志分裂为不同簇。
+    # #          (?<=[A-Za-z_]) 限定 0x 前面必须是字母或下划线（标识符内部），不匹配独立 0xNNNN。
+    # 'embedded_hex': r'(?<=[A-Za-z_(])0x[0-9a-fA-F]+',
 
-    # 21c. xnet 上下文标识符 —— 已删除（生产数据 A/B 评估：零代价，见
-    # TestMaskDeletionLedger::test_xnet_ctx_id_deleted）。
-    # 多 token 场景由结构机制承接；单 token 场景（st_dict[1]=1 精确匹配）
-    # 为已知边界，若生产回归发现该形态成簇异常，恢复本规则即可。
+    # # 21c. xnet 上下文标识符 —— 已删除（生产数据 A/B 评估：零代价，见
+    # # TestMaskDeletionLedger::test_xnet_ctx_id_deleted）。
+    # # 多 token 场景由结构机制承接；单 token 场景（st_dict[1]=1 精确匹配）
+    # # 为已知边界，若生产回归发现该形态成簇异常，恢复本规则即可。
 
-    # 23. 设备序列号：数字与大写字母交替的混合序列号
-    # 作用目标：2102312UCT10L8000290、2102313EDH10PA100243
-    # 工程逻辑：设备序列号含多组数字和大写字母交替，numerical 无法整体匹配（字母打断数字），
-    #          导致序列号残留在模板中，不同设备的日志分裂为不同簇。
-    #          \d{4,} 起始限定至少4位数字，[A-Z]{2,} 至少2个大写字母，避免误匹配普通标识符。
-    'device_serial': r'\d{4,}[A-Z]{2,}\d{2,}(?:[A-Z]{1,}\d{2,})+',
+    # # 23. 设备序列号：数字与大写字母交替的混合序列号
+    # # 作用目标：2102312UCT10L8000290、2102313EDH10PA100243
+    # # 工程逻辑：设备序列号含多组数字和大写字母交替，numerical 无法整体匹配（字母打断数字），
+    # #          导致序列号残留在模板中，不同设备的日志分裂为不同簇。
+    # #          \d{4,} 起始限定至少4位数字，[A-Z]{2,} 至少2个大写字母，避免误匹配普通标识符。
+    # 'device_serial': r'\d{4,}[A-Z]{2,}\d{2,}(?:[A-Z]{1,}\d{2,})+',
 }
 
 regex_map = {
@@ -154,11 +154,11 @@ regex_map = {
     'step_desc': 'STEP_TAG',
     'vcontroller_metric': 'VCONTROLLER_TAG',
     'fs_init_action': 'FS_INIT_ACTION_TAG',
-    'brace_hex_value_pair': 'HEX_PAIR_TAG',
-    'hex_dump': 'HEX_DUMP_TAG',
-    'lucene_filename': 'FILENAME_TAG',
-    'embedded_hex': 'HEX_TAG',
-    'device_serial': 'DEVICE_SERIAL_TAG',
+    # 'brace_hex_value_pair': 'HEX_PAIR_TAG',
+    # 'hex_dump': 'HEX_DUMP_TAG',
+    # 'lucene_filename': 'FILENAME_TAG',
+    # 'embedded_hex': 'HEX_TAG',
+    # 'device_serial': 'DEVICE_SERIAL_TAG',
 }
 
 # 原版
@@ -173,8 +173,8 @@ regex_map = {
 # compound_num_id、compound_hex_id、bracket_compound_id、underscore_num_suffix、xnet_ctx_id
 # 已删除（纯冗余/等价承接，见 regex_match 内 6-9 注释）：datetime_full、
 # kernel_uptime、epoch_ms_13d、code_line_num
-sequence = ['log_level', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'brace_hex_value_pair', 'hex_dump', 'lucene_filename', 'embedded_hex', 'device_serial', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
-
+# sequence = ['log_level', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'brace_hex_value_pair', 'hex_dump', 'lucene_filename', 'embedded_hex', 'device_serial', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
+sequence = ['log_level', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
 # 兜底清理：与 sequence 中规则一一对应的二次扫描（处理 <*> 交互后的残留）。
 # 仅当对应规则在活跃规则集 use_sequence 中时执行——规则被（实验性）关闭时，
 # 其兜底扫描同步关闭，避免"关掉主规则、兜底仍在遮蔽"的伪实验。
@@ -278,7 +278,3 @@ def preprocess(log, use_keys=False, estimation_stage=False, use_sequence=None, p
         new_log = _apply_cleanup(new_log, use_sequence)
         if print: print('预处理后\n', new_log)
         return new_log
-        
-
-        
-    
