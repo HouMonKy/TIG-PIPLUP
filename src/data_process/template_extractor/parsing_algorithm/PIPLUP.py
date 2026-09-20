@@ -9,7 +9,8 @@ import weakref
 
 from .preprocessing import preprocess
 from .postprocessing import correct_single_template
-from .token_structure import structure_similarity, merge_kv_tokens, merge_values
+from .token_structure import (
+    structure_similarity, split_kv, merge_kv_tokens, merge_values)
 from src.common.global_config import GlobalConfig
 
 logger = logging.getLogger(__name__)
@@ -483,6 +484,64 @@ class Logcluster:
             if t1 == t2 or '<*>' in t1: sim += 1
         return sim/len(seq1)
     
+    def _merge_single_diff_path(self, seq):
+        """单位置差异路径合并（未满容量分支）：新序列与某条已有路径仅
+        在一个位置存在实质差异时，把该位置合并出的 token 写回路径列表。
+
+        返回 True 表示已合并（调用方跳过追加）。
+
+        - 路径 token 已覆盖 seq token 的位置不算差异（'<*>'/'name:<*>'
+          等对同类新值是透明位）；
+        - 合并 token 优先复用簇级已泛化形式（与容量满合并分支同源）；
+        - 守卫一：合并 token 必须覆盖两侧原值；
+        - 守卫二：合并 token 须保留 ≥3 个非通配字符——'VER.<*>'、
+          '210305920810L<*>' 这类同族证据放行，'<*>'（open/close、
+          start/stop 等无共同结构的词对）拒绝，防止语义不同的事件
+          在路径层被无结构塌缩；
+        - 写回范围：合并 token 覆盖全部路径在该位置的现值时写全部
+          （与容量满合并分支语义一致），否则只写目标路径（保守）。
+        """
+        target = None
+        diff_pos = -1
+        for p in self.pathList:
+            diffs = [i for i in range(len(p))
+                     if not (p[i] == seq[i] or _token_covers(p[i], seq[i]))]
+            if len(diffs) == 1:
+                target, diff_pos = p, diffs[0]
+                break
+        if target is None:
+            return False
+
+        t1, t2 = target[diff_pos], seq[diff_pos]
+        lt = (self.logTemplate[diff_pos]
+              if diff_pos < len(self.logTemplate) else None)
+        if (lt is not None and lt != t1 and lt != t2
+                and _token_covers(lt, t1) and _token_covers(lt, t2)):
+            var = lt
+        else:
+            var = _structure_aware_merge(t1, t2, path_delimiters)
+
+        if not (_token_covers(var, t1) and _token_covers(var, t2)):
+            return False
+        if len(var.replace('<*>', '')) < 3:
+            return False
+        # 守卫三：kv 同键但值区无证据塌缩（status:running/stopped 这类
+        # 状态词对，merge_values 值区为 <*>）→ 保持路径分离。设计约定：
+        # 普通词状态值仅字段名分，输出以多候选保留具体状态；与
+        # 'VER.--'/'VER.A'（变化区保留 'VER.' 同前缀证据）本质不同。
+        kv1, kv2 = split_kv(t1), split_kv(t2)
+        if (kv1 and kv2 and kv1[1] == kv2[1] and kv1[2] == kv2[2]
+                and merge_values(kv1[3], kv2[3]) == '<*>'):
+            return False
+
+        if all(p[diff_pos] == var or _token_covers(var, p[diff_pos])
+               for p in self.pathList):
+            for p in self.pathList:
+                p[diff_pos] = var
+        else:
+            target[diff_pos] = var
+        return True
+
     def updateSequence(self, seq):
         # --- 核心修复：废弃原生的破损启发式校验，改为严格正则覆盖校验 ---
         seq_str = ' '.join(seq)
@@ -500,8 +559,16 @@ class Logcluster:
 
         # Is the path list full?
         if len(self.pathList) < self.br_thresh:
-            # Add to the path list
-            self.pathList.append(seq)
+            # 单位置差异主动合并：新路径与某条已有路径仅差一个位置
+            # （路径 token 已覆盖新行 token 的位置不算差异）、且合并
+            # 结果保留固定证据（≥3 字符非通配部分）时，合并而非追加。
+            # 数学安全性：合并两条仅差一位的路径，其接受的取值组合
+            # 恰为两条已见路径的组合，不引入未观测组合——容量机制
+            # 保护的"组合特定性"完整保留。证据守卫防止 open/close、
+            # start/stop 等语义不同的词对被无结构塌缩。
+            if not self._merge_single_diff_path(seq):
+                # Add to the path list
+                self.pathList.append(seq)
         # If it is full, merge with the closest path
         else:
             maxSim, target = 0, None
@@ -854,15 +921,21 @@ class LogParser:
         - 非 kv：括号/引号骨架对齐 + 固定文本证据（上限 0.5）
         - 已含 <*> 的混合形式（如 name:xxx_<*>）：覆盖新值 → 0.9，
           否则走结构相似度
-        纯 <*> token 维持原语义：不计分母贡献、计入 numOfPara 决胜。
+        纯 <*> token（不含任何字母数字）不计入分子，也从分母剔除：
+        它在两行中完全相同，对"是否同一模板"不提供任何证据，计入
+        分母只会无证据稀释相似度——token 越少的短行稀释越致命
+        （1/4=25% vs 1/20=5%），是短行簇分裂的根源之一。numOfPar
+        仍返回供 fastMatch 决胜。
         """
         assert len(seq1) == len(seq2)
         simTokens = 0.0
         numOfPar = 0
+        pure_wild = 0
         for token1, token2 in zip(seq1, seq2):
             if '<*>' in token1:
                 if not any(ch.isalnum() for ch in token1):
                     numOfPar += 1
+                    pure_wild += 1
                     continue
                 if token1 == token2:
                     simTokens += 1
@@ -877,7 +950,11 @@ class LogParser:
             else:
                 simTokens += structure_similarity(token1, token2)
 
-        retVal = float(simTokens) / len(seq1)
+        denom = len(seq1) - pure_wild
+        if denom <= 0:
+            # 全部为纯通配位：两序列结构完全相同，无任何差异证据
+            return 1.0, numOfPar
+        retVal = float(simTokens) / denom
         return retVal, numOfPar
 
 

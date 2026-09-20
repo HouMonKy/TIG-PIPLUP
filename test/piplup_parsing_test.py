@@ -459,9 +459,13 @@ class TestTokenStructure:
         # 已泛化混合形式覆盖新值 → 0.9
         sim, _ = parser.seqDist(['a', 'name:x_<*>', 'b'], ['a', 'name:x_99', 'b'])
         assert sim == pytest.approx((1 + 0.9 + 1) / 3)
-        # 纯 <*> 维持原语义（不计分、计入 numOfPar）
+        # 纯 <*> 不计分且从分母剔除（无证据位不稀释相似度），
+        # numOfPar 仍返回供 fastMatch 决胜
         sim, par = parser.seqDist(['a', '<*>', 'b'], ['a', 'zzz', 'b'])
-        assert sim == pytest.approx(2 / 3) and par == 1
+        assert sim == pytest.approx(1.0) and par == 1
+        # 分母全为纯 <*>：结构完全相同 → 1.0
+        sim, par = parser.seqDist(['<*>', '<*>'], ['x', 'y'])
+        assert sim == 1.0 and par == 2
 
     def test_kv_composite_merge_without_mask(self):
         """关闭 kv/复合标识符掩码后，复合值仍能解析归并（结构机制承接）。"""
