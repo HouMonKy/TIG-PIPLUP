@@ -551,6 +551,7 @@ def generate_gt(
 
     # ===== Step 4（可选）: 一致行抽样审计（先于 GT 组装，修正可回填） =====
     audit_result = None
+    audit_path = out / "consistent_audit.json"
     if audit_consistent > 0 and gt_tasks:
         print(f"\n{'='*60}")
         print(f"  Step 4: 一致行抽样审计（共识错误率 + 修正）")
@@ -568,6 +569,11 @@ def generate_gt(
               f"修正成功 {len(audit_result.get('corrections', {}))}，"
               f"修正失败 {audit_result.get('failed_corrections', 0)}"
               f"（失败簇转入人工标注清单）")
+    elif reuse_runs and audit_path.exists():
+        # 复用上次审计（corrections 已程序校验过，无需重调 LLM）
+        audit_result = json.loads(audit_path.read_text(encoding='utf-8'))
+        logger.info(f"复用已有审计结果: 抽样 {audit_result.get('sampled')}，"
+                    f"修正 {len(audit_result.get('corrections', {}))} 条")
 
     # ===== Step 5: 生成双变体 GT 与排除行（人工 > 审计修正 > 裁决 > 合成） =====
     print(f"\n{'='*60}")
