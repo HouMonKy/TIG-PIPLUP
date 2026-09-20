@@ -66,7 +66,11 @@ def load_and_merge_test_data(base_dir: str, scenario_prefix: str = None) -> List
             target_files.extend(d.rglob(TARGET_LOG_NAME))
     else:
         target_files = list(base_path.rglob("all_merged_logs.log"))
-        target_files = list(base_path.rglob(TARGET_LOG_NAME))
+        # 注意：不能直接覆盖，两种文件名可能并存（原实现会静默丢弃 all_merged_logs.log）
+        seen = {str(f) for f in target_files}
+        for extra in base_path.rglob(TARGET_LOG_NAME):
+            if str(extra) not in seen:
+                target_files.append(extra)
 
     if not target_files:
         print(f"[数据加载] 在路径 {base_dir} 下未匹配到目标文件。")
