@@ -60,7 +60,7 @@ def main():
     p_data.add_argument("--module", default="Messages", help="日志模块名（默认 Messages）")
 
     # ===== compare 子命令 =====
-    p_compare = subparsers.add_parser("compare", help="模块2：三算法性能对比")
+    p_compare = subparsers.add_parser("compare", help="模块2：三算法性能对比（独立可选）")
     p_compare.add_argument("--input", required=True, help="输入 JSONL 文件或文件夹路径")
     p_compare.add_argument("--piplup-orig", required=True, help="PIPLUP 原版模块路径（Python import 路径）")
     p_compare.add_argument("--piplup-opt", required=True, help="PIPLUP 优化版模块路径（Python import 路径）")
@@ -73,7 +73,7 @@ def main():
     p_compare.add_argument("--data-root", default=DEFAULT_DATA_ROOT, help=f"数据根目录（默认: {DEFAULT_DATA_ROOT}，可用环境变量 EVAL_PIPELINE_DATA_ROOT 覆盖）")
 
     # ===== gt 子命令 =====
-    p_gt = subparsers.add_parser("gt", help="模块4：GT 生成（cluster 对比 + LLM 裁决）")
+    p_gt = subparsers.add_parser("gt", help="模块3：GT 生成（行级对齐 + LLM 裁决 + 自动评估）")
     p_gt.add_argument("--input", required=True, help="输入 JSONL 文件或文件夹路径")
     p_gt.add_argument("--piplup-orig", required=True, help="PIPLUP 原版模块路径")
     p_gt.add_argument("--piplup-opt", required=True, help="PIPLUP 优化版模块路径")
@@ -91,16 +91,20 @@ def main():
     p_gt.add_argument("--retry-failed", action="store_true", help="重试失败任务")
     p_gt.add_argument("--save-prompts", action="store_true", help="live 模式下也落盘每个任务的 Prompt（dry-run 恒落盘）")
     p_gt.add_argument("--concurrency", type=int, default=1, help="裁决并发线程数（1=串行；>1 线程池加速 LLM IO）")
+    p_gt.add_argument("--audit-consistent", type=int, default=0, help="一致行抽样审计数量（0=关闭；量化两版共识错误率，GT 可信度指标）")
+    p_gt.add_argument("--no-eval", action="store_true", help="跳过自动评估（默认在 gt 结束时自动产出 eval_report.json）")
 
     # ===== answer 子命令 =====
-    p_answer = subparsers.add_parser("answer", help="模块3：答案生成和评估")
+    p_answer = subparsers.add_parser("answer", help="模块4：GT 冻结后评估任意算法")
     p_answer.add_argument("--input", required=True, help="输入 JSONL 文件或文件夹路径")
-    p_answer.add_argument("--piplup-orig", required=True, help="PIPLUP 原版模块路径")
-    p_answer.add_argument("--piplup-opt", required=True, help="PIPLUP 优化版模块路径")
+    p_answer.add_argument("--piplup-orig", default=None, help="PIPLUP 原版模块路径（双版模式）")
+    p_answer.add_argument("--piplup-opt", default=None, help="PIPLUP 优化版模块路径（双版模式）")
     p_answer.add_argument("--postprocessing-orig", default=None, help="原版后处理模块路径")
     p_answer.add_argument("--preprocessing-orig", default=None, help="原版预处理模块路径")
     p_answer.add_argument("--gt", required=True, help="GT JSONL 文件路径（模块4输出 final_gt.jsonl）")
-    p_answer.add_argument("--reuse-runs", default=None, help="复用模块4已落盘的 runs 目录（跳过重复解析，自动校验输入签名）")
+    p_answer.add_argument("--reuse-runs", default=None, help="复用模块3已落盘的 runs 目录（跳过重复解析，自动校验输入签名；仅双版模式）")
+    p_answer.add_argument("--parsers", default=None, help="待评估算法模块路径（逗号分隔，可多个；与 --piplup-orig/--piplup-opt 二选一）")
+    p_answer.add_argument("--gt-alt", default=None, help="GT 备变体路径（默认自动探测 --gt 同目录 final_gt_alt.jsonl）")
     p_answer.add_argument("--output", required=True, help="结果输出目录")
     p_answer.add_argument("--module", default="Messages", help="日志模块名")
     p_answer.add_argument("--warm-start", action="store_true", help="预热模式（默认冷启动清缓存）")
@@ -160,6 +164,8 @@ def main():
             retry_failed=args.retry_failed,
             save_prompts=args.save_prompts,
             concurrency=args.concurrency,
+            audit_consistent=args.audit_consistent,
+            no_eval=args.no_eval,
         )
 
     elif args.subcommand == "answer":

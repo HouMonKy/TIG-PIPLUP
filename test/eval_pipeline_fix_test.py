@@ -114,16 +114,27 @@ def test_gt_end_to_end_mock(tmp_path):
         live=False, dry_run=False, limit=0, retry_failed=False,
     )
 
-    # 6 行全部进入 GT（一致 or 裁决后回填）
+    # 每行必然出现在 final_gt 或 excluded_lines 之一（双变体 + 排除机制）
     final_gt = [json.loads(l) for l in
                 (gt_dir / "final_gt.jsonl").read_text(encoding='utf-8').splitlines() if l.strip()]
-    assert len(final_gt) == 6
-    assert {r['log_id'] for r in final_gt} == {str(i + 1) for i in range(6)}
+    final_gt_alt = [json.loads(l) for l in
+                    (gt_dir / "final_gt_alt.jsonl").read_text(encoding='utf-8').splitlines() if l.strip()]
+    excluded = [json.loads(l) for l in
+                (gt_dir / "excluded_lines.jsonl").read_text(encoding='utf-8').splitlines() if l.strip()]
+    assert len(final_gt) + len(excluded) == 6
+    gt_ids = {r['log_id'] for r in final_gt}
+    ex_ids = {r['log_id'] for r in excluded}
+    assert not (gt_ids & ex_ids)
+    assert gt_ids | ex_ids == {str(i + 1) for i in range(6)}
+    assert len(final_gt_alt) == len(final_gt)
     # 每行裁决状态合法
     for r in final_gt:
         assert r['adjudication'] in ('consistent', 'original', 'optimized',
-                                     'equivalent', 'neither',
-                                     'insufficient_evidence', 'pending')
+                                     'equivalent', 'neither')
+    for e in excluded:
+        assert e['reason'] in ('pending', 'adjudication_failed',
+                               'insufficient_evidence', 'neither_invalid_proposal',
+                               'no_counterpart')
     # runs 结果已落盘（供 answer --reuse-runs）
     assert (gt_dir / "runs" / "piplup_orig_result.jsonl").exists()
     assert (gt_dir / "runs" / "piplup_opt_result.jsonl").exists()
@@ -179,19 +190,208 @@ def test_answer_reuse_runs(tmp_path):
         reuse_runs=str(gt_dir / "runs"),
     )
     assert report['reused_runs'] is True
-    assert report['evaluated_lines'] == 6
-    # 期望 PA 从 GT 内容推导：mock 裁决可能选 optimized，GT 模板随裁决走
+    # 期望 PA 从 GT 内容推导：mock 裁决可能选 optimized/equivalent，GT 模板随裁决走
     from eval_pipeline._shared.metrics import normalize_template
     final_gt = [json.loads(l) for l in
                 (gt_dir / "final_gt.jsonl").read_text(encoding='utf-8').splitlines() if l.strip()]
+    assert report['evaluated_lines'] == len(final_gt)
     gt_rows = {r['log_id']: r for r in final_gt}
     orig_out = {}
     for _line in (gt_dir / "runs" / "piplup_orig_result.jsonl").read_text(encoding='utf-8').splitlines():
         if _line.strip():
             _rec = json.loads(_line)
             orig_out[_rec['log_id']] = _rec
-    expected_pa = sum(
-        1 for lid, gr in gt_rows.items()
-        if normalize_template(gr['template']) == normalize_template(orig_out[lid]['template'])
-    ) / len(gt_rows)
-    assert report['piplup_orig']['PA'] == pytest.approx(expected_pa)
+    final_gt_alt = [json.loads(l) for l in
+                    (gt_dir / "final_gt_alt.jsonl").read_text(encoding='utf-8').splitlines() if l.strip()]
+    gt_alt_rows = {r['log_id']: r for r in final_gt_alt}
+
+    def _pa(gt_rows_x):
+        return sum(
+            1 for lid, gr in gt_rows_x.items()
+            if normalize_template(gr['template']) == normalize_template(orig_out[lid]['template'])
+        ) / len(gt_rows_x)
+
+    # 报告 PA 为双变体均值
+    expected_pa = (_pa(gt_rows) + _pa(gt_alt_rows)) / 2
+    assert report['parsers']['PIPLUP原版']['PA'] == pytest.approx(expected_pa)
+
+
+class ScriptedClient:
+    """脚本化 LLM 客户端：按队列返回预设 JSON（测 neither/equivalent 等确定性路径）。"""
+
+    def __init__(self, responses):
+        self.responses = list(responses)
+        self.calls = 0
+
+    def is_configured(self):
+        return True
+
+    def get_model_name(self):
+        return "scripted"
+
+    def chat(self, messages, **kwargs):
+        self.calls += 1
+        idx = min(self.calls - 1, len(self.responses) - 1)
+        return self.responses[idx]
+
+
+def _make_gt_with_client(tmp_path, client, lines=None):
+    """用脚本化客户端跑 gt 全流程，返回 (gt_dir, final_gt, final_gt_alt, excluded)。"""
+    import importlib
+    from eval_pipeline._shared.piplup_runner import _install_original_modules
+
+    parser_mod = importlib.import_module(f"{FIXTURES}.PIPLUP_original")
+    _install_original_modules(parser_mod,
+                              f"{FIXTURES}.preprocessing_original",
+                              f"{FIXTURES}.postprocessing_original")
+
+    tmp_path = Path(tmp_path)
+    tmp_path.mkdir(parents=True, exist_ok=True)
+    lines = lines or [f'event {i} happened now' for i in range(4)]
+    input_path = _write_input(tmp_path, lines)
+    gt_dir = tmp_path / "gt"
+
+    from eval_pipeline.gt_generation import generate_gt
+    generate_gt(
+        input_path=input_path,
+        piplup_orig_path=f"{FIXTURES}.PIPLUP_original",
+        piplup_opt_path=f"{FIXTURES}.PIPLUP_optimized",
+        output_dir=str(gt_dir),
+        preprocessing_orig_path=f"{FIXTURES}.preprocessing_original",
+        postprocessing_orig_path=f"{FIXTURES}.postprocessing_original",
+        live=True, dry_run=False, client=client,
+    )
+    final_gt = [json.loads(l) for l in
+                (gt_dir / "final_gt.jsonl").read_text(encoding='utf-8').splitlines() if l.strip()]
+    final_gt_alt = [json.loads(l) for l in
+                    (gt_dir / "final_gt_alt.jsonl").read_text(encoding='utf-8').splitlines() if l.strip()]
+    excluded = [json.loads(l) for l in
+                (gt_dir / "excluded_lines.jsonl").read_text(encoding='utf-8').splitlines() if l.strip()]
+    return gt_dir, final_gt, final_gt_alt, excluded
+
+
+def _resp(adj, proposed=""):
+    d = {"Adjudication": adj, "Reason": "scripted", "Confidence": 0.9}
+    if proposed:
+        d["ProposedTemplate"] = proposed
+    return json.dumps(d, ensure_ascii=False)
+
+
+def test_equivalent_dual_variant_unbiased(tmp_path):
+    """equivalent → 双变体：主=原版、备=优化版；两版 PA 均值各 0.5。"""
+    client = ScriptedClient([_resp('equivalent')])
+    gt_dir, final_gt, final_gt_alt, excluded = _make_gt_with_client(tmp_path, client)
+
+    assert len(excluded) == 0
+    assert len(final_gt) == 4 and len(final_gt_alt) == 4
+    # 每行：主变体 = 原版模板，备变体 = 优化版模板
+    for r_main, r_alt in zip(final_gt, final_gt_alt):
+        assert r_main['template'].startswith('ORIG_PP(')
+        assert r_alt['template'].startswith('OPT_PP(')
+
+    # 评估：双变体均值 → 两版 PA 各 0.5（等价行对称无偏）
+    report = json.loads((gt_dir / "eval_report.json").read_text(encoding='utf-8'))
+    assert report['gt_alt_used'] is True
+    pa_orig = report['parsers']['PIPLUP原版']['PA']
+    pa_opt = report['parsers']['PIPLUP优化版']['PA']
+    assert pa_orig == pytest.approx(0.5)
+    assert pa_opt == pytest.approx(0.5)
+
+
+def test_neither_valid_synthesis(tmp_path):
+    """neither + 合成模板通过校验 → GT 取合成模板，两版 PA 同为 0（都被否）。"""
+    proposal = 'event <*> happened now'   # 覆盖全部样本，固定词=3
+    client = ScriptedClient([_resp('neither', proposed=proposal)])
+    gt_dir, final_gt, final_gt_alt, excluded = _make_gt_with_client(tmp_path, client)
+
+    assert len(excluded) == 0
+    assert len(final_gt) == 4
+    for r in final_gt:
+        assert r['adjudication'] == 'neither'
+        assert r['template'] == proposal
+    # 合成模板两变体同值
+    assert [r['template'] for r in final_gt_alt] == [r['template'] for r in final_gt]
+    # 两版 PA 均 0：合成模板不属于任何一版
+    report = json.loads((gt_dir / "eval_report.json").read_text(encoding='utf-8'))
+    assert report['parsers']['PIPLUP原版']['PA'] == pytest.approx(0.0)
+    assert report['parsers']['PIPLUP优化版']['PA'] == pytest.approx(0.0)
+
+
+def test_neither_invalid_proposal_excluded(tmp_path):
+    """neither + 合成模板未通过覆盖/质量校验 → 排除行 + 覆盖率报告。"""
+    # 覆盖失败：模板无法匹配样本（ORIG 前缀不属于原始日志文本）
+    client = ScriptedClient([_resp('neither', proposed='WRONG <*> TEMPLATE')])
+    gt_dir, final_gt, final_gt_alt, excluded = _make_gt_with_client(tmp_path, client)
+
+    assert len(final_gt) == 0
+    assert len(excluded) == 4
+    assert all(e['reason'] == 'neither_invalid_proposal' for e in excluded)
+    summary = json.loads((gt_dir / "gt_summary.json").read_text(encoding='utf-8'))
+    assert summary['gt_coverage'] == 0.0
+    assert summary['excluded_lines']['neither_invalid_proposal'] == 4
+
+    # 纯通配提案（固定词<2）也应被拒
+    client2 = ScriptedClient([_resp('neither', proposed='<*>')])
+    _, fg2, _, ex2 = _make_gt_with_client(tmp_path / 'case2', client2)
+    assert len(ex2) == 4 and len(fg2) == 0
+
+
+def test_insufficient_and_pending_excluded(tmp_path):
+    """insufficient_evidence / 未裁决 → 排除 + 覆盖率。"""
+    client = ScriptedClient([_resp('insufficient_evidence')])
+    gt_dir, final_gt, _, excluded = _make_gt_with_client(tmp_path, client)
+    assert len(final_gt) == 0
+    assert all(e['reason'] == 'insufficient_evidence' for e in excluded)
+
+    # dry-run（无裁决结果）→ pending 排除
+    client3 = ScriptedClient([])
+    gt_dir3, final_gt3, _, excluded3 = _make_gt_with_client(
+        tmp_path / 'case3', ScriptedClient([]))
+    # dry_run=False 但脚本客户端返回空 → execute_task 抛错 → failed → excluded
+    assert len(excluded3) == 4
+    assert all(e['reason'] in ('pending', 'adjudication_failed') for e in excluded3)
+
+
+def test_original_optimized_verdicts(tmp_path):
+    """original/optimized 裁决 → GT 取对应版本，双变体同值。"""
+    client = ScriptedClient([_resp('original')])
+    _, fg, fga, ex = _make_gt_with_client(tmp_path, client)
+    assert not ex and len(fg) == 4
+    for r, ra in zip(fg, fga):
+        assert r['template'].startswith('ORIG_PP(')
+        assert ra['template'] == r['template']
+
+    client2 = ScriptedClient([_resp('optimized')])
+    _, fg2, fga2, _ = _make_gt_with_client(tmp_path / 'c2', client2)
+    for r in fg2:
+        assert r['template'].startswith('OPT_PP(')
+    assert [r['template'] for r in fga2] == [r['template'] for r in fg2]
+
+
+def test_audit_consistent_mock(tmp_path):
+    """--audit-consistent 抽样审计：产出共识错误率工件。"""
+    client = ScriptedClient([
+        json.dumps({"Verdict": "incorrect", "Reason": "模板吞掉固定词", "Confidence": 0.9}),
+    ])
+    import importlib
+    from eval_pipeline._shared.piplup_runner import _install_original_modules
+    parser_mod = importlib.import_module(f"{FIXTURES}.PIPLUP_original")
+    _install_original_modules(parser_mod,
+                              f"{FIXTURES}.preprocessing_original",
+                              f"{FIXTURES}.postprocessing_original")
+
+    lines = [f'event {i} happened now' for i in range(4)]
+    input_path = _write_input(tmp_path, lines)
+    gt_dir = tmp_path / "gt_audit"
+
+    # 审计路径单独验证（gt 主流程用一致场景需两版模板一致——fixtures 必不一致，
+    # 故直接调用 _audit_consistent_lines 单元验证）
+    from eval_pipeline.gt_generation import _audit_consistent_lines, _build_raw_map
+    consistent = [{'log_id': str(i + 1), 'template': f'event <*> happened now',
+                   'template_id': i, 'adjudication': 'consistent'} for i in range(4)]
+    raw_map = _build_raw_map(input_path, None, None, 'Messages')
+    result = _audit_consistent_lines(gt_dir, consistent, raw_map, client, k=10,
+                                     dry_run=False)
+    assert result['sampled'] >= 1
+    assert result['error_rate'] == 1.0   # scripted 全部判 incorrect
+    assert (gt_dir / "consistent_audit.json").exists()

@@ -48,13 +48,16 @@ SYSTEM_PROMPT = """你是日志模板质量评判专家。请根据 SampleLogs �
 - `original`：原版模板更好
 - `optimized`：优化版模板更好
 - `equivalent`：两者语义等价（差异不影响匹配或语义）
+- `neither`：两者都不正确。此时必须基于 SampleLogs 合成一个正确模板填入 ProposedTemplate：能匹配全部样本、保留字段名等固定语义、动态值（ID/数字/时间/地址）用 <*>。程序会校验合成模板，校验失败该组不进入真值
+- `insufficient_evidence`：样本不足以判断
 
 只能输出合法 JSON，不得输出分析过程、Markdown 或额外文本：
 
 {
-"Adjudication": "original|optimized|equivalent",
+"Adjudication": "original|optimized|equivalent|neither|insufficient_evidence",
 "Reason": "简要说明评判依据，指出哪个模板保留/丢失了什么信息",
-"Confidence": 0.95
+"Confidence": 0.95,
+"ProposedTemplate": "仅 Adjudication=neither 时填写，其余留空字符串"
 }"""
 
 
@@ -123,12 +126,18 @@ def parse_and_validate(raw_response: str) -> Tuple[dict, str]:
 
     confidence = parsed.get("Confidence", 0)
     reason = parsed.get("Reason", "")
+    proposed = (parsed.get("ProposedTemplate") or "").strip()
 
     result = {
         "Adjudication": adj,
         "Reason": reason,
         "Confidence": confidence,
     }
+    if adj == ADJ_NEITHER:
+        # neither 必须附带合成模板（程序侧做覆盖/质量校验）
+        if not proposed:
+            return {"ParseError": "neither 裁决缺少 ProposedTemplate"}, STATUS_FAILED
+        result["ProposedTemplate"] = proposed
 
     return result, STATUS_RESOLVED
 
@@ -528,6 +537,7 @@ def run_adjudication(
     concurrency: int = 0,
     retry_failed: bool = False,
     save_prompts: bool = False,
+    client: LLMClient = None,
 ) -> dict:
     """执行裁决任务。
 
@@ -546,7 +556,8 @@ def run_adjudication(
     from eval_pipeline.config import LLM_CONCURRENCY
 
     mock = not live
-    client = create_client(config_path=config_path, mock=mock, dry_run=dry_run)
+    if client is None:
+        client = create_client(config_path=config_path, mock=mock, dry_run=dry_run)
 
     if not client.is_configured() and not (mock or dry_run):
         logger.error("LLM 客户端未配置，且非 mock/dry-run 模式。请填写配置文件。")
