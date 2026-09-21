@@ -10,7 +10,8 @@ import weakref
 from .preprocessing import preprocess
 from .postprocessing import correct_single_template
 from .token_structure import (
-    structure_similarity, split_kv, merge_kv_tokens, merge_values)
+    structure_similarity, split_kv, merge_kv_tokens, merge_values,
+    _is_variable_like)
 from src.common.global_config import GlobalConfig
 
 logger = logging.getLogger(__name__)
@@ -546,13 +547,14 @@ class Logcluster:
             return False
         if len(var.replace('<*>', '')) < 3:
             return False
-        # 守卫三：kv 同键但值区无证据塌缩（status:running/stopped 这类
-        # 状态词对，merge_values 值区为 <*>）→ 保持路径分离。设计约定：
-        # 普通词状态值仅字段名分，输出以多候选保留具体状态；与
-        # 'VER.--'/'VER.A'（变化区保留 'VER.' 同前缀证据）本质不同。
+        # 守卫三：kv 同键但值为普通词（状态词对 running/stopped）→
+        # 保持路径分离。设计判据 _is_variable_like：数字链/复合标识符
+        # 值（Cap:111_222）是变量型，合并为 <*> 是正确泛化不在此列；
+        # 普通词状态值仅字段名分，输出以多候选保留具体状态。
         kv1, kv2 = split_kv(t1), split_kv(t2)
         if (kv1 and kv2 and kv1[1] == kv2[1] and kv1[2] == kv2[2]
-                and merge_values(kv1[3], kv2[3]) == '<*>'):
+                and not (_is_variable_like(kv1[3])
+                         and _is_variable_like(kv2[3]))):
             return False
 
         if all(p[diff_pos] == var or _token_covers(var, p[diff_pos])
@@ -583,10 +585,11 @@ class Logcluster:
             # 单位置差异主动合并：新路径与某条已有路径仅差一个位置
             # （路径 token 已覆盖新行 token 的位置不算差异）、且合并
             # 结果保留固定证据（≥3 字符非通配部分）时，合并而非追加。
-            # 数学安全性：合并两条仅差一位的路径，其接受的取值组合
-            # 恰为两条已见路径的组合，不引入未观测组合——容量机制
-            # 保护的"组合特定性"完整保留。证据守卫防止 open/close、
-            # start/stop 等语义不同的词对被无结构塌缩。
+            # 组合安全性：合并两条仅差一位的路径，不引入未观测的跨
+            # 位置取值组合（值域放宽到同前缀家族，如 eth<*> 亦接受
+            # eth999——有意的家族泛化，依据是共同前缀证据）。
+            # 证据守卫防止 open/close、start/stop 等语义不同的词对
+            # 被无结构塌缩。
             if not self._merge_single_diff_path(seq):
                 # Add to the path list
                 self.pathList.append(seq)
@@ -598,21 +601,49 @@ class Logcluster:
                 if sim > maxSim:
                     maxSim = sim
                     target = t
-            # Start merging
+            # 审视#5/#6：先生成全部候选并校验，确认安全后再写回——
+            # 校验先于任何变更，不安全时整条拒收（返回 'rejected'），
+            # 不会出现"更新了一半再回退"。守卫与单位置分支一致：
+            # 容量不应决定状态词是否重要。
+            candidates = []  # [(pos, var)]
             for pos, (t1, t2) in enumerate(zip(target, seq)):
-                if t1 != t2:
-                    # 优先使用 logTemplate[pos]（getTemplate 已增量合并出的最通用形式），
-                    # 但仅在它同时覆盖 t1 与 t2 时采用（防归纳失效时排除既有路径）；
-                    # 否则用结构感知合并。
-                    lt = self.logTemplate[pos] if pos < len(self.logTemplate) else None
-                    if (lt is not None and lt != t1 and lt != t2
-                            and _token_covers(lt, t1) and _token_covers(lt, t2)):
-                        var = lt
-                    else:
-                        var = _structure_aware_merge(t1, t2, path_delimiters)
-
-                    # Update all lists
-                    for p in self.pathList: p[pos] = var
+                if t1 == t2 or _token_covers(t1, t2):
+                    continue
+                # 优先使用 logTemplate[pos]（增量合并出的最通用形式），
+                # 但仅在它同时覆盖 t1 与 t2 时采用（防归纳失效时排除
+                # 既有路径）；否则用结构感知合并。
+                lt = self.logTemplate[pos] if pos < len(self.logTemplate) else None
+                if (lt is not None and lt != t1 and lt != t2
+                        and _token_covers(lt, t1) and _token_covers(lt, t2)):
+                    var = lt
+                else:
+                    var = _structure_aware_merge(t1, t2, path_delimiters)
+                # 守卫一：合并结果必须覆盖两侧原值
+                if not (_token_covers(var, t1) and _token_covers(var, t2)):
+                    return 'rejected'
+                # 守卫二：保留同族固定证据（≥3 字符非通配部分）
+                if len(var.replace('<*>', '')) < 3:
+                    return 'rejected'
+                # 守卫三：kv 同键但值为普通词（状态词对 running/stopped）
+                # 拒收——设计判据 _is_variable_like（含数字=变量型）：
+                # 数字链/复合标识符值（Cap:111_222）合并为 <*> 是正确
+                # 泛化，不在此列
+                kv1, kv2 = split_kv(t1), split_kv(t2)
+                if (kv1 and kv2 and kv1[1] == kv2[1] and kv1[2] == kv2[2]
+                        and not (_is_variable_like(kv1[3])
+                                 and _is_variable_like(kv2[3]))):
+                    return 'rejected'
+                candidates.append((pos, var))
+            # 写回（审视#6）：var 覆盖全部路径在该位置的现值 → 统一写回；
+            # 只能覆盖目标路径 → 只改目标路径；两侧都不覆盖的情况已被
+            # 守卫一拒绝。避免无条件写回破坏其他路径对其来源行的覆盖。
+            for pos, var in candidates:
+                if all(p[pos] == var or _token_covers(var, p[pos])
+                       for p in self.pathList):
+                    for p in self.pathList:
+                        p[pos] = var
+                else:
+                    target[pos] = var
         
         # Clean the list (preserve sorted order equivalent to np.unique(axis=0))
         unique_tuples = sorted(set(tuple(p) for p in self.pathList))
@@ -1228,6 +1259,16 @@ class LogParser:
 
             matchCluster, first_constant, newTemplate = self.treeSearch(logmessageL)
 
+            # 审视#5：先判定路径更新是否安全（校验先于任何簇状态变更，
+            # 拒收时不留半更新状态）。容量满且无法安全合并时本簇拒收
+            # 该路径 → 按未命中处理（v1 直接新建簇，后续可扩展为尝试
+            # 其他候选簇）。
+            updated = False
+            if matchCluster is not None:
+                updated = matchCluster.updateSequence(logmessageL)
+                if updated == 'rejected':
+                    matchCluster = None
+
             # Match no existing log cluster
             if matchCluster is None:
                 newCluster = Logcluster(logTemplate=logmessageL, logIDL=[logID], br_thresh=self.br_thresh)
@@ -1240,24 +1281,24 @@ class LogParser:
 
             # Add the new log message to the existing cluster
             else:
-                # Increase the hit time
-                matchCluster.hit_time += 1
+                constant = first_constant
                 oldTemplate = matchCluster.logTemplate
+                # 路径更新已通过安全校验（或无需变更），此处才提交吸收：
+                # 更新计数 / 模板重绑 / 索引维护 / 行号登记
+                matchCluster.hit_time += 1
                 matchCluster.logTemplate = newTemplate
                 # 维护精确模板索引：旧键仅在仍指向本簇时删除，
                 # 新键仅在未被占用时登记（保留先登记者）
-                old_key = (first_constant, tuple(oldTemplate))
+                old_key = (constant, tuple(oldTemplate))
                 if self._exact_index.get(old_key) is matchCluster:
                     del self._exact_index[old_key]
-                new_key = (first_constant, tuple(newTemplate))
+                new_key = (constant, tuple(newTemplate))
                 if new_key not in self._exact_index:
                     self._exact_index[new_key] = matchCluster
-                constant = first_constant
                 # The template changed, update the list
                 oldTemplateList = matchCluster.templateList.copy()
                 matchCluster.logIDL.append(logID)
                 hit_clusters.add(matchCluster)  # 记录本批次命中
-                updated = matchCluster.updateSequence(logmessageL)
 
                 if (
                         oldTemplate != newTemplate or matchCluster.hit_time == self.update_population) and first_constant == 'None':

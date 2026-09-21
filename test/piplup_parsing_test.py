@@ -85,7 +85,13 @@ class TestMultiPath:
             assert template_covers(tpl, line)
 
     def test_capacity_merge_covers_all_paths(self):
-        """容量满后合并，合并模板必须覆盖所有参与合并的实际路径。"""
+        """容量满后的路径处理（审视#5 新语义）：
+
+        - 无结构证据的词对（server/client/north）不再被容量合并塌缩
+          为 <*>——容量不应决定状态词是否重要，拒收后按未命中新建簇；
+        - 覆盖不变量：每行模板必须覆盖该行；
+        - 有结构证据的容量合并（xnet_a/xnet_b 同前缀）仍正常泛化
+          （见 test_capacity_merge_not_exclude_bystander_paths）。"""
         parser = make_parser(br_thresh=2)
         logs = [
             'event server east stable one two three',
@@ -93,11 +99,13 @@ class TestMultiPath:
             'event north south stable one two three',
         ]
         result = parser.parse_list(logs)
-        templates = set(result)
-        # 合并后允许单一泛化模板，但必须覆盖全部三行
-        assert len(templates) == 1
-        for line in logs:
-            assert template_covers(next(iter(templates)), line)
+        # 无证据词对被拒收：具体词保留在输出中
+        joined = ' '.join(result)
+        for word in ('server', 'client', 'north'):
+            assert word in joined, f'{word} 被容量合并塌缩（应保留状态词）'
+        # 覆盖不变量
+        for line, tpl in zip(logs, result):
+            assert template_covers(tpl, line)
 
     def test_capacity_merge_not_exclude_bystander_paths(self):
         """容量满时合并 target 与新路径，同簇其他路径的取值不得被排除。

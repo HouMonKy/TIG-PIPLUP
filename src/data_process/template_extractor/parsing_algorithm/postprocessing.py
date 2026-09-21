@@ -160,7 +160,7 @@ def correct_single_template(template, user_strings=None):
     # 仅对链式分隔符（空格、逗号、分号、下划线等）进行归约；
     # 单正则一次匹配整条 <*> 分隔符链（含混合分隔符），
     # 与原逐分隔符多轮循环语义等价。
-    template = re.sub(r'<\*>(?:[\s,!:|"\'.\-+#@$%&_]<\*>)+', '<*>', template)
+    template = re.sub(r'<\*>(?:[\s,;!:|"\'.\-+#@$%&_]<\*>)+', '<*>', template)
 
     # 兜底：修复 identifier<*>) → identifier(<*>) （半括号修正）
     # 注意：旧版正则 r'([a-zA-Z_]\w*)<\*\)' 缺少 >，实际匹配 identifier<*) 而非 identifier<*>)，已修复
@@ -170,7 +170,7 @@ def correct_single_template(template, user_strings=None):
 
     # 吸收 <*> 前的短版本号前缀（如 V1, V2 等）
     # V1 是版本号常量前缀，太短不被预处理正则匹配，后处理中吸收进通配符
-    template = re.sub(r'[A-Z]\d+,<\*>', '<*>', template)
+    template = re.sub(r'(?<![A-Za-z0-9])[A-Z]\d+,<\*>', '<*>', template)
 
     # Substitute consecutive variables only if not separated with any delimiter including space (CV)
     # NOTE: this should be done at the end
