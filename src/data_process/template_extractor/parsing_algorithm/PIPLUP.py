@@ -470,6 +470,11 @@ class Logcluster:
         # 供簇级已编译模式缓存做失效判断（见 _get_cluster_patterns）
         self._tpl_version = 0
 
+    def _mark_templates_changed(self):
+        """templateList 变化的唯一入口（审视#1：统一兼容处理，
+        避免部分位置 getattr 兜底、部分位置直接 += 报错）。"""
+        self._tpl_version = getattr(self, '_tpl_version', 0) + 1
+
     # Check whether template1 can describe template2 (template2 can be merged into template1)
     @staticmethod
     def templateMatches(template1, template2):
@@ -612,7 +617,7 @@ class Logcluster:
                 if self.templateMatches(t2, t1): newList[i] = False; break
                 if self.templateMatches(t1, t2): newList[j] = False
         self.templateList = [item for i, item in enumerate(self.templateList) if newList[i]]
-        self._tpl_version += 1
+        self._mark_templates_changed()
 
         return True
 
@@ -702,8 +707,22 @@ class LogParser:
             self.load_cache()
         self.debug = debug
 
+    # 缓存文件结构版本（审视#2）：与簇级 _tpl_version（某簇模板变化
+    # 次数）区分。版本不一致时按保守迁移处理（清查找缓存重新积累）。
+    _CACHE_SCHEMA_VERSION = 2
+
     def load_cache(self):
-        """反序列化：加载本地解析树，并清洗历史行号记录"""
+        """反序列化：加载本地解析树（审视#1/#2 保守迁移策略）。
+
+        - 回填旧版本簇缺失的属性（_tpl_version 等），加载完成即可继续更新；
+        - 不按 logTemplate 去重——同模板不同路径的簇全部保留，
+          查找缓存（template_cache/light_cache）按 schema 版本决定
+          保留或清空（清的是加速记录，不是已学到的模板）；
+        - 保留已保存的桶归属（不重建路由），仅做一致性检查：
+          树中引用的簇必须存在于 logCluL，悬挂引用剔除；
+          logCluL 中不在任何桶的孤儿簇按当前路由重新入桶；
+        - 重建 _exact_index 辅助索引。
+        """
         logger.debug("Loading previous parsing tree...")
         if os.path.exists(self.cache_path) and os.path.getsize(self.cache_path) > 0:
             try:
@@ -716,59 +735,55 @@ class LogParser:
                 storage_tree = cache_data['storage_tree']
                 shallow_tree = cache_data['shallow_tree']
                 log_clusters = cache_data['logCluL']
-                template_cache = cache_data.get('template_cache', {})
-                light_cache = cache_data.get('light_cache', {})
 
                 if not isinstance(storage_tree, dict) or not isinstance(shallow_tree, dict):
                     raise TypeError("cache trees must be dictionaries")
                 if not isinstance(log_clusters, list):
                     raise TypeError("cache logCluL must be a list")
-                if not isinstance(template_cache, dict) or not isinstance(light_cache, dict):
-                    raise TypeError("cache indexes must be dictionaries")
 
-                # 强清空历史行号记录，防止流数据游标错位
+                # 审视#1：回填新版新增属性——加载完成不算成功，
+                # 还必须能继续更新（updateSequence 直接访问 _tpl_version）
                 for cluster in log_clusters:
                     cluster.br_thresh = self.br_thresh
                     cluster.logIDL = []
+                    cluster._tpl_version = getattr(cluster, '_tpl_version', 0)
 
-                # ── 去重 + 重建桶（不能只重建 _exact_index）──
-                # 历史缓存可能包含：模板演化前遗留的同模板重复簇、
-                # 陈旧桶路由（簇按旧模板常量入桶后模板已变化）。
-                # 1) 按模板元组去重，命中计数累加，保留首个；
-                # 2) 以当前模板按统一路由规则重建 storage/shallow 两树；
-                # 3) _exact_index 同步重建。
-                unique = {}
-                deduped = []
+                # 查找缓存按 schema 版本决定保留或清空
+                schema_version = cache_data.get('cache_schema_version', 0)
+                if schema_version < self._CACHE_SCHEMA_VERSION:
+                    template_cache = {}
+                    light_cache = {}
+                else:
+                    template_cache = cache_data.get('template_cache', {})
+                    light_cache = cache_data.get('light_cache', {})
+                    if not isinstance(template_cache, dict) or not isinstance(light_cache, dict):
+                        template_cache, light_cache = {}, {}
+
+                # 一致性检查：树中引用的簇必须存在于 logCluL（剔除悬挂引用）
+                valid = set(log_clusters)
+                for const in list(storage_tree):
+                    for seq_len in list(storage_tree[const]):
+                        bucket = [c for c in storage_tree[const][seq_len] if c in valid]
+                        storage_tree[const][seq_len] = bucket
+                for const in list(shallow_tree):
+                    shallow_tree[const] = [c for c in shallow_tree[const] if c in valid]
+
+                # 孤儿簇（在 logCluL 但不在任何桶）：按当前路由重新入桶
+                referenced = set()
+                for sub in storage_tree.values():
+                    for bucket in sub.values():
+                        referenced.update(bucket)
                 for cluster in log_clusters:
-                    key = tuple(cluster.logTemplate)
-                    first = unique.get(key)
-                    if first is None:
-                        unique[key] = cluster
-                        deduped.append(cluster)
-                    else:
-                        first.hit_time += getattr(cluster, 'hit_time', 1)
+                    if cluster not in referenced:
+                        seq_len = len(cluster.logTemplate)
+                        storage_tree.setdefault('None', {}).setdefault(seq_len, []).append(cluster)
+                        shallow_tree.setdefault('None', []).append(cluster)
 
-                storage_tree = {'None': {}}
-                shallow_tree = {'None': []}
+                # 重建精确索引（不去重：同模板簇共存，setdefault 保留首个，
+                # 与桶内扫描命中首个同模板簇的语义一致）
                 exact_index = {}
-                constant_keys = {'None'}
-                for cluster in deduped:
-                    # 与 _reindex_from_none 登记规则一致：首个非 <*> token
-                    # 作为常量键，簇按此路由重建
-                    constant = 'None'
-                    for token in cluster.logTemplate:
-                        if '<*>' not in token:
-                            constant = token
-                            break
-                    if constant != 'None':
-                        constant_keys.add(constant)
-                    storage_tree.setdefault(constant, {}).setdefault(
-                        len(cluster.logTemplate), []).append(cluster)
-                    shallow_tree.setdefault(constant, []).append(cluster)
+                for cluster in log_clusters:
                     exact_index.setdefault(tuple(cluster.logTemplate), cluster)
-                self._constant_keys = constant_keys
-
-                log_clusters = deduped
 
                 self.storage_tree = storage_tree
                 self.shallow_tree = shallow_tree
@@ -792,6 +807,7 @@ class LogParser:
             temp_path = self.cache_path + '.tmp'
             with open(temp_path, 'wb') as f:
                 pickle.dump({
+                    'cache_schema_version': self._CACHE_SCHEMA_VERSION,
                     'storage_tree': self.storage_tree,
                     'shallow_tree': self.shallow_tree,
                     'logCluL': self.logCluL,
@@ -1036,19 +1052,21 @@ class LogParser:
                     if len(t1.split()) >= len(t2.split()):
                         if Logcluster.templateMatches(t2, t1):
                             cluster.templateList[i] = t2
-                            cluster._tpl_version = getattr(cluster, '_tpl_version', 0) + 1
+                            cluster._mark_templates_changed()
                             break
                     # t2 described by t1
                     if len(t1.split()) <= len(t2.split()):
                         if Logcluster.templateMatches(t1, t2):
                             logClust.templateList[j] = t1
-                            logClust._tpl_version = getattr(logClust, '_tpl_version', 0) + 1
+                            logClust._mark_templates_changed()
 
     def _reindex_from_none(self, cluster):
         """把挂在 'None' 常量下的簇迁移到其首个常量 token 对应的桶。
 
         触发条件（update_population 阈值或模板变化）由调用方判断；
         迁移包含 shallow_tree['None'] 中含相同常量的其他簇。
+        返回迁移目标桶名（审视#3：调用方须用新桶名做后续 mergeTemplates
+        等桶内查询，避免搬桶后仍查询旧桶）。无迁移返回 'None'。
         """
         constant = 'None'
         for token in cluster.logTemplate:
@@ -1081,6 +1099,7 @@ class LogParser:
                     bucket = self.storage_tree['None'][seq_len_key]
                     self.storage_tree['None'][seq_len_key] = [
                         cl for cl in bucket if cl not in moved_set]
+        return constant
 
     def _register_cache_hit(self, cluster, logID, hit_clusters):
         """缓存命中共用维护：hit_time 递增、行号登记、阈值触发常量重索引。
@@ -1221,7 +1240,10 @@ class LogParser:
 
                 if (
                         oldTemplate != newTemplate or matchCluster.hit_time == self.update_population) and first_constant == 'None':
-                    self._reindex_from_none(matchCluster)
+                    reindexed = self._reindex_from_none(matchCluster)
+                    if reindexed != 'None':
+                        # 审视#3：搬桶后后续 mergeTemplates 必须查询新桶
+                        constant = reindexed
 
                 if updated:
                     self.mergeTemplates(matchCluster, constant, oldTemplateList)
