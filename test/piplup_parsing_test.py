@@ -902,10 +902,9 @@ class TestReviewIssues:
     def test_bucket_constant_key_order(self):
         """审视#4：桶优先级须沿用键建立顺序（原版语义），非输入词序。"""
         parser = make_parser()
-        # 先注册 alpha，后注册 beta（键序 alpha→beta）
+        # 先注册 alpha，后注册 beta（键序 alpha→beta）——键即桶
         parser.shallow_tree.setdefault('alpha', [])
         parser.shallow_tree.setdefault('beta', [])
-        parser._constant_keys.update({'alpha', 'beta'})
         # 输入词序 beta 在前——原版键序语义应选 alpha
         assert parser._bucket_constant(['beta', 'alpha', 'x']) == 'alpha'
 

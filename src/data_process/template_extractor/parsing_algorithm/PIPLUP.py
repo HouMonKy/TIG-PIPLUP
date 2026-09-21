@@ -108,14 +108,30 @@ class _ClusterPattern:
     失败才前进到下一出现位置）。
     """
 
-    __slots__ = ('segments',)
+    __slots__ = ('segments', '_ascii_ok', '_template', '_fallback')
 
     def __init__(self, template):
         # 每段：小写词列表；空段（连续 <*> / 首尾 <*>）→ 空列表
         self.segments = [seg.lower().split() for seg in template.split('<*>')]
+        # 审视#8：非 ASCII（如土耳其 İ 等 lower 后长度会变化的字符）
+        # 回退原版编译正则，快捷实现仅覆盖已验证的 ASCII 范围
+        self._ascii_ok = template.isascii()
+        self._template = template
+        self._fallback = None
+
+    def _fallback_fullmatch(self, text_l):
+        """原版语义回退：编译正则 fullmatch + IGNORECASE + DOTALL。"""
+        if self._fallback is None:
+            pattern = re.escape(self._template).replace(re.escape('<*>'), '.*?')
+            pattern = pattern.replace(r'\ ', r'\s*')
+            self._fallback = re.compile(
+                f'^{pattern}$', re.IGNORECASE | re.DOTALL)
+        return self._fallback.fullmatch(text_l) is not None
 
     def fullmatch(self, text_l):
         """对已 strip + lower 的文本做全匹配。"""
+        if not self._ascii_ok or not text_l.isascii():
+            return self._fallback_fullmatch(text_l)
         n = len(text_l)
         segs = self.segments
         # 首段：^ 锚定，从 0 起逐词确定性匹配
@@ -699,9 +715,6 @@ class LogParser:
         self._exact_index = {}
         # seqDist 记忆化：扫桶时相同 (模板, 序列) 对的评分直接复用
         self._seqdist_cache = {}
-        # 已登记常量键集：桶路由的成员判断依据（'None' 恒在），
-        # 仅由 _reindex_from_none 与 load_cache 重建登记
-        self._constant_keys = {'None'}
         # 初始化时执行且仅执行一次加载
         if self.use_cache:
             self.load_cache()
@@ -779,11 +792,14 @@ class LogParser:
                         storage_tree.setdefault('None', {}).setdefault(seq_len, []).append(cluster)
                         shallow_tree.setdefault('None', []).append(cluster)
 
-                # 重建精确索引（不去重：同模板簇共存，setdefault 保留首个，
-                # 与桶内扫描命中首个同模板簇的语义一致）
+                # 重建桶内精确索引（不去重：同模板簇共存，setdefault 保留
+                # 首个，与桶内扫描命中首个同模板簇的语义一致）
                 exact_index = {}
-                for cluster in log_clusters:
-                    exact_index.setdefault(tuple(cluster.logTemplate), cluster)
+                for const, sub in storage_tree.items():
+                    for bucket in sub.values():
+                        for cluster in bucket:
+                            exact_index.setdefault(
+                                (const, tuple(cluster.logTemplate)), cluster)
 
                 self.storage_tree = storage_tree
                 self.shallow_tree = shallow_tree
@@ -859,34 +875,36 @@ class LogParser:
         return -1
 
     def _bucket_constant(self, tokens):
-        """桶路由常量：tokens 中第一个**已登记**的常量键，否则 'None'。
+        """桶路由常量：按 shallow_tree 键**建立顺序**（原版语义）返回
+        第一个出现在 tokens 中的键，否则 'None'。
 
-        只沿 tokens 自身顺序做集合成员判断（O(len(tokens))），不扫描
-        全部常量键——原实现遍历 shallow_tree 所有键找第一个命中，键多时
-        每行都是线性开销。语义要点：未登记的 token（通常是变量值）不
-        参与路由，避免按高熵变量值分桶导致永不合桶；常量键只由
-        _reindex_from_none 与缓存重建登记（模板稳定后的固定 token）。
+        审视#4：路由优先级必须沿用原版的键建立顺序——此前改为沿
+        tokens 词序会改变候选集合（键序 alpha→beta、输入含 beta,alpha
+        时原版选 alpha、改后选 beta），不能作为无行为变化的性能优化
+        保留。用 set 做 O(1) 成员判断替代原版对线性列表的反复扫描。
         """
-        for token in tokens:
-            if token in self._constant_keys:
-                return token
+        tokens_set = set(tokens)
+        for key in self.shallow_tree:
+            if key in tokens_set:
+                return key
         return 'None'
 
     def treeSearch(self, seq):
-        # ── O(1) 精确命中快路径 ──
+        # Find the frequent word（先定桶：精确索引也只在桶内生效）
+        constant = self._bucket_constant(seq)
+
+        # ── 桶内 O(1) 精确命中快路径 ──
         # 完全相同的模板序列直接定位簇，绕过桶内线性扫描（桶达数千簇时
-        # 每行 O(桶) 次 seqDist 是吞吐崩塌的根源）。语义与 fastMatch 的
-        # 精确匹配分支一致：maxSim=1，new_template 取等值新列表
-        # （getTemplate 同样返回新列表——副本避免 logTemplate 与调用方
-        # 列表对象别名，防止 updateSequence 原地改写污染模板）。
-        exact = self._exact_index.get(tuple(seq))
+        # 每行 O(桶) 次 seqDist 是吞吐崩塌的根源）。审视#4：索引键含桶
+        # 常量——只在选定桶内快捷查找，不绕过原本的候选范围（跨桶命中
+        # 是行为变化，与性能优化分开评审）。语义与 fastMatch 的精确
+        # 匹配分支一致：maxSim=1，new_template 取等值新列表（副本避免
+        # logTemplate 与调用方列表对象别名）。
+        exact = self._exact_index.get((constant, tuple(seq)))
         if exact is not None:
-            return exact, self._bucket_constant(seq), seq[:]
+            return exact, constant, seq[:]
 
         retLogClust = None
-
-        # Find the frequent word
-        constant = self._bucket_constant(seq)
 
         # Search on the second layer
         seqLen = len(seq)
@@ -905,6 +923,8 @@ class LogParser:
 
         self.storage_tree.setdefault(constant, {}).setdefault(seqLen, []).append(logClust)
         self.shallow_tree.setdefault(constant, []).append(logClust)
+        # 桶内精确索引登记（setdefault 保留首个，与桶内扫描语义一致）
+        self._exact_index.setdefault((constant, tuple(logClust.logTemplate)), logClust)
 
         return constant
 
@@ -1073,12 +1093,8 @@ class LogParser:
             if '<*>' not in token:
                 constant = token
                 break
-        # 首个非 <*> token 登记为常量键（与原 shallow 键语义一致）：
-        # 此后含该 token 的行/簇才路由到对应桶
-        if constant != 'None':
-            self._constant_keys.add(constant)
-
-        # 1. Initialize the buckets（storage/shallow 两树键必须成对创建）
+        # 1. Initialize the buckets（storage/shallow 两树键必须成对创建，
+        # 键的建立顺序即路由优先级，见 _bucket_constant）
         self.storage_tree.setdefault(constant, {}).setdefault(len(cluster.logTemplate), [])
         self.shallow_tree.setdefault(constant, [])
 
@@ -1099,6 +1115,13 @@ class LogParser:
                     bucket = self.storage_tree['None'][seq_len_key]
                     self.storage_tree['None'][seq_len_key] = [
                         cl for cl in bucket if cl not in moved_set]
+                # 搬桶重键：精确索引从 ('None', tpl) 迁到 (新桶, tpl)
+                for cl in moved:
+                    old_key = ('None', tuple(cl.logTemplate))
+                    if self._exact_index.get(old_key) is cl:
+                        del self._exact_index[old_key]
+                    self._exact_index.setdefault(
+                        (constant, tuple(cl.logTemplate)), cl)
         return constant
 
     def _register_cache_hit(self, cluster, logID, hit_clusters):
@@ -1213,9 +1236,7 @@ class LogParser:
                 constant = self.addSeqToPrefixTree(newCluster)
                 self.mergeTemplates(newCluster, constant)
                 self.unsaved_updates += 1  # 变更计数器累加
-                # 登记精确模板索引（setdefault：若同键已存在则保留先登记者，
-                # 与桶内扫描命中首个同模板簇的语义一致）
-                self._exact_index.setdefault(tuple(logmessageL), newCluster)
+                # 精确索引由 addSeqToPrefixTree 按桶登记，此处无需重复
 
             # Add the new log message to the existing cluster
             else:
@@ -1225,10 +1246,10 @@ class LogParser:
                 matchCluster.logTemplate = newTemplate
                 # 维护精确模板索引：旧键仅在仍指向本簇时删除，
                 # 新键仅在未被占用时登记（保留先登记者）
-                old_key = tuple(oldTemplate)
+                old_key = (first_constant, tuple(oldTemplate))
                 if self._exact_index.get(old_key) is matchCluster:
                     del self._exact_index[old_key]
-                new_key = tuple(newTemplate)
+                new_key = (first_constant, tuple(newTemplate))
                 if new_key not in self._exact_index:
                     self._exact_index[new_key] = matchCluster
                 constant = first_constant
