@@ -868,3 +868,119 @@ class TestPostProcessing:
     def test_assignment_masking(self):
         assert correct_single_template('id=abc123') == 'id=<*>'
 
+
+
+# =====================================================================
+# 第七部分：外部审视意见复现测试（修复前失败，逐提交转绿）
+# =====================================================================
+
+class TestReviewIssues:
+    """审视意见逐条复现：每个用例对应一个已实证的缺陷。"""
+
+    def test_old_cache_missing_tpl_version_survives_update(self):
+        """审视#1：旧版本缓存无 _tpl_version 属性，加载后继续更新不得崩溃。"""
+        c = Logcluster(logTemplate=['event', 'x', 'ready'], br_thresh=5)
+        c.pathList = [list(c.logTemplate)]
+        del c._tpl_version  # 模拟旧缓存
+        try:
+            c.updateSequence(['event', 'y', 'ready'])
+        except AttributeError:
+            pytest.fail('旧缓存簇缺少 _tpl_version，updateSequence 直接崩溃')
+
+    def test_reindex_returns_new_constant(self):
+        """审视#3：_reindex_from_none 须返回新桶名供后续 mergeTemplates 使用。"""
+        parser = make_parser()
+        parser.parse_list(['event alpha ready', 'event alpha ready'])
+        c = parser.logCluL[0]
+        c.logTemplate = ['event', '<*>', 'ready']
+        # 注册 event 常量键（原版语义：常量键由重索引建立）
+        parser.shallow_tree.setdefault('event', [])
+        parser.storage_tree.setdefault('event', {})
+        ret = parser._reindex_from_none(c)
+        assert ret == 'event', '搬桶后必须返回新桶名'
+
+    def test_bucket_constant_key_order(self):
+        """审视#4：桶优先级须沿用键建立顺序（原版语义），非输入词序。"""
+        parser = make_parser()
+        # 先注册 alpha，后注册 beta（键序 alpha→beta）
+        parser.shallow_tree.setdefault('alpha', [])
+        parser.shallow_tree.setdefault('beta', [])
+        parser._constant_keys.update({'alpha', 'beta'})
+        # 输入词序 beta 在前——原版键序语义应选 alpha
+        assert parser._bucket_constant(['beta', 'alpha', 'x']) == 'alpha'
+
+    def test_capacity_merge_preserves_state_words(self):
+        """审视#5：路径容量满时状态词保护必须与未满时一致。"""
+        logs = [f'job status:{"running" if i % 2 == 0 else "stopped"} mode m{i % 3} done'
+                for i in range(12)]
+        parser = make_parser()
+        result = parser.parse_list(logs)
+        joined = ' '.join(result)
+        assert 'running' in joined and 'stopped' in joined, \
+            '容量合并把 running/stopped 塌缩为 <*>（容量不应决定状态词重要性）'
+
+    def test_capacity_merge_keeps_path_coverage(self):
+        """审视#6：容量合并写回时，不得破坏其他路径对其来源行的覆盖。
+
+        构造 lt 不变量失效的状态（旧版本缓存/迁移场景可达）：
+        logTemplate[pos] 为具体值 'eth0'，但路径中存在 'wlan0'。
+        容量合并 merge('eth0','eth6')='eth<*>'
+        不覆盖 'wlan0'——无条件写回全部路径会破坏该路径的覆盖。"""
+        c = Logcluster(logTemplate=['link', 'eth0', 'up', 'fast'], br_thresh=2)
+        c.pathList = [['link', 'eth0', 'up', 'fast'],
+                      ['link', 'wlan0', 'down', 'slow']]
+        c.templateList = ['link eth0 up fast', 'link wlan0 down slow']
+        ret = c.updateSequence(['link', 'eth6', 'up', 'fast'])
+        # 无论合并/拒绝，两条路径都必须仍覆盖各自来源行
+        p1, p2 = c.pathList
+        assert ' '.join(p1).startswith('link eth') and 'up' in p1, f'p1: {p1}'
+        assert p2 == ['link', 'wlan0', 'down', 'slow'] or ' '.join(p2).startswith('link wlan') \
+            or ret == 'rejected', f'容量合并破坏了 wlan0 路径: {p2}'
+        for path, src in zip(c.pathList, [['link', 'eth0', 'up', 'fast'],
+                                          ['link', 'wlan0', 'down', 'slow']]):
+            merged_tpl = ' '.join(path)
+            covered = _token_covers(merged_tpl.split()[1] if '<*>' in merged_tpl else src[1], src[1]) \
+                if False else all(a == b or '<*>' in a for a, b in zip(path, src))
+            assert covered, f'路径不再覆盖来源行: {path} vs {src}'
+
+    def test_load_cache_preserves_duplicate_template_clusters(self):
+        """审视#2：同 logTemplate 不同路径的簇（A/B）加载后都必须保留。"""
+        import os
+        import tempfile
+        parser = make_parser()
+        ca = Logcluster(logTemplate=['event', '<*>', 'ready'], br_thresh=5)
+        ca.pathList = [['event', 'alpha', 'ready']]
+        ca.templateList = ['event alpha ready']
+        cb = Logcluster(logTemplate=['event', '<*>', 'ready'], br_thresh=5)
+        cb.pathList = [['event', 'beta', 'ready']]
+        cb.templateList = ['event beta ready']
+        parser.logCluL = [ca, cb]
+        parser.storage_tree['None'][3] = [ca, cb]
+        parser.shallow_tree['None'] = [ca, cb]
+        with tempfile.NamedTemporaryFile(suffix='.pkl', delete=False) as f:
+            path = f.name
+        try:
+            parser.cache_path = path
+            parser.use_cache = True
+            parser.save_cache()
+            p2 = make_parser(use_cache=True, cache_path=path)
+            assert len(p2.logCluL) == 2, \
+                f'加载去重丢失了簇（期望 2 个，实际 {len(p2.logCluL)} 个）'
+            paths = {tuple(p) for c in p2.logCluL for p in c.pathList}
+            assert ('event', 'alpha', 'ready') in paths
+            assert ('event', 'beta', 'ready') in paths
+        finally:
+            os.unlink(path)
+
+    def test_short_version_left_boundary(self):
+        """审视#7：短版本号清理须有左边界，不得把 AV1, 局部替换成 A<*>。"""
+        assert correct_single_template('value AV1,<*> ok') == 'value AV1,<*> ok'
+
+    def test_brace_cleanup_preserves_word_value(self):
+        """审视#7：brace 组归约只限 ID 形态（含数字），词值不得整组吞掉。"""
+        out = preprocessing.preprocess('set {1234:running} loaded')
+        assert 'running' in out, f'词值被整组吞掉: {out!r}'
+
+    def test_postprocess_cv_reduces_semicolon(self):
+        """审视#7：后处理 <*> 链归约字符集须与预处理一致（含分号）。"""
+        assert correct_single_template('a <*>;<*> b') == 'a <*> b'
