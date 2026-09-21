@@ -109,30 +109,24 @@ class _ClusterPattern:
     失败才前进到下一出现位置）。
     """
 
-    __slots__ = ('segments', '_ascii_ok', '_template', '_fallback')
+    __slots__ = ('segments',)
 
     def __init__(self, template):
         # 每段：小写词列表；空段（连续 <*> / 首尾 <*>）→ 空列表
         self.segments = [seg.lower().split() for seg in template.split('<*>')]
-        # 审视#8：非 ASCII（如土耳其 İ 等 lower 后长度会变化的字符）
-        # 回退原版编译正则，快捷实现仅覆盖已验证的 ASCII 范围
-        self._ascii_ok = template.isascii()
-        self._template = template
-        self._fallback = None
-
-    def _fallback_fullmatch(self, text_l):
-        """原版语义回退：编译正则 fullmatch + IGNORECASE + DOTALL。"""
-        if self._fallback is None:
-            pattern = re.escape(self._template).replace(re.escape('<*>'), '.*?')
-            pattern = pattern.replace(r'\ ', r'\s*')
-            self._fallback = re.compile(
-                f'^{pattern}$', re.IGNORECASE | re.DOTALL)
-        return self._fallback.fullmatch(text_l) is not None
 
     def fullmatch(self, text_l):
-        """对已 strip + lower 的文本做全匹配。"""
-        if not self._ascii_ok or not text_l.isascii():
-            return self._fallback_fullmatch(text_l)
+        r"""对已 strip + lower 的文本做全匹配（Unicode 全覆盖）。
+
+        审视#8 原建议"非 ASCII 回退原版编译正则"——实测该回退模式
+        （\s*.*?\s* 链）正是灾难性回溯的来源：日志行含任意一个中文
+        字符即触发回退，行尾失配 + 空格密集时 >15s 卡死。线性匹配器
+        本身可正确处理 Unicode，无需回退：
+        - 模板与文本双侧 lower，İ→i̇ 等长度变化两侧一致，匹配全程
+          在 lower 域内进行，无位置回映射；
+        - str.split() 原生支持 Unicode 空白（含全角空格）；
+        - Python re.IGNORECASE 与 str.lower() 同为简单大小写映射。
+        """
         n = len(text_l)
         segs = self.segments
         # 首段：^ 锚定，从 0 起逐词确定性匹配

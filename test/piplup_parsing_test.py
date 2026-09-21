@@ -991,3 +991,28 @@ class TestReviewIssues:
     def test_postprocess_cv_reduces_semicolon(self):
         """审视#7：后处理 <*> 链归约字符集须与预处理一致（含分号）。"""
         assert correct_single_template('a <*>;<*> b') == 'a <*> b'
+
+    def test_nonascii_line_no_regex_fallback_hang(self):
+        """审视#8 实施修正：含中文/全角字符的行不得回退灾难性回溯正则。
+
+        回退正则（\\s*.*?\\s* 链）在"字面量前部吻合 + 行尾失配 +
+        空格密集"形态下 >15s 卡死（实测复现）；线性匹配器 Unicode
+        全覆盖（双侧 lower + str.split 支持 Unicode 空白）。"""
+        from src.data_process.template_extractor.parsing_algorithm.PIPLUP import (
+            _ClusterPattern, LogParser)
+        # 正确性：中文/全角空格匹配语义
+        assert _ClusterPattern('a <*> b').fullmatch('a 统计 b')
+        assert not _ClusterPattern('a <*> b').fullmatch('a 统计 c')
+        assert _ClusterPattern('x <*> y').fullmatch('x 　y')  # 全角空格
+        # 卡死回归：灾难形态 + 中文字符必须快速完成（若回退正则则 >15s）
+        templates = ['stat link a <*> b <*> c <*> d <*> e <*> f <*> g done',
+                     'stat link a <*> b <*> c <*> d <*> e <*> f <*> g fail']
+        patterns = LogParser._compile_regex_patterns(templates)
+        text = ('stat link a      1       b      2       c      3       '
+                'd      4       e      统计    f      6       g      7       doneX')
+        import time
+        t0 = time.perf_counter()
+        idx = LogParser._regex_match_log(text, patterns)
+        elapsed = time.perf_counter() - t0
+        assert elapsed < 1.0, f'非 ASCII 行匹配耗时 {elapsed:.2f}s（疑似回退灾难正则）'
+        assert idx == -1
