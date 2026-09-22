@@ -7,6 +7,7 @@ CLI（一条命令产出全部质量结论）:
         --piplup-opt <module> \
         --llm-config <yaml> --output <gt_dir> --live \
         [--concurrency N] [--audit-consistent K] [--no-eval] \
+        [--retry-lines <上一轮输出的 retry_lines.jsonl>] \
         [--scenarios 01,02,...] [--module Messages] [--dry-run] [--retry-failed]
 
 行级口径（簇不参与对齐，簇数差异不影响任何环节）：
@@ -14,18 +15,25 @@ CLI（一条命令产出全部质量结论）:
 - 归一化后相同 → 一致行，直接进 GT
 - 不同 → 按（原版模板, 优化版模板）对聚合裁决任务（TaskID 内容寻址）
 
-GT 构建三级逻辑：
+GT 构建逻辑：
 - 一致行 → GT（可 --audit-consistent K 抽样 LLM 审计，量化"两版一起错"的共识错误率）
 - 裁决 original/optimized → GT 取对应版本模板
-- 裁决 equivalent → 双 GT 变体（主=原版，备=优化版），评估取均值消除偏向
+- 裁决 equivalent → 行内记录双模板（template + template_alt），评估时任一匹配即算对
 - 裁决 neither + 合成模板通过程序校验（覆盖全部样本 + 固定词≥2）→ GT 取合成模板；
   校验失败 / insufficient_evidence / 未裁决 → excluded_lines.jsonl，计入覆盖率
+- excluded 中的可重试行（pending/failed/insufficient/合成未过）同步写入
+  retry_lines.jsonl；下一轮用 --retry-lines 传入即可仅对这些任务重新裁决
+  （可配合更换 --llm-config / 模型），多轮迭代把人工成本降到最低
+- 人工标注后置：所有裁决轮次结束后，用 gt_annotator.html 对
+  human_annotations_needed.jsonl 统一人工审核，导出结果经 --human-annotations
+  回填（优先级高于一切自动裁决，配合 --reuse-runs 不必重跑解析）
 - 输出 eval_report.json（默认自动评估，复用 runs，零额外解析）
 
 GT 工件（供模块4 answer 评估任意第三方版本）：
   runs/{label}_result.jsonl + run_meta.json / line_pairs.jsonl /
-  tasks/ + results/（裁决留痕）/ final_gt.jsonl + final_gt_alt.jsonl /
-  excluded_lines.jsonl / consistent_audit.json / gt_summary.json / eval_report.json
+  tasks/ + results/（裁决留痕）/ final_gt.jsonl（含 template_alt）/ 
+  retry_lines.jsonl / excluded_lines.jsonl / human_annotations_needed.jsonl /
+  gt_annotator.html / consistent_audit.json / gt_summary.json / eval_report.json
 """
 import hashlib
 import json
@@ -37,12 +45,17 @@ from eval_pipeline._shared.data_loader import load_jsonl, write_jsonl, write_jso
 from eval_pipeline._shared.metrics import normalize_template
 from eval_pipeline._shared.piplup_runner import run_piplup_pair, load_runs_dir
 from eval_pipeline._shared.adjudication import (
-    run_adjudication,
+    run_adjudication, StateManager,
     ADJ_ORIGINAL, ADJ_OPTIMIZED, ADJ_EQUIVALENT, ADJ_NEITHER, ADJ_INSUFFICIENT,
     ALL_TASKS_FILE, _extract_json_from_response,
 )
 
 logger = logging.getLogger(__name__)
+
+# excluded 中可交还 LLM 重新裁决的原因（retry_lines.jsonl 的收录范围；
+# no_counterpart 是数据问题、audit_synthesis_failed 转人工，均不可重试）
+RETRYABLE_REASONS = {'pending', 'adjudication_failed', 'insufficient_evidence',
+                     'neither_invalid_proposal'}
 
 
 def _task_id_for(norm_orig: str, norm_opt: str) -> str:
@@ -232,21 +245,22 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
                     results_orig: list, results_opt: list,
                     human_map: dict = None, audit_corrections: dict = None,
                     audit_failed_templates: set = None):
-    """构建主/备双 GT 变体与排除行清单。
+    """构建最终 GT（等价行记录双模板）与排除行清单。
 
     GT 组装优先级（每个 TaskID）：
     1. 人工标注（human_map，confidence=1.0，adjudication='human'）
     2. 审计修正（audit_corrections，一致簇被判 incorrect 且合成通过）
     3. LLM 裁决 original/optimized
-    4. 等价 equivalent → 双变体（主=原版，备=优化版；均值消除偏向）
-    5. neither 合成模板通过程序校验 → 两变体取合成模板
+    4. 等价 equivalent → 行内记录双模板（template=原版 + template_alt=优化版），
+       评估时任一匹配即算对，无构建偏向
+    5. neither 合成模板通过程序校验 → GT 取合成模板
     6. 审计判 incorrect 但合成未通过的一致簇 → excluded
        （audit_synthesis_failed——已知错误不能留在 GT）
     7. 其余 → excluded_lines（pending/failed/insufficient/
-       neither_invalid_proposal），计入覆盖率
+       neither_invalid_proposal），计入覆盖率；其中可重试行同步进 retry_lines.jsonl
 
     Returns:
-        (final_gt_main, final_gt_alt, excluded, human_applied)
+        (final_gt, excluded, human_applied)
     """
     adj_map, task_map, failed_ids = _load_adjudication_results(out)
     orig_map = {r['log_id']: r for r in results_orig}
@@ -256,7 +270,6 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
     audit_failed_templates = audit_failed_templates or set()
 
     final_gt = []
-    final_gt_alt = []
     excluded = []
     human_applied = 0
 
@@ -268,7 +281,6 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
                       'template_id': zlib.crc32(human_map[task_id].encode('utf-8')),
                       'adjudication': 'human', 'confidence': 1.0}
             final_gt.append(record)
-            final_gt_alt.append(dict(record))
             human_applied += 1
             continue
         if t['template'] in audit_corrections:
@@ -276,7 +288,6 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
                       'template_id': zlib.crc32(audit_corrections[t['template']].encode('utf-8')),
                       'adjudication': 'audit_synthesized'}
             final_gt.append(record)
-            final_gt_alt.append(dict(record))
             continue
         if t['template'] in audit_failed_templates:
             # 已知错误但合成未通过 → 排除，转人工标注清单
@@ -285,7 +296,6 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
                              'TaskID': task_id})
             continue
         final_gt.append(t)
-        final_gt_alt.append(dict(t))
 
     for lp in line_pairs:
         if lp['consistent']:
@@ -305,7 +315,6 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
                       'template_id': zlib.crc32(human_map[task_id].encode('utf-8')),
                       'adjudication': 'human', 'confidence': 1.0}
             final_gt.append(record)
-            final_gt_alt.append(dict(record))
             human_applied += 1
             continue
 
@@ -325,27 +334,20 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
         if verdict == ADJ_ORIGINAL:
             final_gt.append({**base, 'template': r_orig['template'],
                              'template_id': r_orig['template_id']})
-            final_gt_alt.append({**base, 'template': r_orig['template'],
-                                 'template_id': r_orig['template_id']})
         elif verdict == ADJ_OPTIMIZED:
             final_gt.append({**base, 'template': r_opt['template'],
                              'template_id': r_opt['template_id']})
-            final_gt_alt.append({**base, 'template': r_opt['template'],
-                                 'template_id': r_opt['template_id']})
         elif verdict == ADJ_EQUIVALENT:
-            # 双变体：主=原版，备=优化版（等价行均值 0.5/0.5，无偏向）
+            # 等价：双模板记录，评估时任一匹配即算对（无构建偏向）
             final_gt.append({**base, 'template': r_orig['template'],
-                             'template_id': r_orig['template_id']})
-            final_gt_alt.append({**base, 'template': r_opt['template'],
-                                 'template_id': r_opt['template_id']})
+                             'template_id': r_orig['template_id'],
+                             'template_alt': r_opt['template']})
         elif verdict == ADJ_NEITHER:
             proposal = adj.get('ProposedTemplate', '')
             task = task_map.get(task_id, {})
             if _validate_synthesized(proposal, task.get('sample_log', [])):
                 synth_id = zlib.crc32(proposal.encode('utf-8'))
-                record = {**base, 'template': proposal, 'template_id': synth_id}
-                final_gt.append(record)
-                final_gt_alt.append(dict(record))
+                final_gt.append({**base, 'template': proposal, 'template_id': synth_id})
             else:
                 excluded.append({'log_id': log_id,
                                  'reason': 'neither_invalid_proposal',
@@ -355,7 +357,7 @@ def _build_final_gt(out: Path, consistent_tasks: list, line_pairs: list,
             excluded.append({'log_id': log_id, 'reason': verdict or 'unknown',
                              'TaskID': task_id})
 
-    return final_gt, final_gt_alt, excluded, human_applied
+    return final_gt, excluded, human_applied
 
 
 def _audit_consistent_lines(out: Path, consistent_tasks: list, raw_map: dict,
@@ -465,12 +467,17 @@ def generate_gt(
     client=None,
     human_annotations_path: str = None,
     reuse_runs: bool = False,
+    retry_lines_path: str = None,
 ):
     """GT 生成主流程（一条命令产出 GT 工件包 + 两版质量评估报告）。
 
-    human_annotations_path: 人工标注文件（jsonl，{TaskID, template, annotator?}），
-        优先级高于一切自动裁决；与 --reuse-runs 组合可在不重跑解析的情况下
-        让标注生效。human_review_tasks.jsonl 是标注工作清单（自动导出）。
+    human_annotations_path: 人工标注文件（jsonl，{TaskID, template, annotator?}，
+        由 gt_annotator.html 导出），优先级高于一切自动裁决；与 --reuse-runs
+        组合可在不重跑解析的情况下让标注生效。
+        human_annotations_needed.jsonl 是标注工作清单（自动导出，标注工具加载）。
+    retry_lines_path: 上一轮输出的 retry_lines.jsonl。提供时将其中的任务
+        裁决状态重置后重新裁决（多轮迭代，可配合更换 --llm-config / 模型），
+        已解决的任务不受影响；输入签名变化导致的未知 TaskID 自动跳过。
     reuse_runs: 复用上次 gt 落盘的 runs/（输入签名校验），跳过重复解析。
     """
     out = Path(output_dir)
@@ -533,6 +540,16 @@ def generate_gt(
         elif not live:
             print("  [mock] 使用 Mock 客户端")
 
+        # 多轮裁决：重置 retry_lines 中任务的历史状态，使其回到待处理队列
+        if retry_lines_path:
+            retry_rows = load_jsonl(retry_lines_path)
+            retry_ids = {r['TaskID'] for r in retry_rows if r.get('TaskID')}
+            known_ids = {t['TaskID'] for t in adjudication_tasks}
+            reset = StateManager(out).reset_tasks(retry_ids & known_ids)
+            print(f"  重试轮: 传入 {len(retry_rows)} 行 / {len(retry_ids)} 任务，"
+                  f"重置 {reset} 个任务重新裁决"
+                  f"（当前输入中不存在 {len(retry_ids - known_ids)} 个，已跳过）")
+
         summary = run_adjudication(
             run_root=out,
             input_path=all_tasks_path,
@@ -575,9 +592,9 @@ def generate_gt(
         logger.info(f"复用已有审计结果: 抽样 {audit_result.get('sampled')}，"
                     f"修正 {len(audit_result.get('corrections', {}))} 条")
 
-    # ===== Step 5: 生成双变体 GT 与排除行（人工 > 审计修正 > 裁决 > 合成） =====
+    # ===== Step 5: 生成最终 GT 与排除行（人工 > 审计修正 > 裁决 > 合成） =====
     print(f"\n{'='*60}")
-    print(f"  Step 5: 生成最终 GT（双变体）与排除行清单")
+    print(f"  Step 5: 生成最终 GT（等价行双模板）与排除行清单")
     print(f"{'='*60}")
 
     # 人工标注加载（TaskID → template）
@@ -591,7 +608,7 @@ def generate_gt(
     audit_failed_templates = {
         d['template'] for d in (audit_result or {}).get('details', [])
         if d['verdict'] == 'incorrect' and not d.get('corrected')}
-    final_gt, final_gt_alt, excluded, human_applied = _build_final_gt(
+    final_gt, excluded, human_applied = _build_final_gt(
         out, gt_tasks, line_pairs, results_orig, results_opt,
         human_map=human_map,
         audit_corrections=(audit_result or {}).get('corrections', {}),
@@ -599,7 +616,6 @@ def generate_gt(
     )
 
     write_jsonl(out / "final_gt.jsonl", final_gt)
-    write_jsonl(out / "final_gt_alt.jsonl", final_gt_alt)
     write_jsonl(out / "excluded_lines.jsonl", excluded)
 
     excluded_dist = {}
@@ -611,9 +627,16 @@ def generate_gt(
           f" | 排除 {len(excluded)} 行: {excluded_dist or '{}'}"
           f" | 人工标注生效 {human_applied} 条")
 
-    # ===== 人工标注工作清单（排除行 + 审计未修复簇，自动导出） =====
-    # 排除行按 TaskID 聚合，附样本行与候选模板；人工填写后用
-    # --human-annotations 回填（优先级高于一切自动裁决）
+    # ===== 重试行清单（可交还 LLM 的排除行，--retry-lines 回传进入下一轮） =====
+    retry_rows = [e for e in excluded if e.get('reason') in RETRYABLE_REASONS]
+    write_jsonl(out / "retry_lines.jsonl", retry_rows)
+    if retry_rows:
+        print(f"  重试行: {out / 'retry_lines.jsonl'}（{len(retry_rows)} 行，"
+              f"下一轮 --retry-lines 传入可仅对这些任务重新裁决）")
+
+    # ===== 人工标注工作清单（后置：所有裁决轮次结束后统一人工审核） =====
+    # 排除行按 TaskID 聚合，附样本行与候选模板；用 gt_annotator.html 加载标注，
+    # 导出结果经 --human-annotations 回填（优先级高于一切自动裁决）
     review_tasks = []
     grouped = {}
     for e in excluded:
@@ -653,9 +676,16 @@ def generate_gt(
                         'candidates': {'current_template': d['template']},
                         'sample_log': [raw_map.get(lid, '')] if lid else [],
                     })
-    write_jsonl(out / "human_review_tasks.jsonl", review_tasks)
-    print(f"  人工标注清单: {out / 'human_review_tasks.jsonl'}"
-          f"（{len(review_tasks)} 项，填写后用 --human-annotations 回填）")
+    write_jsonl(out / "human_annotations_needed.jsonl", review_tasks)
+
+    # 生成自包含人工标注/指标计算工具（无需服务，浏览器直接打开）
+    annotator_src = Path(__file__).resolve().parent / "_shared" / "gt_annotator.html"
+    if annotator_src.exists():
+        (out / "gt_annotator.html").write_text(
+            annotator_src.read_text(encoding='utf-8'), encoding='utf-8')
+
+    print(f"  人工标注清单: {out / 'human_annotations_needed.jsonl'}"
+          f"（{len(review_tasks)} 项，用 gt_annotator.html 标注后 --human-annotations 回填）")
 
     # ===== 汇总 =====
     gt_summary = {
@@ -669,7 +699,9 @@ def generate_gt(
         "adjudication_distribution": summary.get("adjudication_distribution", {}),
         "gt_lines": len(final_gt),
         "gt_coverage": round(gt_coverage, 4),
+        "gt_alt_lines": sum(1 for r in final_gt if r.get('template_alt')),
         "excluded_lines": excluded_dist,
+        "retryable_lines": len(retry_rows),
         "lines_without_counterpart": without_counterpart,
         "human_annotations_applied": human_applied,
         "audit_corrections_applied": len((audit_result or {}).get('corrections', {})),
@@ -688,7 +720,7 @@ def generate_gt(
     # ===== Step 6（默认）: 自动评估两版 vs GT（复用 runs，零额外解析） =====
     if not no_eval:
         print(f"\n{'='*60}")
-        print(f"  Step 6: 两版 vs GT 质量评估（双变体均值）")
+        print(f"  Step 6: 两版 vs GT 质量评估（等价行任一匹配即正确）")
         print(f"{'='*60}")
         from eval_pipeline.answer_generation import (
             evaluate_parsers_against_gt, _print_eval_report,
@@ -696,7 +728,6 @@ def generate_gt(
         eval_report = evaluate_parsers_against_gt(
             final_gt,
             {'PIPLUP原版': results_orig, 'PIPLUP优化版': results_opt},
-            final_gt_alt,
         )
         eval_report['gt_path'] = str(out / 'final_gt.jsonl')
         write_json(out / "eval_report.json", eval_report)

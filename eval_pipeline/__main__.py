@@ -89,11 +89,12 @@ def main():
     p_gt.add_argument("--dry-run", action="store_true", help="仅生成 Prompt，不调用 LLM")
     p_gt.add_argument("--limit", type=int, default=0, help="限制裁决任务数（0=不限）")
     p_gt.add_argument("--retry-failed", action="store_true", help="重试失败任务")
+    p_gt.add_argument("--retry-lines", default=None, help="多轮裁决：传入上一轮输出的 retry_lines.jsonl，将这些任务的裁决状态重置后重新裁决（可配合更换 --llm-config / 模型）")
     p_gt.add_argument("--save-prompts", action="store_true", help="live 模式下也落盘每个任务的 Prompt（dry-run 恒落盘）")
     p_gt.add_argument("--concurrency", type=int, default=1, help="裁决并发线程数（1=串行；>1 线程池加速 LLM IO）")
     p_gt.add_argument("--audit-consistent", type=int, default=0, help="一致行抽样审计数量（0=关闭；量化两版共识错误率，GT 可信度指标）")
     p_gt.add_argument("--no-eval", action="store_true", help="跳过自动评估（默认在 gt 结束时自动产出 eval_report.json）")
-    p_gt.add_argument("--human-annotations", default=None, help="人工标注回填文件（jsonl，{TaskID, template}；清单见 human_review_tasks.jsonl）")
+    p_gt.add_argument("--human-annotations", default=None, help="人工标注回填文件（gt_annotator.html 导出的 jsonl，{TaskID, template}；加载 human_annotations_needed.jsonl 标注）")
     p_gt.add_argument("--reuse-runs", action="store_true", help="复用上次 gt 落盘的 runs/（输入签名校验），跳过重复解析——人工标注回填时使用")
 
     # ===== answer 子命令 =====
@@ -164,6 +165,7 @@ def main():
             dry_run=args.dry_run,
             limit=args.limit,
             retry_failed=args.retry_failed,
+            retry_lines_path=args.retry_lines,
             save_prompts=args.save_prompts,
             concurrency=args.concurrency,
             audit_consistent=args.audit_consistent,

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>GT 标注与指标计算工具</title>
+<style>
+  :root { --bd:#d0d7de; --fg:#1f2328; --mut:#59636e; --acc:#0969da; --ok:#1a7f37; --warn:#9a6700; --bg:#f6f8fa; }
+  * { box-sizing:border-box; }
+  body { font-family:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; color:var(--fg); margin:0; background:#fff; }
+  header { padding:12px 20px; border-bottom:1px solid var(--bd); display:flex; gap:16px; align-items:baseline; }
+  header h1 { font-size:16px; margin:0; }
+  nav button { margin-right:6px; padding:5px 14px; border:1px solid var(--bd); background:var(--bg); border-radius:6px; cursor:pointer; font-size:13px; }
+  nav button.active { background:var(--acc); color:#fff; border-color:var(--acc); }
+  main { padding:16px 20px; max-width:1100px; margin:0 auto; }
+  .panel { border:1px solid var(--bd); border-radius:8px; padding:14px 16px; margin-bottom:14px; }
+  .muted { color:var(--mut); font-size:12.5px; }
+  code, pre { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+  pre.sample { background:var(--bg); border:1px solid var(--bd); border-radius:6px; padding:8px 10px; font-size:12px; max-height:160px; overflow:auto; white-space:pre-wrap; word-break:break-all; margin:6px 0; }
+  button.act { padding:5px 12px; border:1px solid var(--bd); border-radius:6px; background:var(--bg); cursor:pointer; font-size:13px; }
+  button.act.primary { background:var(--acc); color:#fff; border-color:var(--acc); }
+  button.act:disabled { opacity:.45; cursor:not-allowed; }
+  input[type=text], textarea { border:1px solid var(--bd); border-radius:6px; padding:6px 8px; font-size:13px; width:100%; }
+  input[type=file] { font-size:13px; }
+  /* 标注卡片 */
+  .card { border:1px solid var(--bd); border-radius:8px; padding:12px 14px; margin-bottom:12px; }
+  .card.decided { border-color:var(--ok); }
+  .card .head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .tag { display:inline-block; padding:1px 8px; border-radius:10px; font-size:11.5px; border:1px solid var(--bd); background:var(--bg); margin-right:6px; }
+  .tag.reason { color:var(--warn); }
+  .cands { display:flex; flex-direction:column; gap:6px; margin-top:8px; }
+  .cand { display:flex; align-items:center; gap:8px; }
+  .cand pre { flex:1; margin:0; }
+  .cand.chosen pre { outline:2px solid var(--ok); border-radius:4px; }
+  .kbd { font-size:11px; color:var(--mut); }
+  .navline { display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap; }
+  .progress { height:6px; background:var(--bg); border:1px solid var(--bd); border-radius:3px; flex:1; min-width:120px; }
+  .progress > div { height:100%; background:var(--ok); border-radius:3px; }
+  table.metrics { border-collapse:collapse; font-size:13.5px; margin-top:10px; }
+  table.metrics th, table.metrics td { border:1px solid var(--bd); padding:6px 14px; text-align:center; }
+  table.metrics th { background:var(--bg); }
+  .hidden { display:none; }
+  .warnbox { background:#fff8c5; border:1px solid #d4a72c66; border-radius:6px; padding:8px 12px; font-size:12.5px; margin-top:8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>GT 标注与指标计算工具</h1>
+  <nav>
+    <button id="tab-anno" class="active" onclick="switchTab('anno')">人工标注</button>
+    <button id="tab-metric" onclick="switchTab('metric')">指标计算</button>
+  </nav>
+</header>
+<main>
+
+<!-- ============ Tab 1: 人工标注 ============ -->
+<section id="page-anno">
+  <div class="panel">
+    <b>① 加载标注清单</b>
+    <span class="muted">gt 输出目录下的 human_annotations_needed.jsonl（全部裁决轮次结束后的人工审核项）</span>
+    <div style="margin-top:8px">
+      <input type="file" id="anno-file" accept=".jsonl,.json">
+      <span id="anno-status" class="muted"></span>
+    </div>
+    <div style="margin-top:8px">
+      <span class="muted">标注人（可选，写入导出文件）：</span>
+      <input type="text" id="annotator" style="width:180px" placeholder="姓名/工号">
+    </div>
+  </div>
+
+  <div id="anno-work" class="hidden">
+    <div class="navline">
+      <button class="act" onclick="step(-1)">← 上一项</button>
+      <button class="act" onclick="step(1)">下一项 →</button>
+      <span id="anno-progress" class="muted"></span>
+      <div class="progress"><div id="anno-bar"></div></div>
+      <select id="anno-filter" class="act" onchange="renderCard()">
+        <option value="all">全部</option>
+        <option value="undecided">仅未决</option>
+        <option value="decided">仅已决</option>
+      </select>
+      <button class="act primary" onclick="exportAnnotations()">导出 human_annotations.jsonl</button>
+    </div>
+    <div class="muted" style="margin-bottom:8px">快捷键：1/2/3 选择候选 · ←/→ 切换任务 · 选择即保存（浏览器本地暂存，导出后经 --human-annotations 回填）</div>
+    <div id="anno-card"></div>
+  </div>
+
+  <div class="panel">
+    <b>② 标注完成后回填 GT</b>
+    <div class="muted" style="margin-top:6px">导出的 human_annotations.jsonl 放到 gt 目录旁，执行（--reuse-runs 复用已有解析，不重跑）：</div>
+    <pre class="sample">python -m eval_pipeline gt --input &lt;原输入&gt; \
+    --piplup-orig &lt;原版模块&gt; --piplup-opt &lt;优化版模块&gt; \
+    --human-annotations human_annotations.jsonl --reuse-runs --output &lt;gt目录&gt;</pre>
+    <div class="muted">人工标注优先级高于一切自动裁决（adjudication='human', confidence=1.0），同步写入 final_gt.jsonl。</div>
+  </div>
+</section>
+
+<!-- ============ Tab 2: 指标计算 ============ -->
+<section id="page-metric" class="hidden">
+  <div class="panel">
+    <b>① 上传 GT</b>
+    <span class="muted">gt 输出目录下的 final_gt.jsonl（自动识别等价行的 template_alt，任一匹配即算对）</span>
+    <div style="margin-top:8px"><input type="file" id="gt-file" accept=".jsonl,.json"></div>
+    <div id="gt-status" class="muted" style="margin-top:6px"></div>
+  </div>
+  <div class="panel">
+    <b>② 上传待评估解析结果（可多个）</b>
+    <span class="muted">格式：{log_id, template, template_id} 每行一条；文件名作为显示标签</span>
+    <div style="margin-top:8px"><input type="file" id="pred-files" accept=".jsonl,.json" multiple></div>
+    <div id="pred-status" class="muted" style="margin-top:6px"></div>
+  </div>
+  <div class="panel">
+    <b>③ 指标</b>
+    <span class="muted">与 eval_pipeline._shared.metrics.calculate_metrics_gt_options 同语义（PA/GA 逐行或逐簇任一匹配；FTA/FGA 按可选项真值单元）</span>
+    <div style="margin-top:8px"><button class="act primary" onclick="computeAll()">计算</button></div>
+    <div id="metric-out"></div>
+    <div class="warnbox">本页为便捷核对视图；正式报告以 eval_pipeline 产出的 eval_report.json 为准。</div>
+  </div>
+</section>
+
+</main>
+<script>
+'use strict';
+function switchTab(t){
+  document.getElementById('page-anno').classList.toggle('hidden', t!=='anno');
+  document.getElementById('page-metric').classList.toggle('hidden', t!=='metric');
+  document.getElementById('tab-anno').classList.toggle('active', t==='anno');
+  document.getElementById('tab-metric').classList.toggle('active', t==='metric');
+}
+
+/* ================= Tab1 人工标注 ================= */
+const CAND_LABELS = {original:'原版模板', optimized:'优化版模板',
+                     synthesized_rejected:'被拒合成模板', current_template:'当前一致模板'};
+const LS_KEY = 'gt_annotator_decisions_v1';
+let annoTasks = [], annoIdx = 0;
+
+function loadDecisions(){ try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch(e){ return {}; } }
+function saveDecisions(d){ localStorage.setItem(LS_KEY, JSON.stringify(d)); }
+let decisions = loadDecisions();
+
+function parseJSONL(text){
+  return text.split(/\r?\n/).map(s => s.trim()).filter(Boolean)
+             .map(s => JSON.parse(s));
+}
+
+document.getElementById('anno-file').addEventListener('change', ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  const rd = new FileReader();
+  rd.onload = () => {
+    try {
+      annoTasks = parseJSONL(rd.result);
+      annoIdx = 0;
+      document.getElementById('anno-work').classList.remove('hidden');
+      document.getElementById('anno-status').textContent = `已加载 ${annoTasks.length} 项`;
+      renderCard();
+    } catch(e){ document.getElementById('anno-status').textContent = '解析失败: ' + e.message; }
+  };
+  rd.readAsText(f, 'utf-8');
+});
+
+function decidedOf(t){ const d = decisions[t.TaskID]; return d && d.template ? d.template : ''; }
+
+function step(delta){
+  if (!annoTasks.length) return;
+  const order = annoTasks.map((t,i)=>i);
+  if (!order.length) return;
+  let i = annoIdx;
+  for (let n = 0; n < annoTasks.length; n++){
+    i = (i + delta + annoTasks.length) % annoTasks.length;
+    const t = annoTasks[i];
+    const d = !!decidedOf(t);
+    const f = document.getElementById('anno-filter').value;
+    if (f === 'all' || (f === 'undecided' && !d) || (f === 'decided' && d)) break;
+  }
+  annoIdx = i;
+  renderCard();
+}
+
+function setDecision(t, template){
+  if (template) decisions[t.TaskID] = { template };
+  else delete decisions[t.TaskID];
+  saveDecisions(decisions);
+  renderCard();
+}
+
+function renderCard(){
+  const box = document.getElementById('anno-card');
+  if (!annoTasks.length){ box.innerHTML = ''; return; }
+  const total = annoTasks.length;
+  const decidedN = annoTasks.filter(t => decidedOf(t)).length;
+  document.getElementById('anno-progress').textContent = `${annoIdx+1} / ${total} · 已决 ${decidedN}`;
+  document.getElementById('anno-bar').style.width = (total ? decidedN/total*100 : 0) + '%';
+
+  const t = annoTasks[annoIdx];
+  const chosen = decidedOf(t);
+  const candKeys = Object.keys(t.candidates || {});
+  const candsHtml = candKeys.map((k, i) => {
+    const v = t.candidates[k] || '';
+    const isChosen = chosen && chosen === v;
+    return `<div class="cand ${isChosen?'chosen':''}">
+      <button class="act" onclick='setDecision(annoTasks[${annoIdx}], ${JSON.stringify(v)})'>选它 (${i+1})</button>
+      <span class="muted" style="min-width:96px">${CAND_LABELS[k] || k}</span>
+      <pre>${esc(v) || '<i style="color:var(--mut)">(空)</i>'}</pre>
+    </div>`;
+  }).join('');
+  const custom = chosen && !candKeys.map(k=>t.candidates[k]).includes(chosen) ? chosen : '';
+
+  box.innerHTML = `<div class="card ${chosen?'decided':''}">
+    <div class="head">
+      <div><span class="tag">${t.TaskID}</span><span class="tag reason">${esc(t.reason||'')}</span>
+           <span class="tag">${esc(t.kind||'')}</span><span class="tag">${(t.log_ids||[]).length} 行</span></div>
+      <div>${chosen ? `<span style="color:var(--ok);font-size:13px">✔ 已决</span>
+        <button class="act" onclick="setDecision(annoTasks[${annoIdx}], '')">撤销</button>` 
+        : '<span class="muted" style="font-size:13px">未决</span>'}</div>
+    </div>
+    <div class="cands">${candsHtml || '<span class="muted">无候选模板</span>'}</div>
+    <div style="margin-top:10px">
+      <span class="muted">自定义模板：</span>
+      <input type="text" id="custom-tmpl" value="${esc(custom)}" placeholder="人工撰写模板，<*> 作占位符"
+             onkeydown="if(event.key==='Enter')applyCustom()">
+      <button class="act" onclick="applyCustom()">用自定义</button>
+    </div>
+    <div style="margin-top:10px"><span class="muted">样本日志（${(t.sample_log||[]).length} 条）：</span>
+    <pre class="sample">${esc((t.sample_log||[]).join('\n'))}</pre></div>
+  </div>`;
+}
+
+function applyCustom(){
+  const v = (document.getElementById('custom-tmpl').value || '').trim();
+  if (v) setDecision(annoTasks[annoIdx], v);
+}
+
+function esc(s){ return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+document.addEventListener('keydown', ev => {
+  if (document.getElementById('page-anno').classList.contains('hidden')) return;
+  if (/input|textarea/i.test(document.activeElement.tagName)) return;
+  const t = annoTasks[annoIdx];
+  if (!t) return;
+  const keys = Object.keys(t.candidates || {});
+  if (['1','2','3'].includes(ev.key) && keys[+ev.key - 1]){
+    setDecision(t, t.candidates[keys[+ev.key - 1]]); ev.preventDefault();
+  } else if (ev.key === 'ArrowLeft'){ step(-1); }
+  else if (ev.key === 'ArrowRight'){ step(1); }
+});
+
+function exportAnnotations(){
+  const rows = annoTasks.filter(t => decidedOf(t))
+    .map(t => ({ TaskID: t.TaskID, template: decidedOf(t),
+                 annotator: document.getElementById('annotator').value.trim(),
+                 exported_at: new Date().toISOString() }));
+  if (!rows.length){ alert('还没有任何决定'); return; }
+  download('human_annotations.jsonl', rows.map(r => JSON.stringify(r)).join('\n'));
+}
+function download(name, text){
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], {type:'application/jsonl'}));
+  a.download = name; a.click(); URL.revokeObjectURL(a.href);
+}
+
+/* ================= Tab2 指标计算 ================= */
+const gtState = { rows: null, name: '' };
+const predState = {};   // label -> rows
+
+document.getElementById('gt-file').addEventListener('change', ev => {
+  const f = ev.target.files[0]; if (!f) return;
+  const rd = new FileReader();
+  rd.onload = () => {
+    try {
+      gtState.rows = parseJSONL(rd.result).map(r => ({
+        log_id: String(r.log_id), template: r.template,
+        template_alt: r.template_alt || '' }));
+      gtState.name = f.name;
+      document.getElementById('gt-status').textContent =
+        `已加载 ${gtState.name}：${gtState.rows.length} 行（含双模板行 ${gtState.rows.filter(r=>r.template_alt).length}）`;
+    } catch(e){ document.getElementById('gt-status').textContent = '解析失败: ' + e.message; }
+  };
+  rd.readAsText(f, 'utf-8');
+});
+
+document.getElementById('pred-files').addEventListener('change', ev => {
+  const files = [...ev.target.files];
+  let done = 0;
+  files.forEach(f => {
+    const rd = new FileReader();
+    rd.onload = () => {
+      try {
+        predState[f.name.replace(/\.(jsonl|json)$/i,'')] = parseJSONL(rd.result);
+      } catch(e){ predState[f.name] = []; }
+      if (++done === files.length){
+        document.getElementById('pred-status').textContent =
+          `已加载 ${Object.keys(predState).length} 个结果文件：${Object.keys(predState).join('、')}`;
+      }
+    };
+    rd.readAsText(f, 'utf-8');
+  });
+});
+
+/* 与 eval_pipeline._shared.metrics.normalize_template 保持一致 */
+function normalizeTemplate(t){
+  if (typeof t !== 'string') return '';
+  t = t.replace(/<(MAC|IP|MAC-HEX|HEX4|HEX0x|NUM|CMD|Short Template)>/g, '<*>');
+  t = t.replace(/[:=,\[\]\(\)\.\-'"]/g, ' ');
+  t = t.replace(/\s+/g, ' ');
+  t = t.replace(/(<\*>\s*)+/g, '<*> ');
+  return t.trim();
+}
+
+/* 与 calculate_metrics_gt_options 同语义：等价行 template_alt 任一匹配即正确 */
+function computeMetrics(gtRows, predRows){
+  const gt = gtRows.map(r => ({
+    id: String(r.log_id),
+    main: normalizeTemplate(r.template),
+    alt: r.template_alt ? normalizeTemplate(r.template_alt) : ''
+  }));
+  const predMap = new Map();
+  for (const r of predRows){
+    const id = String(r.log_id);
+    if (!predMap.has(id))
+      predMap.set(id, { tmpl: normalizeTemplate(r.template), eid: String(r.template_id ?? r.template) });
+  }
+  const ids = gt.map(g => g.id).filter(id => predMap.has(id));
+  const N = ids.length;
+  if (!N) return { PA:0, GA:0, FTA:0, FGA:0, evaluated:0 };
+  const gtById = new Map(gt.map(g => [g.id, g]));
+
+  // PA：任一选项匹配
+  let paHit = 0;
+  for (const id of ids){
+    const g = gtById.get(id), p = predMap.get(id).tmpl;
+    if (p === g.main || (g.alt && p === g.alt)) paHit++;
+  }
+  const PA = paHit / N;
+
+  // 簇工具
+  const clusterKey = s => [...s].sort().join('\u0000');
+  const clustersOf = keyFn => {
+    const m = new Map();
+    for (const id of ids){
+      const k = keyFn(gtById.get(id));
+      if (!m.has(k)) m.set(k, new Set());
+      m.get(k).add(id);
+    }
+    return new Set([...m.values()].map(clusterKey));
+  };
+  const predClusters = new Set();
+  const byEid = new Map();
+  for (const id of ids){
+    const eid = predMap.get(id).eid;
+    if (!byEid.has(eid)) byEid.set(eid, new Set());
+    byEid.get(eid).add(id);
+  }
+  for (const s of byEid.values()) predClusters.add(clusterKey(s));
+
+  const clustersMain = clustersOf(g => g.main);
+  const clustersAlt  = clustersOf(g => g.alt || g.main);
+  const acceptable = new Set([...clustersMain, ...clustersAlt]);
+
+  // GA：pred 簇 ∈ 任一变体簇族，按行数计
+  let gaLines = 0;
+  for (const key of predClusters)
+    if (acceptable.has(key)) gaLines += key.split('\u0000').length;
+  const GA = gaLines / N;
+
+  // FTA：真值单元 = 可选项集合
+  const optUnits = new Map();
+  const allOptions = new Set();
+  for (const id of ids){
+    const g = gtById.get(id);
+    const opts = (g.alt && g.alt !== g.main) ? [g.main, g.alt] : [g.main];
+    const key = [...opts].sort().join('\u0000');
+    optUnits.set(key, (optUnits.get(key) || 0) + 1);
+    opts.forEach(o => allOptions.add(o));
+  }
+  const predTemplates = new Set(ids.map(id => predMap.get(id).tmpl));
+  let correctT = 0; for (const t of predTemplates) if (allOptions.has(t)) correctT++;
+  const PTA = predTemplates.size ? correctT / predTemplates.size : 0;
+  let coveredT = 0;
+  for (const key of optUnits.keys())
+    if (key.split('\u0000').some(o => predTemplates.has(o))) coveredT++;
+  const RTA = optUnits.size ? coveredT / optUnits.size : 0;
+  const FTA = (PTA + RTA) > 0 ? 2*PTA*RTA/(PTA+RTA) : 0;
+
+  // FGA：簇真值单元按核心（去等价行）归并主/备变体表示
+  const equiv = new Set(ids.filter(id => gtById.get(id).alt));
+  const coreOf = key => key.split('\u0000').filter(id => !equiv.has(id)).sort().join('\u0000');
+  const units = new Map();
+  for (const key of acceptable){
+    const core = coreOf(key);
+    if (!units.has(core)) units.set(core, new Set());
+    units.get(core).add(key);
+  }
+  let coveredC = 0;
+  for (const reps of units.values())
+    if ([...reps].some(rk => predClusters.has(rk))) coveredC++;
+  const PGA = predClusters.size ? [...predClusters].filter(k => acceptable.has(k)).length / predClusters.size : 0;
+  const RGA = units.size ? coveredC / units.size : 0;
+  const FGA = (PGA + RGA) > 0 ? 2*PGA*RGA/(PGA+RGA) : 0;
+
+  return { PA, GA, FTA, FGA, evaluated: N };
+}
+
+function computeAll(){
+  const out = document.getElementById('metric-out');
+  if (!gtState.rows){ out.innerHTML = '<div class="warnbox">请先上传 GT（final_gt.jsonl）</div>'; return; }
+  const labels = Object.keys(predState);
+  if (!labels.length){ out.innerHTML = '<div class="warnbox">请先上传至少一个解析结果文件</div>'; return; }
+  let html = `<table class="metrics"><tr><th>算法</th><th>PA</th><th>GA</th><th>FTA</th><th>FGA</th><th>评估行数</th></tr>`;
+  for (const label of labels){
+    const m = computeMetrics(gtState.rows, predState[label]);
+    html += `<tr><td>${esc(label)}</td><td>${m.PA.toFixed(4)}</td><td>${m.GA.toFixed(4)}</td>` +
+            `<td>${m.FTA.toFixed(4)}</td><td>${m.FGA.toFixed(4)}</td><td>${m.evaluated}</td></tr>`;
+  }
+  out.innerHTML = html + '</table>';
+}
+</script>
+</body>
+</html>

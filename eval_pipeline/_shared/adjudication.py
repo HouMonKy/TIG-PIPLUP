@@ -292,6 +292,23 @@ class StateManager:
             write_jsonl(self.results_dir / FAILED_FILE, list(self._failed.values()))
             write_jsonl(self.results_dir / RAW_RESPONSES_FILE, list(self._raw_responses.values()))
 
+    def reset_tasks(self, task_ids) -> int:
+        """移除指定 TaskID 的裁决状态（resolved/failed/raw），使其回到待处理队列。
+
+        供多轮裁决使用：上一轮 insufficient/failed/pending 的任务经
+        retry_lines.jsonl 回传后重置，可换配置/模型重新裁决。
+        返回实际清除了历史状态的任务数（原本就 pending 的不计入）。
+        """
+        reset = 0
+        for tid in set(task_ids):
+            hit = (tid in self._resolved) or (tid in self._failed)
+            self._resolved.pop(tid, None)
+            self._failed.pop(tid, None)
+            self._raw_responses.pop(tid, None)
+            reset += 1 if hit else 0
+        self.compact()
+        return reset
+
     def get_resolved_tasks(self) -> List[dict]:
         return list(self._resolved.values())
 

@@ -11,16 +11,16 @@ CLI:
 
 行级口径（簇不参与对齐）：
 - GT 与被评算法的输出都是行级表 {logId, template, template_id}
-- PA：逐行模板文本（归一化后）是否等于 GT
-- GA：行集合划分（同模板的 LineId 集合）是否与 GT 的行集合族一致
-- FTA：去重模板集合与 GT 模板集合的查准/查全
-- 双变体均值：GT 目录若存在 final_gt_alt.jsonl（等价行交换变体），
-  对两个变体各评一轮取均值——等价行上两版各得 0.5，消除 GT 构建偏向
+- 等价双模板：GT 行可带 template_alt（equivalent 裁决的备选模板），
+  被评模板与 template / template_alt 任一匹配即算对
+- PA：逐行模板文本（归一化后）是否命中任一 GT 可选模板
+- GA：行集合划分（同模板的 LineId 集合）是否与 GT 任一变体的行集合族一致
+- FTA：按"可选项集合"聚合真值单元后计算查准/查全
 - 覆盖率：evaluated_lines / gt_count 随报告输出
 
 模块3（gt）产出的 eval_report.json 即由本模块的 evaluate_parsers_against_gt
 计算；answer 子命令面向"GT 冻结后评估第三方版本"（被评估版本对 GT 无
-投票权，无主场优势）。
+投票权，无主场优势）。gt_annotator.html 的指标计算页与本模块语义一致。
 """
 import json
 import sys
@@ -33,43 +33,50 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from eval_pipeline._shared.data_loader import load_jsonl, write_json
-from eval_pipeline._shared.metrics import calculate_metrics_normalized
+from eval_pipeline._shared.metrics import calculate_metrics_gt_options
 from eval_pipeline._shared.piplup_runner import run_piplup_pair, load_runs_dir
 
 
 def _to_eval_dataframe(records: list) -> pd.DataFrame:
-    """将行级记录列表转为评估用 DataFrame（LineId, EventTemplate, EventId）。"""
+    """将行级记录列表转为评估用 DataFrame（LineId, EventTemplate, EventTemplateAlt, EventId）。"""
     rows = []
     for r in records:
         rows.append({
             'LineId': int(r['log_id']),
             'EventTemplate': r['template'],
+            'EventTemplateAlt': r.get('template_alt') or None,
             'EventId': str(r['template_id']),
         })
     # 显式列定义：空表也保有列结构（GT 全排除场景）
-    return pd.DataFrame(rows, columns=['LineId', 'EventTemplate', 'EventId'])
+    return pd.DataFrame(rows, columns=['LineId', 'EventTemplate', 'EventTemplateAlt', 'EventId'])
 
 
 def evaluate_parsers_against_gt(gt_records: list, parser_results: dict,
                                 gt_records_alt: list = None) -> dict:
-    """评估一个或多个算法的行级结果 vs GT（支持双变体均值）。
+    """评估一个或多个算法的行级结果 vs GT（等价行双模板任一匹配即正确）。
 
     Args:
-        gt_records: 主 GT 行级记录（final_gt.jsonl 内容）
+        gt_records: GT 行级记录（final_gt.jsonl 内容，行可带 template_alt）
         parser_results: {显示名: results 列表}，results 为
             {log_id, template, template_id} 行级记录
-        gt_records_alt: 备变体 GT（等价行交换模板）；None 时单变体评估
+        gt_records_alt: 旧版备变体 GT 文件（final_gt_alt.jsonl）内容；
+            提供时按 log_id 合并为各行的 template_alt（向后兼容）
 
     Returns:
         {
-          'parsers': {name: {'PA','GA','FTA','FGA'(均值或单值),
-                             'variants': {'main': {...}, 'alt': {...}},
-                             'evaluated_lines'}},
-          'gt_count': int, 'evaluated_lines': int, 'gt_alt_used': bool,
+          'parsers': {name: {'PA','GA','FTA','FGA', 'evaluated_lines'}},
+          'gt_count': int, 'gt_alt_lines': int, 'evaluated_lines': int,
         }
     """
+    gt_records = [dict(r) for r in gt_records]
+    if gt_records_alt:
+        alt_by_id = {int(r['log_id']): r.get('template') for r in gt_records_alt}
+        for r in gt_records:
+            lid = int(r['log_id'])
+            if not r.get('template_alt') and lid in alt_by_id:
+                r['template_alt'] = alt_by_id[lid]
+
     df_gt = _to_eval_dataframe(gt_records)
-    df_gt_alt = _to_eval_dataframe(gt_records_alt) if gt_records_alt else None
 
     # 对齐域：GT ∩ 全部被评算法的公共行（保证跨算法可比）
     if df_gt.empty:
@@ -84,23 +91,20 @@ def evaluate_parsers_against_gt(gt_records: list, parser_results: dict,
         # 空对齐域（GT 全排除 / 无公共行）：零值报告
         return {
             'gt_count': len(gt_records),
+            'gt_alt_lines': int((df_gt['EventTemplateAlt'].fillna('') != '').sum()) if not df_gt.empty else 0,
             'evaluated_lines': 0,
-            'gt_alt_used': df_gt_alt is not None,
             'parsers': {name: {'PA': 0.0, 'GA': 0.0, 'FTA': 0.0, 'FGA': 0.0,
-                               'evaluated_lines': 0, 'variants': {}}
+                               'evaluated_lines': 0}
                         for name in parser_results},
         }
 
     df_gt_aligned = (df_gt[df_gt['LineId'].isin(common_ids)]
                      .sort_values('LineId').reset_index(drop=True))
-    df_gt_alt_aligned = (df_gt_alt[df_gt_alt['LineId'].isin(common_ids)]
-                         .sort_values('LineId').reset_index(drop=True)
-                         ) if df_gt_alt is not None else None
 
     report = {
         'gt_count': len(gt_records),
+        'gt_alt_lines': int((df_gt_aligned['EventTemplateAlt'].fillna('') != '').sum()),
         'evaluated_lines': len(common_ids),
-        'gt_alt_used': df_gt_alt_aligned is not None,
         'parsers': {},
     }
 
@@ -109,22 +113,12 @@ def evaluate_parsers_against_gt(gt_records: list, parser_results: dict,
         df_pred_aligned = (df_pred[df_pred['LineId'].isin(common_ids)]
                            .sort_values('LineId').reset_index(drop=True))
 
-        metrics_main = calculate_metrics_normalized(df_gt_aligned, df_pred_aligned)
-        entry = {
-            'PA': metrics_main['PA'], 'GA': metrics_main['GA'],
-            'FTA': metrics_main['FTA'], 'FGA': metrics_main['FGA'],
+        metrics = calculate_metrics_gt_options(df_gt_aligned, df_pred_aligned)
+        report['parsers'][name] = {
+            'PA': metrics['PA'], 'GA': metrics['GA'],
+            'FTA': metrics['FTA'], 'FGA': metrics['FGA'],
             'evaluated_lines': len(common_ids),
-            'variants': {'main': metrics_main},
         }
-
-        if df_gt_alt_aligned is not None:
-            metrics_alt = calculate_metrics_normalized(df_gt_alt_aligned, df_pred_aligned)
-            entry['variants']['alt'] = metrics_alt
-            # 双变体均值：等价行上 GT 主/备各取一版模板，均值消除构建偏向
-            for key in ('PA', 'GA', 'FTA', 'FGA'):
-                entry[key] = (metrics_main[key] + metrics_alt[key]) / 2
-
-        report['parsers'][name] = entry
 
     return report
 
@@ -132,7 +126,7 @@ def evaluate_parsers_against_gt(gt_records: list, parser_results: dict,
 def _print_eval_report(report: dict):
     """打印评估汇总表。"""
     print(f"  GT 行数: {report['gt_count']} | 评估行数: {report['evaluated_lines']} "
-          f"| 双变体均值: {'是' if report['gt_alt_used'] else '否'}")
+          f"| 等价双模板行: {report.get('gt_alt_lines', 0)}")
     print(f"  {'算法':<20s}  {'PA':>8s}  {'GA':>8s}  {'FTA':>8s}  {'FGA':>8s}")
     print(f"  {'-'*20}  {'-'*8}  {'-'*8}  {'-'*8}  {'-'*8}")
     for name, m in report['parsers'].items():
