@@ -8,36 +8,73 @@ token_delimiters = path_delimiters.union({  # all delimiters for tokenizing the 
     r'\.', r'\-', r'\+', r'\@', r'\#', r'\$', r'\%', r'\&',
 })
 
-# 说明：原 _fix_bracket_balance 会在未匹配的关闭括号前插入开启括号（如
-# 'value <*> ) done' → 'value (<*>) done'），原半括号修正规则会把
-# 'identifier<*>)' 改写为 'identifier(<*>)'。两者都拿不到来源内容：
-# 当来源本身含孤立关闭括号（如 'value 5) done'）时，插入的开括号在来源中
-# 不存在，产生的模板看起来完整、却匹配不了来源行。
-# 以来源匹配为准：来源不完整时保留来源的括号原样，不再凭空补入固定括号；
-# 来源括号完整而合并破坏结构的场景，已在 _structure_aware_merge 的
-# 合并位置利用两个输入修复（见 PIPLUP.py Step 5）。
+def _fix_bracket_balance(template: str) -> str:
+    """修复模板中未匹配的关闭括号：在 <*>), ], } 前插入对应的开启括号。
 
+    算法：
+    1. 将 <*> 等占位符替换为 \x00（单字符占位），避免占位符内部的括号干扰计数
+    2. 逐字符扫描，维护三种括号的深度计数器
+    3. 遇到未匹配的关闭括号时，向前找最近的占位符，在其前面插入对应的开启括号
+    4. 还原占位符并返回
+    """
+    placeholders = []
+    def save_placeholder(m):
+        placeholders.append(m.group(0))
+        return '\x00'
+    flat = re.sub(r'<[^>]+>', save_placeholder, template)
 
-# correct_single_template 为纯函数（结果仅依赖输入模板字符串，
-# user_strings 参数从未参与计算）。结果缓存不依赖簇状态、不持久化，
-# 容量上限，超限整体清空。
-_CORRECT_CACHE = {}
-_CORRECT_CACHE_CAP = 8192
+    fixes = []  # [(position_in_flat, char_to_insert)]
+    depth = {'(': 0, '[': 0, '{': 0}
+    close_to_open = {')': '(', ']': '[', '}': '{'}
 
+    for i, ch in enumerate(flat):
+        if ch in depth:
+            depth[ch] += 1
+        elif ch in close_to_open:
+            open_ch = close_to_open[ch]
+            if depth[open_ch] > 0:
+                depth[open_ch] -= 1
+            else:
+                # 未匹配的关闭括号，在最近的前方占位符前插入开启括号
+                for j in range(i - 1, -1, -1):
+                    if flat[j] == '\x00':
+                        fixes.append((j, open_ch))
+                        break
 
-def correct_single_template(template, user_strings=None):
-    cached = _CORRECT_CACHE.get(template)
-    if cached is not None:
-        return cached
-    result = _correct_single_template_impl(template, user_strings)
-    if len(_CORRECT_CACHE) >= _CORRECT_CACHE_CAP:
-        _CORRECT_CACHE.clear()
-    _CORRECT_CACHE[template] = result
-    return result
+    # 抵消：扫描结束后若某类括号仍有未匹配的开括号（depth > 0），
+    # 说明模板中存在等量的未匹配开/闭括号（如 ][ 分隔符模式），
+    # 这些不应触发插入修复。移除最晚的对应 fix，数量取 min(depth, fixes)。
+    for open_ch in ('(', '[', '{'):
+        if depth[open_ch] > 0:
+            matching_fixes = [f for f in fixes if f[1] == open_ch]
+            for k in range(min(depth[open_ch], len(matching_fixes))):
+                fixes.remove(matching_fixes[-(k + 1)])
+
+    if not fixes:
+        return template
+
+    # 从后往前插入，避免位移
+    result = list(flat)
+    for pos, insert_ch in sorted(fixes, key=lambda x: -x[0]):
+        result.insert(pos, insert_ch)
+
+    result_str = ''.join(result)
+
+    # 还原占位符
+    idx = 0
+    final = []
+    for ch in result_str:
+        if ch == '\x00':
+            final.append(placeholders[idx])
+            idx += 1
+        else:
+            final.append(ch)
+
+    return ''.join(final)
 
 
 # Template correction function from LUNAR
-def _correct_single_template_impl(template, user_strings=None):
+def correct_single_template(template, user_strings=None):
     """Apply all rules to process a template.
 
     DS (Double Space)
@@ -119,11 +156,15 @@ def _correct_single_template_impl(template, user_strings=None):
         if prev == template:
             break
 
+    # 兜底：修复 identifier<*>) → identifier(<*>) （半括号修正）
+    # 注意：旧版正则 r'([a-zA-Z_]\w*)<\*\)' 缺少 >，实际匹配 identifier<*) 而非 identifier<*>)，已修复
+    # 负向后行断言 (?<![\w(>])：当标识符前已是 (（开括号存在）、>（<*> 尾部，标识符是通配符后的连接符）
+    # 或其他单词字符时不触发，避免在 name(DMI_<*>) 等场景中插入多余的开括号
+    template = re.sub(r'(?<![\w(>])([a-zA-Z_]\w*)<\*>\)', r'\1(<*>)', template)
+
     # 吸收 <*> 前的短版本号前缀（如 V1, V2 等）
     # V1 是版本号常量前缀，太短不被预处理正则匹配，后处理中吸收进通配符
-    # 词边界限制：版本号须为独立 token（前面是非词字符或行首），
-    # 避免 AV1,<*> 因内部命中 V1,<*> 被误伤为 A<*>（较长标识符的一部分）
-    template = re.sub(r'\b[A-Z]\d+,<\*>', '<*>', template)
+    template = re.sub(r'[A-Z]\d+,<\*>', '<*>', template)
 
     # Substitute consecutive variables only if not separated with any delimiter including space (CV)
     # NOTE: this should be done at the end
@@ -175,5 +216,8 @@ def _correct_single_template_impl(template, user_strings=None):
     # 残留的 ---: 和 :---() 前后缀是无意义噪声，整体应归约为 <*>
     template = re.sub(r'-+:<\*>', '<*>', template)
     template = re.sub(r'-+<\*>:-+\(\)', '<*>', template)
+
+    # 模板级括号平衡：修复未匹配的关闭括号（<*>) → (<*>) 等）
+    template = _fix_bracket_balance(template)
 
     return template
