@@ -142,3 +142,7 @@ def preprocess(log, use_keys=False, estimation_stage=False, use_sequence=sequenc
         new_log = re.sub(r'(\<\*\>\s?)+\<\*\>', '<*>', new_log)
         if print:print('预处理后\n', new_log)
         return new_log
+        
+
+        
+    
