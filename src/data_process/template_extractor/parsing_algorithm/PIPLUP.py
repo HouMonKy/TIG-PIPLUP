@@ -1,4 +1,4 @@
-import re
+import regex as re
 import os
 import zlib
 # pandas 已移除：DataFrame+iterrows 替换为 range+list 索引（优化1）
