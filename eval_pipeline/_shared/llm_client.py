@@ -196,6 +196,26 @@ class GTMockClient(LLMClient):
             "Reason": f"Mock 裁决：基于确定性哈希的模拟结果 (h={h})。",
             "Confidence": round(confidence, 2),
         }
+        if adj == "neither":
+            # parse_and_validate 要求 neither 必须附 ProposedTemplate，
+            # 否则该任务重试耗尽必然 FAILED。mock 从首条样本行合成
+            # （含数字的 token 泛化为 <*>），仅保证 neither 链路可走通；
+            # 合成质量由 gt 侧 _validate_synthesized 程序校验兜底。
+            sample_line = ""
+            in_samples = False
+            for line in user_msg.splitlines():
+                s = line.strip()
+                if s == "SampleLogs:":
+                    in_samples = True
+                    continue
+                if s == "OriginalTemplate:":
+                    break
+                if in_samples and s:
+                    sample_line = s
+                    break
+            tokens = ['<*>' if any(ch.isdigit() for ch in tok) else tok
+                      for tok in sample_line.split()]
+            result["ProposedTemplate"] = ' '.join(tokens) if tokens else '<*>'
         return json.dumps(result, ensure_ascii=False)
 
 

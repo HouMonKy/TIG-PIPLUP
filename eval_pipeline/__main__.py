@@ -181,10 +181,13 @@ def main():
             piplup_opt_path=args.piplup_opt,
             gt_path=args.gt,
             output_dir=args.output,
+            parsers=([p.strip() for p in args.parsers.split(',') if p.strip()]
+                     if args.parsers else None),
             preprocessing_orig_path=args.preprocessing_orig,
             postprocessing_orig_path=args.postprocessing_orig,
             cold_start=not args.warm_start,
             reuse_runs=args.reuse_runs,
+            gt_alt_path=args.gt_alt,
             module_name=args.module,
             scenarios=scenarios,
             data_root=args.data_root,
