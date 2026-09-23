@@ -473,7 +473,7 @@ class LogParser:
         # 修改点 1：
         hit_clusters = set()  # 记录本批次涉及的聚类簇，缩小遍历域
 
-        # 预初始化结果列表，支持 CRC32 缓存命中时直接写入
+        # 预初始化结果列表；所有行在批末使用最终模板统一生成输出
         log_templates = [""] * total_lines
         cache_hits = 0
 
@@ -489,6 +489,7 @@ class LogParser:
             if self.use_template_cache:
                 light = _light_digit_re.sub('0', content)
                 light_crc = zlib.crc32(light.encode('utf-8')) & 0xffffffff
+                cached_hit = None
                 cached_clusters = self.light_cache.get(light_crc)
                 if cached_clusters:
                     raw_content = str(content).strip()
@@ -498,17 +499,19 @@ class LogParser:
                             # 快速子串校验：模板中非 <*> 部分必须都出现在原始行中
                             parts = [p for p in templates_c[0].split('<*>') if p]
                             if all(p in raw_content for p in parts):
-                                log_templates[idx] = templates_c[0]
-                                cache_hits += 1
+                                cached_hit = cluster
                                 break
                         else:
                             template_patterns = self._compile_regex_patterns(templates_c)
                             match_idx = self._regex_match_log(raw_content, template_patterns)
                             if match_idx != -1:
-                                log_templates[idx] = templates_c[match_idx]
-                                cache_hits += 1
+                                cached_hit = cluster
                                 break
-                if log_templates[idx]:
+                if cached_hit is not None:
+                    cached_hit.hit_time += 1
+                    cached_hit.logIDL.append(logID)
+                    hit_clusters.add(cached_hit)
+                    cache_hits += 1
                     continue
 
             # Add preprocess
@@ -536,13 +539,9 @@ class LogParser:
                     bucket = self.light_cache.setdefault(light_crc, [])
                     if cached_cluster not in bucket:
                         bucket.append(cached_cluster)
-                    templates_c = cached_cluster.templateList
-                    if len(templates_c) == 1:
-                        log_templates[idx] = templates_c[0]
-                    else:
-                        template_patterns = self._compile_regex_patterns(templates_c)
-                        match_idx = self._regex_match_log(str(content), template_patterns)
-                        log_templates[idx] = templates_c[match_idx] if match_idx != -1 else templates_c[0]
+                    cached_cluster.hit_time += 1
+                    cached_cluster.logIDL.append(logID)
+                    hit_clusters.add(cached_cluster)
                     cache_hits += 1
                     continue
 
@@ -624,23 +623,20 @@ class LogParser:
 
 
         # --- 第三步：重构输出侧，生成并返回模板列表 ---
-        # log_templates 已在循环前预初始化，缓存命中的行已填入模板
+        # 缓存命中行也已登记到簇中，统一使用批末 templateList 输出
 
         for logClust in hit_clusters:
             templates = logClust.templateList
 
             if len(templates) == 1:
                 for logID in logClust.logIDL:
-                    if not log_templates[logID - 1]:
-                        log_templates[logID - 1] = templates[0]
+                    log_templates[logID - 1] = templates[0]
             else:
                 # 调用公共方法生成正则
                 template_patterns = self._compile_regex_patterns(templates)
 
                 for logID in logClust.logIDL:
                     index = logID - 1
-                    if log_templates[index]:
-                        continue
                     content = str(log_list[index])
 
                     # 调用公共方法执行比对

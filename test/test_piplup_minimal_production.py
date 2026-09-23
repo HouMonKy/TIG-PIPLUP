@@ -129,3 +129,38 @@ def test_regex_cache_keeps_counts_and_final_templates():
     assert parser.logCluL[0].templateList == ['worker name(<*>) ready']
     parser.parse_list(['worker name(baz) ready'] * 2)
     assert parser.logCluL[0].hit_time == 5
+
+
+@pytest.mark.parametrize('logs,expected_preprocess_calls', [
+    (['worker count:1 ready', 'worker count:2 ready', 'worker count:3 ready'], 1),
+    (['worker file /var/log/alpha ready', 'worker file /var/log/beta ready',
+      'worker file /var/log/gamma ready'], 3),
+])
+def test_both_cache_levels_count_every_line(logs, expected_preprocess_calls):
+    from unittest.mock import patch
+    from src.data_process.template_extractor.parsing_algorithm import PIPLUP as module
+    cached = LogParser('<Content>', 'counts', use_cache=False, use_template_cache=True)
+    plain = LogParser('<Content>', 'counts', use_cache=False, use_template_cache=False)
+    with patch.object(module, 'preprocess', wraps=module.preprocess) as preprocessing:
+        output = cached.parse_list(logs)
+        assert preprocessing.call_count == expected_preprocess_calls
+    assert output == plain.parse_list(logs)
+    assert len(cached.logCluL) == 1
+    assert cached.logCluL[0].hit_time == len(logs)
+    assert cached.logCluL[0].logIDL == []
+    assert cached.parse_list(logs) == output
+    assert cached.logCluL[0].hit_time == 2 * len(logs)
+    assert cached.logCluL[0].logIDL == []
+
+
+@pytest.mark.parametrize('br_thresh', [1, 5])
+def test_cached_rows_use_final_candidates(br_thresh):
+    logs = ['worker name(foo) ready', 'worker name(foo) ready', 'worker name(bar) ready',
+            'worker name(foo) ready', 'worker name(bar) ready']
+    cached = LogParser('<Content>', 'final', use_cache=False, use_template_cache=True,
+                       br_thresh=br_thresh)
+    plain = LogParser('<Content>', 'final', use_cache=False, use_template_cache=False,
+                      br_thresh=br_thresh)
+    assert cached.parse_list(logs) == plain.parse_list(logs)
+    assert cached.logCluL[0].templateList == plain.logCluL[0].templateList
+    assert sum(c.hit_time for c in cached.logCluL) == len(logs)
