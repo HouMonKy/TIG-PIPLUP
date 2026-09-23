@@ -13,8 +13,8 @@ from src.common.global_config import GlobalConfig
 
 logger = logging.getLogger(__name__)
 
-# 轻量缓存归一化：必须含数字；连字符转义，避免形成意外字符范围。
-_light_digit_re = re.compile(r'(?=[\d\s.,;\-/+_]*\d)[\d\s.,;\-/+_]+')
+# 轻量归一化正则：仅替换数字序列，用于预处理前 CRC32 缓存预检
+_light_digit_re = re.compile(r'\d+')
 
 path_delimiters = {  # reduced set of delimiters for tokenizing for checking the path-like strings
         ' ', ',', '!', ';', ':',
