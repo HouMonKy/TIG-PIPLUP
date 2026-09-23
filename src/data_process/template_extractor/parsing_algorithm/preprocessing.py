@@ -101,7 +101,8 @@ regex_map = {
 # sequence = ['timestamp_v2', 'status_pair','serial_num', 'cid_kv_pairs', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time',  'block', 'date',  'duration', 'size', 'numerical', 'weekday_months']
 
 #DME版
-sequence = ['datetime_full',  'kernel_uptime', 'epoch_ms_13d', 'log_level',  'code_line_num', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
+# 两条纯数字规则由 numerical 覆盖；保留定义供显式 use_sequence 使用。
+sequence = ['datetime_full',  'kernel_uptime', 'log_level', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
 
 def preprocess(log, use_keys=False, estimation_stage=False, use_sequence=sequence, print=False):
     matched_types = []
