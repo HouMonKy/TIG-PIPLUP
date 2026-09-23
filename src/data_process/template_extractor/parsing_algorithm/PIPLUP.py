@@ -12,268 +12,14 @@ from src.common.global_config import GlobalConfig
 
 logger = logging.getLogger(__name__)
 
-# 轻量归一化正则：替换连续的[数字+分隔符]序列，用于预处理前 CRC32 缓存预检
-# 匹配至少含一个数字的连续字符序列，字符 ∈ {数字, 分隔符, 下划线}
-# 下划线 _ 属于 \w，在日志中广泛用于连接复合数值（如 Arg:0_1_5、Cap:15749414426_16561907771）
-# 冒号 : 不纳入——它是 key:value 分隔符（Cap:、Arg:），应保留
-_light_digit_re = re.compile(r'(?=[\d\s.,;\-/+_]*\d)[\d\s.,;\-/+_]+')
+# 轻量归一化正则：仅替换数字序列，用于预处理前 CRC32 缓存预检
+_light_digit_re = re.compile(r'\d+')
 
 path_delimiters = {  # reduced set of delimiters for tokenizing for checking the path-like strings
         ' ', ',', '!', ';', ':',
         '=', '|', '"', "'", '+', '.',
-        '[', ']', '(', ')', '{', '}',
-        '_'  # 下划线：日志标识符（如 xnet_m50_x0、conn_mode、down_count）用 _ 连接，
-             # 不含 _ 时 _structure_aware_merge 回退到 ( 等粗粒度分隔符，导致过度泛化
+        '[', ']', '(', ')', '{', '}'
     }
-
-
-def _progressive_generalize(token, delimiters):
-    """渐进泛化生成器：逐步将 token 尾部的常量部分替换为 <*>。
-
-    例如 '(xnet_<*>:<*>)(num:<*>)server' 依次产生：
-      '(xnet_<*>:<*>)(num:<*>)<*>'
-      '(xnet_<*>:<*>)(num:<*>'  (去掉尾部 <*>)
-      ...
-
-    每次产生一个更泛化的候选 token，供调用方检查是否能匹配另一侧。
-    """
-    last_wild = token.rfind('<*>')
-    if last_wild < 0:
-        return
-    trailing = token[last_wild + 3:]
-    if not trailing:
-        return
-
-    # 找到 trailing 中最后一个非下划线分隔符
-    delim_pos = -1
-    for j in range(len(trailing) - 1, -1, -1):
-        if trailing[j] in delimiters and trailing[j] != '_':
-            delim_pos = j
-            break
-
-    if delim_pos >= 0:
-        gen_token = token[:last_wild + 3] + trailing[:delim_pos + 1] + '<*>'
-    else:
-        gen_token = token[:last_wild + 3] + '<*>'
-    yield gen_token
-
-    # 继续泛化：去掉最后的 <*> 并重新找前一个尾部常量
-    # 递归处理去掉最后一个 <*> 后的部分
-    prefix = token[:last_wild]
-    if '<*>' in prefix:
-        yield from _progressive_generalize(prefix + '<*>', delimiters)
-
-
-def _structure_aware_merge(t1, t2, delimiters):
-    """结构感知的 token 合并：保留共同前/后缀中到分隔符边界的稳定部分。
-
-    算法：
-    1. 计算 LCP → 回退到最近的分隔符 → head
-    2. 计算 LCS → 前进到最近的分隔符 → tail
-    3. 中段补偿：当 tail 为空（LCS=0）时，在 LCP 之后寻找以分隔符开头的
-       最长共同子串作为 middle，保留 token 内部的结构信息
-    4. 括号平衡检查：tail 中多余的关闭括号被移除
-    5. 重叠保护：head+middle+tail 覆盖整个 token 时退化为 <*>
-    6. 返回 head + '<*>' + (middle + '<*>')? + tail
-    """
-    # 完全相同则直接返回
-    if t1 == t2:
-        return t1
-
-    # 已合并 token（含 <*>）与原始 token 之间的防退化检查：
-    # 当一侧含 <*> 另一侧不含时，用正则检查含 <*> 的一侧是否能匹配另一侧。
-    # 若能匹配，说明含 <*> 的一侧已是更通用的形式，直接返回，避免字符级
-    # LCP/LCS 因 <*> (3字符) vs 原始值 (N字符) 位置错位而退化。
-    #
-    # 结构信息保留：
-    # 逗号/冒号丢失：general='<*>' specific='0,' → 应返回 '<*>,' 而非 '<*>'
-    #    修复：保留 specific 末尾/开头的结构性分隔符（,:;）
-    def _preserve_structure(general, specific):
-        """在通配符包含匹配成功后，保留 specific 中的结构性分隔符。"""
-        result = general
-        # 末尾分隔符
-        s_tail = ''
-        for ch in reversed(specific):
-            if ch in ',:;':
-                s_tail = ch + s_tail
-            else:
-                break
-        if s_tail and not general.endswith(s_tail):
-            result = result + s_tail
-        # 开头分隔符
-        s_head = ''
-        for ch in specific:
-            if ch in ',:;':
-                s_head += ch
-            else:
-                break
-        if s_head and not general.startswith(s_head):
-            result = s_head + result
-        return result
-
-    has_wild_1 = '<*>' in t1
-    has_wild_2 = '<*>' in t2
-    if has_wild_1 and not has_wild_2:
-        parts = re.split(r"<\*>", t1)
-        pattern = ".*?".join(re.escape(part) for part in parts)
-        if re.fullmatch(f"^{pattern}$", t2, re.DOTALL):
-            return _preserve_structure(t1, t2)
-    elif has_wild_2 and not has_wild_1:
-        parts = re.split(r"<\*>", t2)
-        pattern = ".*?".join(re.escape(part) for part in parts)
-        if re.fullmatch(f"^{pattern}$", t1, re.DOTALL):
-            return _preserve_structure(t2, t1)
-    elif has_wild_1 and has_wild_2:
-        # 双方都含 <*>，互相检查是否一方能覆盖另一方
-        parts1 = re.split(r"<\*>", t1)
-        pat1 = ".*?".join(re.escape(part) for part in parts1)
-        parts2 = re.split(r"<\*>", t2)
-        pat2 = ".*?".join(re.escape(part) for part in parts2)
-        if re.fullmatch(f"^{pat1}$", t2, re.DOTALL):
-            return _preserve_structure(t1, t2)
-        if re.fullmatch(f"^{pat2}$", t1, re.DOTALL):
-            return _preserve_structure(t2, t1)
-
-        # 渐进泛化：当双方都含 <*> 但互不匹配时（如结尾不同 server vs client），
-        # 尝试将 t1 尾部的常量部分替换为 <*>，直到 t2 能匹配。
-        # 例如 t1='(xnet_<*>:<*>)(num:<*>)server' vs t2='(xnet_r0_0_39:<*>)(num:<*>)client'
-        # → 泛化 t1 尾部 server 为 <*> → '(xnet_<*>:<*>)(num:<*>)<*>'
-        for gen_token in _progressive_generalize(t1, delimiters):
-            parts_g = re.split(r"<\*>", gen_token)
-            pat_g = ".*?".join(re.escape(part) for part in parts_g)
-            if re.fullmatch(f"^{pat_g}$", t2, re.DOTALL):
-                return gen_token
-        for gen_token in _progressive_generalize(t2, delimiters):
-            parts_g = re.split(r"<\*>", gen_token)
-            pat_g = ".*?".join(re.escape(part) for part in parts_g)
-            if re.fullmatch(f"^{pat_g}$", t1, re.DOTALL):
-                return gen_token
-
-    # Step 1-2: LCP → 回退到分隔符边界
-    lcp_len = 0
-    for c1, c2 in zip(t1, t2):
-        if c1 == c2:
-            lcp_len += 1
-        else:
-            break
-
-    head = ''
-    if lcp_len > 0:
-        # 从 lcp_len 向前找最近的非下划线分隔符
-        # 下划线 _ 连接的标识符子部分（如 xnet_r0_0_14 中的 r0、0、14）通常是变量，
-        # 不应作为 head 边界，否则 head 会过拟合到 (xnet_r0_0_ 而非 (xnet_
-        head_end = -1
-        for i in range(lcp_len - 1, -1, -1):
-            if t1[i] in delimiters and t1[i] != '_':
-                head_end = i
-                break
-        if head_end >= 0:
-            # 在非下划线分隔符之后，找第一个下划线作为 head 边界
-            # 但仅当该下划线不是 LCP 的最后一个字符时才保留标识符前缀：
-            # - name(DMI_SysPowerCheckThread) vs name(DMI_CpuFreqOptThread)
-            #   LCP = name(DMI_ → _ 在末尾 → DMI_ 后就分叉 → head = name( (泛化)
-            # - (xnet_r0_0_14) vs (xnet_r0_0_50)
-            #   LCP = (xnet_r0_0_1 → _ 后还有 r0_0_1 → head = (xnet_ (保留前缀)
-            for i in range(head_end + 1, lcp_len):
-                if t1[i] == '_':
-                    if i < lcp_len - 1:
-                        head_end = i
-                    break
-            head = t1[:head_end + 1]
-        else:
-            # LCP 中无非下划线分隔符，从前往后找第一个下划线作为 head 边界
-            # xnet_r0_0_14 vs xnet_r0_0_50 → head = xnet_（保留标识符首段，泛化后续变量）
-            for i in range(lcp_len):
-                if t1[i] in delimiters:
-                    head_end = i
-                    break
-            if head_end >= 0:
-                head = t1[:head_end + 1]
-
-    # Step 3-4: LCS → 前进到分隔符边界
-    lcs_len = 0
-    for c1, c2 in zip(reversed(t1), reversed(t2)):
-        if c1 == c2:
-            lcs_len += 1
-        else:
-            break
-
-    tail = ''
-    if lcs_len > 0:
-        # 在 LCS 区域内从前往后找第一个分隔符，取从该分隔符到末尾的全部作为 tail
-        # 原因：LCS 是尾部共同部分，应尽可能完整地保留
-        # 例如 GlobalInfo;) vs FrameInfo;) → LCS=Info;) → 找第一个分隔符 ; → tail=;)'
-        # 而不是从后往前找最后一个分隔符 ) → tail=)（丢失 Info;）
-        lcs_start = len(t1) - lcs_len
-        tail_start = -1
-        for i in range(lcs_start, len(t1)):
-            if t1[i] in delimiters:
-                tail_start = i
-                break
-        if tail_start >= 0:
-            tail = t1[tail_start:]
-        else:
-            # LCS 区域内无分隔符，直接取完整 LCS
-            tail = t1[lcs_start:]
-
-    # Step 4.5: 中段补偿 — tail 为空时，在 LCP 之后寻找以非下划线分隔符开头的最长共同子串
-    # 下划线 _ 连接的子部分（如 _14）通常是变量，不应作为中段起始边界，
-    # 否则会导致后续合并时字符位置错位（<*> 3字符 vs 原始值 N字符不对齐）
-    middle = ''
-    if not tail and lcp_len < min(len(t1), len(t2)):
-        best_mid = ''
-        i = lcp_len
-        while i < min(len(t1), len(t2)):
-            if t1[i] in delimiters and t1[i] != '_' and t1[i] == t2[i]:
-                # 找到共同非下划线分隔符，计算从这里开始的最长共同子串
-                j = i
-                while j < min(len(t1), len(t2)) and t1[j] == t2[j]:
-                    j += 1
-                mid = t1[i:j]
-                if len(mid) > len(best_mid):
-                    best_mid = mid
-                i = j + 1
-            else:
-                i += 1
-        if best_mid and len(best_mid) > 1:
-            middle = best_mid
-
-    # Step 5: 括号平衡检查
-    # 考虑 head 和 tail 中所有的括号，而非仅 head 的开括号 vs tail 的闭括号
-    # tail 内部可能含有 ( )，如 :<*>)(num:<*>) 中 ) 和 ( 都是结构的一部分
-    #
-    # 关键修正：当 head 为空时，<*> 区域可能包含对应的开括号
-    # 例如 GlobalInfo;) vs FrameInfo;) → head='', tail=;)' → ) 对应原始 token 中的 (
-    # 此时 tail 中的闭括号属于 <*> 区域的结构，不应删除。
-    # 只有当 head 非空（head 中有开括号可抵消）时才做括号平衡。
-    if head:
-        open_count = head.count('(') + head.count('[') + head.count('{') + \
-                     tail.count('(') + tail.count('[') + tail.count('{')
-        close_count = head.count(')') + head.count(']') + head.count('}') + \
-                      tail.count(')') + tail.count(']') + tail.count('}')
-        if close_count > open_count:
-            # 从 tail 前端逐字符移除多余的关闭括号
-            excess = close_count - open_count
-            new_tail = ''
-            removed = 0
-            for ch in tail:
-                if removed < excess and ch in (')', ']', '}'):
-                    removed += 1
-                else:
-                    new_tail += ch
-            tail = new_tail
-
-    # Step 6: 重叠保护
-    total_fixed = len(head) + len(middle) + len(tail)
-    if total_fixed >= min(len(t1), len(t2)):
-        return '<*>'
-
-    # Step 7: 组装结果
-    result = head + '<*>'
-    if middle:
-        result += middle + '<*>'
-    result += tail
-    return result
 
 
 class Logcluster:
@@ -334,26 +80,37 @@ class Logcluster:
             # Start merging
             for pos, (t1, t2) in enumerate(zip(target, seq)):
                 if t1 != t2:
-                    # 优先使用 logTemplate[pos]（getTemplate 已增量合并出的最通用形式），
-                    # 避免 pathList 中已含 <*> 的 token 与原始 token 因字符位置错位而退化。
-                    # logTemplate 在 parse_list 中已先于 updateSequence 更新。
-                    if pos < len(self.logTemplate) and self.logTemplate[pos] != t1 and self.logTemplate[pos] != t2:
-                        var = self.logTemplate[pos]
-                    else:
-                        var = _structure_aware_merge(t1, t2, path_delimiters)
-
+                    # Collapse into a variable
+                    # Protect the head and tail for readability
+                    var = '<*>'
+                    head, tail = '', ''
+                    min_length = min(len(t1), len(t2))
+                    for i in range(min_length):
+                        char = t2[i]
+                        if char not in path_delimiters: break
+                        flag = True
+                        if t1[i] != char: 
+                            flag = False
+                            break
+                        if flag: head += char
+                        else: break
+                    for i in range(min_length):
+                        char = t2[-i-1]
+                        if char not in path_delimiters: break
+                        flag = True
+                        if t1[-i-1] != char: 
+                            flag = False
+                            break
+                        if flag: tail = char + tail
+                        else: break
+                    var = head + var + tail
+                    
                     # Update all lists
                     for p in self.pathList: p[pos] = var
         
         # Clean the list (preserve sorted order equivalent to np.unique(axis=0))
         unique_tuples = sorted(set(tuple(p) for p in self.pathList))
         self.pathList = [list(t) for t in unique_tuples]
-        # 同步 logTemplate 中已泛化的 <*> 到 pathList，
-        # 避免 templateList 保留 logTemplate 已泛化的具体值（如 xnet_r0_0_50）
-        for p in self.pathList:
-            for pos in range(len(p)):
-                if pos < len(self.logTemplate) and '<*>' in self.logTemplate[pos]:
-                    p[pos] = self.logTemplate[pos]
         # Update the template list
         self.templateList = [correct_single_template(' '.join(t)) for t in self.pathList]
         # Clean the templates
@@ -603,13 +360,7 @@ class LogParser:
 
     def getTemplate(self, seq1, seq2):
         assert len(seq1) == len(seq2)
-        result = []
-        for w1, w2 in zip(seq1, seq2):
-            if w1 == w2:
-                result.append(w1)
-            else:
-                result.append(_structure_aware_merge(w1, w2, path_delimiters))
-        return result
+        return [w1 if w1 == w2 else '<*>' for w1, w2 in zip(seq1, seq2)]
     
     def jaccardSimilarity(self, template1, template2):
         set1 = set([item for item in template1.split() if any(ch.isalnum() for ch in item)])
