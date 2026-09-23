@@ -90,3 +90,42 @@ def test_parser_smoke(cache):
         templates = parser.parse_list(logs)
         assert len(templates) == len(logs)
         assert all(covers(t, log) for t, log in zip(templates, logs))
+
+
+def test_compiled_template_matches_original_semantics():
+    import regex
+    values = ['', 'abc', '中文', 'İıſK', '<*>', 'a<*>b', 'a\nb', 'a\nb\n',
+              '[x](y)', 'a.b+$', '<*><*>', 'a<*>b<*>c']
+    for template, text in itertools.product(values, repeat=2):
+        pattern = '.*?'.join(regex.escape(p) for p in regex.split(r'<\*>', template))
+        expected = bool(regex.fullmatch(f'^{pattern}$', text, regex.DOTALL))
+        assert Logcluster.templateMatches(template, text) == expected
+
+
+def test_compiled_template_cache_eviction_and_changed_template():
+    from src.data_process.template_extractor.parsing_algorithm.PIPLUP import _compiled_template
+    _compiled_template.cache_clear()
+    try:
+        assert Logcluster.templateMatches('worker <*> ready', 'worker foo ready')
+        assert not Logcluster.templateMatches('worker <*> ready', 'worker foo failed')
+        assert Logcluster.templateMatches('worker <*> failed', 'worker foo failed')
+        assert _compiled_template.cache_info().hits == 1
+        for i in range(4100):
+            _compiled_template(f'event {i} <*>')
+        assert _compiled_template.cache_info().currsize == 4096
+        assert Logcluster.templateMatches('worker <*> ready', 'worker bar ready')
+    finally:
+        _compiled_template.cache_clear()
+
+
+def test_regex_cache_keeps_counts_and_final_templates():
+    parser = LogParser('<Content>', 'regex-cache-test', use_cache=False,
+                       use_template_cache=False, br_thresh=1)
+    output = parser.parse_list(['worker name(foo) ready', 'worker name(foo) ready',
+                               'worker name(bar) ready'])
+    assert output == ['worker name(<*>) ready'] * 3
+    assert len(parser.logCluL) == 1
+    assert parser.logCluL[0].hit_time == 3
+    assert parser.logCluL[0].templateList == ['worker name(<*>) ready']
+    parser.parse_list(['worker name(baz) ready'] * 2)
+    assert parser.logCluL[0].hit_time == 5
