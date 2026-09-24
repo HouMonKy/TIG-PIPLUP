@@ -4,7 +4,6 @@ import zlib
 # pandas 已移除：DataFrame+iterrows 替换为 range+list 索引（优化1）
 import logging
 from datetime import datetime
-from functools import lru_cache
 import pickle
 
 from .preprocessing import preprocess
@@ -101,14 +100,6 @@ def _structure_aware_merge(t1, t2, delimiters):
     return result
 
 
-@lru_cache(maxsize=4096)
-def _compiled_template(template):
-    """按模板字符串复用正则；仅缓存编译结果，每条日志仍完整匹配。"""
-    parts = re.split(r"<\*>", template)
-    pattern = ".*?".join(re.escape(part) for part in parts)
-    return re.compile(f"^{pattern}$", re.DOTALL)
-
-
 class Logcluster:
     def __init__(self, logTemplate='', logIDL=None, br_thresh=2):
         self.logTemplate = logTemplate
@@ -123,7 +114,9 @@ class Logcluster:
     # Check whether template1 can describe template2 (template2 can be merged into template1)
     @staticmethod
     def templateMatches(template1, template2):
-        return _compiled_template(template1).fullmatch(template2) is not None
+        parts = re.split(r"<\*>", template1)
+        pattern = ".*?".join(re.escape(part) for part in parts)
+        return re.fullmatch(f"^{pattern}$", template2, re.DOTALL) is not None
     
     def seqSimilarity(self, seq1, seq2):
         sim = 0

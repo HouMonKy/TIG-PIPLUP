@@ -92,7 +92,7 @@ def test_parser_smoke(cache):
         assert all(covers(t, log) for t, log in zip(templates, logs))
 
 
-def test_compiled_template_matches_original_semantics():
+def test_template_matches_original_semantics():
     import regex
     values = ['', 'abc', '中文', 'İıſK', '<*>', 'a<*>b', 'a\nb', 'a\nb\n',
               '[x](y)', 'a.b+$', '<*><*>', 'a<*>b<*>c']
@@ -102,20 +102,11 @@ def test_compiled_template_matches_original_semantics():
         assert Logcluster.templateMatches(template, text) == expected
 
 
-def test_compiled_template_cache_eviction_and_changed_template():
-    from src.data_process.template_extractor.parsing_algorithm.PIPLUP import _compiled_template
-    _compiled_template.cache_clear()
-    try:
-        assert Logcluster.templateMatches('worker <*> ready', 'worker foo ready')
-        assert not Logcluster.templateMatches('worker <*> ready', 'worker foo failed')
-        assert Logcluster.templateMatches('worker <*> failed', 'worker foo failed')
-        assert _compiled_template.cache_info().hits == 1
-        for i in range(4100):
-            _compiled_template(f'event {i} <*>')
-        assert _compiled_template.cache_info().currsize == 4096
-        assert Logcluster.templateMatches('worker <*> ready', 'worker bar ready')
-    finally:
-        _compiled_template.cache_clear()
+def test_template_matches_repeated_and_changed_template():
+    assert Logcluster.templateMatches('worker <*> ready', 'worker foo ready')
+    assert not Logcluster.templateMatches('worker <*> ready', 'worker foo failed')
+    assert Logcluster.templateMatches('worker <*> failed', 'worker foo failed')
+    assert Logcluster.templateMatches('worker <*> ready', 'worker bar ready')
 
 
 def test_regex_cache_keeps_counts_and_final_templates():
