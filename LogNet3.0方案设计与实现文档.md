@@ -5,7 +5,7 @@
 | 文档名称 | LogNet3.0 方案设计与实现文档 |
 | 版本 | V5.0 |
 | 日期 | 2026-09-18 |
-| 关键技术点 | 免人工配置异构日志解析、模板无关自适应参数异常检测、分词增强语义异常检测 |
+| 关键技术点 | 免人工配置异构日志解析、通用抽取与变体缓存的参数异常检测、分词增强语义异常检测 |
 
 ---
 
@@ -15,7 +15,7 @@
 2. [系统架构设计](#2-系统架构设计)
 3. [模块交互与时序设计](#3-模块交互与时序设计)
 4. [关键技术点一：免人工配置异构日志解析](#4-关键技术点一免人工配置异构日志解析)
-5. [关键技术点二：模板无关自适应参数异常检测](#5-关键技术点二模板无关自适应参数异常检测)
+5. [关键技术点二：通用抽取与变体缓存的参数异常检测](#5-关键技术点二通用抽取与变体缓存的参数异常检测)
 6. [关键技术点三：分词增强语义异常检测](#6-关键技术点三分词增强语义异常检测)
 7. [数量异常检测](#7-数量异常检测)
 8. [异常检测结果融合与故障诊断](#8-异常检测结果融合与故障诊断)
@@ -34,7 +34,7 @@
 LogNet3.0 面向海量异构日志，目标是解析与异常检测全程免人工配置。系统有三个核心技术点：
 
 - **免人工配置异构日志解析**：基于自研 PIPLUP（Prefix-tree Indexed Parsing with LLM-assisted Universal Processing）算法，结合 LLM 智能格式学习引擎，自动解析不同模块、不同格式的日志，无需人工逐模块配置正则规则。
-- **模板无关自适应参数异常检测**：研发阶段完成参数识别、知识治理和检测资产训练；生产阶段确定性解析参数，精确命中参数知识表后执行检测，未命中直接通过并记录。
+- **通用抽取与变体缓存的参数异常检测**：GLiNER2.5 通用抽取参数名与数值，不逐模板配置抽取规则；首见结构在线学习登记变体（位置 + 结构签名），同结构日志再走缓存直检，模型调用随流量收敛到零。
 - **分词增强语义异常检测**：训练领域专用 BERT 分词器，做滑动窗口多粒度嵌入，再与异常基线做相似度匹配，检测日志内容本身的语义异常。
 
 ### 1.2 代码仓库结构
@@ -570,236 +570,263 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 ---
 
-## 5. 关键技术点二：模板无关自适应参数异常检测
+## 5. 关键技术点二：通用抽取与变体缓存的参数异常检测
 
 ### 5.1 技术概述
 
-参数异常检测分研发、生产两个阶段：研发阶段治理，生产阶段直检。研发阶段从日志样例和参数说明中整理出参数知识，训练并发布检测资产；生产阶段只做确定性的参数解析、知识表精确查询和策略检测，不按 `template_id` 路由，也不加载语义模型。
+参数异常检测走冷热双路径。首次见到的日志结构走冷路径：语义匹配归属规则组，GLiNER 通用抽取参数名与值，黑名单判定，成功后把取值位置和结构签名登记为变体。同结构日志再来时走热路径：按缓存位置直接取值判定，全程零模型调用。
 
 ```plantuml
-@startuml Parameter_Overview_Research
+@startuml Parameter_Overview_Cold
 !theme plain
 skinparam shadowing false
 skinparam ArrowColor #555555
 skinparam nodesep 20
 skinparam ranksep 30
 
-title 研发阶段：参数治理与检测资产训练
-
-rectangle "日志样例 + 参数说明" as src
-rectangle "参数识别与治理候选生成\n定位参数与原文区间" as identify
-rectangle "规则校验与人工复核" as review
-database "参数知识表\n身份 / 语义 / 检测定义" as knowledge
-rectangle "共享 VAE +\n稳健统计训练" as vae
-rectangle "确定性 / 状态检测策略\n(序列/枚举/返回码/ID等)" as rule
-database "检测配置包\n绑定知识版本哈希" as assets
-
-src -right-> identify
-identify -right-> review
-review -right-> knowledge
-knowledge -right-> vae : 连续数值
-knowledge -right-> rule : 其他参数类型
-vae -right-> assets
-rule -right-> assets
-@enduml
-```
-
-```plantuml
-@startuml Parameter_Overview_Production
-!theme plain
-skinparam shadowing false
-skinparam ArrowColor #555555
-skinparam nodesep 20
-skinparam ranksep 30
-
-title 生产阶段：参数解析与策略直检
+title 冷路径：首见学习（模型参与，p50 约 55ms）
 
 rectangle "原始日志" as log
-rectangle "确定性参数解析\n提取参数名、原值、单位、区间" as parse
-database "参数知识表\n精确查询" as query
-rectangle "值解析与单位归一化\n按 detector_policy 检测" as hit
-rectangle "记录为未知参数\n直接通过(回流治理)" as miss
-rectangle "参数级结果汇总\n为日志级结论" as agg
+rectangle "Drain3 模板解析\n(per-module 持久状态)" as drain
+rectangle "语义匹配路由\n模板臂 + 原文包含度臂\n+ 受保护词门" as match
+rectangle "GLiNER2.5 通用抽取\nlabels=(parameter, number)" as gliner
+rectangle "取值防线\n值 token 对齐 + 参数名邻近配对\n失败转通用正则(值形态门)" as guard
+rectangle "黑名单规则判定" as rule
+database "变体登记\n位置 + 结构签名\n按事件指纹" as reg
 
-log -right-> parse
-parse -right-> query
-query -right-> hit : 命中已审核参数
-query -right-> miss : 未命中
-hit -right-> agg
-miss -right-> agg
+log -right-> drain
+drain -right-> match
+match -right-> gliner
+gliner -right-> guard
+guard -right-> rule
+rule -right-> reg
 @enduml
 ```
 
-模板无关，指的是检测不依赖预置模板 ID：即使日志结构变了，只要出现已审核的参数名，同一份参数知识和检测配置照样能用；表外参数在生产阶段不做语义猜测，只记录下来，回流研发阶段治理。
+```plantuml
+@startuml Parameter_Overview_Hot
+!theme plain
+skinparam shadowing false
+skinparam ArrowColor #555555
+skinparam nodesep 20
+skinparam ranksep 30
+
+title 热路径：缓存直检（零模型调用，p50 约 0.07ms）
+
+rectangle "原始日志" as log
+rectangle "事件指纹\n值剥离 token 序列哈希" as fp
+database "变体缓存\nSQLite 按指纹查库" as store
+rectangle "结构签名校验\nn_tokens + 固定锚点\n+ 受保护词门" as sig
+rectangle "按变体位置取值\n黑名单规则判定" as rule
+
+log -right-> fp
+fp -right-> store
+store -right-> sig
+sig -right-> rule
+@enduml
+```
+
+模型只在冷路径出现。流量结构稳定后，绝大多数日志命中缓存，GLiNER 调用随时间收敛；实测 11000 条数据冷启动 1664 次模型调用，热启动降到 1159 次，热路径命中部分 p50 0.07ms。
 
 | 模块 | 对应实现 | 主要职责 |
 |------|----------|----------|
-| 参数识别与治理 | `offline/model_adapters.py`、`corpus/parameter_gold.py` | 识别参数及其原文区间，生成并复核治理记录 |
-| 知识发布 | `corpus/parameter_knowledge_builder.py`、`detection/parameter_knowledge.py` | 发布可审核、可校验的参数知识包 |
-| 检测资产训练 | `offline/family_training.py`、`detection/family_assets.py` | 训练共享 VAE 和统计基线，生成各类检测配置 |
-| 生产阶段检测 | `detection/param_parser.py`、`detection/online.py` | 解析参数、精确查询、执行策略并汇总结果 |
+| 模板解析 | `drain_parser.py`、`parser_bridge.py` | Drain3 模板聚类，per-module 持久状态 |
+| 语义匹配 | `lexical_matcher.py` | 双臂路由与受保护词门 |
+| 通用抽取 | `gliner_backend.py`、`gliner_adapter.py` | GLiNER2.5-multi 抽取参数名与数值 |
+| 规则判定 | `legacy_adapter.py` | 配对校验、正则兜底、黑名单判定 |
+| 位置映射 | `position_mapper.py` | 位置回放、结构签名生成与校验 |
+| 变体缓存 | `variant_store.py` | SQLite 持久化，事件指纹身份 |
 
-### 5.2 研发阶段：参数治理与知识发布
+### 5.2 双臂语义匹配路由
 
-**输入示例**：
+**模块输入示例**：`Get ns async failed, "s:[13,"ret(3).`（原文）及其 Drain 模板。
 
-```text
-日志：Xnet send ..., time use=10772(us), SNO=100, plane=1, xnetRet=0.
-说明：time use 表示耗时，SNO 表示单调递增序号，xnetRet 表示返回码。
-```
+**模块输出示例**：规则组归属 `eds|10304`，附全部候选组的匹配分数作为归属证据。
 
-**输出示例**：
+**具体职责**：确定日志属于哪个规则组（规则组 = 同一模板来源的黑名单规则集合）。不配置逐模板路由规则，靠词面相似度自动归属。
 
-```json
-{
-  "canonical": "time_use",
-  "aliases": ["time use"],
-  "family": "duration",
-  "value_kind": ["integer"],
-  "canonical_unit": "ms",
-  "detector_policy": "numeric_vae",
-  "constraints": {"min": 0},
-  "vae_family": "duration",
-  "review_status": "reviewed"
-}
-```
+#### 5.2.1 N1 规范化与值剥离
 
-研发阶段先识别日志中的参数名、参数值及其原文区间，再结合参数说明生成标准参数名、参数类别、单位、检测策略和约束等治理候选。
-
-审核后的记录按标准参数名（`canonical`）合并为参数知识条目。知识表保存三类信息：
-
-- **参数身份**：标准参数名与允许精确命中的已审核别名；
-- **参数语义**：值类型、规范单位和参数类别；
-- **检测定义**：检测策略、约束及参数间关系。
-
-### 5.3 研发阶段：检测资产训练与发布
-
-**输入示例**：
+所有匹配在 N1 词法坐标系上进行：casefold 统一大小写，已知占位符（`<NUM>`、`<MAC-HEX>` 等）从评分序列去除，按标识符/箭头/正负号分词，纯分隔标点丢弃。之后剥离值形态 token（纯数字、`0x` 十六进制、4 位以上裸十六进制）：
 
 ```text
-time_use          → 耗时类（duration），单位=ms
-wait_task_count   → 非负计数类（nonnegative_count），单位=count
-capacity          → 容量类（capacity_size），单位=byte
+模板  "Get ns async failed ret ( <NUM> )"   →   {get, ns, async, failed, ret}
+日志  "Get ns async failed ret(3)."          →   {get, ns, async, failed, ret}
 ```
 
-**输出示例**：
+值剥离后，`ret(3)` 与 `ret(999)` 的匹配表示完全一致——值变化不影响路由，这是"检测的是结构、判定的是值"这一分工的基础。
+
+#### 5.2.2 模板臂：MinHash Jaccard
+
+主评分用 MinHash Jaccard（128-perm 签名估计集合交并比），Top1 超过阈值 0.45 即归属。以 `Get ns async failed, "s:[13,"ret(3).` 为例，各候选组得分：
+
+| 候选组 | 分数 | 原因 |
+|---|---|---|
+| eds\|10304 | 1.000 | 模板词集 {get,ns,async,failed,s,ret}，查询完全覆盖 |
+| eds\|10305 | 0.833 | 模板词集少一个 s |
+| eds\|10306 | 0.714 | 再多一个 is_mgr_last |
+| eds\|10309 | 0.625 | 多 mode、restore |
+| eds\|10308 | 0.250 | 词面差异大 |
+
+**设计原理**：不用句向量编码模型。22 规则规模下词面区分度足够，词法匹配质量与 MiniLM 句向量持平（基准实测 MiniLM 未知误接受率 12.3%，词法方法 0%），且在线零模型加载、p95 延迟从 5.7ms 降到 0.1ms 以内。MinHash 为数千级模板库预置扩展能力。
+
+#### 5.2.3 原文包含度臂
+
+模板臂有两个盲区，由原文包含度臂兜底：
+
+**Drain 过度泛化**。`dci_size(2048) ttl=2` 与 `dci_size(512) ttl=2` 进同一簇后，模板演化成 `<*> ttl=2`——参数名 `dci_size` 被通配符吞掉，模板臂拿到的查询只剩 {ttl}，对任何组都是零分。
+
+**多字段稀释**。日志 `dci_size(2048) ctx=10000 ttl=2` 剥离值后是 {dci_size, ctx, ttl}，对组模板 {dci_size} 的 Jaccard 只有 1/3，低于阈值。
+
+原文臂改算包含度：`|原文token ∩ 候选token| / |候选token|`，即候选模板的词有多少出现在原文里。上例对 {dci_size} 的包含度是 1.0，直接通过。同分时取词数更多的候选（特异性优先）：原文里同时出现 s 和 ret 时归属 10304（6 词）而非其子集 10305（5 词）。
+
+#### 5.2.4 受保护词组合门
+
+措辞反转日志是路由的主要误报源：`Cm create the RR pthread ok, ret=-1` 与规则模板 `Cm create the RR pthread failed ret = <NUM>` 词面只差一个词，包含度 0.857，照常归属，`ret=-1` 恰在黑名单里——误报。
+
+每个规则组在元数据里配置受保护词（如 ccdb|2 的 `failed`），归属前过组合门：受保护词至少一个出现位置满足以下之一——
+
+1. **不在值位**：前驱 token 不是 `=`、`:`、`(`、`[`。辅助字段值位（`note=failed`）不携带主句语义，不算；
+2. **与模板邻居相邻**：值位出现但左右邻居与模板一致（如删词后 `[KVS]: failed of...`，`failed` 紧跟标签冒号落进值位，但与右邻居 `of` 相邻，放行）。
+
+门在三处生效：模板臂、原文臂、缓存热路径。`Get ns async succeeded ret(-99999) note=failed` 这类注入样本被完整拦截（实测 12/12 零误报，含预载历史缓存）。
+
+### 5.3 GLiNER 通用抽取与取值防线
+
+**模块输入示例**：`Get ns async failed, "s:[13,"ret(3).`
+
+**模块输出示例**：`{s: 13, ret: 3}`，每个参数名与值都带原文区间和置信度。
+
+**具体职责**：从原文抽取参数名和数值。标签组合是 `("parameter", "number")`，通用词面，不逐模板定制。
+
+#### 5.3.1 标签组合
+
+标签组合经过四臂对照实验确定。同一条日志，四种标签的抽取结果：
 
 ```text
-共享模型          → 一套带参数类别条件的 VAE 权重
-参数统计          → 每个标准参数独立的中位数和 MAD
-类别配置          → 每类参数的最终检测方式、阈值和误差校准值
-知识版本哈希      → 与参数知识表绑定
+(parameter, value) →  ret→3, s→13        两参数全对，但 value 标签宽松，全量引入 12 条误配对误报
+(name, number)    →  ns→3               把 namespace 缩写当参数名，规则要的 s 没抽到
+(parameter,number) →  s→3, ns→13         抽到了 s（本例配错值），number 约束保证全量零误报
+(name, value)     →  ns→3               同 name 盲区
 ```
 
-参数知识表中的 `detector_policy` 决定检测资产的训练路线：连续数值参数进入共享 VAE 与稳健统计训练，序列、关系、枚举、返回码、ID 和地址等参数进入相应的确定性或状态检测策略。
+规律：参数名一侧必须用 `parameter`（泛化词 `name` 让模型分不清哪个词是参数，召回掉一半）；值一侧用 `number`（数值约束天然排除词面值，挡住误配对误报）。四臂指标：A 组 P=0.76 R=0.69，B 组 P=1.0 R=0.18，C 组（采用）P=1.0 R=0.62，D 组 P=1.0 R=0.27。
 
-### 5.4 生产阶段：参数解析与直检
+#### 5.3.2 配对校验
 
-**输入示例**：
+GLiNER 偶尔把参数名配到邻近的错误值（上例 C 组的 `s→3`，s 的值其实是 13）。判定取值前过两道校验：
+
+**值 token 对齐**：值区间必须落在唯一 token 内。`ret = : -1` 被抽成 `: -1`（跨 token）时直接判不可信，转正则。
+
+**参数名邻近**：参数名 token 必须在值前方两个非分隔符 token 之内。`error code=10 extra_26: 28` 中 GLiNER 把 error code 配到 28，参数名远在 6 个 token 之外，校验拒绝。
+
+#### 5.3.3 通用正则兜底与值形态门
+
+GLiNER 漏抽的参数，多数能被通用形态正则找回。五种形态全部是通用样式：
 
 ```text
-new layout :: time use=2000000(us), plane=1, extraFlag(9)
+ret=: -2     ret=-1     ret(3)     ret: 5     status is 5
 ```
 
-**输出示例**：
+正则兜底带两条防线：词边界（参数 `s` 不能匹配 `status:` 的尾巴）、值形态门（抓到的必须是数字或十六进制）。值形态门是踩坑后加的：早期版本曾把 `from`、`is` 这类普通词当值缓存进模板库，21/217 个缓存位置是垃圾——回放校验和配对校验对"词冒充值"天然盲区，因为它们验的是位置一致性，不是值合法性。
 
-```json
-{
-  "status": "anomaly",
-  "reason_code": "known_parameter_anomaly",
-  "known_hits": [
-    {"canonical": "time_use", "detector_kind": "statistical", "alert": true},
-    {"canonical": "plane", "detector_kind": "", "alert": false}
-  ],
-  "unknown_params": [
-    {"surface": "extraFlag", "review_hint": "unknown"}
-  ]
-}
-```
+兜底的使用边界：只出现在 GLiNER 提取失败的判定取值，和变体入库时的位置定位。不做复合值二次猜测，不针对具体模板写模式——换一套规则库时，模板特定的兜底就是废代码。
 
-生产阶段解析器使用确定性词法扫描识别参数表达式，保留参数名、原值、单位和原文区间。解析器本身不判断参数语义，是否进入检测完全由参数知识表决定。
+### 5.4 变体位置缓存
 
-命中参数先完成值解析和单位归一化，再根据 `detector_policy` 执行对应策略：
+**模块输入示例**：登记成功的一条冷路径结果（规则组、取值位置、结构签名、事件指纹）。
 
-| 策略 | 主要用途 |
-|------|----------|
-| `numeric_vae` | 调用数值检测配置，执行该参数类别最终选定的统计方法或共享 VAE |
-| `sequence` | 按日志流隔离状态，检查递增或非递减 |
-| `relation` | 检查同日志参数之间的大小、差值或引用关系 |
-| `categorical` / `hard_rule` | 检查枚举、固定值、返回码和范围 |
-| `format_only` | 检查 ID、十六进制、地址等格式 |
-| `ignore` | 已登记但不执行异常检测 |
+**模块输出示例**：SQLite 中一行可执行变体，下次同结构日志直接命中。
 
-参数级结果按以下规则汇总为日志级结论：
+**具体职责**：把冷路径的学习成果持久化，让模型调用随流量收敛。
+
+#### 5.4.1 事件指纹身份
+
+缓存身份是事件指纹——值剥离后的有序 N1 token 序列哈希：
 
 ```text
-任一已知参数异常            → anomaly / known_parameter_anomaly
-存在已知参数且全部正常      → normal / known_parameters_normal
-没有任何已知参数命中        → normal / no_known_parameter
+"Sqlite step sql fail(return code=10, ctx=30198"   →  {sqlite,step,sql,fail,return,code,ctx}
+"Sqlite step sql fail(return code=21, ctx=30199"   →  同一指纹（值已剥离）
 ```
 
-### 5.5 模块交互关系
+值变化不改变指纹，同结构日志共享缓存；字段重排、增删改变序列，各自独立缓存。Drain 模板快照不参与身份——模板在线演化（首条全字面，分歧后逐步通配），若以快照为身份，演化一次全部缓存假失效。实测按事件指纹去重后，缓存条目从 155 降到 111，一事件一行。
+
+#### 5.4.2 位置映射与结构签名
+
+登记前过完整映射链：值区间映射到 token 位置（回放一致：按位置取值须与抽取值相同）、参数名邻近（与判定同一配对校验）、模板对齐锚点（对齐歧义时取各解固定位置的交集——歧义只发生在通配边界，前缀锚点在各解中一致，仍可锚定）。
+
+结构签名记录 token 总数和每个目标的最近固定锚点（下标 + 文本）。热路径凭签名校验：槽宽变化（message 1 词变 3 词）或锚点位移，校验失败，缓存失效回冷路径。
+
+#### 5.4.3 热路径校验链
 
 ```plantuml
-@startuml Parameter_Governance_Sequence
+@startuml Parameter_Hot_Sequence
 !theme plain
 skinparam backgroundColor #FEFEFE
 skinparam shadowing false
 
-title 研发阶段：参数治理与检测资产训练
+title 热路径：缓存命中与校验链
 
-actor "治理人员" as Reviewer
-participant "GLiNER2.5-multi" as GLiNER
-participant "参数治理" as Govern
-database "参数知识表" as Knowledge
-participant "共享 VAE 训练" as Training
-database "检测配置包 v2" as Assets
+participant "输入日志" as Log
+participant "事件指纹" as FP
+database "变体缓存" as Store
+participant "校验链" as Check
+participant "规则判定" as Rule
 
-GLiNER -> Govern: 参数名、参数值及原文区间候选
-Govern -> Reviewer: 参数定义与检测策略候选
-Reviewer -> Knowledge: 发布审核记录、版本和哈希
-Knowledge -> Training: 适用的参数类别与标准参数定义
-Training -> Assets: 共享模型 + 类别配置 + 参数统计
-
-@enduml
-```
-
-```plantuml
-@startuml Parameter_Online_Sequence
-!theme plain
-skinparam backgroundColor #FEFEFE
-skinparam shadowing false
-
-title 生产阶段：参数解析与策略直检
-
-participant "生产参数解析" as Parser
-database "参数知识表" as Knowledge
-participant "策略执行与汇总" as Detect
-database "检测配置包 v2" as Assets
-
-Parser -> Knowledge: 精确匹配参数名
-Knowledge --> Parser: 已审核条目 / 未命中
-Parser -> Detect: 已知参数 + 未知参数
-Detect -> Assets: 按参数类别、标准参数名和规范值检测
-Assets --> Detect: 检测方式 + 分数 + 是否异常
-Detect -> Detect: 汇总已知参数结果
+Log -> FP: 值剥离 N1 序列哈希
+FP -> Store: (module, event_fingerprint) 查库
+Store --> Check: 变体（位置 + 结构签名 + 规则组）
+Check -> Check: 受保护词组合门\n(历史错误归属条目不因命中绕过)
+Check -> Check: 结构签名校验\n(n_tokens + 固定锚点)
+Check -> Rule: 按变体位置取值
+Rule --> Log: 黑名单判定（零模型调用）
 
 @enduml
 ```
 
-研发阶段与生产阶段通过两个只读资产衔接：参数知识表负责“这个参数是什么、应该怎样检测”，检测配置包负责“检测时使用什么配置和模型”。生产阶段不读取治理语料，也不修改知识、模型或阈值。
+任一环节失败都回冷路径重新学习，判定不受影响。缓存只加速，不改变语义——冷热两轮 11000 条判定逐条一致的实测支撑这一设计。
+
+### 5.5 性能实测
+
+11000 条数据（5500 在辖 + 5500 不在辖，264 异常），Apple Silicon CPU 单线程：
+
+| 指标 | 数值 |
+|------|------|
+| 冷路径延迟 | p50 约 55ms（含 GLiNER 推理） |
+| 热路径延迟 | p50 0.07ms，p90 0.2ms（零模型调用） |
+| 冷启动全程 | 155-175s（1664 次 GLiNER 调用） |
+| 热启动全程 | 128-156s（1159 次调用，缓存吸收其余） |
+| 检测质量 | P=1.0 / R=0.898 / F1=0.946 |
+| 不在辖误接受 | 0/5500 |
+| 冷热判定一致性 | 逐条一致 |
+
+泛化性补充：换一套全新知识表（12 规则 × 4 新模块）盲测，P/R/F1 = 1.0/1.0/1.0；黑名单值注入的易混淆日志误报 0；同结构新值数据缓存 100% 迁移。
 
 ### 5.6 端到端检测示例
 
-研发阶段，系统从日志中识别 `time use` 及其值，结合参数说明和相似参数生成“耗时类、规范单位、数值检测”等治理候选。治理人员确认后发布参数知识；训练模块据此生成该参数的归一化统计，并为耗时类冻结最终检测方式。
-
-生产阶段收到一条新结构日志：
+**输入日志（ccdb 模块）**：
 
 ```text
-new component summary :: plane=1 ; time use=2000000(us) ; extraFlag(9)
+Sqlite step sql fail(return code=10, ctx=30198
 ```
 
-解析器不查询模板 ID，而是直接提取三个参数。`plane` 和 `time use` 精确命中知识表，`extraFlag` 作为未知参数记录并通过；`time use` 完成单位换算后按已发布的耗时类配置执行检测。若该参数违反约束或超过检测阈值，则日志判为 `known_parameter_anomaly`。
+**冷路径（首见）**：
+
+1. Drain3 解析，无精确命中，进入语义匹配
+2. 原文臂包含度：{sqlite,step,sql,fail,return,code,ctx} 对 ccdb|1 模板词集 {sqlite,step,sql,fail,return,code} 包含度 1.0，归属 ccdb|1；受保护词 `fail` 在骨架位（前驱 `sql`），门通过
+3. GLiNER 抽取：`code → 10`，值 token 对齐、参数名 `code` 紧邻值前方，配对通过
+4. 黑名单判定：ccdb|1 的 `code` 黑名单为 ["10"]，命中，判 `anomaly`
+5. 位置映射成功，按事件指纹登记变体（位置 = code 值的 token 下标，签名 = token 总数 + 锚点）
+
+**同结构日志再来（热路径）**：
+
+```text
+Sqlite step sql fail(return code=21, ctx=30201
+```
+
+值剥离后指纹与上条一致，缓存命中；受保护词门、结构签名校验通过；按登记位置取值得到 21，不在黑名单，判 `normal`。全程零模型调用，0.07ms。
+
+---
 
 ## 6. 关键技术点三：分词增强语义异常检测
 
