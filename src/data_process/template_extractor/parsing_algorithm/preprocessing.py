@@ -19,7 +19,7 @@ regex_match = {
     'size': r'\b\d+\.?\d*\s?([KGTMkgtm]?(B|b)|([KGTMkgtm]))\b',
     'duration': r'\b\<?\d+\s?(sec|s|ms)\b',
     'block': r'blk\_\-?\d+',
-    'numerical': r'\b(\-?\+?\d+\.?\d*)\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b',
+    'numerical': r'(?:\b|(?<=\W)|^)(\-?\+?\d+(?:\.\d+)?|0[Xx][a-fA-F\d]+)(?:\b|(?=\W)|$)|\b[a-fA-F\d]{4,}\b',
     'time': r'\b\d{2}:\d{2}(:\d{2}|:\d{2},\d+)?\b',
     'date': r'\b(\d{4}-\d{2}-\d{2})|\d{4}/\d{2}/\d{2}\b',
     'url': r'\bhttps?:\/\/(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(:[0-9]{1,5})?(\/[^\s]*)?\b',
@@ -143,7 +143,3 @@ def preprocess(log, use_keys=False, estimation_stage=False, use_sequence=sequenc
         new_log = re.sub(r'(\<\*\>\s?)+\<\*\>', '<*>', new_log)
         if print:print('预处理后\n', new_log)
         return new_log
-        
-
-        
-    
