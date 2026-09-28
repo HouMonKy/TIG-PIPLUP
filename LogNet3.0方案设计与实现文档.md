@@ -29,91 +29,19 @@
 
 ## 1. 概述
 
-### 1.1 背景与目标
-
 LogNet3.0 面向海量异构日志，目标是解析与异常检测全程免人工配置。系统有三个核心技术点：
 
 - **免人工配置异构日志解析**：基于自研 PIPLUP（Prefix-tree Indexed Parsing with LLM-assisted Universal Processing）算法，结合 LLM 智能格式学习引擎，自动解析不同模块、不同格式的日志，无需人工逐模块配置正则规则。
 - **模板无关的参数异常检测**：检测配置只有参数名和黑名单，不含任何模板解析规则；参数抽取由 GLiNER 通用完成，日志路由靠词面相似度自动归属，首见结构在线学习，同结构日志再走缓存直检。
 - **分词增强语义异常检测**：训练领域专用 BERT 分词器，做滑动窗口多粒度嵌入，再与异常基线做相似度匹配，检测日志内容本身的语义异常。
 
-### 1.2 代码仓库结构
-
-```
-TIG_LogAnalysis/
-├── main.py                          # Flask 服务入口，提供 /lognet_parse 和 /abnormal-check 接口
-├── config/                          # 配置文件（格式定义、白名单、参数检测配置等）
-├── src/
-│   ├── common/                      # 公共组件
-│   │   ├── llm_client.py            # LLM 客户端
-│   │   ├── constant.py              # 常量定义
-│   │   ├── atomic_op.py             # 原子操作
-│   │   ├── global_config.py         # 全局配置
-│   │   └── distributed_lock.py      # 分布式锁
-│   ├── data_process/
-│   │   ├── log_context.py           # 日志上下文管理（Drain 树、白名单、PIPLUP 实例）
-│   │   ├── data_basic_structs/      # 基础数据结构（LRUCache）
-│   │   ├── template_extractor/      # 模板提取核心模块
-│   │   │   ├── log_formatter_parse.py        # 日志格式解析器
-│   │   │   ├── log_template_parsing_process.py         # Drain 解析流程
-│   │   │   ├── log_template_parsing_process_piplup.py  # PIPLUP 解析适配器
-│   │   │   ├── log_template_repository.py    # 日志模板仓库（内存存储）
-│   │   │   ├── parsing_algorithm/
-│   │   │   │   ├── PIPLUP.py                 # PIPLUP 核心算法
-│   │   │   │   ├── template_miner.py         # Drain3 算法
-│   │   │   │   ├── template_miner_config.py  # Drain3 配置
-│   │   │   │   ├── preprocessing.py          # 预处理（24种活跃正则）
-│   │   │   │   ├── postprocessing.py         # 后处理（LUNAR 模板校正）
-│   │   │   │   ├── LogAutoParsingEngine.py   # LLM 智能格式学习引擎
-│   │   │   │   ├── extractor.py              # 格式提取器
-│   │   │   │   ├── masking.py                # 掩码工具
-│   │   │   │   ├── file_persistence.py       # 文件持久化
-│   │   │   │   ├── persistence_handler.py    # 持久化处理器
-│   │   │   │   ├── simple_profiler.py        # 性能分析器
-│   │   │   │   ├── template_config.py        # 模板配置
-│   │   │   │   ├── tools/llm_client_all.py   # LLM 客户端集合
-│   │   │   │   └── prompts/                  # LLM Prompt 模板
-│   │   │   └── multi_process.py
-│   │   └── offline_data_plugin/    # 离线数据处理工具（DME/MAE 离线检测、参数配置生成等）
-│   ├── anomaly_detection/
-│   │   ├── anomaly_detection.py     # 异常检测编排器（三路检测融合）
-│   │   ├── semantic_anomaly/        # 语义异常检测
-│   │   │   ├── semantic_anomaly.py
-│   │   │   ├── data_models.py       # 语义数据模型
-│   │   │   ├── utils.py             # 语义工具函数
-│   │   │   ├── semantic_detectors/  # 语义检测器基类
-│   │   │   ├── bert_model/
-│   │   │   │   ├── LogNetMini.py    # CPU 轻量 BERT 模型
-│   │   │   │   └── LogNetBig.py     # NPU MPNet 模型
-│   │   │   └── configurations/      # 异常基线、指纹库
-│   │   ├── parameter_anomaly/       # 参数异常检测
-│   │   │   ├── param_detector.py
-│   │   │   └── configuration/       # 参数检测配置
-│   │   │       ├── load_param_config.py  # 配置加载器
-│   │   │       └── param_config.py       # 参数配置定义
-│   │   ├── quantitive_anomaly/      # 数量异常检测
-│   │   │   └── quantitive_detector.py
-│   │   └── anomaly_base/            # 数据模型基类
-│   └── evaluation/                  # 评估指标
-│       ├── ParserMetrics.py         # 解析质量评估（GA/PA/FGA/FTA）
-│       ├── metrics.py               # 检测指标评估
-│       └── LogAnalysis.py           # 三级评估器
-├── pre_train/                       # 预训练分词器与模型
-│   └── LogTokenizerTraining/        # 6步分词器训练流水线
-├── agent/                           # 现网案例复核与故障注入评估
-├── test/                            # 测试用例
-├── bin/start.sh                     # 部署启动脚本
-└── design_doc/                      # 已有设计文档
-```
-
 ---
 
 ## 2. 系统架构设计
 
-### 2.1 架构总览图
 
 ```plantuml
-@startuml TIG_PIPLUP_Architecture_Simplified
+@startuml TIG_PIPLUP_Architecture_Optimized
 !theme plain
 skinparam backgroundColor white
 skinparam shadowing false
@@ -121,47 +49,58 @@ skinparam roundCorner 12
 skinparam packageStyle rectangle
 skinparam ArrowColor #555555
 skinparam ArrowThickness 1.3
+skinparam componentStyle rectangle
 
-title LogNet3.0 系统架构图
+title LogNet2.0 系统架构图
 
-cloud "外部输入\n在线 API 调用 / 离线日志文件" as Ext #D9EAF7
+cloud "外部输入\n在线 API 调用" as Ext #D9EAF7
+package "接口层\nFlask API" as API #EAF3FF
 
-package "接口层\nFlask API（在线）· Offline Tool（离线）" as API #EAF3FF
+package "1. 日志模板解析 (Log Template Parsing)" as ParseModule #E8F5E9 {
+    component "日志预处理\nLogContext.get_format_parse().load_content()" as PreProcess
+    component "PIPLUP 日志解析\nPIPLUP.LogParse.parse_list(content)" as Parse
+    note bottom of Parse
+      落盘文件：日志缓存pkl文件
+    end note
+    database "LogTemplateRepository\n内存数据存储" as Repo #FFFFFF
+}
 
-package "核心上下文 LogContext\nLogFormatParser · 白名单" as Ctx #E8F5E9
+package "2. 异常检测 (Anomaly Detection)" as DetectModule #FCEEF5 {
+    component "① 数量异常检测\n模板数量在某个时间窗口发生剧烈变化，判为异常" as DetectNum
+    component "② 参数异常检测\n模板无关的参数异常检测" as DetectParam
+    component "③ 语义异常检测\n基于token和sentence级表征进行相似性计算" as DetectSemantic
+    
+    package "异常事件聚合" as EventModule #FFFFFF {
+        component "异常线索汇聚成事件" as EventAgg
+        component "指纹库诊断\n命中的异常日志模板" as DME_Diag
+        artifact "结构化异常事件报告" as EventReport
+    }
+}
 
-package "日志解析：PIPLUP 算法引擎\nCRC32 双层缓存 → \n预处理引擎(24种正则 + 自动剪枝) → \n后处理引擎(LUNAR 模板校正)" as Parse #FFF8E7
-note bottom of Parse
-  落盘文件：PIPLUP缓存(pkl)、白名单(json)
-end note
-
-database "LogTemplateRepository\n内存滑动窗口，不落盘" as Repo #E8F5E9
-
-package "异常检测\n参数\语义\数量 → 结果融合 → 指纹诊断（DME场景）" as Detect #FCEEF5
-
+' 基础链路
 Ext -down-> API
-API -down-> Ctx
-Ctx -down-> Parse
+API -down-> PreProcess
+PreProcess -down-> Parse
 Parse -down-> Repo
-Repo -down-> Detect
+
+' 数据流向异常检测组件
+Repo -down-> DetectNum
+Repo -down-> DetectParam
+Repo -down-> DetectSemantic
+
+' 异常检测输出至事件聚合
+DetectNum -down-> EventAgg
+DetectParam -down-> EventAgg
+DetectSemantic -down-> EventAgg
+
+' 场景分支路由
+EventAgg -down-> EventReport : CN场景直出\n(某时间窗发生的异常)
+EventAgg -right-> DME_Diag : DME场景路由
+DME_Diag -down-> EventReport : 附加命中故障模式
 
 @enduml
 
 ```
-
-### 2.2 核心模块说明
-
-| 模块 | 代码位置 | 职责 |
-|------|---------|------|
-| **接口层** | `main.py` | Flask Web 服务，提供日志解析和异常检测 REST 接口 |
-| **上下文管理** | `src/data_process/log_context.py` | 管理全局状态：Drain 树映射、PIPLUP 实例、白名单、稳态学习、日志仓库 |
-| **日志解析** | `src/data_process/template_extractor/` | PIPLUP / Drain 双引擎日志模板提取，含预处理、后处理、LLM 智能格式学习 |
-| **语义异常检测** | `src/anomaly_detection/semantic_anomaly/` | 基于 BERT 嵌入 + 异常基线相似度匹配的日志内容异常检测 |
-| **参数异常检测** | `TIG-2026/dme_platform/{corpus,offline,detection}/` | 研发阶段发布参数知识和检测配置；生产阶段精确查询，命中检测、未命中通过 |
-| **数量异常检测** | `src/anomaly_detection/quantitive_anomaly/` | 基于 k-sigma 留一法的日志频率突变检测 |
-| **结果融合** | `src/anomaly_detection/anomaly_detection.py` | 三路检测结果按三元组去重合并，生成异常事件与诊断报告 |
-| **模型层** | `src/anomaly_detection/semantic_anomaly/bert_model/` | LogNetMini（CPU）和 LogNetBig（NPU）双模型 |
-| **预训练** | `pre_train/LogTokenizerTraining/` | 6步分词器训练流水线 + MLM 预训练 |
 
 ---
 
@@ -169,7 +108,7 @@ Repo -down-> Detect
 
 ### 3.1 核心交互时序
 
-#### 3.1.1 解析入库
+#### 3.1.1 日志解析
 
 ```plantuml
 @startuml LogNet3.0_Sequence_Parse
@@ -177,54 +116,91 @@ Repo -down-> Detect
 skinparam backgroundColor #FEFEFE
 skinparam shadowing false
 
-title 日志解析与入库
+title 日志解析时序图
 
-actor "调用方" as Caller
-participant "REST 接口" as API
-participant "LogContext" as Context
-participant "格式识别" as Format
-participant "PIPLUP" as Parser
-database "模板仓库" as Repo
+actor "外部调用方" as Caller
+participant "接口层\n(Flask API)" as API
+participant "日志预处理\n(LogContext)" as PreProcess
+participant "PIPLUP 日志解析\n(PIPLUP)" as Parser
+database "内存数据存储\n(LogTemplateRepository)" as Repo
+collections "本地磁盘" as Disk
 
-Caller -> API: POST /lognet_parse
-API -> Context: 解析批次
-Context -> Format: 分离 timestamp 与 content
-Format --> Context: 结构化日志正文
-Context -> Parser: parse_list(contents)
-Parser --> Context: template + parameters
-Context -> Repo: 保存模板关系与时间信息
-Context --> API: parsed_result
-API --> Caller: 解析结果
+Caller -> API: 外部输入 (在线 API 调用)
+activate API
+
+API -> PreProcess: get_format_parse().load_content()
+activate PreProcess
+PreProcess --> API: 返回预处理后的日志内容 (提取 content)
+deactivate PreProcess
+
+API -> Parser: LogParser.parse_list(content)
+activate Parser
+
+Parser -> Disk: 落盘日志缓存 pkl 文件
+Parser -> Repo: 存入模板指纹与解析参数
+activate Repo
+Repo --> Parser: 存储完成
+deactivate Repo
+
+Parser --> API: 返回解析结果 (template, parameters)
+deactivate Parser
+
+API --> Caller: 响应结果
+deactivate API
 
 @enduml
 ```
 
-#### 3.1.2 检测与融合
+#### 3.1.2 异常检测
 
 ```plantuml
 @startuml LogNet3.0_Sequence_Detect
 !theme plain
 skinparam backgroundColor #FEFEFE
 skinparam shadowing false
+skinparam maxMessageSize 150
 
-title 异常检测与结果融合
+title 异常检测与事件输出时序图
 
-actor "调用方" as Caller
-participant "REST 接口" as API
-database "模板与时间窗仓库" as Repo
-participant "检测编排器" as Orchestrator
-participant "语义 / 参数 / 数量检测" as Detectors
-participant "融合与诊断" as Fusion
+actor "外部调用方" as Caller
+participant "接口层\n(Flask API)" as API
+database "内存数据存储\n(LogTemplateRepository)" as Repo
+participant "异常检测组件\n(数量/参数/语义)" as Detectors
+participant "异常线索整合" as EventAgg
+participant "指纹库诊断" as DME_Diag
 
-Caller -> API: POST /abnormal-check
-API -> Repo: 查询时间窗日志与统计
-Repo --> API: logs + window_map
-API -> Orchestrator: detect(logs, window_map)
-Orchestrator -> Detectors: 调用已启用的检测模块
-Detectors --> Orchestrator: 标准化异常证据
-Orchestrator -> Fusion: 按日志身份合并、生成事件
-Fusion --> API: anomaly_data + anomaly_event + reports
-API --> Caller: 检测结果
+Caller -> API: 触发异常检测任务
+activate API
+
+API -> Repo: 查询时间窗内模板频次与参数数据
+activate Repo
+Repo --> API: 返回日志数据与上下文特征 (window_map)
+deactivate Repo
+
+par 执行异常检测算法
+    API -> Detectors: ① 数量检测
+    API -> Detectors: ② 参数检测
+    API -> Detectors: ③ 语义检测
+end
+activate Detectors
+Detectors --> API: 返回标准化异常证据 (异常线索集)
+deactivate Detectors
+
+API -> EventAgg: 提交异常线索
+activate EventAgg
+EventAgg -> EventAgg: 执行聚合
+EventAgg --> API: 生成基础异常事件
+deactivate EventAgg
+
+alt DME场景路由
+    API -> DME_Diag: 异常事件输入指纹库匹配
+    activate DME_Diag
+    DME_Diag --> API: 附加命中故障模式
+    deactivate DME_Diag
+end
+
+API --> Caller: 结构化异常事件报告 (EventReport)
+deactivate API
 
 @enduml
 ```
@@ -576,8 +552,6 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 参数异常检测走冷热双路径。首次见到的日志结构走冷路径：语义匹配归属规则组，GLiNER 通用抽取参数名与值，黑名单判定，成功后把取值位置和结构签名登记为变体。同结构日志再来时走热路径：按缓存位置直接取值判定，全程零模型调用。
 
-模板无关指的是：接入一套新模板的日志，不需要写任何解析或抽取配置。规则侧只登记参数名和黑名单值；抽取靠通用模型，路由靠词面相似度自动归属，遇到没见过的结构就地学习。换一套规则库，同一套代码原样运行。
-
 ```plantuml
 @startuml Parameter_Overview_Cold
 !theme plain
@@ -590,11 +564,11 @@ title 冷路径：首见学习（模型参与）
 
 rectangle "原始日志" as log
 rectangle "Drain3 模板解析\n(per-module 持久状态)" as drain
-rectangle "语义匹配路由\n先比模板(MinHash Jaccard)\n再比原文(包含度兜底)\n+ 受保护词校验" as match
+rectangle "语义匹配路由\n先比模板(MinHash)\n再比原文(包含度兜底)" as match
 rectangle "GLiNER2.5 通用抽取\nlabels=(parameter, number)" as gliner
 rectangle "取值校验\n值 token 对齐 + 参数名邻近\n失败转通用正则(值形态校验)" as guard
 rectangle "黑名单规则判定" as rule
-database "变体登记\n位置 + 结构签名\n按事件指纹" as reg
+database "变体登记" as reg
 
 log -right-> drain
 drain -right-> match
@@ -671,24 +645,20 @@ sig -right-> rule
 }
 ```
 
-（`representation` 是值剥离后的匹配表示；`candidates` 保留全部候选组的分数，作为归属证据随结果返回。）
+（`representation` 是格式规范化后的结果；`candidates` 保留全部候选组的分数，作为归属证据随结果返回。）
 
-**具体职责**：确定日志属于哪个规则组（规则组 = 同一模板来源的黑名单规则集合）。不配置逐模板路由规则，靠词面相似度自动归属。匹配分两步走：先拿 Drain 模板去比，比不上再拿原文去比。第一步快而准，第二步专治第一步的盲区。
+**具体职责**：确定日志属于哪个规则组（规则组 = 同一模板来源的黑名单规则集合）。匹配分两步走：先拿 Drain 模板去比，比不上再拿原文去比。第一步快而准，第二步作为第一步的兜底。
 
-#### 5.2.1 N1 规范化与值剥离
-
-所有匹配在 N1 词法坐标系上进行：casefold 统一大小写，已知占位符（`<NUM>`、`<MAC-HEX>` 等）从评分序列去除，按标识符/箭头/正负号分词，纯分隔标点丢弃。之后剥离值形态 token（纯数字、`0x` 十六进制、4 位以上裸十六进制）：
+#### 5.2.1 格式规范化
 
 ```text
 模板  "Get ns async failed ret ( <NUM> )"   →   {get, ns, async, failed, ret}
 日志  "Get ns async failed ret(3)."          →   {get, ns, async, failed, ret}
 ```
 
-值剥离后，`ret(3)` 与 `ret(999)` 的匹配表示完全一致。值变化不影响路由，"检测的是结构、判定的是值"的分工就建立在这上面。
+#### 5.2.2 第一步：模板匹配（MinHash）
 
-#### 5.2.2 第一步：模板匹配（MinHash Jaccard）
-
-先拿日志的 Drain 模板和各规则组模板比词面，评分用 MinHash Jaccard（128-perm 签名估计集合交并比），Top1 超过阈值 0.45 即归属。以 `Get ns async failed, "s:[13,"ret(3).` 为例，各候选组得分：
+先拿日志的 Drain 模板和各规则组模板计算相似度，评分用 MinHash，Top1 超过阈值 0.45 即判为相似。以 `Get ns async failed, "s:[13,"ret(3).` 为例，各候选组得分：
 
 | 候选组 | 分数 | 原因 |
 |---|---|---|
@@ -698,28 +668,15 @@ sig -right-> rule
 | eds\|10309 | 0.625 | 多 mode、restore |
 | eds\|10308 | 0.250 | 词面差异大 |
 
-**设计原理**：不用句向量编码模型。规则库规模内词面区分度足够，词法匹配质量与句向量方法持平，误接受反而更低，在线还不用加载模型。选 MinHash 而不是精确 Jaccard，是为将来模板库扩到几千条做准备：那时精确集合运算的索引代价会上来，签名比较不受影响。
-
 #### 5.2.3 第二步：原文兜底（包含度匹配）
 
 模板匹配有两个盲区，都出在 Drain 模板这一环：
 
 **Drain 过度泛化**。`dci_size(2048) ttl=2` 与 `dci_size(512) ttl=2` 进同一簇后，模板演化成 `<*> ttl=2`，参数名 `dci_size` 被通配符吞掉，拿去比对的模板只剩 {ttl}，对任何组都是零分。
 
-**多字段稀释**。日志 `dci_size(2048) ctx=10000 ttl=2` 剥离值后是 {dci_size, ctx, ttl}，对组模板 {dci_size} 的 Jaccard 只有 1/3，低于阈值。
+**多字段稀释**。日志 `dci_size(2048) ctx=10000 ttl=2` 剥离值后是 {dci_size, ctx, ttl}，对组模板 {dci_size} 的相似度分数只有 0.33，低于阈值。
 
 兜底的办法是跳过模板、直接拿原文比，算的是包含度：`|原文token ∩ 候选token| / |候选token|`，即候选模板的词有多少出现在原文里。上例对 {dci_size} 的包含度是 1.0，直接通过。同分时取词数更多的候选：原文里同时出现 s 和 ret 时，归属 10304（6 词）而不是它的子集 10305（5 词），词更全的模板描述更具体。
-
-#### 5.2.4 受保护词校验
-
-措辞反转日志是路由的主要误报源：`Cm create the RR pthread ok, ret=-1` 与规则模板 `Cm create the RR pthread failed ret = <NUM>` 词面只差一个词，包含度 0.857，照常归属，`ret=-1` 恰在黑名单里——误报。
-
-每个规则组在元数据里配置受保护词（如 ccdb|2 的 `failed`）。归属前校验受保护词的出现位置，满足以下任一条件才算数：
-
-1. **出现在正文里**：前驱 token 不是 `=`、`:`、`(`、`[`。字段值位置（`note=failed` 里的 `failed`）不携带主句语义，不算；
-2. **与模板邻居相邻**：出现在字段值位置、但左右邻居与模板一致时放行（如删词后的 `[KVS]: failed of...`，`failed` 紧跟标签冒号看似值位置，但右邻居 `of` 与模板一致）。
-
-校验在三处生效：模板匹配、原文兜底、缓存热路径，换到哪条路都绕不过去。`Get ns async succeeded ret(-99999) note=failed` 这类注入样本被完整拦截。
 
 ### 5.3 GLiNER 通用抽取与取值校验
 
@@ -745,8 +702,6 @@ sig -right-> rule
 ```
 
 （`value_span` 是原文半开区间，取值校验和位置映射都靠它定位，不靠字符串查找——同一参数可能多次出现同值。）
-
-**具体职责**：从原文抽取参数名和数值。标签组合是 `("parameter", "number")`，通用词面，不逐模板定制。
 
 #### 5.3.1 标签组合
 
@@ -777,9 +732,7 @@ GLiNER 漏抽的参数，多数能被通用形态正则找回。五种形态全�
 ret=: -2     ret=-1     ret(3)     ret: 5     status is 5
 ```
 
-正则兜底带两道限制：词边界（参数 `s` 不能匹配 `status:` 的尾巴）、值形态校验（抓到的必须是数字或十六进制）。值形态校验是踩坑后加的：早期版本曾把 `from`、`is` 这类普通词当值缓存进模板库。回放校验和配对校验对此天然盲区：它们验的是位置一致性，不是值合法性。
-
-兜底的使用边界：只出现在 GLiNER 提取失败的判定取值，和变体入库时的位置定位。不做复合值二次猜测，不针对具体模板写模式：换一套规则库时，模板特定的兜底就是废代码。
+兜底的使用边界：只出现在 GLiNER 提取失败的判定取值，和变体入库时的位置定位。
 
 ### 5.4 变体位置缓存
 
@@ -867,7 +820,7 @@ Rule --> Log: 黑名单判定（零模型调用）
 @enduml
 ```
 
-任一环节失败都回冷路径重新学习，判定不受影响。缓存只加速，不改判定。
+任一环节失败都回冷路径重新学习，判定不受影响。
 
 ### 5.5 端到端检测示例
 
@@ -1081,6 +1034,52 @@ stop
 **特点**：基于 MPNet 的 12 层大模型，同时输出 static（token 级）和 contextual（sentence 级）两种嵌入，外加分类 logits。
 
 ### 6.4 语义异常检测核心流程
+
+```plantuml
+@startuml Semantic_Anomaly_Detection_Principle
+!theme plain
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam roundCorner 12
+skinparam ArrowColor #555555
+skinparam componentStyle rectangle
+
+title 语义异常检测原理 (单个日志模板判定过程)
+
+actor "测试输入" as Input
+component "1. 文本预处理\n(清洗特殊字符/保留英文字符等)" as Preprocess
+
+package "2. 模型推理与特征提取" as Inference #E8F5E9 {
+    component "Tokenize 分词转换" as Tokenize
+    component "模型正向传播 (Forward)\n提取 Token级 与 Sentence级 表征" as Forward
+}
+
+package "3. 相似度判定" as Detection #FCEEF5 {
+    component "静态相似度检测 (Token级)\n机制：对比当前模板Token级表征与基线库的特征距离" as TokenSim
+    component "上下文相似度检测 (Sentence级)\n机制：对比当前模板Sentence级表征与基线库的特征距离" as SentenceSim
+}
+
+component "4. 结果聚合判定\n逻辑：任一维度触发阈值，即判定为异常" as Aggregation
+
+actor "测试输出" as Output
+
+' 链路关系
+Input -> Preprocess : 单条日志模板\n(例: "link is down")
+Preprocess -> Tokenize : 预处理后文本
+Tokenize -> Forward : 序列化输入
+
+' 双维度输出
+Forward --> TokenSim : 输出 Token 级向量特征
+Forward --> SentenceSim : 输出 Sentence 级向量特征
+
+' 聚合逻辑
+TokenSim --> Aggregation : 返回检测布尔值 (True/False)
+SentenceSim --> Aggregation : 返回检测布尔值 (True/False)
+
+Aggregation -> Output : 最终判定结果\n(正常 / 异常)
+
+@enduml
+```
 
 **模块输入示例**：`["metadata corruption found in <*> node"]`，输入前已由上游过滤白名单。
 
