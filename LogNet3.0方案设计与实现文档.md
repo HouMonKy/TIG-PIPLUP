@@ -489,7 +489,7 @@ stop
 
 | 模块 | 对应实现 | 主要职责 |
 |------|----------|----------|
-| 模板解析 | `drain_parser.py`、`parser_bridge.py` | Drain3 模板聚类，per-module 持久状态 |
+| 模板解析 | `piplup/`、`piplup_parser.py`、`parser_bridge.py` | PIPLUP 模板聚类（即关键技术点一），per-module 持久状态 |
 | 语义匹配 | `lexical_matcher.py` | 两级路由（模板匹配 + 原文兜底）与受保护词校验 |
 | 通用抽取 | `gliner_backend.py`、`gliner_adapter.py` | GLiNER2.5-multi 抽取参数名与数值 |
 | 规则判定 | `legacy_adapter.py` | 配对校验、正则兜底、黑名单判定 |
@@ -507,15 +507,15 @@ skinparam shadowing false
 title 冷路径：首见学习
 
 participant "输入日志" as Log
-participant "Drain3 解析" as Drain
+participant "PIPLUP 解析" as Parse
 participant "语义匹配" as Match
 participant "GLiNER 抽取" as GLiNER
 participant "取值校验" as Guard
 participant "规则判定" as Rule
 database "变体缓存" as Store
 
-Log -> Drain: 解析模板
-Drain --> Match: 无精确命中，进入匹配
+Log -> Parse: 解析模板
+Parse --> Match: 无精确命中，进入匹配
 Match -> Match: 模板匹配\n(失败转原文兜底)
 Match -> Match: 受保护词校验
 Match -> GLiNER: 抽取参数名与值\n(parameter, number)
@@ -562,11 +562,11 @@ Rule --> Log: 黑名单判定
 {
   "module": "eds",
   "raw_text": "Get ns async failed, \"s:[13,\"ret(3).",
-  "drain_template": "Get ns async failed, \"s:[13,\"ret(3)."
+  "template": "Get ns async failed, \"s:[<*>,\"ret(<*>)."
 }
 ```
 
-（首见日志的 Drain 模板就是原文本身；后续同簇日志的模板会逐步演化出 `<*>`。）
+（PIPLUP 预处理前置：值在解析前已替换为 `<*>`，首见模板即泛化形态；相似结构并簇后各自保留分支模板，重放取回各自分支。）
 
 **模块输出示例**：
 
@@ -588,7 +588,7 @@ Rule --> Log: 黑名单判定
 
 （`representation` 是格式规范化后的结果；`candidates` 保留全部候选组的分数，作为归属证据随结果返回。）
 
-**具体职责**：确定日志属于哪个模板，分两步走：先拿 Drain 模板去比，比不上再拿原文去比。第一步快而准，第二步作为第一步的兜底。
+**具体职责**：确定日志属于哪个模板，分两步走：先拿解析模板去比，比不上再拿原文去比。第一步快而准，第二步作为第一步的兜底。
 
 #### 5.3.1 格式规范化
 
@@ -599,7 +599,7 @@ Rule --> Log: 黑名单判定
 
 #### 5.3.2 第一步：模板匹配（MinHash）
 
-先拿日志的 Drain 模板和已记录的模板计算相似度，评分用 MinHash，Top1 超过阈值 0.45 即判为相似。以 `Get ns async failed, "s:[13,"ret(3).` 为例，各候选组得分：
+先拿日志的解析模板和已记录的模板计算相似度，评分用 MinHash，Top1 超过阈值 0.45 即判为相似。以 `Get ns async failed, "s:[13,"ret(3).` 为例，各候选组得分：
 
 | 候选组 | 分数 | 原因 |
 |---|---|---|
@@ -611,11 +611,9 @@ Rule --> Log: 黑名单判定
 
 #### 5.3.3 第二步：原文兜底（包含度匹配）
 
-模板匹配有两个盲区，都出在 Drain 模板这一环：
+模板匹配有一个盲区：
 
-**Drain 过度泛化**。`dci_size(2048) ttl=2` 与 `dci_size(512) ttl=2` 进同一簇后，模板演化成 `<*> ttl=2`，参数名 `dci_size` 被通配符吞掉，拿去比对的模板只剩 {ttl}，对任何组都是零分。
-
-**多字段稀释**。日志 `dci_size(2048) ctx=10000 ttl=2` 剥离值后是 {dci_size, ctx, ttl}，对组模板 {dci_size} 的相似度分数只有 0.33，低于阈值。
+**多字段稀释**。日志 `dci_size(2048) ctx=10000 ttl=2` 剥离值后是 {dci_size, ctx, ttl}，对模板 {dci_size} 的相似度分数只有 0.33，低于阈值——日志比模板多了 ctx、ttl 两个字段，多出来的词把分数摊薄了。
 
 兜底的办法是跳过模板、直接拿原文比，算的是包含度：
 $$
@@ -768,7 +766,7 @@ Sqlite step sql fail(return code=10, ctx=30198
 
 **冷路径（首见）**：
 
-1. Drain3 解析，无精确命中，进入语义匹配
+1. PIPLUP 解析（值泛化为 <*>），无精确命中，进入语义匹配
 2. 原文兜底：{sqlite,step,sql,fail,return,code,ctx} 对 ccdb|1 模板词集 {sqlite,step,sql,fail,return,code} 包含度 1.0，归属 ccdb|1；受保护词 `fail` 出现在正文里（前驱是 `sql`），校验通过
 3. GLiNER 抽取：`code → 10`，值 token 对齐、参数名 `code` 紧邻值前方，配对通过
 4. 黑名单判定：ccdb|1 的 `code` 黑名单为 ["10"]，命中，判 `anomaly`：
