@@ -641,9 +641,37 @@ sig -right-> rule
 
 ### 5.2 语义匹配路由
 
-**模块输入示例**：`Get ns async failed, "s:[13,"ret(3).`（原文）及其 Drain 模板。
+**模块输入示例**：
 
-**模块输出示例**：规则组归属 `eds|10304`，附全部候选组的匹配分数作为归属证据。
+```json
+{
+  "module": "eds",
+  "raw_text": "Get ns async failed, \"s:[13,\"ret(3).",
+  "drain_template": "Get ns async failed, \"s:[13,\"ret(3)."
+}
+```
+
+（首见日志的 Drain 模板就是原文本身；后续同簇日志的模板会逐步演化出 `<*>`。）
+
+**模块输出示例**：
+
+```json
+{
+  "accepted": true,
+  "group_id": "eds|10304",
+  "score": 1.0,
+  "evidence": {
+    "representation": "get ns async failed s ret",
+    "candidates": [
+      {"group_id": "eds|10304", "score": 1.0},
+      {"group_id": "eds|10305", "score": 0.833},
+      {"group_id": "eds|10306", "score": 0.714}
+    ]
+  }
+}
+```
+
+（`representation` 是值剥离后的匹配表示；`candidates` 保留全部候选组的分数，作为归属证据随结果返回。）
 
 **具体职责**：确定日志属于哪个规则组（规则组 = 同一模板来源的黑名单规则集合）。不配置逐模板路由规则，靠词面相似度自动归属。匹配分两步走：先拿 Drain 模板去比，比不上再拿原文去比。第一步快而准，第二步专治第一步的盲区。
 
@@ -695,9 +723,28 @@ sig -right-> rule
 
 ### 5.3 GLiNER 通用抽取与取值校验
 
-**模块输入示例**：`Get ns async failed, "s:[13,"ret(3).`
+**模块输入示例**：
 
-**模块输出示例**：`{s: 13, ret: 3}`，每个参数名与值都带原文区间和置信度。
+```json
+{
+  "module": "eds",
+  "raw_text": "Get ns async failed, \"s:[13,\"ret(3).",
+  "labels": ["parameter", "number"]
+}
+```
+
+**模块输出示例**：
+
+```json
+{
+  "parameters": {
+    "s":   {"value_raw": "13", "value_span": [25, 27], "confidence": 0.70},
+    "ret": {"value_raw": "3",  "value_span": [33, 34], "confidence": 0.77}
+  }
+}
+```
+
+（`value_span` 是原文半开区间，取值校验和位置映射都靠它定位，不靠字符串查找——同一参数可能多次出现同值。）
 
 **具体职责**：从原文抽取参数名和数值。标签组合是 `("parameter", "number")`，通用词面，不逐模板定制。
 
@@ -736,9 +783,43 @@ ret=: -2     ret=-1     ret(3)     ret: 5     status is 5
 
 ### 5.4 变体位置缓存
 
-**模块输入示例**：登记成功的一条冷路径结果（规则组、取值位置、结构签名、事件指纹）。
+**模块输入示例**（登记成功的一条冷路径结果）：
 
-**模块输出示例**：SQLite 中一行可执行变体，下次同结构日志直接命中。
+```json
+{
+  "group_id": "eds|10304",
+  "module": "eds",
+  "template_text": "Get ns async failed, \"s:[13,\"ret(3).",
+  "event_fingerprint": "e3b0c44298fc1c14",
+  "param_positions": {
+    "eds|10304|7|s": 7
+  },
+  "structural_signature": {
+    "n_tokens": 13,
+    "targets": {
+      "eds|10304|7|s": {
+        "position": 7,
+        "left_anchor": {"index": 3, "token": "failed"}
+      }
+    }
+  }
+}
+```
+
+（`param_positions` 的键是规则 ID（模块|模板号|原配置位置|参数名），值是该参数值在原文分词后的 token 下标——上文 s 的值 13 在第 7 个 token。）
+
+**模块输出示例**（SQLite 中一行可执行变体）：
+
+```json
+{
+  "variant_id": "429183ba24e84d54",
+  "event_fingerprint": "e3b0c44298fc1c14",
+  "group_id": "eds|10304",
+  "state": "executable"
+}
+```
+
+（下次同结构日志按 `(module, event_fingerprint)` 查到这一行，凭位置和签名直接判定。）
 
 **具体职责**：把冷路径的学习成果持久化，让模型调用随流量收敛。
 
@@ -801,7 +882,20 @@ Sqlite step sql fail(return code=10, ctx=30198
 1. Drain3 解析，无精确命中，进入语义匹配
 2. 原文兜底：{sqlite,step,sql,fail,return,code,ctx} 对 ccdb|1 模板词集 {sqlite,step,sql,fail,return,code} 包含度 1.0，归属 ccdb|1；受保护词 `fail` 出现在正文里（前驱是 `sql`），校验通过
 3. GLiNER 抽取：`code → 10`，值 token 对齐、参数名 `code` 紧邻值前方，配对通过
-4. 黑名单判定：ccdb|1 的 `code` 黑名单为 ["10"]，命中，判 `anomaly`
+4. 黑名单判定：ccdb|1 的 `code` 黑名单为 ["10"]，命中，判 `anomaly`：
+
+```json
+{
+  "status": "anomaly",
+  "route": "semantic_gliner",
+  "matched_group": "ccdb|1",
+  "anomalies": [
+    {"param_name": "code", "param_value": "10",
+     "detect_mode": "black_list", "mode_detail": ["10"]}
+  ]
+}
+```
+
 5. 位置映射成功，按事件指纹登记变体（位置 = code 值的 token 下标，签名 = token 总数 + 锚点）
 
 **同结构日志再来（热路径）**：
