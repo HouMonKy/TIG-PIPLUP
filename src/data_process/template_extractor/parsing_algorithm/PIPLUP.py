@@ -658,5 +658,3 @@ class LogParser:
             self.save_cache()
 
         return log_templates
-
-
