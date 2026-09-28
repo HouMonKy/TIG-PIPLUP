@@ -1,10 +1,10 @@
-# LogNet3.0 方案设计与实现文档（V5）
+# LogNet3.0 方案设计与实现文档（V6）
 
 | 项目 | 内容 |
 |------|------|
 | 文档名称 | LogNet3.0 方案设计与实现文档 |
-| 版本 | V5.0 |
-| 日期 | 2026-09-18 |
+| 版本 | V6.0 |
+| 日期 | 2026-09-28 |
 | 关键技术点 | 免人工配置异构日志解析、模板无关的参数异常检测、分词增强语义异常检测 |
 
 ---
@@ -104,11 +104,9 @@ DME_Diag -down-> EventReport : 附加命中故障模式
 
 ---
 
-## 3. 模块交互与时序设计
+## 3. 系统时序设计
 
-### 3.1 核心交互时序
-
-#### 3.1.1 日志解析
+### 3.1 日志解析
 
 ```plantuml
 @startuml LogNet3.0_Sequence_Parse
@@ -151,7 +149,7 @@ deactivate API
 @enduml
 ```
 
-#### 3.1.2 异常检测
+### 3.2 异常检测
 
 ```plantuml
 @startuml LogNet3.0_Sequence_Detect
@@ -205,25 +203,6 @@ deactivate API
 @enduml
 ```
 
-
-### 3.2 模块间交互接口
-
-| 源模块 | 目标模块 | 接口方法 | 输入参数 | 返回值 |
-|--------|---------|---------|---------|--------|
-| main.py | LogContext | `parse_logs_piplup_adapter(log_info, context)` | `log_info: List[dict]`, `context: LogContext` | `List[dict]` (parse_results) |
-| main.py | AnomalyDetection | `get_detector(mode, product).anomaly_detection(...)` | `source, module, start_time, end_time, window_size, repository, template_cache, white_list` | `(anomaly_data, anomaly_event[, reports])` |
-| LogContext | LogFormatParser | `load_data(module, log)` | `module: str`, `log: str` | `(timestamp, content)` |
-| LogContext | PIPLUP | `parser_piplup.parse_list(contents)` | `contents: List[str]` | `List[str]` (templates) |
-| LogContext | LogTemplateRepository | `log_repository.add(LogTemplateRelation)` | `LogTemplateRelation(source, time, log_id, template_id, module, param_list)` | void |
-| AnomalyDetection | SemanticAnomalyDetector | `detect(source, module, k_sigma, window_map, template_cache, white_list_dict)` | 6参数 | `(data, event)` |
-| AnomalyDetection | QuantityAnomalyDetector | `detect(source, module, window_map, template_cache, white_list, k_sigma)` | 6参数 | `(data, event)` |
-| AnomalyDetection | ParamAnomalyDetector | `detect(log_entries, window_size, output_path)` | 3参数 | `(outliers, events, count)` |
-| AnomalyDetection | merge_results | `merge_results(semantic_data, parametric_data, quantitative_data)` | 3路结果列表 | `(combined_data, anomaly_event)` |
-| SemanticAnomalyDetector | LogNetMini/Big | `model(input_ids, attention_mask)` | Tensor | `embeddings / logits` |
-| ParamAnomalyDetector | config_build_*.json | `template_config_dict.get((module, template_id))` | `(module, template_id)` | 配置项 dict |
-
----
-
 ## 4. 关键技术点一：免人工配置异构日志解析
 
 ### 4.1 技术概述
@@ -231,8 +210,6 @@ deactivate API
 传统日志解析方案（如 Drain3）要为每种日志格式预配置正则表达式，参数变量的识别也依赖固定规则。LogNet3.0 靠三层机制做到免人工配置：PIPLUP 算法、LLM 智能格式学习引擎、自动预处理剪枝。
 
 ### 4.2 PIPLUP 算法核心设计
-
-PIPLUP（Prefix-tree Indexed Parsing with LLM-assisted Universal Processing）是自研的日志模板解析算法，核心代码位于 `src/data_process/template_extractor/parsing_algorithm/PIPLUP.py`。
 
 **模块输入示例**：`receive data from 192.168.1.100 failed, error code 0x80010001`
 
@@ -353,7 +330,7 @@ stop
 
 #### 4.2.3 自适应相似度阈值
 
-PIPLUP 不使用固定相似度阈值，而是按日志序列长度自适应选择（`PIPLUP.py:146-158`）：
+PIPLUP 不使用固定相似度阈值，而是按日志序列长度自适应选择：
 
 ```python
 self.st_dict = {
@@ -385,7 +362,7 @@ self.st_dict = {
 
 #### 4.2.5 常量词自动发现（模板演化）
 
-当模板发生变化（`oldTemplate != newTemplate`）或命中次数达到 `update_population`（默认385次），且当前仍在 `'None'` 分组（`first_constant == 'None'`）时，自动提取分组依据（`PIPLUP.py:512-545`）：
+当模板发生变化（`oldTemplate != newTemplate`）或命中次数达到 `update_population`（默认385次），且当前仍在 `'None'` 分组（`first_constant == 'None'`）时，自动提取分组依据：
 
 1. 遍历当前模板中的 token，找到第一个不含 `<*>` 的常量词
 2. 将该常量词作为 frequent word 加入 `shallow_tree` 和 `storage_tree`
@@ -406,7 +383,7 @@ self.st_dict = {
 - 标点包裹简化：`"<*>"` → `<*>`
 - 多空格压缩为单空格
 
-### 4.3 预处理引擎与自动剪枝
+### 4.3 预处理掩码
 
 **模块输入示例**：`pid:53912,tid:53969 connect 192.168.1.1:8080`
 
@@ -414,11 +391,7 @@ self.st_dict = {
 
 **具体职责**：在 PIPLUP 检索前将高变参数替换为统一占位符，并从样本中自动筛选有效规则。处理后的 token 序列直接进入 PIPLUP 索引和相似度匹配。
 
-#### 4.3.1 活跃规则集与执行顺序
-
-`preprocessing.py` 当前的 DME `sequence` 含 24 种活跃规则。文档不展开每条正则的底层写法，只保留对算法结果有影响的分类和顺序原则：
-
-| 规则组 | 典型模式 | 目的 |
+| 掩码类型 | 典型模式 | 目的 |
 |---|---|---|
 | 日志头与时间 | `datetime_full`、`kernel_uptime`、`epoch_ms_13d`、`log_level` | 先消除与业务模板无关的日志头差异 |
 | 运行时身份 | `pid_tid_pair`、`serial_num`、`device_serial` | 屏蔽进程、线程和设备实例波动 |
@@ -428,34 +401,13 @@ self.st_dict = {
 
 执行顺序遵循“复杂、特化模式优先，通用数字模式最后”。
 
-#### 4.3.2 正则模式自动剪枝
-
-```python
-# PIPLUP.py:454-466
-if idx < 2000:
-    logmessageL, sequence, matched = preprocess(content, estimation_stage=True)
-    matched_types.extend(matched)
-    use_sequence = sequence
-else:
-    if idx == 2000:
-        matched_types = set(matched_types)
-        use_sequence = [i for i in use_sequence if i in matched_types]
-    logmessageL = preprocess(content, estimation_stage=False, use_sequence=use_sequence)
-```
-
-**机制**：前 2000 行日志进入估算阶段，记录哪些正则实际命中；第 2001 行起只保留命中的正则，减少无效替换开销。
-
-### 4.4 LLM 智能格式学习引擎
-
-预置正则匹配不上日志格式时，`LogAutoParsingEngine.py` 会自动调用 LLM 生成新的正则规则。
+### 4.4 LLM 智能格式学习引擎（可选）
 
 **模块输入示例**：一条现有格式规则无法分离时间戳和正文的原始日志。
 
 **模块输出示例**：`{"timestamp": "2026-09-15 10:00:00", "content": "disk read failed"}`，以及通过本地验证的候选格式规则。
 
 **具体职责**：只在本地格式规则未命中时生成候选规则，经回放验证成功后才供格式解析器使用。它解决日志头格式的冷启动问题，不参与模板聚类或异常判定。
-
-#### 4.4.1 核心流程
 
 ```plantuml
 @startuml LLM_Engine_Flow
@@ -501,21 +453,6 @@ stop
 @enduml
 ```
 
-#### 4.4.2 反思机制
-
-```python
-# LogAutoParsingEngine.py:84-91
-def _generate_pattern_with_reflection(self, log_line, failed_patterns):
-    reflection_context = ""
-    if failed_patterns:
-        reflection_context = "\n【注意：以下是你之前的错误尝试，请不要重复使用，并分析其匹配失败的原因】:\n"
-        for i, p in enumerate(failed_patterns):
-            reflection_context += f"{i + 1}. {p}\n"
-    prompt = build_prompt(log_line, reflection_context)
-```
-
-每次失败后，把之前的错误尝试告知 LLM，避免重复犯错。
-
 ### 4.5 复杂度分析
 
 | 算法 | 检索复杂度 | 空间复杂度 | 备注 |
@@ -526,20 +463,18 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 ### 4.6 端到端解析示例
 
-**输入日志（DME osd 模块）**：
+**输入日志**：
 
 ```
-[2026-02-04 11:39:58][12345][ERR][osd.123][dsware][plog][osd][run][blk-12345] receive data from 192.168.1.100:8080 failed, error code 0x80010001, pid:53912,tid:53969
+[2026-02-04 11:39:58][12345][ERR]receive data from 192.168.1.100:8080 failed, error code 0x80010001
 ```
 
 **解析过程**：
 
-1. `LogFormatParser.load_data("osd", log)` 匹配 `format_chaos.json` 中 osd 的多组备选正则，提取 `timestamp=2026-02-04 11:39:58`, `content=receive data from ...`
+1. `LogFormatParser.load_data("osd", log)` 匹配 `format_chaos.json` 中的多组备选正则，提取 `timestamp=2026-02-04 11:39:58`, `content=receive data from ...`
 2. `preprocess(content)` 按剪枝后的活跃规则集执行替换（`use_keys=False` 时替换为 `<*>`）：
    - `192.168.1.100:8080` → `<*>`
    - `0x80010001` → `<*>`
-   - `pid:53912,tid:53969` → `<*>`
-   - `blk-12345` → `<*>`
 3. `PIPLUP.treeSearch()` 在 storage_tree 中查找，未命中 → 新建聚类簇
 4. `postprocessing.correct_single_template()` 规范化模板
 5. **输出模板**：`receive data from <*> failed, error code <*>`
@@ -550,59 +485,7 @@ def _generate_pattern_with_reflection(self, log_line, failed_patterns):
 
 ### 5.1 技术概述
 
-参数异常检测走冷热双路径。首次见到的日志结构走冷路径：语义匹配归属规则组，GLiNER 通用抽取参数名与值，黑名单判定，成功后把取值位置和结构签名登记为变体。同结构日志再来时走热路径：按缓存位置直接取值判定，全程零模型调用。
-
-```plantuml
-@startuml Parameter_Overview_Cold
-!theme plain
-skinparam shadowing false
-skinparam ArrowColor #555555
-skinparam nodesep 20
-skinparam ranksep 30
-
-title 冷路径：首见学习（模型参与）
-
-rectangle "原始日志" as log
-rectangle "Drain3 模板解析\n(per-module 持久状态)" as drain
-rectangle "语义匹配路由\n先比模板(MinHash)\n再比原文(包含度兜底)" as match
-rectangle "GLiNER2.5 通用抽取\nlabels=(parameter, number)" as gliner
-rectangle "取值校验\n值 token 对齐 + 参数名邻近\n失败转通用正则(值形态校验)" as guard
-rectangle "黑名单规则判定" as rule
-database "变体登记" as reg
-
-log -right-> drain
-drain -right-> match
-match -right-> gliner
-gliner -right-> guard
-guard -right-> rule
-rule -right-> reg
-@enduml
-```
-
-```plantuml
-@startuml Parameter_Overview_Hot
-!theme plain
-skinparam shadowing false
-skinparam ArrowColor #555555
-skinparam nodesep 20
-skinparam ranksep 30
-
-title 热路径：缓存直检（零模型调用）
-
-rectangle "原始日志" as log
-rectangle "事件指纹\n值剥离 token 序列哈希" as fp
-database "变体缓存\nSQLite 按指纹查库" as store
-rectangle "结构签名校验\nn_tokens + 固定锚点\n+ 受保护词校验" as sig
-rectangle "按变体位置取值\n黑名单规则判定" as rule
-
-log -right-> fp
-fp -right-> store
-store -right-> sig
-sig -right-> rule
-@enduml
-```
-
-模型只在冷路径出现。流量结构稳定后，绝大多数日志命中缓存，模型调用随时间收敛。
+参数异常检测走冷热双路径。首次见到的日志结构走冷路径：计算语义相似度匹配对应的模板，GLiNER 通用抽取参数名与值，黑名单判定，成功后记录模板变体。同结构日志再来时走热路径：按缓存位置直接取值判定，全程零模型调用。
 
 | 模块 | 对应实现 | 主要职责 |
 |------|----------|----------|
@@ -613,7 +496,65 @@ sig -right-> rule
 | 位置映射 | `position_mapper.py` | 位置回放、结构签名生成与校验 |
 | 变体缓存 | `variant_store.py` | SQLite 持久化，事件指纹身份 |
 
-### 5.2 语义匹配路由
+### 5.2 参数异常检测时序图
+
+```plantuml
+@startuml Parameter_Cold_Sequence
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+title 冷路径：首见学习
+
+participant "输入日志" as Log
+participant "Drain3 解析" as Drain
+participant "语义匹配" as Match
+participant "GLiNER 抽取" as GLiNER
+participant "取值校验" as Guard
+participant "规则判定" as Rule
+database "变体缓存" as Store
+
+Log -> Drain: 解析模板
+Drain --> Match: 无精确命中，进入匹配
+Match -> Match: 模板匹配\n(失败转原文兜底)
+Match -> Match: 受保护词校验
+Match -> GLiNER: 抽取参数名与值\n(parameter, number)
+GLiNER -> Guard: 候选参数（名/值/区间）
+Guard -> Guard: 配对校验
+Guard -> Rule: 可信取值
+Rule -> Rule: 黑名单判定
+Rule -> Store: 登记变体
+Store --> Log: 下次同结构日志走热路径
+
+@enduml
+```
+
+```plantuml
+@startuml Parameter_Hot_Sequence
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+title 热路径：缓存直检
+
+participant "输入日志" as Log
+participant "事件指纹" as FP
+database "变体缓存" as Store
+participant "校验" as Check
+participant "规则判定" as Rule
+
+Log -> FP: 格式归一化
+FP -> Store: (module, event_fingerprint) 查库
+Store --> Check: 变体（取值位置 + 结构签名 + 规则组）
+Check -> Check: 受保护词校验
+Check -> Check: 结构签名校验
+Check -> Rule: 按登记的取值位置取值
+Rule --> Log: 黑名单判定
+
+@enduml
+```
+
+### 5.3 文本相似度匹配路由
 
 **模块输入示例**：
 
@@ -647,18 +588,18 @@ sig -right-> rule
 
 （`representation` 是格式规范化后的结果；`candidates` 保留全部候选组的分数，作为归属证据随结果返回。）
 
-**具体职责**：确定日志属于哪个规则组（规则组 = 同一模板来源的黑名单规则集合）。匹配分两步走：先拿 Drain 模板去比，比不上再拿原文去比。第一步快而准，第二步作为第一步的兜底。
+**具体职责**：确定日志属于哪个模板，分两步走：先拿 Drain 模板去比，比不上再拿原文去比。第一步快而准，第二步作为第一步的兜底。
 
-#### 5.2.1 格式规范化
+#### 5.3.1 格式规范化
 
 ```text
 模板  "Get ns async failed ret ( <NUM> )"   →   {get, ns, async, failed, ret}
 日志  "Get ns async failed ret(3)."          →   {get, ns, async, failed, ret}
 ```
 
-#### 5.2.2 第一步：模板匹配（MinHash）
+#### 5.3.2 第一步：模板匹配（MinHash）
 
-先拿日志的 Drain 模板和各规则组模板计算相似度，评分用 MinHash，Top1 超过阈值 0.45 即判为相似。以 `Get ns async failed, "s:[13,"ret(3).` 为例，各候选组得分：
+先拿日志的 Drain 模板和已记录的模板计算相似度，评分用 MinHash，Top1 超过阈值 0.45 即判为相似。以 `Get ns async failed, "s:[13,"ret(3).` 为例，各候选组得分：
 
 | 候选组 | 分数 | 原因 |
 |---|---|---|
@@ -668,7 +609,7 @@ sig -right-> rule
 | eds\|10309 | 0.625 | 多 mode、restore |
 | eds\|10308 | 0.250 | 词面差异大 |
 
-#### 5.2.3 第二步：原文兜底（包含度匹配）
+#### 5.3.3 第二步：原文兜底（包含度匹配）
 
 模板匹配有两个盲区，都出在 Drain 模板这一环：
 
@@ -676,9 +617,13 @@ sig -right-> rule
 
 **多字段稀释**。日志 `dci_size(2048) ctx=10000 ttl=2` 剥离值后是 {dci_size, ctx, ttl}，对组模板 {dci_size} 的相似度分数只有 0.33，低于阈值。
 
-兜底的办法是跳过模板、直接拿原文比，算的是包含度：`|原文token ∩ 候选token| / |候选token|`，即候选模板的词有多少出现在原文里。上例对 {dci_size} 的包含度是 1.0，直接通过。同分时取词数更多的候选：原文里同时出现 s 和 ret 时，归属 10304（6 词）而不是它的子集 10305（5 词），词更全的模板描述更具体。
+兜底的办法是跳过模板、直接拿原文比，算的是包含度：
+$$
+|原文token ∩ 候选token| / |候选token|
+$$
+即候选模板的词有多少出现在原文里。上例对 {dci_size} 的包含度是 1.0，直接通过。同分时取词数更多的候选：原文里同时出现 s 和 ret 时，归属 10304（6 词）而不是它的子集 10305（5 词），词更全的模板描述更具体。
 
-### 5.3 GLiNER 通用抽取与取值校验
+### 5.4 GLiNER 通用抽取与取值校验
 
 **模块输入示例**：
 
@@ -701,30 +646,30 @@ sig -right-> rule
 }
 ```
 
-（`value_span` 是原文半开区间，取值校验和位置映射都靠它定位，不靠字符串查找——同一参数可能多次出现同值。）
+（`value_span` 是原文半开区间，取值校验和位置映射都靠它定位。）
 
-#### 5.3.1 标签组合
+#### 5.4.1 标签组合
 
-标签怎么起，跑过四组对照实验。同一条日志，四种标签的抽取结果：
+针对如何定义 GLiNER 的抽取标签，跑过四组对照实验。同一条日志，四种标签的抽取结果：
 
 ```text
 (parameter, value) →  ret→3, s→13        两参数全对，但 value 标签宽松，全量引入 12 条误配对误报
-(name, number)    →  ns→3               把 namespace 缩写当参数名，规则要的 s 没抽到
+(name, number)    →  ns→3                把 namespace 缩写当参数名，规则要的 s 没抽到
 (parameter,number) →  s→3, ns→13         抽到了 s（本例配错值），number 约束让整组零误报
-(name, value)     →  ns→3               同 name 盲区
+(name, value)     →  ns→3                同 name 盲区
 ```
 
 规律：参数名一侧必须用 `parameter`，泛化词 `name` 让模型分不清哪个词是参数，召回掉一半；值一侧用 `number`，数值约束天然排除词面值，挡住误配对误报。
 
-#### 5.3.2 配对校验
+#### 5.4.2 配对校验
 
-GLiNER 偶尔把参数名配到邻近的错误值（上例 C 组的 `s→3`，s 的值其实是 13）。判定取值前过两道校验：
+GLiNER 偶尔会把参数名配到邻近的错误值（上例 C 组的 `s→3`，s 的值其实是 13），因此判定取值前需过两道校验：
 
 **值 token 对齐**：值区间必须落在唯一 token 内。`ret = : -1` 被抽成 `: -1`（跨 token）时直接判不可信，转正则。
 
 **参数名邻近**：参数名 token 必须在值前方两个非分隔符 token 之内。`error code=10 extra_26: 28` 中 GLiNER 把 error code 配到 28，参数名远在 6 个 token 之外，校验拒绝。
 
-#### 5.3.3 通用正则兜底与值形态校验
+#### 5.4.3 通用正则兜底与值形态校验
 
 GLiNER 漏抽的参数，多数能被通用形态正则找回。五种形态全部是通用样式：
 
@@ -734,7 +679,7 @@ ret=: -2     ret=-1     ret(3)     ret: 5     status is 5
 
 兜底的使用边界：只出现在 GLiNER 提取失败的判定取值，和变体入库时的位置定位。
 
-### 5.4 变体位置缓存
+### 5.5 变体位置缓存
 
 **模块输入示例**（登记成功的一条冷路径结果）：
 
@@ -776,7 +721,7 @@ ret=: -2     ret=-1     ret(3)     ret: 5     status is 5
 
 **具体职责**：把冷路径的学习成果持久化，让模型调用随流量收敛。
 
-#### 5.4.1 事件指纹：缓存的身份证
+#### 5.5.1 事件指纹
 
 冷路径学到的东西要存进缓存，得先回答一个问题：**哪些日志算"同一件事"，可以共享这条缓存？**
 
@@ -793,99 +738,27 @@ ret=: -2     ret=-1     ret(3)     ret: 5     status is 5
   扔掉值 → [sqlite, step, sql, fail, return, code]     → 少了 ctx，指纹不同，单独一条缓存
 ```
 
-为什么扔掉值：值天天变（code=10、code=21……），但结构不变，而缓存里存的取值位置只跟结构有关——第 7 个 token 永远是 code 的值，不管它是 10 还是 21。所以同结构的日志共享缓存，值变了照常命中。
+#### 5.5.2 取值位置与结构签名
 
-为什么字段重排、增删要分开缓存：它们改变了词序列（fingerprint 不同），更重要的是**取值位置真的变了**——重排后 code 的值可能落在第 3 个 token，沿用旧缓存会取错。
+登记一条变体，会存两样东西：**值在哪个 token 上**，和**这条日志的形状描述**。
 
-为什么不用 Drain 模板当身份：模板会在线演化（首条全字面，后续逐步通配）。簇里来了条新日志、模板变了个通配符，此时日志结构其实没变——若以模板为身份，全部缓存白白失效，同结构日志又得重走冷路径。模板快照只作展示用途，不作身份。
+**取值位置**。冷路径抽取参数时拿到了值的字符区间，换算成 token 下标存起来。存之前先回放验证一次：按下标把 token 取出来，必须和抽取到的值一模一样。
 
-#### 5.4.2 取值位置与结构签名
-
-登记一条变体，存两样东西：**值在哪个 token 上**，和**这条日志的形状描述**。
-
-**取值位置**。冷路径抽取参数时拿到了值的字符区间，换算成 token 下标存起来。存之前先回放验证一次：按下标把 token 取出来，必须和抽取到的值一模一样。位置是给热路径用的——热路径没有模型，全靠这个下标取值，位置错了后面全错。
-
-**结构签名**。光有下标还不够：下标 7 在两条不同的日志里指的可能是完全不同的词。签名记录日志的形状，两样东西：token 总数，加上值附近最近的固定词（锚点，记下标和词本身）：
+**结构签名**。光有下标还不够：下标 8 在两条不同的日志里指的可能是完全不同的词。签名记录日志的形状，两样东西：token 总数，加上值附近最近的固定词（锚点，记下标和词本身）：
 
 ```text
-"Sqlite step sql fail(return code=10, ctx=30198"
+Sqlite step sql fail(return code=10, ctx=30198
 
 签名 = {
-  token 总数: 13,
-  code 的值: 7 号 token,
+  token 总数: 12,            # 逗号不算token
+  code 的值: 8 号 token,     # 从0开始算
   左锚点:    fail（3 号）
 }
 ```
 
-热路径拿到新日志，先比形状：token 总数一样吗？fail 还在 3 号吗？都对得上，说明结构和登记时一致，7 号 token 取出来的就是 code 的值。对不上——比如中间多了几个词、总数变了——7 号指的可能已是别的词，这条缓存不可信，作废，回冷路径重新学习。
+热路径拿到新日志，先比形状：token 总数一样吗？fail 还在 3 号吗？都对得上，说明结构和登记时一致，8 号 token 取出来的就是 code 的值。对不上——比如中间多了几个词、总数变了——8 号指的可能已是别的词，这条缓存不可信，作废，回冷路径重新学习。
 
-（锚点从模板对齐结果里选：对齐有歧义时，只取各解都一致的位置，保证无论按哪种对齐，锚点都成立。）
-
-#### 5.4.3 参数异常检测时序
-
-冷路径（首见结构，模型参与）：
-
-```plantuml
-@startuml Parameter_Cold_Sequence
-!theme plain
-skinparam backgroundColor #FEFEFE
-skinparam shadowing false
-
-title 冷路径：首见学习
-
-participant "输入日志" as Log
-participant "Drain3 解析" as Drain
-participant "语义匹配" as Match
-participant "GLiNER 抽取" as GLiNER
-participant "取值校验" as Guard
-participant "规则判定" as Rule
-database "变体缓存" as Store
-
-Log -> Drain: 解析模板
-Drain --> Match: 无精确命中，进入匹配
-Match -> Match: 第一步：模板匹配\n(失败转原文兜底)
-Match -> Match: 受保护词校验
-Match -> GLiNER: 抽取参数名与值\n(parameter, number)
-GLiNER -> Guard: 候选参数（名/值/区间）
-Guard -> Guard: 配对校验\n(失败转通用正则)
-Guard -> Rule: 可信取值
-Rule -> Rule: 黑名单判定
-Rule -> Store: 登记变体\n(取值位置 + 结构签名，按事件指纹)
-Store --> Log: 下次同结构日志走热路径
-
-@enduml
-```
-
-热路径（同结构再来，零模型调用）：
-
-```plantuml
-@startuml Parameter_Hot_Sequence
-!theme plain
-skinparam backgroundColor #FEFEFE
-skinparam shadowing false
-
-title 热路径：缓存直检
-
-participant "输入日志" as Log
-participant "事件指纹" as FP
-database "变体缓存" as Store
-participant "校验" as Check
-participant "规则判定" as Rule
-
-Log -> FP: 分词，扔掉值，哈希词序列
-FP -> Store: (module, event_fingerprint) 查库
-Store --> Check: 变体（取值位置 + 结构签名 + 规则组）
-Check -> Check: 受保护词校验\n(历史错误归属条目不因命中绕过)
-Check -> Check: 结构签名校验\n(token 总数 + 固定锚点)
-Check -> Rule: 按登记的取值位置取值
-Rule --> Log: 黑名单判定（零模型调用）
-
-@enduml
-```
-
-两条路径殊途同归：冷路径的学习成果经登记变成热路径的依据；热路径任一校验失败即弃用缓存回到冷路径，判定不受影响。缓存只加速，不改判定。
-
-### 5.5 端到端检测示例
+### 5.6 端到端检测示例
 
 **输入日志（ccdb 模块）**：
 
@@ -930,17 +803,49 @@ Sqlite step sql fail(return code=21, ctx=30201
 
 语义异常检测识别日志内容本身的异常，例如不该出现的错误信息、异常的词组合。LogNet3.0 的做法分三层：领域专用分词器训练、多粒度滑动窗口嵌入、异常基线相似度匹配，统称"分词增强"。
 
-### 6.2 领域分词器训练流水线
+```plantuml
+@startuml Tokenizer_Enhancement
+!theme plain
+skinparam shadowing false
+skinparam ArrowColor #555555
+skinparam nodesep 20
+skinparam ranksep 30
 
-`pre_train/LogTokenizerTraining/` 实现了 6 步分词器训练流水线：
+title 分词增强语义理解链路
+
+package "训练阶段" {
+  rectangle "1. 领域实体挖掘\nTP_IPC_SERVER_MAGIC_FAIL\n→ 保护为完整 Token" as s1
+  rectangle "2. BPE 训练\n在日志语料上\n学习子词单元" as s2
+  rectangle "3. 词表扩展\n领域 Token 加入\nBERT 词表" as s3
+  rectangle "4. Embedding 初始化\n子词加权平均 +\nPCA正交化 + 范数匹配" as s4
+  rectangle "5. MLM 预训练\n适应日志文本分布" as s5
+  s1 -right-> s2
+  s2 -right-> s3
+  s3 -right-> s4
+  s4 -right-> s5
+}
+
+package "推理阶段" {
+  rectangle "6. 领域分词器 tokenize\n长领域词保留为完整 Token\n(不再切成 [TP, _IP, C, ...])" as s6
+  rectangle "7. 滑动窗口多粒度嵌入\n1~5-gram 嵌入捕获\n不同粒度的异常模式" as s7
+  rectangle "8. 异常基线相似度匹配\n与历史异常嵌入\n计算余弦相似度" as s8
+  rectangle "9. 三层 OR 判定\n静态 + 上下文 + 分类器互补" as s9
+  s6 -right-> s7
+  s7 -right-> s8
+  s8 -right-> s9
+}
+
+s5 -down-> s6
+@enduml
+```
+
+### 6.2 领域分词器训练
 
 **模块输入示例**：包含 `TP_IPC_SERVER_MAGIC_FAIL`、错误码和驼峰标识符的脱敏日志语料。
 
 **模块输出示例**：领域词表、SentencePiece 模型、扩展后的 BERT tokenizer 及 MLM 继续预训练权重。
 
 **具体职责**：从日志语料中发现需要整体保留的领域词，扩展通用词表并让模型适应日志文本分布。训练产物交给 LogNetMini/Big 加载。
-
-#### 6.2.1 分词器训练流水线
 
 ```plantuml
 @startuml Tokenizer_Training
@@ -1098,57 +1003,11 @@ stop
 
 ### 6.4 语义异常检测核心流程
 
-```plantuml
-@startuml Semantic_Anomaly_Detection_Principle
-!theme plain
-skinparam backgroundColor white
-skinparam shadowing false
-skinparam roundCorner 12
-skinparam ArrowColor #555555
-skinparam componentStyle rectangle
-
-title 语义异常检测原理 (单个日志模板判定过程)
-
-actor "测试输入" as Input
-component "1. 文本预处理\n(清洗特殊字符/保留英文字符等)" as Preprocess
-
-package "2. 模型推理与特征提取" as Inference #E8F5E9 {
-    component "Tokenize 分词转换" as Tokenize
-    component "模型正向传播 (Forward)\n提取 Token级 与 Sentence级 表征" as Forward
-}
-
-package "3. 相似度判定" as Detection #FCEEF5 {
-    component "静态相似度检测 (Token级)\n机制：对比当前模板Token级表征与基线库的特征距离" as TokenSim
-    component "上下文相似度检测 (Sentence级)\n机制：对比当前模板Sentence级表征与基线库的特征距离" as SentenceSim
-}
-
-component "4. 结果聚合判定\n逻辑：任一维度触发阈值，即判定为异常" as Aggregation
-
-actor "测试输出" as Output
-
-' 链路关系
-Input -> Preprocess : 单条日志模板\n(例: "link is down")
-Preprocess -> Tokenize : 预处理后文本
-Tokenize -> Forward : 序列化输入
-
-' 双维度输出
-Forward --> TokenSim : 输出 Token 级向量特征
-Forward --> SentenceSim : 输出 Sentence 级向量特征
-
-' 聚合逻辑
-TokenSim --> Aggregation : 返回检测布尔值 (True/False)
-SentenceSim --> Aggregation : 返回检测布尔值 (True/False)
-
-Aggregation -> Output : 最终判定结果\n(正常 / 异常)
-
-@enduml
-```
-
 **模块输入示例**：`["metadata corruption found in <*> node"]`，输入前已由上游过滤白名单。
 
 **模块输出示例**：`{"templateId": 42, "anomalyType": ["semantic"], "summary": ["日志内容异常请检查"]}`。
 
-**具体职责**：对模板文本编码，构造多粒度短语嵌入，并与异常基线比较。输出的语义异常证据交给第 8 章融合，不直接生成故障结论。
+**具体职责**：对模板文本编码，构造多粒度短语嵌入，并与异常基线比较。
 
 ```plantuml
 @startuml Semantic_Detection_Flow
@@ -1240,165 +1099,7 @@ stop
 @enduml
 ```
 
-### 6.5 关键算法详解
-
-#### 6.5.1 滑动窗口多粒度嵌入
-
-```python
-# semantic_anomaly.py:419-427 (CPU 版本)
-def static_embed(self, static_inputs):
-    static_embeddings = self.static_embedding(static_inputs).squeeze(0).detach()[1:]
-    max_key_words_num = 5 if self.device.upper()=='NPU' else 3
-    extend_embeddings = []
-    for l in range(2, max_key_words_num+1):
-        extend_embeddings.extend(
-            [torch.mean(static_embeddings[i:i+l], dim=0) 
-             for i in range(len(static_embeddings)-l+1)]
-        )
-    if len(extend_embeddings):
-        static_embeddings = torch.cat((static_embeddings, torch.stack(extend_embeddings, dim=0)), dim=0)
-    return static_embeddings
-```
-
-**原理**：
-
-- 单 token 嵌入只能捕获词级异常
-- 2~5-gram 滑动窗口平均池化生成多粒度短语嵌入
-- 将原始 token 嵌入与所有 n-gram 嵌入拼接，覆盖从词到短语的粒度
-- 分词增强的意义在这里：领域分词器让关键术语不被切碎，滑动窗口才能在完整的语义单元上生成嵌入
-
-#### 6.5.2 批量推理优化（NPU）
-
-```python
-# semantic_anomaly.py:429-482 (NPU 批量版本)
-def static_embed_batch(self, static_embeddings, mask):
-    static_embeddings = static_embeddings[:, 1:, :]  # 去掉 CLS
-    mask = mask[:, 1:]
-    batch, seq_len, emb_dim = static_embeddings.shape
-    max_key_words_num = 5
-    extend_embeddings = [static_embeddings]
-    extend_masks = [mask]
-    
-    emb_t = static_embeddings.transpose(1, 2)  # [batch, emb, seq]
-    mask_t = mask.unsqueeze(1)  # [batch, 1, seq]
-    
-    for l in range(2, max_key_words_num + 1):
-        if seq_len < l:  # 短序列保护：序列长度不足时跳过当前窗口
-            continue
-        sum_pool = F.avg_pool1d(emb_t * mask_t, kernel_size=l, stride=1) * l
-        counts = F.avg_pool1d(mask_t, kernel_size=l, stride=1) * l
-        counts = counts.clamp(min=1e-6)
-        window_avg = (sum_pool / counts).transpose(1, 2)
-        window_mask = (counts.squeeze(1) > 0).float()
-        extend_embeddings.append(window_avg)
-        extend_masks.append(window_mask)
-    
-    return torch.cat(extend_embeddings, dim=1), torch.cat(extend_masks, dim=1)
-```
-
-**优化点**：用 `F.avg_pool1d` 替代 Python 循环，批量滑动窗口池化在 GPU/NPU 上效率更高。
-
-#### 6.5.3 三层 OR 判定机制（NPU）
-
-```python
-# semantic_anomaly.py:384-390
-final_mask = torch.zeros(len(logs), dtype=torch.bool, device=support_device)
-final_mask |= (max_vals_static > self.static_threshold)          # 静态 token 级
-if self.use_sen_embedd_sim:
-    final_mask |= (max_vals_phrases > self.contextual_threshold_sim)  # 上下文相似度
-if self.use_sen_embedd_class:
-    final_mask |= (probs > self.contextual_threshold_class)           # 分类器
-abnormal_indices = final_mask.nonzero().flatten().cpu().tolist()
-```
-
-| 层级 | 阈值 | 检测能力 |
-|------|------|---------|
-| 静态 token 级 | 0.9 | 关键词异常、错误码异常 |
-| 上下文相似度 | 0.99 | 短语组合异常、语义偏移 |
-| 分类器 | 0.99 | 端到端学习的异常模式 |
-
-三层判定采用 OR 逻辑，任一层触发即判为异常，三层互为补充。
-
-#### 6.5.4 异常基线
-
-异常基线 `abn_baseline_{case}_{device}.json` 是预计算的异常日志嵌入向量库：
-
-```json
-{
-  "static_baseline_norm": [[...768维向量...], ...],
-  "contextual_baseline_norm": [[...768维向量...], ...]
-}
-```
-
-检测时计算输入日志嵌入与基线的最大余弦相似度，超过阈值即判异常。基线由历史标注的异常日志通过模型编码并 L2 归一化后生成。
-
-> **部署注意**：`abn_baseline_DME_NPU.json` 存在于 `pre_train/LogTokenizerTraining/configurations/` 目录，运行时需手动复制到 `src/anomaly_detection/semantic_anomaly/configurations/` 目录下，否则 DME NPU 场景语义检测将因基线文件缺失而无法加载。
-
-#### 6.5.5 动态分桶
-
-```python
-# semantic_anomaly.py:295-322
-def bucketize_logs(self, logs, max_bucket_diff=20):
-    tokens = self.static_tokenizer(logs, padding=False)
-    lengths = [len(x) for x in tokens['input_ids']]
-    sorted_idx = sorted(range(len(logs)), key=lambda i: lengths[i])
-    buckets = []
-    current_bucket = []
-    last_len = None
-    for idx in sorted_idx:
-        l = lengths[idx]
-        if last_len is None or l - last_len <= max_bucket_diff:
-            current_bucket.append(idx)
-        else:
-            buckets.append(current_bucket)
-            current_bucket = [idx]
-        last_len = l
-    if current_bucket:
-        buckets.append(current_bucket)
-    return buckets
-```
-
-按 token 长度分桶，同桶内 padding 到相同长度，减少 padding 浪费，提升推理效率。
-
-### 6.6 分词增强的完整链路
-
-```plantuml
-@startuml Tokenizer_Enhancement
-!theme plain
-skinparam shadowing false
-skinparam ArrowColor #555555
-skinparam nodesep 20
-skinparam ranksep 30
-
-title 分词增强语义理解链路
-
-package "训练阶段" {
-  rectangle "1. 领域实体挖掘\nTP_IPC_SERVER_MAGIC_FAIL\n→ 保护为完整 Token" as s1
-  rectangle "2. BPE 训练\n在日志语料上\n学习子词单元" as s2
-  rectangle "3. 词表扩展\n领域 Token 加入\nBERT 词表" as s3
-  rectangle "4. Embedding 初始化\n子词加权平均 +\nPCA正交化 + 范数匹配" as s4
-  rectangle "5. MLM 预训练\n适应日志文本分布" as s5
-  s1 -right-> s2
-  s2 -right-> s3
-  s3 -right-> s4
-  s4 -right-> s5
-}
-
-package "推理阶段" {
-  rectangle "6. 领域分词器 tokenize\n长领域词保留为完整 Token\n(不再切成 [TP, _IP, C, ...])" as s6
-  rectangle "7. 滑动窗口多粒度嵌入\n1~5-gram 嵌入捕获\n不同粒度的异常模式" as s7
-  rectangle "8. 异常基线相似度匹配\n与历史异常嵌入\n计算余弦相似度" as s8
-  rectangle "9. 三层 OR 判定\n静态 + 上下文 + 分类器互补" as s9
-  s6 -right-> s7
-  s7 -right-> s8
-  s8 -right-> s9
-}
-
-s5 -down-> s6
-@enduml
-```
-
-### 6.7 端到端检测示例
+### 6.5 端到端检测示例
 
 **场景**：DME 存储集群 NPU 节点语义异常检测
 
@@ -1428,7 +1129,7 @@ metadata corruption found in <*> node
 
 ## 7. 数量异常检测
 
-### 7.1 算法原理
+### 7.1 技术概述
 
 数量异常检测器（`quantitive_detector.py`）基于两种策略：
 
@@ -1497,8 +1198,6 @@ def assign_scores(result_dict, order_key, max_score, min_score):
 ## 8. 异常检测结果融合与故障诊断
 
 ### 8.1 三路检测结果融合
-
-`anomaly_detection.py:279-374` 的 `merge_results` 方法实现三路检测结果融合：
 
 **模块输入示例**：语义、参数、数量三路检测器输出的列表，元素均带 `template_id`、`log_id`、`timestamp`。
 
@@ -1971,15 +1670,15 @@ repeat while (学习周期未结束?) is (是)
 输入日志：
 
 ```
-[2026-02-04 11:39:58][12345][ERR][osd.123][dsware][plog][osd][run][blk-12345] disk sector read error unrecoverable, sector 0x1A2B, retry count 5, pid:53912,tid:53969
+[2026-02-04 11:39:58][12345][ERR] disk sector read error unrecoverable, sector 0x1A2B, retry count 5
 ```
 
 解析过程：
 
-1. `LogFormatParser.load_data("osd", log)` → `timestamp=2026-02-04 11:39:58`, `content=disk sector read error unrecoverable, sector 0x1A2B, retry count 5, pid:53912,tid:53969`
-2. `preprocess(content)` → `disk sector read error unrecoverable, sector NUM_TAG, retry count NUM_TAG, pid:NUM_TAG,tid:NUM_TAG`
+1. `LogFormatParser.load_data()` → `timestamp=2026-02-04 11:39:58`, `content=disk sector read error unrecoverable, sector 0x1A2B, retry count 5`
+2. `preprocess(content)` → `disk sector read error unrecoverable, sector NUM_TAG, retry count NUM_TAG`
 3. PIPLUP `treeSearch` → 新建聚类簇
-4. `postprocessing` → 模板：`disk sector read error unrecoverable, sector <*>, retry count <*>, <*>`
+4. `postprocessing` → 模板：`disk sector read error unrecoverable, sector <*>, retry count <*>`
 5. `generate_template_id` → `CRC32(template) = 3829104765`
 6. 存入 `LogTemplateRepository`
 
@@ -1994,10 +1693,10 @@ repeat while (学习周期未结束?) is (是)
 
 **参数检测**：
 
-- 管道先调用外部专家规则库。本示例假设规则库已纳入该日志形态，并把 `sector` 的 `0x1A2B` 列为黑名单值。
+- 先在模板库中找到与本日志匹配的模板。本示例假设模板库已纳入该日志形态，并把 `sector` 的 `0x1A2B` 列为黑名单值。
 - 固定 token 与占位符形态匹配成功，参数提取同时记录 `0x1A2B` 在原日志中的字符区间。
-- 十六进制等值比较命中黑名单，直接输出 **参数异常**，不再进入 AI 分支。
-- 若规则未覆盖该日志，则由冻结解析器、剖面和多策略检测处理；解析失败必须返回 `data_quality`，不能沿用旧的模板 ID 相似度猜测。
+- 十六进制等值比较命中黑名单，直接输出 **参数异常**。
+- 若模板库未包含该日志，则将该日志模板记录进模板库中。
 
 **数量检测**：
 
@@ -2012,7 +1711,7 @@ repeat while (学习周期未结束?) is (是)
     "logId": "log_001",
     "timestamp": 1738646400000,
     "templateId": 3829104765,
-    "template": "disk sector read error unrecoverable, sector <*>, retry count <*>, <*>",
+    "template": "disk sector read error unrecoverable, sector <*>, retry count <*>",
     "anomalyType": ["semantic", "parametric", "changeRecord"],
     "summary": [
         "日志内容异常请检查",
