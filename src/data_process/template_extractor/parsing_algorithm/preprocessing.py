@@ -19,7 +19,7 @@ regex_match = {
     'size': r'\b\d+\.?\d*\s?([KGTMkgtm]?(B|b)|([KGTMkgtm]))\b',
     'duration': r'\b\<?\d+\s?(sec|s|ms)\b',
     'block': r'blk\_\-?\d+',
-    'numerical': r'\b(\-?\+?\d+\.?\d*)\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b',
+    'numerical': r'(?:\b|(?<=\W)|^)(\-?\+?\d+(?:\.\d+)?|0[Xx][a-fA-F\d]+)(?:\b|(?=\W)|$)|\b[a-fA-F\d]{4,}\b',
     'time': r'\b\d{2}:\d{2}(:\d{2}|:\d{2},\d+)?\b',
     'date': r'\b(\d{4}-\d{2}-\d{2})|\d{4}/\d{2}/\d{2}\b',
     'url': r'\bhttps?:\/\/(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(:[0-9]{1,5})?(\/[^\s]*)?\b',
@@ -101,7 +101,8 @@ regex_map = {
 # sequence = ['timestamp_v2', 'status_pair','serial_num', 'cid_kv_pairs', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time',  'block', 'date',  'duration', 'size', 'numerical', 'weekday_months']
 
 #DME版
-sequence = ['datetime_full',  'kernel_uptime', 'epoch_ms_13d', 'log_level',  'code_line_num', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
+# 两条纯数字规则由 numerical 覆盖；保留定义供显式 use_sequence 使用。
+sequence = ['datetime_full',  'kernel_uptime', 'log_level', 'pid_tid_pair' , 'sn_parentheses', 'step_desc', 'vcontroller_metric', 'fs_init_action', 'url', 'IPv4_port', 'host_port', 'package_host', 'IPv6', 'Mac_address', 'time', 'path', 'block', 'date', 'duration', 'size', 'numerical', 'weekday_months']
 
 def preprocess(log, use_keys=False, estimation_stage=False, use_sequence=sequence, print=False):
     matched_types = []
@@ -142,7 +143,3 @@ def preprocess(log, use_keys=False, estimation_stage=False, use_sequence=sequenc
         new_log = re.sub(r'(\<\*\>\s?)+\<\*\>', '<*>', new_log)
         if print:print('预处理后\n', new_log)
         return new_log
-        
-
-        
-    

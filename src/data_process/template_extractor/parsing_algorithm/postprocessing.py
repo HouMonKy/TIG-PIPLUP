@@ -5,7 +5,7 @@ path_delimiters = {  # reduced set of delimiters for tokenizing for checking the
     r'\[', r'\]', r'\(', r'\)', r'\{', r'\}'
 }
 token_delimiters = path_delimiters.union({  # all delimiters for tokenizing the remaining rules
-    r'\.', r'\-', r'\+', r'\@', r'\#', r'\$', r'\%', r'\&',
+    r'\.', r'\-', r'\+', r'\@', r'\#', r'\$', r'\%', r'\&', r'\_',
 })
 
 # Template correction function from LUNAR
@@ -32,7 +32,7 @@ def correct_single_template(template, user_strings=None):
         r'\[', r'\]', r'\(', r'\)', r'\{', r'\}'
     }
     token_delimiters = path_delimiters.union({  # all delimiters for tokenizing the remaining rules
-        r'\.', r'\-', r'\+', r'\@', r'\#', r'\$', r'\%', r'\&',
+        r'\.', r'\-', r'\+', r'\@', r'\#', r'\$', r'\%', r'\&', r'\_',
     })
 
     # if user_strings:
@@ -77,7 +77,8 @@ def correct_single_template(template, user_strings=None):
     # Reduce repetitive patterns
     while True:
         prev = template
-        for delimiter in path_delimiters.union(token_delimiters):
+        # 括号和等号承载合并后的结构，不归约 <*> ) <*> 等片段。
+        for delimiter in token_delimiters - {r'\(', r'\)', r'\[', r'\]', r'\{', r'\}', r'\='}:
             pattern = r'<\*>%s<\*>'%delimiter
             template = re.sub(r'%s'%pattern, '<*>', template)
         if prev == template:
@@ -109,10 +110,7 @@ def correct_single_template(template, user_strings=None):
     while "<*><*>" in template:
         template = template.replace("<*><*>", "<*>")
 
-    while " <*>. " in template:
-        template = template.replace(" <*>. ", " <*> ")
-    while " <*>, " in template:
-        template = template.replace(" <*>, ", " <*> ")
+    # 保留结构合并产生的通配符末尾逗号、句点。
     while "<*>##<*>" in template:
         template = template.replace("<*>##<*>", "<*>")
     while "#<*>#" in template:

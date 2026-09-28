@@ -18,8 +18,86 @@ _light_digit_re = re.compile(r'\d+')
 path_delimiters = {  # reduced set of delimiters for tokenizing for checking the path-like strings
         ' ', ',', '!', ';', ':',
         '=', '|', '"', "'", '+', '.',
-        '[', ']', '(', ')', '{', '}'
+        '[', ']', '(', ')', '{', '}', '_'
     }
+
+
+def _structure_aware_merge(t1, t2, delimiters):
+    """保留分隔符边界的共同前缀、后缀及同位置中段。"""
+    if t1 == t2:
+        return t1
+
+    def covers(general, specific):
+        pattern = '.*?'.join(re.escape(p) for p in general.split('<*>'))
+        return re.fullmatch(pattern, specific, re.DOTALL) is not None
+
+    # 已有通配模板覆盖新 token 时保持不变，避免收窄历史匹配范围。
+    # 例如 <*> + 0, 仍为 <*>；仅当两侧都有逗号时才保留逗号。
+    for general, specific in ((t1, t2), (t2, t1)):
+        if '<*>' in general and covers(general, specific):
+            return general
+
+    lcp_len = 0
+    for c1, c2 in zip(t1, t2):
+        if c1 != c2:
+            break
+        lcp_len += 1
+
+    head_end = -1
+    for i in range(lcp_len - 1, -1, -1):
+        if t1[i] in delimiters and t1[i] != '_':
+            head_end = i
+            break
+    if head_end >= 0:
+        for i in range(head_end + 1, lcp_len):
+            if t1[i] == '_' and '_' in delimiters:
+                if i < lcp_len - 1:
+                    head_end = i
+                break
+    else:
+        for i in range(lcp_len):
+            if t1[i] in delimiters:
+                head_end = i
+                break
+    head = t1[:head_end + 1]
+
+    lcs_len = 0
+    for c1, c2 in zip(reversed(t1), reversed(t2)):
+        if c1 != c2:
+            break
+        lcs_len += 1
+    tail = ''
+    if lcs_len:
+        start = len(t1) - lcs_len
+        tail = t1[start:]
+        for i in range(start, len(t1)):
+            if t1[i] in delimiters:
+                tail = t1[i:]
+                break
+
+    middle = ''
+    if not tail:
+        i = lcp_len
+        while i < min(len(t1), len(t2)):
+            if t1[i] in delimiters and t1[i] != '_' and t1[i] == t2[i]:
+                j = i + 1
+                while j < min(len(t1), len(t2)) and t1[j] == t2[j]:
+                    j += 1
+                if j - i > max(1, len(middle)):
+                    middle = t1[i:j]
+                i = j
+            else:
+                i += 1
+
+    # 不按括号计数删补字符：开括号可能在 <*> 中，或在相邻 token 中。
+    # 保留双方共有的闭括号及完整嵌套后缀，交给覆盖校验保证结果有效。
+    if len(head) + len(middle) + len(tail) >= min(len(t1), len(t2)):
+        return '<*>'
+    result = head + '<*>' + (middle + '<*>' if middle else '') + tail
+    # 防止 LCP/LCS 切开已有 <*>，以及中段和前后缀重叠。
+    if not all(covers(result, token) for token in (t1, t2)):
+        return '<*>'
+    return result
 
 
 class Logcluster:
@@ -36,13 +114,9 @@ class Logcluster:
     # Check whether template1 can describe template2 (template2 can be merged into template1)
     @staticmethod
     def templateMatches(template1, template2):
-        # Escape all parts of the template except the <*> placeholders
         parts = re.split(r"<\*>", template1)
-        regex_pattern = ".*?".join(re.escape(part) for part in parts)
-        
-        # Add anchors to ensure the entire template2 string is matched
-        regex_pattern = f"^{regex_pattern}$"
-        return bool(re.fullmatch(regex_pattern, template2, re.DOTALL))
+        pattern = ".*?".join(re.escape(part) for part in parts)
+        return re.fullmatch(f"^{pattern}$", template2, re.DOTALL) is not None
     
     def seqSimilarity(self, seq1, seq2):
         sim = 0
@@ -80,31 +154,11 @@ class Logcluster:
             # Start merging
             for pos, (t1, t2) in enumerate(zip(target, seq)):
                 if t1 != t2:
-                    # Collapse into a variable
-                    # Protect the head and tail for readability
-                    var = '<*>'
-                    head, tail = '', ''
-                    min_length = min(len(t1), len(t2))
-                    for i in range(min_length):
-                        char = t2[i]
-                        if char not in path_delimiters: break
-                        flag = True
-                        if t1[i] != char: 
-                            flag = False
-                            break
-                        if flag: head += char
-                        else: break
-                    for i in range(min_length):
-                        char = t2[-i-1]
-                        if char not in path_delimiters: break
-                        flag = True
-                        if t1[-i-1] != char: 
-                            flag = False
-                            break
-                        if flag: tail = char + tail
-                        else: break
-                    var = head + var + tail
-                    
+                    var = _structure_aware_merge(t1, t2, path_delimiters)
+                    # 下方会更新所有路径，保留的结构也必须覆盖其余历史路径。
+                    for p in self.pathList:
+                        var = _structure_aware_merge(var, p[pos], path_delimiters)
+
                     # Update all lists
                     for p in self.pathList: p[pos] = var
         
@@ -412,7 +466,7 @@ class LogParser:
         # 修改点 1：
         hit_clusters = set()  # 记录本批次涉及的聚类簇，缩小遍历域
 
-        # 预初始化结果列表，支持 CRC32 缓存命中时直接写入
+        # 预初始化结果列表；所有行在批末使用最终模板统一生成输出
         log_templates = [""] * total_lines
         cache_hits = 0
 
@@ -428,6 +482,7 @@ class LogParser:
             if self.use_template_cache:
                 light = _light_digit_re.sub('0', content)
                 light_crc = zlib.crc32(light.encode('utf-8')) & 0xffffffff
+                cached_hit = None
                 cached_clusters = self.light_cache.get(light_crc)
                 if cached_clusters:
                     raw_content = str(content).strip()
@@ -437,17 +492,19 @@ class LogParser:
                             # 快速子串校验：模板中非 <*> 部分必须都出现在原始行中
                             parts = [p for p in templates_c[0].split('<*>') if p]
                             if all(p in raw_content for p in parts):
-                                log_templates[idx] = templates_c[0]
-                                cache_hits += 1
+                                cached_hit = cluster
                                 break
                         else:
                             template_patterns = self._compile_regex_patterns(templates_c)
                             match_idx = self._regex_match_log(raw_content, template_patterns)
                             if match_idx != -1:
-                                log_templates[idx] = templates_c[match_idx]
-                                cache_hits += 1
+                                cached_hit = cluster
                                 break
-                if log_templates[idx]:
+                if cached_hit is not None:
+                    cached_hit.hit_time += 1
+                    cached_hit.logIDL.append(logID)
+                    hit_clusters.add(cached_hit)
+                    cache_hits += 1
                     continue
 
             # Add preprocess
@@ -475,13 +532,9 @@ class LogParser:
                     bucket = self.light_cache.setdefault(light_crc, [])
                     if cached_cluster not in bucket:
                         bucket.append(cached_cluster)
-                    templates_c = cached_cluster.templateList
-                    if len(templates_c) == 1:
-                        log_templates[idx] = templates_c[0]
-                    else:
-                        template_patterns = self._compile_regex_patterns(templates_c)
-                        match_idx = self._regex_match_log(str(content), template_patterns)
-                        log_templates[idx] = templates_c[match_idx] if match_idx != -1 else templates_c[0]
+                    cached_cluster.hit_time += 1
+                    cached_cluster.logIDL.append(logID)
+                    hit_clusters.add(cached_cluster)
                     cache_hits += 1
                     continue
 
@@ -563,23 +616,20 @@ class LogParser:
 
 
         # --- 第三步：重构输出侧，生成并返回模板列表 ---
-        # log_templates 已在循环前预初始化，缓存命中的行已填入模板
+        # 缓存命中行也已登记到簇中，统一使用批末 templateList 输出
 
         for logClust in hit_clusters:
             templates = logClust.templateList
 
             if len(templates) == 1:
                 for logID in logClust.logIDL:
-                    if not log_templates[logID - 1]:
-                        log_templates[logID - 1] = templates[0]
+                    log_templates[logID - 1] = templates[0]
             else:
                 # 调用公共方法生成正则
                 template_patterns = self._compile_regex_patterns(templates)
 
                 for logID in logClust.logIDL:
                     index = logID - 1
-                    if log_templates[index]:
-                        continue
                     content = str(log_list[index])
 
                     # 调用公共方法执行比对
@@ -608,5 +658,3 @@ class LogParser:
             self.save_cache()
 
         return log_templates
-
-
