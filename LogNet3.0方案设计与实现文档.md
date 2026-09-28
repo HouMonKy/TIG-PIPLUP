@@ -776,24 +776,87 @@ ret=: -2     ret=-1     ret(3)     ret: 5     status is 5
 
 **具体职责**：把冷路径的学习成果持久化，让模型调用随流量收敛。
 
-#### 5.4.1 事件指纹身份
+#### 5.4.1 事件指纹：缓存的身份证
 
-缓存身份是事件指纹——值剥离后的有序 N1 token 序列哈希：
+冷路径学到的东西要存进缓存，得先回答一个问题：**哪些日志算"同一件事"，可以共享这条缓存？**
+
+答案是事件指纹：把日志分词、扔掉所有值（数字、十六进制），对剩下的词序列做一次哈希。三条日志摆在一起看：
 
 ```text
-"Sqlite step sql fail(return code=10, ctx=30198"   →  {sqlite,step,sql,fail,return,code,ctx}
-"Sqlite step sql fail(return code=21, ctx=30199"   →  同一指纹（值已剥离）
+"Sqlite step sql fail(return code=10, ctx=30198"
+  扔掉值 → [sqlite, step, sql, fail, return, code, ctx] ─┐
+                                                          ├─ 词一样、顺序一样 → 指纹相同
+"Sqlite step sql fail(return code=21, ctx=30199"          │
+  扔掉值 → [sqlite, step, sql, fail, return, code, ctx] ─┘
+
+"Sqlite step sql fail(return code=21)"
+  扔掉值 → [sqlite, step, sql, fail, return, code]     → 少了 ctx，指纹不同，单独一条缓存
 ```
 
-值变化不改变指纹，同结构日志共享缓存；字段重排、增删改变序列，各自独立缓存，一事件一行。Drain 模板快照不参与身份。模板在线演化（首条全字面，分歧后逐步通配），若以快照为身份，演化一次全部缓存假失效。
+为什么扔掉值：值天天变（code=10、code=21……），但结构不变，而缓存里存的取值位置只跟结构有关——第 7 个 token 永远是 code 的值，不管它是 10 还是 21。所以同结构的日志共享缓存，值变了照常命中。
 
-#### 5.4.2 位置映射与结构签名
+为什么字段重排、增删要分开缓存：它们改变了词序列（fingerprint 不同），更重要的是**取值位置真的变了**——重排后 code 的值可能落在第 3 个 token，沿用旧缓存会取错。
 
-登记前过完整映射链：值区间映射到 token 位置（回放一致：按位置取值须与抽取值相同）、参数名邻近（与判定同一配对校验）、模板对齐锚点（对齐歧义时取各解固定位置的交集：歧义只发生在通配边界，前缀锚点在各解中一致，仍可锚定）。
+为什么不用 Drain 模板当身份：模板会在线演化（首条全字面，后续逐步通配）。簇里来了条新日志、模板变了个通配符，此时日志结构其实没变——若以模板为身份，全部缓存白白失效，同结构日志又得重走冷路径。模板快照只作展示用途，不作身份。
 
-结构签名记录 token 总数和每个目标的最近固定锚点（下标 + 文本）。热路径凭签名校验：槽宽变化（message 1 词变 3 词）或锚点位移，校验失败，缓存失效回冷路径。
+#### 5.4.2 取值位置与结构签名
 
-#### 5.4.3 热路径校验链
+登记一条变体，存两样东西：**值在哪个 token 上**，和**这条日志的形状描述**。
+
+**取值位置**。冷路径抽取参数时拿到了值的字符区间，换算成 token 下标存起来。存之前先回放验证一次：按下标把 token 取出来，必须和抽取到的值一模一样。位置是给热路径用的——热路径没有模型，全靠这个下标取值，位置错了后面全错。
+
+**结构签名**。光有下标还不够：下标 7 在两条不同的日志里指的可能是完全不同的词。签名记录日志的形状，两样东西：token 总数，加上值附近最近的固定词（锚点，记下标和词本身）：
+
+```text
+"Sqlite step sql fail(return code=10, ctx=30198"
+
+签名 = {
+  token 总数: 13,
+  code 的值: 7 号 token,
+  左锚点:    fail（3 号）
+}
+```
+
+热路径拿到新日志，先比形状：token 总数一样吗？fail 还在 3 号吗？都对得上，说明结构和登记时一致，7 号 token 取出来的就是 code 的值。对不上——比如中间多了几个词、总数变了——7 号指的可能已是别的词，这条缓存不可信，作废，回冷路径重新学习。
+
+（锚点从模板对齐结果里选：对齐有歧义时，只取各解都一致的位置，保证无论按哪种对齐，锚点都成立。）
+
+#### 5.4.3 参数异常检测时序
+
+冷路径（首见结构，模型参与）：
+
+```plantuml
+@startuml Parameter_Cold_Sequence
+!theme plain
+skinparam backgroundColor #FEFEFE
+skinparam shadowing false
+
+title 冷路径：首见学习
+
+participant "输入日志" as Log
+participant "Drain3 解析" as Drain
+participant "语义匹配" as Match
+participant "GLiNER 抽取" as GLiNER
+participant "取值校验" as Guard
+participant "规则判定" as Rule
+database "变体缓存" as Store
+
+Log -> Drain: 解析模板
+Drain --> Match: 无精确命中，进入匹配
+Match -> Match: 第一步：模板匹配\n(失败转原文兜底)
+Match -> Match: 受保护词校验
+Match -> GLiNER: 抽取参数名与值\n(parameter, number)
+GLiNER -> Guard: 候选参数（名/值/区间）
+Guard -> Guard: 配对校验\n(失败转通用正则)
+Guard -> Rule: 可信取值
+Rule -> Rule: 黑名单判定
+Rule -> Store: 登记变体\n(取值位置 + 结构签名，按事件指纹)
+Store --> Log: 下次同结构日志走热路径
+
+@enduml
+```
+
+热路径（同结构再来，零模型调用）：
 
 ```plantuml
 @startuml Parameter_Hot_Sequence
@@ -801,26 +864,26 @@ ret=: -2     ret=-1     ret(3)     ret: 5     status is 5
 skinparam backgroundColor #FEFEFE
 skinparam shadowing false
 
-title 热路径：缓存命中与校验链
+title 热路径：缓存直检
 
 participant "输入日志" as Log
 participant "事件指纹" as FP
 database "变体缓存" as Store
-participant "校验链" as Check
+participant "校验" as Check
 participant "规则判定" as Rule
 
-Log -> FP: 值剥离 N1 序列哈希
+Log -> FP: 分词，扔掉值，哈希词序列
 FP -> Store: (module, event_fingerprint) 查库
-Store --> Check: 变体（位置 + 结构签名 + 规则组）
+Store --> Check: 变体（取值位置 + 结构签名 + 规则组）
 Check -> Check: 受保护词校验\n(历史错误归属条目不因命中绕过)
-Check -> Check: 结构签名校验\n(n_tokens + 固定锚点)
-Check -> Rule: 按变体位置取值
+Check -> Check: 结构签名校验\n(token 总数 + 固定锚点)
+Check -> Rule: 按登记的取值位置取值
 Rule --> Log: 黑名单判定（零模型调用）
 
 @enduml
 ```
 
-任一环节失败都回冷路径重新学习，判定不受影响。
+两条路径殊途同归：冷路径的学习成果经登记变成热路径的依据；热路径任一校验失败即弃用缓存回到冷路径，判定不受影响。缓存只加速，不改判定。
 
 ### 5.5 端到端检测示例
 
