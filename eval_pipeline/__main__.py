@@ -90,6 +90,7 @@ def main():
     p_gt.add_argument("--limit", type=int, default=0, help="限制裁决任务数（0=不限）")
     p_gt.add_argument("--retry-failed", action="store_true", help="重试失败任务")
     p_gt.add_argument("--retry-lines", default=None, help="多轮裁决：传入上一轮输出的 retry_lines.jsonl，将这些任务的裁决状态重置后重新裁决（可配合更换 --llm-config / 模型）")
+    p_gt.add_argument("--review-adjudicated", action="store_true", help="已成功裁决的任务也进入人工标注清单（HTML 显示当前裁决，可推翻如 original→optimized，回填后以人工为准）")
     p_gt.add_argument("--save-prompts", action="store_true", help="live 模式下也落盘每个任务的 Prompt（dry-run 恒落盘）")
     p_gt.add_argument("--concurrency", type=int, default=1, help="裁决并发线程数（1=串行；>1 线程池加速 LLM IO）")
     p_gt.add_argument("--audit-consistent", type=int, default=0, help="一致行抽样审计数量（0=关闭；量化两版共识错误率，GT 可信度指标）")
@@ -166,6 +167,7 @@ def main():
             limit=args.limit,
             retry_failed=args.retry_failed,
             retry_lines_path=args.retry_lines,
+            review_adjudicated=args.review_adjudicated,
             save_prompts=args.save_prompts,
             concurrency=args.concurrency,
             audit_consistent=args.audit_consistent,

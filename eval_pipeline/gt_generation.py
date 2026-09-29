@@ -468,13 +468,17 @@ def generate_gt(
     human_annotations_path: str = None,
     reuse_runs: bool = False,
     retry_lines_path: str = None,
+    review_adjudicated: bool = False,
 ):
     """GT 生成主流程（一条命令产出 GT 工件包 + 两版质量评估报告）。
 
     human_annotations_path: 人工标注文件（jsonl，{TaskID, template, annotator?}，
-        由 gt_annotator.html 导出），优先级高于一切自动裁决；与 --reuse-runs
-        组合可在不重跑解析的情况下让标注生效。
+        由 gt_annotator.html 导出），优先级高于一切自动裁决——包括推翻模型
+        已给出的 original/optimized/equivalent 裁决；与 --reuse-runs 组合可在
+        不重跑解析的情况下让标注生效。
         human_annotations_needed.jsonl 是标注工作清单（自动导出，标注工具加载）。
+    review_adjudicated: 已成功裁决的任务也进入人工标注清单（带 current_verdict
+        标记当前裁决结果，供人工复核推翻，如 original → optimized）。
     retry_lines_path: 上一轮输出的 retry_lines.jsonl。提供时将其中的任务
         裁决状态重置后重新裁决（多轮迭代，可配合更换 --llm-config / 模型），
         已解决的任务不受影响；输入签名变化导致的未知 TaskID 自动跳过。
@@ -601,6 +605,8 @@ def generate_gt(
     human_map = {}
     if human_annotations_path:
         for rec in load_jsonl(human_annotations_path):
+            if not isinstance(rec, dict):
+                continue  # 容错：整行不是 JSON 对象（如误写成数组）则跳过
             if rec.get('TaskID') and rec.get('template'):
                 human_map[rec['TaskID']] = rec['template'].strip()
         print(f"  人工标注: {len(human_map)} 条")
@@ -659,6 +665,31 @@ def generate_gt(
             'candidates': candidates,
             'sample_log': sample_logs,
         })
+    # --review-adjudicated：已成功裁决的任务也进入清单（带 current_verdict），
+    # 供人工复核推翻模型裁决（如 original → optimized；回填优先级最高）
+    if review_adjudicated:
+        pair_lines = {}
+        for lp in line_pairs:
+            if not lp['consistent']:
+                pair_lines.setdefault(lp['TaskID'], []).append(lp['log_id'])
+        existing_ids = {rt['TaskID'] for rt in review_tasks}
+        for task_id, adj in sorted(adj_map_r.items()):
+            verdict = adj.get('Adjudication', '')
+            if task_id in existing_ids or \
+                    verdict not in (ADJ_ORIGINAL, ADJ_OPTIMIZED, ADJ_EQUIVALENT):
+                continue
+            t = task_map_r.get(task_id, {})
+            log_ids = sorted(pair_lines.get(task_id, []))
+            review_tasks.append({
+                'TaskID': task_id,
+                'kind': 'pair',
+                'reason': f'adjudicated_{verdict}',
+                'current_verdict': verdict,
+                'log_ids': log_ids,
+                'candidates': {'original': t.get('piplup_ori', ''),
+                               'optimized': t.get('piplup_opt', '')},
+                'sample_log': [raw_map.get(lid, '') for lid in log_ids if raw_map.get(lid, '')][:5],
+            })
     # 审计未修复簇：人工可直接针对一致簇标注
     if audit_result:
         for d in audit_result['details']:

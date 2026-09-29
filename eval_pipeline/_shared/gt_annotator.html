@@ -207,6 +207,7 @@ function renderCard(){
   box.innerHTML = `<div class="card ${chosen?'decided':''}">
     <div class="head">
       <div><span class="tag">${t.TaskID}</span><span class="tag reason">${esc(t.reason||'')}</span>
+           ${t.current_verdict ? `<span class="tag" style="color:var(--acc);border-color:var(--acc)">当前裁决: ${esc(t.current_verdict)}（人工改判后以此为准）</span>` : ''}
            <span class="tag">${esc(t.kind||'')}</span><span class="tag">${(t.log_ids||[]).length} 行</span></div>
       <div>${chosen ? `<span style="color:var(--ok);font-size:13px">✔ 已决</span>
         <button class="act" onclick="setDecision(annoTasks[${annoIdx}], '')">撤销</button>` 
