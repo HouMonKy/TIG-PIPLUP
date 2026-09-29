@@ -1,0 +1,268 @@
+[
+    {
+        "id": "FP_前端端口乒乓闪断_023",
+        "template": "DEVM ETH:EAM_ETH_CFG: Roce port(<*>) change snsd(<*>) param invalid. bitmap",
+        "meaning": "DEVM以太网配置模块报告RoCE端口修改SNSD参数无效",
+        "category": "参数无效",
+        "description": "异常参数为 snsd。模板明确出现“snsd(<*>) param invalid”，表明传入的 snsd 参数值非法或不满足配置约束；RoCE port 仅用于标识发生异常的端口，不是异常参数。"
+    },
+    {
+        "id": "FP_前端单端口故障_017",
+        "template": "DEVM ETH:EAM_ETH_CFG: Roce port(<*>) change snsd(<*>) param invalid. bitmap",
+        "meaning": "RoCE端口变更snsd参数无效，以太网配置管理模块检测到RoCE参数异常",
+        "category": "参数无效",
+        "description": "异常参数为 snsd。模板明确出现“snsd(<*>) param invalid”，说明 snsd 参数值非法或不符合系统约束；port 参数仅用于定位具体RoCE端口。"
+    },
+    {
+        "id": "FP_内存泄露_013",
+        "template": "CLS_STATUS: Controllers (<*>) free memory is (<*>), alarm type(<*>)(<*>: fault, <*>:resume).",
+        "meaning": "控制器空闲内存告警，内存水位达到故障阈值",
+        "category": "内存水位参数异常",
+        "description": "异常参数为 free memory（控制器空闲内存量）。free memory 的实际值达到或低于系统配置的内存告警阈值，从而触发 fault 告警；alarm type 只是告警状态参数，不是导致异常的参数。"
+    },
+    {
+        "id": "FP_进程句柄耗尽_011",
+        "template": "CLS_FENCING: Node xnet sche timeout(<*>) block timeout(<*>) abnormal.",
+        "meaning": "集群分裂防护检测到节点xnet调度超时和阻塞超时异常",
+        "category": "超时参数",
+        "description": "异常参数为 sche timeout 和 block timeout。模板直接将这两个超时参数值标记为 abnormal，说明当前调度超时值或阻塞超时值处于异常范围。"
+    },
+    {
+        "id": "FP_进程句柄耗尽_012",
+        "template": "<*>: Fatal error: max-retries exceeded",
+        "meaning": "致命错误：超过最大重试次数",
+        "category": "重试次数超限",
+        "description": "异常参数为 retry count（重试次数）。模板明确出现 max-retries exceeded，说明实际重试次数已经超过 max-retries 所规定的最大允许值，属于典型的参数超限异常。"
+    },
+    {
+        "id": "FP_前端端口闪断_020",
+        "template": "DEVM ETH:EAM_ETH_CFG: Roce port(<*>) change snsd(<*>) param invalid. bitmap",
+        "meaning": "RoCE端口变更snsd参数无效",
+        "category": "参数无效",
+        "description": "异常参数为 snsd。模板明确出现“snsd(<*>) param invalid”，说明传入的 snsd 参数值非法或不满足系统配置约束；RoCE port 仅用于标识发生异常的端口，不是异常参数。"
+    },
+    {
+        "id": "FP_内存泄露-2_016",
+        "template": "CLS_STATUS: Controllers (<*>) free memory is (<*>), alarm type(<*>)(<*>: fault, <*>:resume).",
+        "meaning": "内存操作异常：内存相关关键词",
+        "category": "内存水位告警参数",
+        "description": "异常参数为 free memory（控制器空闲内存量）。模板同时给出当前 free memory 参数值和 fault/resume 告警状态；当 alarm type 表示 fault 时，说明当前空闲内存量已经达到或越过系统配置的内存水位告警阈值，属于内存水位参数异常。"
+    },
+    {
+        "id": "FP_硬盘慢盘_001",
+        "template": "Slow disk: Disk sn(<*>) all node id is invalid.",
+        "meaning": "系统检测到慢盘，该磁盘的所有节点ID无效，是慢盘检测机制的直接输出",
+        "category": "参数无效",
+        "description": "异常参数为 node id。模板明确出现“all node id is invalid”，说明该磁盘关联的节点ID参数均为无效值；Disk sn 仅用于标识具体磁盘。不能仅凭该模板判断硬盘响应延迟参数超过慢盘阈值。"
+    },
+    {
+        "id": "FP_前端所有端口故障_022",
+        "template": "DEVM ETH:EAM_ETH_CFG: Roce port(<*>) change snsd(<*>) param invalid. bitmap",
+        "meaning": "RoCE端口变更时参数无效",
+        "category": "参数无效",
+        "description": "异常参数为 snsd。模板明确出现“snsd(<*>) param invalid”，说明传入的 snsd 参数值非法或不符合系统配置约束；RoCE port 仅用于标识发生异常的端口。"
+    },
+    {
+        "id": "FP_硬盘慢盘隔离vdisk_001",
+        "template": "Slow disk: Disk sn(<*>) all node id is invalid.",
+        "meaning": "慢盘检测：系统判定硬盘为慢盘，所有节点ID无效",
+        "category": "参数无效",
+        "description": "异常参数为 node id。模板明确说明该磁盘对应的所有 node id 均为 invalid，属于节点标识参数无效；不能由该模板进一步推断慢盘延迟参数本身超过阈值。"
+    },
+    {
+        "id": "FP_硬盘慢盘(vdisk)_001",
+        "template": "Slow disk: Disk sn(<*>) all node id is invalid.",
+        "meaning": "系统检测到慢盘，但该硬盘SN对应的所有节点ID无效，vdisk注入的慢盘在BDM层无法正确映射",
+        "category": "参数无效",
+        "description": "异常参数为 node id。模板直接报告“all node id is invalid”，说明磁盘对应的节点ID参数无效；异常证据针对 node id，而不是慢盘延迟阈值。"
+    },
+    {
+        "id": "FP_BBU_TP_007",
+        "template": "CACHE_CTRL: flow(<*>), phase(<*>) illegal.",
+        "meaning": "缓存控制流阶段非法，表明缓存模式切换后原有流程状态不再合法",
+        "category": "参数非法",
+        "description": "异常参数为 phase。模板明确出现“phase(<*>) illegal”，直接表明当前缓存控制流的 phase 参数取值非法；flow 主要用于标识具体流程。"
+    },
+    {
+        "id": "FP_BBU_TP_027",
+        "template": "RSF_FLOW: flow(<*>), phase(<*>) illegal.",
+        "meaning": "RSF流程阶段非法，资源管理流程状态异常",
+        "category": "参数非法",
+        "description": "异常参数为 phase。模板明确出现“phase(<*>) illegal”，说明当前RSF流程的阶段参数取值非法；flow 仅用于标识具体流程。"
+    },
+    {
+        "id": "FP_BBU_TP_028",
+        "template": "VAF:(INST::<*>)VAF_FLOW_CTRL: flowId(<*>), phase(<*>) illegal.",
+        "meaning": "VAF流程控制阶段非法，虚拟化加速功能流程状态异常",
+        "category": "参数非法",
+        "description": "异常参数为 phase。模板直接出现“phase(<*>) illegal”，说明VAF流程控制中的 phase 参数值非法；INST和flowId均为上下文标识参数。"
+    },
+    {
+        "id": "FP_内存泄露_038",
+        "template": "TGT_NOF_LINK: The hostId(<*>) is invalid for <*>).",
+        "meaning": "主机ID无效，链路检查异常",
+        "category": "参数无效",
+        "description": "异常参数为 hostId。模板明确出现“hostId(<*>) is invalid”，直接说明当前 hostId 参数值无效或不满足系统约束；后续 <*> 仅提供该校验失败的业务上下文。"
+    },
+    {
+        "id": "FP_进程句柄耗尽_032",
+        "template": "PROTOCOL:MOD_FS-SHIM:{<*>}: gfp_fs_shim_get_sec_info() {Assert((Errno == <*>)) FAILED}: {Error: <*>}: SHM_STATUS_INVALID_WORKCTL",
+        "meaning": "FS-SHIM协议层获取安全信息断言失败，共享内存工作控制状态无效",
+        "category": "状态参数无效",
+        "description": "异常参数为 SHM WORKCTL status（共享内存工作控制状态）。模板明确出现“SHM_STATUS_INVALID_WORKCTL”，直接表明 WORKCTL 状态参数处于无效状态；Errno 和 Error 为错误结果字段。"
+    },
+    {
+        "id": "FP_进程句柄耗尽_035",
+        "template": "PROTOCOL:MOD_FS-SHIM:{<*>}: gfp_fs_shim_query_fs_info() {Assert((Errno == <*>)) FAILED}: {Error: <*>}: SHM_STATUS_INVALID_WORKCTL",
+        "meaning": "FS-SHIM协议层查询文件系统信息断言失败，共享内存工作控制状态无效",
+        "category": "状态参数无效",
+        "description": "异常参数为 SHM WORKCTL status（共享内存工作控制状态）。模板明确出现“SHM_STATUS_INVALID_WORKCTL”，说明共享内存工作控制状态参数无效；Errno 和 Error 只是断言失败及错误结果。"
+    },
+    {
+        "id": "FP_控制器冷复位_012",
+        "template": "Panther: Client epoch error, local=<*>, rcv=<*>.",
+        "meaning": "Panther客户端纪元错误，本地纪元与接收纪元不一致",
+        "category": "参数不一致",
+        "description": "异常参数为 epoch。模板明确报告“Client epoch error”，并同时给出 local epoch 和 rcv epoch，说明本地与接收端的epoch参数不一致，属于一致性参数异常。"
+    },
+    {
+        "id": "FP_控制器冷复位_026",
+        "template": "PROTOCOL:MOD_FS-SHIM:(<*>): <*>(), Error: <*> (SHM_STATUS_OK), OpStatus: <*> (SHM_STATUS_INVALID_WORKCTL)",
+        "meaning": "共享内存状态无效（SHM_STATUS_INVALID_WORKCTL）",
+        "category": "状态参数无效",
+        "description": "异常参数为 OpStatus（共享内存工作控制状态）。模板明确将OpStatus标记为“SHM_STATUS_INVALID_WORKCTL”，说明当前工作控制状态参数无效；Error字段中的SHM_STATUS_OK不是异常参数。"
+    },
+    {
+        "id": "FP_控制器冷复位_028",
+        "template": "invalid master id: <*> local id : <*>.",
+        "meaning": "无效的主控ID",
+        "category": "参数无效",
+        "description": "异常参数为 master id。模板明确出现“invalid master id: <*>”，说明当前master id参数值无效；local id用于提供本地节点身份上下文。"
+    },
+    {
+        "id": "FP_后端接口卡芯片错误_042",
+        "template": "SPC:(<*>)StoragePool: cap invalid, vol(<*>).",
+        "meaning": "存储池容量无效",
+        "category": "参数无效",
+        "description": "异常参数为 cap（StoragePool capacity，存储池容量）。模板明确出现“cap invalid”，直接说明当前存储池容量参数处于无效状态；vol 仅用于标识受影响的卷。"
+    },
+    {
+        "id": "FP_单硬盘闪断+CPU核隔离_044",
+        "template": "PROTOCOL:MOD_FS-SHIM:{<*>}: gfpFsSvrProcessOpFast() FAILED: {Error: <*> (SHM_STATUS_INVALID_WORKCTL)}",
+        "meaning": "文件系统/协议层操作失败",
+        "category": "状态参数无效",
+        "description": "异常参数为 SHM WORKCTL status（共享内存工作控制状态）。模板明确出现“SHM_STATUS_INVALID_WORKCTL”，直接表明当前 WORKCTL 状态处于无效状态。虽然该状态出现在操作失败的 Error 字段中，但 INVALID_WORKCTL 已明确指出具体状态参数无效，与此前同类模板的判定口径一致。"
+    },
+    {
+        "id": "FP_冗余内硬盘预失效+CPU核隔离_008",
+        "template": "DEVM FAILOVER:Lif(<*>) failover(reason:<*>) dest port(<*>) is invalid.",
+        "meaning": "LIF failover目标端口无效，硬盘预失效/CPU隔离导致LIF切换失败",
+        "category": "参数无效",
+        "description": "异常参数为 dest port。模板明确出现“dest port(<*>) is invalid”，直接说明当前LIF failover选择的目标端口值无效。Lif和reason属于故障切换上下文，异常对象可以唯一定位为dest port。"
+    },
+    {
+        "id": "FP_冗余内硬盘预失效+CPU核隔离_040",
+        "template": "EAM_CTRL: nidNum error(nidNum:<*>,file:FlvnAddLifPortRpc,line:<*>).",
+        "meaning": "节点ID数量错误，发生在LIF端口添加RPC中",
+        "category": "计数参数异常",
+        "description": "异常参数为 nidNum。模板直接出现“nidNum error(nidNum:<*>)”，明确指出当前节点ID数量参数值存在错误；file和line仅用于定位代码位置，不影响异常参数的唯一确定。"
+    },
+    {
+        "id": "FP_单硬盘闪断_025",
+        "template": "FS:(<*>)Invalid fsid(<*>).",
+        "meaning": "文件系统ID无效",
+        "category": "参数无效",
+        "description": "异常参数为 fsid。模板直接出现“Invalid fsid(<*>)”，将具体 fsid 值与 invalid 明确绑定，可直接作为高置信参数异常GT。"
+    },
+    {
+        "id": "FP_硬盘单链路_006",
+        "template": "Disk sn:2102313EDH10PA100245,dev: change state:<*> to state:<*>,be abnormal.",
+        "meaning": "指定序列号的硬盘状态变更为abnormal。该日志直接报告硬盘从正常状态转变为异常状态。",
+        "category": "状态参数异常",
+        "description": "异常参数为磁盘 state。模板不仅明确出现“be abnormal”，还同时打印状态变化前后的实际 state 值，因此能够将异常语义关联到具体状态参数；其中最终 state 为异常状态。"
+    },
+    {
+        "id": "FP_硬盘单链路_015",
+        "template": "VBC: blk rq fail, bd <*> is invalid, bd state <*>.",
+        "meaning": "VBC层块请求失败，原因是BD（Block Descriptor）无效。BD无效表示块描述符状态异常，通常是因为底层设备不可达或状态不一致。",
+        "category": "参数无效",
+        "description": "异常参数为 bd。模板直接出现“bd <*> is invalid”，将具体BD值与invalid明确绑定；bd state属于进一步的状态上下文。"
+    },
+    {
+        "id": "FP_硬盘慢盘_006",
+        "template": "Disk sn:2102312UCT10L8000455,dev: change state:<*> to state:<*>,be abnormal.",
+        "meaning": "磁盘状态变更为异常状态，系统检测到磁盘异常并上报",
+        "category": "状态参数异常",
+        "description": "异常参数为磁盘state。模板同时打印状态变化前后的state值，并明确说明变更后“be abnormal”，因此可将目标state值确定为异常状态参数。"
+    },
+    {
+        "id": "FP_硬盘慢盘_017",
+        "template": "VBC: blk rq fail, bd <*> is invalid, bd state <*>.",
+        "meaning": "VBC块请求失败，块设备无效，块设备状态异常导致请求无法完成",
+        "category": "参数无效",
+        "description": "异常参数为bd。模板明确出现“bd <*> is invalid”，将具体BD值与invalid直接绑定；bd state为附加状态信息。"
+    },
+    {
+        "id": "FP_前端所有端口故障_003",
+        "template": "DEVM FAILOVER:Lif(<*>) failover(reason:<*>) dest port(<*>) is invalid.",
+        "meaning": "LIF failover时目标端口无效",
+        "category": "参数无效",
+        "description": "异常参数为 dest port。模板明确出现“dest port(<*>) is invalid”，将具体目标端口值与 invalid 直接绑定；Lif 和 reason 只是 failover 上下文。"
+    },
+    {
+        "id": "FP_控制器复位中断误报_015",
+        "template": "TGT_NOF_LINK: The hostId(<*>) is invalid for <*>).",
+        "meaning": "链路层主机ID无效",
+        "category": "参数无效",
+        "description": "异常参数为 hostId。模板直接出现“hostId(<*>) is invalid”，将具体 hostId 值与 invalid 明确绑定，可直接作为高置信参数异常GT。"
+    },
+    {
+        "id": "FP_控制框温度过高_006",
+        "template": "bmc_sensor_assert.c(<*>): SENSOR EarTemp(FruId=<*>) (SubTypeNum(<*>))assert upper noncritical event, cnt(<*>), value(<*>).",
+        "meaning": "BMC EarTemp传感器断言上超非关键事件，表示环境温度超过了非关键阈值上限",
+        "category": "参数超限",
+        "description": "异常参数为 EarTemp 的 value。模板明确出现“assert upper noncritical event”，其语义直接表明温度值触发了上限告警，同时打印实际 value(<*>)，因此可以确定该温度参数处于上超状态。"
+    },
+    {
+        "id": "FP_超冗余硬盘预失效_015",
+        "template": "Disk sn:2102312UCT10L8000455,dev: change state:<*> to state:<*>,be abnormal.",
+        "meaning": "指定SN磁盘状态变更且标记为abnormal",
+        "category": "状态参数异常",
+        "description": "异常参数为磁盘 state。模板打印状态变化前后的实际 state 值，并明确说明变化后的状态“be abnormal”，因此目标 state 可作为异常状态参数。"
+    },
+    {
+        "id": "FP_超冗余硬盘预失效_016",
+        "template": "Disk sn:2102313EDH10PA100245,dev: change state:<*> to state:<*>,be abnormal.",
+        "meaning": "另一块SN磁盘状态变更且标记为abnormal",
+        "category": "状态参数异常",
+        "description": "异常参数为磁盘 state。与015结构完全相同，变化后的实际 state 值被明确标记为 abnormal。"
+    },
+    {
+        "id": "FP_超冗余硬盘预失效_017",
+        "template": "Get device(<*>) link down status is <*> not expected, read try agin.",
+        "meaning": "获取设备link down状态不符合预期，需要重新读取",
+        "category": "参数不一致",
+        "description": "异常参数为 link down status。模板明确给出实际 status 值并直接说明“not expected”，即实际状态与系统期望状态不一致，满足高置信参数异常GT要求。"
+    },
+    {
+        "id": "FP_BBU温度过高_033",
+        "template": "TGT_CFG: ascII(<*>) invalid",
+        "meaning": "TGT配置模块ASCII字符校验失败",
+        "category": "参数无效",
+        "description": "异常参数为 ascII。模板直接出现“ascII(<*>) invalid”，将具体参数值与 invalid 明确绑定，属于高置信参数异常模板。"
+    },
+    {
+        "id": "FP_超冗余硬盘故障_017",
+        "template": "(Lwp:<*>)storagePool status abnormal, id(<*>) state(<*>).",
+        "meaning": "存储池状态异常，直接体现POOL故障",
+        "category": "状态参数异常",
+        "description": "异常参数为 storagePool state。模板明确指出“storagePool status abnormal”，同时打印实际 state(<*>)，因此可以将该状态参数值与 abnormal 语义直接绑定；id仅用于定位存储池对象。"
+    },
+    {
+        "id": "FP_所有前端卡故障_001",
+        "template": "DEVM FAILOVER:Lif(<*>) failover(reason:<*>) dest port(<*>) is invalid.",
+        "meaning": "LIF failover时目标端口无效，表明所有可能的目标端口均不可用",
+        "category": "参数无效",
+        "description": "异常参数为 dest port。模板直接出现“dest port(<*>) is invalid”，将具体目标端口值与 invalid 明确绑定；Lif 和 reason 仅为 failover 上下文。"
+    }
+]
