@@ -551,7 +551,7 @@ participant "规则判定" as Rule
 
 Log -> FP: 格式归一化
 FP -> Store: (module, event_fingerprint) 查库
-Store --> Check: 变体（取值位置 + 结构签名 + 规则组）\n或负缓存条目（取值缺失）
+Store --> Check: 变体（取值位置 + 结构签名 + 规则组）
 Check -> Check: 受保护词校验
 Check -> Check: 结构签名校验
 Check -> Rule: 按登记的取值位置取值
@@ -1301,213 +1301,9 @@ for event in anomaly_event:
 
 ---
 
-## 9. 接口规格定义
+## 9. 部署与运行
 
-### 9.1 日志解析接口
-
-```
-POST /lognet_parse
-Content-Type: application/json
-```
-
-**请求体**：
-
-```json
-{
-    "logInfo": [
-        {
-            "rawLog": "[2026-02-04 11:39:58][ERR][osd] receive data from 192.168.1.100 failed",
-            "module": "osd",
-            "source": "node-01",
-            "logId": "log_001"
-        }
-    ]
-}
-```
-
-**响应体**：
-
-```json
-{
-    "parsed_result": []
-}
-```
-
-**处理逻辑**：日志经 PIPLUP 解析后存入内存仓库 `LogTemplateRepository`，稳态学习期间自动更新白名单。接口返回空的 `parsed_result` 列表，解析结果留在内存仓库里，供后续异常检测使用。
-
-### 9.2 异常检测接口
-
-```
-POST /abnormal-check
-Content-Type: application/json
-```
-
-**请求体**：
-
-```json
-{
-    "startTime": 1738646400000,
-    "endTime": 1738648200000,
-    "windowSize": 180000,
-    "module": "osd",
-    "source": "node-01"
-}
-```
-
-**响应体**：
-
-```json
-{
-    "code": 200,
-    "message": "OK",
-    "data": [
-        {
-            "logId": "log_001",
-            "timestamp": 1738646400000,
-            "templateId": 1234567890,
-            "template": "receive data from <*> failed",
-            "anomalyType": ["semantic", "parametric"],
-            "summary": ["日志内容异常请检查", "日志参数异常,异常参数为 0x0B1C"]
-        }
-    ],
-    "event": [
-        {
-            "timestamp": 1738646400,
-            "template_id": [1234567890],
-            "log_id": ["log_001"],
-            "template": ["receive data from <*> failed"],
-            "summary": "2026-02-04 11:40:00-2026-02-04 11:50:00 语义异常检出1个 参数异常检出1个"
-        }
-    ]
-}
-```
-
-### 9.3 全量检测接口
-
-```
-POST /anomaly-check-all
-Content-Type: application/json
-```
-
-**请求体**：
-
-```json
-{
-    "startTime": 1738646400000,
-    "endTime": 1738648200000,
-    "windowSize": 180000
-}
-```
-
-### 9.4 参数检测管道接口
-
-当上层服务集成第 5 章的新参数检测能力时，应以 `DetectionPipeline.detect` 作为单条日志入口，而不再直接调用旧的 `ParamAnomalyDetector`。
-
-```python
-result = pipe.detect(
-    log_text,
-    ts=timestamp,
-    source="node-01",
-    module="xnet",
-    object="lwp-8",
-)
-```
-
-`module` 是元数据，`source × object` 用于隔离动态流状态。返回值至少包含 `status`、`score`、`strategies`、`evidence`、`dq_issues`、`strategy_details` 和 `param_predictions`。上层只将 `status=anomaly` 合并进业务异常；`data_quality` 和 `parse_variant` 应保留为独立状态。
-
-**响应体**：
-
-```json
-{
-    "code": 200,
-    "message": "OK",
-    "data": [
-        {
-            "module": "osd",
-            "source": "node-01",
-            "detectLine": [...],
-            "detectEvent": [...],
-            "reports": [...]  // 仅 DME 场景返回故障诊断报告，MAE 场景不返回此字段
-        }
-    ]
-}
-```
-
----
-
-## 10. 配置体系
-
-### 10.1 配置文件总览
-
-| 配置文件 | 位置 | 用途 |
-|---------|------|------|
-| `config.json` | `config/` | 服务端口、稳态学习开关、持久化间隔 |
-| `format_chaos.json` | `config/` | DME 60+模块日志格式定义 |
-| `format_mae.json` | `config/` | MAE 网络日志格式定义 |
-| `time_format.json` | `config/` | 60+模块时间戳格式映射 |
-| `white_list_a4.json` | `config/` | 稳态白名单（按模块组织 template_id 列表） |
-| `config_build_dme.json` | `src/.../configuration/` | 旧参数检测器的 DME 配置，仅供存量链路兼容 |
-| `config_build_mae.json` | `src/.../configuration/` | 旧参数检测器的 MAE 配置，仅供存量链路兼容 |
-| `rule_fallback.json` | `TIG-2026/dme_platform/config/` | 新参数检测的外部专家黑名单规则 |
-| `services.example.json` | `TIG-2026/dme_platform/config/` | GLiNER / LLM 服务配置示例，不包含密钥 |
-| 模型包 v5 | `TIG-2026/dme_platform/data/model_packages/` | 解析器、剖面、共享 VAE、校准阈值与完整性元数据 |
-| `abn_baseline_*.json` | `src/.../configurations/` | 语义异常基线向量 |
-| `finger_print_lib.json` | `src/.../configurations/` | DME 故障模式指纹库 |
-
-### 10.2 核心配置参数
-
-#### 10.2.1 服务配置（`config.json`）
-
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `host` | 127.0.0.1 | 服务监听地址 |
-| `port` | 5001 | 服务监听端口 |
-| `persistence_time_minutes` | 5 | 持久化间隔（分钟） |
-| `learning_switch` | off | 稳态学习开关 |
-| `learning_mode` | new | 学习模式（new/goon） |
-| `learning_time_hours` | 24 | 学习时长（小时） |
-| `persistence_duration` | 86400000 | 内存数据保留时长（ms，=24小时） |
-| `print_invalid_log` | false | 是否打印无效日志信息 |
-
-#### 10.2.2 PIPLUP 参数
-
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `br_thresh` | 5 | 分支路径合并阈值 |
-| `update_population` | 385 | 触发常量词发现的命中次数 |
-| `sim_thresh` | 'default' | 自适应阈值字典 |
-| `use_cache` | False | 是否启用 pickle 持久化 |
-| `use_template_cache` | True | 是否启用 CRC32 模板缓存 |
-
-#### 10.2.3 语义检测参数
-
-| 参数 | CPU 值 | NPU 值 | 说明 |
-|------|--------|--------|------|
-| `static_threshold` | 0.9 | 0.9 | 静态相似度阈值 |
-| `contextual_threshold_sim` | - | 0.99 | 上下文相似度阈值 |
-| `contextual_threshold_class` | - | 0.99 | 分类置信度阈值 |
-| `max_key_words_num` | 3 | 5 | 最大 n-gram 长度 |
-| `D_MODEL` | 64 | 768 | 模型隐藏维度 |
-| `N_LAYERS` | 1 | 12 | Transformer 层数 |
-
-#### 10.2.4 参数检测参数
-
-| 参数 | 作用 | 约束 |
-|------|------|------|
-| `use_ai_detection` | 规则未命中时是否进入 AI 管道 | 关闭时未覆盖日志返回 `data_quality` |
-| `enabled_strategies` | 选择 statistical / sequence / context / vae / temporal | temporal 显式开启；VAE 需依赖、训练和校准 |
-| `strict_identity` | 要求输入显式提供 source 与 object | 开启后缺失身份直接拒绝 |
-| `rule_fallback_path` | 指定外部专家规则库 | 规则内容摘要纳入实验与路由身份 |
-| `gliner_config` / `llm_config` | 配置可选语义服务 | 缺失或不可用时必须显式降级 |
-| 日志/参数决策阈值 | 将策略证据转成最终告警 | 由独立决策校准数据选择并冻结，不在单条推理中自更新 |
-
-`k_sigma` 仍属于第 7 章数量异常检测参数，不与新参数检测管道的决策阈值混用。
-
----
-
-## 11. 部署与运行
-
-### 11.1 部署架构
+### 9.1 部署架构
 
 ```plantuml
 @startuml Deployment
@@ -1544,7 +1340,7 @@ Service --> Persist: 定时落盘
 @enduml
 ```
 
-### 11.2 启动方式
+### 9.2 启动方式
 
 ```bash
 # 在线服务
@@ -1565,7 +1361,7 @@ python -m dme_platform.run
 python -m dme_platform.detection.evaluate_shared_model --profile smoke
 ```
 
-### 11.3 稳态学习生命周期
+### 9.3 稳态学习生命周期
 
 ```plantuml
 @startuml Learning_Lifecycle
@@ -1636,9 +1432,9 @@ repeat while (学习周期未结束?) is (是)
 
 ---
 
-## 12. 评估指标体系
+## 10. 评估指标体系
 
-### 12.1 模板解析评估指标
+### 10.1 模板解析评估指标
 
 | 指标 | 含义 | 计算方式 |
 |------|------|---------|
@@ -1647,7 +1443,7 @@ repeat while (学习周期未结束?) is (是)
 | **FGA** (F1 of Grouping) | 聚类 F1 | 簇划分的 P/R/F1 |
 | **FTA** (F1 of Template) | 模板 F1 | 模板集合的 P/R/F1 |
 
-### 12.2 异常检测评估指标
+### 10.2 异常检测评估指标
 
 | 指标 | 含义 | 计算方式 |
 |------|------|---------|
@@ -1673,9 +1469,7 @@ repeat while (学习周期未结束?) is (是)
 
 ---
 
-## 13. 端到端示例
-
-### 13.1 完整流程示例：DME 存储集群异常检测
+## 11. 端到端示例
 
 **场景**：DME 存储集群 osd 模块发生磁盘扇区读取错误
 
