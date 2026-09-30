@@ -485,14 +485,14 @@ stop
 
 ### 5.1 技术概述
 
-参数异常检测走冷热双路径。首次见到的日志结构走冷路径：计算语义相似度匹配对应的模板，GLiNER 通用抽取参数名与值，黑名单判定，成功后记录模板变体。同结构日志再来时走热路径：按缓存位置直接取值判定，全程零模型调用。
+参数异常检测走冷热双路径。首次见到的日志结构走冷路径：计算文本相似度匹配对应的模板，GLiNER 通用抽取参数名与值，黑名单判定，成功后记录模板变体。同结构日志再来时走热路径：按缓存位置直接取值判定，全程零模型调用。
 
 还有第三类结构：能匹配到模板、但目标参数取不到值（信息不足，例如改过参数名的易混淆日志）。这类结构无法登记变体，按事件指纹记入负缓存，同结构再现时直接判无法判定，不再重复调用模型。
 
 | 模块 | 对应实现 | 主要职责 |
 |------|----------|----------|
 | 模板解析 | `piplup/`、`piplup_parser.py`、`parser_bridge.py` | PIPLUP 模板聚类（即关键技术点一），per-module 持久状态 |
-| 语义匹配 | `lexical_matcher.py` | 两级路由（模板匹配 + 原文兜底）与受保护词校验 |
+| 文本相似度匹配 | `lexical_matcher.py` | 两级路由（模板匹配 + 原文兜底）与受保护词校验 |
 | 通用抽取 | `gliner_backend.py`、`gliner_adapter.py` | GLiNER2.5-multi 抽取参数名与数值 |
 | 规则判定 | `legacy_adapter.py` | 配对校验、正则兜底、黑名单判定 |
 | 位置映射 | `position_mapper.py` | 位置回放、结构签名生成与校验 |
@@ -510,7 +510,7 @@ title 冷路径：首见学习
 
 participant "输入日志" as Log
 participant "PIPLUP 解析" as Parse
-participant "语义匹配" as Match
+participant "文本相似度匹配" as Match
 participant "GLiNER 抽取" as GLiNER
 participant "取值校验" as Guard
 participant "规则判定" as Rule
