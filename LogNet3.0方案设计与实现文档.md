@@ -3,8 +3,8 @@
 | 项目 | 内容 |
 |------|------|
 | 文档名称 | LogNet3.0 方案设计与实现文档 |
-| 版本 | V6.0 |
-| 日期 | 2026-09-29 |
+| 版本 | V7.0 |
+| 日期 | 2026-10-08 |
 | 关键技术点 | 免人工配置异构日志解析、模板无关的参数异常检测、分词增强语义异常检测 |
 
 ---
@@ -19,10 +19,7 @@
 6. [关键技术点三：分词增强语义异常检测](#6-关键技术点三分词增强语义异常检测)
 7. [数量异常检测](#7-数量异常检测)
 8. [异常检测结果融合与故障诊断](#8-异常检测结果融合与故障诊断)
-9. [接口规格定义](#9-接口规格定义)
-10. [配置体系](#10-配置体系)
-11. [部署与运行](#11-部署与运行)
-12. [评估指标体系](#12-评估指标体系)
+9. [评估指标体系](#12-评估指标体系)
 13. [端到端示例](#13-端到端示例)
 
 ---
@@ -1291,138 +1288,7 @@ for event in anomaly_event:
 
 ---
 
-## 9. 部署与运行
-
-### 9.1 部署架构
-
-```plantuml
-@startuml Deployment
-!theme plain
-title LogNet3.0 部署架构
-
-node "服务器节点" as Server {
-    [Python 虚拟环境\n/opt/cn_log/env_v2] as VEnv
-    [LogNet3.0 Flask 服务\nmain.py] as Service
-    [模型文件\nlognet-mini/\nlognet-big/] as Models
-    [配置文件\nconfig/] as Configs
-    [持久化数据\npersistence/] as Persist
-}
-
-node "DME/MAE 日志采集" as LogSystem {
-    [日志采集 Agent] as Agent
-}
-
-node "运维/诊断平台" as Platform {
-    [异常展示界面] as UI
-    [诊断 Agent / LLM] as DiagAgent
-}
-
-Agent --> Service: POST /lognet_parse\n(实时日志流)
-Service --> Agent: 解析结果
-Platform --> Service: POST /abnormal-check\n(定时检测请求)
-Service --> Platform: 异常事件 + 诊断报告
-
-Service --> VEnv: 运行依赖
-Service --> Models: 加载模型
-Service --> Configs: 读取配置
-Service --> Persist: 定时落盘
-
-@enduml
-```
-
-### 9.2 启动方式
-
-```bash
-# 在线服务
-bin/start.sh
-# 或直接运行
-python main.py
-
-# 离线检测（DME）
-python src/data_process/offline_data_plugin/offline_detection_tool_with_piplup.py
-
-# 离线检测（MAE）
-python src/data_process/offline_data_plugin/offline_mae_detection_tool.py
-
-# 参数异常检测验证平台（在 TIG-2026 仓库根目录）
-python -m dme_platform.run
-
-# 训练/校准/固定测试的共享模型评估
-python -m dme_platform.detection.evaluate_shared_model --profile smoke
-```
-
-### 9.3 稳态学习生命周期
-
-```plantuml
-@startuml Learning_Lifecycle
-!theme plain
-title 稳态学习生命周期
-
-start
-
-:服务启动\n
-LogContext.__init__();
-
-if (learning_switch == "on"?) then (是)
-
-    if (learning_time.json 存在?) then (是)
-
-        :读取学习开始时间\n
-        learning_mode = "goon"\n
-        加载已有白名单;
-
-    else (否)
-
-        :记录学习开始时间\n
-        learning_mode = "new"\n
-        清空白名单;
-
-    endif
-
-else (否)
-
-    :加载已有白名单\n
-    不进入学习模式;
-
-    stop
-
-endif
-
-
-:进入稳态学习阶段\n
-所有解析到的模板自动加入白名单;
-
-
-repeat
-
-    :定时检查学习是否结束\n
-    try_change_learn_status();
-
-    if (当前时间 - 学习开始时间 > learning_time_hours?) then (是)
-
-        :关闭 learning_switch\n
-        写入 config.json\n
-        删除 learning_time.json;
-
-        :学习结束;
-
-        stop
-
-    else (否)
-
-        :继续学习\n
-        定时持久化白名单;
-
-    endif
-
-repeat while (学习周期未结束?) is (是)
-
-@enduml
-```
-
----
-
-## 10. 评估指标体系
+## 9. 评估指标体系
 
 ### 10.1 模板解析评估指标
 
@@ -1459,7 +1325,7 @@ repeat while (学习周期未结束?) is (是)
 
 ---
 
-## 11. 端到端示例
+## 10. 端到端示例
 
 **场景**：DME 存储集群 osd 模块发生磁盘扇区读取错误
 
