@@ -14,13 +14,13 @@ Scan kvm: traverse time out(54 ms), storeID(70032) num(269).
 PROTOCOL:MOD_BASE:IDNAME: Nfs4CreateUpdateUidNamehash failed:-1
 ``
 
-### PROTOCOL:MOD_BASE:IDNAME: Nfs4IdMapUidToUnameInner failed for (<\*>)
+### PROTOCOL:MOD_BASE:IDNAME: Nfs4IdMapUidToUnameInner failed for uId (<\*>)
 
 ``
 PROTOCOL:MOD_BASE:IDNAME: Nfs4IdMapUidToUnameInner failed for uId 3004
 ``
 
-### PROTOCOL:MOD_BASE:IDNAME: Nfs4IdMapGidToGnameInner failed for (<\*>)
+### PROTOCOL:MOD_BASE:IDNAME: Nfs4IdMapGidToGnameInner failed for gId (<\*>)
 
 ``
 PROTOCOL:MOD_BASE:IDNAME: Nfs4IdMapGidToGnameInner failed for gId 2000
