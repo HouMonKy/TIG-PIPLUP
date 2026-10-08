@@ -600,6 +600,60 @@ stop
 - 仅用 MinHash（阈值 0.75）：路由 5,203 条，归属正确率 0.9929
 - 两步串联：路由 5,437 条，归属正确率 0.9942（MinHash 臂贡献为 0，但保留它作为将来模板库扩大时的扩展臂）
 
+**用同一个规则组的三个场景走一遍**。规则组 `ccdb|1` 的模板词集为 `{sqlite, step, sql, fail, return, code}`：
+
+场景一：**多字段日志，包含度赢**。
+
+```text
+日志原文：Sqlite step sql fail(return code=10, ctx=10000, prio=205
+分词：    {sqlite, step, sql, fail, return, code, ctx, prio}
+
+第一步 包含度：|{sqlite,step,sql,fail,return,code} ∩ 原文| / 6 = 6/6 = 1.00 ≥ 0.80 ✓
+  → 归属 ccdb|1，第一步就结束
+
+MinHash 如果也算：{sqlite,step,sql,fail,return,code} vs
+  {sqlite,step,sql,fail,return,code,ctx,prio} → Jaccard = 6/8 = 0.75
+  （比包含度低了 0.25——多出来的 ctx、prio 把分母撑大了）
+```
+
+原文比模板多了两个字段，包含度不受影响（模板的 6 个词全在），MinHash 被稀释。包含度先行，多字段场景在第一步就通过，不会误拒。
+
+场景二：**删词变体，MinHash 赢**。
+
+```text
+日志原文：Sqlite step fail(return code=10, ctx=30198
+分词：    {sqlite, step, fail, return, code, ctx}
+
+第一步 包含度：模板 6 个词中原文有 5 个（缺 sql）
+  → 5/6 = 0.833 ≥ 0.80 ✓ 通过，归属 ccdb|1
+
+假设模板更长（如 5 个词的模板缺了 1 个）：
+  4/5 = 0.80 ✓ 仍通过
+假设缺了 2 个：3/5 = 0.60 < 0.80 ✗ 被拒
+  → 此时进入第二步
+
+第二步 MinHash：解析模板 vs 规则模板的 Jaccard
+  解析模板已经 PIPLUP 泛化并簇，结构上与规则模板相近
+  → Jaccard ≥ 0.75 ✓ 通过
+```
+
+包含度允许缺 1 个词（0.80 阈值刚好覆盖），缺更多时 MinHash 兜底。
+
+场景三：**不在辖日志，两步都拒**。
+
+```text
+日志原文：Osd heartbeat ok, uptime=86400s, peers=3
+分词：    {osd, heartbeat, ok, uptime, peers}
+
+第一步 包含度：模板 {sqlite,step,sql,fail,return,code} 的词
+  在原文中一个都没有 → 0/6 = 0.00 < 0.80 ✗
+第二步 MinHash：解析模板与规则模板完全不同
+  → Jaccard ≈ 0.00 < 0.75 ✗
+→ 无法路由，判 unresolved
+```
+
+两步都不通过，系统如实返回无法判定。
+
 #### 5.3.1 格式规范化
 
 所有匹配在同一坐标系上进行：casefold 统一大小写、值形态 token（数字、十六进制）剥离、纯分隔标点丢弃。
