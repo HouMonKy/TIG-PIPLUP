@@ -5,7 +5,8 @@
         "sample": "DEVM ETH:EAM_ETH_CFG: Roce port(0x1000000020001) change snsd(0) param invalid. bitmap",
         "meaning": "DEVM以太网配置模块报告RoCE端口修改SNSD参数无效",
         "description": "异常参数为 snsd。sample 中取值为 0。",
-        "value_range": "对，但是更建议结合语义异常"
+        "value_range": "对，但是更建议结合语义异常",
+        "state": "待确认：这个模板是否语义异常更易检出"
     },
     {
         "id": "FP_内存泄露_013; FP_内存泄露-2_016",
@@ -13,7 +14,8 @@
         "sample": "CLS_STATUS: Controllers (0) free memory is (9223), alarm type(2)(1: fault, 2:resume).",
         "meaning": "控制器空闲内存告警，内存水位达到故障阈值",
         "description": "异常参数为 free memory。sample 中取值为 9223。",
-        "value_range": "取type 值 2比较合适"
+        "value_range": "取type 值 2比较合适",
+        "state": "待确认：异常参数 type = 2，是否有其他异常值"
     },
     {
         "id": "FP_进程句柄耗尽_011",
@@ -21,7 +23,8 @@
         "sample": "CLS_FENCING: Node xnet sche timeout(1) block timeout(0) abnormal.",
         "meaning": "集群分裂防护检测到节点xnet调度超时和阻塞超时异常",
         "description": "异常参数为 sche timeout 和 block timeout。sample 中取值为 1 和 0。",
-        "value_range": "对"
+        "value_range": "对",
+        "state": "待确认：异常参数 sche timeout = 1 & block timeout = 0，是否有其他异常值"
     },
     {
         "id": "FP_BBU_TP_007",
@@ -29,7 +32,8 @@
         "sample": "CACHE_CTRL: flow(227), phase(30) illegal.",
         "meaning": "缓存控制流阶段非法，表明缓存模式切换后原有流程状态不再合法",
         "description": "异常参数为 phase。sample 中取值为 30。",
-        "value_range": "对"
+        "value_range": "对",
+        "state": "待确认：异常参数 phase = 30，是否有其他异常值"
     },
     {
         "id": "FP_BBU_TP_027",
@@ -37,7 +41,8 @@
         "sample": "RSF_FLOW: flow(227), phase(50) illegal.",
         "meaning": "RSF流程阶段非法，资源管理流程状态异常",
         "description": "异常参数为 phase。sample 中取值为 50。",
-        "value_range": "对"
+        "value_range": "对",
+        "state": "待确认：异常参数 phase = 30，是否有其他异常值"
     },
     {
         "id": "FP_BBU_TP_028",
@@ -45,7 +50,8 @@
         "sample": "VAF:(INST::ffffffffffffffff)VAF_FLOW_CTRL: flowId(226), phase(30) illegal.",
         "meaning": "VAF流程控制阶段非法，虚拟化加速功能流程状态异常",
         "description": "异常参数为 phase。sample 中取值为 30。",
-        "value_range": "对"
+        "value_range": "对",
+        "state": "待确认：异常参数 phase = 30，是否有其他异常值"
     },
     {
         "id": "FP_内存泄露_038; FP_控制器复位中断误报_015",
@@ -53,7 +59,8 @@
         "sample": "TGT_NOF_LINK: The hostId(4294967295) is invalid for INI(kvmstorage:e4:35:c8:7e:8c:04-204).",
         "meaning": "主机ID无效，链路检查异常",
         "description": "异常参数为 hostId。sample 中取值为 4294967295。",
-        "value_range": "id是具体的实例值，这里取值没有意义。应该更适合语义异常"
+        "value_range": "id是具体的实例值，这里取值没有意义。应该更适合语义异常"‘
+        "state": "已剔除"
     },
     {
         "id": "FP_进程句柄耗尽_032; FP_进程句柄耗尽_035",
@@ -61,7 +68,8 @@
         "sample": "PROTOCOL:MOD_FS-SHIM:{src/gfp/fsa/gfp_fs_shim_xattr_ops.c:306}: gfp_fs_shim_get_sec_info() {Assert((Errno == 0)) FAILED}: {Error: 0x00001F5C}: SHM_STATUS_INVALID_WORKCTL",
         "meaning": "FS-SHIM协议层获取安全信息断言失败，共享内存工作控制状态无效",
         "description": "异常参数为 errno 和 error。sample 中取值为 0 和 0x00001F5C。",
-        "value_range": "取值是：0x00001F5C，不过这块你看看SHM_STATUS_INVALID_WORKCTL 这个其实也通过语义可以看出来，值无效"
+        "value_range": "取值是：0x00001F5C，不过这块你看看SHM_STATUS_INVALID_WORKCTL 这个其实也通过语义可以看出来，值无效",
+        "state": "待确认：这个模板是否语义异常更易检出"
     },
     {
         "id": "FP_控制器冷复位_012",
@@ -69,7 +77,8 @@
         "sample": "Panther: Client epoch error, local=830464408950309088, rcv=829631844901939048.",
         "meaning": "Panther客户端纪元错误，本地纪元与接收纪元不一致",
         "description": "异常参数为 local 和 rcv。sample 中取值为 830464408950309088 和 829631844901939048。",
-        "value_range": "感觉不适合参数异常，这里异常识别主要是判定 rcv和 local的值不一致"
+        "value_range": "感觉不适合参数异常，这里异常识别主要是判定 rcv和 local的值不一致",
+        "state": "已剔除"
     },
     {
         "id": "FP_控制器冷复位_026",
@@ -77,7 +86,8 @@
         "sample": "PROTOCOL:MOD_FS-SHIM:(src/gfp/fsa/gfp_fs_shim_basic_ops.c:500): gfp_fs_shim_query_attr(), Error: 0x00000000 (SHM_STATUS_OK), OpStatus: 0x00001F5C (SHM_STATUS_INVALID_WORKCTL)",
         "meaning": "共享内存状态无效（SHM_STATUS_INVALID_WORKCTL）",
         "description": "异常参数为 error 和 OpStatus。sample 中取值为 0x00000000 和 0x00001F5C。",
-        "value_range": "取值是：0x00001F5C，不过这块你看看SHM_STATUS_INVALID_WORKCTL 这个其实也通过语义可以看出来，值无效，"
+        "value_range": "取值是：0x00001F5C，不过这块你看看SHM_STATUS_INVALID_WORKCTL 这个其实也通过语义可以看出来，值无效，",
+        "state": "待确认：这个模板是否语义异常更易检出"
     },
     {
         "id": "FP_控制器冷复位_028",
@@ -85,7 +95,8 @@
         "sample": "invalid master id: 65535, local id : 1.",
         "meaning": "无效的主控ID",
         "description": "异常参数为 master id。sample 中取值为 65535。",
-        "value_range": "这种感觉不是参数异常，这两个id都没有实际含义，这种感觉更适合语义异常"
+        "value_range": "这种感觉不是参数异常，这两个id都没有实际含义，这种感觉更适合语义异常",
+        "state": "已剔除"
     },
     {
         "id": "FP_单硬盘闪断+CPU核隔离_044",
@@ -93,7 +104,8 @@
         "sample": "PROTOCOL:MOD_FS-SHIM:{src/gfp/fsa/gfp_xface_fs_fast.c:3668}: gfpFsSvrProcessOpFast() FAILED: {Error: 0x00001F5C (SHM_STATUS_INVALID_WORKCTL)",
         "meaning": "文件系统/协议层操作失败",
         "description": "异常参数为 error。sample 中取值为 0x00001F5C。",
-        "value_range": "√"
+        "value_range": "√",
+        "state": "待确认：异常参数 error = 0x00001F5C，是否有其他异常值"
     },
     {
         "id": "FP_冗余内硬盘预失效+CPU核隔离_008; FP_前端所有端口故障_003; FP_所有前端卡故障_001",
@@ -101,7 +113,8 @@
         "sample": "DEVM FAILOVER:Lif(0x40090000ff000003) failover(reason:0) dest port(0xffffffffffffffff) is invalid.",
         "meaning": "LIF failover目标端口无效，硬盘预失效/CPU隔离导致LIF切换失败",
         "description": "异常参数为 reason 和 dest port。sample 中取值为 0 和 0xffffffffffffffff。",
-        "value_range": "√"
+        "value_range": "√",
+        "state": "待确认：异常参数 reason = 0 & dest port = 0xffffffffffffffff，是否有其他异常值"
     },
     {
         "id": "FP_冗余内硬盘预失效+CPU核隔离_040",
@@ -109,7 +122,8 @@
         "sample": "EAM_CTRL: nidNum error(nidNum:0,file:FlvnAddLifPortRpc,line:520).",
         "meaning": "节点ID数量错误，发生在LIF端口添加RPC中",
         "description": "异常参数为 nidNum。sample 中取值为 0。",
-        "value_range": "这里应该没有具体的参数，感觉不是一个合适的参数异常检测"
+        "value_range": "这里应该没有具体的参数，感觉不是一个合适的参数异常检测",
+        "state": "已剔除"
     },
     {
         "id": "FP_硬盘单链路_006; FP_超冗余硬盘预失效_015; FP_超冗余硬盘预失效_016",
@@ -117,7 +131,8 @@
         "sample": "Disk sn:2102313EDH10PA100245,dev: change state:0 to state:2,be abnormal.",
         "meaning": "指定序列号的硬盘状态变更为abnormal。该日志直接报告硬盘从正常状态转变为异常状态。",
         "description": "异常参数为磁盘 state。sample 中取值为 0。",
-        "value_range": "这里异常的状态码是2，0应该是正常的状态码"
+        "value_range": "这里异常的状态码是2，0应该是正常的状态码",
+        "state": "已确认：异常参数 state = 2"
     },
     {
         "id": "FP_硬盘单链路_015; FP_硬盘慢盘_017",
@@ -125,7 +140,8 @@
         "sample": "VBC: blk rq fail, bd 50331655 is invalid, bd state 3.",
         "meaning": "VBC层块请求失败，原因是BD（Block Descriptor）无效。BD无效表示块描述符状态异常，通常是因为底层设备不可达或状态不一致。",
         "description": "异常参数为 bd 和 bd state。sample 中取值为 50331655 和 3。",
-        "value_range": "部分对，50331655是一个id，不是一个具体值，state值取3"
+        "value_range": "部分对，50331655是一个id，不是一个具体值，state值取3"，
+        "state": "已确认：异常参数 state = 3"
     },
     {
         "id": "FP_超冗余硬盘预失效_017",
@@ -133,7 +149,8 @@
         "sample": "Get device(40:3.0) link down status is 0, not expected, read try agin.",
         "meaning": "获取设备link down状态不符合预期，需要重新读取",
         "description": "异常参数为 link down status。sample 中取值为 0。",
-        "value_range": "√ 状态值，取0没问题"
+        "value_range": "√ 状态值，取0没问题"，
+        "state": "已确认：异常参数 link down status = 0"
     },
     {
         "id": "FP_BBU温度过高_033",
@@ -141,7 +158,8 @@
         "sample": "TGT_CFG: ascII(0) invalid",
         "meaning": "TGT配置模块ASCII字符校验失败",
         "description": "异常参数为 ascII。sample 中取值为 0。",
-        "value_range": "这种感觉不是参数异常，感觉更适合语义异常"
+        "value_range": "这种感觉不是参数异常，感觉更适合语义异常"，
+        "state": "已剔除"
     },
     {
         "id": "FP_超冗余硬盘故障_017",
@@ -149,6 +167,7 @@
         "sample": "(Lwp:4c70)storagePool status abnormal, id(0 0) state(1 0 1 0).",
         "meaning": "存储池状态异常，直接体现POOL故障",
         "description": "异常参数为 state。sample 中取值为 1 0 1 0。",
-        "value_range": "√ 状态值，取值为 1 0 1 0 没问题"
+        "value_range": "√ 状态值，取值为 1 0 1 0 没问题",
+        "state": "待确认：异常参数 state = 1 0 1 0，是否有其他异常值"
     }
 ]
