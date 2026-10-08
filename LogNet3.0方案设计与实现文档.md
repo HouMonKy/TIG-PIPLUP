@@ -935,7 +935,7 @@ Sqlite step sql fail(return code=10, ctx=30198
 
 5. 位置映射成功，按事件指纹登记变体（位置 = code 值的 token 下标，签名 = token 总数 + 锚点）
 
-**同结构日志再来（热路径）**：
+**同结构日志再来**：
 
 ```text
 Sqlite step sql fail(return code=21, ctx=30201
