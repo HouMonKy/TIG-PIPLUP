@@ -556,9 +556,9 @@ stop
 
 ```json
 {
-  "module": "eds",
-  "raw_text": "Get ns async failed, \"s:[13,\"ret(3).",
-  "template": "Get ns async failed, \"s:[<*>,\"ret(<*>)."
+  "module": "ccdb",
+  "raw_text": "Sqlite step sql fail(return code=10, ctx=30198",
+  "template": "Sqlite step sql fail(return code=<*>, ctx=<*>"
 }
 ```
 
@@ -567,14 +567,12 @@ stop
 ```json
 {
   "accepted": true,
-  "group_id": "eds|10304",
+  "group_id": "ccdb|1",
   "score": 1.0,
   "evidence": {
-    "representation": "get ns async failed s ret",
+    "representation": "raw: sqlite step sql fail return code ctx",
     "candidates": [
-      {"group_id": "eds|10304", "score": 1.0},
-      {"group_id": "eds|10305", "score": 0.833},
-      {"group_id": "eds|10306", "score": 0.714}
+      {"group_id": "ccdb|1", "score": 1.0}
     ]
   }
 }
@@ -596,11 +594,11 @@ stop
 #### 5.3.1 格式规范化
 
 ```text
-模板  "Get ns async failed ret ( <NUM> )"   →   {get, ns, async, failed, ret}
-日志  "Get ns async failed ret(3)."          →   {get, ns, async, failed, ret}
+模板  "Sqlite step sql fail(return code=<*>, ctx=<*>"   →   {sqlite, step, sql, fail, return, code, ctx}
+日志  "Sqlite step sql fail(return code=10, ctx=30198"   →   {sqlite, step, sql, fail, return, code, ctx}
 ```
 
-值剥离后 `ret(3)` 与 `ret(999)` 的匹配表示完全一致，路由只看结构不看值。
+值剥离后 `code=10` 与 `code=21` 的匹配表示完全一致，路由只看结构不看值。
 
 #### 5.3.2 第一步：原文包含度匹配
 
@@ -626,7 +624,7 @@ $$
 
 ```json
 {
-  "text": "Get ns async failed, \"s:[13,\"ret(3).",
+  "text": "Sqlite step sql fail(return code=10, ctx=30198",
   "entity_types": ["parameter", "number"],
   "threshold": 0.5,
   "include_confidence": true,
@@ -640,50 +638,49 @@ $$
 {
   "entities": {
     "parameter": [
-      {"text": "s",  "start": 22, "end": 23, "confidence": 0.63},
-      {"text": "ns", "start": 4,  "end": 6,  "confidence": 0.55}
+      {"text": "code", "start": 28, "end": 32, "confidence": 0.97},
+      {"text": "ctx",  "start": 37, "end": 40, "confidence": 0.97}
     ],
     "number": [
-      {"text": "3",  "start": 33, "end": 34, "confidence": 0.99},
-      {"text": "13", "start": 25, "end": 27, "confidence": 0.98}
+      {"text": "30198", "start": 41, "end": 46, "confidence": 0.99},
+      {"text": "10",    "start": 33, "end": 35, "confidence": 0.98}
     ]
   }
 }
 ```
 
-模型只标注"哪段文本是参数名、哪段是数值"，不建立两者的配对关系。本例有两处瑕疵：漏抽了 `ret`，把命名空间缩写 `ns` 误标为参数名。
+模型只标注"哪段文本是参数名、哪段是数值"，不建立两者的配对关系。
 
 **后处理输出**（程序配对后的参数表）：
 
 ```json
 {
-  "s":  {"value_raw": "3",  "param_span": [22, 23], "value_span": [33, 34], "confidence": 0.81},
-  "ns": {"value_raw": "13", "param_span": [4, 6],   "value_span": [25, 27], "confidence": 0.77}
+  "code": {"value_raw": "10",    "param_span": [28, 32], "value_span": [33, 35], "confidence": 0.98},
+  "ctx":  {"value_raw": "30198", "param_span": [37, 40], "value_span": [41, 46], "confidence": 0.98}
 }
 ```
 
-配对由程序完成：值驱动倒序贪心，每个值向前找最近的未用参数名。本例配出 `s→3`（错配，3 是 `ret` 的值），这类错配由 5.4.2 的配对校验拦下，转 5.4.3 的正则兜底取到 `s=13`，命中黑名单判 anomaly。
+配对由程序完成：值驱动倒序贪心，每个值向前找最近的未用参数名（`30198` 找到 `ctx`，`10` 找到 `code`）。本例两对都正确，配对结果过 5.4.2 的两道校验后进入黑名单判定：ccdb|1 的 `code` 黑名单为 ["10"]，命中，判 anomaly。
 
 **具体职责**：用 GLiNER 从原文抽取参数名与值，经过取值校验后交给规则判定。取值校验不通过的转通用正则兜底。
 
 #### 5.4.1 GLiNER 标签与抽取效果
 
-GLiNER 的标签为 `("parameter", "number")`。同一条日志在不同标签组合下的抽取效果（四组对照实验结果）：
+GLiNER 的标签为 `("parameter", "number")`。同一条日志换不同标签组合的抽取效果（gliner2.5-multi-v1 实测）：
 
 ```text
-输入：Get ns async failed, "s:[13,"ret(3).
-     金标：s → 13（黑名单值），ret → 3
+输入：Sqlite step sql fail(return code=10, ctx=30198
+     金标：code → 10（黑名单值），ctx → 30198
 
-(parameter, value)   →  ret→3, s→13      两个参数都对，但 value 标签宽松
-                                          （会抽到 "failed"、"ret" 等词面值）
-(name, number)      →  ns→3              把 namespace 缩写当参数名
-(parameter, number) →  ret→3, s→13      两个参数都对，number 约束只抽数字
-(name, value)       →  ns→3              同 name 盲区
+(parameter, value)   →  code→10, ctx→30198   两对都对
+(name, number)      →  code→10, ctx→30198   两对也对，但参数名置信度低（0.65 / 0.59）
+(parameter, number) →  code→10, ctx→30198   两对都对，参数名置信度 0.97
+(name, value)       →  参数名一个没抽到      值抽到了，名侧全空，配不出对
 ```
 
-规律：参数名一侧用 `parameter`（语义明确），值一侧用 `number`（数值约束天然排除词面值，挡住误配对）。
+规律：参数名一侧用 `parameter`——本例 (name, value) 名侧全空、(name, number) 置信度明显更低；全量对照（1,100 条）中两个 name 臂召回仅 0.18 / 0.27。值一侧用 `number`——数值约束天然排除词面值，全量对照中 (parameter, value) 的 12 条误报全部来自 value 标签把词面值配给了参数名（本例日志没有易混词面，两臂表现相同）。
 
-**GLiNER 能取到什么值**：`number` 标签下 GLiNER 识别纯数字和十六进制（`13`、`-99999`、`0xaaaad802e008`），并给出参数名和值各自的原文区间。但两种情况取不到：一是目标参数不在标签定义的范围内（如 `format flag from (21) --> (12)` 中 `format flag` 的值是一个"运算结果"而非直接数值）；二是原文中参数名与值之间隔了其他 token，GLiNER 可能配错对（如把 `s` 配到 `ret` 的值）。
+**GLiNER 能取到什么值**：`number` 标签下 GLiNER 识别纯数字和十六进制（`13`、`-99999`、`0xaaaad802e008`），并给出参数名和值各自的原文区间。但两种情况取不到：一是目标参数不在标签定义的范围内（如 `format flag from (21) --> (12)` 中 `format flag` 的值是一个"运算结果"而非直接数值）；二是原文中参数名与值之间隔了其他 token 时配对可能出错（如 5.4.4 例 B 中 `code` 被配到 `28`）。
 
 #### 5.4.2 配对校验
 
@@ -739,10 +736,10 @@ GLiNER 取值失败（参数缺失、配对校验拒绝）时，用通用形态�
 
 路由：原文包含度 1.0 → 规则组 ccdb|1（参数名 code，黑名单 ["10"]）
 
-GLiNER 输出：
+配对结果：
   parameters = {
     "code": {"value_raw": "10",   "value_span": [33, 35]},
-    "ctx":  {"value_raw": "30198", "value_span": [45, 50]}
+    "ctx":  {"value_raw": "30198", "value_span": [41, 46]}
   }
 
 按规则参数名取值：parameters.get("code") → "10"
@@ -761,17 +758,17 @@ GLiNER 输出：
 
 路由：同上 → 规则组 ccdb|1（参数名 code，黑名单 ["10"]）
 
-GLiNER 输出（出错了，把 code 配到了 28）：
+配对结果（出错了，把 code 配到了 28）：
   parameters = {
-    "code": {"value_raw": "28", "value_span": [50, 52]},
-    "ctx":  {"value_raw": "30198", "value_span": [65, 70]}
+    "code": {"value_raw": "28", "value_span": [46, 48]},
+    "ctx":  {"value_raw": "30198", "value_span": [54, 59]}
   }
 
 按规则参数名取值：parameters.get("code") → "28"
 校验：code 在 28 前方？原文 token 是
   [..., code, =, 10, extra_26, :, 28, ,, ctx, ...]
-  code 在位置 8，28 在位置 14——中间隔了 extra_26 和 : 共 4 个非分隔符 token
-  → 超出 2 个的容忍范围 → PAIRING_MISMATCH，value = None
+  code 在位置 6，28 在位置 11——中间隔了 10、extra_26 两个非分隔符 token（= 和 : 跳过不计）
+  → code 是回看的第 3 个非分隔符 token，超出 2 个的容忍范围 → PAIRING_MISMATCH，value = None
 
 兜底触发：
   regex_fallback_span(raw_text, "code")
@@ -785,26 +782,26 @@ GLiNER 输出（出错了，把 code 配到了 28）：
 
 ------
 
-**例 C：GLiNER 整体没抽到，需要兜底**
+**例 C：GLiNER 没抽到目标参数名，需要兜底**
 
 ```
-输入：Get ns async failed, is_mgr_last:1 ret(3).
+输入：Activating of Patch --USER_HP0101.pat failed, error code: 0x202727d1
 
-路由：原文包含度 → 规则组 eds|10306（参数名 ret，黑名单 ["3"]）
+路由：原文包含度 → 规则组 ml|3（参数名 error code，黑名单 ["0x202727d1"]）
 
-GLiNER 输出（漏抽了 ret）：
-  parameters = {"is_mgr_last": {"value_raw": "1", ...}}   # 没有 ret
+配对结果（漏抽了 error code，值配给了别的名字）：
+  parameters = {"Patch --USER_HP0101": {"value_raw": "0x202727d1", ...}}   # 没有 error code
 
-按规则参数名取值：parameters.get("ret") → None → 触发兜底
+按规则参数名取值：parameters.get("error code") → None → 触发兜底
 
 兜底：
-  regex_fallback_span(raw_text, "ret")
-  → 形态 3 匹配 \b ret \s* \( \s* ([^\s,)]+) \s* \)
-  → 在原文中找到 "ret(3)"，捕获组 1 = "3"
-  → 值形态校验：3 是数字 ✓
-  → 返回 ("3", (44, 45))
+  regex_fallback_span(raw_text, "error code")
+  → 形态 4 匹配 \b error\ code \s*:\s* ([^\s,)\]]+)
+  → 在原文中找到 "error code: 0x202727d1"，捕获组 1 = "0x202727d1"
+  → 值形态校验：0x202727d1 是十六进制 ✓
+  → 返回 ("0x202727d1", (58, 68))
 
-判定：3 ∈ 黑名单 ["3"] → anomaly ✓
+判定：0x202727d1 ∈ 黑名单 ["0x202727d1"] → anomaly ✓
 ```
 
 ------
@@ -815,34 +812,35 @@ GLiNER 输出（漏抽了 ret）：
 
 ```json
 {
-  "group_id": "eds|10304",
-  "module": "eds",
-  "template_text": "Get ns async failed, \"s:[13,\"ret(3).",
-  "event_fingerprint": "e3b0c44298fc1c14",
+  "group_id": "ccdb|1",
+  "module": "ccdb",
+  "template_text": "Sqlite step sql fail(return code=<*>, ctx=<*>",
+  "event_fingerprint": "128906f162dbf9c1",
   "param_positions": {
-    "eds|10304|7|s": 7
+    "ccdb|1|8|code": 8
   },
   "structural_signature": {
-    "n_tokens": 13,
+    "n_tokens": 12,
     "targets": {
-      "eds|10304|7|s": {
-        "position": 7,
-        "left_anchor": {"index": 3, "token": "failed"}
+      "ccdb|1|8|code": {
+        "position": 8,
+        "left_anchor": {"index": 7, "token": "="},
+        "right_anchor": {"index": 9, "token": "ctx"}
       }
     }
   }
 }
 ```
 
-（`param_positions` 的键是规则 ID（模块|模板号|原配置位置|参数名），值是该参数值在原文分词后的 token 下标——上文 s 的值 13 在第 7 个 token。）
+（`param_positions` 的键是规则 ID（模块|模板号|原配置位置|参数名），值是该参数值在原文分词后的 token 下标——上文 code 的值 10 在第 8 个 token。）
 
 **模块输出示例**（SQLite 中一行可执行变体）：
 
 ```json
 {
-  "variant_id": "429183ba24e84d54",
-  "event_fingerprint": "e3b0c44298fc1c14",
-  "group_id": "eds|10304",
+  "variant_id": "1ac47c29810143e0",
+  "event_fingerprint": "128906f162dbf9c1",
+  "group_id": "ccdb|1",
   "state": "executable"
 }
 ```
@@ -892,11 +890,12 @@ Sqlite step sql fail(return code=10, ctx=30198
 签名 = {
   token 总数: 12,            # 逗号不算token
   code 的值: 8 号 token,     # 从0开始算
-  左锚点:    fail（3 号）
+  左锚点:    =（7 号）
+  右锚点:    ctx（9 号）
 }
 ```
 
-拿到新日志，先比形状：token 总数一样吗？fail 还在 3 号吗？都对得上，说明结构和登记时一致，8 号 token 取出来的就是 code 的值。对不上——比如中间多了几个词、总数变了——8 号指的可能已是别的词，这条缓存不可信，作废，重新学习。
+拿到新日志，先比形状：token 总数一样吗？`=` 还在 7 号、`ctx` 还在 9 号吗？都对得上，说明结构和登记时一致，8 号 token 取出来的就是 code 的值。对不上——比如中间多了几个词、总数变了——8 号指的可能已是别的词，这条缓存不可信，作废，重新学习。
 
 #### 5.5.3 负缓存：取不到值的结构
 
