@@ -59,7 +59,7 @@
         "sample": "TGT_NOF_LINK: The hostId(4294967295) is invalid for INI(kvmstorage:e4:35:c8:7e:8c:04-204).",
         "meaning": "主机ID无效，链路检查异常",
         "description": "异常参数为 hostId。sample 中取值为 4294967295。",
-        "value_range": "id是具体的实例值，这里取值没有意义。应该更适合语义异常"‘
+        "value_range": "id是具体的实例值，这里取值没有意义。应该更适合语义异常",
         "state": "已剔除"
     },
     {
@@ -140,7 +140,7 @@
         "sample": "VBC: blk rq fail, bd 50331655 is invalid, bd state 3.",
         "meaning": "VBC层块请求失败，原因是BD（Block Descriptor）无效。BD无效表示块描述符状态异常，通常是因为底层设备不可达或状态不一致。",
         "description": "异常参数为 bd 和 bd state。sample 中取值为 50331655 和 3。",
-        "value_range": "部分对，50331655是一个id，不是一个具体值，state值取3"，
+        "value_range": "部分对，50331655是一个id，不是一个具体值，state值取3",
         "state": "已确认：异常参数 state = 3"
     },
     {
@@ -149,7 +149,7 @@
         "sample": "Get device(40:3.0) link down status is 0, not expected, read try agin.",
         "meaning": "获取设备link down状态不符合预期，需要重新读取",
         "description": "异常参数为 link down status。sample 中取值为 0。",
-        "value_range": "√ 状态值，取0没问题"，
+        "value_range": "√ 状态值，取0没问题",
         "state": "已确认：异常参数 link down status = 0"
     },
     {
@@ -158,7 +158,7 @@
         "sample": "TGT_CFG: ascII(0) invalid",
         "meaning": "TGT配置模块ASCII字符校验失败",
         "description": "异常参数为 ascII。sample 中取值为 0。",
-        "value_range": "这种感觉不是参数异常，感觉更适合语义异常"，
+        "value_range": "这种感觉不是参数异常，感觉更适合语义异常",
         "state": "已剔除"
     },
     {
