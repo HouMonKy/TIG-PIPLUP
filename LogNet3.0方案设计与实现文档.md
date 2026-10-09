@@ -622,26 +622,47 @@ $$
 
 ### 5.4 GLiNER 通用抽取与取值校验
 
-**模块输入示例**：
+**模型输入**（程序发给 GLiNER 的调用参数）：
 
 ```json
 {
-  "module": "eds",
-  "raw_text": "Get ns async failed, \"s:[13,\"ret(3).",
-  "labels": ["parameter", "number"]
+  "text": "Get ns async failed, \"s:[13,\"ret(3).",
+  "entity_types": ["parameter", "number"],
+  "threshold": 0.5,
+  "include_confidence": true,
+  "include_spans": true
 }
 ```
 
-**模块输出示例**：
+**模型输出**（模型原生返回，未经程序加工）：
 
 ```json
 {
-  "parameters": {
-    "s":   {"value_raw": "13", "value_raw_span": [25, 27], "confidence": 0.70},
-    "ret": {"value_raw": "3",  "value_raw_span": [33, 34], "confidence": 0.77}
+  "entities": {
+    "parameter": [
+      {"text": "s",  "start": 22, "end": 23, "confidence": 0.63},
+      {"text": "ns", "start": 4,  "end": 6,  "confidence": 0.55}
+    ],
+    "number": [
+      {"text": "3",  "start": 33, "end": 34, "confidence": 0.99},
+      {"text": "13", "start": 25, "end": 27, "confidence": 0.98}
+    ]
   }
 }
 ```
+
+模型只标注"哪段文本是参数名、哪段是数值"，不建立两者的配对关系。本例有两处瑕疵：漏抽了 `ret`，把命名空间缩写 `ns` 误标为参数名。
+
+**后处理输出**（程序配对后的参数表）：
+
+```json
+{
+  "s":  {"value_raw": "3",  "param_span": [22, 23], "value_span": [33, 34], "confidence": 0.81},
+  "ns": {"value_raw": "13", "param_span": [4, 6],   "value_span": [25, 27], "confidence": 0.77}
+}
+```
+
+配对由程序完成：值驱动倒序贪心，每个值向前找最近的未用参数名。本例配出 `s→3`（错配，3 是 `ret` 的值），这类错配由 5.4.2 的配对校验拦下，转 5.4.3 的正则兜底取到 `s=13`，命中黑名单判 anomaly。
 
 **具体职责**：用 GLiNER 从原文抽取参数名与值，经过取值校验后交给规则判定。取值校验不通过的转通用正则兜底。
 
