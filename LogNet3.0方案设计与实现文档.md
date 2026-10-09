@@ -788,29 +788,6 @@ GLiNER 输出（漏抽了 ret）：
 
 ------
 
-**例 D：正则也取不到**
-
-```
-输入：increase crb vdb recovered(10000), format flag from (21) --> (12). ctx
-
-路由：原文包含度 → 规则组 osd|672（参数名 "format flag"，黑名单 ["12"]）
-
-GLiNER 输出：{"ctx": "123349"}   # 没有 format flag
-
-兜底：
-  regex_fallback_span(raw_text, "format flag")
-  → 形态 1: \b format flag \s*=\s*: \s* (...)   原文没有 format flag=: → 不命中
-  → 形态 2: \b format flag \s*=\s* (...)         原文没有 format flag= → 不命中
-  → 形态 3: \b format flag \s* \( (...) \)       原文没有 format flag( → 不命中
-  → 形态 4: \b format flag \s*:\s* (...)         原文没有 format flag: → 不命中
-  → 形态 5: \b format flag \s+ is \s+ (...)      原文没有 format flag is → 不命中
-  → 形态 6: \b format flag \s+ (...)              匹配到 "format flag from"
-      捕获组 = "from"，值形态校验：from 不是数字 → 跳过
-  → 五种形态全试完，返回 None
-
-判定：value = None → unresolved（如实返回无法判定）
-```
-
 ### 5.5 变体位置缓存
 
 **模块输入示例**（登记成功的一条冷路径结果）：
