@@ -138,7 +138,7 @@ PIPLUP 首先对日志进行正则预处理，然后按空白分词，利用完�
 3. 对存在差异的 token 位执行 head/tail 合并，生成通配 token。
 4. 合并结果写回 `pathList` 中所有路径的对应位置（`for p in self.pathList: p[pos] = var`）。
 
-原版逻辑（`算法代码/PIPLUP_原版.py:84-106`）：
+原版逻辑（`PIPLU.py:84-106`）：
 
 ```python
 # head: 从前向后，只保留连续的分隔符
@@ -275,7 +275,7 @@ PIPLUP 的后处理模块 `correct_single_template` 作用于路径合并后生�
 | `算法代码/preprocessing_原版.py:104`     | `sequence`，规则应用顺序              |
 | `算法代码/preprocessing_原版.py:106`     | `preprocess()`，逐条日志按 `sequence` 顺序执行 `re.sub` |
 
-原始 numerical 正则（`算法代码/preprocessing_原版.py:22`）：
+原始 numerical 正则（`preprocessing.py:22`）：
 
 ```python
 'numerical': r'\b(\-?\+?\d+\.?\d*)\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b',
@@ -337,7 +337,7 @@ PROTOCOL:MOD_BASE:IDNAME: Nfs4CreateUpdateUidNamehash failed:<*>
 
 #### 修复方案
 
-主要修改 `算法代码/PIPLUP_优化版.py`：新增 `_structure_aware_merge()`（第 25-100 行），替换 `updateSequence()` 中差异 token 的内联合并逻辑（原版实现见 `算法代码/PIPLUP_原版.py:84-106`）。
+主要修改 `PIPLUP.py`：新增 `_structure_aware_merge()`（第 25-100 行），替换 `updateSequence()` 中差异 token 的内联合并逻辑（原版实现见 `PIPLUP.py:84-106`）。
 
 **步骤一：计算最长公共前缀（LCP）**
 
@@ -408,7 +408,7 @@ db_name(<*>).
 
 如果生成结果不能覆盖原始路径，则直接退化为 `<*>`，避免产生不完整或错误的候选模板。
 
-核心实现节选（同位置中段保留与下划线边界特判从略，完整实现见 `算法代码/PIPLUP_优化版.py:25-100`）：
+核心实现节选（同位置中段保留与下划线边界特判从略，完整实现见 `PIPLUP.py:25-100`）：
 
 ```python
 def _structure_aware_merge(t1, t2, delimiters):
@@ -489,15 +489,15 @@ PROTOCOL:MOD_BASE:IDNAME: Nfs4CreateUpdateUidNamehash failed:<*>
 
 #### 修复方案
 
-主要修改 `算法代码/preprocessing_优化版.py` 中的 `regex_match['numerical']`（第 22 行）。
+主要修改 `preprocessing.py` 中的 `regex_match['numerical']`（第 22 行）。
 
-原始 numerical 正则（`算法代码/preprocessing_原版.py:22`）：
+原始 numerical 正则（`preprocessing.py:22`）：
 
 ```python
 'numerical': r'\b(\-?\+?\d+\.?\d*)\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b',
 ```
 
-修复后的正则（`算法代码/preprocessing_优化版.py:22`）：
+修复后的正则（`preprocessing.py:22`）：
 
 ```python
 'numerical': r'(?:\b|(?<=\W)|^)(\-?\+?\d+(?:\.\d+)?|0[Xx][a-fA-F\d]+)(?:\b|(?=\W)|$)|\b[a-fA-F\d]{4,}\b',
@@ -537,7 +537,7 @@ PROTOCOL:MOD_BASE:IDNAME: Nfs4CreateUpdateUidNamehash failed:<*>
 
 本次三个问题归结为两个独立根因：
 
-| 根因                       | 对应问题           | 修复位置                                       | 解决方向                                        |
-| -------------------------- | ------------------ | ---------------------------------------------- | ----------------------------------------------- |
-| 路径合并仅保留分隔符证据   | 半括号、参数名被吞 | `算法代码/PIPLUP_优化版.py`（`_structure_aware_merge()`） | 公共前后缀 + 结构感知泛化 + 覆盖校验            |
-| Numerical 词边界设计不合理 | 负号未泛化         | `算法代码/preprocessing_优化版.py`（`numerical` 正则）   | 起止边界扩展为 `\b` / `(?<=\W)` / `^` 或语义    |
+| 根因                       | 对应问题           | 修复位置                                  | 解决方向                                     |
+| -------------------------- | ------------------ | ----------------------------------------- | -------------------------------------------- |
+| 路径合并仅保留分隔符证据   | 半括号、参数名被吞 | `PIPLUP.py`（`_structure_aware_merge()`） | 公共前后缀 + 结构感知泛化 + 覆盖校验         |
+| Numerical 词边界设计不合理 | 负号未泛化         | `preprocessing.py`（`numerical` 正则）    | 起止边界扩展为 `\b` / `(?<=\W)` / `^` 或语义 |
