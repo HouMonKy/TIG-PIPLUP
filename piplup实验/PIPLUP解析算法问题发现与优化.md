@@ -110,7 +110,7 @@
 | ---------- | --------------------------------------------------------- | ------------- | ----------------- |
 | 半括号问题 | `tracepoint(CM_PUT_MSGGAGE_TO_BLOCKING_QUEUE_FAILED_392)` | `<*>)`        | `tracepoint(<*>)` |
 | 参数名被吞 | `db_name(op_dpId_0_kvsId_22_STASH)`                       | `<*>`         | `db_name(<*>)`    |
-| 负号未泛化 | `failed:-1`                                               | `failed:-<*>` | `failed<*>`       |
+| 负号未泛化 | `failed:-1`                                               | `failed:-<*>` | `failed:<*>`      |
 
 通过源码分析，三个问题可以归结为两个独立根因：
 
@@ -121,12 +121,11 @@
 
 #### 源码定位
 
-| 源码位置                     | 作用                                        |
-| ---------------------------- | ------------------------------------------- |
-| `src/model/token.rs:238-270` | `wildcard_from_rendered_group`，问题根源    |
-| `src/model/token.rs:183-186` | `wildcard_from_pair`，两个 token 的合并入口 |
-| `src/model/token.rs:272-291` | `is_path_delimiter`，分隔符判定             |
-| `src/model/cluster.rs:144`   | `update_sequence`，路径容量满后触发合并     |
+| 源码位置                                  | 作用                                        |
+| ----------------------------------------- | ------------------------------------------- |
+| `算法代码/PIPLUP_原版.py:84-106`          | `updateSequence()` 内联 head/tail 合并逻辑，问题根源 |
+| `算法代码/PIPLUP_原版.py:53`              | `Logcluster.updateSequence()`，路径容量满后触发合并 |
+| `算法代码/PIPLUP_原版.py:18-22`           | `path_delimiters` 分隔符集合，分隔符判定     |
 
 #### 问题触发过程
 
@@ -135,20 +134,28 @@ PIPLUP 首先对日志进行正则预处理，然后按空白分词，利用完�
 进入同一簇后，若新日志不能被已有候选模板覆盖：
 
 1. `pathList` 未达到 `br_thresh` 时，保留新的独立路径。
-2. `pathList` 达到容量上限后，选择最相似的路径进行合并。
-3. 对存在差异的 token 调用 `wildcard_from_pair`。
-4. 最终通过 `wildcard_from_rendered_group` 生成通配符 token。
+2. `pathList` 达到容量上限后，选择相似度最高的路径进行合并。
+3. 对存在差异的 token 位执行 head/tail 合并，生成通配 token。
+4. 合并结果写回 `pathList` 中所有路径的对应位置（`for p in self.pathList: p[pos] = var`）。
 
-原版逻辑：
+原版逻辑（`算法代码/PIPLUP_原版.py:84-106`）：
 
-```rust
-for index in 0..min_length {
-    let ch = char_sets[0][index];
-    if !is_path_delimiter(ch) || /* 字符不一致 */ {
-        break;
-    }
-    head.push(ch);
-}
+```python
+# head: 从前向后，只保留连续的分隔符
+for i in range(min_length):
+    char = t2[i]
+    if char not in path_delimiters: break   # 遇到非分隔符即停
+    if t1[i] != char: break
+    head += char
+
+# tail: 从后向前，只保留连续的分隔符
+for i in range(min_length):
+    char = t2[-i-1]
+    if char not in path_delimiters: break
+    if t1[-i-1] != char: break
+    tail = char + tail
+
+var = head + '<*>' + tail
 ```
 
 该逻辑要求公共前缀中的每个字符都必须是分隔符。遇到第一个字母或数字时立即停止，导致稳定字段名被整体丢弃。
@@ -223,7 +230,7 @@ Search tracepoint(<*>) failed, ret(<*>)
 (PELAGODB) Clear all tables begain, db_name(defgh).
 ```
 
-当路径容量达到上限并触发合并时，对差异 token 执行 `wildcard_from_pair`：
+当路径容量达到上限并触发合并时，对差异 token 执行 head/tail 合并（`updateSequence()` 内联逻辑）：
 
 ```text
 db_name(abc).
@@ -262,17 +269,16 @@ PIPLUP 的后处理模块 `correct_single_template` 作用于路径合并后生�
 
 #### 源码定位
 
-| 源码位置                              | 作用                        |
-| ------------------------------------- | --------------------------- |
-| `src/preprocessor/catalog.rs:144-146` | Numerical 正则定义          |
-| `src/preprocessor/mod.rs:202`         | `estimate_line`，规则估算   |
-| `src/preprocessor/mod.rs:295`         | `apply_with_plan`，执行正则 |
-| `session.rs:12`                       | 前 2000 行估算窗口          |
+| 源码位置                                | 作用                                  |
+| ---------------------------------------- | ------------------------------------- |
+| `算法代码/preprocessing_原版.py:22`      | `regex_match['numerical']`，Numerical 正则定义 |
+| `算法代码/preprocessing_原版.py:104`     | `sequence`，规则应用顺序              |
+| `算法代码/preprocessing_原版.py:106`     | `preprocess()`，逐条日志按 `sequence` 顺序执行 `re.sub` |
 
-原始 numerical 正则：
+原始 numerical 正则（`算法代码/preprocessing_原版.py:22`）：
 
-```regex
-\b-?\d+\.?\d*\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b
+```python
+'numerical': r'\b(\-?\+?\d+\.?\d*)\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b',
 ```
 
 #### 案例三：负号未泛化
@@ -295,10 +301,10 @@ PROTOCOL:MOD_BASE:IDNAME: Nfs4CreateUpdateUidNamehash failed:-<*>
 PROTOCOL:MOD_BASE:IDNAME: Nfs4CreateUpdateUidNamehash failed:<*>
 ```
 
-原因在于原始表达式：
+原因在于原始表达式中，数值分支以 `\b` 作为匹配起点的前置条件：
 
-```
-\b-?\d+
+```text
+\b(\-?\+?\d+\.?\d*)\b
 ```
 
 要求匹配开始位置先满足词边界。
@@ -331,7 +337,7 @@ PROTOCOL:MOD_BASE:IDNAME: Nfs4CreateUpdateUidNamehash failed:<*>
 
 #### 修复方案
 
-主要修改 `src/model/token.rs` 中的 `wildcard_from_rendered_group`。
+主要修改 `算法代码/PIPLUP_优化版.py`：新增 `_structure_aware_merge()`（第 25-100 行），替换 `updateSequence()` 中差异 token 的内联合并逻辑（原版实现见 `算法代码/PIPLUP_原版.py:84-106`）。
 
 **步骤一：计算最长公共前缀（LCP）**
 
@@ -400,11 +406,68 @@ db_name(<*>).
 
 必须能够匹配所有参与合并的 `db_name(...)` token。
 
-如果生成结果不能覆盖原始路径，则进一步泛化，避免产生不完整或错误的候选模板。
+如果生成结果不能覆盖原始路径，则直接退化为 `<*>`，避免产生不完整或错误的候选模板。
 
-**步骤五：UTF-8 安全**
+核心实现节选（同位置中段保留与下划线边界特判从略，完整实现见 `算法代码/PIPLUP_优化版.py:25-100`）：
 
-Rust 字符串使用 UTF-8 字节索引，合并时应通过 `char_indices()` 等方式获取合法切片边界，避免中英文混合日志触发 panic。
+```python
+def _structure_aware_merge(t1, t2, delimiters):
+    """保留分隔符边界的共同前缀、后缀及同位置中段。"""
+    if t1 == t2:
+        return t1
+
+    def covers(general, specific):
+        pattern = '.*?'.join(re.escape(p) for p in general.split('<*>'))
+        return re.fullmatch(pattern, specific, re.DOTALL) is not None
+
+    # 已有通配模板覆盖新 token 时保持不变，避免收窄历史匹配范围
+    for general, specific in ((t1, t2), (t2, t1)):
+        if '<*>' in general and covers(general, specific):
+            return general
+
+    # 步骤一：最长公共前缀 → 回退到最近的分隔符边界 → head
+    lcp_len = 0
+    for c1, c2 in zip(t1, t2):
+        if c1 != c2:
+            break
+        lcp_len += 1
+    head_end = -1
+    for i in range(lcp_len - 1, -1, -1):
+        if t1[i] in delimiters and t1[i] != '_':
+            head_end = i
+            break
+    if head_end < 0:                        # 回退：取前缀内首个分隔符
+        for i in range(lcp_len):
+            if t1[i] in delimiters:
+                head_end = i
+                break
+    head = t1[:head_end + 1]
+
+    # 步骤二：最长公共后缀 → 前进到最近的分隔符边界 → tail
+    lcs_len = 0
+    for c1, c2 in zip(reversed(t1), reversed(t2)):
+        if c1 != c2:
+            break
+        lcs_len += 1
+    tail = ''
+    if lcs_len:
+        start = len(t1) - lcs_len
+        tail = t1[start:]
+        for i in range(start, len(t1)):
+            if t1[i] in delimiters:
+                tail = t1[i:]
+                break
+
+    # （同位置中段保留逻辑此处从略）
+
+    # 步骤四：重叠保护 + 覆盖校验
+    if len(head) + len(tail) >= min(len(t1), len(t2)):
+        return '<*>'
+    result = head + '<*>' + tail
+    if not all(covers(result, token) for token in (t1, t2)):
+        return '<*>'
+    return result
+```
 
 ### 负号未泛化问题
 
@@ -426,43 +489,40 @@ PROTOCOL:MOD_BASE:IDNAME: Nfs4CreateUpdateUidNamehash failed:<*>
 
 #### 修复方案
 
-主要修改：
+主要修改 `算法代码/preprocessing_优化版.py` 中的 `regex_match['numerical']`（第 22 行）。
 
-```
-src/preprocessor/catalog.rs
-```
+原始 numerical 正则（`算法代码/preprocessing_原版.py:22`）：
 
-原始 numerical 正则：
-
-```regex
-r"\b-?\d+\.?\d*\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b"
+```python
+'numerical': r'\b(\-?\+?\d+\.?\d*)\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b',
 ```
 
-修复后的正则：
+修复后的正则（`算法代码/preprocessing_优化版.py:22`）：
 
-```regex
-r"[+-]?\b\d+(?:\.\d+)?\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b"
+```python
+'numerical': r'(?:\b|(?<=\W)|^)(\-?\+?\d+(?:\.\d+)?|0[Xx][a-fA-F\d]+)(?:\b|(?=\W)|$)|\b[a-fA-F\d]{4,}\b',
 ```
 
-**核心修改是调整可选符号与词边界的匹配顺序。**
+**核心修改是将匹配起点/终点的边界条件由单一 `\b` 扩展为「三选一」的或语义。**
 
-原规则将 `\b` 放在可选负号 `-?` 之前，要求在负号位置首先满足词边界。而空格、冒号、括号与负号均属于非词字符，因此无法从负号位置开始匹配，最终只替换数字部分。
+原规则把 `\b` 放在可选负号 `\-?` 之前，要求在负号位置首先满足词边界（位置两侧一端为词字符、一端为非词字符）。而冒号、空格、括号与负号均属于非词字符，负号位置无法形成 `\b`，匹配只能回退到数字起始处，最终只替换数字部分。
 
-修复后，将 `[+-]?` 放到 `\b` 之前：
+修复后，起点条件扩展为 `\b|(?<=\W)|^`：
 
-- `[+-]?`：优先匹配可选的正号或负号。
-- `\b`：在符号与数字之间，或无符号数值的起始位置，验证词边界。
-- `\d+(?:\.\d+)?`：匹配整数或小数部分。
-- 末尾 `\b`：限定数字结束位置。
+- `\b`：常规词边界。
+- `(?<=\W)`：前一字符为非词字符（负号前的冒号、空格、括号即属此类）。
+- `^`：行首。
+
+终点条件对称地扩展为 `\b|(?=\W)|$`；同时小数部分由 `\.?\d*`（允许尾部悬空点，如 `17500.` 被整体吞掉）收紧为 `(?:\.\d+)?`（点后必须跟数字），修复数字后紧跟标点时标点被吞入通配符的问题。
 
 例如，对于 `failed:-1`：
 
-1. 正则从负号 `-` 位置开始，`[+-]?` 匹配负号。
-2. 此时匹配位置位于 `-` 与 `1` 之间，满足非词字符到词字符的边界条件。
-3. `\d+` 匹配数字 `1`，完成整个 `-1` 的匹配。
+1. 匹配从负号 `-` 位置尝试：`-` 前是冒号 `:`（非词字符），`(?<=\W)` 成立，起点条件满足。
+2. `\-?\+?` 匹配负号，`\d+` 匹配数字 `1`，整体匹配 `-1`。
+3. 终点条件 `(?=\W)`（或 `$`）成立。
 4. 将完整匹配结果替换为 `<*>`，得到 `failed:<*>`。
 
-修复前后对比：
+修复前后对比（Python 实现实测）：
 
 | 原始输入        | 修复前         | 修复后         |
 | --------------- | -------------- | -------------- |
@@ -471,12 +531,13 @@ r"[+-]?\b\d+(?:\.\d+)?\b|\b0[Xx][a-fA-F\d]+\b|\b[a-fA-F\d]{4,}\b"
 | `gid -5`        | `gid -<*>`     | `gid <*>`      |
 | `ret:+10`       | `ret:+<*>`     | `ret:<*>`      |
 | `duration:3.14` | `duration:<*>` | `duration:<*>` |
+| `loaded 17500.objType` | `loaded <*>objType` | `loaded <*>.objType` |
 
 ### 总结
 
 本次三个问题归结为两个独立根因：
 
-| 根因                       | 对应问题           | 修复位置                      | 解决方向                  |
-| -------------------------- | ------------------ | ----------------------------- | ------------------------- |
-| 路径合并仅保留分隔符证据   | 半括号、参数名被吞 | `src/model/token.rs`          | 公共前后缀 + 结构感知泛化 |
-| Numerical 词边界设计不合理 | 负号未泛化         | `src/preprocessor/catalog.rs` | 调整正则匹配顺序          |
+| 根因                       | 对应问题           | 修复位置                                       | 解决方向                                        |
+| -------------------------- | ------------------ | ---------------------------------------------- | ----------------------------------------------- |
+| 路径合并仅保留分隔符证据   | 半括号、参数名被吞 | `算法代码/PIPLUP_优化版.py`（`_structure_aware_merge()`） | 公共前后缀 + 结构感知泛化 + 覆盖校验            |
+| Numerical 词边界设计不合理 | 负号未泛化         | `算法代码/preprocessing_优化版.py`（`numerical` 正则）   | 起止边界扩展为 `\b` / `(?<=\W)` / `^` 或语义    |
