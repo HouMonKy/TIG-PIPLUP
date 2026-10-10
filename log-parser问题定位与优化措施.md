@@ -110,7 +110,7 @@
 | ---------- | --------------------------------------------------------- | ------------- | ----------------- |
 | 半括号问题 | `tracepoint(CM_PUT_MSGGAGE_TO_BLOCKING_QUEUE_FAILED_392)` | `<*>)`        | `tracepoint(<*>)` |
 | 参数名被吞 | `db_name(op_dpId_0_kvsId_22_STASH)`                       | `<*>`         | `db_name(<*>)`    |
-| 负号未泛化 | `failed:-1`                                               | `failed:-<*>` | `failed<*>`       |
+| 负号未泛化 | `failed:-1`                                               | `failed:-<*>` | `failed:<*>`      |
 
 通过源码分析，三个问题可以归结为两个独立根因：
 
