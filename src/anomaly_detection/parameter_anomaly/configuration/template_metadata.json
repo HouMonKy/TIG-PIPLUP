@@ -1,0 +1,140 @@
+{
+ "catalog_schema": "phase1-v2",
+ "templates": {
+  "eds|10304": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "eds|10305": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "eds|10306": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "eds|10307": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "eds|10308": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "eds|108": {
+   "protected_literals": []
+  },
+  "message_log|1": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "ccdb|1": {
+   "protected_literals": [
+    "fail"
+   ]
+  },
+  "eds|10309": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "kmm-server|1": {
+   "protected_literals": [
+    "succ"
+   ]
+  },
+  "kmm-server|2": {
+   "protected_literals": [
+    "fail"
+   ]
+  },
+  "eds|10310": {
+   "protected_literals": [
+    "fail"
+   ]
+  },
+  "ccdb|2": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "message_log|2": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "message_log|3": {
+   "protected_literals": [
+    "failed"
+   ]
+  },
+  "eds|10311": {
+   "protected_literals": []
+  },
+  "eds|10312": {
+   "protected_literals": []
+  },
+  "osd|746": {
+   "protected_literals": []
+  },
+  "vbs|4029": {
+   "protected_literals": [
+    "sigsegv"
+   ]
+  },
+  "vbs|4030": {
+   "protected_literals": []
+  },
+  "osd|2180": {
+   "protected_literals": []
+  },
+  "osd|672": {
+   "protected_literals": []
+  },
+  "messages|2001": {
+   "protected_literals": []
+  },
+  "messages|2002": {
+   "protected_literals": []
+  },
+  "messages|2003": {
+   "protected_literals": []
+  },
+  "messages|2004": {
+   "protected_literals": []
+  },
+  "messages|2005": {
+   "protected_literals": []
+  },
+  "messages|2006": {
+   "protected_literals": []
+  },
+  "messages|2007": {
+   "protected_literals": []
+  },
+  "messages|2008": {
+   "protected_literals": []
+  },
+  "messages|2009": {
+   "protected_literals": []
+  },
+  "messages|2010": {
+   "protected_literals": []
+  },
+  "messages|2011": {
+   "protected_literals": []
+  },
+  "messages|2012": {
+   "protected_literals": []
+  },
+  "messages|2013": {
+   "protected_literals": []
+  }
+ }
+}

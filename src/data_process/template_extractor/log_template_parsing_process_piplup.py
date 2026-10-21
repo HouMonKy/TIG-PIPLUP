@@ -243,7 +243,8 @@ def parse_logs_piplup_adapter(log_info, context: LogContext, start_time=0, end_t
 
         # 持久化
         context.log_repository.add(LogTemplateRelation(
-            meta['source'], meta['timestamp'], meta['log_id'], template_id, module, param_list
+            meta['source'], meta['timestamp'], meta['log_id'], template_id, module, param_list,
+            template=template, raw_content=target_content
         ))
 
         parse_results.append({

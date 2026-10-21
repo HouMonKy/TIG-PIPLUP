@@ -193,10 +193,12 @@ class AnomalyDetection:
         if self.mode == "all" or self.mode == "parametric":
             logs = repository.get_window_logs(start_time, end_time)
             for log in logs:
-                if len(log.param_list) == 0:
+                if log.template:
                     continue
                 drain = context.get_drain(log.module)
-                log.template = drain.extractor.id_to_cluster.get(log.template_id).get_template()
+                cluster = drain.extractor.id_to_cluster.get(log.template_id)
+                if cluster is not None:
+                    log.template = cluster.get_template()
             parametric_result = self._parameter_detector.detect_all_module_logs(
                 log_entries=logs, window_size=window_size)
         return parametric_result

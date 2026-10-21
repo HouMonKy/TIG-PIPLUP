@@ -1,0 +1,1785 @@
+{
+ "catalog_schema_version": 1,
+ "rule_groups": [
+  {
+   "group_id": "eds:10304",
+   "module": "eds",
+   "template_id": 10304,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "s",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "13"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Get ns async failed \"s : [ <NUM> \"ret ( <NUM> ) .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "7"
+     }
+    ]
+   },
+   "variants": []
+  },
+  {
+   "group_id": "eds:10305",
+   "module": "eds",
+   "template_id": 10305,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "ret",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "-99999"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Get ns async failed ret ( <NUM> ) .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "6"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "extra_13: 15 Get ns async failed ret(-99999).",
+     "example_log": "extra_13: 15 Get ns async failed ret(-99999).",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "9"
+      }
+     ]
+    },
+    {
+     "template": "Get ns async failed ret(-99999). extra_26: 28",
+     "example_log": "Get ns async failed ret(-99999). extra_26: 28",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "6"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "eds:10306",
+   "module": "eds",
+   "template_id": 10306,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "ret",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "3"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Get ns async failed is_mgr_last : <NUM> ret ( <NUM> ) .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "9"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "is_mgr_last:1 Get ns async failed, ret(44).",
+     "example_log": "is_mgr_last:1 Get ns async failed, ret(44).",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "9"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "eds:10307",
+   "module": "eds",
+   "template_id": 10307,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "status",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "5"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "[ KVS ] : readFPI failed of the status is <NUM> sgl is ( ( nil ) )",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "10"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "[KVS]: readFPI failed of the status is 5, sgl is ((nil))",
+     "example_log": "[KVS]: readFPI failed of the status is 5, sgl is ((nil))",
+     "n_tokens": 18,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "10"
+      }
+     ]
+    },
+    {
+     "template": "extra_17: 19 [KVS]: readFPI failed of the status is 5, sgl is ((nil))",
+     "example_log": "extra_17: 19 [KVS]: readFPI failed of the status is 5, sgl is ((nil))",
+     "n_tokens": 21,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "13"
+      }
+     ]
+    },
+    {
+     "template": "[KVS]: readFPI failed of the status is 5, sgl is ((nil)) extra_34: 36",
+     "example_log": "[KVS]: readFPI failed of the status is 5, sgl is ((nil)) extra_34: 36",
+     "n_tokens": 21,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "10"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "eds:10308",
+   "module": "eds",
+   "template_id": 10308,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "s",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "15"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Failed to get block data from DB s : [ <NUM> ERROR ]",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "10"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "Failed to get block data from DB, s:[15, ERROR]",
+     "example_log": "Failed to get block data from DB, s:[15, ERROR]",
+     "n_tokens": 13,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "10"
+      }
+     ]
+    },
+    {
+     "template": "extra_17: 19 Failed to get block data from DB, s:[15, ERROR]",
+     "example_log": "extra_17: 19 Failed to get block data from DB, s:[15, ERROR]",
+     "n_tokens": 16,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "13"
+      }
+     ]
+    },
+    {
+     "template": "Failed to get block data from DB, s:[15, ERROR] extra_34: 36",
+     "example_log": "Failed to get block data from DB, s:[15, ERROR] extra_34: 36",
+     "n_tokens": 16,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "10"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "eds:108",
+   "module": "eds",
+   "template_id": 108,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "line",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "798"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "print : <NUM> messages <*> line = <NUM>.",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "7"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "print: 6992 messages suppressed.ReadSingleGrainFromDB,line=798",
+     "example_log": "print: 6992 messages suppressed.ReadSingleGrainFromDB,line=798",
+     "n_tokens": 8,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "7"
+      }
+     ]
+    },
+    {
+     "template": "extra_13: 15 print: 6992 messages suppressed.ReadSingleGrainFromDB,line=812",
+     "example_log": "extra_13: 15 print: 6992 messages suppressed.ReadSingleGrainFromDB,line=812",
+     "n_tokens": 11,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "10"
+      }
+     ]
+    },
+    {
+     "template": "print: 6992 messages suppressed.ReadSingleGrainFromDB,line=798 extra_26: 28",
+     "example_log": "print: 6992 messages suppressed.ReadSingleGrainFromDB,line=798 extra_26: 28",
+     "n_tokens": 11,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "7"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "message_log:1",
+   "module": "message_log",
+   "template_id": 1,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "ret",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "-1"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "PROTOCOL : get tenant cfg info by tenant_id failed ret = : <NUM>.",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "12"
+     }
+    ]
+   },
+   "variants": []
+  },
+  {
+   "group_id": "ccdb:1",
+   "module": "ccdb",
+   "template_id": 1,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "code",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "10"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Sqlite step sql fail ( return code = <NUM>",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "8"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "Sqlite step sql fail(return code=10",
+     "example_log": "Sqlite step sql fail(return code=10",
+     "n_tokens": 9,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "8"
+      }
+     ]
+    },
+    {
+     "template": "extra_13: 15 Sqlite step sql fail(return code=10",
+     "example_log": "extra_13: 15 Sqlite step sql fail(return code=10",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "11"
+      }
+     ]
+    },
+    {
+     "template": "return code=49 Sqlite step sql fail(",
+     "example_log": "return code=49 Sqlite step sql fail(",
+     "n_tokens": 9,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "3"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "eds:10309",
+   "module": "eds",
+   "template_id": 10309,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "ret",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "3"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Get ns async failed mode ( <NUM> <NUM> ) restore ( <NUM> ) ret ( <NUM> ) .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "15"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "extra_13: 15 Get ns async failed, mode(0, 0), restore(1) ret(3).",
+     "example_log": "extra_13: 15 Get ns async failed, mode(0, 0), restore(1) ret(3).",
+     "n_tokens": 21,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "kmm-server:1",
+   "module": "kmm-server",
+   "template_id": 1,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "id",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "0"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Local setup link succ id ( <NUM> ) .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "6"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "Local setup link succ, id (0).",
+     "example_log": "Local setup link succ, id (0).",
+     "n_tokens": 9,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "6"
+      }
+     ]
+    },
+    {
+     "template": "extra_17: 19 Local setup link succ, id (0).",
+     "example_log": "extra_17: 19 Local setup link succ, id (0).",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "9"
+      }
+     ]
+    },
+    {
+     "template": "Local setup link succ, id (35). extra_34: 36",
+     "example_log": "Local setup link succ, id (35). extra_34: 36",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "6"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "kmm-server:2",
+   "module": "kmm-server",
+   "template_id": 2,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "ret",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "10"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Local setup link fail ret ( <NUM> ) .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "6"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "extra_17: 19 Local setup link fail, ret (10).",
+     "example_log": "extra_17: 19 Local setup link fail, ret (10).",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "9"
+      }
+     ]
+    },
+    {
+     "template": "Local setup link fail, ret (10). extra_34: 36",
+     "example_log": "Local setup link fail, ret (10). extra_34: 36",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "6"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "eds:10310",
+   "module": "eds",
+   "template_id": 10310,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "ret",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "4"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "INDEX_ART art read plog fail ret = [ <NUM> ] .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "8"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "INDEX_ART art read plog fail ret=[4].",
+     "example_log": "INDEX_ART art read plog fail ret=[4].",
+     "n_tokens": 11,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "8"
+      }
+     ]
+    },
+    {
+     "template": "extra_17: 19 INDEX_ART art read plog fail ret=[4].",
+     "example_log": "extra_17: 19 INDEX_ART art read plog fail ret=[4].",
+     "n_tokens": 14,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "11"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "ccdb:2",
+   "module": "ccdb",
+   "template_id": 2,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "ret",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "-1"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Cm create the RR pthread failed ret = <NUM>.",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "8"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "Cm create the RR pthread failed, ret=-1",
+     "example_log": "Cm create the RR pthread failed, ret=-1",
+     "n_tokens": 9,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "8"
+      }
+     ]
+    },
+    {
+     "template": "extra_17: 19 Cm create the RR pthread failed, ret=-1",
+     "example_log": "extra_17: 19 Cm create the RR pthread failed, ret=-1",
+     "n_tokens": 12,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "11"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "message_log:2",
+   "module": "message_log",
+   "template_id": 2,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "Func",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "0xaaaad802e008"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Active Func <HEX0x> Trampoline proc failed.",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "2"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "Active Func 0xaaaad802e008 Trampoline proc failed.",
+     "example_log": "Active Func 0xaaaad802e008 Trampoline proc failed.",
+     "n_tokens": 6,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "message_log:3",
+   "module": "message_log",
+   "template_id": 3,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "error code",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "0x202727d1"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Activating of Patch --USER_HP0101.pat failed error code : <HEX0x>",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "8"
+     }
+    ]
+   },
+   "variants": []
+  },
+  {
+   "group_id": "eds:10311",
+   "module": "eds",
+   "template_id": 10311,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "dci_size",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "1024"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "dci_size ( <NUM> )",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "2"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "dci_size(1024)",
+     "example_log": "dci_size(1024)",
+     "n_tokens": 4,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "extra_17: 19 dci_size(1024)",
+     "example_log": "extra_17: 19 dci_size(1024)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_18: 20 dci_size(1043)",
+     "example_log": "extra_18: 20 dci_size(1043)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_19: 21 dci_size(1044)",
+     "example_log": "extra_19: 21 dci_size(1044)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_20: 22 dci_size(1045)",
+     "example_log": "extra_20: 22 dci_size(1045)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_21: 23 dci_size(1046)",
+     "example_log": "extra_21: 23 dci_size(1046)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_22: 24 dci_size(1047)",
+     "example_log": "extra_22: 24 dci_size(1047)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_23: 25 dci_size(1048)",
+     "example_log": "extra_23: 25 dci_size(1048)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_24: 26 dci_size(1049)",
+     "example_log": "extra_24: 26 dci_size(1049)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_25: 27 dci_size(1050)",
+     "example_log": "extra_25: 27 dci_size(1050)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_26: 28 dci_size(1051)",
+     "example_log": "extra_26: 28 dci_size(1051)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_27: 29 dci_size(1052)",
+     "example_log": "extra_27: 29 dci_size(1052)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_28: 30 dci_size(1053)",
+     "example_log": "extra_28: 30 dci_size(1053)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_29: 31 dci_size(1054)",
+     "example_log": "extra_29: 31 dci_size(1054)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_30: 32 dci_size(1055)",
+     "example_log": "extra_30: 32 dci_size(1055)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_31: 33 dci_size(1056)",
+     "example_log": "extra_31: 33 dci_size(1056)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_32: 34 dci_size(1057)",
+     "example_log": "extra_32: 34 dci_size(1057)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "extra_33: 35 dci_size(1058)",
+     "example_log": "extra_33: 35 dci_size(1058)",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "5"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1024) extra_34: 36",
+     "example_log": "dci_size(1024) extra_34: 36",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1060) extra_35: 37",
+     "example_log": "dci_size(1060) extra_35: 37",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1061) extra_36: 38",
+     "example_log": "dci_size(1061) extra_36: 38",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1062) extra_37: 39",
+     "example_log": "dci_size(1062) extra_37: 39",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1063) extra_38: 40",
+     "example_log": "dci_size(1063) extra_38: 40",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1064) extra_39: 41",
+     "example_log": "dci_size(1064) extra_39: 41",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1066) extra_41: 43",
+     "example_log": "dci_size(1066) extra_41: 43",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1067) extra_42: 44",
+     "example_log": "dci_size(1067) extra_42: 44",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1068) extra_43: 45",
+     "example_log": "dci_size(1068) extra_43: 45",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1069) extra_44: 46",
+     "example_log": "dci_size(1069) extra_44: 46",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1070) extra_45: 47",
+     "example_log": "dci_size(1070) extra_45: 47",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1071) extra_46: 48",
+     "example_log": "dci_size(1071) extra_46: 48",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1072) extra_47: 49",
+     "example_log": "dci_size(1072) extra_47: 49",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1073) extra_48: 50",
+     "example_log": "dci_size(1073) extra_48: 50",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    },
+    {
+     "template": "dci_size(1074) extra_49: 51",
+     "example_log": "dci_size(1074) extra_49: 51",
+     "n_tokens": 7,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "2"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "eds:10312",
+   "module": "eds",
+   "template_id": 10312,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "error code",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "0"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "io detect send res error code : <NUM> request id : <MAC-HEX> cmd type ( <NUM> ) start time : <NUM> end time : <NUM>.fc wait time : <NUM> iops ok : <NUM> not ok : 0m sendtime : <NUM> aio block time : <NUM> <NUM>.",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "7"
+     }
+    ]
+   },
+   "variants": []
+  },
+  {
+   "group_id": "osd:746",
+   "module": "osd",
+   "template_id": 746,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "auto_repair",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "1"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "pool id : <NUM> osd idx : <NUM> begin to start check [ auto_repair = <NUM> ]",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "15"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "pool id:7 osd idx:12 begin to start check [auto_repair=1]",
+     "example_log": "pool id:7 osd idx:12 begin to start check [auto_repair=1]",
+     "n_tokens": 17,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "15"
+      }
+     ]
+    },
+    {
+     "template": "extra_9: 11 pool id:16 osd idx:12 begin to start check [auto_repair=1]",
+     "example_log": "extra_9: 11 pool id:16 osd idx:12 begin to start check [auto_repair=1]",
+     "n_tokens": 20,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "pool id:25 osd idx:12 begin to start check [auto_repair=20] extra_18: 20",
+     "example_log": "pool id:25 osd idx:12 begin to start check [auto_repair=20] extra_18: 20",
+     "n_tokens": 20,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "15"
+      }
+     ]
+    },
+    {
+     "template": "pool id:33 osd idx:12 extra_26: 28 begin to start check [auto_repair=28]",
+     "example_log": "pool id:33 osd idx:12 extra_26: 28 begin to start check [auto_repair=28]",
+     "n_tokens": 20,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "pool id:41 begin to start check [auto_repair=36]",
+     "example_log": "pool id:41 begin to start check [auto_repair=36]",
+     "n_tokens": 13,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "11"
+      }
+     ]
+    },
+    {
+     "template": "id:49 pool osd idx:12 begin to start check [auto_repair=44]",
+     "example_log": "id:49 pool osd idx:12 begin to start check [auto_repair=44]",
+     "n_tokens": 17,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "15"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "vbs:4029",
+   "module": "vbs",
+   "template_id": 4029,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "sig",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "11"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "Critical fault : pid = <NUM> tid = <NUM> thrd = [ NULL ] sig = [ <NUM> ] SIGSEGV",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "17"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[12] SIGSEGV",
+     "example_log": "Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[12] SIGSEGV",
+     "n_tokens": 20,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "17"
+      }
+     ]
+    },
+    {
+     "template": "extra_9: 11 Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[21] SIGSEGV",
+     "example_log": "extra_9: 11 Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[21] SIGSEGV",
+     "n_tokens": 23,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "20"
+      }
+     ]
+    },
+    {
+     "template": "Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[11] SIGSEGV extra_18: 20",
+     "example_log": "Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[11] SIGSEGV extra_18: 20",
+     "n_tokens": 23,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "17"
+      }
+     ]
+    },
+    {
+     "template": "Critical fault: pid=3611291 tid=3612652 extra_26: 28 thrd=[NULL] sig=[11] SIGSEGV",
+     "example_log": "Critical fault: pid=3611291 tid=3612652 extra_26: 28 thrd=[NULL] sig=[11] SIGSEGV",
+     "n_tokens": 23,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "20"
+      }
+     ]
+    },
+    {
+     "template": "Critical fault: pid=3611291 thrd=[NULL] sig=[46] SIGSEGV",
+     "example_log": "Critical fault: pid=3611291 thrd=[NULL] sig=[46] SIGSEGV",
+     "n_tokens": 17,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "14"
+      }
+     ]
+    },
+    {
+     "template": "fault: pid Critical =3611291 tid=3612652 thrd=[NULL] sig=[54] SIGSEGV",
+     "example_log": "fault: pid Critical =3611291 tid=3612652 thrd=[NULL] sig=[54] SIGSEGV",
+     "n_tokens": 20,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "17"
+      }
+     ]
+    },
+    {
+     "template": "tid=3612652 Critical fault: pid=3611291 thrd=[NULL] sig=[55] SIGSEGV",
+     "example_log": "tid=3612652 Critical fault: pid=3611291 thrd=[NULL] sig=[55] SIGSEGV",
+     "n_tokens": 20,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "17"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "vbs:4030",
+   "module": "vbs",
+   "template_id": 4030,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "func",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "0x8d"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "RIP = <HEX0x> value = <HEX0x> func = QosFillVolMsgBuf+<HEX0x> file = /opt/dsware/vbs/bin/dsware_vbs",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "8"
+     }
+    ]
+   },
+   "variants": []
+  },
+  {
+   "group_id": "osd:2180",
+   "module": "osd",
+   "template_id": 2180,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "ret",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "-121006"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "req ( <MAC-HEX> ) plog ( <MAC-HEX> ) offset ( <NUM> ) dlen ( <NUM> ) ret ( <NUM> ) .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "18"
+     }
+    ]
+   },
+   "variants": [
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121006).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121006).",
+     "n_tokens": 21,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "extra_13: 15 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121020).",
+     "example_log": "extra_13: 15 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121020).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_14: 16 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121021).",
+     "example_log": "extra_14: 16 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121021).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_15: 17 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121022).",
+     "example_log": "extra_15: 17 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121022).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_16: 18 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121023).",
+     "example_log": "extra_16: 18 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121023).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_17: 19 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121024).",
+     "example_log": "extra_17: 19 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121024).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_18: 20 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121025).",
+     "example_log": "extra_18: 20 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121025).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_19: 21 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121026).",
+     "example_log": "extra_19: 21 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121026).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_20: 22 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121027).",
+     "example_log": "extra_20: 22 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121027).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_21: 23 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121028).",
+     "example_log": "extra_21: 23 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121028).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_22: 24 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121029).",
+     "example_log": "extra_22: 24 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121029).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_23: 25 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121030).",
+     "example_log": "extra_23: 25 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121030).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_24: 26 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121031).",
+     "example_log": "extra_24: 26 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121031).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "extra_25: 27 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121032).",
+     "example_log": "extra_25: 27 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121032).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121033). extra_26: 28",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121033). extra_26: 28",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121034). extra_27: 29",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121034). extra_27: 29",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121035). extra_28: 30",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121035). extra_28: 30",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121036). extra_29: 31",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121036). extra_29: 31",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121037). extra_30: 32",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121037). extra_30: 32",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121038). extra_31: 33",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121038). extra_31: 33",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121039). extra_32: 34",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121039). extra_32: 34",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121040). extra_33: 35",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121040). extra_33: 35",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121041). extra_34: 36",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121041). extra_34: 36",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121042). extra_35: 37",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121042). extra_35: 37",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121043). extra_36: 38",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121043). extra_36: 38",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121044). extra_37: 39",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121044). extra_37: 39",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "18"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_38: 40 offset(8192),dlen(4096),ret(-121006).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_38: 40 offset(8192),dlen(4096),ret(-121006).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_39: 41 offset(8192),dlen(4096),ret(-121046).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_39: 41 offset(8192),dlen(4096),ret(-121046).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_40: 42 offset(8192),dlen(4096),ret(-121047).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_40: 42 offset(8192),dlen(4096),ret(-121047).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_41: 43 offset(8192),dlen(4096),ret(-121048).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_41: 43 offset(8192),dlen(4096),ret(-121048).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_42: 44 offset(8192),dlen(4096),ret(-121049).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_42: 44 offset(8192),dlen(4096),ret(-121049).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_43: 45 offset(8192),dlen(4096),ret(-121050).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_43: 45 offset(8192),dlen(4096),ret(-121050).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_44: 46 offset(8192),dlen(4096),ret(-121051).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_44: 46 offset(8192),dlen(4096),ret(-121051).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_45: 47 offset(8192),dlen(4096),ret(-121052).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_45: 47 offset(8192),dlen(4096),ret(-121052).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_46: 48 offset(8192),dlen(4096),ret(-121053).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_46: 48 offset(8192),dlen(4096),ret(-121053).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_47: 49 offset(8192),dlen(4096),ret(-121054).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_47: 49 offset(8192),dlen(4096),ret(-121054).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_48: 50 offset(8192),dlen(4096),ret(-121055).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_48: 50 offset(8192),dlen(4096),ret(-121055).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    },
+    {
+     "template": "req(9511883956703120396),plog(9223372037379106158),extra_49: 51 offset(8192),dlen(4096),ret(-121056).",
+     "example_log": "req(9511883956703120396),plog(9223372037379106158),extra_49: 51 offset(8192),dlen(4096),ret(-121056).",
+     "n_tokens": 24,
+     "param_positions": [
+      {
+       "rule_id": "r1",
+       "param_pos": "21"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "group_id": "osd:672",
+   "module": "osd",
+   "template_id": 672,
+   "rules": [
+    {
+     "rule_id": "r1",
+     "param_name": "format flag",
+     "detect_mode": "black_list",
+     "detect_detail": [
+      "12"
+     ]
+    }
+   ],
+   "original_template": {
+    "template": "increase crb vdb recovered ( <NUM> ) format flag from ( <NUM> ) --> ( <NUM> ) .",
+    "param_positions": [
+     {
+      "rule_id": "r1",
+      "param_pos": "15"
+     }
+    ]
+   },
+   "variants": []
+  }
+ ],
+ "export_meta": {
+  "run_id": "knowledge_audited",
+  "completed": true
+ }
+}

@@ -1,310 +1,543 @@
 [
-  {
-    "template": "Get ns async failed \"s : [ <NUM> \"ret ( <NUM> ) .",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "7",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "13"
-        ]
-      }
+ {
+  "template": "Get ns async failed \"s : [ <NUM> \"ret ( <NUM> ) .",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "7",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "13"
     ],
-    "template_id": 10304
-  },
-  {
-    "template": "Get ns async failed ret ( <NUM> ) .",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "6",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "-99999"
-        ]
-      }
+    "param_name": "s"
+   }
+  ],
+  "template_id": 10304
+ },
+ {
+  "template": "Get ns async failed ret ( <NUM> ) .",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "6",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "-99999"
     ],
-    "template_id": 10305
-  },
-  {
-    "template": "Get ns async failed is_mgr_last : <NUM> ret ( <NUM> ) .",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "9",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "3"
-        ]
-      }
+    "param_name": "ret"
+   }
+  ],
+  "template_id": 10305
+ },
+ {
+  "template": "Get ns async failed is_mgr_last : <NUM> ret ( <NUM> ) .",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "9",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "3"
     ],
-    "template_id": 10306
-  },
-  {
-    "template": "[ KVS ] : readFPI failed of the status is <NUM> sgl is ( ( nil ) )",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "10",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "5"
-        ]
-      }
+    "param_name": "ret"
+   }
+  ],
+  "template_id": 10306
+ },
+ {
+  "template": "[ KVS ] : readFPI failed of the status is <NUM> sgl is ( ( nil ) )",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "10",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "5"
     ],
-    "template_id": 10307
-  },
-  {
-    "template": "Failed to get block data from DB s : [ <NUM> ERROR ]",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "10",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "15"
-        ]
-      }
+    "param_name": "status"
+   }
+  ],
+  "template_id": 10307
+ },
+ {
+  "template": "Failed to get block data from DB s : [ <NUM> ERROR ]",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "10",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "15"
     ],
-    "template_id": 10308
-  },
-  {
-    "template": "print : <NUM> messages <*> line = <NUM>.",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "7",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "798"
-        ]
-      }
+    "param_name": "s"
+   }
+  ],
+  "template_id": 10308
+ },
+ {
+  "template": "print : <NUM> messages <*> line = <NUM>.",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "7",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "798"
     ],
-    "template_id": 108
-  },
-  {
-    "template": "PROTOCOL : get tenant cfg info by tenant_id failed ret = : <NUM>.",
-    "module": "message_log",
-    "params": [
-      {
-        "param_pos": "12",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "-1"
-        ]
-      }
+    "param_name": "line"
+   }
+  ],
+  "template_id": 108
+ },
+ {
+  "template": "PROTOCOL : get tenant cfg info by tenant_id failed ret = : <NUM>.",
+  "module": "message_log",
+  "params": [
+   {
+    "param_pos": "12",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "-1"
     ],
-    "template_id": 1
-  },
-  {
-    "template": "Sqlite step sql fail ( return code = <NUM>",
-    "module": "ccdb",
-    "params": [
-      {
-        "param_pos": "8",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "10"
-        ]
-      }
+    "param_name": "ret"
+   }
+  ],
+  "template_id": 1
+ },
+ {
+  "template": "Sqlite step sql fail ( return code = <NUM>",
+  "module": "ccdb",
+  "params": [
+   {
+    "param_pos": "8",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "10"
     ],
-    "template_id": 1
-  },
-  {
-    "template": "Get ns async failed mode ( <NUM> <NUM> ) restore ( <NUM> ) ret ( <NUM> ) .",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "15",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "3"
-        ]
-      }
+    "param_name": "code"
+   }
+  ],
+  "template_id": 1
+ },
+ {
+  "template": "Get ns async failed mode ( <NUM> <NUM> ) restore ( <NUM> ) ret ( <NUM> ) .",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "15",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "3"
     ],
-    "template_id": 10309
-  },
-  {
-    "template": "Local setup link succ id ( <NUM> ) .",
-    "module": "kmm-server",
-    "params": [
-      {
-        "param_pos": "6",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "0"
-        ]
-      }
+    "param_name": "ret"
+   }
+  ],
+  "template_id": 10309
+ },
+ {
+  "template": "Local setup link succ id ( <NUM> ) .",
+  "module": "kmm-server",
+  "params": [
+   {
+    "param_pos": "6",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0"
     ],
-    "template_id": 1
-  },
-  {
-    "template": "Local setup link fail ret ( <NUM> ) .",
-    "module": "kmm-server",
-    "params": [
-      {
-        "param_pos": "6",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "10"
-        ]
-      }
+    "param_name": "id"
+   }
+  ],
+  "template_id": 1
+ },
+ {
+  "template": "Local setup link fail ret ( <NUM> ) .",
+  "module": "kmm-server",
+  "params": [
+   {
+    "param_pos": "6",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "10"
     ],
-    "template_id": 2
-  },
-  {
-    "template": "INDEX_ART art read plog fail ret = [ <NUM> ] .",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "8",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "4"
-        ]
-      }
+    "param_name": "ret"
+   }
+  ],
+  "template_id": 2
+ },
+ {
+  "template": "INDEX_ART art read plog fail ret = [ <NUM> ] .",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "8",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "4"
     ],
-    "template_id": 10310
-  },
-  {
-    "template": "Cm create the RR pthread failed ret = <NUM>.",
-    "module": "ccdb",
-    "params": [
-      {
-        "param_pos": "8",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "-1"
-        ]
-      }
+    "param_name": "ret"
+   }
+  ],
+  "template_id": 10310
+ },
+ {
+  "template": "Cm create the RR pthread failed ret = <NUM>.",
+  "module": "ccdb",
+  "params": [
+   {
+    "param_pos": "8",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "-1"
     ],
-    "template_id": 2
-  },
-  {
-    "template": "Active Func <HEX0x> Trampoline proc failed.",
-    "module": "message_log",
-    "params": [
-      {
-        "param_pos": "2",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "0xaaaad802e008"
-        ]
-      }
+    "param_name": "ret"
+   }
+  ],
+  "template_id": 2
+ },
+ {
+  "template": "Active Func <HEX0x> Trampoline proc failed.",
+  "module": "message_log",
+  "params": [
+   {
+    "param_pos": "2",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0xaaaad802e008"
     ],
-    "template_id": 2
-  },
-  {
-    "template": "Activating of Patch --USER_HP0101.pat failed error code : <HEX0x>",
-    "module": "message_log",
-    "params": [
-      {
-        "param_pos": "8",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "0x202727d1"
-        ]
-      }
+    "param_name": "Func"
+   }
+  ],
+  "template_id": 2
+ },
+ {
+  "template": "Activating of Patch --USER_HP0101.pat failed error code : <HEX0x>",
+  "module": "message_log",
+  "params": [
+   {
+    "param_pos": "8",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0x202727d1"
     ],
-    "template_id": 3
-  },
-  {
-    "template": "dci_size ( <NUM> )",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "2",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "1024"
-        ]
-      }
+    "param_name": "error code"
+   }
+  ],
+  "template_id": 3
+ },
+ {
+  "template": "dci_size ( <NUM> )",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "2",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "1024"
     ],
-    "template_id": 10311
-  },
-  {
-    "template": "io detect send res error code : <NUM> request id : <MAC-HEX> cmd type ( <NUM> ) start time : <NUM> end time : <NUM>.fc wait time : <NUM> iops ok : <NUM> not ok : 0m sendtime : <NUM> aio block time : <NUM> <NUM>.",
-    "module": "eds",
-    "params": [
-      {
-        "param_pos": "7",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "0"
-        ]
-      }
+    "param_name": "dci_size"
+   }
+  ],
+  "template_id": 10311
+ },
+ {
+  "template": "io detect send res error code : <NUM> request id : <MAC-HEX> cmd type ( <NUM> ) start time : <NUM> end time : <NUM>.fc wait time : <NUM> iops ok : <NUM> not ok : 0m sendtime : <NUM> aio block time : <NUM> <NUM>.",
+  "module": "eds",
+  "params": [
+   {
+    "param_pos": "7",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0"
     ],
-    "template_id": 10312
-  },
-  {
-    "template": "pool id : <NUM> osd idx : <NUM> begin to start check [ auto_repair = <NUM> ]",
-    "module": "osd",
-    "params": [
-      {
-        "param_pos": "15",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "1"
-        ]
-      }
+    "param_name": "error code"
+   }
+  ],
+  "template_id": 10312
+ },
+ {
+  "template": "pool id : <NUM> osd idx : <NUM> begin to start check [ auto_repair = <NUM> ]",
+  "module": "osd",
+  "params": [
+   {
+    "param_pos": "15",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "1"
     ],
-    "template_id": 746
-  },
-  {
-    "template": "Critical fault : pid = <NUM> tid = <NUM> thrd = [ NULL ] sig = [ <NUM> ] SIGSEGV",
-    "module": "vbs",
-    "params": [
-      {
-        "param_pos": "16",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "11"
-        ]
-      }
+    "param_name": "auto_repair"
+   }
+  ],
+  "template_id": 746
+ },
+ {
+  "template": "Critical fault : pid = <NUM> tid = <NUM> thrd = [ NULL ] sig = [ <NUM> ] SIGSEGV",
+  "module": "vbs",
+  "params": [
+   {
+    "param_pos": "17",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "11"
     ],
-    "template_id": 4029
-  },
-  {
-    "template": "RIP = <HEX0x> value = <HEX0x> func = QosFillVolMsgBuf+<HEX0x> file = /opt/dsware/vbs/bin/dsware_vbs",
-    "module": "vbs",
-    "params": [
-      {
-        "param_pos": "8",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "0x8d"
-        ]
-      }
+    "param_name": "sig"
+   }
+  ],
+  "template_id": 4029
+ },
+ {
+  "template": "RIP = <HEX0x> value = <HEX0x> func = QosFillVolMsgBuf+<HEX0x> file = /opt/dsware/vbs/bin/dsware_vbs",
+  "module": "vbs",
+  "params": [
+   {
+    "param_pos": "8",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0x8d"
     ],
-    "template_id": 4030
-  },
-  {
-    "template": "req ( <MAC-HEX> ) plog ( <MAC-HEX> ) offset ( <NUM> ) dlen ( <NUM> ) ret ( <NUM> ) .",
-    "module": "osd",
-    "params": [
-      {
-        "param_pos": "18",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "-121006"
-        ]
-      }
+    "param_name": "func"
+   }
+  ],
+  "template_id": 4030
+ },
+ {
+  "template": "req ( <MAC-HEX> ) plog ( <MAC-HEX> ) offset ( <NUM> ) dlen ( <NUM> ) ret ( <NUM> ) .",
+  "module": "osd",
+  "params": [
+   {
+    "param_pos": "18",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "-121006"
     ],
-    "template_id": 2180
-  },
-  {
-    "template": "increase crb vdb recovered ( <NUM> ) format flag from ( <NUM> ) --> ( <NUM> ) .",
-    "module": "osd",
-    "params": [
-      {
-        "param_pos": "15",
-        "detect_mode": "black_list",
-        "detect_detail": [
-          "12"
-        ]
-      }
+    "param_name": "ret"
+   }
+  ],
+  "template_id": 2180
+ },
+ {
+  "template": "increase crb vdb recovered ( <NUM> ) format flag from ( <NUM> ) --> ( <NUM> ) .",
+  "module": "osd",
+  "params": [
+   {
+    "param_pos": "15",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "12"
     ],
-    "template_id": 672
-  }
+    "param_name": "format flag"
+   }
+  ],
+  "template_id": 672
+ },
+ {
+  "template": "CLS_STATUS: Controllers (<*>) free memory is (<*>), alarm type(<*>)(<*>: fault, <*>:resume).",
+  "module": "messages",
+  "template_id": 2001,
+  "params": [
+   {
+    "param_pos": "15",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "2"
+    ],
+    "param_name": "type"
+   }
+  ]
+ },
+ {
+  "template": "Disk sn:2102313EDH10PA100245,dev: change state:<*> to state:<*>,be abnormal.",
+  "module": "messages",
+  "template_id": 2002,
+  "params": [
+   {
+    "param_pos": "13",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "2"
+    ],
+    "param_name": "to state"
+   }
+  ]
+ },
+ {
+  "template": "VBC: blk rq fail, bd <*> is invalid, bd state <*>.",
+  "module": "messages",
+  "template_id": 2003,
+  "params": [
+   {
+    "param_pos": "11",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "3"
+    ],
+    "param_name": "state"
+   }
+  ]
+ },
+ {
+  "template": "Get device(<*>) link down status is <*> not expected, read try agin.",
+  "module": "messages",
+  "template_id": 2004,
+  "params": [
+   {
+    "param_pos": "11",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0"
+    ],
+    "param_name": "link down status"
+   }
+  ]
+ },
+ {
+  "template": "CLS_FENCING: Node xnet sche timeout(<*>) block timeout(<*>) abnormal.",
+  "module": "messages",
+  "template_id": 2005,
+  "params": [
+   {
+    "param_pos": "7",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "1"
+    ],
+    "param_name": "sche timeout"
+   },
+   {
+    "param_pos": "12",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0"
+    ],
+    "param_name": "block timeout"
+   }
+  ]
+ },
+ {
+  "template": "CACHE_CTRL: flow(<*>), phase(<*>) illegal.",
+  "module": "messages",
+  "template_id": 2006,
+  "params": [
+   {
+    "param_pos": "8",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "30"
+    ],
+    "param_name": "phase"
+   }
+  ]
+ },
+ {
+  "template": "RSF_FLOW: flow(<*>), phase(<*>) illegal.",
+  "module": "messages",
+  "template_id": 2007,
+  "params": [
+   {
+    "param_pos": "8",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "50"
+    ],
+    "param_name": "phase"
+   }
+  ]
+ },
+ {
+  "template": "VAF:(INST::<*>)VAF_FLOW_CTRL: flowId(<*>), phase(<*>) illegal.",
+  "module": "messages",
+  "template_id": 2008,
+  "params": [
+   {
+    "param_pos": "16",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "30"
+    ],
+    "param_name": "phase"
+   }
+  ]
+ },
+ {
+  "template": "PROTOCOL:MOD_FS-SHIM:{<*>}: gfp_fs_shim_get_sec_info() {Assert((Errno == <*>)) FAILED}: {Error: <*>}: SHM_STATUS_INVALID_WORKCTL",
+  "module": "messages",
+  "template_id": 2009,
+  "params": [
+   {
+    "param_pos": "24",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0x00001F5C"
+    ],
+    "param_name": "Error"
+   }
+  ]
+ },
+ {
+  "template": "PROTOCOL:MOD_FS-SHIM:(<*>): <*>(), Error: <*> (SHM_STATUS_OK), OpStatus: <*> (SHM_STATUS_INVALID_WORKCTL)",
+  "module": "messages",
+  "template_id": 2010,
+  "params": [
+   {
+    "param_pos": "21",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0x00001F5C"
+    ],
+    "param_name": "OpStatus"
+   }
+  ]
+ },
+ {
+  "template": "PROTOCOL:MOD_FS-SHIM:{<*>}: gfpFsSvrProcessOpFast() FAILED: {Error: <*> (SHM_STATUS_INVALID_WORKCTL)}",
+  "module": "messages",
+  "template_id": 2011,
+  "params": [
+   {
+    "param_pos": "15",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0x00001F5C"
+    ],
+    "param_name": "Error"
+   }
+  ]
+ },
+ {
+  "template": "DEVM FAILOVER:Lif(<*>) failover(reason:<*>) dest port(<*>) is invalid.",
+  "module": "messages",
+  "template_id": 2012,
+  "params": [
+   {
+    "param_pos": "11",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0"
+    ],
+    "param_name": "reason"
+   },
+   {
+    "param_pos": "16",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "0xffffffffffffffff"
+    ],
+    "param_name": "dest port"
+   }
+  ]
+ },
+ {
+  "template": "(Lwp:<*>)storagePool status abnormal, id(<*>) state(<*>).",
+  "module": "messages",
+  "template_id": 2013,
+  "params": [
+   {
+    "param_pos": "15",
+    "detect_mode": "black_list",
+    "detect_detail": [
+     "1"
+    ],
+    "param_name": "state"
+   }
+  ]
+ }
 ]
