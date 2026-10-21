@@ -1,0 +1,1000 @@
+{"line": "CST 2026-03-05 06:28:57 TIP: rep-worker : failed to read block blk_8dbb6e20af8e, retry 59463 times", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 04:02:34 DEBUG: vbs-server : checkpoint finished, elapsed 67167 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: certificate will expire in 5361 days, renew required", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 23:50:20: start to sync volume data, total 13429 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 00:10:56 TIP: ha-monitor : checkpoint finished, elapsed 63118 seconds", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 02:39:39 DEBUG: msg-handler : disk 74392 smart health status ok, temperature 56059 celsius", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: send audit event to kafka topic dsware-audit, seq=5bec8392680f", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 22:30:06: receive heartbeat from node-73524, load 48 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 16:45:48 TIP: msg-handler : received message from 10.78771.44815.73110:75379, dispatch to handler", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 21:30:10 DEBUG: scheduler : receive heartbeat from node-16449, load 43 percent", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: thread pool exhausted, active=50276 queued=66624 max=70795", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 04:16:55: write 91646 bytes to /data/dsware/task-991/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 15:39:30 TIP: scheduler : alarm cleared: disk usage back to 96 percent", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 09:10:27 DEBUG: ism-agent : task quota.db submitted by user admin, priority 46274", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: write 72779 bytes to /data/dsware/task-991/chunk.dat", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 11:09:20: thread pool exhausted, active=5257 queued=63431 max=40921", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 19:54:33 TIP: ha-monitor : cache entry f1d3429f55b1 evicted, free slots 95710", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 16:54:16 DEBUG: msg-handler : write 79474 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: alarm cleared: disk usage back to 33 percent", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 18:32:30: connection reset by peer, socket fd=58181", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 04:25:28 TIP: scheduler : process request op=quota.db done in 82202 ms", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 21:43:48 DEBUG: rep-worker : checkpoint finished, elapsed 67008 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: alarm cleared: disk usage back to 56 percent", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 05:07:36: receive heartbeat from node-79664, load 34 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 19:39:48 TIP: sync-task : certificate will expire in 67759 days, renew required", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 14:16:26 DEBUG: msg-handler : disk 2914 smart health status ok, temperature 75618 celsius", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: received message from 10.56575.90674.24119:23157, dispatch to handler", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 09:52:07: connection reset by peer, socket fd=12899", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 15:48:18 TIP: scheduler : thread pool exhausted, active=45095 queued=69127 max=51427", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 05:43:48 DEBUG: scheduler : rpc call GetVolumeInfo returned code 59, msg success", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: failed to read block blk_54e5e871305, retry 34635 times", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 16:54:20: process request op=quota.db done in 64354 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 10:35:19 TIP: sync-task : alarm cleared: disk usage back to 68 percent", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 20:09:43 DEBUG: dme-server : thread pool exhausted, active=1309 queued=91099 max=9679", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: init module task-991 begin, worker threads 83299", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 13:11:04: write 93355 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 14:18:46 TIP: ism-agent : update config key vol-3f2a to value 11611", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 15:41:49 DEBUG: rep-worker : init module task-991 begin, worker threads 31341", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: init module cfg.max.io begin, worker threads 72080", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 06:04:23: checkpoint finished, elapsed 81131 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 22:16:03 TIP: ha-monitor : failed to read block blk_7dc2901e160c, retry 44920 times", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 15:11:57 DEBUG: osd-daemon : update config key snap-7c to value 54741", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: thread pool exhausted, active=99578 queued=64127 max=78336", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 18:30:22: send audit event to kafka topic dsware-audit, seq=e73e1df8102f", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 14:21:11 TIP: vbs-server : rpc call GetVolumeInfo returned code 2343, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 19:50:04 DEBUG: sync-task : thread pool exhausted, active=68435 queued=8675 max=37700", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: update config key cfg.max.io to value 46162", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 00:37:05: rpc call GetVolumeInfo returned code 2961, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 03:11:12 TIP: ism-agent : update config key snap-7c to value 60362", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 17:50:24 DEBUG: msg-handler : init module vol-3f2a begin, worker threads 73426", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: metadata journal truncated at offset c5940a77844f", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 13:56:33: alarm cleared: disk usage back to 50 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 19:56:31 TIP: rep-worker : update config key quota.db to value 92938", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 06:26:50 DEBUG: osd-daemon : alarm cleared: disk usage back to 69 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: metadata journal truncated at offset c51d697f1c24", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 21:18:58: failed to read block blk_f06ffa244b3a, retry 13458 times", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 05:14:41 TIP: osd-daemon : metadata journal truncated at offset f40a67b34afc", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 12:59:33 DEBUG: vbs-server : received message from 10.14260.12213.81582:97514, dispatch to handler", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: receive heartbeat from node-45846, load 75 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 18:08:12: checkpoint finished, elapsed 33336 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 13:20:41 TIP: ism-agent : metadata journal truncated at offset 770a358e9cf6", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 09:41:13 DEBUG: main-worker : rpc call GetVolumeInfo returned code 41609, msg success", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: thread pool exhausted, active=62875 queued=80 max=3607", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 13:13:41: send audit event to kafka topic dsware-audit, seq=9d327018c580", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 21:16:48 TIP: scheduler : checkpoint finished, elapsed 38530 seconds", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 16:16:37 DEBUG: osd-daemon : update config key cfg.max.io to value 55454", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: task cfg.max.io submitted by user admin, priority 65975", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 05:29:26: checkpoint finished, elapsed 41024 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 17:35:40 TIP: vbs-server : start to sync volume data, total 79808 chunks", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 05:11:33 DEBUG: rep-worker : thread pool exhausted, active=91328 queued=77967 max=90420", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: certificate will expire in 73179 days, renew required", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 06:48:04: cache entry af4d0827c1b evicted, free slots 23807", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 10:32:42 TIP: sync-task : process request op=quota.db done in 10214 ms", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 23:43:04 DEBUG: dme-server : receive heartbeat from node-29415, load 60 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: cache entry 9fdb012490fe evicted, free slots 18230", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 19:10:03: cache entry 6266003172e4 evicted, free slots 65447", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 00:04:53 TIP: osd-daemon : rpc call GetVolumeInfo returned code 82546, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 20:48:35 DEBUG: scheduler : update config key quota.db to value 52492", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: task snap-7c submitted by user admin, priority 72155", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 11:47:52: process request op=snap-7c done in 62364 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 07:56:24 TIP: vbs-server : certificate will expire in 12284 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 08:46:36 DEBUG: msg-handler : send audit event to kafka topic dsware-audit, seq=6ebd53d04c3d", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: cache entry 1318d906c515 evicted, free slots 17368", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 01:00:39: update config key task-991 to value 63630", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 14:23:48 TIP: vbs-server : failed to read block blk_f84e5b6e97b9, retry 3897 times", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 13:57:29 DEBUG: msg-handler : failed to read block blk_396799ff4c37, retry 67606 times", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: checkpoint finished, elapsed 93489 seconds", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 01:39:16: certificate will expire in 14907 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 19:44:22 TIP: dme-server : receive heartbeat from node-37605, load 93 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 22:13:11 DEBUG: sync-task : write 53001 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: thread pool exhausted, active=52373 queued=79829 max=30834", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 12:57:52: update config key task-991 to value 8426", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 21:45:05 TIP: scheduler : thread pool exhausted, active=13879 queued=31324 max=24015", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 17:16:38 DEBUG: dme-server : send audit event to kafka topic dsware-audit, seq=b8022b0bdf08", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: failed to read block blk_96cf203e429a, retry 51614 times", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 11:28:31: task task-991 submitted by user admin, priority 71991", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 18:34:11 TIP: scheduler : write 89009 bytes to /data/dsware/task-991/chunk.dat", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 18:49:41 DEBUG: msg-handler : disk 13358 smart health status ok, temperature 4690 celsius", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: init module cfg.max.io begin, worker threads 43280", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 21:00:40: task quota.db submitted by user admin, priority 71560", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 22:46:32 TIP: sync-task : received message from 10.68330.68089.55771:83604, dispatch to handler", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 07:00:21 DEBUG: msg-handler : task snap-7c submitted by user admin, priority 2972", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: receive heartbeat from node-78599, load 55 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 07:53:43: thread pool exhausted, active=16257 queued=12621 max=43865", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 07:19:50 TIP: dme-server : receive heartbeat from node-43739, load 97 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 20:52:09 DEBUG: ha-monitor : task snap-7c submitted by user admin, priority 97181", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: send audit event to kafka topic dsware-audit, seq=eeb61e98fa71", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 09:50:55: start to sync volume data, total 70768 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 23:45:50 TIP: dme-server : disk 18613 smart health status ok, temperature 88525 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 09:28:24 DEBUG: rep-worker : metadata journal truncated at offset c051295522a", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: receive heartbeat from node-84139, load 80 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 02:37:06: received message from 10.25195.72811.28188:48414, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 11:58:11 TIP: sync-task : connection reset by peer, socket fd=26528", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 11:28:47 DEBUG: rep-worker : receive heartbeat from node-97215, load 39 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: metadata journal truncated at offset 1c5d6bf9845f", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 01:50:31: received message from 10.99193.65244.33662:5950, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 18:53:46 TIP: msg-handler : thread pool exhausted, active=94600 queued=90367 max=64329", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 06:48:36 DEBUG: vbs-server : cache entry df670ef8347d evicted, free slots 3145", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: task task-991 submitted by user admin, priority 68183", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 04:31:57: certificate will expire in 82259 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 02:44:30 TIP: scheduler : rpc call GetVolumeInfo returned code 8883, msg success", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 17:49:08 DEBUG: dme-server : checkpoint finished, elapsed 8435 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: write 55325 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 14:25:26: start to sync volume data, total 14966 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 08:04:38 TIP: msg-handler : thread pool exhausted, active=1554 queued=32912 max=69914", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 11:02:40 DEBUG: main-worker : received message from 10.61736.28083.43571:52489, dispatch to handler", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: thread pool exhausted, active=54358 queued=42657 max=70464", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 02:10:45: update config key vol-3f2a to value 40759", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 14:36:52 TIP: ha-monitor : receive heartbeat from node-79819, load 28 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 10:13:57 DEBUG: ha-monitor : start to sync volume data, total 4576 chunks", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: receive heartbeat from node-50259, load 98 percent", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 07:37:25: failed to read block blk_46faf76f0199, retry 88488 times", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 17:11:44 TIP: scheduler : cache entry 590d829d6f50 evicted, free slots 4955", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 16:33:31 DEBUG: ism-agent : certificate will expire in 93626 days, renew required", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: certificate will expire in 57900 days, renew required", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 22:28:47: disk 94304 smart health status ok, temperature 11787 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 01:45:09 TIP: vbs-server : task task-991 submitted by user admin, priority 12874", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 13:56:47 DEBUG: main-worker : process request op=task-991 done in 3904 ms", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: thread pool exhausted, active=25085 queued=16512 max=73551", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 01:08:15: start to sync volume data, total 55435 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 04:33:26 TIP: dme-server : task snap-7c submitted by user admin, priority 75800", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 20:51:09 DEBUG: ism-agent : cache entry a43189f4bc3a evicted, free slots 60303", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: connection reset by peer, socket fd=9841", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 03:48:25: write 95812 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 13:21:37 TIP: scheduler : failed to read block blk_47ce860359c, retry 17953 times", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 07:01:28 DEBUG: ism-agent : connection reset by peer, socket fd=80234", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: certificate will expire in 54829 days, renew required", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 01:07:32: alarm cleared: disk usage back to 79 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 01:12:44 TIP: rep-worker : start to sync volume data, total 21942 chunks", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 13:51:31 DEBUG: msg-handler : thread pool exhausted, active=83011 queued=94920 max=19118", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: connection reset by peer, socket fd=37373", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 21:04:15: alarm cleared: disk usage back to 59 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 08:13:31 TIP: sync-task : metadata journal truncated at offset c0fb68e36542", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 08:23:03 DEBUG: sync-task : process request op=vol-3f2a done in 56091 ms", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: task task-991 submitted by user admin, priority 49144", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 15:55:54: metadata journal truncated at offset d50a64fc2dd3", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 13:39:17 TIP: ha-monitor : receive heartbeat from node-81754, load 98 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 06:16:17 DEBUG: vbs-server : connection reset by peer, socket fd=61258", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: update config key quota.db to value 4449", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 17:58:39: disk 87011 smart health status ok, temperature 88831 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 22:31:30 TIP: ism-agent : connection reset by peer, socket fd=143", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 06:18:24 DEBUG: vbs-server : process request op=quota.db done in 5213 ms", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: disk 19335 smart health status ok, temperature 34821 celsius", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 00:20:32: task vol-3f2a submitted by user admin, priority 26935", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 02:51:21 TIP: ism-agent : process request op=quota.db done in 30214 ms", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 01:29:01 DEBUG: osd-daemon : write 60379 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: send audit event to kafka topic dsware-audit, seq=1c8c5c6712fa", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 03:45:49: thread pool exhausted, active=29819 queued=70765 max=74896", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 12:12:12 TIP: osd-daemon : send audit event to kafka topic dsware-audit, seq=c6a0d4dd5c61", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 18:04:57 DEBUG: msg-handler : init module cfg.max.io begin, worker threads 83476", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: received message from 10.49857.98843.22536:64252, dispatch to handler", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 21:34:55: process request op=cfg.max.io done in 52773 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 18:22:35 TIP: ha-monitor : receive heartbeat from node-61460, load 42 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 13:08:25 DEBUG: ha-monitor : failed to read block blk_18614244af46, retry 18154 times", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: thread pool exhausted, active=87552 queued=27296 max=35873", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 17:26:53: update config key task-991 to value 72470", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 08:11:19 TIP: ha-monitor : update config key snap-7c to value 48790", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 17:31:54 DEBUG: rep-worker : metadata journal truncated at offset f7bf403d8530", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: disk 74667 smart health status ok, temperature 5023 celsius", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 12:25:35: metadata journal truncated at offset c5d572302322", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 22:43:20 TIP: dme-server : update config key cfg.max.io to value 77597", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 03:51:23 DEBUG: ism-agent : disk 35912 smart health status ok, temperature 12408 celsius", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: receive heartbeat from node-35461, load 79 percent", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 09:46:30: alarm cleared: disk usage back to 64 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 22:33:23 TIP: rep-worker : cache entry 5f5a627c62c evicted, free slots 85773", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 19:39:44 DEBUG: msg-handler : update config key snap-7c to value 39452", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: volume vol-3f2a changed state from active to degraded", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 19:05:23: write 71832 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 17:49:01 TIP: osd-daemon : task task-991 submitted by user admin, priority 41335", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 10:35:13 DEBUG: msg-handler : failed to read block blk_5073b12f1ab7, retry 59586 times", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: update config key vol-3f2a to value 70230", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 05:22:26: thread pool exhausted, active=90302 queued=63471 max=28695", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 17:17:28 TIP: vbs-server : disk 40423 smart health status ok, temperature 95780 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 05:08:12 DEBUG: sync-task : thread pool exhausted, active=7781 queued=9951 max=33562", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: write 67229 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 10:32:38: disk 57202 smart health status ok, temperature 67668 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 00:28:03 TIP: osd-daemon : certificate will expire in 89175 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 22:08:25 DEBUG: dme-server : volume quota.db changed state from active to degraded", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: write 98783 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 10:24:08: certificate will expire in 66789 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 20:40:00 TIP: rep-worker : certificate will expire in 34149 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 13:50:12 DEBUG: rep-worker : volume task-991 changed state from active to degraded", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: init module task-991 begin, worker threads 66107", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 01:40:26: disk 48850 smart health status ok, temperature 24222 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 21:47:10 TIP: main-worker : alarm cleared: disk usage back to 10 percent", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 17:51:07 DEBUG: sync-task : rpc call GetVolumeInfo returned code 91029, msg success", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: certificate will expire in 12313 days, renew required", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 19:55:50: checkpoint finished, elapsed 43749 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 10:13:04 TIP: scheduler : volume snap-7c changed state from active to degraded", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 02:23:58 DEBUG: osd-daemon : certificate will expire in 50142 days, renew required", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: metadata journal truncated at offset 3df7293c1e35", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 09:38:05: write 40499 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 15:05:15 TIP: main-worker : thread pool exhausted, active=62084 queued=3231 max=46602", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 15:36:08 DEBUG: vbs-server : metadata journal truncated at offset 8d8a461a872c", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: send audit event to kafka topic dsware-audit, seq=3c6eec17167c", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 12:18:38: receive heartbeat from node-10841, load 93 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 13:54:11 TIP: main-worker : cache entry 2feb7178270f evicted, free slots 32489", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 21:00:40 DEBUG: ha-monitor : rpc call GetVolumeInfo returned code 69753, msg success", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: init module vol-3f2a begin, worker threads 71371", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 13:25:19: alarm cleared: disk usage back to 76 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 22:58:01 TIP: osd-daemon : process request op=cfg.max.io done in 36124 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 08:24:30 DEBUG: ism-agent : init module snap-7c begin, worker threads 66668", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: checkpoint finished, elapsed 44172 seconds", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 09:56:28: write 99764 bytes to /data/dsware/task-991/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 12:30:12 TIP: msg-handler : write 4284 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 08:40:35 DEBUG: scheduler : rpc call GetVolumeInfo returned code 96451, msg success", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: init module cfg.max.io begin, worker threads 42403", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 14:44:48: checkpoint finished, elapsed 67963 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 21:45:05 TIP: dme-server : checkpoint finished, elapsed 47296 seconds", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 02:00:59 DEBUG: main-worker : process request op=vol-3f2a done in 24151 ms", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: send audit event to kafka topic dsware-audit, seq=9a962df76a3b", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 10:14:08: certificate will expire in 13457 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 11:19:53 TIP: scheduler : receive heartbeat from node-42016, load 24 percent", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 10:57:58 DEBUG: ism-agent : checkpoint finished, elapsed 12928 seconds", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: thread pool exhausted, active=98834 queued=98815 max=64872", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 18:18:04: connection reset by peer, socket fd=17859", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 22:51:53 TIP: ism-agent : init module cfg.max.io begin, worker threads 79766", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 02:48:41 DEBUG: ism-agent : rpc call GetVolumeInfo returned code 3445, msg success", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: start to sync volume data, total 56462 chunks", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 06:16:03: alarm cleared: disk usage back to 25 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 10:38:25 TIP: msg-handler : start to sync volume data, total 48435 chunks", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 20:55:31 DEBUG: dme-server : send audit event to kafka topic dsware-audit, seq=fe022dd74505", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: certificate will expire in 6577 days, renew required", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 19:47:43: certificate will expire in 52768 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 22:54:31 TIP: scheduler : metadata journal truncated at offset 4483bb98d9cf", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 16:11:16 DEBUG: sync-task : write 5698 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: metadata journal truncated at offset 4bb83c669f2e", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 04:10:29: process request op=quota.db done in 39683 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 14:37:31 TIP: ism-agent : rpc call GetVolumeInfo returned code 37900, msg success", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 10:13:58 DEBUG: scheduler : receive heartbeat from node-40196, load 5 percent", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: certificate will expire in 52387 days, renew required", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 03:25:34: task cfg.max.io submitted by user admin, priority 49601", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 16:00:55 TIP: ha-monitor : init module cfg.max.io begin, worker threads 69477", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 00:27:28 DEBUG: dme-server : rpc call GetVolumeInfo returned code 70748, msg success", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: cache entry ea25520099fe evicted, free slots 43932", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 14:07:33: task cfg.max.io submitted by user admin, priority 11767", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 21:58:16 TIP: main-worker : task cfg.max.io submitted by user admin, priority 30890", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 02:51:52 DEBUG: vbs-server : init module vol-3f2a begin, worker threads 44179", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: metadata journal truncated at offset b685fb257db5", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 01:51:55: failed to read block blk_cf5adbcb0d6, retry 31838 times", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 02:51:41 TIP: osd-daemon : certificate will expire in 46213 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 00:20:56 DEBUG: ism-agent : alarm cleared: disk usage back to 34 percent", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: certificate will expire in 48235 days, renew required", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 20:56:08: receive heartbeat from node-34137, load 63 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 19:48:07 TIP: dme-server : update config key quota.db to value 40063", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 19:34:21 DEBUG: rep-worker : checkpoint finished, elapsed 97071 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: volume quota.db changed state from active to degraded", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 05:20:06: process request op=cfg.max.io done in 41956 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 20:37:57 TIP: scheduler : checkpoint finished, elapsed 63187 seconds", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 11:12:52 DEBUG: vbs-server : checkpoint finished, elapsed 19792 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: write 29072 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 12:29:16: send audit event to kafka topic dsware-audit, seq=f906254f98e1", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 21:41:45 TIP: main-worker : rpc call GetVolumeInfo returned code 38692, msg success", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 07:02:46 DEBUG: scheduler : init module cfg.max.io begin, worker threads 27174", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: alarm cleared: disk usage back to 50 percent", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 16:43:34: checkpoint finished, elapsed 1595 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 01:41:51 TIP: ism-agent : received message from 10.55046.12673.11526:43199, dispatch to handler", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 11:20:17 DEBUG: msg-handler : write 76156 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: alarm cleared: disk usage back to 71 percent", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 08:51:49: receive heartbeat from node-97112, load 22 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 06:54:12 TIP: osd-daemon : thread pool exhausted, active=41122 queued=29824 max=89924", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 18:43:18 DEBUG: msg-handler : write 64046 bytes to /data/dsware/task-991/chunk.dat", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: process request op=snap-7c done in 78060 ms", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 16:47:55: receive heartbeat from node-53306, load 60 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 19:31:33 TIP: rep-worker : task vol-3f2a submitted by user admin, priority 55412", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 05:19:12 DEBUG: msg-handler : failed to read block blk_31807d9861f0, retry 51228 times", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: start to sync volume data, total 31402 chunks", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 07:24:07: start to sync volume data, total 72158 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 14:05:41 TIP: ism-agent : alarm cleared: disk usage back to 41 percent", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 09:59:17 DEBUG: ha-monitor : send audit event to kafka topic dsware-audit, seq=b141b59dc6e3", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: certificate will expire in 29154 days, renew required", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 15:21:17: volume snap-7c changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 03:14:30 TIP: vbs-server : rpc call GetVolumeInfo returned code 65324, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 14:23:28 DEBUG: main-worker : cache entry 6b2923d3dc42 evicted, free slots 46822", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: send audit event to kafka topic dsware-audit, seq=8bb556f3fef0", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 06:57:18: certificate will expire in 47429 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 04:31:02 TIP: main-worker : cache entry fec34310ddea evicted, free slots 20041", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 14:39:26 DEBUG: ism-agent : receive heartbeat from node-73799, load 34 percent", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: received message from 10.80403.48969.30274:74775, dispatch to handler", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 17:17:13: connection reset by peer, socket fd=30911", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 06:54:10 TIP: main-worker : connection reset by peer, socket fd=47114", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 18:16:11 DEBUG: ism-agent : process request op=snap-7c done in 90894 ms", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: failed to read block blk_bb629fa46df1, retry 69774 times", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 22:09:39: disk 59569 smart health status ok, temperature 67948 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 22:53:47 TIP: osd-daemon : checkpoint finished, elapsed 12347 seconds", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 06:20:21 DEBUG: ha-monitor : checkpoint finished, elapsed 1239 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: init module task-991 begin, worker threads 60939", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 10:38:24: rpc call GetVolumeInfo returned code 19733, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 09:52:29 TIP: msg-handler : connection reset by peer, socket fd=87957", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 05:44:24 DEBUG: sync-task : update config key vol-3f2a to value 50386", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: send audit event to kafka topic dsware-audit, seq=936fac00addd", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 16:10:06: received message from 10.7608.73104.97465:23823, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 16:10:39 TIP: vbs-server : write 63114 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 16:36:45 DEBUG: msg-handler : alarm cleared: disk usage back to 89 percent", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: thread pool exhausted, active=42553 queued=66819 max=28837", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 00:00:15: rpc call GetVolumeInfo returned code 17789, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 18:24:41 TIP: osd-daemon : process request op=cfg.max.io done in 25966 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 00:32:43 DEBUG: ha-monitor : thread pool exhausted, active=68594 queued=96456 max=26213", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: process request op=task-991 done in 68382 ms", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 22:41:21: alarm cleared: disk usage back to 71 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 07:00:35 TIP: rep-worker : start to sync volume data, total 21863 chunks", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 04:43:38 DEBUG: ha-monitor : cache entry f6edf3ce8c46 evicted, free slots 4230", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: receive heartbeat from node-79416, load 89 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 12:27:09: alarm cleared: disk usage back to 25 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 16:38:53 TIP: scheduler : init module vol-3f2a begin, worker threads 69945", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 04:48:46 DEBUG: ism-agent : disk 33919 smart health status ok, temperature 62862 celsius", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: update config key task-991 to value 63347", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 09:06:20: thread pool exhausted, active=60308 queued=58459 max=24331", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 11:54:18 TIP: sync-task : checkpoint finished, elapsed 48321 seconds", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 15:42:03 DEBUG: main-worker : alarm cleared: disk usage back to 89 percent", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: failed to read block blk_e56fb05f358b, retry 99647 times", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 11:58:30: volume cfg.max.io changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 18:53:35 TIP: ha-monitor : thread pool exhausted, active=18770 queued=26992 max=64941", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 00:54:39 DEBUG: ha-monitor : update config key task-991 to value 79419", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: update config key snap-7c to value 25449", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 19:45:07: send audit event to kafka topic dsware-audit, seq=422cc1909d9a", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 19:09:14 TIP: dme-server : checkpoint finished, elapsed 48892 seconds", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 00:54:27 DEBUG: dme-server : init module task-991 begin, worker threads 16656", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: task quota.db submitted by user admin, priority 41630", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 08:11:35: cache entry e98404d9b8da evicted, free slots 13711", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 03:38:23 TIP: dme-server : process request op=vol-3f2a done in 13211 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 06:04:32 DEBUG: main-worker : failed to read block blk_dc35cd9baa68, retry 28568 times", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: cache entry 106618b493ae evicted, free slots 73192", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 02:00:22: start to sync volume data, total 16082 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 02:20:37 TIP: dme-server : disk 87802 smart health status ok, temperature 96238 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 12:29:26 DEBUG: msg-handler : connection reset by peer, socket fd=36533", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: receive heartbeat from node-50835, load 21 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 19:12:22: init module vol-3f2a begin, worker threads 9518", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 23:05:44 TIP: rep-worker : send audit event to kafka topic dsware-audit, seq=82236d39109d", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 18:26:22 DEBUG: main-worker : received message from 10.31823.46752.34915:24682, dispatch to handler", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: receive heartbeat from node-23233, load 8 percent", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 18:39:57: metadata journal truncated at offset b7a66fdb1db0", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 03:06:08 TIP: rep-worker : receive heartbeat from node-48179, load 96 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 01:17:51 DEBUG: dme-server : process request op=quota.db done in 82266 ms", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: certificate will expire in 3160 days, renew required", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 02:46:09: rpc call GetVolumeInfo returned code 30144, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 13:43:51 TIP: sync-task : checkpoint finished, elapsed 54732 seconds", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 01:33:37 DEBUG: vbs-server : receive heartbeat from node-44714, load 80 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: failed to read block blk_57879f0fa179, retry 27356 times", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 03:37:11: update config key quota.db to value 19922", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 05:28:38 TIP: rep-worker : rpc call GetVolumeInfo returned code 49625, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 01:51:26 DEBUG: ism-agent : volume task-991 changed state from active to degraded", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: rpc call GetVolumeInfo returned code 32763, msg success", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 03:40:02: thread pool exhausted, active=53647 queued=50914 max=25990", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 10:15:10 TIP: scheduler : disk 5828 smart health status ok, temperature 30834 celsius", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 09:55:39 DEBUG: sync-task : checkpoint finished, elapsed 31385 seconds", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: connection reset by peer, socket fd=81172", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 12:12:49: start to sync volume data, total 76891 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 01:01:45 TIP: rep-worker : metadata journal truncated at offset f647faeee618", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 11:39:50 DEBUG: osd-daemon : checkpoint finished, elapsed 49060 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: process request op=vol-3f2a done in 98050 ms", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 02:09:55: alarm cleared: disk usage back to 69 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 03:22:46 TIP: osd-daemon : rpc call GetVolumeInfo returned code 87439, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 08:19:54 DEBUG: scheduler : cache entry ebcb29b357f2 evicted, free slots 38669", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: task quota.db submitted by user admin, priority 88583", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 00:34:52: write 99837 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 21:41:08 TIP: vbs-server : receive heartbeat from node-39972, load 83 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 00:05:04 DEBUG: ism-agent : write 27783 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: thread pool exhausted, active=76225 queued=27874 max=67540", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 21:40:18: checkpoint finished, elapsed 17470 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 01:14:16 TIP: ha-monitor : update config key vol-3f2a to value 29920", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 04:13:33 DEBUG: dme-server : certificate will expire in 98579 days, renew required", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: update config key snap-7c to value 42445", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 02:02:21: send audit event to kafka topic dsware-audit, seq=45e288f60605", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 17:48:09 TIP: ha-monitor : process request op=quota.db done in 1120 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 03:21:23 DEBUG: ism-agent : metadata journal truncated at offset 92eede44589c", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: task quota.db submitted by user admin, priority 76514", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 00:18:04: write 36912 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 06:17:12 TIP: osd-daemon : disk 52872 smart health status ok, temperature 91596 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 07:31:28 DEBUG: osd-daemon : volume cfg.max.io changed state from active to degraded", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: start to sync volume data, total 60851 chunks", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 15:01:04: received message from 10.51859.11724.11279:9661, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 17:41:34 TIP: dme-server : task quota.db submitted by user admin, priority 20199", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 21:29:56 DEBUG: msg-handler : process request op=snap-7c done in 9085 ms", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: cache entry 314bfd061e25 evicted, free slots 65229", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 14:54:50: init module snap-7c begin, worker threads 26019", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 16:22:04 TIP: ha-monitor : start to sync volume data, total 42354 chunks", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 08:41:22 DEBUG: vbs-server : cache entry 2378033f411e evicted, free slots 72886", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: write 14259 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 16:37:53: checkpoint finished, elapsed 77212 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 14:15:54 TIP: main-worker : cache entry f86e6bc4b807 evicted, free slots 63397", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 00:17:17 DEBUG: osd-daemon : connection reset by peer, socket fd=25399", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: init module task-991 begin, worker threads 19335", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 20:07:14: receive heartbeat from node-16699, load 82 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 05:34:53 TIP: osd-daemon : process request op=vol-3f2a done in 1558 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 13:25:16 DEBUG: dme-server : start to sync volume data, total 66353 chunks", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: disk 97847 smart health status ok, temperature 33152 celsius", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 00:42:03: connection reset by peer, socket fd=58683", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 16:24:28 TIP: dme-server : rpc call GetVolumeInfo returned code 21131, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 10:29:21 DEBUG: dme-server : task vol-3f2a submitted by user admin, priority 16840", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: connection reset by peer, socket fd=54663", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 07:18:04: start to sync volume data, total 76284 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 13:38:08 TIP: dme-server : volume task-991 changed state from active to degraded", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 09:18:46 DEBUG: ism-agent : send audit event to kafka topic dsware-audit, seq=c546b96eac3a", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: certificate will expire in 54444 days, renew required", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 21:33:13: update config key quota.db to value 48254", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 19:09:31 TIP: msg-handler : init module cfg.max.io begin, worker threads 94728", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 11:28:19 DEBUG: dme-server : rpc call GetVolumeInfo returned code 58181, msg success", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: checkpoint finished, elapsed 3150 seconds", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 19:03:42: receive heartbeat from node-47753, load 73 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 16:23:01 TIP: scheduler : receive heartbeat from node-57404, load 5 percent", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 02:29:23 DEBUG: osd-daemon : disk 86362 smart health status ok, temperature 27649 celsius", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: received message from 10.29056.27689.25666:24301, dispatch to handler", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 20:20:18: cache entry f57dffa5018 evicted, free slots 87050", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 09:46:58 TIP: ha-monitor : connection reset by peer, socket fd=79954", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 12:37:24 DEBUG: sync-task : task task-991 submitted by user admin, priority 47657", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: rpc call GetVolumeInfo returned code 65015, msg success", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 01:16:44: receive heartbeat from node-54658, load 76 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 03:51:30 TIP: osd-daemon : init module snap-7c begin, worker threads 42274", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 06:10:33 DEBUG: ha-monitor : process request op=quota.db done in 85033 ms", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: write 65072 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 06:22:11: metadata journal truncated at offset 3f039fd0b550", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 18:26:06 TIP: msg-handler : alarm cleared: disk usage back to 32 percent", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 02:46:20 DEBUG: vbs-server : alarm cleared: disk usage back to 85 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: volume snap-7c changed state from active to degraded", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 21:23:41: write 25379 bytes to /data/dsware/task-991/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 20:44:25 TIP: vbs-server : thread pool exhausted, active=67788 queued=29367 max=2281", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 14:19:53 DEBUG: osd-daemon : receive heartbeat from node-66873, load 75 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: init module task-991 begin, worker threads 45294", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 13:50:27: certificate will expire in 4583 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 00:20:27 TIP: scheduler : certificate will expire in 24202 days, renew required", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 12:17:35 DEBUG: ism-agent : failed to read block blk_401ced42de64, retry 75597 times", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: thread pool exhausted, active=87675 queued=3655 max=12851", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 03:57:14: received message from 10.94676.54713.34196:46305, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 05:56:04 TIP: ha-monitor : connection reset by peer, socket fd=65160", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 02:58:36 DEBUG: rep-worker : connection reset by peer, socket fd=80216", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: connection reset by peer, socket fd=40561", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 13:28:23: certificate will expire in 57028 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 10:08:01 TIP: rep-worker : init module quota.db begin, worker threads 50823", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 06:46:00 DEBUG: ha-monitor : thread pool exhausted, active=82716 queued=88262 max=57677", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: certificate will expire in 94542 days, renew required", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 03:38:49: metadata journal truncated at offset 41257ae7d1ed", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 08:41:51 TIP: msg-handler : init module snap-7c begin, worker threads 20835", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 22:26:02 DEBUG: sync-task : cache entry b6c768f1a8d3 evicted, free slots 83779", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: metadata journal truncated at offset 18af7ec97661", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 15:01:51: metadata journal truncated at offset 5db2b62d2b42", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 06:41:07 TIP: rep-worker : init module cfg.max.io begin, worker threads 11161", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 20:24:03 DEBUG: osd-daemon : receive heartbeat from node-16848, load 35 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: failed to read block blk_3748fa055438, retry 81400 times", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 11:25:58: volume task-991 changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 05:24:03 TIP: dme-server : init module cfg.max.io begin, worker threads 63284", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 20:16:48 DEBUG: msg-handler : alarm cleared: disk usage back to 7 percent", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: received message from 10.4620.57772.8784:94587, dispatch to handler", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 18:29:11: alarm cleared: disk usage back to 99 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 18:27:21 TIP: scheduler : volume cfg.max.io changed state from active to degraded", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 01:47:03 DEBUG: dme-server : failed to read block blk_30f1da0ef2a1, retry 27654 times", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: volume snap-7c changed state from active to degraded", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 16:44:28: cache entry cc3809c89933 evicted, free slots 70721", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 01:25:12 TIP: rep-worker : volume quota.db changed state from active to degraded", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 15:32:44 DEBUG: ha-monitor : disk 12141 smart health status ok, temperature 35471 celsius", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: rpc call GetVolumeInfo returned code 53294, msg success", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 21:28:28: volume task-991 changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 13:15:43 TIP: vbs-server : send audit event to kafka topic dsware-audit, seq=a8942ba8a275", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 16:16:45 DEBUG: rep-worker : thread pool exhausted, active=81747 queued=22744 max=94477", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: metadata journal truncated at offset acd07f44b03", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 13:21:11: volume cfg.max.io changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 03:28:17 TIP: msg-handler : failed to read block blk_6fb6a4774a2e, retry 73051 times", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 17:16:58 DEBUG: dme-server : start to sync volume data, total 67120 chunks", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: rpc call GetVolumeInfo returned code 57306, msg success", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 06:03:38: send audit event to kafka topic dsware-audit, seq=cfe00d63743f", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 11:50:19 TIP: vbs-server : certificate will expire in 22004 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 11:50:59 DEBUG: sync-task : disk 39347 smart health status ok, temperature 52428 celsius", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: metadata journal truncated at offset 48d4effceb49", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 23:33:53: certificate will expire in 74074 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 10:48:22 TIP: osd-daemon : disk 68566 smart health status ok, temperature 43080 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 09:49:59 DEBUG: rep-worker : volume vol-3f2a changed state from active to degraded", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: start to sync volume data, total 96253 chunks", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 04:11:54: rpc call GetVolumeInfo returned code 86799, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 17:20:59 TIP: dme-server : metadata journal truncated at offset 558f6d1ccd2a", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 20:06:35 DEBUG: osd-daemon : failed to read block blk_cf3dae79d921, retry 13353 times", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: checkpoint finished, elapsed 63614 seconds", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 06:55:07: received message from 10.94397.41361.27475:24645, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 14:26:21 TIP: sync-task : process request op=cfg.max.io done in 27294 ms", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 12:07:59 DEBUG: dme-server : certificate will expire in 39819 days, renew required", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: disk 77025 smart health status ok, temperature 50201 celsius", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 21:33:53: update config key snap-7c to value 94353", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 02:02:50 TIP: vbs-server : start to sync volume data, total 26177 chunks", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 01:44:06 DEBUG: main-worker : alarm cleared: disk usage back to 16 percent", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: start to sync volume data, total 27402 chunks", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 04:06:25: task cfg.max.io submitted by user admin, priority 28991", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 00:51:32 TIP: ha-monitor : connection reset by peer, socket fd=62052", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 10:53:04 DEBUG: scheduler : failed to read block blk_e40828dc4800, retry 40638 times", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: task quota.db submitted by user admin, priority 52640", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 08:16:26: process request op=cfg.max.io done in 89565 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 15:41:21 TIP: dme-server : received message from 10.67905.48577.33501:10135, dispatch to handler", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 15:12:46 DEBUG: osd-daemon : failed to read block blk_9a243fdbeca7, retry 40105 times", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: process request op=quota.db done in 57896 ms", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 07:05:13: update config key cfg.max.io to value 92411", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 01:47:17 TIP: sync-task : init module vol-3f2a begin, worker threads 19180", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 12:57:20 DEBUG: rep-worker : certificate will expire in 40582 days, renew required", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: task snap-7c submitted by user admin, priority 66428", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 00:21:20: send audit event to kafka topic dsware-audit, seq=6a0481c2190a", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 02:05:00 TIP: dme-server : write 66529 bytes to /data/dsware/task-991/chunk.dat", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 04:05:08 DEBUG: scheduler : certificate will expire in 14670 days, renew required", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: disk 49398 smart health status ok, temperature 24755 celsius", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 20:05:48: receive heartbeat from node-19500, load 9 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 08:11:45 TIP: osd-daemon : certificate will expire in 23603 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 06:50:00 DEBUG: rep-worker : task task-991 submitted by user admin, priority 93910", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: rpc call GetVolumeInfo returned code 56963, msg success", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 16:08:35: init module vol-3f2a begin, worker threads 2064", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 11:34:13 TIP: main-worker : receive heartbeat from node-79453, load 16 percent", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 06:17:49 DEBUG: msg-handler : init module vol-3f2a begin, worker threads 70324", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: init module cfg.max.io begin, worker threads 39537", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 19:33:01: start to sync volume data, total 10798 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 01:51:45 TIP: rep-worker : certificate will expire in 71361 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 16:50:15 DEBUG: msg-handler : thread pool exhausted, active=34801 queued=62189 max=24380", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: disk 91215 smart health status ok, temperature 11092 celsius", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 01:47:07: alarm cleared: disk usage back to 15 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 05:54:49 TIP: sync-task : rpc call GetVolumeInfo returned code 89631, msg success", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 08:08:47 DEBUG: msg-handler : receive heartbeat from node-65468, load 59 percent", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: update config key quota.db to value 52586", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 03:38:32: received message from 10.96587.20861.38507:54295, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 08:45:13 TIP: msg-handler : alarm cleared: disk usage back to 73 percent", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 14:12:57 DEBUG: vbs-server : rpc call GetVolumeInfo returned code 43896, msg success", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: metadata journal truncated at offset 6f16d16cf8bd", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 03:45:10: disk 58061 smart health status ok, temperature 404 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 19:36:01 TIP: msg-handler : write 80427 bytes to /data/dsware/task-991/chunk.dat", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 10:34:14 DEBUG: sync-task : metadata journal truncated at offset 14abca4782a7", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: update config key task-991 to value 455", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 10:22:20: send audit event to kafka topic dsware-audit, seq=8a3945e17c9c", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 23:54:47 TIP: main-worker : connection reset by peer, socket fd=96347", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 17:02:43 DEBUG: sync-task : metadata journal truncated at offset 9bc520710375", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: send audit event to kafka topic dsware-audit, seq=197d4cb9cd22", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 05:37:08: volume snap-7c changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 08:50:30 TIP: ism-agent : received message from 10.82078.51327.60763:24197, dispatch to handler", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 11:08:08 DEBUG: rep-worker : metadata journal truncated at offset 96ff08a4acd5", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: metadata journal truncated at offset 8423e06318b", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 03:00:42: start to sync volume data, total 64278 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 21:55:28 TIP: ism-agent : cache entry ec0db1d4e817 evicted, free slots 87425", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 19:16:44 DEBUG: scheduler : task quota.db submitted by user admin, priority 23092", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: start to sync volume data, total 50570 chunks", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 06:43:41: init module task-991 begin, worker threads 95970", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 02:13:07 TIP: sync-task : init module cfg.max.io begin, worker threads 74265", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 04:17:06 DEBUG: dme-server : init module quota.db begin, worker threads 92627", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: certificate will expire in 46176 days, renew required", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 19:20:45: cache entry 6c035f455d56 evicted, free slots 37773", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 18:55:09 TIP: sync-task : process request op=cfg.max.io done in 26982 ms", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 08:01:13 DEBUG: vbs-server : init module quota.db begin, worker threads 33572", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: received message from 10.49811.34529.21994:51714, dispatch to handler", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 05:23:44: receive heartbeat from node-50669, load 69 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 08:23:11 TIP: vbs-server : disk 4737 smart health status ok, temperature 36119 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 17:06:54 DEBUG: osd-daemon : write 50797 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: update config key task-991 to value 16244", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 11:40:00: update config key snap-7c to value 82161", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 20:24:54 TIP: osd-daemon : cache entry 5e8c41ecceae evicted, free slots 50048", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 15:10:56 DEBUG: dme-server : disk 89778 smart health status ok, temperature 56030 celsius", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: send audit event to kafka topic dsware-audit, seq=6b0629ae100c", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 01:30:42: checkpoint finished, elapsed 45363 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 08:59:13 TIP: sync-task : receive heartbeat from node-93692, load 73 percent", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 20:32:23 DEBUG: ism-agent : certificate will expire in 13289 days, renew required", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: init module vol-3f2a begin, worker threads 56087", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 16:26:12: send audit event to kafka topic dsware-audit, seq=6143ec0d7b23", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 06:53:45 TIP: rep-worker : send audit event to kafka topic dsware-audit, seq=3196d2c7bbbf", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 14:16:10 DEBUG: sync-task : volume snap-7c changed state from active to degraded", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: write 50964 bytes to /data/dsware/task-991/chunk.dat", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 16:44:32: cache entry 196d61378e28 evicted, free slots 48394", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 00:38:56 TIP: ism-agent : start to sync volume data, total 30689 chunks", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 12:47:12 DEBUG: sync-task : update config key snap-7c to value 43611", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: write 56331 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 09:53:32: rpc call GetVolumeInfo returned code 51159, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 22:45:45 TIP: osd-daemon : process request op=task-991 done in 42217 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 03:51:44 DEBUG: ism-agent : received message from 10.30712.43655.95490:93268, dispatch to handler", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: receive heartbeat from node-95215, load 25 percent", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 22:54:05: init module vol-3f2a begin, worker threads 78044", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 02:08:14 TIP: scheduler : cache entry 454514b8e698 evicted, free slots 62032", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 16:04:42 DEBUG: rep-worker : receive heartbeat from node-19698, load 37 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: process request op=snap-7c done in 68396 ms", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 05:11:42: failed to read block blk_e4a83feeedef, retry 64969 times", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 18:47:01 TIP: rep-worker : disk 56211 smart health status ok, temperature 69623 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 17:04:07 DEBUG: scheduler : write 38550 bytes to /data/dsware/task-991/chunk.dat", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: alarm cleared: disk usage back to 87 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 09:18:39: send audit event to kafka topic dsware-audit, seq=ec37e66d4a7b", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 20:19:55 TIP: vbs-server : alarm cleared: disk usage back to 68 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 03:53:41 DEBUG: ism-agent : volume task-991 changed state from active to degraded", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: cache entry 60de9bc4b579 evicted, free slots 36970", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 10:07:59: process request op=vol-3f2a done in 54188 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 19:45:32 TIP: ism-agent : disk 9459 smart health status ok, temperature 23588 celsius", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 01:27:52 DEBUG: dme-server : process request op=cfg.max.io done in 91978 ms", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: volume cfg.max.io changed state from active to degraded", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 16:09:40: task task-991 submitted by user admin, priority 16321", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 10:19:02 TIP: sync-task : metadata journal truncated at offset 76aca68e9a3c", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 17:49:09 DEBUG: main-worker : start to sync volume data, total 26601 chunks", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: start to sync volume data, total 13607 chunks", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 01:48:43: process request op=snap-7c done in 37968 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 13:28:27 TIP: sync-task : disk 54268 smart health status ok, temperature 60019 celsius", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 05:09:43 DEBUG: ha-monitor : update config key quota.db to value 64216", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: checkpoint finished, elapsed 7773 seconds", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 23:46:12: cache entry a5970eaf5a96 evicted, free slots 87669", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 05:09:32 TIP: ha-monitor : start to sync volume data, total 87380 chunks", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 04:03:44 DEBUG: main-worker : connection reset by peer, socket fd=79064", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: rpc call GetVolumeInfo returned code 32245, msg success", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 15:59:30: received message from 10.96371.58677.48799:8994, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 01:36:55 TIP: ism-agent : task snap-7c submitted by user admin, priority 70963", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 11:55:30 DEBUG: rep-worker : disk 1503 smart health status ok, temperature 64390 celsius", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: send audit event to kafka topic dsware-audit, seq=50f4aea8e6fa", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 16:19:09: update config key cfg.max.io to value 57860", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 20:02:12 TIP: ism-agent : write 26220 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 03:22:01 DEBUG: sync-task : alarm cleared: disk usage back to 89 percent", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: rpc call GetVolumeInfo returned code 41185, msg success", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 09:49:23: send audit event to kafka topic dsware-audit, seq=ed8f2d3acc5f", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 21:36:30 TIP: msg-handler : rpc call GetVolumeInfo returned code 48279, msg success", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 16:06:02 DEBUG: dme-server : send audit event to kafka topic dsware-audit, seq=4b8f02469030", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: process request op=snap-7c done in 38103 ms", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 20:51:18: init module snap-7c begin, worker threads 90290", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 14:53:15 TIP: scheduler : received message from 10.65143.82275.26047:96348, dispatch to handler", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 09:09:12 DEBUG: scheduler : write 54381 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: write 41493 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 08:40:27: send audit event to kafka topic dsware-audit, seq=19bf52ff6477", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 13:45:52 TIP: sync-task : certificate will expire in 6221 days, renew required", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 02:05:16 DEBUG: osd-daemon : send audit event to kafka topic dsware-audit, seq=bab07f7d203a", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: update config key cfg.max.io to value 17825", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 21:47:22: write 33130 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 13:59:01 TIP: scheduler : connection reset by peer, socket fd=31494", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 10:30:49 DEBUG: rep-worker : disk 51919 smart health status ok, temperature 53960 celsius", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: cache entry 3e4133bdab7d evicted, free slots 52578", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 04:22:55: thread pool exhausted, active=18344 queued=54015 max=83586", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 02:59:36 TIP: dme-server : alarm cleared: disk usage back to 30 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 08:10:19 DEBUG: main-worker : start to sync volume data, total 18136 chunks", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: receive heartbeat from node-24720, load 41 percent", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 08:24:52: cache entry cee15751fe80 evicted, free slots 27513", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 08:42:09 TIP: scheduler : task task-991 submitted by user admin, priority 20742", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 19:11:10 DEBUG: ha-monitor : cache entry d3051a276c8e evicted, free slots 93054", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: volume vol-3f2a changed state from active to degraded", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 15:30:23: checkpoint finished, elapsed 70455 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 23:52:40 TIP: ism-agent : certificate will expire in 45239 days, renew required", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 06:04:18 DEBUG: rep-worker : cache entry 47120159ff8e evicted, free slots 1750", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: task cfg.max.io submitted by user admin, priority 35963", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 00:01:30: task snap-7c submitted by user admin, priority 63312", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 10:38:15 TIP: osd-daemon : disk 16640 smart health status ok, temperature 89039 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 05:22:00 DEBUG: osd-daemon : update config key cfg.max.io to value 97309", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: cache entry 12b3a2bb93a3 evicted, free slots 96257", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 10:57:12: certificate will expire in 95754 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 08:56:45 TIP: ha-monitor : certificate will expire in 62349 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 19:14:34 DEBUG: rep-worker : received message from 10.71497.20165.22303:51275, dispatch to handler", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: certificate will expire in 43056 days, renew required", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 21:11:49: init module cfg.max.io begin, worker threads 32312", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 00:48:31 TIP: ha-monitor : rpc call GetVolumeInfo returned code 26858, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 01:55:38 DEBUG: rep-worker : init module task-991 begin, worker threads 8630", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: failed to read block blk_82773ac4e177, retry 13234 times", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 14:12:50: init module cfg.max.io begin, worker threads 79846", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 04:30:39 TIP: osd-daemon : metadata journal truncated at offset 854702a88d13", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 04:16:55 DEBUG: main-worker : alarm cleared: disk usage back to 20 percent", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: update config key task-991 to value 96978", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 12:34:31: send audit event to kafka topic dsware-audit, seq=d5a12007299", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 14:17:36 TIP: scheduler : certificate will expire in 9863 days, renew required", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 15:28:55 DEBUG: ism-agent : thread pool exhausted, active=83474 queued=70731 max=13233", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: rpc call GetVolumeInfo returned code 62726, msg success", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 14:15:35: disk 27609 smart health status ok, temperature 59612 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 01:24:31 TIP: main-worker : write 22341 bytes to /data/dsware/task-991/chunk.dat", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 09:24:47 DEBUG: ism-agent : process request op=vol-3f2a done in 10478 ms", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: rpc call GetVolumeInfo returned code 31161, msg success", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 16:18:51: send audit event to kafka topic dsware-audit, seq=6f92c9de6571", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 05:49:05 TIP: rep-worker : connection reset by peer, socket fd=37401", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 20:59:27 DEBUG: rep-worker : task task-991 submitted by user admin, priority 8879", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: received message from 10.23233.98477.47560:7024, dispatch to handler", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 20:46:56: send audit event to kafka topic dsware-audit, seq=ea837095acd", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 06:10:17 TIP: ha-monitor : start to sync volume data, total 30572 chunks", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 16:46:09 DEBUG: scheduler : thread pool exhausted, active=89961 queued=35729 max=88392", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: start to sync volume data, total 26567 chunks", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 13:03:01: write 31044 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 02:26:06 TIP: ism-agent : received message from 10.45881.69194.36645:58877, dispatch to handler", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 17:54:50 DEBUG: dme-server : checkpoint finished, elapsed 75413 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: metadata journal truncated at offset 3b61f49dbbc4", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 04:53:22: send audit event to kafka topic dsware-audit, seq=b9ec2df1947", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 16:24:49 TIP: ha-monitor : checkpoint finished, elapsed 19872 seconds", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 04:54:58 DEBUG: scheduler : disk 5337 smart health status ok, temperature 58535 celsius", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: thread pool exhausted, active=8699 queued=37912 max=31623", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 19:42:31: update config key vol-3f2a to value 44099", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 04:13:13 TIP: ism-agent : send audit event to kafka topic dsware-audit, seq=a816849c2beb", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 23:42:56 DEBUG: scheduler : checkpoint finished, elapsed 54787 seconds", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: task task-991 submitted by user admin, priority 13995", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 07:19:04: volume quota.db changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 09:26:13 TIP: osd-daemon : process request op=quota.db done in 64005 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 19:45:23 DEBUG: main-worker : received message from 10.42469.56801.238:33603, dispatch to handler", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: certificate will expire in 4337 days, renew required", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 06:01:54: task task-991 submitted by user admin, priority 65528", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 22:58:10 TIP: ism-agent : cache entry feadc97fa76a evicted, free slots 50759", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 04:43:04 DEBUG: dme-server : init module task-991 begin, worker threads 81430", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: write 31522 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 14:14:09: rpc call GetVolumeInfo returned code 59104, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 19:51:44 TIP: rep-worker : rpc call GetVolumeInfo returned code 41945, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 14:31:39 DEBUG: main-worker : volume task-991 changed state from active to degraded", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: disk 5973 smart health status ok, temperature 65871 celsius", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 02:26:11: update config key quota.db to value 50487", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 19:14:17 TIP: ha-monitor : alarm cleared: disk usage back to 61 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 14:23:38 DEBUG: sync-task : checkpoint finished, elapsed 49172 seconds", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: init module quota.db begin, worker threads 9614", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 20:08:30: checkpoint finished, elapsed 12537 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 19:42:16 TIP: dme-server : init module quota.db begin, worker threads 58460", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 03:52:05 DEBUG: ha-monitor : alarm cleared: disk usage back to 20 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: receive heartbeat from node-38377, load 64 percent", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 22:53:09: thread pool exhausted, active=17584 queued=61621 max=95481", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 05:46:29 TIP: vbs-server : receive heartbeat from node-31780, load 69 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 06:37:26 DEBUG: sync-task : metadata journal truncated at offset b46455f7793", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: checkpoint finished, elapsed 13457 seconds", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 22:30:49: certificate will expire in 72589 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 06:32:12 TIP: msg-handler : disk 59832 smart health status ok, temperature 59972 celsius", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 10:11:12 DEBUG: main-worker : receive heartbeat from node-54014, load 56 percent", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: write 44568 bytes to /data/dsware/task-991/chunk.dat", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 07:39:14: alarm cleared: disk usage back to 68 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 02:59:43 TIP: rep-worker : thread pool exhausted, active=88808 queued=39163 max=42111", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 05:19:32 DEBUG: sync-task : send audit event to kafka topic dsware-audit, seq=b6c961e9152", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: metadata journal truncated at offset dc6312b74822", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 23:11:12: volume task-991 changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 16:38:19 TIP: osd-daemon : send audit event to kafka topic dsware-audit, seq=58ee83d57693", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 16:40:09 DEBUG: osd-daemon : process request op=vol-3f2a done in 27415 ms", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: connection reset by peer, socket fd=76661", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 23:10:55: cache entry 6d52cf0dced5 evicted, free slots 70842", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 21:27:56 TIP: dme-server : write 40243 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 20:15:28 DEBUG: dme-server : update config key snap-7c to value 34497", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: checkpoint finished, elapsed 33532 seconds", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 17:29:35: update config key snap-7c to value 42016", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 05:36:06 TIP: msg-handler : failed to read block blk_202c3b58feee, retry 20848 times", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 09:16:08 DEBUG: osd-daemon : send audit event to kafka topic dsware-audit, seq=12cc040ed84", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: receive heartbeat from node-16967, load 12 percent", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 09:01:32: receive heartbeat from node-47884, load 1 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 20:04:54 TIP: dme-server : thread pool exhausted, active=35025 queued=38449 max=488", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 13:45:45 DEBUG: osd-daemon : volume cfg.max.io changed state from active to degraded", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: metadata journal truncated at offset 1f1fc1d79535", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 23:13:40: rpc call GetVolumeInfo returned code 1538, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 03:16:47 TIP: rep-worker : metadata journal truncated at offset 15a02fd5256e", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 14:53:28 DEBUG: sync-task : disk 10643 smart health status ok, temperature 92354 celsius", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: write 64320 bytes to /data/dsware/task-991/chunk.dat", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 01:42:59: disk 40214 smart health status ok, temperature 5464 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 08:26:05 TIP: rep-worker : cache entry 5284c415063b evicted, free slots 24907", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 00:31:36 DEBUG: vbs-server : process request op=quota.db done in 16034 ms", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: process request op=vol-3f2a done in 10837 ms", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 11:12:59: thread pool exhausted, active=85212 queued=57632 max=45528", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 06:22:19 TIP: ism-agent : send audit event to kafka topic dsware-audit, seq=b990df930001", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 22:30:42 DEBUG: dme-server : init module quota.db begin, worker threads 73130", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: start to sync volume data, total 60437 chunks", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 20:26:41: write 35300 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 10:31:19 TIP: sync-task : disk 89209 smart health status ok, temperature 37807 celsius", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 09:36:06 DEBUG: main-worker : update config key snap-7c to value 31933", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: certificate will expire in 63612 days, renew required", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 00:10:50: start to sync volume data, total 21856 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 01:57:26 TIP: main-worker : init module task-991 begin, worker threads 94492", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 09:29:29 DEBUG: ism-agent : checkpoint finished, elapsed 7788 seconds", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: update config key quota.db to value 93981", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 08:09:28: process request op=quota.db done in 23920 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 23:10:15 TIP: ha-monitor : rpc call GetVolumeInfo returned code 10759, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 14:04:38 DEBUG: vbs-server : send audit event to kafka topic dsware-audit, seq=f1fd5b616f18", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: update config key quota.db to value 49157", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 20:26:49: alarm cleared: disk usage back to 88 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 21:03:41 TIP: rep-worker : failed to read block blk_5df9417fe8bf, retry 22636 times", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 02:05:37 DEBUG: rep-worker : disk 35343 smart health status ok, temperature 24111 celsius", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: start to sync volume data, total 53494 chunks", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 03:51:41: alarm cleared: disk usage back to 69 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 23:39:42 TIP: ha-monitor : alarm cleared: disk usage back to 28 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 06:54:59 DEBUG: msg-handler : receive heartbeat from node-83292, load 55 percent", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: cache entry ca1f7342f9a0 evicted, free slots 88099", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 08:56:25: received message from 10.22161.82917.9555:37703, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 04:54:06 TIP: main-worker : metadata journal truncated at offset 6ba8cdb8267f", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 21:11:09 DEBUG: main-worker : update config key quota.db to value 54892", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: process request op=cfg.max.io done in 15234 ms", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 15:01:31: cache entry e3f31bcebd4d evicted, free slots 44420", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 04:53:47 TIP: dme-server : write 25216 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 19:33:39 DEBUG: main-worker : process request op=task-991 done in 7090 ms", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: init module cfg.max.io begin, worker threads 20808", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 09:54:15: process request op=quota.db done in 61789 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 05:20:24 TIP: vbs-server : connection reset by peer, socket fd=95287", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 09:16:17 DEBUG: dme-server : init module cfg.max.io begin, worker threads 70683", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: write 36148 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 11:00:24: send audit event to kafka topic dsware-audit, seq=72615c0c8db1", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 15:35:43 TIP: ism-agent : receive heartbeat from node-13240, load 43 percent", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 15:36:53 DEBUG: sync-task : failed to read block blk_5a7b74608c44, retry 27364 times", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: volume cfg.max.io changed state from active to degraded", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 11:53:14: send audit event to kafka topic dsware-audit, seq=829b28112f20", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 03:15:34 TIP: scheduler : send audit event to kafka topic dsware-audit, seq=94a0bfd20f11", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 11:27:17 DEBUG: ism-agent : disk 28367 smart health status ok, temperature 37572 celsius", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: failed to read block blk_772b5db9d98, retry 41644 times", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 22:55:31: start to sync volume data, total 17565 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 04:13:10 TIP: osd-daemon : process request op=vol-3f2a done in 59059 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 07:00:04 DEBUG: rep-worker : send audit event to kafka topic dsware-audit, seq=c2499ad0b7ff", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: write 91956 bytes to /data/dsware/task-991/chunk.dat", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 07:04:37: process request op=task-991 done in 68388 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 06:13:40 TIP: main-worker : task quota.db submitted by user admin, priority 21540", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 08:01:40 DEBUG: sync-task : receive heartbeat from node-63703, load 18 percent", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: failed to read block blk_1ce9ce77d27, retry 77587 times", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 14:44:05: update config key snap-7c to value 39782", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 10:49:40 TIP: msg-handler : task quota.db submitted by user admin, priority 74468", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 21:12:09 DEBUG: scheduler : receive heartbeat from node-92112, load 55 percent", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: connection reset by peer, socket fd=88872", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 19:01:07: received message from 10.58360.20999.60680:54722, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 04:58:16 TIP: vbs-server : volume cfg.max.io changed state from active to degraded", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 08:14:54 DEBUG: vbs-server : volume snap-7c changed state from active to degraded", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: cache entry 988df6178949 evicted, free slots 88674", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 23:27:17: receive heartbeat from node-59971, load 25 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 11:29:25 TIP: vbs-server : send audit event to kafka topic dsware-audit, seq=206a4539fbeb", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 21:01:07 DEBUG: msg-handler : checkpoint finished, elapsed 16025 seconds", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: metadata journal truncated at offset ec2b9927c0e5", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 14:42:26: disk 31580 smart health status ok, temperature 27580 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 13:52:57 TIP: msg-handler : send audit event to kafka topic dsware-audit, seq=ff1fd72d42c9", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 00:01:01 DEBUG: ism-agent : connection reset by peer, socket fd=34323", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: start to sync volume data, total 76007 chunks", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 16:43:46: checkpoint finished, elapsed 2008 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 11:02:56 TIP: msg-handler : received message from 10.65100.71435.85789:71281, dispatch to handler", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 10:47:54 DEBUG: rep-worker : checkpoint finished, elapsed 14770 seconds", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: send audit event to kafka topic dsware-audit, seq=9d7fbc65e281", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 12:06:57: rpc call GetVolumeInfo returned code 6617, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 15:08:26 TIP: main-worker : thread pool exhausted, active=68262 queued=43093 max=66751", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 00:34:24 DEBUG: ism-agent : cache entry 154379d014aa evicted, free slots 57341", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: failed to read block blk_2e8a57b3151b, retry 83827 times", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 04:19:14: thread pool exhausted, active=69000 queued=85279 max=98809", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 17:00:49 TIP: dme-server : failed to read block blk_d157711437a5, retry 97388 times", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 17:09:48 DEBUG: vbs-server : thread pool exhausted, active=70757 queued=95984 max=46373", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: alarm cleared: disk usage back to 55 percent", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 08:44:14: task task-991 submitted by user admin, priority 30124", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 18:06:41 TIP: vbs-server : init module vol-3f2a begin, worker threads 8387", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 04:38:06 DEBUG: vbs-server : volume task-991 changed state from active to degraded", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: received message from 10.42878.36001.33914:70346, dispatch to handler", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 11:39:54: cache entry 1988eaef904e evicted, free slots 63777", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 13:34:44 TIP: msg-handler : rpc call GetVolumeInfo returned code 33489, msg success", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 09:12:21 DEBUG: scheduler : received message from 10.60143.26791.7483:49655, dispatch to handler", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: cache entry 3629e26ff706 evicted, free slots 81336", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 07:33:39: metadata journal truncated at offset 39381d49f375", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 07:42:50 TIP: msg-handler : task cfg.max.io submitted by user admin, priority 28797", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 04:26:47 DEBUG: scheduler : init module cfg.max.io begin, worker threads 90108", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: volume vol-3f2a changed state from active to degraded", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 12:43:46: metadata journal truncated at offset eeb04906146e", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 07:41:47 TIP: vbs-server : init module cfg.max.io begin, worker threads 71917", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 15:46:34 DEBUG: ism-agent : received message from 10.92318.57953.1715:46190, dispatch to handler", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: alarm cleared: disk usage back to 89 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 03:44:49: alarm cleared: disk usage back to 34 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 14:18:55 TIP: sync-task : certificate will expire in 34542 days, renew required", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 15:12:19 DEBUG: rep-worker : send audit event to kafka topic dsware-audit, seq=6830b5b6fda2", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: thread pool exhausted, active=6832 queued=61088 max=45534", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 17:26:37: thread pool exhausted, active=86788 queued=1780 max=53858", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 05:04:29 TIP: osd-daemon : thread pool exhausted, active=64116 queued=8771 max=37834", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 09:40:39 DEBUG: vbs-server : process request op=cfg.max.io done in 39262 ms", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: update config key vol-3f2a to value 17156", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 09:27:49: disk 44040 smart health status ok, temperature 89051 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 05:43:25 TIP: main-worker : volume quota.db changed state from active to degraded", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 17:03:38 DEBUG: sync-task : update config key quota.db to value 13024", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: start to sync volume data, total 11963 chunks", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 08:13:02: failed to read block blk_e51e77be04b1, retry 27179 times", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 14:48:39 TIP: sync-task : checkpoint finished, elapsed 32290 seconds", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 15:43:55 DEBUG: msg-handler : checkpoint finished, elapsed 26716 seconds", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: write 50369 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 05:15:23: update config key task-991 to value 56635", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 17:59:44 TIP: ha-monitor : process request op=cfg.max.io done in 18260 ms", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 07:28:47 DEBUG: sync-task : update config key task-991 to value 81002", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: receive heartbeat from node-14786, load 66 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 21:11:41: init module snap-7c begin, worker threads 74156", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 08:24:51 TIP: ism-agent : init module vol-3f2a begin, worker threads 20518", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 23:27:26 DEBUG: osd-daemon : receive heartbeat from node-80659, load 69 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: process request op=cfg.max.io done in 45892 ms", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 17:43:49: alarm cleared: disk usage back to 74 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-01 00:22:28 TIP: main-worker : update config key quota.db to value 51945", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 15:46:44 DEBUG: vbs-server : certificate will expire in 74058 days, renew required", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: checkpoint finished, elapsed 96116 seconds", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 10:20:59: failed to read block blk_9f180ce23fd7, retry 84962 times", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 01:47:34 TIP: dme-server : task vol-3f2a submitted by user admin, priority 43771", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 19:28:00 DEBUG: ism-agent : volume vol-3f2a changed state from active to degraded", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: cache entry 6c4d73bb410b evicted, free slots 42584", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 06:42:39: alarm cleared: disk usage back to 38 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 20:09:54 TIP: main-worker : failed to read block blk_d555589d0b6a, retry 36343 times", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 07:57:49 DEBUG: osd-daemon : metadata journal truncated at offset 81e560edfbaf", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: process request op=vol-3f2a done in 77826 ms", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 04:55:49: rpc call GetVolumeInfo returned code 73376, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 04:06:16 TIP: msg-handler : received message from 10.38474.83356.75108:74557, dispatch to handler", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 09:23:11 DEBUG: vbs-server : metadata journal truncated at offset efe03c9025d7", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: task snap-7c submitted by user admin, priority 73749", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 15:32:02: receive heartbeat from node-26911, load 33 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 15:33:13 TIP: osd-daemon : write 89065 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 11:44:27 DEBUG: sync-task : init module quota.db begin, worker threads 47735", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: process request op=vol-3f2a done in 5021 ms", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 06:37:57: send audit event to kafka topic dsware-audit, seq=c00f4ae230fd", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-07 22:59:35 TIP: ism-agent : update config key quota.db to value 31738", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 07:20:22 DEBUG: ism-agent : certificate will expire in 9819 days, renew required", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: alarm cleared: disk usage back to 49 percent", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 20:07:09: volume cfg.max.io changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 06:29:45 TIP: rep-worker : start to sync volume data, total 30783 chunks", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 06:21:40 DEBUG: osd-daemon : disk 30371 smart health status ok, temperature 20049 celsius", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: update config key cfg.max.io to value 75970", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 01:04:32: disk 34558 smart health status ok, temperature 66042 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 19:54:44 TIP: vbs-server : rpc call GetVolumeInfo returned code 81101, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 07:42:39 DEBUG: ism-agent : rpc call GetVolumeInfo returned code 66901, msg success", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: process request op=cfg.max.io done in 17932 ms", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 11:43:03: send audit event to kafka topic dsware-audit, seq=210f21e4c3d9", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 04:55:08 TIP: dme-server : metadata journal truncated at offset 9f291392cbbc", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 11:42:03 DEBUG: sync-task : init module vol-3f2a begin, worker threads 6168", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service NetServer report: disk 50247 smart health status ok, temperature 17118 celsius", "body_start": 33, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 05:12:04: alarm cleared: disk usage back to 45 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 19:51:04 TIP: rep-worker : send audit event to kafka topic dsware-audit, seq=ca8fc66c2391", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 19:59:06 DEBUG: rep-worker : start to sync volume data, total 66360 chunks", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: cache entry dd746a46d78c evicted, free slots 99122", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 13:25:17: write 40382 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 21:59:19 TIP: scheduler : failed to read block blk_637daa971027, retry 29718 times", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 05:13:30 DEBUG: ism-agent : volume quota.db changed state from active to degraded", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: alarm cleared: disk usage back to 77 percent", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 09:49:15: update config key cfg.max.io to value 57943", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 01:59:57 TIP: vbs-server : metadata journal truncated at offset 3ed0b36c8b9c", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 08:00:07 DEBUG: osd-daemon : thread pool exhausted, active=2675 queued=24919 max=74357", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: start to sync volume data, total 45314 chunks", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-04 10:35:47: alarm cleared: disk usage back to 92 percent", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 03:12:53 TIP: rep-worker : receive heartbeat from node-77835, load 29 percent", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 13:38:01 DEBUG: msg-handler : thread pool exhausted, active=82499 queued=57068 max=22711", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service AuthModule report: rpc call GetVolumeInfo returned code 2661, msg success", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 05:24:34: certificate will expire in 52486 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 15:18:04 TIP: msg-handler : metadata journal truncated at offset ca0e742ae7d1", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 23:23:19 DEBUG: ha-monitor : write 54371 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: connection reset by peer, socket fd=22448", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 19:29:15: volume task-991 changed state from active to degraded", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 23:01:41 TIP: msg-handler : disk 97510 smart health status ok, temperature 87718 celsius", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-04 01:29:45 DEBUG: msg-handler : cache entry 3f7ce30702a0 evicted, free slots 98062", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: cache entry 141d228d3d0f evicted, free slots 19027", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 21:32:59: rpc call GetVolumeInfo returned code 52014, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 12:36:44 TIP: ha-monitor : rpc call GetVolumeInfo returned code 24985, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 14:42:25 DEBUG: sync-task : cache entry ad7ec578994d evicted, free slots 43233", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: connection reset by peer, socket fd=72069", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 13:37:37: write 4842 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 04:04:20 TIP: ha-monitor : volume snap-7c changed state from active to degraded", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 00:16:56 DEBUG: scheduler : received message from 10.80474.10688.55306:23460, dispatch to handler", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: task cfg.max.io submitted by user admin, priority 71302", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-07 23:33:20: disk 52211 smart health status ok, temperature 41383 celsius", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 22:15:50 TIP: sync-task : thread pool exhausted, active=66984 queued=49764 max=18818", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 11:34:13 DEBUG: dme-server : init module cfg.max.io begin, worker threads 98452", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service NameNode report: alarm cleared: disk usage back to 45 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-08 22:29:23: checkpoint finished, elapsed 43529 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-08 07:29:11 TIP: ism-agent : thread pool exhausted, active=43520 queued=59482 max=89587", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-03 22:05:15 DEBUG: main-worker : failed to read block blk_2d8afa01837e, retry 12163 times", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: receive heartbeat from node-96881, load 37 percent", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 17:26:43: send audit event to kafka topic dsware-audit, seq=908e20a72ee5", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 14:54:52 TIP: osd-daemon : init module task-991 begin, worker threads 78925", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 02:42:31 DEBUG: rep-worker : connection reset by peer, socket fd=41377", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: start to sync volume data, total 49494 chunks", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-05 01:31:10: received message from 10.94766.88197.96802:44419, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 23:45:16 TIP: ha-monitor : connection reset by peer, socket fd=36298", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-02 14:43:10 DEBUG: ha-monitor : send audit event to kafka topic dsware-audit, seq=926bc431417b", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: disk 36034 smart health status ok, temperature 3841 celsius", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 10:24:02: process request op=vol-3f2a done in 6623 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 02:29:00 TIP: scheduler : metadata journal truncated at offset e3a453e8fb3f", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 17:20:03 DEBUG: scheduler : task quota.db submitted by user admin, priority 69103", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: disk 97060 smart health status ok, temperature 13029 celsius", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-06 16:46:33: certificate will expire in 3805 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 08:47:17 TIP: ism-agent : write 53862 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 05:48:07 DEBUG: scheduler : task vol-3f2a submitted by user admin, priority 72635", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service ClusterMgr report: process request op=cfg.max.io done in 97186 ms", "body_start": 34, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 14:01:35: checkpoint finished, elapsed 17853 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 11:53:36 TIP: ha-monitor : send audit event to kafka topic dsware-audit, seq=20594a81c976", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-05 09:55:05 DEBUG: rep-worker : send audit event to kafka topic dsware-audit, seq=9573a3432e3d", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service VolumeManager report: write 52569 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 20:26:21: rpc call GetVolumeInfo returned code 18177, msg success", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-04 06:28:19 TIP: sync-task : receive heartbeat from node-65284, load 24 percent", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 14:11:39 DEBUG: ism-agent : thread pool exhausted, active=65243 queued=99676 max=76315", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: receive heartbeat from node-45774, load 43 percent", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 00:12:11: received message from 10.23258.75330.52963:86449, dispatch to handler", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-03 20:52:13 TIP: sync-task : checkpoint finished, elapsed 81909 seconds", "body_start": 41, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 23:26:17 DEBUG: dme-server : cache entry 9c9a212ce785 evicted, free slots 70791", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service HeartbeatMgr report: alarm cleared: disk usage back to 53 percent", "body_start": 36, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-10 07:07:24: process request op=cfg.max.io done in 81525 ms", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 07:57:18 TIP: ha-monitor : disk 32441 smart health status ok, temperature 82217 celsius", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-01 22:23:40 DEBUG: msg-handler : metadata journal truncated at offset 5572007622a0", "body_start": 45, "format": "pw1", "has_header": true}
+{"line": "System service CacheMgr report: start to sync volume data, total 50913 chunks", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-03 22:35:50: start to sync volume data, total 25763 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-02 17:17:43 TIP: main-worker : write 78972 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 21:42:28 DEBUG: vbs-server : init module vol-3f2a begin, worker threads 43307", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: thread pool exhausted, active=15969 queued=89268 max=4929", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 20:58:27: checkpoint finished, elapsed 17050 seconds", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-10 18:11:28 TIP: osd-daemon : metadata journal truncated at offset 6d086137ca3e", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-06 00:54:07 DEBUG: ha-monitor : thread pool exhausted, active=20081 queued=68445 max=93678", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: start to sync volume data, total 91824 chunks", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 02:38:36: start to sync volume data, total 94139 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-05 05:08:23 TIP: osd-daemon : rpc call GetVolumeInfo returned code 36498, msg success", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-10 14:46:07 DEBUG: osd-daemon : rpc call GetVolumeInfo returned code 27144, msg success", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: connection reset by peer, socket fd=55050", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-09 00:01:12: certificate will expire in 91358 days, renew required", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 04:42:28 TIP: rep-worker : certificate will expire in 58392 days, renew required", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-07 01:37:46 DEBUG: scheduler : checkpoint finished, elapsed 6749 seconds", "body_start": 43, "format": "pw1", "has_header": true}
+{"line": "System service MetaService report: send audit event to kafka topic dsware-audit, seq=9d97c97d4a52", "body_start": 35, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 10:48:51: metadata journal truncated at offset d1d9ab76b77f", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-09 00:53:59 TIP: rep-worker : volume vol-3f2a changed state from active to degraded", "body_start": 42, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-08 04:25:46 DEBUG: ha-monitor : alarm cleared: disk usage back to 61 percent", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service TaskScheduler report: received message from 10.25840.47397.96714:33858, dispatch to handler", "body_start": 37, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-01 20:09:06: start to sync volume data, total 33775 chunks", "body_start": 38, "format": "pw3", "has_header": true}
+{"line": "CST 2026-03-06 01:29:31 TIP: main-worker : rpc call GetVolumeInfo returned code 8773, msg success", "body_start": 43, "format": "pw0", "has_header": true}
+{"line": "CST 2026-03-09 08:27:55 DEBUG: ha-monitor : metadata journal truncated at offset 4e204967373", "body_start": 44, "format": "pw1", "has_header": true}
+{"line": "System service DataNode report: metadata journal truncated at offset b4d90e2111", "body_start": 32, "format": "pw2", "has_header": true}
+{"line": "DSWARE KMC audit 2026-03-02 10:19:11: init module task-991 begin, worker threads 41174", "body_start": 38, "format": "pw3", "has_header": true}

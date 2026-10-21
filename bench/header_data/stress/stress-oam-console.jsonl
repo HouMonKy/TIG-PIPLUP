@@ -1,0 +1,1000 @@
+{"line": "[01/Mar/2026:13:14:25 ][sync-task][async-pool][1677][DEBUG] certificate will expire in 65309 days, renew required", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 02:43:01]: task quota.db submitted by user admin, priority 48807", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 23:48:14.000000 UT]: cache entry ec62d1aa9ea evicted, free slots 14064", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 13:35:15 ][18829eed][WARN][832ea288][sync-task]connection reset by peer, socket fd=50705", "body_start": 59, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 17:54:03.000000 UT]: thread pool exhausted, active=23834 queued=49404 max=8327", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026/03/01 10:13:43][dme-server][main][4952][ERROR] failed to read block blk_9f9f85b25ac3, retry 13505 times", "body_start": 53, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 11:25:33]: certificate will expire in 59955 days, renew required", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 20:01:17,000000]send audit event to kafka topic dsware-audit, seq=b37eaa032032", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 12:35:59.000000][[INFO] disk 6566 smart health status ok, temperature 77517 celsius", "body_start": 36, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 14:46:20,000000]  [NOTICE] [120287d6] [ha-monitor] update config key task-991 to value 64871", "body_start": 63, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 09:30:18 ] [DEBUG] [f7702500] [vbs-server] certificate will expire in 10963 days, renew required", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 07:28:56.000000] [INFO] [df9e9526] [dme-server] thread pool exhausted, active=40307 queued=14279 max=90448", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-02 00:07:54 ----thread pool exhausted, active=4977 queued=19210 max=330", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 12:35:19,000000 ][bc0e2336][INFO][fd3b17a7][osd-daemon]update config key quota.db to value 65288", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 20:22:45 CST]  [DEBUG] [164f3dca] [main-worker] failed to read block blk_34c2b7bd86bf, retry 88120 times", "body_start": 60, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 04:57:29:000000] [67495073] [ERROR]: certificate will expire in 76850 days, renew required", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 22:29:15,000000] [58d4cab2] [INFO]: process request op=quota.db done in 23308 ms", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 16:29:55]  [ism-agent] [38d0bf0d] [ERROR] [3012a6aa] volume snap-7c changed state from active to degraded", "body_start": 65, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 10:12:35:000000] [75544ec6] [NOTICE]: receive heartbeat from node-12581, load 4 percent", "body_start": 50, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 06:19:39.000000 UT][ha-monitor][async-pool][5761][ERROR] write 17031 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 69, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 17:04:22.000000] [0190cbe8] [INFO]: write 16320 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 15:19:07 ]: cache entry 1b026cd32f2c evicted, free slots 1931", "body_start": 24, "format": "oam-console#9", "has_header": true}
+{"line": "[DEBUG] [scheduler] [5410cf59] [50073c2a] (UTC) 02/Mar/2026:03:35:44   DSWARE KMC connection reset by peer, socket fd=70900", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 16:49:50.000000]: volume cfg.max.io changed state from active to degraded", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 17:45:57,000000 ][sync-task][async-pool][1305][DEBUG] disk 18640 smart health status ok, temperature 41942 celsius", "body_start": 66, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 15:33:17]  [sync-task] [f86b62a4] [WARN] [493bc738] thread pool exhausted, active=87615 queued=58235 max=39194", "body_start": 64, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 19:12:52 CST][[NOTICE] alarm cleared: disk usage back to 71 percent", "body_start": 35, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 23:47:17 ]: send audit event to kafka topic dsware-audit, seq=9339d0b3243c", "body_start": 24, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 06:21:07:000000][ee437ccd][WARN][9b3b0493][main-worker]update config key vol-3f2a to value 85533", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 15:11:19:000000]  [rep-worker] [cb2e6bfa] [NOTICE] [0f7091ce] checkpoint finished, elapsed 22265 seconds", "body_start": 74, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 23:15:39 CST][[ERROR] failed to read block blk_755b57812880, retry 58042 times", "body_start": 34, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 13:04:24 CST]  [INFO] [cde9e043] [osd-daemon] received message from 10.43621.47818.13218:50810, dispatch to handler", "body_start": 58, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 19:16:24,000000][[WARN] write 60688 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 36, "format": "oam-console#7", "has_header": true}
+{"line": "[01/Mar/2026:23:49:14 ] [WARN] [d40b3263] [rep-worker] metadata journal truncated at offset a32f86f363af", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 19:01:45.000000][dme-server][main][2395][WARN] thread pool exhausted, active=66526 queued=93896 max=93285", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[02/Mar/2026:02:11:51 ]  [vbs-server] [e9ea2ddb] [NOTICE] [2faceb68] checkpoint finished, elapsed 13891 seconds", "body_start": 69, "format": "oam-console#3", "has_header": true}
+{"line": "2026-03-01 12:52:07,000000----update config key snap-7c to value 40414", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "01/Mar/2026:11:29:00 ----connection reset by peer, socket fd=74815", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "2026-03-01 09:52:01 ----cache entry 7074935f488d evicted, free slots 82781", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 01:08:27.000000 UT][[NOTICE] update config key vol-3f2a to value 88520", "body_start": 41, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 10:46:36 CST][[ERROR] update config key cfg.max.io to value 58723", "body_start": 34, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]received message from 10.926.10787.34744:43390, dispatch to handler", "body_start": 69, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 04:14:59,000000 ][osd-daemon][main][5939][WARN] disk 16100 smart health status ok, temperature 54323 celsius", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 08:25:03][[INFO] write 13685 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 29, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 16:54:18:000000]: receive heartbeat from node-52035, load 6 percent", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 19:04:27,000000 ][06c30a27][INFO][9da402d3][ha-monitor]write 33960 bytes to /data/dsware/task-991/chunk.dat", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026/03/01 14:46:56] [ca90b012] [WARN]: disk 64391 smart health status ok, temperature 75146 celsius", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 19:58:29 ] [75a2d9af] [ERROR]: thread pool exhausted, active=96757 queued=26734 max=57992", "body_start": 43, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 08:36:43 CST] [85c077b5] [WARN]: rpc call GetVolumeInfo returned code 4267, msg success", "body_start": 45, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 12:05:22.000000]: failed to read block blk_13d37199e80b, retry 60490 times", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 08:43:15,000000 ][a10ea9ca][ERROR][f7de5533][ha-monitor]send audit event to kafka topic dsware-audit, seq=3b2e64fe18ad", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 16:48:13][[ERROR] received message from 10.13415.51304.11278:16953, dispatch to handler", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 05:48:57.000000 UT][scheduler][worker-4][723][INFO] volume vol-3f2a changed state from active to degraded", "body_start": 64, "format": "oam-console#0", "has_header": true}
+{"line": "2026-03-01 23:40:08.000000 UT----send audit event to kafka topic dsware-audit, seq=5b9fdd389b7", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[2026/03/01 19:40:47] [ERROR] [486f769b] [vbs-server] init module vol-3f2a begin, worker threads 57457", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 06:18:13][02a8cf89][INFO][05194186][vbs-server]checkpoint finished, elapsed 33121 seconds", "body_start": 59, "format": "oam-console#1", "has_header": true}
+{"line": "01/Mar/2026:08:56:01 ----received message from 10.59056.40236.4246:16377, dispatch to handler", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 19:01:11 ]checkpoint finished, elapsed 98897 seconds", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 20:51:13,000000 ] [INFO] [cb21a172] [msg-handler] init module vol-3f2a begin, worker threads 54576", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 04:45:00,000000] [DEBUG] [484f0ffc] [scheduler] alarm cleared: disk usage back to 46 percent", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-01 11:58:53.000000----rpc call GetVolumeInfo returned code 55646, msg success", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 14:19:03 CST] [38caeaca] [NOTICE]: checkpoint finished, elapsed 33879 seconds", "body_start": 47, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 11:42:52 ][[ERROR] disk 37846 smart health status ok, temperature 14197 celsius", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 02:36:35.000000 UT]: rpc call GetVolumeInfo returned code 98813, msg success", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-01 17:22:52 CST----cache entry 6713c7eceefa evicted, free slots 4624", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 14:09:06][ism-agent][async-pool][5831][NOTICE] disk 20332 smart health status ok, temperature 67850 celsius", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 00:01:28.000000 UT]: task quota.db submitted by user admin, priority 1001", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 04:15:00:000000]  [ERROR] [4da268f8] [rep-worker] start to sync volume data, total 74024 chunks", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "2026-03-01 10:12:26.000000----metadata journal truncated at offset df05b614a302", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[INFO] [sync-task] [f5c82253] [beec6a38] (UTC) 2026-03-01 17:18:47,000000  DSWARE KMC connection reset by peer, socket fd=85772", "body_start": 86, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 11:19:44]  [ism-agent] [4345ad5b] [WARN] [92c726d5] rpc call GetVolumeInfo returned code 65764, msg success", "body_start": 64, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 11:21:45.000000][vbs-server][async-pool][9883][WARN] send audit event to kafka topic dsware-audit, seq=a3e4d285aa9a", "body_start": 65, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 21:30:59,000000 ] [NOTICE] [7291b537] [osd-daemon] failed to read block blk_ed57ab7231b2, retry 63041 times", "body_start": 63, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 11:59:43,000000 ]: connection reset by peer, socket fd=16725", "body_start": 31, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 18:22:50 ][[ERROR] checkpoint finished, elapsed 8021 seconds", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 06:47:35.000000] [fe6b5793] [DEBUG]: certificate will expire in 91531 days, renew required", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/01 20:40:34]: disk 91418 smart health status ok, temperature 76076 celsius", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 16:53:44.000000][dme-server][main][9059][DEBUG] start to sync volume data, total 49989 chunks", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "[02/Mar/2026:03:05:03 ] [WARN] [3de51c64] [msg-handler] task quota.db submitted by user admin, priority 76954", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-01 19:57:20 ----write 82502 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 01:45:30:000000] [INFO] [498e8edd] [osd-daemon] update config key snap-7c to value 91271", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 21:44:09,000000 ] [INFO] [07c69e1c] [ism-agent] disk 27661 smart health status ok, temperature 37084 celsius", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 05:16:40 ][main-worker][main][626][DEBUG] cache entry 1fdad5d0adc4 evicted, free slots 31189", "body_start": 54, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 10:06:49.000000]thread pool exhausted, active=55939 queued=45667 max=10749", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "2026-03-01 12:21:09:000000----checkpoint finished, elapsed 3668 seconds", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 16:16:47,000000 ][[ERROR] alarm cleared: disk usage back to 80 percent", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 07:27:58.000000 UT] [ddab7c3d] [ERROR]: received message from 10.12113.57060.40885:31611, dispatch to handler", "body_start": 52, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/01 23:13:07] [DEBUG] [9187f7fa] [scheduler] certificate will expire in 6147 days, renew required", "body_start": 53, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 21:58:19,000000 ]  [ism-agent] [326e5912] [DEBUG] [74ac4fbc] process request op=quota.db done in 67124 ms", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 13:58:45,000000][06a24ba3][DEBUG][3dd59f26][main-worker]init module task-991 begin, worker threads 53026", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 01:26:31.000000] [DEBUG] [2d328796] [sync-task] init module vol-3f2a begin, worker threads 15387", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 23:02:52][[INFO] metadata journal truncated at offset c07a8f3a036c", "body_start": 29, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 17:49:56 CST]connection reset by peer, socket fd=43292", "body_start": 25, "format": "oam-console#10", "has_header": true}
+{"line": "[01/Mar/2026:21:56:34 ]  [ha-monitor] [de302df6] [NOTICE] [93b99188] received message from 10.95065.69563.79715:50412, dispatch to handler", "body_start": 69, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 18:23:21,000000][f09e0c9c][ERROR][a3b5cc84][dme-server]received message from 10.70172.60646.57957:66393, dispatch to handler", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 04:35:35]: process request op=vol-3f2a done in 72309 ms", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 08:53:35] [917a3738] [ERROR]: update config key cfg.max.io to value 67598", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 15:51:40 ][vbs-server][async-pool][2534][WARN] certificate will expire in 57621 days, renew required", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "2026-03-01 11:18:46:000000----process request op=cfg.max.io done in 73166 ms", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 11:24:21,000000 ]  [WARN] [d3e6cad2] [ism-agent] checkpoint finished, elapsed 88050 seconds", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[02/Mar/2026:02:46:29 ][[INFO] rpc call GetVolumeInfo returned code 48532, msg success", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 10:37:46,000000][scheduler][worker-1][1489][NOTICE] write 34637 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 64, "format": "oam-console#0", "has_header": true}
+{"line": "[01/Mar/2026:23:01:39 ][msg-handler][main][3643][ERROR] certificate will expire in 80075 days, renew required", "body_start": 56, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 02:59:01:000000][[ERROR] disk 5581 smart health status ok, temperature 36637 celsius", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 08:47:06 CST][3fac4438][ERROR][ff89b2fa][rep-worker]volume task-991 changed state from active to degraded", "body_start": 64, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 06:08:28 ] [6a5a4f6f] [INFO]: metadata journal truncated at offset 7377f2a4f3d2", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 12:16:50 ]  [NOTICE] [1abd22a7] [main-worker] rpc call GetVolumeInfo returned code 54301, msg success", "body_start": 58, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 15:07:44:000000] [DEBUG] [6e007558] [scheduler] thread pool exhausted, active=19547 queued=97728 max=87289", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/02 05:07:33]received message from 10.51040.27646.22944:3204, dispatch to handler", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 12:13:58,000000 ]  [vbs-server] [c341a672] [INFO] [97cd8085] start to sync volume data, total 59927 chunks", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 16:23:14.000000] [ERROR] [1f4fd62e] [vbs-server] receive heartbeat from node-5822, load 40 percent", "body_start": 61, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 16:15:42,000000] [b6ddea5f] [WARN]: checkpoint finished, elapsed 85184 seconds", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 09:42:06 CST]  [main-worker] [45fa4ae7] [DEBUG] [1d897c51] start to sync volume data, total 43496 chunks", "body_start": 71, "format": "oam-console#3", "has_header": true}
+{"line": "[2026/03/01 15:41:25]  [sync-task] [50b27b47] [NOTICE] [955130ae] process request op=quota.db done in 2470 ms", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "02/Mar/2026:02:18:29 ----update config key quota.db to value 49814", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[02/Mar/2026:06:07:51 ][[INFO] metadata journal truncated at offset 220ad08d0cbd", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 21:11:47,000000]  [sync-task] [ca72961a] [DEBUG] [1db776ce] certificate will expire in 4004 days, renew required", "body_start": 72, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 12:42:32][[DEBUG] rpc call GetVolumeInfo returned code 33921, msg success", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "2026-03-01 21:57:21,000000----task snap-7c submitted by user admin, priority 38594", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 01:42:48.000000 UT][main-worker][async-pool][9764][INFO] update config key vol-3f2a to value 22611", "body_start": 69, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 20:34:31 CST]  [NOTICE] [385e93cb] [msg-handler] failed to read block blk_e06f820ea1de, retry 45688 times", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 05:38:28,000000 ] [INFO] [b5ebf2f3] [main-worker] process request op=snap-7c done in 45490 ms", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 03:06:29.000000] [af666553] [WARN]: disk 3000 smart health status ok, temperature 6145 celsius", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 13:11:11,000000 ][osd-daemon][main][4676][NOTICE] volume quota.db changed state from active to degraded", "body_start": 62, "format": "oam-console#0", "has_header": true}
+{"line": "[INFO] [main-worker] [dde49698] [94ed0b55] (UTC) 2026-03-01 23:31:50.000000 UT  DSWARE KMC thread pool exhausted, active=25710 queued=38127 max=6895", "body_start": 91, "format": "oam-console#2", "has_header": true}
+{"line": "[02/Mar/2026:02:40:42 ] [INFO] [989d14f5] [vbs-server] cache entry 1ca25df2747 evicted, free slots 2246", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 23:59:25,000000 ]: process request op=vol-3f2a done in 77091 ms", "body_start": 31, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 09:49:25.000000 UT][75636f58][INFO][9ee0baf7][msg-handler]update config key vol-3f2a to value 5080", "body_start": 70, "format": "oam-console#1", "has_header": true}
+{"line": "2026-03-01 13:51:14 CST----receive heartbeat from node-37756, load 83 percent", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "[ERROR] [ha-monitor] [8c03be67] [532ba079] (UTC) 2026-03-01 11:07:30:000000  DSWARE KMC task cfg.max.io submitted by user admin, priority 71712", "body_start": 88, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 07:08:33.000000 UT]  [WARN] [a0c95bfb] [ha-monitor] write 50120 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 64, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 18:03:07,000000][77c5b785][NOTICE][3a488097][vbs-server]checkpoint finished, elapsed 82681 seconds", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 18:06:30 ] [4c4b58ad] [INFO]: update config key cfg.max.io to value 62828", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 11:59:26] [DEBUG] [4cf42ced] [osd-daemon] receive heartbeat from node-59553, load 76 percent", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 03:44:07.000000 UT][sync-task][main][5523][NOTICE] disk 24703 smart health status ok, temperature 55736 celsius", "body_start": 63, "format": "oam-console#0", "has_header": true}
+{"line": "[NOTICE] [ism-agent] [913f6fb2] [c181070c] (UTC) 2026-03-01 09:25:37.000000 UT  DSWARE KMC disk 45303 smart health status ok, temperature 90011 celsius", "body_start": 91, "format": "oam-console#2", "has_header": true}
+{"line": "[2026/03/01 09:04:19]  [WARN] [959d8db7] [dme-server] start to sync volume data, total 75333 chunks", "body_start": 54, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 01:56:49,000000] [d1fadad0] [INFO]: cache entry e2ab16bac4b1 evicted, free slots 28133", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 06:06:30,000000 ][main-worker][async-pool][9243][WARN] rpc call GetVolumeInfo returned code 68, msg success", "body_start": 67, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 14:58:59 ][[INFO] checkpoint finished, elapsed 77468 seconds", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[01/Mar/2026:19:30:52 ][c2e96e7e][INFO][acf0995f][msg-handler]receive heartbeat from node-57684, load 36 percent", "body_start": 62, "format": "oam-console#1", "has_header": true}
+{"line": "2026-03-01 18:26:45----failed to read block blk_15bb4b1fc1b6, retry 56472 times", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 20:36:48,000000]  [DEBUG] [c4082f4c] [dme-server] alarm cleared: disk usage back to 57 percent", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "[01/Mar/2026:20:21:56 ]: rpc call GetVolumeInfo returned code 11758, msg success", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026/03/02 04:44:20]checkpoint finished, elapsed 17075 seconds", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[01/Mar/2026:19:17:03 ] [INFO] [6dfe9dbb] [msg-handler] write 73631 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "[WARN] [vbs-server] [d761fb7d] [7d55bc58] (UTC) 2026-03-01 19:37:53.000000 UT  DSWARE KMC update config key snap-7c to value 6555", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 18:59:45,000000 ][a9f6a517][DEBUG][cd3223d6][dme-server]checkpoint finished, elapsed 16380 seconds", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 08:40:24 ][[ERROR] received message from 10.86552.2852.48545:57637, dispatch to handler", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 20:37:00.000000] [cebe0bad] [WARN]: volume snap-7c changed state from active to degraded", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 04:25:32 ]: certificate will expire in 68940 days, renew required", "body_start": 24, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-02 02:01:14.000000 UT----task quota.db submitted by user admin, priority 34022", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 10:48:14,000000][[ERROR] send audit event to kafka topic dsware-audit, seq=8913aeeab2f1", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 08:05:43][[INFO] metadata journal truncated at offset f8775477d65e", "body_start": 29, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 11:33:10:000000][8a3b6d3d][DEBUG][19159093][ism-agent]alarm cleared: disk usage back to 33 percent", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 15:45:05:000000][e4048fdb][DEBUG][5d2a6802][sync-task]disk 96313 smart health status ok, temperature 60066 celsius", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 10:56:03][[DEBUG] thread pool exhausted, active=81923 queued=91838 max=78231", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[01/Mar/2026:20:57:08 ] [f431de44] [WARN]: metadata journal truncated at offset c49401f66467", "body_start": 43, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 11:12:27,000000 ][ff4fc490][WARN][883d47b0][main-worker]rpc call GetVolumeInfo returned code 87569, msg success", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 06:00:31] [a872d95a] [INFO]: alarm cleared: disk usage back to 11 percent", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 17:51:07.000000]  [WARN] [4dfe50e8] [ism-agent] received message from 10.99460.29508.35069:43447, dispatch to handler", "body_start": 60, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 07:17:16 ]send audit event to kafka topic dsware-audit, seq=25c5334b712d", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 15:14:44.000000 UT]process request op=task-991 done in 97562 ms", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 09:51:19,000000] [0832f72d] [INFO]: update config key snap-7c to value 42642", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 10:52:04,000000 ]  [msg-handler] [e818df17] [DEBUG] [b323fd27] volume snap-7c changed state from active to degraded", "body_start": 75, "format": "oam-console#3", "has_header": true}
+{"line": "[02/Mar/2026:06:15:43 ]: received message from 10.20270.61692.73245:60419, dispatch to handler", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026/03/01 14:09:51]disk 44653 smart health status ok, temperature 62400 celsius", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 09:26:03.000000 UT]: start to sync volume data, total 59635 chunks", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 03:48:33.000000 UT][[NOTICE] rpc call GetVolumeInfo returned code 55170, msg success", "body_start": 41, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 19:35:42.000000 UT] [e2753f24] [ERROR]: received message from 10.56472.637.94940:84725, dispatch to handler", "body_start": 52, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 00:44:20 CST][0af8942b][DEBUG][c1fb79ff][main-worker]received message from 10.33141.36244.1496:53940, dispatch to handler", "body_start": 65, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 14:37:59.000000] [WARN] [4877801b] [rep-worker] checkpoint finished, elapsed 58935 seconds", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 19:11:46.000000] [d8ae3b18] [DEBUG]: thread pool exhausted, active=51012 queued=51056 max=6310", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 14:20:41,000000 ]  [ha-monitor] [7faf5ead] [WARN] [cf71b101] receive heartbeat from node-27132, load 11 percent", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 20:17:34]disk 66383 smart health status ok, temperature 35638 celsius", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 15:52:35.000000] [92b9b935] [WARN]: alarm cleared: disk usage back to 72 percent", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 20:11:41 ]  [NOTICE] [9b366599] [rep-worker] rpc call GetVolumeInfo returned code 87927, msg success", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 19:27:10.000000 UT][bb32c39a][NOTICE][93f714de][osd-daemon]failed to read block blk_2434ced58d2f, retry 47535 times", "body_start": 71, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 04:31:12,000000 ][4294955c][WARN][f096cba9][ha-monitor]received message from 10.69705.37346.14845:49480, dispatch to handler", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 05:40:34,000000]: volume snap-7c changed state from active to degraded", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 19:27:50:000000][osd-daemon][async-pool][5858][WARN] metadata journal truncated at offset 75619fbd3da8", "body_start": 65, "format": "oam-console#0", "has_header": true}
+{"line": "[01/Mar/2026:09:47:50 ]volume snap-7c changed state from active to degraded", "body_start": 23, "format": "oam-console#10", "has_header": true}
+{"line": "[01/Mar/2026:09:20:17 ] [DEBUG] [d9469ee9] [rep-worker] volume cfg.max.io changed state from active to degraded", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 12:13:00.000000 UT]: send audit event to kafka topic dsware-audit, seq=93e6bb59d9b7", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 04:37:49.000000][[WARN] connection reset by peer, socket fd=90409", "body_start": 36, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 17:05:52]receive heartbeat from node-54535, load 57 percent", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[01/Mar/2026:22:29:04 ][f8b85779][INFO][619e2a4a][msg-handler]thread pool exhausted, active=85784 queued=98380 max=41298", "body_start": 62, "format": "oam-console#1", "has_header": true}
+{"line": "2026-03-01 20:54:32 CST----connection reset by peer, socket fd=71106", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "[WARN] [main-worker] [9f99eda6] [ee93ea0c] (UTC) 2026-03-01 15:18:15 CST  DSWARE KMC thread pool exhausted, active=13009 queued=59492 max=18188", "body_start": 85, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 03:06:39,000000] [f8d638fa] [ERROR]: update config key quota.db to value 94204", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[INFO] [scheduler] [9e8b2079] [0d63fa86] (UTC) 2026-03-02 04:26:53  DSWARE KMC cache entry 2a82e614999e evicted, free slots 21734", "body_start": 79, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 14:10:10]  [ha-monitor] [04c0de4a] [INFO] [3abe1019] process request op=cfg.max.io done in 12016 ms", "body_start": 65, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 00:01:43 CST]  [vbs-server] [58a67c7e] [DEBUG] [bcd355ac] received message from 10.15791.72480.78761:25465, dispatch to handler", "body_start": 70, "format": "oam-console#3", "has_header": true}
+{"line": "[01/Mar/2026:13:17:40 ] [03f59085] [NOTICE]: volume snap-7c changed state from active to degraded", "body_start": 45, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-02 07:16:36:000000----cache entry 86fc972115b3 evicted, free slots 21533", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 23:12:48,000000] [da5832ed] [ERROR]: disk 57989 smart health status ok, temperature 98817 celsius", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/02 03:49:33][ha-monitor][async-pool][2761][DEBUG] certificate will expire in 29679 days, renew required", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 06:02:39 CST] [689dbc18] [ERROR]: write 92717 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 46, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 10:27:43,000000][[DEBUG] alarm cleared: disk usage back to 71 percent", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 18:25:52,000000 ]thread pool exhausted, active=80219 queued=56727 max=77714", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "2026-03-02 00:43:48.000000 UT----checkpoint finished, elapsed 34896 seconds", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[01/Mar/2026:12:18:09 ][[ERROR] cache entry 57577b1a8061 evicted, free slots 79635", "body_start": 32, "format": "oam-console#7", "has_header": true}
+{"line": "[01/Mar/2026:18:57:17 ]  [scheduler] [9b9533ca] [INFO] [28f307eb] volume vol-3f2a changed state from active to degraded", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 22:03:01.000000][[NOTICE] connection reset by peer, socket fd=47814", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 23:15:35:000000] [ERROR] [c84718fb] [scheduler] metadata journal truncated at offset b2650882602f", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 18:55:38 ]  [ERROR] [905bbce9] [vbs-server] task cfg.max.io submitted by user admin, priority 35896", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 11:19:01 CST] [3fdd3419] [WARN]: cache entry 77ae45986193 evicted, free slots 37414", "body_start": 45, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 03:50:00:000000]  [ism-agent] [8d789a0a] [WARN] [fce711aa] connection reset by peer, socket fd=62789", "body_start": 71, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 20:52:59 CST]: update config key quota.db to value 51727", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-01 12:15:55 CST----thread pool exhausted, active=29060 queued=52048 max=45393", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 03:02:09 CST] [7545030b] [DEBUG]: write 83046 bytes to /data/dsware/task-991/chunk.dat", "body_start": 46, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-01 13:50:11 ----failed to read block blk_aa6746b7555f, retry 50186 times", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[DEBUG] [dme-server] [9f97fbaa] [52158b25] (UTC) 2026-03-02 01:07:26.000000 UT  DSWARE KMC received message from 10.49671.91559.74205:46419, dispatch to handler", "body_start": 91, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 18:28:49,000000][5a74a4ce][WARN][f805a80d][rep-worker]failed to read block blk_76468d6d2c66, retry 28382 times", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 12:28:27][59b2e571][NOTICE][472621d0][msg-handler]task snap-7c submitted by user admin, priority 30160", "body_start": 62, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 12:18:55][[DEBUG] alarm cleared: disk usage back to 60 percent", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 12:03:33.000000 UT]  [scheduler] [16f97b8e] [DEBUG] [3133b17f] metadata journal truncated at offset f744d281ade", "body_start": 75, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 11:10:40.000000][c03f7e09][INFO][e76a23ba][scheduler]disk 56458 smart health status ok, temperature 50991 celsius", "body_start": 65, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 00:16:36,000000]  [NOTICE] [34dc32b2] [ha-monitor] update config key vol-3f2a to value 3870", "body_start": 63, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 06:42:59.000000 UT] [ERROR] [06452458] [ism-agent] alarm cleared: disk usage back to 98 percent", "body_start": 63, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 23:49:52] [NOTICE] [2a206eb3] [ism-agent] thread pool exhausted, active=62060 queued=21854 max=27970", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/02 03:23:47][[NOTICE] checkpoint finished, elapsed 95272 seconds", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 08:04:54 CST]  [ERROR] [ed5ddb22] [sync-task] init module snap-7c begin, worker threads 4414", "body_start": 58, "format": "oam-console#4", "has_header": true}
+{"line": "[ERROR] [ha-monitor] [f383d68d] [0dee333b] (UTC) 2026-03-01 18:46:31.000000 UT  DSWARE KMC cache entry 3a2aa766b78 evicted, free slots 91601", "body_start": 91, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 05:34:28:000000] [b7f123a9] [NOTICE]: metadata journal truncated at offset b98f465131e4", "body_start": 50, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 18:31:15 CST][c75f9d5e][ERROR][f8cb7594][dme-server]metadata journal truncated at offset ac66b248f1d4", "body_start": 64, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 23:47:56 CST][[WARN] received message from 10.90688.4697.385:8956, dispatch to handler", "body_start": 33, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 14:42:30.000000 UT]certificate will expire in 79390 days, renew required", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 21:18:00 ]: certificate will expire in 66339 days, renew required", "body_start": 24, "format": "oam-console#9", "has_header": true}
+{"line": "[2026/03/02 02:21:03][msg-handler][worker-8][9320][INFO] thread pool exhausted, active=86592 queued=59178 max=2379", "body_start": 57, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 15:31:46.000000 UT]connection reset by peer, socket fd=95210", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 17:45:55 ] [ERROR] [c4a59865] [rep-worker] connection reset by peer, socket fd=88154", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[ERROR] [ism-agent] [246b27a2] [0bb293bb] (UTC) 2026-03-01 22:59:00.000000  DSWARE KMC volume task-991 changed state from active to degraded", "body_start": 87, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 08:00:13] [cbaee264] [INFO]: write 85343 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "[DEBUG] [msg-handler] [c3d137e3] [3f960f10] (UTC) 2026-03-01 19:24:45:000000  DSWARE KMC receive heartbeat from node-86273, load 86 percent", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 23:55:51,000000]  [dme-server] [267ecb18] [WARN] [fc3a1883] send audit event to kafka topic dsware-audit, seq=30ece4112994", "body_start": 72, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 23:18:33:000000] [876c30f1] [INFO]: update config key cfg.max.io to value 44448", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 00:45:31 CST]: init module cfg.max.io begin, worker threads 80714", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 05:26:10 ]  [NOTICE] [65bd4e0d] [osd-daemon] task snap-7c submitted by user admin, priority 60639", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "2026-03-01 11:41:55:000000----cache entry e0118fb05631 evicted, free slots 83543", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 04:29:05.000000 UT] [2ec5c82c] [ERROR]: init module snap-7c begin, worker threads 3677", "body_start": 52, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 01:10:15:000000] [WARN] [a6fc0f91] [msg-handler] connection reset by peer, socket fd=21780", "body_start": 61, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/02 01:40:27]  [dme-server] [04ee1a80] [WARN] [6b5435fd] write 56647 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 65, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 15:06:13 CST][[DEBUG] update config key task-991 to value 66040", "body_start": 34, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/02 01:29:48][main-worker][async-pool][2787][ERROR] volume task-991 changed state from active to degraded", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "[ERROR] [dme-server] [0f725a1e] [ab72b37f] (UTC) 01/Mar/2026:23:47:23   DSWARE KMC received message from 10.54390.23400.26835:47164, dispatch to handler", "body_start": 83, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 02:34:04:000000]send audit event to kafka topic dsware-audit, seq=163682d679a", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 10:34:10 CST][rep-worker][main][5987][NOTICE] write 21508 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 58, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 10:42:20 ]: disk 20501 smart health status ok, temperature 11458 celsius", "body_start": 24, "format": "oam-console#9", "has_header": true}
+{"line": "[2026/03/01 14:13:08] [3b9a566e] [DEBUG]: certificate will expire in 49733 days, renew required", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 05:28:00.000000] [INFO] [ef0758b9] [osd-daemon] received message from 10.68324.27287.49008:23235, dispatch to handler", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-01 19:38:22 CST----thread pool exhausted, active=97992 queued=20599 max=10315", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 04:49:12,000000 ] [c6e6cf35] [NOTICE]: volume task-991 changed state from active to degraded", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 04:52:27.000000]metadata journal truncated at offset 8f6696a385a5", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026/03/01 10:45:55]  [NOTICE] [3bee59c7] [osd-daemon] receive heartbeat from node-95172, load 30 percent", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 17:53:14,000000]failed to read block blk_939da7a98271, retry 5366 times", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 22:40:41.000000]: disk 25537 smart health status ok, temperature 86577 celsius", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "02/Mar/2026:03:43:32 ----failed to read block blk_3dc37d0e066b, retry 12257 times", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 13:49:48,000000 ]  [DEBUG] [83d660a6] [rep-worker] thread pool exhausted, active=61193 queued=73177 max=11562", "body_start": 63, "format": "oam-console#4", "has_header": true}
+{"line": "[01/Mar/2026:19:35:49 ] [INFO] [e645fb7f] [ha-monitor] start to sync volume data, total 74280 chunks", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 05:49:46,000000 ]alarm cleared: disk usage back to 69 percent", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 10:28:34:000000]: task quota.db submitted by user admin, priority 30285", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 11:37:55.000000][[ERROR] received message from 10.52843.70075.50416:76609, dispatch to handler", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 17:29:33] [84a7bcf3] [DEBUG]: receive heartbeat from node-93368, load 94 percent", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "2026/03/02 00:06:53----start to sync volume data, total 26437 chunks", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[DEBUG] [ha-monitor] [59986861] [0bc07694] (UTC) 2026/03/01 23:57:37  DSWARE KMC write 23184 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 81, "format": "oam-console#2", "has_header": true}
+{"line": "[ERROR] [dme-server] [5716b3d0] [0f9d9783] (UTC) 2026-03-01 18:24:05.000000  DSWARE KMC metadata journal truncated at offset 9387a9d68cb4", "body_start": 88, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 14:48:22] [7229538e] [INFO]: thread pool exhausted, active=90174 queued=42807 max=20689", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/02 03:27:19][[DEBUG] update config key cfg.max.io to value 73199", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 23:05:02.000000 UT][[DEBUG] failed to read block blk_30c9523fd3be, retry 10888 times", "body_start": 40, "format": "oam-console#7", "has_header": true}
+{"line": "[NOTICE] [dme-server] [7b6ed5cb] [e0d33af6] (UTC) 2026-03-01 19:52:47,000000  DSWARE KMC disk 74315 smart health status ok, temperature 74808 celsius", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[01/Mar/2026:10:52:17 ] [95e2fee3] [NOTICE]: connection reset by peer, socket fd=94203", "body_start": 45, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-01 12:42:09,000000----disk 48871 smart health status ok, temperature 35813 celsius", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 19:04:43]  [INFO] [bcd59d6e] [ism-agent] rpc call GetVolumeInfo returned code 74649, msg success", "body_start": 53, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 08:48:26,000000 ] [0c505cdd] [NOTICE]: start to sync volume data, total 93459 chunks", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 04:45:28:000000][1e30ed81][NOTICE][a547a820][rep-worker]receive heartbeat from node-79938, load 66 percent", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 01:39:38.000000][d2bf2db9][NOTICE][aae08a9a][osd-daemon]receive heartbeat from node-17463, load 27 percent", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[02/Mar/2026:01:19:02 ][[NOTICE] receive heartbeat from node-47448, load 33 percent", "body_start": 33, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/01 18:59:04]: receive heartbeat from node-42117, load 59 percent", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 21:05:39,000000]: failed to read block blk_b487561b2520, retry 19427 times", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[WARN] [osd-daemon] [84a37956] [0df52095] (UTC) 02/Mar/2026:01:27:08   DSWARE KMC volume snap-7c changed state from active to degraded", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "2026-03-02 04:09:10:000000----volume vol-3f2a changed state from active to degraded", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[02/Mar/2026:02:18:02 ][msg-handler][main][7195][INFO] receive heartbeat from node-53187, load 55 percent", "body_start": 55, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 21:19:41 ]  [NOTICE] [780fe28d] [rep-worker] metadata journal truncated at offset 6fed56c8b4c6", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 07:29:41 ]: checkpoint finished, elapsed 19620 seconds", "body_start": 24, "format": "oam-console#9", "has_header": true}
+{"line": "[DEBUG] [main-worker] [4596929f] [d448d3b4] (UTC) 2026-03-02 03:29:06 CST  DSWARE KMC init module vol-3f2a begin, worker threads 83780", "body_start": 86, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 19:55:43 ]  [ERROR] [96557950] [msg-handler] task vol-3f2a submitted by user admin, priority 37265", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026/03/01 18:23:54][[DEBUG] cache entry 519a07fc5c4e evicted, free slots 93518", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 14:00:49,000000]write 33056 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[01/Mar/2026:19:08:56 ]  [ERROR] [7d966e1a] [ha-monitor] metadata journal truncated at offset 7045bbf60231", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 22:23:52 ] [INFO] [c5c230a5] [dme-server] thread pool exhausted, active=6941 queued=78920 max=39228", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 09:59:29 ] [DEBUG] [c9c6a3e1] [ism-agent] update config key vol-3f2a to value 24129", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 18:31:27.000000 UT] [INFO] [3b7fab66] [osd-daemon] update config key quota.db to value 14267", "body_start": 63, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 21:23:36 CST]: connection reset by peer, socket fd=68303", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 19:23:29 ]thread pool exhausted, active=7525 queued=58527 max=37641", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 02:15:46,000000 ]  [msg-handler] [50bf5b56] [DEBUG] [21929f23] metadata journal truncated at offset fdd7180a1a3d", "body_start": 75, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 12:48:57.000000][[NOTICE] process request op=vol-3f2a done in 22758 ms", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "[ERROR] [osd-daemon] [e8ec0db0] [1fb098a8] (UTC) 2026-03-01 16:31:43.000000 UT  DSWARE KMC init module vol-3f2a begin, worker threads 88954", "body_start": 91, "format": "oam-console#2", "has_header": true}
+{"line": "[ERROR] [main-worker] [a77388e8] [f24a30af] (UTC) 2026/03/02 05:42:59  DSWARE KMC init module snap-7c begin, worker threads 67497", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 19:50:46,000000 ][[DEBUG] checkpoint finished, elapsed 33630 seconds", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "01/Mar/2026:22:39:10 ----task vol-3f2a submitted by user admin, priority 25329", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[02/Mar/2026:07:53:25 ]  [DEBUG] [cc5f3ba8] [ism-agent] failed to read block blk_6fbcd4a5b766, retry 14860 times", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 17:15:43,000000 ]volume snap-7c changed state from active to degraded", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 20:38:01.000000 UT][891e98af][NOTICE][cb352c09][vbs-server]init module snap-7c begin, worker threads 14742", "body_start": 71, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 02:05:30,000000][sync-task][worker-2][3386][INFO] send audit event to kafka topic dsware-audit, seq=a39ce32a29f", "body_start": 62, "format": "oam-console#0", "has_header": true}
+{"line": "[ERROR] [msg-handler] [c85b5954] [e7ef1337] (UTC) 2026-03-01 09:15:58,000000  DSWARE KMC cache entry 8e1569fc41f4 evicted, free slots 49604", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 19:49:11.000000 UT][44056e91][DEBUG][996e1276][dme-server]process request op=snap-7c done in 19622 ms", "body_start": 70, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 07:54:16 CST] [c5d9f2aa] [ERROR]: disk 39647 smart health status ok, temperature 17158 celsius", "body_start": 46, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 07:46:11.000000]start to sync volume data, total 498 chunks", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 19:17:18 ][19702104][WARN][fbb0421e][osd-daemon]rpc call GetVolumeInfo returned code 36654, msg success", "body_start": 60, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 05:33:11 ]  [dme-server] [ee3c9fb4] [INFO] [a73d09b4] update config key quota.db to value 30831", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "[ERROR] [dme-server] [ff7dd041] [d2f64508] (UTC) 2026-03-01 12:46:35.000000 UT  DSWARE KMC received message from 10.61997.78251.71595:31969, dispatch to handler", "body_start": 91, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 04:36:32,000000]start to sync volume data, total 33164 chunks", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 20:57:32 ]receive heartbeat from node-17823, load 22 percent", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 05:11:46:000000]volume snap-7c changed state from active to degraded", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 06:08:22 CST][[ERROR] task vol-3f2a submitted by user admin, priority 31422", "body_start": 34, "format": "oam-console#7", "has_header": true}
+{"line": "2026-03-01 20:28:25,000000----cache entry afc79291bbf evicted, free slots 62360", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 00:19:02 ]  [sync-task] [0cf1adb5] [DEBUG] [275c7f95] send audit event to kafka topic dsware-audit, seq=92192d6f152e", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 11:28:01 ][vbs-server][main][8300][ERROR] process request op=snap-7c done in 22681 ms", "body_start": 54, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 20:18:24,000000 ][[NOTICE] process request op=snap-7c done in 40100 ms", "body_start": 39, "format": "oam-console#7", "has_header": true}
+{"line": "2026-03-02 03:49:53.000000----checkpoint finished, elapsed 52297 seconds", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026/03/01 19:40:12][df49b511][ERROR][a3ee50c7][ism-agent]volume quota.db changed state from active to degraded", "body_start": 59, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 10:49:00:000000][ism-agent][async-pool][9662][ERROR] failed to read block blk_1296385a3cad, retry 75212 times", "body_start": 65, "format": "oam-console#0", "has_header": true}
+{"line": "[2026/03/02 03:15:06][[ERROR] checkpoint finished, elapsed 89860 seconds", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[01/Mar/2026:08:33:00 ]: write 73564 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 09:49:21,000000 ]: received message from 10.58943.76015.39217:96129, dispatch to handler", "body_start": 31, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 22:49:24.000000]  [ism-agent] [a0ec9f7d] [NOTICE] [70cd622d] update config key task-991 to value 55734", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 05:16:01.000000 UT]task vol-3f2a submitted by user admin, priority 83459", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "2026-03-01 19:34:19,000000----certificate will expire in 22287 days, renew required", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 12:34:25,000000 ] [WARN] [a2f4f723] [ism-agent] send audit event to kafka topic dsware-audit, seq=3f883662094a", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 08:58:19]  [msg-handler] [d0398965] [INFO] [923218b5] disk 40233 smart health status ok, temperature 29519 celsius", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "[WARN] [main-worker] [a98f784e] [83f4e3b5] (UTC) 2026-03-02 00:16:26,000000  DSWARE KMC process request op=snap-7c done in 42457 ms", "body_start": 88, "format": "oam-console#2", "has_header": true}
+{"line": "[01/Mar/2026:23:02:59 ]metadata journal truncated at offset 60eca3641266", "body_start": 23, "format": "oam-console#10", "has_header": true}
+{"line": "02/Mar/2026:02:32:24 ----volume quota.db changed state from active to degraded", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[WARN] [sync-task] [d8435214] [fbd8aea8] (UTC) 2026-03-01 21:08:09,000000  DSWARE KMC receive heartbeat from node-92749, load 87 percent", "body_start": 86, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 06:33:53]  [rep-worker] [ff333df0] [DEBUG] [27aa588e] connection reset by peer, socket fd=93502", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 01:34:29,000000 ][sync-task][worker-3][6855][WARN] init module snap-7c begin, worker threads 25095", "body_start": 63, "format": "oam-console#0", "has_header": true}
+{"line": "2026-03-02 06:51:56,000000----checkpoint finished, elapsed 1052 seconds", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 01:46:32][vbs-server][async-pool][3997][WARN] cache entry 70af69c5469f evicted, free slots 72557", "body_start": 58, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 20:17:53 ]init module quota.db begin, worker threads 47399", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026/03/01 20:56:32] [NOTICE] [fa4e8315] [ha-monitor] thread pool exhausted, active=64091 queued=73943 max=87996", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 20:00:12 CST]  [osd-daemon] [795dd6a0] [INFO] [4f829c93] receive heartbeat from node-48990, load 81 percent", "body_start": 69, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 19:06:08,000000]  [osd-daemon] [527d6309] [DEBUG] [dece759a] checkpoint finished, elapsed 61299 seconds", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 18:18:59 ] [WARN] [911a68df] [vbs-server] checkpoint finished, elapsed 54966 seconds", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 08:47:56][24e05faf][WARN][ee35528a][ha-monitor]init module snap-7c begin, worker threads 26194", "body_start": 59, "format": "oam-console#1", "has_header": true}
+{"line": "01/Mar/2026:22:36:38 ----start to sync volume data, total 74325 chunks", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 06:12:25][ha-monitor][async-pool][1696][ERROR] write 87104 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 15:48:06 CST] [3481f793] [ERROR]: process request op=task-991 done in 25924 ms", "body_start": 46, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 17:57:26,000000 ] [81fa43ba] [NOTICE]: send audit event to kafka topic dsware-audit, seq=762394967764", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 21:19:50,000000] [2488fef6] [INFO]: cache entry 2a8ad19277ef evicted, free slots 67250", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[01/Mar/2026:14:54:31 ][dme-server][main][8132][ERROR] task task-991 submitted by user admin, priority 53274", "body_start": 55, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 23:29:28 ] [ERROR] [896ab377] [dme-server] write 63520 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[ERROR] [ha-monitor] [6d01c7bb] [088edc17] (UTC) 01/Mar/2026:13:36:18   DSWARE KMC received message from 10.5663.66032.44497:37261, dispatch to handler", "body_start": 83, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 00:18:00.000000 UT]  [ism-agent] [6f76bcd1] [INFO] [ea3867a5] process request op=snap-7c done in 49641 ms", "body_start": 74, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 12:04:44.000000][d1659233][NOTICE][2ca102b8][dme-server]failed to read block blk_506641939d56, retry 67084 times", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 04:03:10]  [WARN] [bbd62590] [scheduler] checkpoint finished, elapsed 46898 seconds", "body_start": 53, "format": "oam-console#4", "has_header": true}
+{"line": "[2026/03/01 21:51:17] [4d924e2b] [INFO]: connection reset by peer, socket fd=72234", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 21:30:32]: write 78170 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[WARN] [osd-daemon] [566b1003] [4086533d] (UTC) 2026-03-01 16:15:56.000000  DSWARE KMC certificate will expire in 20479 days, renew required", "body_start": 87, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 20:40:10 CST][[WARN] volume snap-7c changed state from active to degraded", "body_start": 33, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/02 06:36:25] [INFO] [6264cbdc] [sync-task] checkpoint finished, elapsed 23629 seconds", "body_start": 52, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 05:40:34,000000 ]  [rep-worker] [9564108e] [NOTICE] [6fb48a91] thread pool exhausted, active=80749 queued=48271 max=53200", "body_start": 75, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 10:10:22.000000 UT]  [ism-agent] [6b018b7e] [NOTICE] [55745c33] update config key task-991 to value 53055", "body_start": 76, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 07:22:12.000000][vbs-server][main][6664][WARN] init module task-991 begin, worker threads 95409", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 04:44:22][main-worker][main][3090][WARN] failed to read block blk_c3122410c556, retry 36702 times", "body_start": 53, "format": "oam-console#0", "has_header": true}
+{"line": "[2026/03/01 13:46:08][sync-task][main][8489][NOTICE] volume task-991 changed state from active to degraded", "body_start": 53, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 16:22:21.000000 UT]: disk 90609 smart health status ok, temperature 48539 celsius", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-02 00:02:48,000000----failed to read block blk_4b09ffcb040, retry 62459 times", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 22:53:26.000000][c43ada06][DEBUG][5fa4f594][scheduler]rpc call GetVolumeInfo returned code 11048, msg success", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 05:45:30.000000]  [INFO] [5f76d5da] [main-worker] certificate will expire in 48578 days, renew required", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 05:08:01,000000] [7ac4c7a3] [DEBUG]: start to sync volume data, total 39640 chunks", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 14:24:41,000000 ] [NOTICE] [8cfef904] [vbs-server] alarm cleared: disk usage back to 84 percent", "body_start": 63, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]connection reset by peer, socket fd=17695", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 15:54:41,000000]  [dme-server] [743abffc] [NOTICE] [9a58e1c2] write 6906 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 74, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 19:01:20:000000] [cf6b3aad] [INFO]: thread pool exhausted, active=77935 queued=21403 max=65625", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 17:25:55.000000][[NOTICE] certificate will expire in 44663 days, renew required", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 17:33:18 CST] [WARN] [f06a93a1] [dme-server] alarm cleared: disk usage back to 66 percent", "body_start": 57, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 08:29:00 ]  [WARN] [cf2db76d] [vbs-server] metadata journal truncated at offset 33c4ed0a646d", "body_start": 55, "format": "oam-console#4", "has_header": true}
+{"line": "[INFO] [osd-daemon] [323aae1a] [7dfd35d0] (UTC) 2026-03-01 20:10:34  DSWARE KMC update config key cfg.max.io to value 96038", "body_start": 80, "format": "oam-console#2", "has_header": true}
+{"line": "[INFO] [rep-worker] [71439971] [4dae1047] (UTC) 2026-03-01 10:25:02   DSWARE KMC thread pool exhausted, active=70707 queued=9662 max=28226", "body_start": 81, "format": "oam-console#2", "has_header": true}
+{"line": "[2026/03/02 02:12:44] [NOTICE] [11b7a192] [vbs-server] thread pool exhausted, active=87604 queued=26897 max=44287", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[INFO] [scheduler] [c85d843c] [92efc534] (UTC) 2026-03-01 10:07:40 CST  DSWARE KMC alarm cleared: disk usage back to 84 percent", "body_start": 83, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 04:43:35 CST] [NOTICE] [dda0e57a] [rep-worker] metadata journal truncated at offset 97c5c604b59b", "body_start": 59, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 08:58:41.000000]metadata journal truncated at offset 19614afb09ce", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 23:36:53 CST]: checkpoint finished, elapsed 43114 seconds", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 08:47:33 CST]  [msg-handler] [7b477864] [INFO] [0d84da01] metadata journal truncated at offset 5edc1c3df659", "body_start": 70, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 12:53:29,000000 ] [12b7aa6c] [ERROR]: process request op=quota.db done in 35852 ms", "body_start": 50, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 20:23:21,000000 ] [INFO] [c21981d1] [main-worker] send audit event to kafka topic dsware-audit, seq=d6cc02a9cbfe", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[02/Mar/2026:06:40:07 ]received message from 10.50600.47121.24674:7019, dispatch to handler", "body_start": 23, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 11:09:36.000000 UT]thread pool exhausted, active=21587 queued=91885 max=62128", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 20:30:38,000000] [NOTICE] [156547f1] [vbs-server] certificate will expire in 24144 days, renew required", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 20:35:32]  [ERROR] [9dff8d13] [ism-agent] cache entry 81976d2cfe0d evicted, free slots 68074", "body_start": 54, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 08:25:58:000000]  [NOTICE] [024e983e] [osd-daemon] rpc call GetVolumeInfo returned code 18456, msg success", "body_start": 63, "format": "oam-console#4", "has_header": true}
+{"line": "2026-03-01 23:39:08 ----update config key snap-7c to value 31703", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[2026/03/02 05:18:25] [9c1c6d1d] [WARN]: update config key cfg.max.io to value 35231", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 22:23:17.000000 UT]  [NOTICE] [47429ba2] [vbs-server] receive heartbeat from node-88923, load 85 percent", "body_start": 66, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 17:09:50 CST]  [ha-monitor] [18c013c7] [ERROR] [141a57d2] receive heartbeat from node-41489, load 5 percent", "body_start": 70, "format": "oam-console#3", "has_header": true}
+{"line": "01/Mar/2026:16:33:14 ----process request op=vol-3f2a done in 94818 ms", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 09:48:43 ]task vol-3f2a submitted by user admin, priority 36848", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "2026/03/01 19:08:09----failed to read block blk_925227d9361e, retry 92764 times", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 02:38:16,000000 ] [73adde25] [INFO]: disk 60934 smart health status ok, temperature 58797 celsius", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 06:14:07.000000 UT]  [vbs-server] [149592ad] [ERROR] [e2c09c50] task cfg.max.io submitted by user admin, priority 38692", "body_start": 76, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 01:04:23.000000 UT][[ERROR] write 70272 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 40, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/01 11:20:52]: volume cfg.max.io changed state from active to degraded", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 05:17:26,000000]: received message from 10.85345.4815.34772:14568, dispatch to handler", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 23:25:10,000000 ]  [NOTICE] [4e00040e] [main-worker] receive heartbeat from node-33958, load 52 percent", "body_start": 65, "format": "oam-console#4", "has_header": true}
+{"line": "[2026/03/01 09:34:06]  [sync-task] [f788e0fc] [WARN] [9e50ec9c] task task-991 submitted by user admin, priority 96598", "body_start": 64, "format": "oam-console#3", "has_header": true}
+{"line": "[01/Mar/2026:15:01:10 ]  [DEBUG] [0334954e] [dme-server] send audit event to kafka topic dsware-audit, seq=93401919e15b", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 00:39:04.000000 UT][[NOTICE] write 9712 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 41, "format": "oam-console#7", "has_header": true}
+{"line": "2026-03-01 19:08:24.000000 UT----receive heartbeat from node-24217, load 62 percent", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 05:16:16] [WARN] [47cfb6d4] [scheduler] init module quota.db begin, worker threads 55030", "body_start": 52, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 20:46:38][scheduler][async-pool][5017][ERROR] disk 125 smart health status ok, temperature 30065 celsius", "body_start": 58, "format": "oam-console#0", "has_header": true}
+{"line": "2026/03/01 19:14:48----volume vol-3f2a changed state from active to degraded", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 06:44:15.000000 UT][[NOTICE] rpc call GetVolumeInfo returned code 17252, msg success", "body_start": 41, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 22:04:56 CST] [WARN] [4436b6c2] [dme-server] certificate will expire in 4234 days, renew required", "body_start": 57, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 05:35:34 CST] [ef83042a] [NOTICE]: start to sync volume data, total 57831 chunks", "body_start": 47, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 02:58:32 ]  [osd-daemon] [b6952630] [DEBUG] [f5c0a34c] receive heartbeat from node-69458, load 8 percent", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "[02/Mar/2026:04:05:40 ]  [dme-server] [1806db03] [WARN] [bcb3e1c7] send audit event to kafka topic dsware-audit, seq=8ce6f0b462cb", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "2026-03-02 06:15:11 ----cache entry 18eaeea88098 evicted, free slots 29725", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 17:52:43,000000 ][29a11fca][NOTICE][28bf49cc][sync-task]send audit event to kafka topic dsware-audit, seq=3447f6b0c6df", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 08:58:38 ]thread pool exhausted, active=77379 queued=35857 max=84927", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[INFO] [ism-agent] [0244471e] [556013b8] (UTC) 01/Mar/2026:12:27:58   DSWARE KMC metadata journal truncated at offset 633455464cc", "body_start": 81, "format": "oam-console#2", "has_header": true}
+{"line": "[2026/03/01 10:14:01]  [ERROR] [3ff8798d] [ha-monitor] start to sync volume data, total 18143 chunks", "body_start": 55, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 19:34:04,000000]  [scheduler] [612f56be] [NOTICE] [d59f0122] cache entry 766baa96901d evicted, free slots 62162", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 10:11:05,000000]failed to read block blk_5a656759bf15, retry 40525 times", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[ERROR] [scheduler] [5d90e862] [fbb8f611] (UTC) 2026-03-02 00:40:37,000000  DSWARE KMC metadata journal truncated at offset 5c7515e9990f", "body_start": 87, "format": "oam-console#2", "has_header": true}
+{"line": "2026-03-01 20:55:24:000000----alarm cleared: disk usage back to 9 percent", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 20:08:47.000000 UT]: process request op=vol-3f2a done in 58628 ms", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 01:03:49.000000 UT] [3c2ff043] [INFO]: cache entry dedd571b4aee evicted, free slots 3172", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[DEBUG] [sync-task] [5eff0384] [8cbb1527] (UTC) 2026-03-01 18:11:31.000000 UT  DSWARE KMC disk 35301 smart health status ok, temperature 92881 celsius", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 09:55:30 ]  [INFO] [6042cb10] [rep-worker] receive heartbeat from node-38965, load 78 percent", "body_start": 55, "format": "oam-console#4", "has_header": true}
+{"line": "[DEBUG] [osd-daemon] [e47bbc8a] [8fc7fef1] (UTC) 2026-03-02 00:30:55,000000  DSWARE KMC failed to read block blk_2197b5cda43, retry 76323 times", "body_start": 88, "format": "oam-console#2", "has_header": true}
+{"line": "[01/Mar/2026:12:54:36 ] [baba352b] [WARN]: rpc call GetVolumeInfo returned code 54311, msg success", "body_start": 43, "format": "oam-console#6", "has_header": true}
+{"line": "2026/03/02 05:29:29----cache entry 264c2fca05ca evicted, free slots 20045", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[WARN] [dme-server] [fbda9c15] [4525590e] (UTC) 2026/03/01 13:07:03  DSWARE KMC rpc call GetVolumeInfo returned code 37359, msg success", "body_start": 80, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 02:50:15]  [rep-worker] [79a240db] [WARN] [77f9630d] thread pool exhausted, active=79939 queued=42833 max=72705", "body_start": 65, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 07:48:05:000000]  [ha-monitor] [70cf1ef0] [ERROR] [e3a8b231] connection reset by peer, socket fd=21892", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 01:32:24,000000] [DEBUG] [839073b7] [vbs-server] task snap-7c submitted by user admin, priority 34064", "body_start": 61, "format": "oam-console#5", "has_header": true}
+{"line": "[01/Mar/2026:17:15:43 ]: init module quota.db begin, worker threads 56959", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-01 08:49:56 CST----rpc call GetVolumeInfo returned code 77100, msg success", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 16:26:29:000000] [ERROR] [41645e47] [vbs-server] cache entry a6d3ac5a2ab evicted, free slots 72439", "body_start": 61, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 13:34:56 ]connection reset by peer, socket fd=39943", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 16:47:53:000000]rpc call GetVolumeInfo returned code 4877, msg success", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 16:05:43:000000]disk 65270 smart health status ok, temperature 25976 celsius", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 03:43:27:000000] [750011be] [ERROR]: received message from 10.23451.15811.96720:10311, dispatch to handler", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 03:32:40,000000 ]  [INFO] [9459494c] [vbs-server] connection reset by peer, socket fd=70051", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 22:00:40,000000 ] [0093d7a8] [NOTICE]: connection reset by peer, socket fd=66223", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 04:11:12,000000][d5309879][ERROR][8753a9fb][vbs-server]volume task-991 changed state from active to degraded", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 11:34:03 CST]: checkpoint finished, elapsed 39079 seconds", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 21:00:28,000000 ]cache entry 475c1b143c15 evicted, free slots 6108", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 18:47:04:000000][ae80a3c8][NOTICE][8d55964f][dme-server]receive heartbeat from node-87454, load 33 percent", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 13:22:00,000000 ][[ERROR] update config key vol-3f2a to value 17954", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 16:59:36.000000]  [vbs-server] [08a65e48] [WARN] [ac9b9c04] failed to read block blk_e9c43e9445be, retry 9006 times", "body_start": 72, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 15:30:37]volume snap-7c changed state from active to degraded", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 22:27:58.000000 UT]: start to sync volume data, total 54497 chunks", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 04:44:11 CST] [9cd2c63e] [INFO]: init module task-991 begin, worker threads 70043", "body_start": 45, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/01 17:33:49]connection reset by peer, socket fd=91204", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026/03/01 08:42:49][rep-worker][main][3692][DEBUG] connection reset by peer, socket fd=26958", "body_start": 53, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 13:29:29 CST]  [ism-agent] [d283975a] [WARN] [1b509ec3] rpc call GetVolumeInfo returned code 460, msg success", "body_start": 68, "format": "oam-console#3", "has_header": true}
+{"line": "[01/Mar/2026:14:08:10 ]  [DEBUG] [3e91611a] [ism-agent] write 98100 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 13:52:20.000000 UT] [NOTICE] [8696f892] [msg-handler] received message from 10.3684.76735.91623:36837, dispatch to handler", "body_start": 66, "format": "oam-console#5", "has_header": true}
+{"line": "[01/Mar/2026:14:23:50 ]rpc call GetVolumeInfo returned code 72687, msg success", "body_start": 23, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 15:28:40 CST][vbs-server][worker-9][9790][INFO] send audit event to kafka topic dsware-audit, seq=e6da97b6c4ff", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "2026-03-01 13:48:11,000000----start to sync volume data, total 41065 chunks", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[01/Mar/2026:19:39:39 ]: failed to read block blk_13a6bc54e573, retry 38991 times", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 08:42:26:000000][505f2f16][DEBUG][1308eafa][sync-task]update config key snap-7c to value 32893", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[01/Mar/2026:14:51:19 ]  [vbs-server] [a2d58407] [ERROR] [9800daaa] metadata journal truncated at offset f4cd89e03aef", "body_start": 68, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 20:36:20.000000] [ERROR] [1b6f309f] [ism-agent] connection reset by peer, socket fd=6055", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 13:23:07]  [DEBUG] [30eea690] [osd-daemon] metadata journal truncated at offset 8865164b5470", "body_start": 55, "format": "oam-console#4", "has_header": true}
+{"line": "[WARN] [ha-monitor] [a9472d67] [45ced334] (UTC) 2026-03-02 01:37:12,000000  DSWARE KMC write 75210 bytes to /data/dsware/task-991/chunk.dat", "body_start": 87, "format": "oam-console#2", "has_header": true}
+{"line": "[01/Mar/2026:18:50:12 ]: thread pool exhausted, active=90159 queued=6031 max=88821", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 01:21:03][rep-worker][worker-6][9784][DEBUG] thread pool exhausted, active=80996 queued=71817 max=72771", "body_start": 57, "format": "oam-console#0", "has_header": true}
+{"line": "[02/Mar/2026:01:59:55 ] [NOTICE] [26fea3e4] [sync-task] received message from 10.91000.95648.72233:10994, dispatch to handler", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 10:27:57] [a89ddbc5] [NOTICE]: init module snap-7c begin, worker threads 46753", "body_start": 43, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 07:55:46]: receive heartbeat from node-49282, load 26 percent", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 12:47:23 ]  [main-worker] [198fbbd8] [WARN] [7225955f] connection reset by peer, socket fd=96732", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "[2026/03/01 19:45:22][main-worker][worker-3][9945][DEBUG] init module cfg.max.io begin, worker threads 90497", "body_start": 58, "format": "oam-console#0", "has_header": true}
+{"line": "2026-03-01 14:39:15:000000----certificate will expire in 43473 days, renew required", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 01:33:17][ha-monitor][main][5200][NOTICE] metadata journal truncated at offset 4ff614bee0e3", "body_start": 54, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 02:47:08,000000][scheduler][async-pool][2979][INFO] disk 1943 smart health status ok, temperature 75352 celsius", "body_start": 64, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 10:41:20.000000][53a01089][NOTICE][ccb71bd2][osd-daemon]process request op=cfg.max.io done in 64061 ms", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 07:26:28,000000 ] [c2865536] [WARN]: send audit event to kafka topic dsware-audit, seq=7b2fa93a3df6", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 01:20:38,000000 ][[ERROR] update config key cfg.max.io to value 30747", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "[02/Mar/2026:03:00:32 ]thread pool exhausted, active=84273 queued=83002 max=10581", "body_start": 23, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 20:00:55,000000]connection reset by peer, socket fd=71783", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 16:47:06.000000 UT]alarm cleared: disk usage back to 1 percent", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 02:39:51,000000][eeaa06db][ERROR][f3079db4][ha-monitor]alarm cleared: disk usage back to 20 percent", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 18:06:31 ]  [WARN] [5793a8e9] [ha-monitor] process request op=task-991 done in 67668 ms", "body_start": 55, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 05:21:01 CST]: failed to read block blk_bce6116ec941, retry 25021 times", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 17:17:54.000000 UT]: alarm cleared: disk usage back to 47 percent", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 06:49:11.000000]  [WARN] [58a0a981] [osd-daemon] write 70131 bytes to /data/dsware/task-991/chunk.dat", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 16:16:49:000000][ff2e9c9d][DEBUG][513f5d75][vbs-server]metadata journal truncated at offset 2cc60fe14c55", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 08:35:15][[NOTICE] alarm cleared: disk usage back to 5 percent", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 03:43:36,000000 ]: start to sync volume data, total 14580 chunks", "body_start": 31, "format": "oam-console#9", "has_header": true}
+{"line": "[2026/03/01 21:10:04][68bc64d7][DEBUG][1882b11b][dme-server]write 43767 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 60, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 20:02:11.000000 UT]  [ism-agent] [83ada647] [WARN] [6ed67eac] task cfg.max.io submitted by user admin, priority 45429", "body_start": 74, "format": "oam-console#3", "has_header": true}
+{"line": "[2026/03/02 07:47:38]  [rep-worker] [eac20054] [DEBUG] [3baaa011] failed to read block blk_d59b8452450c, retry 84023 times", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 22:13:32]  [DEBUG] [4652aacd] [msg-handler] certificate will expire in 40049 days, renew required", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 17:45:09,000000 ]  [scheduler] [667d1ec2] [ERROR] [969c19ab] write 20997 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 14:44:09 ][2c3be017][WARN][88d84fbd][ism-agent]receive heartbeat from node-19685, load 96 percent", "body_start": 59, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 22:21:09][[WARN] process request op=task-991 done in 67306 ms", "body_start": 29, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 18:32:09,000000 ][e152e01d][DEBUG][5f325b33][vbs-server]update config key vol-3f2a to value 26400", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 01:08:51,000000] [NOTICE] [3dbab496] [ha-monitor] checkpoint finished, elapsed 62211 seconds", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[WARN] [sync-task] [007c79ff] [0e9141cb] (UTC) 2026-03-01 21:49:33   DSWARE KMC task snap-7c submitted by user admin, priority 52154", "body_start": 80, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 06:41:42.000000][84e42862][WARN][84a7dc2e][sync-task]update config key snap-7c to value 16200", "body_start": 65, "format": "oam-console#1", "has_header": true}
+{"line": "[WARN] [vbs-server] [15fe7050] [730bf916] (UTC) 2026-03-01 22:06:43.000000 UT  DSWARE KMC receive heartbeat from node-91165, load 52 percent", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[02/Mar/2026:03:02:53 ][[NOTICE] disk 5517 smart health status ok, temperature 44019 celsius", "body_start": 33, "format": "oam-console#7", "has_header": true}
+{"line": "[02/Mar/2026:07:18:24 ] [INFO] [23f14729] [ism-agent] send audit event to kafka topic dsware-audit, seq=b36840db5dab", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 22:01:52.000000 UT]  [ism-agent] [2c4ec196] [WARN] [d9f8b7d3] rpc call GetVolumeInfo returned code 56334, msg success", "body_start": 74, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 22:57:55.000000][scheduler][async-pool][7261][NOTICE] alarm cleared: disk usage back to 91 percent", "body_start": 66, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 06:03:22,000000]start to sync volume data, total 98502 chunks", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "2026-03-01 08:49:10:000000----init module snap-7c begin, worker threads 80671", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 10:39:23.000000 UT]: volume snap-7c changed state from active to degraded", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-01 09:52:49:000000----checkpoint finished, elapsed 84558 seconds", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[DEBUG] [osd-daemon] [9b4b6e9a] [9dd87a35] (UTC) 01/Mar/2026:08:09:28   DSWARE KMC disk 33842 smart health status ok, temperature 43668 celsius", "body_start": 83, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 05:34:55 CST][6a47118c][ERROR][b608daab][msg-handler]update config key cfg.max.io to value 29302", "body_start": 65, "format": "oam-console#1", "has_header": true}
+{"line": "[02/Mar/2026:06:51:02 ]: task task-991 submitted by user admin, priority 74664", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[NOTICE] [osd-daemon] [d3ccf752] [cbb66ff0] (UTC) 01/Mar/2026:09:14:14   DSWARE KMC cache entry e931a134b60 evicted, free slots 55335", "body_start": 84, "format": "oam-console#2", "has_header": true}
+{"line": "02/Mar/2026:07:51:28 ----cache entry 64f04e785a0 evicted, free slots 9125", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 05:09:51,000000 ]  [dme-server] [b35f2a17] [ERROR] [f3461696] checkpoint finished, elapsed 54156 seconds", "body_start": 74, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 23:10:29,000000]  [osd-daemon] [d8fcba17] [DEBUG] [9102495e] init module task-991 begin, worker threads 90446", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 03:58:06] [INFO] [5eee446a] [osd-daemon] connection reset by peer, socket fd=38934", "body_start": 53, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 21:46:31][e342d085][DEBUG][c9a34ec1][dme-server]update config key snap-7c to value 69653", "body_start": 60, "format": "oam-console#1", "has_header": true}
+{"line": "[02/Mar/2026:00:07:16 ][271e2375][DEBUG][646efefa][dme-server]received message from 10.63719.76150.90118:19391, dispatch to handler", "body_start": 62, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 03:14:27,000000] [d0b425ce] [WARN]: certificate will expire in 3283 days, renew required", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 07:54:22 ]send audit event to kafka topic dsware-audit, seq=5f20b634188", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[02/Mar/2026:02:47:55 ]: failed to read block blk_9ae2f90a0bca, retry 42024 times", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 12:23:14.000000][[DEBUG] update config key snap-7c to value 79055", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 21:53:57,000000]  [ha-monitor] [e83a1f2f] [INFO] [e93f87c9] start to sync volume data, total 83532 chunks", "body_start": 72, "format": "oam-console#3", "has_header": true}
+{"line": "2026-03-02 02:16:32.000000----certificate will expire in 19483 days, renew required", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 04:12:39 CST][ism-agent][async-pool][5781][NOTICE] certificate will expire in 74188 days, renew required", "body_start": 63, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 10:36:22,000000 ]  [scheduler] [d4537bbf] [ERROR] [92864256] start to sync volume data, total 75228 chunks", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[DEBUG] [main-worker] [d738c88e] [6f80f2b4] (UTC) 2026-03-01 18:14:19.000000  DSWARE KMC received message from 10.24847.47876.44262:69068, dispatch to handler", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 20:42:42,000000 ]update config key quota.db to value 74250", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 03:30:46:000000] [WARN] [f8fdce68] [ha-monitor] alarm cleared: disk usage back to 32 percent", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 19:08:07]  [ERROR] [a24a4a95] [main-worker] alarm cleared: disk usage back to 74 percent", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 04:36:28.000000 UT] [NOTICE] [4d700c75] [dme-server] process request op=cfg.max.io done in 66206 ms", "body_start": 65, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 18:24:53.000000]: cache entry ab19847d1d56 evicted, free slots 29796", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 03:11:08,000000 ]  [dme-server] [b9319418] [NOTICE] [db00533c] metadata journal truncated at offset 51db8b771205", "body_start": 75, "format": "oam-console#3", "has_header": true}
+{"line": "[NOTICE] [main-worker] [7f8f48c2] [2f9c4a88] (UTC) 2026-03-02 00:25:27,000000  DSWARE KMC thread pool exhausted, active=77163 queued=3798 max=6722", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 01:46:13] [INFO] [022e9960] [scheduler] metadata journal truncated at offset 1f2fd85b7aae", "body_start": 52, "format": "oam-console#5", "has_header": true}
+{"line": "[DEBUG] [ism-agent] [1b8fa98e] [4ddbfb19] (UTC) 2026-03-01 17:34:23.000000  DSWARE KMC process request op=task-991 done in 69659 ms", "body_start": 87, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 12:38:58]checkpoint finished, elapsed 1056 seconds", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 09:44:20.000000 UT][c52f0f8e][ERROR][fb96d88f][sync-task]cache entry c97eda90aa56 evicted, free slots 47973", "body_start": 69, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 04:57:41 ]  [INFO] [51938a24] [vbs-server] cache entry c9c280103945 evicted, free slots 44109", "body_start": 55, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 17:31:03 ]  [DEBUG] [b5e97b38] [msg-handler] alarm cleared: disk usage back to 87 percent", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 22:54:28 CST]: task snap-7c submitted by user admin, priority 14292", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 09:36:10]alarm cleared: disk usage back to 26 percent", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 00:44:24.000000][[DEBUG] cache entry 77355ad2c000 evicted, free slots 45200", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 07:43:03.000000]: disk 70709 smart health status ok, temperature 74768 celsius", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[NOTICE] [main-worker] [91d109f9] [647fb780] (UTC) 2026-03-01 19:08:21  DSWARE KMC failed to read block blk_b98e676aaf11, retry 45556 times", "body_start": 83, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 03:46:45 CST] [ERROR] [b8ff62aa] [vbs-server] write 39860 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 58, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 23:31:15.000000] [NOTICE] [c01a66db] [msg-handler] cache entry bd001048a51e evicted, free slots 62926", "body_start": 63, "format": "oam-console#5", "has_header": true}
+{"line": "[WARN] [osd-daemon] [e98a58f6] [ad6906c8] (UTC) 2026-03-01 19:02:17 CST  DSWARE KMC volume quota.db changed state from active to degraded", "body_start": 84, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 03:42:35 CST] [873ac307] [DEBUG]: received message from 10.34752.93584.29903:91752, dispatch to handler", "body_start": 46, "format": "oam-console#6", "has_header": true}
+{"line": "2026/03/02 04:02:54----checkpoint finished, elapsed 10771 seconds", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 04:12:04,000000]  [vbs-server] [b3ffee0f] [NOTICE] [2cd46920] metadata journal truncated at offset da66f98994ae", "body_start": 74, "format": "oam-console#3", "has_header": true}
+{"line": "[2026/03/02 07:26:49][bf2096fd][ERROR][47ab105b][ha-monitor]checkpoint finished, elapsed 21429 seconds", "body_start": 60, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 10:06:31:000000]  [rep-worker] [e24e34bb] [ERROR] [73938cae] send audit event to kafka topic dsware-audit, seq=db912d2e5f71", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "2026-03-01 23:36:30.000000----thread pool exhausted, active=4087 queued=22870 max=58004", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "2026-03-01 14:06:08.000000 UT----process request op=cfg.max.io done in 55094 ms", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 03:09:31:000000]rpc call GetVolumeInfo returned code 75699, msg success", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 09:13:30.000000 UT][93397589][NOTICE][add0466e][ha-monitor]write 53349 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 71, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 19:14:46]: process request op=vol-3f2a done in 24029 ms", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 18:00:04:000000][[DEBUG] thread pool exhausted, active=63490 queued=83384 max=49126", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/01 22:30:47] [NOTICE] [5e304576] [rep-worker] alarm cleared: disk usage back to 16 percent", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[02/Mar/2026:05:58:55 ][460c8f30][ERROR][1ce4986d][vbs-server]send audit event to kafka topic dsware-audit, seq=8371170c1777", "body_start": 62, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 14:28:36]  [ism-agent] [806ade87] [ERROR] [47037088] process request op=vol-3f2a done in 18232 ms", "body_start": 65, "format": "oam-console#3", "has_header": true}
+{"line": "[DEBUG] [main-worker] [a6d13e38] [8caac992] (UTC) 2026-03-01 14:59:42,000000   DSWARE KMC receive heartbeat from node-94529, load 75 percent", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 00:06:04 CST] [7a672937] [DEBUG]: checkpoint finished, elapsed 87392 seconds", "body_start": 46, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 07:42:25.000000 UT]connection reset by peer, socket fd=32725", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 11:18:30 ] [7eb3843c] [WARN]: connection reset by peer, socket fd=52562", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 04:25:58,000000 ][44a57e5b][ERROR][c55697b8][osd-daemon]certificate will expire in 10070 days, renew required", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[NOTICE] [scheduler] [4b36a50d] [49098e08] (UTC) 2026-03-01 20:44:40,000000   DSWARE KMC checkpoint finished, elapsed 58385 seconds", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[ERROR] [vbs-server] [f2098fd9] [f5b1a700] (UTC) 01/Mar/2026:21:20:26   DSWARE KMC rpc call GetVolumeInfo returned code 64839, msg success", "body_start": 83, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 06:37:31 ]start to sync volume data, total 9936 chunks", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 13:59:35.000000]  [NOTICE] [9b9d0655] [main-worker] send audit event to kafka topic dsware-audit, seq=a47ea9282480", "body_start": 64, "format": "oam-console#4", "has_header": true}
+{"line": "2026-03-01 18:44:56----alarm cleared: disk usage back to 24 percent", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 13:52:13:000000]  [ism-agent] [6ad6418f] [NOTICE] [7f985d3b] rpc call GetVolumeInfo returned code 86032, msg success", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "2026-03-02 06:53:03.000000 UT----task quota.db submitted by user admin, priority 10408", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 05:22:12,000000 ]process request op=quota.db done in 59106 ms", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[01/Mar/2026:14:52:32 ][9695ae3b][NOTICE][46146c11][rep-worker]received message from 10.52488.77414.85278:4328, dispatch to handler", "body_start": 63, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 01:23:12,000000][[ERROR] certificate will expire in 47084 days, renew required", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/02 06:50:00][ad12e116][DEBUG][9c85957a][dme-server]send audit event to kafka topic dsware-audit, seq=e2ad10d9c340", "body_start": 60, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 03:52:40.000000][[DEBUG] process request op=cfg.max.io done in 58662 ms", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 07:56:51 CST]receive heartbeat from node-41612, load 69 percent", "body_start": 25, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 08:48:58 CST]start to sync volume data, total 69120 chunks", "body_start": 25, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 09:48:32,000000 ]: connection reset by peer, socket fd=43086", "body_start": 31, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-01 12:03:28 CST----connection reset by peer, socket fd=49299", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 13:25:49:000000]  [dme-server] [12f02853] [ERROR] [614fecc7] task cfg.max.io submitted by user admin, priority 49958", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 11:52:35 ]  [ERROR] [f95d4e98] [dme-server] start to sync volume data, total 58065 chunks", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 00:09:57 CST]  [ERROR] [98e61d70] [main-worker] init module task-991 begin, worker threads 17908", "body_start": 60, "format": "oam-console#4", "has_header": true}
+{"line": "2026-03-01 08:48:16,000000 ----alarm cleared: disk usage back to 86 percent", "body_start": 31, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 21:36:54,000000 ]  [NOTICE] [567063e8] [msg-handler] write 64388 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 65, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 09:50:41,000000][vbs-server][main][7610][NOTICE] failed to read block blk_128a3f89e630, retry 12613 times", "body_start": 61, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 04:42:09 ][71ee8225][DEBUG][db0627c6][vbs-server]certificate will expire in 55869 days, renew required", "body_start": 61, "format": "oam-console#1", "has_header": true}
+{"line": "2026-03-01 22:28:42:000000----start to sync volume data, total 60435 chunks", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 02:18:10,000000]certificate will expire in 21051 days, renew required", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 18:26:04:000000][[ERROR] task quota.db submitted by user admin, priority 46292", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 09:08:56.000000][vbs-server][main][6733][ERROR] process request op=quota.db done in 3933 ms", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 02:23:59] [ERROR] [b7a107f9] [osd-daemon] metadata journal truncated at offset aa678a4966bd", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 07:27:53][dbeef687][ERROR][ade7b65a][vbs-server]rpc call GetVolumeInfo returned code 94274, msg success", "body_start": 60, "format": "oam-console#1", "has_header": true}
+{"line": "2026-03-01 11:33:57----received message from 10.31728.98288.70783:78076, dispatch to handler", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 17:56:06.000000 UT][rep-worker][async-pool][3061][NOTICE] thread pool exhausted, active=65147 queued=60083 max=7515", "body_start": 70, "format": "oam-console#0", "has_header": true}
+{"line": "[2026/03/02 07:25:23][e3faf8e1][ERROR][bb4d4982][msg-handler]volume vol-3f2a changed state from active to degraded", "body_start": 61, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 14:39:20,000000]failed to read block blk_23bb37e4f780, retry 74443 times", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 23:56:18:000000]  [WARN] [21bd9046] [vbs-server] certificate will expire in 23790 days, renew required", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 09:31:16 ] [DEBUG] [95864d9c] [ism-agent] failed to read block blk_bc9df87813d9, retry 20634 times", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 16:54:56 ] [NOTICE] [6b51829e] [dme-server] checkpoint finished, elapsed 80602 seconds", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "[01/Mar/2026:13:27:21 ]  [WARN] [1d593d3a] [ha-monitor] received message from 10.22189.4262.29163:40148, dispatch to handler", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 13:20:45.000000 UT][[INFO] volume snap-7c changed state from active to degraded", "body_start": 39, "format": "oam-console#7", "has_header": true}
+{"line": "[01/Mar/2026:11:51:31 ]  [vbs-server] [9034fc79] [INFO] [72a86786] received message from 10.5951.10244.68146:78249, dispatch to handler", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "[02/Mar/2026:04:40:51 ][baa86354][ERROR][003fd089][vbs-server]receive heartbeat from node-26733, load 91 percent", "body_start": 62, "format": "oam-console#1", "has_header": true}
+{"line": "[2026/03/02 04:20:10][ha-monitor][async-pool][9535][NOTICE] received message from 10.83226.6740.55809:28720, dispatch to handler", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 20:21:02 CST]  [WARN] [117b26cb] [ism-agent] disk 64006 smart health status ok, temperature 83469 celsius", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 01:51:58 CST]: certificate will expire in 98674 days, renew required", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[DEBUG] [osd-daemon] [5ff674e9] [2bc12691] (UTC) 2026-03-01 08:44:38.000000  DSWARE KMC metadata journal truncated at offset 1a1ce36ab255", "body_start": 88, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 10:01:36.000000 UT]: update config key task-991 to value 24779", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 09:20:38]: received message from 10.68151.80949.86008:53516, dispatch to handler", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 22:36:40.000000 UT]  [main-worker] [8bc1d144] [DEBUG] [c5b9e572] certificate will expire in 38556 days, renew required", "body_start": 77, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 19:05:19,000000 ][msg-handler][main][3446][WARN] alarm cleared: disk usage back to 57 percent", "body_start": 61, "format": "oam-console#0", "has_header": true}
+{"line": "[ERROR] [ha-monitor] [ae357ca8] [0a2d9269] (UTC) 2026-03-02 05:52:44,000000  DSWARE KMC process request op=task-991 done in 83874 ms", "body_start": 88, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 15:03:08 ]  [ha-monitor] [5160fe58] [DEBUG] [f35731aa] init module task-991 begin, worker threads 7737", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 10:46:48,000000 ] [77f4578c] [NOTICE]: alarm cleared: disk usage back to 32 percent", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 12:51:34 ][[NOTICE] start to sync volume data, total 86370 chunks", "body_start": 32, "format": "oam-console#7", "has_header": true}
+{"line": "[01/Mar/2026:13:16:36 ]: received message from 10.63233.17461.58414:64124, dispatch to handler", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 23:00:29.000000 UT] [9104d1b0] [WARN]: init module snap-7c begin, worker threads 42470", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 13:48:16.000000 UT]  [WARN] [1011e03c] [osd-daemon] received message from 10.50878.54140.15114:32089, dispatch to handler", "body_start": 64, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 00:10:51]  [NOTICE] [427f16b6] [ha-monitor] received message from 10.8980.55996.44764:20972, dispatch to handler", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 01:58:03.000000]: alarm cleared: disk usage back to 59 percent", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 10:28:34,000000][osd-daemon][async-pool][3874][WARN] write 41396 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 65, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 14:24:39:000000]  [ism-agent] [9ae93c8f] [INFO] [3ebe2b3a] task task-991 submitted by user admin, priority 12120", "body_start": 71, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 12:01:30,000000 ]  [INFO] [a86d080f] [ha-monitor] thread pool exhausted, active=67239 queued=81277 max=24016", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "02/Mar/2026:03:20:09 ----received message from 10.50058.48862.1088:3682, dispatch to handler", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 17:19:17][9f71a57d][ERROR][0f340b0d][rep-worker]start to sync volume data, total 81831 chunks", "body_start": 60, "format": "oam-console#1", "has_header": true}
+{"line": "[ERROR] [ha-monitor] [5ddc04bf] [c0ddecb8] (UTC) 2026-03-02 00:36:14.000000  DSWARE KMC start to sync volume data, total 61771 chunks", "body_start": 88, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 01:39:43 CST]  [msg-handler] [99043cf2] [DEBUG] [4c798cca] task task-991 submitted by user admin, priority 74784", "body_start": 71, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 20:20:26.000000] [ERROR] [c4a7db1c] [msg-handler] cache entry 9f6e6ebf7c6f evicted, free slots 71327", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/02 05:05:57] [INFO] [07991fe8] [main-worker] write 32717 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 17:35:09]  [ERROR] [6f4a2d51] [dme-server] failed to read block blk_ba2aa35b9c33, retry 10021 times", "body_start": 55, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 18:22:47]write 14691 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 04:17:22.000000 UT][[ERROR] certificate will expire in 92174 days, renew required", "body_start": 40, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 17:04:23 CST]receive heartbeat from node-96735, load 45 percent", "body_start": 25, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 23:58:00]cache entry 6bae5bc741c8 evicted, free slots 97031", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "2026-03-01 14:37:13.000000----disk 57332 smart health status ok, temperature 52935 celsius", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 09:13:05,000000][osd-daemon][worker-3][9542][NOTICE] write 61719 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 65, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 23:33:44,000000]: metadata journal truncated at offset ae42f4425ba1", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[DEBUG] [sync-task] [22a3fbf1] [b5e13076] (UTC) 02/Mar/2026:04:58:01   DSWARE KMC certificate will expire in 34212 days, renew required", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 09:16:18:000000]: disk 34471 smart health status ok, temperature 5122 celsius", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 00:19:19.000000 UT]  [NOTICE] [182d5c8d] [rep-worker] send audit event to kafka topic dsware-audit, seq=f9e3f6cc0ed2", "body_start": 66, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 09:58:38.000000] [fea79ef6] [DEBUG]: init module task-991 begin, worker threads 77731", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-02 07:38:40----metadata journal truncated at offset f05c9e4edfdf", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "2026-03-01 17:28:11 CST----connection reset by peer, socket fd=11617", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "[ERROR] [dme-server] [1606530d] [0c81e7d9] (UTC) 2026-03-01 20:45:02,000000   DSWARE KMC connection reset by peer, socket fd=2366", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[NOTICE] [main-worker] [8b5c4f1c] [9ba74342] (UTC) 2026-03-01 17:20:22,000000  DSWARE KMC metadata journal truncated at offset 369949a1ade7", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[01/Mar/2026:12:50:21 ]  [INFO] [699ded6e] [rep-worker] received message from 10.69720.718.36850:98444, dispatch to handler", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 21:05:42.000000 UT] [4448b59b] [INFO]: rpc call GetVolumeInfo returned code 48998, msg success", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 00:30:56.000000 UT][[WARN] rpc call GetVolumeInfo returned code 20045, msg success", "body_start": 39, "format": "oam-console#7", "has_header": true}
+{"line": "[02/Mar/2026:05:32:53 ]  [NOTICE] [0deb1a0e] [dme-server] alarm cleared: disk usage back to 13 percent", "body_start": 58, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 08:30:51]thread pool exhausted, active=29744 queued=47963 max=89549", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 14:08:19.000000]: disk 25683 smart health status ok, temperature 96930 celsius", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 16:52:10,000000 ]  [NOTICE] [46c9bb90] [sync-task] connection reset by peer, socket fd=54062", "body_start": 63, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 23:13:29 ]  [ism-agent] [0c047814] [ERROR] [d346acf6] send audit event to kafka topic dsware-audit, seq=5482186a8270", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "2026-03-01 18:55:09:000000----start to sync volume data, total 1732 chunks", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 01:11:14,000000 ][ha-monitor][async-pool][8028][DEBUG] process request op=task-991 done in 25292 ms", "body_start": 67, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 00:16:00.000000] [WARN] [cf483ce9] [ism-agent] process request op=task-991 done in 22997 ms", "body_start": 59, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 06:42:57 CST][85e5bde9][WARN][ca36ff19][ism-agent]cache entry 8ab815d1a40 evicted, free slots 60008", "body_start": 62, "format": "oam-console#1", "has_header": true}
+{"line": "01/Mar/2026:22:33:04 ----write 88522 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 15:49:44][[DEBUG] connection reset by peer, socket fd=48824", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "01/Mar/2026:08:30:33 ----connection reset by peer, socket fd=22937", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 07:25:30.000000][526af3b6][INFO][a3d76ce1][sync-task]start to sync volume data, total 79361 chunks", "body_start": 65, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 15:02:29 CST]  [DEBUG] [f92e5ff5] [ism-agent] init module task-991 begin, worker threads 2623", "body_start": 58, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 11:46:39,000000]  [DEBUG] [c943ab75] [sync-task] volume snap-7c changed state from active to degraded", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 12:18:49,000000 ]rpc call GetVolumeInfo returned code 66445, msg success", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 07:04:52.000000]cache entry ed164a71651c evicted, free slots 26233", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 23:44:54 ] [f8be7778] [NOTICE]: disk 53869 smart health status ok, temperature 52922 celsius", "body_start": 44, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/01 16:28:42] [bebe494f] [NOTICE]: rpc call GetVolumeInfo returned code 9931, msg success", "body_start": 43, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-02 03:43:09,000000----task snap-7c submitted by user admin, priority 10749", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026/03/01 17:23:33] [7ccd36e5] [ERROR]: send audit event to kafka topic dsware-audit, seq=116813ab3bc9", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-01 20:38:44 ----update config key cfg.max.io to value 84382", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[02/Mar/2026:07:10:25 ]  [scheduler] [478f7bf7] [ERROR] [29f75f56] start to sync volume data, total 2723 chunks", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "[2026/03/01 22:55:57][main-worker][main][2738][INFO] write 432 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 53, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 04:38:16.000000]  [NOTICE] [5c6fc589] [ha-monitor] send audit event to kafka topic dsware-audit, seq=e2bd83438698", "body_start": 63, "format": "oam-console#4", "has_header": true}
+{"line": "[2026/03/02 02:49:30] [f0b53403] [NOTICE]: volume cfg.max.io changed state from active to degraded", "body_start": 43, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 17:19:19,000000][[DEBUG] failed to read block blk_bab2092b580e, retry 24410 times", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 07:04:56.000000]: update config key vol-3f2a to value 71231", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 17:49:19,000000][a4c24aaa][ERROR][2fd2e620][scheduler]failed to read block blk_af8cc091ae87, retry 66605 times", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "2026-03-01 14:42:22.000000 UT----task vol-3f2a submitted by user admin, priority 72564", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 21:22:24.000000]send audit event to kafka topic dsware-audit, seq=83eb0298bd50", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 17:03:58]: process request op=vol-3f2a done in 30067 ms", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 13:14:48 CST] [WARN] [27d8b9b4] [osd-daemon] disk 77348 smart health status ok, temperature 25153 celsius", "body_start": 57, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 10:20:28.000000 UT] [ERROR] [7dc07bf2] [main-worker] connection reset by peer, socket fd=53869", "body_start": 65, "format": "oam-console#5", "has_header": true}
+{"line": "2026/03/01 20:04:47----start to sync volume data, total 44964 chunks", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 18:41:16.000000 UT]received message from 10.14917.69423.8705:89434, dispatch to handler", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026/03/01 08:20:47]certificate will expire in 47162 days, renew required", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 13:48:17][dme-server][async-pool][4466][DEBUG] receive heartbeat from node-71335, load 80 percent", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 11:14:05.000000 UT][scheduler][main][7303][NOTICE] thread pool exhausted, active=8882 queued=66284 max=5364", "body_start": 63, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 05:26:10,000000 ]: received message from 10.7284.62884.85823:19841, dispatch to handler", "body_start": 31, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 05:24:40][[NOTICE] update config key cfg.max.io to value 77691", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 13:56:58.000000]  [NOTICE] [a5dd6a61] [ism-agent] connection reset by peer, socket fd=6615", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 13:27:28 CST][[ERROR] process request op=vol-3f2a done in 55713 ms", "body_start": 34, "format": "oam-console#7", "has_header": true}
+{"line": "[INFO] [ism-agent] [e26d7dcd] [d066d9b8] (UTC) 2026-03-01 11:26:33.000000  DSWARE KMC thread pool exhausted, active=98350 queued=50444 max=11639", "body_start": 86, "format": "oam-console#2", "has_header": true}
+{"line": "[2026/03/01 16:59:58][[INFO] rpc call GetVolumeInfo returned code 33309, msg success", "body_start": 29, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 13:39:35:000000] [INFO] [12d89245] [osd-daemon] receive heartbeat from node-9581, load 75 percent", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 09:04:31 ][ism-agent][async-pool][1438][DEBUG] write 77892 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 00:06:14 CST] [6713fc21] [DEBUG]: start to sync volume data, total 21584 chunks", "body_start": 46, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 10:09:11 CST]  [ha-monitor] [337b1f7c] [DEBUG] [6ef3ee45] process request op=snap-7c done in 64456 ms", "body_start": 70, "format": "oam-console#3", "has_header": true}
+{"line": "[01/Mar/2026:15:15:56 ]  [dme-server] [5690bfd6] [WARN] [666bd860] alarm cleared: disk usage back to 20 percent", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 04:28:18:000000][[WARN] cache entry 3c3d92d6713a evicted, free slots 60539", "body_start": 36, "format": "oam-console#7", "has_header": true}
+{"line": "[01/Mar/2026:21:50:11 ]  [rep-worker] [4b05d6ca] [NOTICE] [413fa8a5] certificate will expire in 79174 days, renew required", "body_start": 69, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 17:54:14:000000] [WARN] [0acd157d] [ism-agent] alarm cleared: disk usage back to 12 percent", "body_start": 59, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 01:07:06,000000]start to sync volume data, total 83719 chunks", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 05:03:31.000000 UT][[ERROR] start to sync volume data, total 46348 chunks", "body_start": 40, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/01 11:15:25]  [osd-daemon] [b32ad00f] [WARN] [6238c749] receive heartbeat from node-3395, load 39 percent", "body_start": 65, "format": "oam-console#3", "has_header": true}
+{"line": "2026-03-02 01:44:14:000000----disk 40171 smart health status ok, temperature 66591 celsius", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 01:17:01 ] [234fb709] [DEBUG]: certificate will expire in 70935 days, renew required", "body_start": 43, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-01 16:15:47,000000 ----rpc call GetVolumeInfo returned code 83591, msg success", "body_start": 31, "format": "oam-console#8", "has_header": true}
+{"line": "[02/Mar/2026:03:03:38 ] [DEBUG] [12f4b270] [osd-daemon] checkpoint finished, elapsed 71477 seconds", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 10:14:26.000000][fc91d7c6][INFO][2647fbe9][sync-task]start to sync volume data, total 8201 chunks", "body_start": 65, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 22:59:01.000000 UT] [ERROR] [8cba0d89] [main-worker] alarm cleared: disk usage back to 62 percent", "body_start": 65, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 23:39:10.000000 UT][c8df7723][INFO][0590bece][rep-worker]volume quota.db changed state from active to degraded", "body_start": 69, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 16:12:24 ] [DEBUG] [01c125bc] [osd-daemon] receive heartbeat from node-11452, load 55 percent", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 09:13:59,000000]  [rep-worker] [3db4f3e6] [WARN] [c0d71a82] write 16710 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 72, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 03:54:15,000000 ]  [INFO] [57a9b23c] [ism-agent] send audit event to kafka topic dsware-audit, seq=83fd626d5edb", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[WARN] [sync-task] [da0f401c] [650e1b0d] (UTC) 2026-03-02 06:33:06.000000  DSWARE KMC process request op=cfg.max.io done in 51625 ms", "body_start": 86, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 14:02:51:000000][ism-agent][worker-3][3466][ERROR] received message from 10.76122.3168.61194:74445, dispatch to handler", "body_start": 63, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 12:43:50.000000][aaeb841e][INFO][2c373759][rep-worker]update config key snap-7c to value 77213", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "2026/03/01 14:03:20----checkpoint finished, elapsed 78043 seconds", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 23:31:25,000000 ][vbs-server][async-pool][5575][DEBUG] metadata journal truncated at offset 8bf4d2464bf2", "body_start": 67, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 03:12:49:000000]  [WARN] [01783c89] [ha-monitor] rpc call GetVolumeInfo returned code 30531, msg success", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026/03/02 00:45:33][6898154e][WARN][10fc688b][ism-agent]volume task-991 changed state from active to degraded", "body_start": 58, "format": "oam-console#1", "has_header": true}
+{"line": "[02/Mar/2026:04:50:48 ]  [WARN] [216e6cfd] [sync-task] received message from 10.93012.88752.56720:1692, dispatch to handler", "body_start": 55, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 07:09:46,000000 ][311a2547][WARN][61956aed][sync-task]init module cfg.max.io begin, worker threads 21841", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 17:02:52,000000]: received message from 10.11297.22979.14935:58564, dispatch to handler", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 09:59:28 ] [DEBUG] [ee08543e] [main-worker] connection reset by peer, socket fd=671", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 09:58:56,000000 ]  [WARN] [89ae2c2d] [osd-daemon] failed to read block blk_bc4526351962, retry 96765 times", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 07:33:35:000000]: certificate will expire in 1402 days, renew required", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 12:28:57 CST]checkpoint finished, elapsed 60838 seconds", "body_start": 25, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 18:22:25 ]start to sync volume data, total 60090 chunks", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 07:28:32,000000 ]checkpoint finished, elapsed 26044 seconds", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 17:48:18.000000]  [osd-daemon] [a10070a8] [ERROR] [7c60d8e6] receive heartbeat from node-24885, load 80 percent", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 05:56:49:000000]  [rep-worker] [30113bf3] [ERROR] [aa6d28b0] connection reset by peer, socket fd=11867", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 05:06:33 ] [WARN] [6eb2fb05] [ha-monitor] disk 25819 smart health status ok, temperature 78996 celsius", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-01 20:47:30 CST----init module snap-7c begin, worker threads 51015", "body_start": 27, "format": "oam-console#8", "has_header": true}
+{"line": "2026-03-02 03:58:59 ----start to sync volume data, total 42492 chunks", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 10:49:34,000000] [c1bd7413] [NOTICE]: alarm cleared: disk usage back to 34 percent", "body_start": 50, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-01 12:08:20,000000 ----receive heartbeat from node-31552, load 93 percent", "body_start": 31, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 21:17:24 CST][a3d9bba1][ERROR][9b1ed7ee][rep-worker]task quota.db submitted by user admin, priority 50117", "body_start": 64, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 13:00:31] [INFO] [347db1aa] [scheduler] write 55938 bytes to /data/dsware/task-991/chunk.dat", "body_start": 52, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 18:53:30,000000 ]rpc call GetVolumeInfo returned code 39682, msg success", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[01/Mar/2026:20:55:35 ]  [ism-agent] [bd12fd90] [ERROR] [a390988b] receive heartbeat from node-76947, load 67 percent", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 06:23:42] [2f6892d7] [WARN]: disk 51237 smart health status ok, temperature 61878 celsius", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 13:24:04.000000 UT]: rpc call GetVolumeInfo returned code 58164, msg success", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 19:13:51,000000]send audit event to kafka topic dsware-audit, seq=29026e6bc97c", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 19:09:46 CST][ha-monitor][async-pool][8161][ERROR] cache entry 3034af8819de evicted, free slots 5652", "body_start": 63, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 01:26:57,000000 ][c59bd248][NOTICE][fdf4cde1][sync-task]rpc call GetVolumeInfo returned code 45436, msg success", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 18:29:25:000000][[DEBUG] thread pool exhausted, active=99586 queued=36635 max=64230", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 09:08:31 CST] [ERROR] [c7c00aaf] [ism-agent] failed to read block blk_e75c7df0d6b7, retry 35238 times", "body_start": 57, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 00:35:48.000000 UT]received message from 10.71617.26464.5132:92064, dispatch to handler", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[01/Mar/2026:23:52:50 ]: alarm cleared: disk usage back to 10 percent", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 18:45:53,000000 ][8d28b0b0][ERROR][22f885bd][dme-server]task task-991 submitted by user admin, priority 3376", "body_start": 68, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 07:54:54,000000 ] [ERROR] [666e93b8] [osd-daemon] received message from 10.66122.2252.57407:98646, dispatch to handler", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 11:07:55,000000 ]: update config key snap-7c to value 62887", "body_start": 31, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 07:37:46,000000][vbs-server][worker-5][4903][WARN] disk 29642 smart health status ok, temperature 45572 celsius", "body_start": 63, "format": "oam-console#0", "has_header": true}
+{"line": "[INFO] [main-worker] [925192d5] [f075f9d6] (UTC) 2026-03-01 22:23:21:000000  DSWARE KMC write 71356 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 88, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 02:18:24:000000] [527e9b71] [WARN]: connection reset by peer, socket fd=35891", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/01 11:06:25][[DEBUG] certificate will expire in 30883 days, renew required", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 18:34:34]cache entry 43af10d2c82b evicted, free slots 69119", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026/03/01 17:56:16]  [dme-server] [8c83a700] [DEBUG] [5318229b] certificate will expire in 95974 days, renew required", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 12:18:25.000000][c019daa0][NOTICE][67693123][sync-task]certificate will expire in 66925 days, renew required", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 04:33:47 ]  [NOTICE] [6cc90192] [vbs-server] send audit event to kafka topic dsware-audit, seq=61ebf8adc21d", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026/03/02 07:05:34] [1a48018f] [DEBUG]: process request op=task-991 done in 42727 ms", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 01:13:54 ][525fd445][DEBUG][60e0ba3b][msg-handler]receive heartbeat from node-51458, load 4 percent", "body_start": 62, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 07:49:45.000000 UT]  [DEBUG] [df1db3b1] [main-worker] certificate will expire in 95214 days, renew required", "body_start": 66, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 18:24:40.000000 UT][[NOTICE] rpc call GetVolumeInfo returned code 38312, msg success", "body_start": 41, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 07:35:58,000000]  [dme-server] [4149d4d9] [WARN] [d7fa628a] disk 31262 smart health status ok, temperature 84313 celsius", "body_start": 72, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 13:05:49,000000 ][[WARN] init module quota.db begin, worker threads 43761", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 19:34:28 ] [ERROR] [cd1ae059] [ism-agent] init module cfg.max.io begin, worker threads 68513", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 02:38:29,000000 ][f1033c19][INFO][43141a19][ism-agent]start to sync volume data, total 8630 chunks", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 15:20:35 ]  [DEBUG] [4d9354f2] [rep-worker] start to sync volume data, total 65206 chunks", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 19:37:38.000000 UT][ddaa35fe][WARN][593bac92][dme-server]init module cfg.max.io begin, worker threads 48376", "body_start": 69, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 04:48:13,000000 ]  [DEBUG] [4e0506a7] [scheduler] rpc call GetVolumeInfo returned code 15729, msg success", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "[01/Mar/2026:15:51:18 ]: task quota.db submitted by user admin, priority 46697", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[01/Mar/2026:23:46:32 ]disk 13851 smart health status ok, temperature 81820 celsius", "body_start": 23, "format": "oam-console#10", "has_header": true}
+{"line": "2026-03-02 07:40:05.000000 UT----receive heartbeat from node-59856, load 23 percent", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 08:46:59.000000] [DEBUG] [ceb82493] [main-worker] cache entry ee8df3bb9598 evicted, free slots 57234", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 07:25:36,000000]  [ERROR] [5b01ddb9] [main-worker] task task-991 submitted by user admin, priority 81255", "body_start": 63, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 01:30:00,000000 ]disk 70709 smart health status ok, temperature 59101 celsius", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 14:15:42.000000] [7502d6c4] [INFO]: alarm cleared: disk usage back to 96 percent", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-01 15:42:58----update config key cfg.max.io to value 77836", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 16:10:58 ] [NOTICE] [b9ea845c] [ha-monitor] received message from 10.6203.78354.69966:97604, dispatch to handler", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-01 20:16:44.000000----process request op=task-991 done in 99455 ms", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 04:49:18 CST][[ERROR] rpc call GetVolumeInfo returned code 22126, msg success", "body_start": 34, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 22:33:19 ]: rpc call GetVolumeInfo returned code 51126, msg success", "body_start": 24, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 04:04:04.000000 UT][[WARN] alarm cleared: disk usage back to 36 percent", "body_start": 39, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 12:59:34,000000]: volume quota.db changed state from active to degraded", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[WARN] [osd-daemon] [15e51b71] [767d9cad] (UTC) 2026-03-01 12:03:29.000000 UT  DSWARE KMC checkpoint finished, elapsed 81447 seconds", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[DEBUG] [ha-monitor] [d32468c0] [dc36e0e6] (UTC) 2026/03/02 03:15:38  DSWARE KMC alarm cleared: disk usage back to 28 percent", "body_start": 81, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 21:03:44.000000][73226a73][DEBUG][bd0634a8][vbs-server]task task-991 submitted by user admin, priority 84856", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 18:55:04,000000 ][ha-monitor][async-pool][8718][INFO] receive heartbeat from node-8745, load 65 percent", "body_start": 66, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 09:13:15 CST][46a3aa6d][NOTICE][069e7897][ism-agent]metadata journal truncated at offset 68ac4d2d942e", "body_start": 64, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 16:24:45,000000 ]send audit event to kafka topic dsware-audit, seq=2b56311b1679", "body_start": 29, "format": "oam-console#10", "has_header": true}
+{"line": "[WARN] [vbs-server] [ac5b3fe6] [c7a54922] (UTC) 02/Mar/2026:07:15:00   DSWARE KMC task task-991 submitted by user admin, priority 2117", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 09:52:56:000000]  [DEBUG] [e7298ede] [ism-agent] write 54604 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 12:12:45]certificate will expire in 52315 days, renew required", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 22:22:50:000000] [WARN] [1672cef6] [vbs-server] receive heartbeat from node-96813, load 87 percent", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 17:14:17,000000] [dc6c50b7] [WARN]: connection reset by peer, socket fd=13122", "body_start": 48, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 02:35:58.000000]: init module task-991 begin, worker threads 31651", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 09:02:43] [ERROR] [fab85626] [vbs-server] checkpoint finished, elapsed 39195 seconds", "body_start": 54, "format": "oam-console#5", "has_header": true}
+{"line": "[ERROR] [main-worker] [f55d0c07] [75ed59dd] (UTC) 2026-03-02 04:55:50   DSWARE KMC update config key snap-7c to value 40124", "body_start": 83, "format": "oam-console#2", "has_header": true}
+{"line": "[2026/03/01 23:28:29]  [osd-daemon] [f0eceb35] [DEBUG] [9f860bbf] disk 98619 smart health status ok, temperature 69751 celsius", "body_start": 66, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 12:15:28.000000]  [DEBUG] [876be37e] [osd-daemon] failed to read block blk_3d5a3f36c294, retry 21640 times", "body_start": 62, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 16:30:51 CST] [5813cf99] [INFO]: received message from 10.51897.88655.55411:82783, dispatch to handler", "body_start": 45, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 23:22:25,000000 ]: checkpoint finished, elapsed 41553 seconds", "body_start": 31, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 13:42:35:000000]: received message from 10.69527.3032.55857:92051, dispatch to handler", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 22:32:29 ]update config key vol-3f2a to value 31021", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "2026-03-01 08:45:20:000000----alarm cleared: disk usage back to 83 percent", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 00:46:18,000000 ]  [NOTICE] [0518c334] [ha-monitor] alarm cleared: disk usage back to 70 percent", "body_start": 64, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 09:20:26 CST]: write 30568 bytes to /data/dsware/task-991/chunk.dat", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[01/Mar/2026:16:51:07 ][[INFO] rpc call GetVolumeInfo returned code 72024, msg success", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/02 03:25:24] [7d982d9a] [WARN]: connection reset by peer, socket fd=98086", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 18:53:56.000000][2f464ff1][WARN][f15910d9][osd-daemon]checkpoint finished, elapsed 95074 seconds", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 02:24:17 CST]  [dme-server] [f00f4d7a] [DEBUG] [97383c25] receive heartbeat from node-19085, load 96 percent", "body_start": 70, "format": "oam-console#3", "has_header": true}
+{"line": "[01/Mar/2026:12:17:53 ]: rpc call GetVolumeInfo returned code 92044, msg success", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-01 12:13:31----update config key task-991 to value 93575", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 20:59:58.000000 UT]start to sync volume data, total 83404 chunks", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 16:14:06:000000]rpc call GetVolumeInfo returned code 62508, msg success", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 11:20:05 ]  [vbs-server] [1b57375c] [ERROR] [b84793a9] volume vol-3f2a changed state from active to degraded", "body_start": 67, "format": "oam-console#3", "has_header": true}
+{"line": "[DEBUG] [scheduler] [cdcd4bd2] [0df08a8d] (UTC) 2026-03-01 21:24:17.000000 UT  DSWARE KMC alarm cleared: disk usage back to 37 percent", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 07:09:33,000000]received message from 10.124.41790.42140:95418, dispatch to handler", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 19:28:56 ] [ERROR] [cb4c74dd] [vbs-server] volume quota.db changed state from active to degraded", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-01 13:21:15,000000----start to sync volume data, total 57956 chunks", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 07:57:58:000000]cache entry 4a074d2c78a1 evicted, free slots 76957", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[DEBUG] [msg-handler] [96a5baae] [dde162e9] (UTC) 02/Mar/2026:06:45:04   DSWARE KMC init module task-991 begin, worker threads 77569", "body_start": 84, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 18:24:39,000000 ] [c045eab5] [NOTICE]: write 74443 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 23:52:23.000000]  [sync-task] [9b346016] [ERROR] [8f605be8] alarm cleared: disk usage back to 43 percent", "body_start": 72, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 05:02:06:000000][sync-task][main][5289][NOTICE] task vol-3f2a submitted by user admin, priority 42052", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "[ERROR] [ism-agent] [0775f84a] [0913cc3a] (UTC) 2026-03-01 13:31:15   DSWARE KMC volume cfg.max.io changed state from active to degraded", "body_start": 81, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 12:18:31 ]connection reset by peer, socket fd=85178", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 12:13:06 ]certificate will expire in 97392 days, renew required", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 00:43:52,000000 ][[WARN] start to sync volume data, total 68724 chunks", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 23:06:50.000000 UT][sync-task][async-pool][1385][ERROR] certificate will expire in 67382 days, renew required", "body_start": 68, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 20:37:06 CST][7dcddf00][DEBUG][a66c97de][vbs-server]alarm cleared: disk usage back to 10 percent", "body_start": 64, "format": "oam-console#1", "has_header": true}
+{"line": "[2026/03/01 18:47:06][ha-monitor][worker-6][6493][WARN] thread pool exhausted, active=3144 queued=6303 max=96482", "body_start": 56, "format": "oam-console#0", "has_header": true}
+{"line": "[01/Mar/2026:23:48:14 ] [ERROR] [77fed1b8] [main-worker] disk 506 smart health status ok, temperature 64627 celsius", "body_start": 57, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 16:34:50]: update config key quota.db to value 92528", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 03:26:50 CST]  [scheduler] [3e8b2361] [INFO] [0106d250] alarm cleared: disk usage back to 53 percent", "body_start": 68, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 00:45:53][[ERROR] metadata journal truncated at offset 18edc2f60fe3", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 07:21:48.000000]  [ha-monitor] [4a3bd648] [NOTICE] [69166eb2] certificate will expire in 98299 days, renew required", "body_start": 74, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 10:00:13 CST]  [NOTICE] [8104eba3] [vbs-server] connection reset by peer, socket fd=8440", "body_start": 60, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 19:37:34.000000 UT][[NOTICE] init module snap-7c begin, worker threads 63305", "body_start": 41, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 13:49:46 ][5eee04fd][WARN][b4962694][msg-handler]send audit event to kafka topic dsware-audit, seq=d446c5e43d6b", "body_start": 61, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 17:50:18.000000 UT][[ERROR] init module task-991 begin, worker threads 35707", "body_start": 40, "format": "oam-console#7", "has_header": true}
+{"line": "[NOTICE] [sync-task] [c6b19cd6] [bab01627] (UTC) 2026-03-01 12:10:26   DSWARE KMC thread pool exhausted, active=90652 queued=22433 max=10978", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 15:59:07:000000] [ERROR] [62df1f8e] [ism-agent] init module cfg.max.io begin, worker threads 57585", "body_start": 60, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-01 20:01:52----certificate will expire in 31935 days, renew required", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[01/Mar/2026:12:15:20 ]  [osd-daemon] [806403f6] [NOTICE] [b2d5f64a] received message from 10.90114.7260.24143:30748, dispatch to handler", "body_start": 69, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-02 05:27:52,000000 ][17022f8b][NOTICE][eb2a7826][dme-server]cache entry dda4789282a6 evicted, free slots 781", "body_start": 69, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 06:16:05.000000][dme-server][worker-6][2689][ERROR] update config key vol-3f2a to value 28511", "body_start": 64, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 05:00:18.000000 UT]send audit event to kafka topic dsware-audit, seq=40d60e9e192a", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026/03/02 04:13:31]  [ERROR] [e3b259af] [msg-handler] rpc call GetVolumeInfo returned code 91359, msg success", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 01:42:07:000000][22c4a141][DEBUG][98702514][ism-agent]cache entry e8f8789a2563 evicted, free slots 60820", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 22:33:31,000000]: metadata journal truncated at offset f70609e09524", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 14:44:32] [9c5d307c] [INFO]: write 37357 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 41, "format": "oam-console#6", "has_header": true}
+{"line": "2026-03-01 13:59:08 ----cache entry 7f7c8da87627 evicted, free slots 50233", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "02/Mar/2026:05:59:06 ----alarm cleared: disk usage back to 98 percent", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "2026-03-01 19:27:27 ----cache entry 7e789a29dacf evicted, free slots 88387", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[02/Mar/2026:02:03:21 ][[DEBUG] failed to read block blk_57b79e6d22fb, retry 57813 times", "body_start": 32, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 04:35:13:000000]  [sync-task] [12d1a57d] [ERROR] [5abb6263] task quota.db submitted by user admin, priority 20990", "body_start": 72, "format": "oam-console#3", "has_header": true}
+{"line": "[01/Mar/2026:08:54:06 ]: init module snap-7c begin, worker threads 78514", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 20:56:34.000000]  [sync-task] [498aa121] [NOTICE] [3a43dc70] volume cfg.max.io changed state from active to degraded", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 15:35:36,000000][[NOTICE] volume task-991 changed state from active to degraded", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 06:04:29.000000 UT]  [ERROR] [a7850e93] [scheduler] process request op=snap-7c done in 68274 ms", "body_start": 64, "format": "oam-console#4", "has_header": true}
+{"line": "[DEBUG] [sync-task] [33ecaae1] [b787291d] (UTC) 02/Mar/2026:02:39:13   DSWARE KMC metadata journal truncated at offset fd2f0f4b5a4f", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 00:30:20.000000] [ERROR] [20f938cc] [msg-handler] receive heartbeat from node-22456, load 27 percent", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "2026-03-02 02:47:05,000000----cache entry 560d2adb8280 evicted, free slots 44097", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 20:59:51:000000]: alarm cleared: disk usage back to 28 percent", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[NOTICE] [ha-monitor] [ce400238] [dc1af88d] (UTC) 2026-03-02 03:22:52:000000  DSWARE KMC connection reset by peer, socket fd=37612", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[2026/03/02 04:21:32]  [NOTICE] [7624e3a7] [ha-monitor] send audit event to kafka topic dsware-audit, seq=a86ffca542ba", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[02/Mar/2026:02:39:33 ]  [INFO] [c13928f2] [main-worker] thread pool exhausted, active=80203 queued=17658 max=80828", "body_start": 57, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 13:10:01 CST]  [ism-agent] [722482c0] [DEBUG] [9d466596] update config key vol-3f2a to value 54720", "body_start": 69, "format": "oam-console#3", "has_header": true}
+{"line": "[NOTICE] [osd-daemon] [2e965eed] [1253bf03] (UTC) 2026-03-02 04:43:48:000000  DSWARE KMC task snap-7c submitted by user admin, priority 67566", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 22:08:00,000000]: task cfg.max.io submitted by user admin, priority 50439", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 13:06:55,000000]: task snap-7c submitted by user admin, priority 790", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 03:30:56.000000 UT][[WARN] write 38972 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 39, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 02:22:40 CST]: write 1626 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 04:18:29 ][96e6f18d][DEBUG][d51af221][dme-server]init module quota.db begin, worker threads 35645", "body_start": 61, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 17:52:17.000000] [NOTICE] [3c1c9ea0] [main-worker] start to sync volume data, total 96127 chunks", "body_start": 63, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 20:14:46 CST][[DEBUG] receive heartbeat from node-71169, load 50 percent", "body_start": 34, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 01:26:03,000000 ]  [msg-handler] [ca8b1b2a] [DEBUG] [78697ead] cache entry 7ef18e68c624 evicted, free slots 11748", "body_start": 75, "format": "oam-console#3", "has_header": true}
+{"line": "[INFO] [sync-task] [b35ba22e] [b6fdde52] (UTC) 2026-03-02 00:20:35,000000   DSWARE KMC rpc call GetVolumeInfo returned code 42131, msg success", "body_start": 87, "format": "oam-console#2", "has_header": true}
+{"line": "[2026/03/02 05:22:57]write 60876 bytes to /data/dsware/task-991/chunk.dat", "body_start": 21, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 06:31:00:000000]: write 53447 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "2026-03-02 02:37:27.000000 UT----disk 62575 smart health status ok, temperature 62848 celsius", "body_start": 33, "format": "oam-console#8", "has_header": true}
+{"line": "[2026/03/01 14:22:31][0ecc3134][NOTICE][3f4bfe3c][vbs-server]write 83779 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 61, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 00:06:37 CST] [df77358a] [INFO]: failed to read block blk_d5d0e36a0f6a, retry 61606 times", "body_start": 45, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 11:39:19:000000] [ERROR] [25f28cf2] [osd-daemon] received message from 10.98999.63103.13215:5000, dispatch to handler", "body_start": 61, "format": "oam-console#5", "has_header": true}
+{"line": "[2026/03/01 19:16:15] [NOTICE] [68af8829] [msg-handler] metadata journal truncated at offset 984b90126ce0", "body_start": 56, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 05:41:02.000000 UT]  [rep-worker] [d93e4ab9] [WARN] [a3c2091f] receive heartbeat from node-93832, load 88 percent", "body_start": 75, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 16:08:14.000000 UT][rep-worker][main][5972][NOTICE] update config key vol-3f2a to value 17343", "body_start": 64, "format": "oam-console#0", "has_header": true}
+{"line": "[ERROR] [ism-agent] [b0a2bdb2] [d40ded0f] (UTC) 2026/03/01 23:20:42  DSWARE KMC failed to read block blk_1e3811ed27f6, retry 98878 times", "body_start": 80, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 04:20:51.000000][[INFO] write 61359 bytes to /data/dsware/task-991/chunk.dat", "body_start": 36, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 21:39:26] [ERROR] [b00d6594] [msg-handler] send audit event to kafka topic dsware-audit, seq=e9780c137799", "body_start": 55, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 16:57:56.000000 UT] [WARN] [777f33b0] [vbs-server] send audit event to kafka topic dsware-audit, seq=1a04d63fed55", "body_start": 63, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 23:19:40 CST]: alarm cleared: disk usage back to 8 percent", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 04:06:09,000000 ] [DEBUG] [bac3ab4e] [osd-daemon] task cfg.max.io submitted by user admin, priority 42014", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 12:35:05][osd-daemon][main][7591][INFO] connection reset by peer, socket fd=88870", "body_start": 52, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 09:47:30 ][[WARN] write 52853 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "2026-03-01 18:28:41 ----init module snap-7c begin, worker threads 65347", "body_start": 24, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 20:47:22][9ee7ecc8][WARN][07511b11][ism-agent]checkpoint finished, elapsed 74242 seconds", "body_start": 58, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 17:38:48.000000]: thread pool exhausted, active=90468 queued=89009 max=89043", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 18:50:14,000000 ]  [INFO] [89ddc110] [scheduler] init module cfg.max.io begin, worker threads 17184", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "2026-03-01 20:01:09----process request op=quota.db done in 53650 ms", "body_start": 23, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-02 04:21:07,000000][cf9dad26][WARN][678feee1][dme-server]certificate will expire in 10957 days, renew required", "body_start": 66, "format": "oam-console#1", "has_header": true}
+{"line": "[02/Mar/2026:05:34:13 ]volume vol-3f2a changed state from active to degraded", "body_start": 23, "format": "oam-console#10", "has_header": true}
+{"line": "[2026/03/01 18:51:35][[WARN] received message from 10.17156.26084.91562:99699, dispatch to handler", "body_start": 29, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 23:40:40.000000 UT][[ERROR] checkpoint finished, elapsed 19710 seconds", "body_start": 40, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 23:16:04:000000]  [DEBUG] [7a8c5f60] [sync-task] certificate will expire in 51106 days, renew required", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 20:33:55 ] [85ea2b11] [INFO]: start to sync volume data, total 87355 chunks", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 04:21:11.000000][[WARN] checkpoint finished, elapsed 85732 seconds", "body_start": 36, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 13:58:47 ][[ERROR] checkpoint finished, elapsed 69054 seconds", "body_start": 31, "format": "oam-console#7", "has_header": true}
+{"line": "[2026/03/01 15:34:05][f88406a2][INFO][064092fc][sync-task]alarm cleared: disk usage back to 57 percent", "body_start": 58, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 16:10:03.000000 UT]  [INFO] [962d83a1] [main-worker] certificate will expire in 94883 days, renew required", "body_start": 65, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 10:13:45.000000 UT][464544fe][NOTICE][efb4339a][msg-handler]cache entry 2787dfa590a5 evicted, free slots 17956", "body_start": 72, "format": "oam-console#1", "has_header": true}
+{"line": "[01/Mar/2026:08:37:23 ][[NOTICE] task task-991 submitted by user admin, priority 68300", "body_start": 33, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 09:50:23.000000]volume task-991 changed state from active to degraded", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 17:07:15.000000] [1abd61f8] [NOTICE]: send audit event to kafka topic dsware-audit, seq=bae0b368c5d2", "body_start": 50, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 20:13:18,000000]init module vol-3f2a begin, worker threads 79500", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-02 00:29:09,000000][dme-server][worker-10][273][DEBUG] alarm cleared: disk usage back to 43 percent", "body_start": 64, "format": "oam-console#0", "has_header": true}
+{"line": "2026-03-02 03:33:28,000000----thread pool exhausted, active=29211 queued=25731 max=85119", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[INFO] [osd-daemon] [312230d6] [8ce59562] (UTC) 2026-03-01 11:23:07   DSWARE KMC metadata journal truncated at offset bdc6ab3ef569", "body_start": 81, "format": "oam-console#2", "has_header": true}
+{"line": "[INFO] [rep-worker] [2fdabd2d] [5b6d929f] (UTC) 2026/03/01 13:34:13  DSWARE KMC connection reset by peer, socket fd=48560", "body_start": 80, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 05:51:11.000000 UT][ism-agent][main][8840][NOTICE] process request op=task-991 done in 47022 ms", "body_start": 63, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 11:49:38.000000][dac87047][NOTICE][12039936][sync-task]cache entry f82e9e337a80 evicted, free slots 1924", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-01 18:21:02,000000][dme-server][main][5633][WARN] update config key quota.db to value 18581", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 00:47:32.000000 UT] [c58eef6d] [WARN]: connection reset by peer, socket fd=58498", "body_start": 51, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 19:21:38.000000 UT]received message from 10.6960.78701.89651:43455, dispatch to handler", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[NOTICE] [vbs-server] [18094f46] [441c7fd0] (UTC) 2026/03/01 17:42:36  DSWARE KMC init module snap-7c begin, worker threads 72660", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 22:37:56.000000 UT]: write 80739 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 33, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 03:31:13.000000][dme-server][worker-10][6878][INFO] rpc call GetVolumeInfo returned code 13292, msg success", "body_start": 64, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 17:29:54.000000][9a4b246d][INFO][bbc7dac3][ism-agent]process request op=cfg.max.io done in 19776 ms", "body_start": 65, "format": "oam-console#1", "has_header": true}
+{"line": "[2026-03-02 01:27:07 ] [7e695728] [ERROR]: init module quota.db begin, worker threads 6783", "body_start": 43, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 16:27:35.000000 UT]start to sync volume data, total 94246 chunks", "body_start": 31, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 09:16:03:000000] [INFO] [fe26eec5] [sync-task] send audit event to kafka topic dsware-audit, seq=edefa83b5c76", "body_start": 59, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 05:41:21][osd-daemon][main][3254][WARN] update config key vol-3f2a to value 24617", "body_start": 52, "format": "oam-console#0", "has_header": true}
+{"line": "[01/Mar/2026:22:51:25 ]: send audit event to kafka topic dsware-audit, seq=575c6e69405e", "body_start": 25, "format": "oam-console#9", "has_header": true}
+{"line": "[01/Mar/2026:20:45:42 ][rep-worker][worker-7][5082][NOTICE] init module quota.db begin, worker threads 42438", "body_start": 60, "format": "oam-console#0", "has_header": true}
+{"line": "2026-03-01 09:37:40,000000----rpc call GetVolumeInfo returned code 84484, msg success", "body_start": 30, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 15:53:02 CST]  [NOTICE] [67d9c84a] [dme-server] failed to read block blk_a486d31240aa, retry 4449 times", "body_start": 60, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 13:33:21 CST]: received message from 10.17426.78687.61566:97823, dispatch to handler", "body_start": 27, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 06:02:01,000000]  [ERROR] [fd90f7c9] [ism-agent] thread pool exhausted, active=17988 queued=74144 max=15207", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 08:39:38,000000 ]  [msg-handler] [86da5789] [DEBUG] [45d4c15d] init module quota.db begin, worker threads 77941", "body_start": 75, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 16:18:25.000000]: checkpoint finished, elapsed 2269 seconds", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[01/Mar/2026:19:04:08 ]process request op=vol-3f2a done in 46364 ms", "body_start": 23, "format": "oam-console#10", "has_header": true}
+{"line": "[2026-03-01 16:47:18,000000]: update config key cfg.max.io to value 6998", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 03:53:55,000000] [a53b46b2] [NOTICE]: alarm cleared: disk usage back to 8 percent", "body_start": 50, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-02 07:30:58,000000 ] [73be50e9] [INFO]: connection reset by peer, socket fd=67780", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 23:23:30 CST]  [osd-daemon] [f677434a] [ERROR] [6ddf60a4] alarm cleared: disk usage back to 31 percent", "body_start": 70, "format": "oam-console#3", "has_header": true}
+{"line": "[DEBUG] [msg-handler] [e67b7146] [a5036857] (UTC) 2026/03/01 14:39:55  DSWARE KMC failed to read block blk_94a1c99cf8f, retry 23559 times", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 23:49:22.000000 UT][[WARN] start to sync volume data, total 10276 chunks", "body_start": 39, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 18:01:40,000000 ][79dd194c][INFO][008464ac][ha-monitor]failed to read block blk_aef7fcdb797e, retry 48166 times", "body_start": 67, "format": "oam-console#1", "has_header": true}
+{"line": "02/Mar/2026:03:04:24 ----update config key cfg.max.io to value 92595", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026-03-01 16:47:04,000000 ] [ERROR] [cb3bced1] [vbs-server] volume cfg.max.io changed state from active to degraded", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 14:26:46,000000][[ERROR] rpc call GetVolumeInfo returned code 25732, msg success", "body_start": 37, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 07:27:39.000000]: task cfg.max.io submitted by user admin, priority 34251", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[WARN] [sync-task] [10d080c1] [2317308d] (UTC) 2026-03-02 07:09:50  DSWARE KMC disk 37355 smart health status ok, temperature 56579 celsius", "body_start": 79, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 13:09:32.000000]  [ERROR] [476ec643] [sync-task] start to sync volume data, total 3686 chunks", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-01 22:36:18.000000 UT] [985f5998] [DEBUG]: connection reset by peer, socket fd=13674", "body_start": 52, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/01 14:45:28] [DEBUG] [40ad4b86] [ism-agent] received message from 10.67379.99549.39019:98488, dispatch to handler", "body_start": 53, "format": "oam-console#5", "has_header": true}
+{"line": "[NOTICE] [vbs-server] [c0ea33f1] [1978c6ce] (UTC) 2026-03-02 04:49:20   DSWARE KMC connection reset by peer, socket fd=36351", "body_start": 83, "format": "oam-console#2", "has_header": true}
+{"line": "01/Mar/2026:13:50:09 ----rpc call GetVolumeInfo returned code 6155, msg success", "body_start": 25, "format": "oam-console#8", "has_header": true}
+{"line": "[2026/03/02 05:22:52] [DEBUG] [eff75535] [ism-agent] update config key quota.db to value 5742", "body_start": 53, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-02 05:30:05:000000]  [main-worker] [1f4a8608] [INFO] [99c27984] failed to read block blk_cda2228a87de, retry 51590 times", "body_start": 73, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 08:49:44][[ERROR] certificate will expire in 94647 days, renew required", "body_start": 30, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 00:27:22:000000]: send audit event to kafka topic dsware-audit, seq=527c90918103", "body_start": 30, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-02 06:48:37,000000] [442a6859] [ERROR]: process request op=vol-3f2a done in 70832 ms", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026-03-01 17:24:38 ][main-worker][worker-12][1380][INFO] init module vol-3f2a begin, worker threads 27787", "body_start": 59, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-02 00:28:48 CST][[ERROR] certificate will expire in 25052 days, renew required", "body_start": 34, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-02 04:15:14 CST]  [osd-daemon] [842e1a7f] [WARN] [dd3f90d1] process request op=quota.db done in 2883 ms", "body_start": 69, "format": "oam-console#3", "has_header": true}
+{"line": "[2026-03-01 16:45:26 ]process request op=cfg.max.io done in 68443 ms", "body_start": 22, "format": "oam-console#10", "has_header": true}
+{"line": "[2026/03/01 20:26:29]: process request op=snap-7c done in 97717 ms", "body_start": 23, "format": "oam-console#9", "has_header": true}
+{"line": "[2026-03-01 16:40:34:000000]write 87122 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 28, "format": "oam-console#10", "has_header": true}
+{"line": "[ERROR] [sync-task] [4d67e717] [ac753156] (UTC) 2026-03-01 20:24:02 CST  DSWARE KMC rpc call GetVolumeInfo returned code 44033, msg success", "body_start": 84, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 11:33:45.000000]  [WARN] [7a348424] [osd-daemon] rpc call GetVolumeInfo returned code 66084, msg success", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[INFO] [vbs-server] [b0fccdfd] [d5fc8ad3] (UTC) 2026-03-01 12:21:32   DSWARE KMC alarm cleared: disk usage back to 22 percent", "body_start": 81, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-01 08:03:47 ]  [DEBUG] [c5241dc7] [dme-server] receive heartbeat from node-94499, load 4 percent", "body_start": 56, "format": "oam-console#4", "has_header": true}
+{"line": "[ERROR] [msg-handler] [f518b2b9] [3ae52ac4] (UTC) 2026-03-01 21:56:15  DSWARE KMC process request op=quota.db done in 67481 ms", "body_start": 82, "format": "oam-console#2", "has_header": true}
+{"line": "[02/Mar/2026:06:46:45 ] [NOTICE] [6e654098] [main-worker] init module vol-3f2a begin, worker threads 46708", "body_start": 58, "format": "oam-console#5", "has_header": true}
+{"line": "[2026-03-01 10:14:11.000000][msg-handler][async-pool][8552][WARN] update config key quota.db to value 39366", "body_start": 66, "format": "oam-console#0", "has_header": true}
+{"line": "[2026-03-01 09:09:14:000000]  [DEBUG] [391fc6df] [ism-agent] thread pool exhausted, active=17358 queued=7650 max=49831", "body_start": 61, "format": "oam-console#4", "has_header": true}
+{"line": "[INFO] [main-worker] [294228c9] [ed2c3b70] (UTC) 2026-03-01 20:25:21,000000   DSWARE KMC checkpoint finished, elapsed 31261 seconds", "body_start": 89, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 01:38:50:000000][[NOTICE] certificate will expire in 76854 days, renew required", "body_start": 38, "format": "oam-console#7", "has_header": true}
+{"line": "[2026-03-01 22:53:04.000000 UT] [INFO] [f60f6f71] [ism-agent] certificate will expire in 5051 days, renew required", "body_start": 62, "format": "oam-console#5", "has_header": true}
+{"line": "[ERROR] [osd-daemon] [1fff4cc7] [cb894fee] (UTC) 2026-03-01 13:28:52  DSWARE KMC received message from 10.5044.61000.66112:89786, dispatch to handler", "body_start": 81, "format": "oam-console#2", "has_header": true}
+{"line": "[2026-03-02 02:26:36.000000] [c0d89178] [DEBUG]: checkpoint finished, elapsed 7922 seconds", "body_start": 49, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/01 12:19:12]  [WARN] [8b48358f] [scheduler] write 81883 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 53, "format": "oam-console#4", "has_header": true}
+{"line": "[2026-03-02 04:58:58,000000] [0dfd9b53] [NOTICE]: volume cfg.max.io changed state from active to degraded", "body_start": 50, "format": "oam-console#6", "has_header": true}
+{"line": "[2026/03/01 22:27:44] [7a7f8d9b] [ERROR]: start to sync volume data, total 52363 chunks", "body_start": 42, "format": "oam-console#6", "has_header": true}
+{"line": "[NOTICE] [msg-handler] [481b909e] [77edf7ab] (UTC) 2026-03-01 12:01:53:000000  DSWARE KMC received message from 10.87264.28564.61738:46455, dispatch to handler", "body_start": 90, "format": "oam-console#2", "has_header": true}
+{"line": "[01/Mar/2026:10:12:03 ][[INFO] failed to read block blk_891f82627f5e, retry 79637 times", "body_start": 31, "format": "oam-console#7", "has_header": true}

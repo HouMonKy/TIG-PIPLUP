@@ -1,0 +1,1000 @@
+{"line": "2026-03-07 15:39:45 ERROR db-647 mounted volume vol-c311 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 06:57:09] [WARN] client-7e3a reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 18:06:39 NOTICE dme-server user175 reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 13:31:36][INFO][ha-monitor] srv-dsware-815 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 04:13:54 NOTICE [ism-agent] srv-dsware-768 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 11:55:31 NOTICE srv-dsware-199 synced 302 files in 32 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 09:55:00] [INFO] srv-dsware-583 restarted after crash, exit code 57", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 11:39:07 ERROR vbs-server srv-dsware-100 restarted after crash, exit code 310", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 07:09:50][ERROR][msg-handler] db-328 reported disk usage exceeded threshold", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 22:12:15 NOTICE [vbs-server] admin501 opened connection to database", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 13:21:58 INFO user128 synced 189 files in 58 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 20:47:48] [NOTICE] client-18b8 restarted after crash, exit code 468", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 20:36:33 WARN msg-handler failed to read block blk_e2f9db7e69ab, retry 89273 times", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 07:47:28][WARN][msg-handler] vm-944 synced 315 files in 2 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 19:31:54 DEBUG [vbs-server] node41 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 07:59:05 WARN admin208 synced 165 files in 13 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 14:22:15] [NOTICE] vm-1298 mounted volume vol-639f successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 23:11:10 NOTICE main-worker db-731 opened connection to database", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 03:57:33][DEBUG][ha-monitor] vm-779f restarted after crash, exit code 339", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 13:08:40 DEBUG [msg-handler] db-568 mounted volume vol-32e0 successfully", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 10:11:57 WARN user443 synced 274 files in 47 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 11:27:39] [WARN] db-450 mounted volume vol-ecee successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 13:52:49 INFO main-worker node64 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 18:56:27][INFO][dme-server] user141 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 07:03:53 ERROR [scheduler] admin989 synced 450 files in 59 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 06:36:24 INFO admin363 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 21:38:59] [NOTICE] db-443 synced 427 files in 56 seconds", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 11:17:01 WARN sync-task client-d9ab synced 218 files in 53 seconds", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 22:12:55][WARN][ism-agent] vm-757b opened connection to database", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 16:12:23 NOTICE [ism-agent] client-ce67 restarted after crash, exit code 91", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 11:46:04 ERROR process request op=quota.db done in 50696 ms", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 20:30:36] [INFO] start to sync volume data, total 13454 chunks", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 19:04:03 ERROR vbs-server connection reset by peer, socket fd=30793", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 17:35:36][ERROR][vbs-server] db-885 synced 244 files in 5 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 12:29:26 NOTICE [msg-handler] user579 mounted volume vol-9df3 successfully", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 10:33:17 DEBUG srv-dsware-264 restarted after crash, exit code 421", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 19:53:06] [DEBUG] vm-3937 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 00:42:06 INFO sync-task db-129 opened connection to database", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 04:22:54][DEBUG][scheduler] start to sync volume data, total 48714 chunks", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 07:29:23 NOTICE [msg-handler] client-47d4 opened connection to database", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 03:44:31 WARN send audit event to kafka topic dsware-audit, seq=1993bfc8b5ed", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 21:23:49] [DEBUG] task quota.db submitted by user admin, priority 60823", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 06:27:38 WARN scheduler node41 restarted after crash, exit code 4", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 05:40:38][WARN][rep-worker] update config key task-991 to value 60241", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 08:39:16 INFO [rep-worker] user917 synced 141 files in 60 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 10:22:10 NOTICE node1 mounted volume vol-1e3d successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 02:41:20] [INFO] init module quota.db begin, worker threads 48689", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 10:23:45 NOTICE msg-handler receive heartbeat from node-20849, load 9 percent", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 10:13:53][ERROR][vbs-server] user223 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 22:57:03 DEBUG [msg-handler] node4 restarted after crash, exit code 304", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 16:35:24 WARN client-9b36 mounted volume vol-ab9f successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 10:04:39] [DEBUG] cache entry b5079f5ec4b7 evicted, free slots 14320", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 13:47:29 INFO ha-monitor db-193 mounted volume vol-a5f0 successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 13:08:06][NOTICE][scheduler] client-6474 synced 476 files in 23 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 11:28:43 DEBUG [dme-server] vm-a7b2 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 12:04:31 ERROR db-854 synced 204 files in 42 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 12:29:23] [INFO] vm-1666 synced 500 files in 56 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 22:13:40 DEBUG rep-worker node41 mounted volume vol-d604 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 05:27:26][NOTICE][scheduler] client-85d8 reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 15:01:59 WARN [vbs-server] connection reset by peer, socket fd=12459", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 20:10:33 INFO vm-3fcc reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 12:44:23] [NOTICE] srv-dsware-215 restarted after crash, exit code 377", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 00:20:05 DEBUG ism-agent rpc call GetVolumeInfo returned code 58449, msg success", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 10:14:15][WARN][rep-worker] connection reset by peer, socket fd=84395", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 05:01:38 ERROR [ism-agent] task snap-7c submitted by user admin, priority 48410", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 09:55:17 INFO vm-690c restarted after crash, exit code 252", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 05:23:14] [WARN] vm-4e46 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 02:08:52 ERROR main-worker client-8a5f reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 01:11:03][DEBUG][ha-monitor] admin585 mounted volume vol-aff2 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 23:41:19 WARN [dme-server] connection reset by peer, socket fd=59253", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 05:21:34 INFO admin787 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 03:24:10] [NOTICE] srv-dsware-707 reported disk usage exceeded threshold", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 06:43:27 NOTICE ism-agent admin141 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 16:36:16][ERROR][dme-server] task task-991 submitted by user admin, priority 20809", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 04:49:53 WARN [rep-worker] srv-dsware-989 opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 15:08:11 INFO user209 synced 385 files in 42 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 06:13:49] [DEBUG] rpc call GetVolumeInfo returned code 51248, msg success", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 10:32:09 WARN scheduler client-72c6 reported disk usage exceeded threshold", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 18:00:50][WARN][ha-monitor] vm-11e4 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 02:19:17 INFO [sync-task] write 47851 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 18:21:16 NOTICE user536 opened connection to database", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 04:55:22] [WARN] admin605 mounted volume vol-1a70 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 18:13:52 WARN msg-handler admin481 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 02:54:57][WARN][msg-handler] metadata journal truncated at offset 5c23a309b0e4", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 14:06:23 NOTICE [msg-handler] send audit event to kafka topic dsware-audit, seq=51c3ec9c1b04", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 09:29:01 DEBUG admin541 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 23:33:56] [NOTICE] client-a5fd mounted volume vol-c2fb successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 18:46:32 ERROR scheduler srv-dsware-903 mounted volume vol-16c2 successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 19:14:06][INFO][scheduler] srv-dsware-446 reported disk usage exceeded threshold", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 19:53:29 NOTICE [sync-task] db-324 synced 192 files in 47 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 14:23:57 INFO vm-34f4 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 11:14:30] [DEBUG] db-831 restarted after crash, exit code 328", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 17:31:44 WARN msg-handler node13 mounted volume vol-b15 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 20:12:36][INFO][ha-monitor] client-96ec opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 05:31:23 INFO [msg-handler] srv-dsware-508 synced 459 files in 45 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 20:12:40 INFO init module cfg.max.io begin, worker threads 97481", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 15:36:19] [DEBUG] alarm cleared: disk usage back to 85 percent", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 10:39:23 ERROR main-worker user459 opened connection to database", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 16:10:44][NOTICE][rep-worker] vm-61e8 reported disk usage exceeded threshold", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 18:51:05 ERROR [rep-worker] srv-dsware-493 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 10:54:58 NOTICE vm-a201 restarted after crash, exit code 99", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 02:15:55] [WARN] user157 opened connection to database", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 01:58:49 NOTICE scheduler srv-dsware-638 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 08:02:26][WARN][rep-worker] db-676 restarted after crash, exit code 146", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 22:23:38 INFO [osd-daemon] client-57d1 restarted after crash, exit code 23", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 18:23:25 ERROR node41 synced 432 files in 10 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 17:27:31] [ERROR] db-188 mounted volume vol-646 successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 01:14:36 ERROR scheduler alarm cleared: disk usage back to 42 percent", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 00:48:25][ERROR][rep-worker] srv-dsware-478 synced 315 files in 46 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 11:16:26 DEBUG [osd-daemon] user709 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 18:21:03 WARN user804 synced 406 files in 17 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 12:33:05] [WARN] user845 opened connection to database", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 01:27:15 WARN msg-handler user673 synced 170 files in 56 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 03:50:05][INFO][rep-worker] failed to read block blk_42892f53a76, retry 59357 times", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 13:05:47 WARN [scheduler] node56 restarted after crash, exit code 173", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 22:19:25 DEBUG vm-5b79 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 19:05:23] [DEBUG] process request op=snap-7c done in 92613 ms", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 10:11:21 WARN scheduler start to sync volume data, total 40444 chunks", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 05:13:16][DEBUG][scheduler] client-3798 restarted after crash, exit code 140", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 14:39:04 WARN [dme-server] send audit event to kafka topic dsware-audit, seq=cc1f84bd8ac1", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 21:11:48 WARN metadata journal truncated at offset a4ddce4c596", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 08:56:23] [DEBUG] db-247 synced 362 files in 38 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 11:05:08 ERROR osd-daemon vm-2cbb reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 07:49:36][INFO][vbs-server] received message from 10.73838.20557.54478:25811, dispatch to handler", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 13:46:53 WARN [ha-monitor] send audit event to kafka topic dsware-audit, seq=3e9e05897eb7", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 19:12:48 NOTICE vm-3b36 mounted volume vol-2c5d successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 04:29:09] [ERROR] user770 mounted volume vol-7b7d successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 11:12:59 ERROR scheduler srv-dsware-211 mounted volume vol-9a93 successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 20:38:41][WARN][rep-worker] admin992 mounted volume vol-7bed successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 11:12:51 DEBUG [main-worker] thread pool exhausted, active=46818 queued=94342 max=36843", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 06:35:04 INFO node26 restarted after crash, exit code 17", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 06:25:20] [WARN] process request op=snap-7c done in 45686 ms", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 03:20:49 NOTICE rep-worker client-b013 mounted volume vol-7802 successfully", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 16:35:11][INFO][dme-server] user683 restarted after crash, exit code 13", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 04:52:39 DEBUG [ism-agent] received message from 10.10159.55648.4205:92886, dispatch to handler", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 14:53:35 WARN client-e5a9 mounted volume vol-72d5 successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 23:43:25] [ERROR] srv-dsware-485 restarted after crash, exit code 387", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 21:51:47 NOTICE ha-monitor srv-dsware-696 restarted after crash, exit code 31", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 15:51:25][WARN][ism-agent] vm-ea13 mounted volume vol-95fa successfully", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 06:58:38 NOTICE [dme-server] srv-dsware-273 mounted volume vol-28da successfully", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 00:41:18 NOTICE admin113 synced 69 files in 18 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 00:41:30] [DEBUG] vm-e284 restarted after crash, exit code 68", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 08:43:59 NOTICE rep-worker srv-dsware-544 opened connection to database", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 09:47:24][ERROR][rep-worker] metadata journal truncated at offset 256e6e8ece6a", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 23:52:16 ERROR [dme-server] db-727 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 13:25:50 INFO user301 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 12:57:17] [INFO] node45 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 18:13:39 ERROR scheduler db-257 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 07:35:15][WARN][vbs-server] vm-1c69 restarted after crash, exit code 341", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 13:22:31 ERROR [ism-agent] node36 restarted after crash, exit code 173", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 11:24:21 ERROR admin815 mounted volume vol-967a successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 20:02:12] [NOTICE] vm-861c reported disk usage exceeded threshold", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 10:09:20 DEBUG ism-agent client-b0c6 mounted volume vol-999d successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 10:34:55][DEBUG][osd-daemon] srv-dsware-751 reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 00:46:37 INFO [vbs-server] connection reset by peer, socket fd=61408", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 17:46:42 ERROR vm-b7d7 restarted after crash, exit code 135", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 16:16:24] [DEBUG] connection reset by peer, socket fd=23766", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 14:58:06 DEBUG ha-monitor user172 synced 143 files in 30 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 20:26:56][NOTICE][osd-daemon] user546 synced 168 files in 55 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 16:30:41 DEBUG [ism-agent] db-995 mounted volume vol-4fda successfully", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 14:25:35 INFO user891 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 18:01:04] [NOTICE] db-289 mounted volume vol-b12e successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 00:39:44 INFO ha-monitor vm-bc26 mounted volume vol-56f8 successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 08:48:52][DEBUG][rep-worker] node26 synced 209 files in 54 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 15:16:51 ERROR [msg-handler] db-397 restarted after crash, exit code 325", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 07:28:43 DEBUG node28 mounted volume vol-c783 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 10:14:50] [ERROR] node51 mounted volume vol-fb0d successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 16:19:07 DEBUG main-worker admin308 reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 17:46:11][DEBUG][osd-daemon] write 947 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 14:59:00 ERROR [sync-task] received message from 10.48562.70481.20842:13036, dispatch to handler", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 21:41:56 ERROR user761 synced 151 files in 40 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 04:21:52] [NOTICE] write 26991 bytes to /data/dsware/task-991/chunk.dat", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 01:23:38 WARN scheduler vm-d87e reported disk usage exceeded threshold", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 09:35:30][WARN][sync-task] vm-8cb2 restarted after crash, exit code 146", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 19:49:50 ERROR [sync-task] srv-dsware-253 synced 227 files in 47 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 22:23:08 INFO user446 mounted volume vol-22dd successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 20:45:09] [INFO] disk 86285 smart health status ok, temperature 67895 celsius", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 22:29:36 INFO dme-server user767 synced 57 files in 51 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 10:32:01][DEBUG][rep-worker] admin911 reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 17:50:29 WARN [main-worker] user763 mounted volume vol-d364 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 19:37:52 DEBUG admin261 restarted after crash, exit code 389", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 21:39:57] [ERROR] user395 synced 448 files in 49 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 05:28:49 NOTICE msg-handler vm-b661 opened connection to database", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 21:15:29][INFO][dme-server] receive heartbeat from node-40038, load 51 percent", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 07:26:07 WARN [msg-handler] client-27b7 mounted volume vol-ddef successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 19:58:59 ERROR client-e9fe opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 20:01:33] [DEBUG] db-406 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 05:33:23 WARN osd-daemon task vol-3f2a submitted by user admin, priority 47085", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 09:56:18][INFO][ha-monitor] client-3643 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 14:51:56 WARN [msg-handler] client-b6be mounted volume vol-d46c successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 16:32:22 INFO process request op=quota.db done in 85553 ms", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 01:28:04] [WARN] db-487 restarted after crash, exit code 404", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 14:36:33 DEBUG vbs-server node57 mounted volume vol-f4a9 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 14:04:20][INFO][ism-agent] vm-8d0b reported disk usage exceeded threshold", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 05:01:29 ERROR [vbs-server] client-3282 synced 387 files in 42 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 04:07:35 INFO admin808 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 05:44:47] [INFO] admin337 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 08:09:07 INFO vbs-server srv-dsware-309 restarted after crash, exit code 98", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 17:33:37][WARN][vbs-server] client-7ef5 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 18:51:08 DEBUG [ha-monitor] client-bde3 synced 98 files in 26 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 02:29:22 NOTICE vm-500 synced 320 files in 18 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 06:12:26] [ERROR] srv-dsware-548 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 11:56:04 WARN ism-agent admin700 reported disk usage exceeded threshold", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 02:07:53][NOTICE][ha-monitor] db-843 opened connection to database", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 20:58:32 WARN [sync-task] thread pool exhausted, active=18803 queued=73126 max=61169", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 21:00:32 INFO client-5258 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 06:19:41] [NOTICE] send audit event to kafka topic dsware-audit, seq=332a614f2313", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 02:41:04 ERROR ha-monitor node19 mounted volume vol-f4f9 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 18:09:35][ERROR][vbs-server] client-3987 mounted volume vol-ce97 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 20:32:15 NOTICE [rep-worker] admin407 opened connection to database", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 15:01:56 INFO client-e767 synced 181 files in 20 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 12:42:50] [DEBUG] volume snap-7c changed state from active to degraded", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 17:16:41 INFO ha-monitor init module cfg.max.io begin, worker threads 59099", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 06:39:28][WARN][ha-monitor] user873 synced 66 files in 46 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 18:02:14 NOTICE [scheduler] client-fc5a synced 436 files in 35 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 01:35:23 ERROR node2 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 08:49:09] [NOTICE] db-913 restarted after crash, exit code 487", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 04:29:36 INFO dme-server db-496 restarted after crash, exit code 460", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 01:41:19][ERROR][osd-daemon] admin878 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 18:39:52 INFO [ha-monitor] db-200 restarted after crash, exit code 411", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 05:11:47 NOTICE client-9691 reported disk usage exceeded threshold", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 08:45:40] [NOTICE] admin455 opened connection to database", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 05:08:45 WARN rep-worker srv-dsware-175 restarted after crash, exit code 54", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 06:03:20][NOTICE][rep-worker] admin749 restarted after crash, exit code 343", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 09:07:54 DEBUG [rep-worker] user628 mounted volume vol-5c39 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 05:57:39 INFO send audit event to kafka topic dsware-audit, seq=db892867b535", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 11:06:32] [ERROR] db-287 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 14:52:19 WARN osd-daemon srv-dsware-816 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 02:36:02][ERROR][ha-monitor] node60 synced 442 files in 19 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 23:28:59 WARN [sync-task] node26 reported disk usage exceeded threshold", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 02:49:12 DEBUG vm-7c5e reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 14:31:10] [DEBUG] receive heartbeat from node-3004, load 78 percent", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 01:51:40 WARN scheduler admin717 reported disk usage exceeded threshold", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 15:51:59][NOTICE][ism-agent] srv-dsware-771 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 17:53:51 NOTICE [msg-handler] srv-dsware-636 restarted after crash, exit code 345", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 10:53:57 ERROR user457 mounted volume vol-eb15 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 01:32:14] [WARN] client-9684 synced 197 files in 30 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 01:39:33 NOTICE scheduler db-824 mounted volume vol-5480 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 22:50:45][NOTICE][sync-task] admin957 synced 405 files in 35 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 08:07:00 DEBUG [vbs-server] srv-dsware-918 mounted volume vol-7f7d successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 23:47:48 ERROR user272 mounted volume vol-18da successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 02:03:28] [INFO] node46 mounted volume vol-ab05 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 16:59:05 NOTICE ism-agent rpc call GetVolumeInfo returned code 80435, msg success", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 17:33:16][WARN][ha-monitor] certificate will expire in 97100 days, renew required", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 03:17:53 ERROR [rep-worker] srv-dsware-646 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 08:42:38 WARN node50 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 20:43:25] [DEBUG] node7 restarted after crash, exit code 434", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 21:59:40 DEBUG dme-server client-340a opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 08:18:16][NOTICE][rep-worker] node55 synced 143 files in 29 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 07:33:06 NOTICE [main-worker] db-348 mounted volume vol-4cd9 successfully", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 10:39:43 INFO node54 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 02:52:45] [DEBUG] db-246 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 00:28:19 DEBUG ha-monitor node28 mounted volume vol-c908 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 12:58:14][NOTICE][dme-server] vm-cb07 mounted volume vol-5aa9 successfully", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 18:07:51 WARN [dme-server] db-348 reported disk usage exceeded threshold", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 10:36:24 INFO srv-dsware-486 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 14:12:05] [NOTICE] client-45c4 mounted volume vol-97f6 successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 18:53:32 WARN ha-monitor vm-c153 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 01:47:28][NOTICE][scheduler] write 19472 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 11:24:11 DEBUG [scheduler] client-da73 reported disk usage exceeded threshold", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 01:00:40 ERROR send audit event to kafka topic dsware-audit, seq=5be3fbd04585", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 03:30:18] [ERROR] db-498 synced 459 files in 26 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 20:58:22 ERROR ism-agent start to sync volume data, total 3683 chunks", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 18:16:54][NOTICE][ism-agent] db-624 mounted volume vol-d3a9 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 01:42:17 ERROR [vbs-server] send audit event to kafka topic dsware-audit, seq=95381bbccdfe", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 20:31:19 NOTICE vm-c29b opened connection to database", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 22:26:03] [DEBUG] user740 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 08:07:16 DEBUG scheduler db-679 synced 369 files in 36 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 11:06:49][DEBUG][msg-handler] certificate will expire in 18136 days, renew required", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 15:28:06 NOTICE [sync-task] node47 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 08:10:37 NOTICE node30 synced 305 files in 46 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 17:57:27] [DEBUG] db-586 restarted after crash, exit code 220", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 07:19:03 INFO scheduler db-921 restarted after crash, exit code 476", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 19:50:22][ERROR][ism-agent] admin982 synced 239 files in 18 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 10:49:16 ERROR [scheduler] db-753 synced 157 files in 34 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 09:15:12 DEBUG client-a847 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 09:18:24] [NOTICE] db-896 reported disk usage exceeded threshold", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 10:01:22 ERROR dme-server admin464 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 00:01:02][ERROR][ism-agent] disk 31061 smart health status ok, temperature 75662 celsius", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 11:36:22 DEBUG [ism-agent] user586 reported disk usage exceeded threshold", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 08:54:07 INFO init module task-991 begin, worker threads 16865", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 19:37:13] [ERROR] admin302 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 09:47:09 DEBUG main-worker user877 restarted after crash, exit code 322", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 11:40:10][DEBUG][osd-daemon] db-610 restarted after crash, exit code 143", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 22:05:49 ERROR [msg-handler] db-355 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 13:15:02 ERROR checkpoint finished, elapsed 17712 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 01:26:28] [ERROR] srv-dsware-941 synced 199 files in 15 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 16:10:23 NOTICE main-worker client-42db opened connection to database", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 09:27:40][WARN][vbs-server] user111 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 05:28:32 ERROR [msg-handler] node37 restarted after crash, exit code 328", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 00:33:57 DEBUG node26 restarted after crash, exit code 68", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 19:17:07] [NOTICE] db-237 restarted after crash, exit code 134", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 20:57:03 INFO scheduler srv-dsware-527 opened connection to database", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 03:14:49][ERROR][osd-daemon] vm-dd4d mounted volume vol-f1c0 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 12:39:31 INFO [msg-handler] client-c49a mounted volume vol-b5a4 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 16:08:23 WARN vm-fd03 synced 172 files in 57 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 11:34:02] [ERROR] init module vol-3f2a begin, worker threads 34743", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 22:51:30 ERROR ha-monitor node57 restarted after crash, exit code 58", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 05:09:08][WARN][scheduler] task task-991 submitted by user admin, priority 62684", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 05:59:03 INFO [rep-worker] node42 opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 00:16:37 INFO srv-dsware-863 restarted after crash, exit code 379", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 07:06:41] [ERROR] vm-bbc2 mounted volume vol-db27 successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 19:48:50 NOTICE main-worker node11 restarted after crash, exit code 178", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 23:58:08][INFO][ism-agent] admin709 mounted volume vol-95ed successfully", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 23:02:09 NOTICE [msg-handler] db-298 opened connection to database", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 06:14:24 INFO db-248 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 16:26:36] [WARN] user520 mounted volume vol-8350 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 05:59:48 ERROR ism-agent admin525 synced 349 files in 27 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 16:31:58][ERROR][dme-server] vm-99e5 mounted volume vol-4c7 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 20:06:06 NOTICE [sync-task] user645 restarted after crash, exit code 477", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 04:09:22 NOTICE admin380 synced 473 files in 59 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 01:52:08] [DEBUG] client-dc41 mounted volume vol-1ea2 successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 23:57:57 INFO ism-agent checkpoint finished, elapsed 90508 seconds", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 08:29:55][INFO][vbs-server] db-457 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 19:16:08 INFO [main-worker] srv-dsware-903 synced 135 files in 30 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 05:12:03 WARN srv-dsware-400 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 15:56:44] [NOTICE] vm-e97f opened connection to database", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 15:53:28 WARN main-worker db-932 restarted after crash, exit code 77", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 09:29:33][ERROR][rep-worker] node23 restarted after crash, exit code 191", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 03:12:20 ERROR [rep-worker] admin539 mounted volume vol-3faf successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 18:52:36 WARN admin597 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 00:04:25] [INFO] srv-dsware-182 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 14:03:28 DEBUG scheduler user481 mounted volume vol-4e2d successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 20:45:25][ERROR][msg-handler] node61 reported disk usage exceeded threshold", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 08:09:32 ERROR [dme-server] vm-2113 synced 228 files in 20 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 12:37:19 WARN client-3d3a reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 19:37:02] [ERROR] client-1d01 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 11:38:10 WARN main-worker vm-cada mounted volume vol-2e1b successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 02:23:40][WARN][ism-agent] alarm cleared: disk usage back to 80 percent", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 05:13:50 NOTICE [dme-server] vm-ed46 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 04:19:21 INFO node12 synced 409 files in 33 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 16:55:48] [WARN] user467 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 23:36:36 ERROR scheduler db-112 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 07:47:12][ERROR][main-worker] db-659 opened connection to database", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 14:36:57 DEBUG [ha-monitor] vm-ae7 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 21:38:50 NOTICE srv-dsware-821 reported disk usage exceeded threshold", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 14:15:52] [DEBUG] admin507 mounted volume vol-4e8a successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 02:49:49 WARN vbs-server vm-fa88 opened connection to database", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 05:20:42][NOTICE][main-worker] send audit event to kafka topic dsware-audit, seq=48f5712435d1", "body_start": 43, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 06:29:49 INFO [scheduler] volume snap-7c changed state from active to degraded", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 22:49:43 DEBUG node54 synced 206 files in 30 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 10:36:51] [ERROR] user560 synced 488 files in 48 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 14:21:22 DEBUG ha-monitor user541 restarted after crash, exit code 331", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 16:38:25][ERROR][sync-task] connection reset by peer, socket fd=45677", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 08:28:50 WARN [ism-agent] user857 reported disk usage exceeded threshold", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 17:47:35 NOTICE admin643 mounted volume vol-99bc successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 03:56:46] [ERROR] admin762 synced 201 files in 33 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 15:38:41 INFO ism-agent admin767 restarted after crash, exit code 486", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 10:05:34][INFO][sync-task] admin519 synced 4 files in 14 seconds", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 09:08:02 NOTICE [scheduler] node10 restarted after crash, exit code 77", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 20:05:00 ERROR db-431 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 08:11:16] [INFO] db-701 restarted after crash, exit code 101", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 09:09:24 ERROR dme-server user294 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 09:20:47][INFO][ha-monitor] admin883 mounted volume vol-8f6a successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 17:47:55 DEBUG [vbs-server] admin519 restarted after crash, exit code 136", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 12:01:56 ERROR send audit event to kafka topic dsware-audit, seq=76723f81c280", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 18:05:29] [WARN] vm-99dd mounted volume vol-bf62 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 18:20:34 DEBUG ism-agent node38 mounted volume vol-ddce successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 08:28:09][NOTICE][rep-worker] volume task-991 changed state from active to degraded", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 01:35:49 WARN [msg-handler] node14 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 23:19:52 WARN node22 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 02:07:04] [NOTICE] vm-aee1 reported disk usage exceeded threshold", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 18:42:55 NOTICE sync-task vm-2d5b restarted after crash, exit code 305", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 18:07:58][NOTICE][scheduler] vm-a277 restarted after crash, exit code 420", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 00:53:25 INFO [ism-agent] update config key quota.db to value 81386", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 10:44:29 ERROR client-46ff opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 23:10:36] [ERROR] client-9d60 restarted after crash, exit code 57", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 07:00:38 ERROR scheduler admin777 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 18:58:40][INFO][rep-worker] db-159 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 12:28:04 NOTICE [ha-monitor] node33 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 15:28:45 DEBUG db-572 restarted after crash, exit code 444", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 14:21:32] [WARN] admin321 mounted volume vol-b26f successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 09:43:03 NOTICE dme-server write 32256 bytes to /data/dsware/task-991/chunk.dat", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 11:42:28][ERROR][sync-task] admin940 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 21:54:26 ERROR [dme-server] admin776 restarted after crash, exit code 480", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 17:14:37 NOTICE client-6a44 synced 203 files in 32 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 01:56:32] [ERROR] client-d64e opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 04:01:27 DEBUG msg-handler client-103e opened connection to database", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 20:11:00][DEBUG][vbs-server] vm-8cc reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 10:11:19 ERROR [sync-task] admin847 restarted after crash, exit code 291", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 02:18:49 WARN node37 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 14:41:24] [NOTICE] srv-dsware-101 mounted volume vol-60ac successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 22:19:22 INFO dme-server admin669 restarted after crash, exit code 429", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 09:17:10][DEBUG][msg-handler] srv-dsware-260 reported disk usage exceeded threshold", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 07:59:35 INFO [osd-daemon] vm-94a0 reported disk usage exceeded threshold", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 21:49:39 NOTICE user539 opened connection to database", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 19:05:36] [ERROR] srv-dsware-790 mounted volume vol-cf56 successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 03:42:51 DEBUG rep-worker db-250 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 12:48:40][NOTICE][msg-handler] user807 mounted volume vol-1424 successfully", "body_start": 43, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 18:50:48 ERROR [dme-server] vm-c50f mounted volume vol-ca87 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 18:13:55 NOTICE admin409 mounted volume vol-db3 successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 03:35:57] [WARN] admin350 mounted volume vol-f34b successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 02:34:48 INFO scheduler node40 opened connection to database", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 10:18:40][INFO][scheduler] user878 mounted volume vol-39f9 successfully", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 00:31:50 INFO [msg-handler] admin690 mounted volume vol-8456 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 13:44:36 WARN vm-6638 mounted volume vol-342b successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 14:08:28] [DEBUG] user536 restarted after crash, exit code 83", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 02:23:45 WARN main-worker admin372 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 01:16:48][WARN][sync-task] node42 synced 155 files in 39 seconds", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 00:36:25 WARN [vbs-server] update config key quota.db to value 93846", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 22:39:18 INFO vm-dfea opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 16:41:12] [ERROR] client-8a72 mounted volume vol-e153 successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 23:46:40 DEBUG ha-monitor certificate will expire in 89396 days, renew required", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 07:23:08][WARN][msg-handler] admin488 reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 08:19:49 DEBUG [rep-worker] client-61ef opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 12:33:23 DEBUG connection reset by peer, socket fd=77692", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 15:48:32] [NOTICE] client-e9ab mounted volume vol-5ce6 successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 20:01:52 NOTICE msg-handler disk 39331 smart health status ok, temperature 18052 celsius", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 10:25:36][WARN][osd-daemon] client-f939 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 02:56:49 WARN [rep-worker] srv-dsware-225 restarted after crash, exit code 172", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 07:44:33 NOTICE node32 reported disk usage exceeded threshold", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 22:00:28] [ERROR] user858 restarted after crash, exit code 21", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 14:25:57 DEBUG ism-agent node44 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 08:24:09][NOTICE][ha-monitor] admin205 synced 307 files in 44 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 07:42:59 DEBUG [vbs-server] vm-c224 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 23:05:15 DEBUG vm-f72b synced 218 files in 44 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 17:13:59] [NOTICE] send audit event to kafka topic dsware-audit, seq=d95854226085", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 00:26:05 INFO dme-server user266 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 09:21:50][DEBUG][osd-daemon] start to sync volume data, total 50596 chunks", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 09:43:48 NOTICE [ism-agent] client-687c restarted after crash, exit code 31", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 10:31:37 ERROR admin872 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 23:18:24] [DEBUG] db-451 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 20:16:47 INFO main-worker srv-dsware-849 mounted volume vol-70b4 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 21:07:51][INFO][ism-agent] srv-dsware-242 mounted volume vol-6989 successfully", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 05:46:40 NOTICE [ha-monitor] user272 synced 463 files in 59 seconds", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 21:23:58 DEBUG admin242 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 18:41:43] [NOTICE] user929 opened connection to database", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 08:19:53 ERROR vbs-server db-997 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 10:50:52][DEBUG][vbs-server] client-c40f reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 10:31:04 INFO [vbs-server] db-968 synced 72 files in 18 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 12:21:10 ERROR srv-dsware-329 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 09:45:29] [WARN] client-8c62 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 00:17:46 ERROR msg-handler vm-3529 restarted after crash, exit code 70", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 06:32:45][WARN][dme-server] srv-dsware-593 restarted after crash, exit code 333", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 09:05:56 ERROR [dme-server] srv-dsware-527 synced 126 files in 26 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 04:07:28 NOTICE admin471 synced 38 files in 35 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 09:33:02] [ERROR] vm-9eb6 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 03:01:07 ERROR ha-monitor admin421 restarted after crash, exit code 488", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 00:20:47][DEBUG][ism-agent] node3 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 01:23:53 DEBUG [dme-server] node39 mounted volume vol-3f96 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 14:29:56 WARN db-992 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 03:26:38] [DEBUG] task cfg.max.io submitted by user admin, priority 32271", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 11:37:47 NOTICE sync-task user402 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 17:57:13][INFO][msg-handler] user881 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 04:17:20 ERROR [dme-server] vm-f00d synced 61 files in 58 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 05:31:08 INFO client-efd3 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 17:39:51] [NOTICE] admin633 reported disk usage exceeded threshold", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 22:05:06 DEBUG dme-server client-45ed synced 221 files in 45 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 15:25:26][NOTICE][sync-task] srv-dsware-889 reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 01:37:40 DEBUG [msg-handler] user827 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 09:11:14 INFO client-508a mounted volume vol-6c0c successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 17:59:44] [ERROR] admin846 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 11:51:02 ERROR rep-worker admin607 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 13:09:59][NOTICE][osd-daemon] client-6f14 reported disk usage exceeded threshold", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 16:08:00 ERROR [main-worker] srv-dsware-253 restarted after crash, exit code 13", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 08:48:31 ERROR vm-eeb1 restarted after crash, exit code 391", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 02:04:30] [WARN] vm-621c restarted after crash, exit code 337", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 15:07:56 DEBUG dme-server process request op=task-991 done in 65569 ms", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 18:41:30][ERROR][ha-monitor] checkpoint finished, elapsed 77077 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 17:33:42 WARN [msg-handler] node26 synced 476 files in 53 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 05:45:05 WARN admin939 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 03:30:19] [WARN] node13 mounted volume vol-1ec4 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 21:00:41 INFO msg-handler vm-d7ce synced 310 files in 14 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 17:02:29][DEBUG][rep-worker] user505 synced 386 files in 13 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 14:40:43 ERROR [dme-server] user110 mounted volume vol-ede7 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 17:02:48 ERROR srv-dsware-787 mounted volume vol-937 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 04:39:10] [NOTICE] rpc call GetVolumeInfo returned code 12136, msg success", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 22:44:33 ERROR sync-task task cfg.max.io submitted by user admin, priority 98534", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 17:30:53][WARN][dme-server] db-990 synced 216 files in 4 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 03:59:28 WARN [osd-daemon] vm-6783 restarted after crash, exit code 353", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 10:04:19 WARN admin853 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 08:50:02] [ERROR] srv-dsware-135 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 17:00:37 WARN ism-agent srv-dsware-246 synced 271 files in 52 seconds", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 06:36:53][DEBUG][osd-daemon] admin533 mounted volume vol-98e4 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 21:47:12 DEBUG [rep-worker] client-3f14 mounted volume vol-271b successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 17:58:29 WARN srv-dsware-744 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 01:35:02] [WARN] client-3320 synced 193 files in 37 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 06:55:29 WARN main-worker vm-727a mounted volume vol-95b successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 04:17:16][NOTICE][vbs-server] user480 synced 187 files in 60 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 18:10:46 NOTICE [ism-agent] user310 synced 153 files in 40 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 16:33:34 ERROR vm-ffed opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 06:34:11] [INFO] admin676 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 21:53:22 NOTICE msg-handler volume task-991 changed state from active to degraded", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 14:45:56][DEBUG][msg-handler] admin326 mounted volume vol-a0c1 successfully", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 20:07:17 NOTICE [main-worker] srv-dsware-210 restarted after crash, exit code 382", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 20:17:38 ERROR metadata journal truncated at offset bfec210dbfad", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 18:51:36] [WARN] node37 opened connection to database", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 08:53:30 INFO sync-task node26 reported disk usage exceeded threshold", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 19:02:59][INFO][ha-monitor] admin849 synced 45 files in 36 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 09:55:31 NOTICE [vbs-server] vm-8c89 synced 493 files in 6 seconds", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 02:12:26 ERROR node62 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 05:55:31] [WARN] admin649 opened connection to database", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 18:13:18 NOTICE scheduler db-552 synced 63 files in 13 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 06:33:33][NOTICE][scheduler] client-f0a8 synced 105 files in 34 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 07:57:41 WARN [msg-handler] vm-4af2 synced 28 files in 32 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 06:27:58 ERROR user571 mounted volume vol-5971 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 21:56:57] [ERROR] db-305 mounted volume vol-8ddf successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 10:16:02 DEBUG ha-monitor db-726 mounted volume vol-75f6 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 06:34:01][INFO][vbs-server] user861 synced 458 files in 5 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 08:29:12 DEBUG [dme-server] admin104 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 17:55:53 NOTICE client-6438 reported disk usage exceeded threshold", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 12:07:21] [NOTICE] admin852 opened connection to database", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 08:20:26 DEBUG main-worker user795 reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 03:43:34][NOTICE][dme-server] vm-f2b0 synced 489 files in 17 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 22:24:17 WARN [main-worker] client-cefd mounted volume vol-8149 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 11:34:56 ERROR user904 synced 143 files in 28 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 03:52:53] [INFO] client-e625 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 22:33:06 WARN ism-agent node50 mounted volume vol-19c successfully", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 04:31:16][ERROR][rep-worker] admin140 mounted volume vol-4192 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 19:08:40 ERROR [dme-server] client-72af reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 07:58:56 NOTICE admin784 restarted after crash, exit code 241", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 00:46:50] [ERROR] db-521 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 03:49:53 INFO vbs-server admin123 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 13:45:33][WARN][ism-agent] db-543 mounted volume vol-732 successfully", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 20:02:28 NOTICE [main-worker] admin742 mounted volume vol-256f successfully", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 21:57:06 DEBUG user246 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 14:50:21] [DEBUG] admin946 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 05:14:57 NOTICE rep-worker srv-dsware-128 reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 12:50:52][WARN][scheduler] db-530 reported disk usage exceeded threshold", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 03:03:14 WARN [msg-handler] srv-dsware-800 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 07:39:26 WARN update config key snap-7c to value 62241", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 13:55:58] [ERROR] client-4dfc mounted volume vol-410d successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 02:31:34 NOTICE scheduler node45 restarted after crash, exit code 128", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 13:00:25][DEBUG][msg-handler] admin937 opened connection to database", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 12:59:29 ERROR [scheduler] vm-3aba opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 18:31:08 DEBUG db-521 restarted after crash, exit code 132", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 15:11:17] [INFO] thread pool exhausted, active=40423 queued=71065 max=86071", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 19:10:31 ERROR scheduler user240 restarted after crash, exit code 324", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 19:55:24][WARN][dme-server] node8 mounted volume vol-d048 successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 16:51:00 INFO [ism-agent] admin129 restarted after crash, exit code 128", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 07:36:48 NOTICE user832 mounted volume vol-8780 successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 00:46:20] [INFO] client-3cee mounted volume vol-a1ff successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 02:13:53 WARN sync-task failed to read block blk_84c238a1a0a1, retry 24169 times", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 04:08:37][DEBUG][ism-agent] admin182 synced 228 files in 8 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 11:57:10 ERROR [scheduler] node32 reported disk usage exceeded threshold", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 16:50:00 INFO user837 restarted after crash, exit code 10", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 18:45:46] [INFO] alarm cleared: disk usage back to 90 percent", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 00:16:13 DEBUG sync-task connection reset by peer, socket fd=56220", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 11:42:06][WARN][ha-monitor] client-3a1 mounted volume vol-af79 successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 02:00:06 INFO [msg-handler] admin219 mounted volume vol-e950 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 07:03:42 WARN checkpoint finished, elapsed 62878 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 20:58:46] [NOTICE] user289 synced 70 files in 51 seconds", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 07:47:44 NOTICE ism-agent admin554 restarted after crash, exit code 195", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 00:19:38][ERROR][msg-handler] vm-8d0d mounted volume vol-e429 successfully", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 19:47:52 WARN [scheduler] node21 opened connection to database", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 19:19:29 DEBUG client-2fc7 synced 484 files in 39 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 08:19:31] [DEBUG] srv-dsware-963 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 14:06:16 WARN main-worker srv-dsware-843 mounted volume vol-da1 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 10:45:43][ERROR][main-worker] vm-e757 synced 408 files in 52 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 08:51:10 ERROR [ism-agent] user634 synced 102 files in 10 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 16:04:50 INFO node61 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 20:19:57] [DEBUG] user533 restarted after crash, exit code 404", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 23:55:55 NOTICE msg-handler send audit event to kafka topic dsware-audit, seq=2f55b053c554", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 01:33:40][NOTICE][vbs-server] node63 opened connection to database", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 12:13:51 NOTICE [dme-server] admin276 opened connection to database", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 12:46:37 INFO thread pool exhausted, active=26441 queued=91411 max=48968", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 13:10:21] [WARN] db-266 synced 8 files in 26 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 17:04:32 WARN ism-agent db-884 mounted volume vol-aaec successfully", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 06:17:38][NOTICE][vbs-server] failed to read block blk_fd0fa8eb7e73, retry 21529 times", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 21:38:09 DEBUG [scheduler] client-dc3b opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 19:19:49 INFO db-242 restarted after crash, exit code 153", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 07:05:32] [ERROR] db-873 synced 146 files in 52 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 09:22:11 INFO sync-task db-371 restarted after crash, exit code 193", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 10:09:21][WARN][rep-worker] client-c083 mounted volume vol-a2a4 successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 14:48:12 INFO [main-worker] srv-dsware-476 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 08:52:04 NOTICE write 36370 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 15:34:08] [NOTICE] vm-92ec mounted volume vol-2dfa successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 18:59:55 INFO sync-task process request op=task-991 done in 83145 ms", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 05:12:39][DEBUG][rep-worker] process request op=task-991 done in 50120 ms", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 14:22:41 ERROR [main-worker] srv-dsware-690 synced 121 files in 60 seconds", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 12:28:05 DEBUG node6 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 12:39:48] [INFO] srv-dsware-735 restarted after crash, exit code 430", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 08:04:09 NOTICE rep-worker db-166 synced 193 files in 30 seconds", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 02:05:55][WARN][dme-server] alarm cleared: disk usage back to 61 percent", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 20:39:34 NOTICE [rep-worker] user459 restarted after crash, exit code 138", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 04:36:52 INFO user851 synced 87 files in 49 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 07:46:18] [WARN] receive heartbeat from node-34043, load 42 percent", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 09:30:32 ERROR main-worker srv-dsware-549 synced 442 files in 29 seconds", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 11:44:01][ERROR][ha-monitor] node19 restarted after crash, exit code 186", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 01:37:46 INFO [main-worker] user657 synced 447 files in 60 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 03:17:40 ERROR volume cfg.max.io changed state from active to degraded", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 11:19:31] [DEBUG] node24 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 18:36:55 NOTICE ha-monitor rpc call GetVolumeInfo returned code 23192, msg success", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 00:24:08][NOTICE][ha-monitor] db-685 mounted volume vol-2bb4 successfully", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 14:02:17 DEBUG [rep-worker] user844 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 20:33:57 INFO vm-8439 mounted volume vol-5691 successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 10:56:42] [WARN] task quota.db submitted by user admin, priority 82927", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 17:08:18 NOTICE vbs-server node34 restarted after crash, exit code 4", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 00:10:31][NOTICE][dme-server] user475 restarted after crash, exit code 198", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 21:16:45 DEBUG [scheduler] node12 opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 15:07:30 WARN user821 synced 432 files in 44 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 05:54:59] [NOTICE] admin771 synced 260 files in 32 seconds", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 16:56:43 ERROR main-worker vm-edf7 opened connection to database", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 23:51:39][WARN][dme-server] client-5868 mounted volume vol-769c successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 08:26:02 ERROR [scheduler] client-70c9 mounted volume vol-7904 successfully", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 16:06:03 ERROR client-4810 mounted volume vol-80b2 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 05:45:57] [DEBUG] db-244 mounted volume vol-d7d3 successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 10:00:54 DEBUG rep-worker node27 mounted volume vol-e60e successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 11:45:05][DEBUG][osd-daemon] node15 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 12:39:46 DEBUG [scheduler] srv-dsware-253 synced 60 files in 27 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 09:52:39 NOTICE write 21287 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 01:06:24] [ERROR] vm-4eef reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 05:40:07 NOTICE main-worker user742 reported disk usage exceeded threshold", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 06:04:51][WARN][main-worker] admin453 reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 01:55:01 DEBUG [vbs-server] db-982 synced 315 files in 37 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 14:34:14 NOTICE user599 opened connection to database", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 23:20:05] [DEBUG] user136 restarted after crash, exit code 276", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 01:49:49 DEBUG rep-worker node44 restarted after crash, exit code 286", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 06:38:06][INFO][dme-server] admin392 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 12:10:46 INFO [dme-server] user171 mounted volume vol-c899 successfully", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 13:51:13 DEBUG db-701 mounted volume vol-bda8 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 19:17:57] [ERROR] admin798 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 02:52:55 NOTICE osd-daemon db-629 reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 11:59:25][ERROR][scheduler] admin954 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 07:43:02 INFO [scheduler] received message from 10.38666.81154.74944:27095, dispatch to handler", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 03:53:10 WARN admin482 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 06:53:16] [WARN] node35 restarted after crash, exit code 205", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 16:20:25 ERROR osd-daemon vm-ae80 restarted after crash, exit code 429", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 07:12:52][INFO][dme-server] client-fb56 mounted volume vol-e401 successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 08:49:35 ERROR [main-worker] node30 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 08:59:26 INFO user590 synced 198 files in 10 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 22:08:26] [WARN] node45 restarted after crash, exit code 261", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 07:27:35 ERROR ha-monitor user570 restarted after crash, exit code 10", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 09:53:52][WARN][ism-agent] client-9997 opened connection to database", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 07:06:01 ERROR [msg-handler] process request op=snap-7c done in 40398 ms", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 09:11:06 WARN user393 synced 470 files in 37 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 08:18:34] [NOTICE] admin353 mounted volume vol-8c08 successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 15:37:07 INFO dme-server admin534 synced 119 files in 42 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 10:22:00][WARN][vbs-server] admin868 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 01:36:26 INFO [msg-handler] rpc call GetVolumeInfo returned code 1430, msg success", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 23:38:39 INFO vm-eeb5 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 06:53:48] [WARN] admin686 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 19:30:53 ERROR vbs-server node54 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 16:09:49][ERROR][rep-worker] node39 synced 43 files in 52 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 19:12:30 NOTICE [sync-task] srv-dsware-426 mounted volume vol-7557 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 03:32:02 NOTICE receive heartbeat from node-28176, load 64 percent", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 20:16:14] [NOTICE] volume vol-3f2a changed state from active to degraded", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 20:27:34 INFO vbs-server client-6e12 synced 333 files in 39 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 09:55:36][INFO][ha-monitor] admin752 mounted volume vol-be52 successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 05:34:35 ERROR [vbs-server] client-2a0b opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 22:50:57 INFO db-984 restarted after crash, exit code 106", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 18:27:59] [INFO] client-4afe reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 00:37:09 DEBUG vbs-server admin345 synced 176 files in 32 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 23:28:04][NOTICE][main-worker] node36 reported disk usage exceeded threshold", "body_start": 43, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 21:35:51 INFO [main-worker] metadata journal truncated at offset b13f75f9d55d", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 05:19:13 ERROR disk 63217 smart health status ok, temperature 4269 celsius", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 20:14:44] [NOTICE] db-428 restarted after crash, exit code 150", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 18:15:01 ERROR osd-daemon client-5320 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 21:39:25][INFO][vbs-server] node52 synced 47 files in 30 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 10:43:20 DEBUG [dme-server] user538 restarted after crash, exit code 181", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 02:16:42 INFO db-116 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 10:35:00] [INFO] user523 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 23:09:15 NOTICE ha-monitor receive heartbeat from node-62047, load 24 percent", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 15:58:33][DEBUG][ha-monitor] certificate will expire in 29872 days, renew required", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 20:40:23 NOTICE [sync-task] thread pool exhausted, active=37183 queued=79400 max=27859", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 19:17:09 WARN user828 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 22:18:02] [INFO] db-421 synced 320 files in 12 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 01:04:55 INFO sync-task admin255 reported disk usage exceeded threshold", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 17:57:56][NOTICE][scheduler] srv-dsware-268 reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 22:42:37 NOTICE [dme-server] db-486 restarted after crash, exit code 3", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 04:05:22 DEBUG vm-adb7 synced 482 files in 6 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 02:36:34] [WARN] db-876 mounted volume vol-2ca4 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 18:50:21 DEBUG osd-daemon user575 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 05:24:33][INFO][dme-server] db-653 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 21:36:16 ERROR [ha-monitor] admin819 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 21:46:33 DEBUG db-919 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 02:24:45] [INFO] client-dab synced 353 files in 12 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 17:27:52 DEBUG ism-agent admin594 opened connection to database", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 12:22:11][NOTICE][main-worker] admin222 synced 241 files in 55 seconds", "body_start": 43, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 12:29:45 INFO [ha-monitor] client-d09f reported disk usage exceeded threshold", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 12:56:55 DEBUG node8 mounted volume vol-ee5c successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 13:05:30] [DEBUG] client-9b79 synced 309 files in 3 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 06:19:07 WARN main-worker update config key quota.db to value 49588", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 11:48:38][WARN][ism-agent] srv-dsware-893 mounted volume vol-d0b3 successfully", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 20:45:28 DEBUG [ism-agent] db-328 synced 194 files in 45 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 15:18:21 NOTICE db-924 mounted volume vol-664c successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 10:13:17] [WARN] db-744 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 23:41:29 ERROR scheduler node59 synced 10 files in 59 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 17:31:35][INFO][ha-monitor] user655 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 14:50:27 DEBUG [sync-task] disk 61977 smart health status ok, temperature 33651 celsius", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 22:44:28 WARN admin128 mounted volume vol-c505 successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 05:46:33] [INFO] client-c7bd reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 16:01:39 INFO rep-worker rpc call GetVolumeInfo returned code 21946, msg success", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 22:03:48][INFO][vbs-server] client-e4ca reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 01:50:18 DEBUG [rep-worker] admin782 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 21:47:00 NOTICE srv-dsware-669 reported disk usage exceeded threshold", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 05:12:25] [INFO] vm-5009 synced 129 files in 36 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 19:25:08 DEBUG main-worker client-262 reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 12:57:06][INFO][osd-daemon] node27 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 06:25:48 NOTICE [ism-agent] admin864 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 04:06:27 DEBUG client-d47e reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 02:19:53] [DEBUG] db-227 synced 496 files in 35 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 06:56:09 ERROR dme-server volume vol-3f2a changed state from active to degraded", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 00:31:22][ERROR][ism-agent] node6 restarted after crash, exit code 134", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 10:15:50 DEBUG [sync-task] node23 opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 04:08:00 NOTICE client-c600 opened connection to database", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 23:48:13] [DEBUG] vm-7a80 synced 88 files in 31 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 11:19:19 ERROR scheduler update config key vol-3f2a to value 85962", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 18:50:05][DEBUG][msg-handler] user964 synced 274 files in 22 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 04:38:06 WARN [dme-server] task vol-3f2a submitted by user admin, priority 68911", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 13:46:56 DEBUG node8 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 22:49:04] [NOTICE] admin298 mounted volume vol-dbe2 successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 20:31:33 DEBUG ism-agent admin611 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 14:22:35][DEBUG][rep-worker] db-512 mounted volume vol-3e1 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 02:47:52 DEBUG [main-worker] client-5716 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 20:47:17 WARN node34 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 19:25:51] [NOTICE] vm-7a10 restarted after crash, exit code 159", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 04:44:58 ERROR main-worker vm-f551 reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 19:41:42][NOTICE][main-worker] volume quota.db changed state from active to degraded", "body_start": 43, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 00:39:44 WARN [scheduler] srv-dsware-720 reported disk usage exceeded threshold", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 08:38:42 NOTICE node22 mounted volume vol-3105 successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 14:36:24] [INFO] node34 mounted volume vol-bc76 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 23:05:30 NOTICE scheduler node52 synced 403 files in 4 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 16:31:22][DEBUG][msg-handler] db-837 opened connection to database", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 11:44:09 NOTICE [vbs-server] client-293 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 13:06:27 WARN srv-dsware-346 synced 328 files in 9 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 17:12:04] [ERROR] client-e103 restarted after crash, exit code 272", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 01:02:25 WARN msg-handler vm-f2f7 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 14:25:30][DEBUG][vbs-server] admin619 synced 80 files in 24 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 17:14:54 NOTICE [scheduler] node57 synced 475 files in 45 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 11:51:25 NOTICE write 69539 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 01:55:29] [WARN] user142 mounted volume vol-5530 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 12:04:03 INFO sync-task admin303 restarted after crash, exit code 384", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 00:01:56][DEBUG][sync-task] client-608d synced 485 files in 45 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 10:16:24 INFO [osd-daemon] vm-9b31 opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 13:19:05 DEBUG db-105 synced 339 files in 21 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 04:04:49] [WARN] send audit event to kafka topic dsware-audit, seq=e286baf2a9cb", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 06:43:27 NOTICE vbs-server failed to read block blk_4b5c45c340b7, retry 34963 times", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 10:52:27][DEBUG][msg-handler] admin480 synced 49 files in 44 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 05:57:20 DEBUG [sync-task] db-831 reported disk usage exceeded threshold", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 02:11:27 WARN node59 mounted volume vol-604a successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 18:19:26] [NOTICE] srv-dsware-844 opened connection to database", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 21:44:52 WARN main-worker task cfg.max.io submitted by user admin, priority 52276", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 05:05:34][ERROR][sync-task] srv-dsware-298 restarted after crash, exit code 155", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 00:34:56 NOTICE [dme-server] user257 synced 286 files in 42 seconds", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 15:27:54 DEBUG db-620 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 00:18:53] [INFO] admin878 restarted after crash, exit code 466", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 15:46:40 INFO osd-daemon vm-a753 opened connection to database", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 17:50:04][DEBUG][osd-daemon] vm-5b2a synced 481 files in 25 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 04:21:52 NOTICE [main-worker] client-64b4 synced 97 files in 31 seconds", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 11:40:02 NOTICE node13 synced 474 files in 16 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 17:32:57] [INFO] vm-9935 synced 273 files in 15 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 13:03:20 DEBUG rep-worker node6 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 09:45:47][DEBUG][osd-daemon] admin697 restarted after crash, exit code 83", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 06:07:52 DEBUG [dme-server] admin278 mounted volume vol-1acc successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 01:50:39 DEBUG client-a2c4 synced 193 files in 23 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 22:42:30] [INFO] admin198 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 18:22:05 ERROR main-worker client-ae5 restarted after crash, exit code 264", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 02:08:26][NOTICE][rep-worker] client-c7b opened connection to database", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 12:38:58 ERROR [sync-task] srv-dsware-902 synced 41 files in 35 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 18:40:23 DEBUG client-c7c9 mounted volume vol-b73d successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 22:11:13] [WARN] vm-8062 opened connection to database", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 19:52:23 WARN rep-worker db-295 synced 356 files in 19 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 16:56:04][NOTICE][vbs-server] srv-dsware-819 synced 99 files in 8 seconds", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 03:53:44 DEBUG [main-worker] vm-df13 opened connection to database", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 14:19:54 ERROR node29 synced 490 files in 45 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 19:58:16] [DEBUG] admin369 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 01:47:43 ERROR main-worker srv-dsware-841 reported disk usage exceeded threshold", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 05:28:50][INFO][scheduler] db-512 reported disk usage exceeded threshold", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 16:17:22 INFO [rep-worker] certificate will expire in 53936 days, renew required", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 17:01:42 NOTICE node60 opened connection to database", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 21:29:50] [WARN] client-a365 opened connection to database", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 03:16:18 NOTICE dme-server user535 restarted after crash, exit code 341", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 17:05:37][DEBUG][vbs-server] vm-8ed3 restarted after crash, exit code 139", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 20:07:03 ERROR [vbs-server] srv-dsware-823 restarted after crash, exit code 175", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 16:23:13 DEBUG admin843 restarted after crash, exit code 498", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 01:59:19] [DEBUG] node61 mounted volume vol-80e7 successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 01:42:01 NOTICE scheduler srv-dsware-241 mounted volume vol-e195 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 06:51:55][ERROR][ism-agent] db-513 mounted volume vol-d330 successfully", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 12:40:54 NOTICE [osd-daemon] process request op=snap-7c done in 53358 ms", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 00:17:57 ERROR srv-dsware-809 restarted after crash, exit code 414", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 07:18:47] [INFO] srv-dsware-397 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 02:14:10 INFO ha-monitor srv-dsware-599 restarted after crash, exit code 145", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 05:08:49][ERROR][dme-server] vm-82e2 synced 398 files in 25 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 17:36:16 WARN [ism-agent] db-323 opened connection to database", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 08:00:41 DEBUG user335 mounted volume vol-74a0 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 15:14:15] [NOTICE] node25 opened connection to database", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 16:34:53 DEBUG vbs-server client-24a8 mounted volume vol-b7c1 successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 05:52:32][NOTICE][vbs-server] srv-dsware-124 mounted volume vol-3ff3 successfully", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 19:01:48 NOTICE [sync-task] volume task-991 changed state from active to degraded", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 20:12:49 INFO client-3178 restarted after crash, exit code 212", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 18:03:54] [INFO] user909 synced 431 files in 42 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 18:55:39 ERROR sync-task user934 opened connection to database", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 23:19:36][ERROR][ism-agent] node47 synced 55 files in 16 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 06:01:07 INFO [ha-monitor] admin785 opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 00:48:14 NOTICE srv-dsware-693 mounted volume vol-2072 successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 09:42:48] [INFO] vm-3fcf restarted after crash, exit code 126", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 03:11:44 WARN dme-server node52 restarted after crash, exit code 472", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 04:19:31][ERROR][vbs-server] node60 synced 430 files in 46 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 21:36:53 INFO [sync-task] send audit event to kafka topic dsware-audit, seq=bfc4bf4601df", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 07:04:24 INFO client-618b mounted volume vol-2260 successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 20:48:40] [INFO] vm-6ee6 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 06:39:28 DEBUG sync-task user660 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 14:51:19][DEBUG][msg-handler] vm-f42b mounted volume vol-c2a8 successfully", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 08:15:48 NOTICE [vbs-server] srv-dsware-978 restarted after crash, exit code 372", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 03:03:48 DEBUG srv-dsware-738 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 14:33:40] [WARN] vm-2d1e restarted after crash, exit code 410", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 00:54:04 NOTICE scheduler volume cfg.max.io changed state from active to degraded", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 23:15:27][NOTICE][rep-worker] thread pool exhausted, active=75491 queued=79379 max=4784", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 14:36:51 INFO [main-worker] node49 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 16:31:43 DEBUG srv-dsware-304 synced 139 files in 21 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 14:39:12] [ERROR] db-485 restarted after crash, exit code 264", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 00:55:07 INFO main-worker db-729 synced 294 files in 28 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 06:54:21][WARN][osd-daemon] node34 restarted after crash, exit code 483", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 15:57:19 DEBUG [ha-monitor] srv-dsware-637 synced 47 files in 21 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 16:29:43 DEBUG client-bde9 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 10:56:55] [WARN] user188 mounted volume vol-96f3 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 21:19:54 INFO main-worker db-911 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 07:49:21][INFO][osd-daemon] client-449e synced 100 files in 50 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 16:09:07 INFO [rep-worker] node52 restarted after crash, exit code 322", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 15:55:04 WARN srv-dsware-878 synced 205 files in 7 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 17:31:01] [INFO] db-429 mounted volume vol-f770 successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 16:19:27 INFO sync-task node4 mounted volume vol-d10 successfully", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 23:53:40][INFO][dme-server] node39 synced 425 files in 44 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 17:26:54 WARN [dme-server] node59 synced 419 files in 59 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 15:27:08 NOTICE vm-3f85 synced 173 files in 58 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 04:34:54] [WARN] srv-dsware-867 mounted volume vol-4f3f successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 08:36:46 NOTICE osd-daemon admin729 restarted after crash, exit code 414", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 23:40:55][WARN][vbs-server] user750 restarted after crash, exit code 241", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 09:10:13 ERROR [osd-daemon] user643 mounted volume vol-1ed6 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 20:57:05 NOTICE client-735a restarted after crash, exit code 391", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 01:54:02] [DEBUG] admin930 opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 09:39:33 NOTICE osd-daemon process request op=snap-7c done in 1872 ms", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 15:47:04][NOTICE][main-worker] user510 restarted after crash, exit code 214", "body_start": 43, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 15:06:50 NOTICE [msg-handler] admin780 mounted volume vol-d096 successfully", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 15:06:27 INFO metadata journal truncated at offset 8a1db08d0c68", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 06:16:38] [WARN] vm-a1c2 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 13:31:36 INFO vbs-server db-546 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 12:48:13][ERROR][osd-daemon] task quota.db submitted by user admin, priority 36455", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 15:55:39 NOTICE [ha-monitor] vm-54e6 restarted after crash, exit code 300", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 03:59:54 ERROR checkpoint finished, elapsed 86296 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 19:32:03] [ERROR] alarm cleared: disk usage back to 9 percent", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 12:34:42 INFO vbs-server user120 restarted after crash, exit code 418", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 19:24:08][WARN][sync-task] vm-b97d opened connection to database", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 12:47:47 ERROR [dme-server] client-3956 restarted after crash, exit code 264", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 08:11:57 NOTICE vm-15bd synced 189 files in 32 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 07:06:30] [INFO] admin700 synced 135 files in 40 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 13:45:59 WARN osd-daemon admin894 mounted volume vol-2f7a successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 10:07:32][DEBUG][ism-agent] node4 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 16:58:49 WARN [scheduler] db-323 mounted volume vol-fa6e successfully", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 17:06:47 INFO admin539 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 19:44:02] [ERROR] connection reset by peer, socket fd=22332", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 02:55:44 WARN scheduler vm-a555 reported disk usage exceeded threshold", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 13:31:20][DEBUG][osd-daemon] write 245 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 19:52:05 NOTICE [osd-daemon] cache entry 4f60e4deb5c6 evicted, free slots 56588", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 05:58:31 INFO srv-dsware-400 mounted volume vol-545b successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 19:29:42] [WARN] vm-2c36 restarted after crash, exit code 339", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 00:42:16 INFO osd-daemon vm-2e29 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 20:56:52][INFO][vbs-server] client-3ac2 synced 446 files in 8 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 18:17:50 WARN [sync-task] user838 opened connection to database", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 11:47:57 ERROR user391 mounted volume vol-37cd successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 11:43:22] [INFO] client-c9b6 synced 2 files in 33 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-02 12:03:07 DEBUG sync-task rpc call GetVolumeInfo returned code 59242, msg success", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 10:30:58][DEBUG][sync-task] vm-d237 synced 482 files in 59 seconds", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 04:24:51 WARN [ism-agent] user899 reported disk usage exceeded threshold", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-05 00:36:12 NOTICE db-628 opened connection to database", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 09:07:10] [WARN] node25 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 12:36:25 INFO ha-monitor vm-fdca opened connection to database", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 17:19:04][INFO][sync-task] vm-42d6 mounted volume vol-ef3e successfully", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 20:50:14 ERROR [main-worker] node5 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 17:54:23 ERROR db-102 restarted after crash, exit code 182", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 12:03:00] [NOTICE] vm-3be9 mounted volume vol-1587 successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 01:03:38 DEBUG ha-monitor srv-dsware-847 restarted after crash, exit code 135", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 06:07:53][WARN][main-worker] client-f432 mounted volume vol-2492 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 15:51:14 DEBUG [rep-worker] node41 synced 336 files in 28 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 17:26:13 NOTICE admin429 mounted volume vol-8643 successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 19:02:37] [NOTICE] send audit event to kafka topic dsware-audit, seq=7c83f164bef4", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 00:38:21 DEBUG rep-worker db-381 synced 467 files in 14 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 07:19:55][DEBUG][vbs-server] volume quota.db changed state from active to degraded", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 04:45:51 WARN [main-worker] admin259 mounted volume vol-5c1e successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 23:03:59 INFO task task-991 submitted by user admin, priority 80318", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 21:12:11] [INFO] admin353 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 16:32:49 NOTICE vbs-server admin190 opened connection to database", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 13:47:56][ERROR][vbs-server] vm-2815 synced 22 files in 1 seconds", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 00:37:37 ERROR [sync-task] admin648 reported disk usage exceeded threshold", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 06:05:26 WARN client-14ac mounted volume vol-cf4f successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 11:33:48] [INFO] task task-991 submitted by user admin, priority 23684", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 06:34:22 WARN ha-monitor node64 synced 428 files in 32 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 09:19:30][INFO][vbs-server] admin349 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-06 16:02:59 NOTICE [sync-task] node36 opened connection to database", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 02:16:53 DEBUG client-9b56 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 12:14:09] [NOTICE] user837 opened connection to database", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 10:16:24 NOTICE sync-task srv-dsware-213 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 03:34:03][WARN][dme-server] srv-dsware-729 restarted after crash, exit code 451", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 14:05:56 DEBUG [ism-agent] admin347 synced 413 files in 37 seconds", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 13:31:56 ERROR user767 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 14:52:55] [DEBUG] vm-e08b opened connection to database", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 21:44:42 NOTICE msg-handler receive heartbeat from node-47631, load 13 percent", "body_start": 39, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 21:58:57][INFO][ism-agent] db-916 restarted after crash, exit code 246", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 15:30:27 ERROR [sync-task] user531 opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 10:16:03 ERROR vm-4140 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 14:37:09] [WARN] admin763 restarted after crash, exit code 270", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 01:36:46 DEBUG dme-server admin424 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 14:46:46][ERROR][dme-server] client-378b restarted after crash, exit code 387", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 16:04:12 ERROR [main-worker] node53 opened connection to database", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-04 14:24:52 NOTICE admin749 reported disk usage exceeded threshold", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 13:12:56] [NOTICE] srv-dsware-488 reported disk usage exceeded threshold", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 02:45:33 INFO sync-task vm-c017 reported disk usage exceeded threshold", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 00:52:01][DEBUG][ha-monitor] user993 reported disk usage exceeded threshold", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 01:33:21 WARN [msg-handler] db-863 mounted volume vol-cc46 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 00:07:46 ERROR srv-dsware-224 synced 343 files in 21 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 22:58:37] [DEBUG] admin279 synced 149 files in 48 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 17:29:33 DEBUG rep-worker db-372 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 05:28:55][ERROR][sync-task] user665 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 18:08:20 DEBUG [vbs-server] db-278 synced 201 files in 1 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-07 15:24:37 INFO srv-dsware-999 restarted after crash, exit code 102", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 18:44:41] [NOTICE] node16 mounted volume vol-60ac successfully", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 20:25:25 WARN vbs-server metadata journal truncated at offset a939db0b066c", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-01 17:42:35][DEBUG][dme-server] vm-821c restarted after crash, exit code 473", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 17:25:14 WARN [osd-daemon] db-428 mounted volume vol-a65c successfully", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 10:58:21 ERROR node38 reported disk usage exceeded threshold", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 21:44:44] [ERROR] metadata journal truncated at offset 3f03eaf9c201", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 01:08:22 WARN rep-worker failed to read block blk_408106ed5d29, retry 10435 times", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 02:18:32][INFO][osd-daemon] node8 restarted after crash, exit code 292", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 23:28:17 ERROR [ism-agent] user478 mounted volume vol-ed42 successfully", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 08:31:40 WARN user461 mounted volume vol-71d6 successfully", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 09:10:30] [WARN] process request op=task-991 done in 89878 ms", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 06:36:09 DEBUG ha-monitor admin664 reported disk usage exceeded threshold", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 00:03:40][ERROR][scheduler] admin456 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 09:04:21 WARN [scheduler] vm-2d28 synced 341 files in 17 seconds", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 12:32:45 NOTICE vm-e033 restarted after crash, exit code 405", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 12:05:00] [DEBUG] send audit event to kafka topic dsware-audit, seq=9acdf18fb0b3", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 19:45:07 NOTICE ha-monitor db-295 restarted after crash, exit code 464", "body_start": 38, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 05:36:39][ERROR][vbs-server] admin190 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 21:53:24 NOTICE [main-worker] db-454 restarted after crash, exit code 457", "body_start": 41, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 21:35:28 WARN srv-dsware-454 synced 326 files in 28 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 00:05:03] [DEBUG] node38 synced 405 files in 2 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 05:14:12 ERROR vbs-server db-184 opened connection to database", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 15:59:25][NOTICE][sync-task] admin840 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-02 04:12:18 WARN [ism-agent] node53 synced 439 files in 6 seconds", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 03:45:06 ERROR admin441 mounted volume vol-d028 successfully", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 06:09:45] [ERROR] srv-dsware-558 synced 72 files in 4 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 06:49:55 WARN rep-worker db-193 synced 204 files in 17 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 16:32:20][DEBUG][main-worker] db-886 restarted after crash, exit code 235", "body_start": 42, "format": "hb3", "has_header": true}
+{"line": "2026-03-01 07:36:14 WARN [msg-handler] init module cfg.max.io begin, worker threads 91118", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 06:47:00 WARN admin236 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-06 06:04:19] [DEBUG] user267 reported disk usage exceeded threshold", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 13:38:10 DEBUG ha-monitor srv-dsware-206 restarted after crash, exit code 338", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 00:24:26][INFO][scheduler] srv-dsware-970 restarted after crash, exit code 149", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-09 02:45:01 NOTICE [sync-task] vm-9ff5 reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 10:08:26 NOTICE client-f1e2 mounted volume vol-7ec4 successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-04 22:07:25] [WARN] srv-dsware-685 synced 99 files in 12 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-01 09:12:58 INFO osd-daemon admin563 opened connection to database", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-06 02:13:35][ERROR][dme-server] admin842 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 17:40:50 INFO [ism-agent] send audit event to kafka topic dsware-audit, seq=bb130ef43ce7", "body_start": 37, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 13:01:49 INFO vm-1f95 synced 352 files in 44 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-09 19:53:56] [WARN] vm-40a6 synced 414 files in 19 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-09 20:10:09 WARN msg-handler receive heartbeat from node-81242, load 45 percent", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-10 18:32:39][INFO][rep-worker] client-90bb restarted after crash, exit code 21", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 22:14:07 WARN [ha-monitor] thread pool exhausted, active=67576 queued=72500 max=98024", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 17:16:48 NOTICE user675 mounted volume vol-5ea1 successfully", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 09:05:55] [WARN] client-af44 synced 283 files in 16 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 15:19:53 NOTICE scheduler user983 synced 482 files in 26 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-08 19:08:50][WARN][msg-handler] client-2639 mounted volume vol-7575 successfully", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 01:02:45 INFO [msg-handler] certificate will expire in 20215 days, renew required", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 23:40:18 DEBUG vm-319 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-05 11:36:01] [DEBUG] admin780 synced 485 files in 51 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-08 18:35:55 DEBUG sync-task srv-dsware-634 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 20:01:47][ERROR][rep-worker] node10 restarted after crash, exit code 274", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-07 15:10:52 ERROR [osd-daemon] srv-dsware-756 synced 323 files in 46 seconds", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 05:47:53 WARN node29 opened connection to database", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 20:44:36] [DEBUG] user522 synced 451 files in 38 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-07 18:12:34 ERROR ism-agent db-821 synced 269 files in 22 seconds", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 10:55:16][WARN][ism-agent] user269 opened connection to database", "body_start": 39, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 06:34:29 ERROR [osd-daemon] admin493 mounted volume vol-da83 successfully", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-06 00:07:58 ERROR db-541 opened connection to database", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-03 10:15:48] [WARN] client-abf7 reported disk usage exceeded threshold", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 14:41:33 WARN rep-worker db-694 reported disk usage exceeded threshold", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-09 15:41:03][INFO][dme-server] srv-dsware-191 opened connection to database", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 04:25:11 WARN [osd-daemon] metadata journal truncated at offset 234c18abcf0f", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-09 15:30:18 NOTICE node2 synced 130 files in 6 seconds", "body_start": 27, "format": "hb0", "has_header": true}
+{"line": "[2026-03-08 23:58:23] [DEBUG] user336 synced 500 files in 39 seconds", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-03 05:25:22 WARN osd-daemon srv-dsware-637 opened connection to database", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 15:06:53][NOTICE][main-worker] client-90f5 mounted volume vol-e43b successfully", "body_start": 43, "format": "hb3", "has_header": true}
+{"line": "2026-03-08 01:11:13 NOTICE [rep-worker] srv-dsware-424 restarted after crash, exit code 277", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-08 13:03:45 ERROR vm-e0ab restarted after crash, exit code 341", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-07 05:17:26] [INFO] start to sync volume data, total 98870 chunks", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-04 16:45:39 ERROR dme-server db-808 mounted volume vol-b5cc successfully", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-07 06:18:27][WARN][vbs-server] vm-48e0 reported disk usage exceeded threshold", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-04 11:19:49 WARN [dme-server] db-398 opened connection to database", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-03 21:38:22 DEBUG client-ec15 synced 375 files in 46 seconds", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 09:27:48] [NOTICE] db-452 synced 1 files in 18 seconds", "body_start": 31, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 15:39:49 WARN scheduler db-269 restarted after crash, exit code 499", "body_start": 35, "format": "hb2", "has_header": true}
+{"line": "[2026-03-04 20:40:10][DEBUG][dme-server] user432 restarted after crash, exit code 239", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-10 09:47:53 INFO [main-worker] client-385a reported disk usage exceeded threshold", "body_start": 39, "format": "hb4", "has_header": true}
+{"line": "2026-03-02 21:28:53 ERROR srv-dsware-340 restarted after crash, exit code 461", "body_start": 26, "format": "hb0", "has_header": true}
+{"line": "[2026-03-01 02:00:36] [DEBUG] srv-dsware-692 mounted volume vol-aaa5 successfully", "body_start": 30, "format": "hb1", "has_header": true}
+{"line": "2026-03-06 08:05:24 NOTICE scheduler client-5667 synced 241 files in 29 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-05 05:13:12][WARN][osd-daemon] volume snap-7c changed state from active to degraded", "body_start": 40, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 12:53:51 DEBUG [ism-agent] admin493 mounted volume vol-7542 successfully", "body_start": 38, "format": "hb4", "has_header": true}
+{"line": "2026-03-01 22:11:26 WARN db-429 reported disk usage exceeded threshold", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-02 06:00:18] [WARN] admin888 synced 353 files in 5 seconds", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-05 03:54:53 INFO msg-handler client-35b3 synced 494 files in 44 seconds", "body_start": 37, "format": "hb2", "has_header": true}
+{"line": "[2026-03-03 08:03:15][DEBUG][rep-worker] node37 opened connection to database", "body_start": 41, "format": "hb3", "has_header": true}
+{"line": "2026-03-05 20:29:57 NOTICE [ha-monitor] admin532 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}
+{"line": "2026-03-10 19:25:14 WARN checkpoint finished, elapsed 20036 seconds", "body_start": 25, "format": "hb0", "has_header": true}
+{"line": "[2026-03-10 08:30:54] [WARN] client-b7b4 mounted volume vol-65ec successfully", "body_start": 29, "format": "hb1", "has_header": true}
+{"line": "2026-03-10 23:47:23 WARN vbs-server db-423 mounted volume vol-ac47 successfully", "body_start": 36, "format": "hb2", "has_header": true}
+{"line": "[2026-03-02 01:06:07][NOTICE][msg-handler] disk 72788 smart health status ok, temperature 59331 celsius", "body_start": 43, "format": "hb3", "has_header": true}
+{"line": "2026-03-03 17:23:12 NOTICE [ha-monitor] admin944 reported disk usage exceeded threshold", "body_start": 40, "format": "hb4", "has_header": true}

@@ -1,0 +1,1000 @@
+{"line": "[2026-03-06 18:13:25] [INFO] [AsyncDispatcher event handler] failed to read block blk_a3a66660879, retry 77151 times", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 13:11:20] [INFO] [pool-2 thread 2] thread pool exhausted, active=29955 queued=83168 max=67596", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 08:20:30] [req-fa83f26c - - -] connection reset by peer, socket fd=76510", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 14:14:22] [INFO] [for pool34] init module vol-3f2a begin, worker threads 3983", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 17:30:12] [INFO] [AsyncDispatcher event handler] failed to read block blk_51f1c87ced6d, retry 82858 times", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 12:51:02] [INFO] [pool-4 thread 41] receive heartbeat from node-4046, load 18 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 17:30:47] [req-524837f5 - - -] init module task-991 begin, worker threads 69175", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 19:59:31] [INFO] [for handler4] disk 93489 smart health status ok, temperature 99950 celsius", "body_start": 44, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 19:21:08] [INFO] [AsyncDispatcher event handler] failed to read block blk_f96f65e12e6a, retry 92434 times", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 08:10:15] [INFO] [pool-7 thread 34] alarm cleared: disk usage back to 47 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 18:26:46] [req-4fe54ff7 - - -] connection reset by peer, socket fd=61698", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 11:46:20] [INFO] [pool event event26] rpc call GetVolumeInfo returned code 9741, msg success", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 01:23:55] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 98156, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 10:35:45] [INFO] [pool-3 thread 25] init module quota.db begin, worker threads 14336", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 18:45:13] [req-e7432ff5 - - -] task cfg.max.io submitted by user admin, priority 44122", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 06:15:43] [INFO] [pool pool pool86] send audit event to kafka topic dsware-audit, seq=c74b71a71244", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 14:12:54] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 20095 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 18:05:09] [INFO] [pool-5 thread 10] update config key quota.db to value 46496", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 20:26:41] [req-ee23b4c0 - - -] failed to read block blk_55e89bf05d61, retry 60344 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 01:34:43] [INFO] [dispatcher pool78] cache entry 62442f09e298 evicted, free slots 39548", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 19:38:37] [INFO] [AsyncDispatcher event handler] received message from 10.26693.15053.76452:32526, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 01:31:57] [INFO] [pool-4 thread 36] certificate will expire in 93932 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 22:26:18] [req-ef20fa90 - - -] disk 8465 smart health status ok, temperature 99119 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 14:06:39] [INFO] [pool pool event37] metadata journal truncated at offset 1da4cfcd7bd6", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 23:31:28] [INFO] [AsyncDispatcher event handler] received message from 10.73413.23982.47952:69442, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 05:15:21] [INFO] [pool-9 thread 12] thread pool exhausted, active=83561 queued=76321 max=22486", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 16:26:51] [req-362e6ba8 - - -] init module cfg.max.io begin, worker threads 8626", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 00:22:08] [INFO] [handler dispatcher54] cache entry bdce19c6a57f evicted, free slots 44198", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 12:53:27] [INFO] [AsyncDispatcher event handler] process request op=quota.db done in 132 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 13:55:47] [INFO] [pool-5 thread 32] process request op=task-991 done in 52974 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 08:02:28] [req-25523202 - - -] thread pool exhausted, active=86650 queued=3036 max=67768", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 00:57:57] [INFO] [for dispatcher95] receive heartbeat from node-25897, load 31 percent", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 00:56:48] [INFO] [AsyncDispatcher event handler] received message from 10.11244.9930.51375:57761, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 23:23:20] [INFO] [pool-7 thread 16] process request op=cfg.max.io done in 99656 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 10:41:20] [req-896c4511 - - -] cache entry c7d38acc1123 evicted, free slots 36667", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 19:58:03] [INFO] [dispatcher event90] alarm cleared: disk usage back to 49 percent", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 13:23:22] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=50253", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 08:04:05] [INFO] [pool-6 thread 57] metadata journal truncated at offset 21c9613abd2d", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 10:13:01] [req-99005039 - - -] cache entry 1be30a7f28b0 evicted, free slots 6926", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 03:11:31] [INFO] [event for for37] volume vol-3f2a changed state from active to degraded", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 00:41:43] [INFO] [AsyncDispatcher event handler] cache entry 51c0d381c9fd evicted, free slots 36313", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 09:33:37] [INFO] [pool-2 thread 50] certificate will expire in 95012 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 01:02:24] [req-3c7e9dd5 - - -] send audit event to kafka topic dsware-audit, seq=50a1e9755fdf", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 11:58:27] [INFO] [pool event33] receive heartbeat from node-53134, load 32 percent", "body_start": 44, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 23:36:20] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 51013 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 00:23:09] [INFO] [pool-1 thread 2] alarm cleared: disk usage back to 40 percent", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 09:29:21] [req-1c9aef2f - - -] metadata journal truncated at offset bfa8e54efab", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 10:59:58] [INFO] [event event dispatcher77] write 407 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 07:00:02] [INFO] [AsyncDispatcher event handler] disk 86638 smart health status ok, temperature 51210 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 16:48:05] [INFO] [pool-6 thread 24] checkpoint finished, elapsed 98260 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 01:15:03] [req-6398eaab - - -] receive heartbeat from node-79737, load 96 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 17:49:25] [INFO] [dispatcher dispatcher10] send audit event to kafka topic dsware-audit, seq=ef1e7d614695", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 02:14:52] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-93160, load 98 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 04:15:26] [INFO] [pool-4 thread 45] disk 38488 smart health status ok, temperature 83826 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 17:37:03] [req-6a5e7977 - - -] task quota.db submitted by user admin, priority 1787", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 03:31:18] [INFO] [pool pool42] failed to read block blk_a710250bbb8c, retry 79301 times", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 16:50:55] [INFO] [AsyncDispatcher event handler] certificate will expire in 93931 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 11:50:25] [INFO] [pool-6 thread 35] volume vol-3f2a changed state from active to degraded", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 17:13:34] [req-65ec8783 - - -] received message from 10.38724.22114.88522:184, dispatch to handler", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 08:32:34] [INFO] [pool pool dispatcher2] start to sync volume data, total 86143 chunks", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 21:20:34] [INFO] [AsyncDispatcher event handler] init module snap-7c begin, worker threads 11549", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 14:56:43] [INFO] [pool-2 thread 18] certificate will expire in 30146 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 02:37:12] [req-1c58e72d - - -] init module vol-3f2a begin, worker threads 79356", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 16:35:39] [INFO] [dispatcher for event49] received message from 10.96946.86008.1894:53604, dispatch to handler", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 14:53:11] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=28042", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 05:53:45] [INFO] [pool-4 thread 40] receive heartbeat from node-44749, load 79 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 15:53:53] [req-dd5670b2 - - -] connection reset by peer, socket fd=92847", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 17:09:09] [INFO] [event handler27] alarm cleared: disk usage back to 33 percent", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 15:50:07] [INFO] [AsyncDispatcher event handler] cache entry 282aa05389ea evicted, free slots 37423", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 04:18:04] [INFO] [pool-8 thread 44] update config key cfg.max.io to value 43120", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 12:40:05] [req-f5c93be - - -] write 38943 bytes to /data/dsware/task-991/chunk.dat", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 06:43:43] [INFO] [dispatcher dispatcher17] disk 46907 smart health status ok, temperature 77489 celsius", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 17:24:21] [INFO] [AsyncDispatcher event handler] certificate will expire in 84152 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 11:45:02] [INFO] [pool-2 thread 62] failed to read block blk_9c797d8328a5, retry 62294 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 01:57:52] [req-f83419b3 - - -] init module task-991 begin, worker threads 77520", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 14:19:52] [INFO] [pool pool event50] write 81698 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 23:29:19] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 84 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 12:17:39] [INFO] [pool-2 thread 60] task quota.db submitted by user admin, priority 56708", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 23:47:49] [req-6bbfa390 - - -] process request op=quota.db done in 11746 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 19:47:01] [INFO] [event for handler50] write 56636 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 00:55:50] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=89435", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 06:30:42] [INFO] [pool-3 thread 9] failed to read block blk_6cf3c9d6d9e1, retry 5748 times", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 20:25:51] [req-9cbd1cc2 - - -] disk 78499 smart health status ok, temperature 87542 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 13:12:34] [INFO] [dispatcher for22] failed to read block blk_9e54301c1798, retry 42808 times", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 12:37:39] [INFO] [AsyncDispatcher event handler] update config key quota.db to value 5204", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 05:07:11] [INFO] [pool-2 thread 34] connection reset by peer, socket fd=75310", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 22:55:59] [req-76e6ce0 - - -] volume task-991 changed state from active to degraded", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 00:12:52] [INFO] [handler for pool59] received message from 10.64008.37027.81438:56394, dispatch to handler", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 17:19:14] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 19439, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 16:44:06] [INFO] [pool-2 thread 55] write 43353 bytes to /data/dsware/task-991/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 04:20:19] [req-cafacdde - - -] task task-991 submitted by user admin, priority 44714", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 02:54:21] [INFO] [dispatcher pool for65] received message from 10.27045.22119.45823:85207, dispatch to handler", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 01:29:35] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 32253 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 02:12:57] [INFO] [pool-8 thread 24] alarm cleared: disk usage back to 81 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 07:45:34] [req-fb3051ff - - -] receive heartbeat from node-20233, load 44 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 20:02:42] [INFO] [pool dispatcher event3] failed to read block blk_484623f4a601, retry 12086 times", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 07:24:55] [INFO] [AsyncDispatcher event handler] init module snap-7c begin, worker threads 30909", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 18:45:40] [INFO] [pool-6 thread 61] start to sync volume data, total 20363 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 16:30:19] [req-521335b - - -] write 20573 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 01:50:05] [INFO] [dispatcher handler20] volume task-991 changed state from active to degraded", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 10:58:35] [INFO] [AsyncDispatcher event handler] update config key vol-3f2a to value 31117", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 10:37:34] [INFO] [pool-1 thread 41] disk 62238 smart health status ok, temperature 33116 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 02:20:21] [req-e71cfe72 - - -] volume quota.db changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 16:57:50] [INFO] [for for for63] cache entry a4ac813059a9 evicted, free slots 37738", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 11:42:25] [INFO] [AsyncDispatcher event handler] cache entry f87496110b6e evicted, free slots 48182", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 10:12:41] [INFO] [pool-8 thread 28] disk 13780 smart health status ok, temperature 42912 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 03:55:41] [req-5e0f984e - - -] received message from 10.9643.31571.55293:22028, dispatch to handler", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 13:25:05] [INFO] [event handler pool27] update config key vol-3f2a to value 90023", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 10:55:29] [INFO] [AsyncDispatcher event handler] process request op=cfg.max.io done in 4251 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 17:50:15] [INFO] [pool-9 thread 40] metadata journal truncated at offset 63a15941724b", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 06:56:56] [req-b687ff9 - - -] received message from 10.95479.95118.37260:8326, dispatch to handler", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 10:45:36] [INFO] [for pool26] receive heartbeat from node-98200, load 17 percent", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 01:58:56] [INFO] [AsyncDispatcher event handler] disk 35704 smart health status ok, temperature 50379 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 21:43:38] [INFO] [pool-1 thread 22] start to sync volume data, total 4850 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 05:16:34] [req-204fd56e - - -] cache entry 891ac56d17af evicted, free slots 24590", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 16:28:36] [INFO] [dispatcher event handler42] checkpoint finished, elapsed 67110 seconds", "body_start": 58, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 20:57:19] [INFO] [AsyncDispatcher event handler] cache entry b3a1efe823a7 evicted, free slots 51255", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 03:46:03] [INFO] [pool-5 thread 53] send audit event to kafka topic dsware-audit, seq=d7798291064c", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 23:33:06] [req-3d691792 - - -] task task-991 submitted by user admin, priority 63215", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 12:09:46] [INFO] [for dispatcher93] certificate will expire in 37437 days, renew required", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 20:42:47] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 5228 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 00:28:30] [INFO] [pool-2 thread 30] cache entry 98f43a50e24 evicted, free slots 13714", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 06:26:09] [req-3a605318 - - -] connection reset by peer, socket fd=42086", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 18:27:34] [INFO] [event handler event51] receive heartbeat from node-23213, load 40 percent", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 17:06:57] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset 9a550bc57fbf", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 00:57:43] [INFO] [pool-8 thread 62] receive heartbeat from node-48351, load 56 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 12:54:48] [req-c2a28c95 - - -] volume quota.db changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 09:22:09] [INFO] [event for89] receive heartbeat from node-41435, load 87 percent", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 02:11:13] [INFO] [AsyncDispatcher event handler] disk 47606 smart health status ok, temperature 76242 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 13:39:50] [INFO] [pool-1 thread 12] connection reset by peer, socket fd=82799", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 06:19:06] [req-8e4fe2e9 - - -] task task-991 submitted by user admin, priority 53229", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 14:38:47] [INFO] [handler pool handler40] process request op=quota.db done in 72749 ms", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 18:14:47] [INFO] [AsyncDispatcher event handler] received message from 10.71292.67325.21546:90037, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 15:13:10] [INFO] [pool-9 thread 14] write 97515 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 20:33:05] [req-fe9b1840 - - -] disk 43922 smart health status ok, temperature 68456 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 00:57:56] [INFO] [handler event86] process request op=task-991 done in 92268 ms", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 12:18:13] [INFO] [AsyncDispatcher event handler] task quota.db submitted by user admin, priority 23038", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 04:09:20] [INFO] [pool-7 thread 49] connection reset by peer, socket fd=42199", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 22:01:37] [req-c173f4ad - - -] connection reset by peer, socket fd=46064", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 22:09:57] [INFO] [for pool handler8] received message from 10.70453.72315.61497:98500, dispatch to handler", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 17:17:52] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=31d26a364591", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 21:09:27] [INFO] [pool-4 thread 57] init module quota.db begin, worker threads 89733", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 08:41:34] [req-b58f0f0b - - -] connection reset by peer, socket fd=32409", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 11:24:45] [INFO] [dispatcher pool event62] thread pool exhausted, active=6758 queued=94229 max=55911", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 23:18:21] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 78 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 17:39:38] [INFO] [pool-3 thread 37] received message from 10.52242.73291.36664:15122, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 07:37:03] [req-a8b3c361 - - -] metadata journal truncated at offset 7a4c906dd0f7", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 11:22:16] [INFO] [for for21] failed to read block blk_73d696df5166, retry 46594 times", "body_start": 41, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 10:03:59] [INFO] [AsyncDispatcher event handler] certificate will expire in 55220 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 19:34:19] [INFO] [pool-3 thread 10] update config key quota.db to value 54537", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 18:50:25] [req-7c4f67a9 - - -] alarm cleared: disk usage back to 16 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 10:59:04] [INFO] [pool for36] thread pool exhausted, active=18342 queued=30432 max=88580", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 20:00:18] [INFO] [AsyncDispatcher event handler] task snap-7c submitted by user admin, priority 74588", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 01:14:39] [INFO] [pool-7 thread 46] send audit event to kafka topic dsware-audit, seq=f5d66bd8944a", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 18:19:40] [req-8dd05ab6 - - -] receive heartbeat from node-29655, load 83 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 21:25:25] [INFO] [pool dispatcher dispatcher83] send audit event to kafka topic dsware-audit, seq=c03c7f41c170", "body_start": 60, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 06:44:43] [INFO] [AsyncDispatcher event handler] process request op=cfg.max.io done in 23945 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 17:10:09] [INFO] [pool-3 thread 13] thread pool exhausted, active=47230 queued=28480 max=52061", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 03:36:05] [req-39364a09 - - -] volume task-991 changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 16:06:53] [INFO] [dispatcher event33] process request op=snap-7c done in 14340 ms", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 23:07:46] [INFO] [AsyncDispatcher event handler] init module quota.db begin, worker threads 64758", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 21:28:15] [INFO] [pool-8 thread 46] disk 51875 smart health status ok, temperature 94798 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 11:44:59] [req-72541df4 - - -] process request op=quota.db done in 56502 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 14:37:59] [INFO] [event event for21] checkpoint finished, elapsed 26485 seconds", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 21:53:27] [INFO] [AsyncDispatcher event handler] disk 42181 smart health status ok, temperature 93557 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 22:45:11] [INFO] [pool-4 thread 36] update config key cfg.max.io to value 37459", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 03:01:49] [req-4a63a051 - - -] send audit event to kafka topic dsware-audit, seq=3e2ac82efe34", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 10:29:03] [INFO] [handler pool54] connection reset by peer, socket fd=99749", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 22:16:40] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=93097", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 01:57:57] [INFO] [pool-2 thread 2] alarm cleared: disk usage back to 63 percent", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 03:05:50] [req-356e6407 - - -] volume snap-7c changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 20:40:00] [INFO] [handler pool44] start to sync volume data, total 66857 chunks", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 13:41:14] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 41764, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 00:49:41] [INFO] [pool-3 thread 8] start to sync volume data, total 88537 chunks", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 11:36:38] [req-2776ccfb - - -] task task-991 submitted by user admin, priority 3421", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 11:50:27] [INFO] [event for95] disk 25861 smart health status ok, temperature 7823 celsius", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 12:21:59] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=23147", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 19:19:16] [INFO] [pool-9 thread 33] alarm cleared: disk usage back to 61 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 06:52:03] [req-f1af64a8 - - -] thread pool exhausted, active=5034 queued=21108 max=61461", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 21:04:08] [INFO] [for dispatcher event5] task task-991 submitted by user admin, priority 10148", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 11:30:08] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset 2de07f189896", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 18:17:15] [INFO] [pool-3 thread 31] volume vol-3f2a changed state from active to degraded", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 21:44:08] [req-94806ed1 - - -] cache entry 6f5a1ba99a7a evicted, free slots 12601", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 19:09:31] [INFO] [dispatcher dispatcher87] received message from 10.36209.16011.68105:95900, dispatch to handler", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 21:17:43] [INFO] [AsyncDispatcher event handler] received message from 10.92483.38087.38851:97838, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 18:43:38] [INFO] [pool-5 thread 24] init module task-991 begin, worker threads 53889", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 01:33:46] [req-1cf0f0dc - - -] receive heartbeat from node-99846, load 17 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 12:01:35] [INFO] [pool handler dispatcher9] alarm cleared: disk usage back to 60 percent", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 07:24:46] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=29591", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 04:09:14] [INFO] [pool-1 thread 42] alarm cleared: disk usage back to 71 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 16:33:59] [req-f51bf6c0 - - -] volume snap-7c changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 10:43:54] [INFO] [pool dispatcher handler61] certificate will expire in 68929 days, renew required", "body_start": 57, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 03:27:07] [INFO] [AsyncDispatcher event handler] task task-991 submitted by user admin, priority 67183", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 04:12:59] [INFO] [pool-6 thread 21] start to sync volume data, total 87060 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 17:05:23] [req-bd5681d4 - - -] update config key quota.db to value 40773", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 02:45:59] [INFO] [dispatcher dispatcher for68] connection reset by peer, socket fd=30837", "body_start": 59, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 12:01:46] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 14696 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 05:25:27] [INFO] [pool-6 thread 61] update config key quota.db to value 9812", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 15:23:56] [req-5de7df95 - - -] process request op=vol-3f2a done in 80944 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 10:01:15] [INFO] [for handler89] receive heartbeat from node-85650, load 56 percent", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 03:38:14] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=f94a1b07825e", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 10:13:44] [INFO] [pool-2 thread 34] certificate will expire in 58001 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 14:35:30] [req-c84d9b52 - - -] send audit event to kafka topic dsware-audit, seq=83f86b81b686", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 21:11:01] [INFO] [pool dispatcher86] volume vol-3f2a changed state from active to degraded", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 01:47:47] [INFO] [AsyncDispatcher event handler] certificate will expire in 41876 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 12:42:19] [INFO] [pool-2 thread 29] write 52956 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 23:54:05] [req-20d1cb45 - - -] update config key vol-3f2a to value 61681", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 02:53:33] [INFO] [for for pool58] start to sync volume data, total 31632 chunks", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 13:33:30] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-11953, load 9 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 23:27:04] [INFO] [pool-4 thread 42] init module snap-7c begin, worker threads 80498", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 14:35:42] [req-89c27cb5 - - -] alarm cleared: disk usage back to 25 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 14:23:02] [INFO] [for for93] received message from 10.93864.7212.95291:89271, dispatch to handler", "body_start": 41, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 10:23:30] [INFO] [AsyncDispatcher event handler] received message from 10.27766.3623.17204:56634, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 23:56:03] [INFO] [pool-3 thread 27] connection reset by peer, socket fd=11524", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 22:48:19] [req-b381e3a6 - - -] start to sync volume data, total 38836 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 15:02:14] [INFO] [for for handler46] receive heartbeat from node-38735, load 20 percent", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 13:13:38] [INFO] [AsyncDispatcher event handler] task quota.db submitted by user admin, priority 98225", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 20:20:37] [INFO] [pool-1 thread 1] process request op=snap-7c done in 65958 ms", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 21:20:41] [req-362c96e7 - - -] checkpoint finished, elapsed 26674 seconds", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 04:30:03] [INFO] [handler pool49] disk 84924 smart health status ok, temperature 53382 celsius", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 11:54:51] [INFO] [AsyncDispatcher event handler] process request op=snap-7c done in 85755 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 11:01:01] [INFO] [pool-7 thread 15] received message from 10.79692.49961.53934:46437, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 08:52:04] [req-7817f2a0 - - -] process request op=snap-7c done in 86267 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 03:21:03] [INFO] [pool event67] checkpoint finished, elapsed 85899 seconds", "body_start": 44, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 02:30:10] [INFO] [AsyncDispatcher event handler] volume vol-3f2a changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 02:43:20] [INFO] [pool-8 thread 48] certificate will expire in 54334 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 22:31:28] [req-cddd762e - - -] process request op=cfg.max.io done in 14490 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 20:50:22] [INFO] [handler pool dispatcher42] task task-991 submitted by user admin, priority 17532", "body_start": 57, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 05:20:54] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=47cf1447a7e6", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 12:05:54] [INFO] [pool-5 thread 9] task task-991 submitted by user admin, priority 73010", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 07:58:36] [req-c703ea39 - - -] connection reset by peer, socket fd=6887", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 06:39:04] [INFO] [for event57] volume vol-3f2a changed state from active to degraded", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 11:43:48] [INFO] [AsyncDispatcher event handler] volume vol-3f2a changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 22:33:10] [INFO] [pool-4 thread 19] cache entry a9385363347f evicted, free slots 46200", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 06:08:04] [req-d17ccb00 - - -] update config key cfg.max.io to value 24959", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 05:40:52] [INFO] [dispatcher event8] checkpoint finished, elapsed 7731 seconds", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 21:15:21] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 4540, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 17:29:10] [INFO] [pool-6 thread 21] received message from 10.92496.5080.61929:98002, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 20:48:03] [req-23827afd - - -] send audit event to kafka topic dsware-audit, seq=50cf4ff8e98b", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 00:00:31] [INFO] [handler handler49] thread pool exhausted, active=34120 queued=6356 max=94156", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 14:29:56] [INFO] [AsyncDispatcher event handler] volume cfg.max.io changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 02:04:48] [INFO] [pool-3 thread 25] disk 89362 smart health status ok, temperature 57816 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 02:44:57] [req-f4f94dc6 - - -] disk 3729 smart health status ok, temperature 75808 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 09:05:59] [INFO] [for dispatcher53] cache entry 55cee1d8c2ef evicted, free slots 91835", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 23:58:23] [INFO] [AsyncDispatcher event handler] update config key snap-7c to value 55810", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 20:40:06] [INFO] [pool-5 thread 46] process request op=task-991 done in 60833 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 01:26:18] [req-d66e51c4 - - -] write 59906 bytes to /data/dsware/task-991/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 09:51:20] [INFO] [dispatcher for38] alarm cleared: disk usage back to 83 percent", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 21:42:52] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=83876", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 15:00:25] [INFO] [pool-5 thread 54] certificate will expire in 97945 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 08:31:49] [req-a6dd3462 - - -] volume task-991 changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 12:41:36] [INFO] [for dispatcher handler39] alarm cleared: disk usage back to 16 percent", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 09:03:52] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-65725, load 63 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 05:14:28] [INFO] [pool-9 thread 59] metadata journal truncated at offset e91fcca2d0c", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 08:11:28] [req-1be169c3 - - -] certificate will expire in 89749 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 13:11:07] [INFO] [pool pool dispatcher7] cache entry 14e3c213f0ae evicted, free slots 76688", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 00:23:33] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=25256", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 19:42:48] [INFO] [pool-5 thread 48] send audit event to kafka topic dsware-audit, seq=a5e84316852d", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 17:19:39] [req-99d2471e - - -] cache entry 214458f8ff00 evicted, free slots 78008", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 11:52:26] [INFO] [pool dispatcher76] send audit event to kafka topic dsware-audit, seq=ed528c6d19b0", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 18:31:58] [INFO] [AsyncDispatcher event handler] certificate will expire in 47694 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 15:28:32] [INFO] [pool-9 thread 41] write 33379 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 11:16:56] [req-40484d0 - - -] thread pool exhausted, active=46562 queued=35153 max=22210", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 02:20:20] [INFO] [event event56] metadata journal truncated at offset 8d91efc2e324", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 12:57:31] [INFO] [AsyncDispatcher event handler] cache entry 53e73d38f891 evicted, free slots 23763", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 15:10:58] [INFO] [pool-7 thread 62] process request op=task-991 done in 5996 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 05:47:44] [req-b8cddc8d - - -] cache entry 23bb8b5a2886 evicted, free slots 40541", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 09:36:32] [INFO] [event handler59] init module vol-3f2a begin, worker threads 25178", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 11:59:29] [INFO] [AsyncDispatcher event handler] write 67108 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 09:30:35] [INFO] [pool-9 thread 3] cache entry f75a477d9359 evicted, free slots 7838", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 19:37:44] [req-460dde30 - - -] received message from 10.69832.42152.30726:58643, dispatch to handler", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 15:39:46] [INFO] [for dispatcher8] update config key snap-7c to value 12142", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 10:02:45] [INFO] [AsyncDispatcher event handler] volume task-991 changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 00:01:32] [INFO] [pool-5 thread 41] update config key vol-3f2a to value 40528", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 21:41:12] [req-665f768 - - -] volume task-991 changed state from active to degraded", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 17:24:31] [INFO] [dispatcher handler25] rpc call GetVolumeInfo returned code 70769, msg success", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 08:41:38] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=89086", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 08:46:59] [INFO] [pool-6 thread 64] write 62740 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 07:54:01] [req-7ceff66e - - -] volume task-991 changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 13:22:00] [INFO] [for event19] start to sync volume data, total 50800 chunks", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 06:20:40] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=43577", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 21:33:10] [INFO] [pool-1 thread 16] cache entry b6d49103bba0 evicted, free slots 31751", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 01:15:01] [req-a647eddc - - -] certificate will expire in 5694 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 05:02:28] [INFO] [dispatcher event82] disk 19142 smart health status ok, temperature 13675 celsius", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 01:41:49] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 58277, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 18:52:11] [INFO] [pool-9 thread 21] process request op=cfg.max.io done in 50640 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 10:07:50] [req-4a0d555c - - -] send audit event to kafka topic dsware-audit, seq=49992281f2c7", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 23:04:10] [INFO] [handler pool event71] connection reset by peer, socket fd=71859", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 18:25:11] [INFO] [AsyncDispatcher event handler] update config key vol-3f2a to value 51515", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 01:35:47] [INFO] [pool-3 thread 54] start to sync volume data, total 18049 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 20:18:15] [req-807c5062 - - -] volume snap-7c changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 00:45:24] [INFO] [handler pool pool33] rpc call GetVolumeInfo returned code 43959, msg success", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 09:33:57] [INFO] [AsyncDispatcher event handler] disk 34628 smart health status ok, temperature 62301 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 17:19:24] [INFO] [pool-7 thread 61] connection reset by peer, socket fd=92520", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 08:19:00] [req-42b3289e - - -] receive heartbeat from node-19008, load 12 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 00:14:14] [INFO] [dispatcher handler15] update config key quota.db to value 83939", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 14:27:52] [INFO] [AsyncDispatcher event handler] volume snap-7c changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 16:15:01] [INFO] [pool-2 thread 22] write 33603 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 11:15:08] [req-67a5cb11 - - -] start to sync volume data, total 41475 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 06:32:05] [INFO] [pool for16] init module quota.db begin, worker threads 90431", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 21:40:26] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 47 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 21:38:40] [INFO] [pool-3 thread 16] start to sync volume data, total 12352 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 08:54:32] [req-64ef7c1e - - -] process request op=vol-3f2a done in 12093 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 12:52:54] [INFO] [handler dispatcher for83] volume vol-3f2a changed state from active to degraded", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 20:17:32] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 42051, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 11:12:38] [INFO] [pool-1 thread 55] failed to read block blk_12f72fe60d6, retry 37319 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 17:10:40] [req-1787657d - - -] certificate will expire in 98977 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 15:04:17] [INFO] [for event18] disk 5283 smart health status ok, temperature 86058 celsius", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 06:29:13] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 69771 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 23:19:49] [INFO] [pool-5 thread 55] start to sync volume data, total 90409 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 13:55:55] [req-11295979 - - -] volume quota.db changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 10:38:18] [INFO] [dispatcher dispatcher53] metadata journal truncated at offset 9c0681fd90c2", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 15:07:34] [INFO] [AsyncDispatcher event handler] task snap-7c submitted by user admin, priority 61940", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 23:42:42] [INFO] [pool-1 thread 9] alarm cleared: disk usage back to 85 percent", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 06:34:53] [req-b1436006 - - -] alarm cleared: disk usage back to 20 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 20:14:16] [INFO] [for handler pool46] checkpoint finished, elapsed 56701 seconds", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 04:39:24] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 7567 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 00:10:43] [INFO] [pool-1 thread 55] cache entry 13ca775b2ded evicted, free slots 83284", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 08:24:23] [req-81c1f861 - - -] alarm cleared: disk usage back to 59 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 17:26:31] [INFO] [for handler handler61] cache entry 69957ceb5115 evicted, free slots 66926", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 16:09:21] [INFO] [AsyncDispatcher event handler] certificate will expire in 51514 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 11:26:42] [INFO] [pool-7 thread 53] task snap-7c submitted by user admin, priority 91247", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 12:15:25] [req-fb547552 - - -] certificate will expire in 84533 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 11:05:25] [INFO] [event event pool57] rpc call GetVolumeInfo returned code 39061, msg success", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 14:46:32] [INFO] [AsyncDispatcher event handler] init module task-991 begin, worker threads 44552", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 03:29:33] [INFO] [pool-3 thread 6] cache entry efe30c95cdeb evicted, free slots 10828", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 23:47:35] [req-a0e1bf4c - - -] thread pool exhausted, active=44139 queued=59931 max=61673", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 07:25:58] [INFO] [dispatcher dispatcher handler92] write 84631 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 63, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 08:15:22] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=93020", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 02:43:34] [INFO] [pool-5 thread 53] update config key vol-3f2a to value 52837", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 01:21:48] [req-2fa90a92 - - -] write 24935 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 16:04:10] [INFO] [event event98] cache entry a6aa2b9b80c6 evicted, free slots 53854", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 06:06:16] [INFO] [AsyncDispatcher event handler] process request op=task-991 done in 9914 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 12:38:11] [INFO] [pool-4 thread 8] task cfg.max.io submitted by user admin, priority 97829", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 10:06:04] [req-3ba4a69c - - -] update config key task-991 to value 45996", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 05:42:09] [INFO] [handler for pool5] volume quota.db changed state from active to degraded", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 19:53:59] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 56 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 06:17:07] [INFO] [pool-9 thread 39] receive heartbeat from node-78758, load 62 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 01:53:25] [req-c0a9eee2 - - -] task cfg.max.io submitted by user admin, priority 97786", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 00:10:41] [INFO] [dispatcher event dispatcher43] volume vol-3f2a changed state from active to degraded", "body_start": 61, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 17:37:16] [INFO] [AsyncDispatcher event handler] write 79281 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 08:15:37] [INFO] [pool-2 thread 28] process request op=task-991 done in 90510 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 17:18:50] [req-7b18360c - - -] process request op=vol-3f2a done in 47786 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 07:55:41] [INFO] [handler pool pool64] process request op=vol-3f2a done in 16804 ms", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 11:49:54] [INFO] [AsyncDispatcher event handler] update config key task-991 to value 53554", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 12:11:34] [INFO] [pool-2 thread 58] cache entry c74b59a0c94f evicted, free slots 19440", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 15:56:55] [req-82d2255b - - -] write 74503 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 12:23:23] [INFO] [for handler31] disk 15412 smart health status ok, temperature 76689 celsius", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 04:27:43] [INFO] [AsyncDispatcher event handler] write 37588 bytes to /data/dsware/task-991/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 21:08:21] [INFO] [pool-8 thread 21] send audit event to kafka topic dsware-audit, seq=d878d4b841f2", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 04:24:23] [req-9f880bbd - - -] start to sync volume data, total 727 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 01:21:08] [INFO] [handler dispatcher84] disk 81145 smart health status ok, temperature 97039 celsius", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 05:57:24] [INFO] [AsyncDispatcher event handler] certificate will expire in 73034 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 19:32:14] [INFO] [pool-1 thread 26] certificate will expire in 61081 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 15:16:24] [req-f8b9ea69 - - -] cache entry d3adb286002f evicted, free slots 1235", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 21:36:46] [INFO] [handler handler82] alarm cleared: disk usage back to 21 percent", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 01:14:11] [INFO] [AsyncDispatcher event handler] task quota.db submitted by user admin, priority 22660", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 10:58:04] [INFO] [pool-5 thread 36] process request op=quota.db done in 66565 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 22:15:19] [req-ef7e80e2 - - -] disk 17491 smart health status ok, temperature 30686 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 03:34:35] [INFO] [handler for for20] received message from 10.13840.83041.51115:53834, dispatch to handler", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 07:11:48] [INFO] [AsyncDispatcher event handler] certificate will expire in 58947 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 23:53:27] [INFO] [pool-8 thread 36] received message from 10.46048.24193.65924:49606, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 00:18:47] [req-628647f4 - - -] volume quota.db changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 13:06:45] [INFO] [dispatcher event handler25] update config key vol-3f2a to value 78627", "body_start": 58, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 17:03:08] [INFO] [AsyncDispatcher event handler] certificate will expire in 53966 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 06:51:22] [INFO] [pool-6 thread 38] alarm cleared: disk usage back to 38 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 23:14:02] [req-2a3e27ae - - -] connection reset by peer, socket fd=17633", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 06:37:25] [INFO] [event dispatcher dispatcher57] receive heartbeat from node-7764, load 24 percent", "body_start": 61, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 05:13:45] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-19475, load 65 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 19:50:44] [INFO] [pool-7 thread 59] certificate will expire in 82380 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 03:15:07] [req-4d8da55a - - -] connection reset by peer, socket fd=37986", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 10:53:37] [INFO] [dispatcher event12] update config key cfg.max.io to value 44193", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 13:40:29] [INFO] [AsyncDispatcher event handler] received message from 10.80243.99615.32535:94412, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 14:44:56] [INFO] [pool-9 thread 59] connection reset by peer, socket fd=37975", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 04:01:33] [req-c2f4f88 - - -] send audit event to kafka topic dsware-audit, seq=483d99944d69", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 16:37:51] [INFO] [pool dispatcher46] write 33968 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 11:28:20] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 85 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 23:23:50] [INFO] [pool-3 thread 30] receive heartbeat from node-59367, load 52 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 03:05:28] [req-81fedb6 - - -] cache entry b424f480692a evicted, free slots 32064", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 21:52:13] [INFO] [handler event34] alarm cleared: disk usage back to 6 percent", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 00:54:20] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 18985 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 10:34:11] [INFO] [pool-2 thread 43] write 90324 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 06:51:40] [req-3db2c161 - - -] start to sync volume data, total 7086 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 13:57:48] [INFO] [for dispatcher for24] alarm cleared: disk usage back to 45 percent", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 18:03:02] [INFO] [AsyncDispatcher event handler] write 60583 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 05:35:45] [INFO] [pool-5 thread 57] process request op=task-991 done in 59393 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 14:04:30] [req-8975fe5d - - -] alarm cleared: disk usage back to 65 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 10:48:41] [INFO] [handler for75] send audit event to kafka topic dsware-audit, seq=41416722da10", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 15:06:09] [INFO] [AsyncDispatcher event handler] process request op=cfg.max.io done in 32885 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 09:50:47] [INFO] [pool-2 thread 41] disk 97274 smart health status ok, temperature 89720 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 01:12:16] [req-5110b31d - - -] connection reset by peer, socket fd=97156", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 03:53:02] [INFO] [event dispatcher61] disk 19036 smart health status ok, temperature 73542 celsius", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 03:56:58] [INFO] [AsyncDispatcher event handler] update config key cfg.max.io to value 30554", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 16:05:17] [INFO] [pool-6 thread 40] checkpoint finished, elapsed 99283 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 09:23:13] [req-87d4b08 - - -] init module vol-3f2a begin, worker threads 62670", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 09:26:54] [INFO] [for pool for95] alarm cleared: disk usage back to 90 percent", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 01:24:24] [INFO] [AsyncDispatcher event handler] write 89697 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 13:08:19] [INFO] [pool-2 thread 46] write 58366 bytes to /data/dsware/task-991/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 10:13:20] [req-6ea2663c - - -] receive heartbeat from node-10478, load 40 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 10:50:42] [INFO] [event handler60] volume vol-3f2a changed state from active to degraded", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 02:02:14] [INFO] [AsyncDispatcher event handler] disk 27768 smart health status ok, temperature 47351 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 01:21:38] [INFO] [pool-4 thread 55] checkpoint finished, elapsed 21938 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 15:21:48] [req-192a4cbc - - -] init module task-991 begin, worker threads 82670", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 08:42:32] [INFO] [pool event dispatcher80] update config key task-991 to value 62401", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 14:10:06] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=7f4f8cfc3521", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 19:03:48] [INFO] [pool-2 thread 31] checkpoint finished, elapsed 88091 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 15:05:44] [req-f0689159 - - -] task snap-7c submitted by user admin, priority 17638", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 13:41:34] [INFO] [for handler dispatcher92] metadata journal truncated at offset a37b7eaa8951", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 14:11:32] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 62 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 06:49:36] [INFO] [pool-3 thread 7] cache entry 7c551fbd171c evicted, free slots 1869", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 11:52:09] [req-892f8098 - - -] metadata journal truncated at offset b29451500f15", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 12:57:10] [INFO] [handler handler69] metadata journal truncated at offset da394b74b18f", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 20:08:39] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 21542 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 05:47:15] [INFO] [pool-1 thread 38] connection reset by peer, socket fd=60187", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 11:50:03] [req-c82c8657 - - -] alarm cleared: disk usage back to 91 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 23:05:04] [INFO] [for handler69] disk 996 smart health status ok, temperature 65599 celsius", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 05:43:26] [INFO] [AsyncDispatcher event handler] write 21955 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 14:41:51] [INFO] [pool-5 thread 15] connection reset by peer, socket fd=72222", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 11:46:02] [req-2cfdbf46 - - -] cache entry 42a0fbdf30c evicted, free slots 53930", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 09:01:57] [INFO] [event event40] volume task-991 changed state from active to degraded", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 01:25:27] [INFO] [AsyncDispatcher event handler] task task-991 submitted by user admin, priority 60476", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 15:45:46] [INFO] [pool-1 thread 39] failed to read block blk_2111f71e60bb, retry 23523 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 04:05:03] [req-432eacbd - - -] thread pool exhausted, active=11850 queued=1249 max=62403", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 12:09:35] [INFO] [for handler dispatcher47] disk 66734 smart health status ok, temperature 79846 celsius", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 21:05:48] [INFO] [AsyncDispatcher event handler] failed to read block blk_fa688683762e, retry 91826 times", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 07:22:49] [INFO] [pool-8 thread 16] failed to read block blk_422a826d76a0, retry 29689 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 22:42:31] [req-39bcf001 - - -] thread pool exhausted, active=41854 queued=30912 max=71786", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 03:52:08] [INFO] [dispatcher for dispatcher26] process request op=task-991 done in 46364 ms", "body_start": 59, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 17:37:56] [INFO] [AsyncDispatcher event handler] init module snap-7c begin, worker threads 91336", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 18:01:13] [INFO] [pool-9 thread 3] connection reset by peer, socket fd=25835", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 00:10:27] [req-e9d898b0 - - -] rpc call GetVolumeInfo returned code 99708, msg success", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 04:18:16] [INFO] [event dispatcher31] connection reset by peer, socket fd=44437", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 04:39:48] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-95362, load 28 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 11:03:51] [INFO] [pool-4 thread 19] init module cfg.max.io begin, worker threads 87725", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 21:11:45] [req-a7d43087 - - -] process request op=cfg.max.io done in 69051 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 03:48:10] [INFO] [dispatcher event pool30] rpc call GetVolumeInfo returned code 82258, msg success", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 10:22:16] [INFO] [AsyncDispatcher event handler] cache entry 9dcc68a46596 evicted, free slots 20861", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 02:59:52] [INFO] [pool-5 thread 54] volume cfg.max.io changed state from active to degraded", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 19:55:35] [req-fa305be3 - - -] thread pool exhausted, active=43166 queued=75644 max=4689", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 15:36:32] [INFO] [dispatcher pool handler41] cache entry e4674d6f2b09 evicted, free slots 12304", "body_start": 57, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 17:27:44] [INFO] [AsyncDispatcher event handler] write 11140 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 20:55:35] [INFO] [pool-9 thread 18] update config key vol-3f2a to value 7522", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 17:52:34] [req-ab1bcb1d - - -] failed to read block blk_ed1f35f58674, retry 21837 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 00:58:21] [INFO] [handler dispatcher38] task vol-3f2a submitted by user admin, priority 86079", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 01:12:13] [INFO] [AsyncDispatcher event handler] cache entry cfbd4ec71243 evicted, free slots 44785", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 13:15:51] [INFO] [pool-4 thread 12] received message from 10.54045.18128.69697:73930, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 04:52:32] [req-918fdcc9 - - -] start to sync volume data, total 64671 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 19:07:41] [INFO] [event pool pool68] write 23705 bytes to /data/dsware/task-991/chunk.dat", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 04:06:18] [INFO] [AsyncDispatcher event handler] received message from 10.56115.86143.5794:31300, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 22:41:05] [INFO] [pool-9 thread 50] volume task-991 changed state from active to degraded", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 16:54:00] [req-11a37b6c - - -] task task-991 submitted by user admin, priority 33731", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 16:22:26] [INFO] [dispatcher pool38] process request op=cfg.max.io done in 88650 ms", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 00:18:05] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset 34f0fac2e2aa", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 02:07:35] [INFO] [pool-5 thread 58] received message from 10.72554.25611.60965:37029, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 17:08:13] [req-5e95ee63 - - -] certificate will expire in 93696 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 16:10:10] [INFO] [pool pool34] receive heartbeat from node-69927, load 26 percent", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 11:36:50] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-61561, load 90 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 14:04:03] [INFO] [pool-4 thread 60] disk 49581 smart health status ok, temperature 14350 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 22:32:06] [req-49c4a5e3 - - -] send audit event to kafka topic dsware-audit, seq=4d1614ba630d", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 18:13:37] [INFO] [event handler7] thread pool exhausted, active=81096 queued=76386 max=38988", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 05:16:09] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=b10bdbb67986", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 15:18:10] [INFO] [pool-6 thread 13] connection reset by peer, socket fd=17889", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 18:57:05] [req-890baa38 - - -] cache entry c7254ee4840f evicted, free slots 65194", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 18:28:37] [INFO] [for handler for25] process request op=snap-7c done in 25550 ms", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 11:55:17] [INFO] [AsyncDispatcher event handler] process request op=cfg.max.io done in 79408 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 20:57:21] [INFO] [pool-3 thread 10] update config key vol-3f2a to value 84300", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 19:09:53] [req-fc614742 - - -] rpc call GetVolumeInfo returned code 18344, msg success", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 03:20:05] [INFO] [dispatcher for pool63] init module task-991 begin, worker threads 17631", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 00:55:16] [INFO] [AsyncDispatcher event handler] task task-991 submitted by user admin, priority 84529", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 22:55:18] [INFO] [pool-4 thread 14] volume task-991 changed state from active to degraded", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 03:46:04] [req-9ada2d82 - - -] failed to read block blk_304d3a9056d8, retry 76438 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 05:35:12] [INFO] [event handler72] send audit event to kafka topic dsware-audit, seq=f307c0764803", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 14:49:59] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=38144", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 14:24:03] [INFO] [pool-2 thread 13] write 72033 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 02:41:42] [req-64cd6c4f - - -] connection reset by peer, socket fd=49955", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 20:32:26] [INFO] [event for event25] certificate will expire in 27127 days, renew required", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 06:12:10] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset 3d3c03e6720f", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 09:15:14] [INFO] [pool-7 thread 11] certificate will expire in 68134 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 13:18:26] [req-9325fbb1 - - -] alarm cleared: disk usage back to 72 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 16:53:34] [INFO] [handler dispatcher for77] metadata journal truncated at offset 272c3f054f8e", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 12:10:01] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 49694 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 08:36:43] [INFO] [pool-3 thread 28] connection reset by peer, socket fd=89243", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 18:39:54] [req-c33c469e - - -] disk 41604 smart health status ok, temperature 61356 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 01:19:56] [INFO] [handler pool pool35] write 23072 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 07:39:55] [INFO] [AsyncDispatcher event handler] process request op=quota.db done in 43791 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 17:17:09] [INFO] [pool-2 thread 4] task task-991 submitted by user admin, priority 84192", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 21:52:07] [req-6ff53d84 - - -] start to sync volume data, total 25137 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 18:46:50] [INFO] [for for for60] thread pool exhausted, active=11008 queued=1506 max=30648", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 18:05:51] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 52035 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 14:00:07] [INFO] [pool-3 thread 10] task task-991 submitted by user admin, priority 10217", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 01:56:58] [req-1d06f2d6 - - -] task task-991 submitted by user admin, priority 69169", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 14:45:37] [INFO] [pool event pool3] write 85979 bytes to /data/dsware/task-991/chunk.dat", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 03:45:58] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-43069, load 30 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 23:30:55] [INFO] [pool-2 thread 54] write 30774 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 17:50:17] [req-7c922bd7 - - -] rpc call GetVolumeInfo returned code 76467, msg success", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 21:45:46] [INFO] [dispatcher handler15] checkpoint finished, elapsed 11407 seconds", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 22:41:48] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=49924 queued=17641 max=78020", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 00:08:43] [INFO] [pool-1 thread 23] alarm cleared: disk usage back to 67 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 04:59:19] [req-88fca18 - - -] failed to read block blk_f6ce9fccd30a, retry 87610 times", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 21:08:03] [INFO] [for pool15] write 49777 bytes to /data/dsware/task-991/chunk.dat", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 06:27:54] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=97411 queued=59323 max=40252", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 06:49:18] [INFO] [pool-4 thread 31] receive heartbeat from node-53697, load 73 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 05:46:10] [req-aeda4b60 - - -] alarm cleared: disk usage back to 16 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 16:54:44] [INFO] [dispatcher pool70] checkpoint finished, elapsed 57313 seconds", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 04:44:20] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 23261 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 02:49:28] [INFO] [pool-1 thread 51] volume snap-7c changed state from active to degraded", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 07:41:04] [req-96798cd3 - - -] receive heartbeat from node-44692, load 72 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 13:06:06] [INFO] [for dispatcher22] write 87234 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 18:15:47] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=96334 queued=75831 max=21417", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 23:09:54] [INFO] [pool-4 thread 61] send audit event to kafka topic dsware-audit, seq=421d66ae058", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 15:00:36] [req-3134f1e6 - - -] start to sync volume data, total 13512 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 11:29:12] [INFO] [for event69] receive heartbeat from node-16861, load 88 percent", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 19:20:31] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=70067 queued=32710 max=64801", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 14:38:22] [INFO] [pool-4 thread 60] send audit event to kafka topic dsware-audit, seq=1532c84df71", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 04:22:57] [req-3f014066 - - -] certificate will expire in 64179 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 12:54:47] [INFO] [pool pool21] start to sync volume data, total 76110 chunks", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 09:35:03] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=62060", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 16:52:08] [INFO] [pool-2 thread 57] init module snap-7c begin, worker threads 53194", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 01:21:38] [req-6aa75320 - - -] write 98648 bytes to /data/dsware/task-991/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 17:55:14] [INFO] [dispatcher pool68] task vol-3f2a submitted by user admin, priority 77080", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 20:52:58] [INFO] [AsyncDispatcher event handler] init module task-991 begin, worker threads 40704", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 04:39:24] [INFO] [pool-7 thread 53] failed to read block blk_7ed17375a5b2, retry 75889 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 06:34:18] [req-55d541b - - -] checkpoint finished, elapsed 98102 seconds", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 13:09:13] [INFO] [event for92] send audit event to kafka topic dsware-audit, seq=9d04ade448e3", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 20:18:38] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 83242 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 11:07:49] [INFO] [pool-5 thread 42] received message from 10.98441.60237.94544:69562, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 22:39:16] [req-27e1313 - - -] certificate will expire in 12106 days, renew required", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 02:21:03] [INFO] [handler for event56] failed to read block blk_3cf44a16894c, retry 94025 times", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 21:27:11] [INFO] [AsyncDispatcher event handler] volume cfg.max.io changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 22:44:28] [INFO] [pool-2 thread 52] received message from 10.18055.70568.69227:71086, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 04:30:46] [req-44ea70ea - - -] start to sync volume data, total 8028 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 03:29:56] [INFO] [handler event dispatcher29] task cfg.max.io submitted by user admin, priority 91454", "body_start": 58, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 13:33:29] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=c7f609a57725", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 00:58:53] [INFO] [pool-2 thread 56] metadata journal truncated at offset fa2e598a05a6", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 07:10:41] [req-f4c2aeb - - -] metadata journal truncated at offset 7bdfe343af87", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 01:14:18] [INFO] [event event event60] process request op=cfg.max.io done in 45616 ms", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 14:19:22] [INFO] [AsyncDispatcher event handler] received message from 10.84461.72343.75652:34925, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 10:48:40] [INFO] [pool-9 thread 28] start to sync volume data, total 50636 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 23:59:31] [req-72d49603 - - -] failed to read block blk_3ea1042048c4, retry 20864 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 04:49:57] [INFO] [dispatcher dispatcher handler99] cache entry 3b53d3327019 evicted, free slots 57057", "body_start": 63, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 06:18:14] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 78529, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 19:15:01] [INFO] [pool-4 thread 8] connection reset by peer, socket fd=18680", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 05:13:51] [req-9b63211f - - -] received message from 10.49535.11829.77199:31349, dispatch to handler", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 10:29:22] [INFO] [for pool pool63] alarm cleared: disk usage back to 56 percent", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 18:12:33] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-18860, load 62 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 19:55:53] [INFO] [pool-3 thread 7] task snap-7c submitted by user admin, priority 2732", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 00:16:55] [req-bac85e2f - - -] certificate will expire in 16126 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 10:41:30] [INFO] [for handler dispatcher64] process request op=task-991 done in 44647 ms", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 20:20:56] [INFO] [AsyncDispatcher event handler] volume snap-7c changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 12:42:09] [INFO] [pool-2 thread 43] failed to read block blk_c4ecb83b50b9, retry 9630 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 05:52:57] [req-2857979c - - -] volume cfg.max.io changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 05:48:40] [INFO] [dispatcher for dispatcher38] init module snap-7c begin, worker threads 83041", "body_start": 59, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 00:29:41] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 37662 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 08:24:49] [INFO] [pool-3 thread 29] checkpoint finished, elapsed 88878 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 23:12:41] [req-cd3dbf3a - - -] write 89417 bytes to /data/dsware/task-991/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 12:16:08] [INFO] [event handler80] start to sync volume data, total 621 chunks", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 20:30:21] [INFO] [AsyncDispatcher event handler] received message from 10.72231.96183.2891:86339, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 05:56:28] [INFO] [pool-6 thread 51] cache entry 52805de9f369 evicted, free slots 15861", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 19:46:03] [req-8c813a7a - - -] volume snap-7c changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 16:00:39] [INFO] [event for event97] process request op=vol-3f2a done in 23090 ms", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 07:11:12] [INFO] [AsyncDispatcher event handler] received message from 10.86443.68577.26822:38105, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 18:22:24] [INFO] [pool-1 thread 14] alarm cleared: disk usage back to 22 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 18:46:01] [req-2baf3627 - - -] checkpoint finished, elapsed 76453 seconds", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 02:39:21] [INFO] [for dispatcher56] disk 8517 smart health status ok, temperature 14196 celsius", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 02:22:30] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-89019, load 50 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 14:38:41] [INFO] [pool-2 thread 38] start to sync volume data, total 85835 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 03:12:17] [req-afce1c8a - - -] start to sync volume data, total 13234 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 11:46:48] [INFO] [handler event46] failed to read block blk_602a79396424, retry 46139 times", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 17:12:36] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-68538, load 61 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 16:33:55] [INFO] [pool-3 thread 22] volume vol-3f2a changed state from active to degraded", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 11:16:09] [req-5a5fb90a - - -] write 79420 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 12:31:26] [INFO] [for pool33] disk 53622 smart health status ok, temperature 83910 celsius", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 00:26:59] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 18 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 01:57:29] [INFO] [pool-1 thread 48] write 46804 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 23:55:56] [req-2c579a14 - - -] connection reset by peer, socket fd=12474", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 18:15:03] [INFO] [event dispatcher handler76] receive heartbeat from node-7135, load 50 percent", "body_start": 58, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 02:43:39] [INFO] [AsyncDispatcher event handler] process request op=snap-7c done in 2673 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 03:16:39] [INFO] [pool-3 thread 58] checkpoint finished, elapsed 63534 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 04:05:32] [req-3338e24c - - -] checkpoint finished, elapsed 30357 seconds", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 05:09:11] [INFO] [handler dispatcher for53] failed to read block blk_e51fc26593b4, retry 32624 times", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 04:59:03] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 63481, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 19:09:34] [INFO] [pool-7 thread 32] checkpoint finished, elapsed 70372 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 11:03:35] [req-14744645 - - -] receive heartbeat from node-68939, load 68 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 07:44:18] [INFO] [event dispatcher44] write 62418 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 22:30:02] [INFO] [AsyncDispatcher event handler] certificate will expire in 54631 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 09:31:31] [INFO] [pool-9 thread 57] disk 2511 smart health status ok, temperature 90542 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 19:09:47] [req-31735251 - - -] init module quota.db begin, worker threads 26196", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 00:34:42] [INFO] [event for dispatcher25] thread pool exhausted, active=44812 queued=6036 max=32266", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 10:42:17] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 8676 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 20:35:26] [INFO] [pool-9 thread 10] metadata journal truncated at offset fdbdff7a8f11", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 02:33:04] [req-554de1a1 - - -] write 54021 bytes to /data/dsware/task-991/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 02:55:29] [INFO] [for dispatcher12] rpc call GetVolumeInfo returned code 21383, msg success", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 02:11:56] [INFO] [AsyncDispatcher event handler] init module task-991 begin, worker threads 71665", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 16:09:50] [INFO] [pool-8 thread 10] metadata journal truncated at offset 4e0b260fda08", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 01:38:22] [req-77b488b - - -] cache entry 420deac3e462 evicted, free slots 61729", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 20:56:43] [INFO] [for pool pool77] rpc call GetVolumeInfo returned code 89141, msg success", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 15:31:53] [INFO] [AsyncDispatcher event handler] init module task-991 begin, worker threads 38296", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 19:49:32] [INFO] [pool-8 thread 61] checkpoint finished, elapsed 79929 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 08:16:41] [req-263806fe - - -] start to sync volume data, total 92781 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 13:47:33] [INFO] [handler event dispatcher67] failed to read block blk_f1c8732af94d, retry 54215 times", "body_start": 58, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 08:28:40] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=6671810e478b", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 22:48:44] [INFO] [pool-3 thread 36] write 72830 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 04:13:35] [req-3b8ad25 - - -] write 86163 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 13:39:33] [INFO] [dispatcher pool handler34] connection reset by peer, socket fd=31724", "body_start": 57, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 21:11:43] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset 1d7ed985e3ff", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 03:40:29] [INFO] [pool-5 thread 47] connection reset by peer, socket fd=7984", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 14:27:09] [req-34a821e4 - - -] write 99668 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 19:23:34] [INFO] [pool for for77] update config key quota.db to value 96341", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 23:47:25] [INFO] [AsyncDispatcher event handler] disk 77671 smart health status ok, temperature 71883 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 05:55:14] [INFO] [pool-5 thread 30] cache entry 522e0f801190 evicted, free slots 62760", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 18:55:14] [req-b6443fb7 - - -] connection reset by peer, socket fd=72353", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 12:27:20] [INFO] [for pool43] send audit event to kafka topic dsware-audit, seq=f921c478c00c", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 11:10:21] [INFO] [AsyncDispatcher event handler] volume vol-3f2a changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 19:09:41] [INFO] [pool-8 thread 62] metadata journal truncated at offset c9899ac5eb7e", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 19:11:34] [req-49aa0e91 - - -] cache entry 1ff08433f59a evicted, free slots 5865", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 11:12:50] [INFO] [handler handler59] checkpoint finished, elapsed 81574 seconds", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 16:18:40] [INFO] [AsyncDispatcher event handler] init module snap-7c begin, worker threads 95052", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 23:50:10] [INFO] [pool-4 thread 9] process request op=cfg.max.io done in 80914 ms", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 09:38:31] [req-b006d51e - - -] certificate will expire in 3542 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 11:59:20] [INFO] [pool for dispatcher3] checkpoint finished, elapsed 77951 seconds", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 23:28:34] [INFO] [AsyncDispatcher event handler] update config key vol-3f2a to value 18058", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 22:42:48] [INFO] [pool-8 thread 46] receive heartbeat from node-45383, load 99 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 07:26:08] [req-924206f3 - - -] rpc call GetVolumeInfo returned code 84210, msg success", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 08:17:03] [INFO] [for for event80] checkpoint finished, elapsed 50224 seconds", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 00:36:55] [INFO] [AsyncDispatcher event handler] process request op=vol-3f2a done in 19235 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 06:36:48] [INFO] [pool-9 thread 20] start to sync volume data, total 95417 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 06:00:12] [req-c982f3c5 - - -] alarm cleared: disk usage back to 34 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 13:14:16] [INFO] [for for3] certificate will expire in 89900 days, renew required", "body_start": 40, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 20:51:41] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 10 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 02:30:21] [INFO] [pool-5 thread 26] write 60379 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 06:06:41] [req-476679c4 - - -] checkpoint finished, elapsed 14979 seconds", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 13:40:03] [INFO] [for dispatcher pool55] metadata journal truncated at offset aabe1b8f5f33", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 18:03:35] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 29820 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 02:23:02] [INFO] [pool-7 thread 52] failed to read block blk_9b3f394eeb20, retry 65311 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 09:20:07] [req-15f62a42 - - -] update config key task-991 to value 70640", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 14:54:39] [INFO] [for event dispatcher22] write 74332 bytes to /data/dsware/task-991/chunk.dat", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 01:04:49] [INFO] [AsyncDispatcher event handler] cache entry d72eb3ec1973 evicted, free slots 36165", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 01:46:36] [INFO] [pool-6 thread 53] certificate will expire in 45735 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 04:47:58] [req-56f25305 - - -] write 48276 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 08:22:22] [INFO] [event event pool9] certificate will expire in 30326 days, renew required", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 07:17:14] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 37 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 06:31:20] [INFO] [pool-5 thread 31] send audit event to kafka topic dsware-audit, seq=fcc52853a50e", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 12:35:56] [req-f5e6b03 - - -] connection reset by peer, socket fd=62982", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 14:04:48] [INFO] [event for pool4] send audit event to kafka topic dsware-audit, seq=f6e31132ddf6", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 04:14:02] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=43111", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 13:37:30] [INFO] [pool-5 thread 4] failed to read block blk_34c334c47764, retry 82395 times", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 10:18:50] [req-7ef0d4fb - - -] task task-991 submitted by user admin, priority 40028", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 19:32:05] [INFO] [dispatcher pool11] volume quota.db changed state from active to degraded", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 13:23:55] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-47912, load 49 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 09:16:20] [INFO] [pool-9 thread 26] receive heartbeat from node-95390, load 41 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 06:29:39] [req-f658ed96 - - -] process request op=cfg.max.io done in 68769 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 19:07:30] [INFO] [event handler23] connection reset by peer, socket fd=87616", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 19:58:10] [INFO] [AsyncDispatcher event handler] task quota.db submitted by user admin, priority 12667", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 13:56:25] [INFO] [pool-9 thread 50] failed to read block blk_d3a8f24e3b8, retry 43186 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 22:12:10] [req-4face598 - - -] cache entry 5ba5bd898ac3 evicted, free slots 2374", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 17:03:07] [INFO] [for handler20] received message from 10.60809.93686.12505:30731, dispatch to handler", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 12:40:47] [INFO] [AsyncDispatcher event handler] disk 45351 smart health status ok, temperature 42710 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 08:34:50] [INFO] [pool-8 thread 30] certificate will expire in 6277 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 07:13:38] [req-de93a77b - - -] process request op=snap-7c done in 68592 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 20:45:16] [INFO] [pool pool24] metadata journal truncated at offset 98feb8d11ce3", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 03:14:09] [INFO] [AsyncDispatcher event handler] process request op=vol-3f2a done in 8837 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 14:46:09] [INFO] [pool-4 thread 49] thread pool exhausted, active=76215 queued=36892 max=89668", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 09:12:51] [req-87ff8fe4 - - -] checkpoint finished, elapsed 29306 seconds", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 17:03:32] [INFO] [handler dispatcher dispatcher2] volume vol-3f2a changed state from active to degraded", "body_start": 62, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 09:32:03] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=55215", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 13:34:30] [INFO] [pool-7 thread 23] start to sync volume data, total 67250 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 05:45:11] [req-b4ada9c6 - - -] update config key vol-3f2a to value 93908", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 10:58:29] [INFO] [handler event30] alarm cleared: disk usage back to 59 percent", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 18:32:23] [INFO] [AsyncDispatcher event handler] update config key vol-3f2a to value 52073", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 16:49:24] [INFO] [pool-4 thread 19] alarm cleared: disk usage back to 87 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 13:49:32] [req-a0c22056 - - -] process request op=cfg.max.io done in 32324 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 15:07:32] [INFO] [dispatcher dispatcher handler84] task cfg.max.io submitted by user admin, priority 92943", "body_start": 63, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 13:24:40] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=a7d3df674fe2", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 14:04:57] [INFO] [pool-9 thread 29] received message from 10.71858.5919.61136:15669, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 19:23:29] [req-152b4d4b - - -] received message from 10.45242.1696.84173:76909, dispatch to handler", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 02:38:00] [INFO] [handler dispatcher53] connection reset by peer, socket fd=55586", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 11:00:33] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset eea8b34d027b", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 05:52:19] [INFO] [pool-6 thread 43] alarm cleared: disk usage back to 48 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 20:13:23] [req-41008bb6 - - -] init module snap-7c begin, worker threads 18354", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 23:42:20] [INFO] [dispatcher pool59] update config key cfg.max.io to value 40715", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 21:50:58] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=1d84f4272c8", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 13:21:25] [INFO] [pool-8 thread 61] start to sync volume data, total 24898 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 05:52:46] [req-f2ba77aa - - -] connection reset by peer, socket fd=55990", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 13:09:06] [INFO] [for event pool38] init module cfg.max.io begin, worker threads 30943", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 17:11:09] [INFO] [AsyncDispatcher event handler] write 59428 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 08:05:37] [INFO] [pool-3 thread 38] disk 32373 smart health status ok, temperature 94631 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 16:46:05] [req-f22bda02 - - -] process request op=snap-7c done in 52653 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 11:06:14] [INFO] [dispatcher handler pool2] receive heartbeat from node-30450, load 60 percent", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 20:17:29] [INFO] [AsyncDispatcher event handler] failed to read block blk_38231a080c57, retry 19906 times", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 04:25:22] [INFO] [pool-5 thread 37] start to sync volume data, total 85316 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 20:32:16] [req-3104c6ff - - -] alarm cleared: disk usage back to 7 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 04:10:04] [INFO] [pool pool72] alarm cleared: disk usage back to 81 percent", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 14:28:48] [INFO] [AsyncDispatcher event handler] process request op=vol-3f2a done in 14844 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 10:49:36] [INFO] [pool-9 thread 33] process request op=vol-3f2a done in 39997 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 23:22:21] [req-9b9e1360 - - -] disk 15932 smart health status ok, temperature 66858 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 23:13:54] [INFO] [dispatcher event pool86] checkpoint finished, elapsed 29092 seconds", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 04:47:58] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 12684 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 13:49:33] [INFO] [pool-9 thread 14] update config key task-991 to value 42847", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 20:13:27] [req-a9dda937 - - -] failed to read block blk_d2a905ec3edc, retry 13089 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 19:19:12] [INFO] [event dispatcher1] failed to read block blk_f9449a5f9763, retry 51478 times", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 13:00:01] [INFO] [AsyncDispatcher event handler] disk 92791 smart health status ok, temperature 9862 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 05:31:49] [INFO] [pool-3 thread 8] metadata journal truncated at offset cd6061558dac", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 21:46:14] [req-a1f8334d - - -] volume task-991 changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 14:32:28] [INFO] [dispatcher event handler83] receive heartbeat from node-87810, load 4 percent", "body_start": 58, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 22:31:08] [INFO] [AsyncDispatcher event handler] cache entry cfb94ee5f027 evicted, free slots 11924", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 23:54:00] [INFO] [pool-7 thread 17] start to sync volume data, total 77140 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 21:44:18] [req-f488ef44 - - -] received message from 10.36245.72910.68806:18041, dispatch to handler", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 20:54:18] [INFO] [for dispatcher handler36] failed to read block blk_b94b97ae37b9, retry 46201 times", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 12:02:36] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 89926 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 14:01:28] [INFO] [pool-2 thread 52] disk 91083 smart health status ok, temperature 75310 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 21:14:00] [req-458c97a3 - - -] failed to read block blk_f6566959bc4e, retry 96881 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 18:59:55] [INFO] [pool event60] checkpoint finished, elapsed 40749 seconds", "body_start": 44, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 01:55:31] [INFO] [AsyncDispatcher event handler] disk 38103 smart health status ok, temperature 2410 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 04:16:17] [INFO] [pool-1 thread 39] received message from 10.46442.5857.15163:41987, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 15:41:08] [req-4e5849aa - - -] init module quota.db begin, worker threads 72243", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 14:13:06] [INFO] [for pool for7] connection reset by peer, socket fd=98497", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 19:09:14] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=21ede2f7e4c3", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 11:51:38] [INFO] [pool-9 thread 50] receive heartbeat from node-57881, load 91 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 03:53:34] [req-5ba8cb18 - - -] disk 41744 smart health status ok, temperature 16816 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 16:07:07] [INFO] [event handler55] init module quota.db begin, worker threads 33724", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 18:16:59] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 20799 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 20:07:01] [INFO] [pool-4 thread 51] certificate will expire in 79536 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 09:06:46] [req-2ab11284 - - -] connection reset by peer, socket fd=29598", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 08:04:41] [INFO] [handler pool event90] certificate will expire in 78354 days, renew required", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 20:32:33] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 23 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 13:01:18] [INFO] [pool-6 thread 37] process request op=vol-3f2a done in 92513 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 20:27:42] [req-f2f17d09 - - -] write 74911 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 16:16:52] [INFO] [dispatcher event33] certificate will expire in 84683 days, renew required", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 15:18:00] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=46061 queued=54801 max=68359", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 14:24:22] [INFO] [pool-7 thread 41] cache entry f2c5e160a813 evicted, free slots 39709", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 20:12:09] [req-e6890a96 - - -] failed to read block blk_62c6de4a5608, retry 16239 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 15:54:07] [INFO] [handler handler pool59] checkpoint finished, elapsed 35379 seconds", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 09:41:34] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 3239 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 20:01:34] [INFO] [pool-6 thread 25] task vol-3f2a submitted by user admin, priority 57919", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 23:58:07] [req-2351607b - - -] receive heartbeat from node-72030, load 90 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 03:53:03] [INFO] [handler pool5] receive heartbeat from node-69721, load 36 percent", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 02:36:57] [INFO] [AsyncDispatcher event handler] cache entry 842dd450949 evicted, free slots 58120", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 13:48:06] [INFO] [pool-3 thread 49] start to sync volume data, total 18052 chunks", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 20:13:14] [req-d56a43c7 - - -] alarm cleared: disk usage back to 94 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 07:10:38] [INFO] [for pool pool6] connection reset by peer, socket fd=31417", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 10:37:43] [INFO] [AsyncDispatcher event handler] init module cfg.max.io begin, worker threads 60335", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 02:51:52] [INFO] [pool-7 thread 57] connection reset by peer, socket fd=61016", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 20:11:01] [req-79b76015 - - -] disk 62151 smart health status ok, temperature 56995 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 03:08:16] [INFO] [pool handler87] init module snap-7c begin, worker threads 91811", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 08:45:44] [INFO] [AsyncDispatcher event handler] volume task-991 changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 19:14:48] [INFO] [pool-2 thread 8] cache entry 17e0d86f08c4 evicted, free slots 70346", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 11:30:16] [req-3994d78 - - -] update config key quota.db to value 35197", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 10:03:56] [INFO] [event event87] metadata journal truncated at offset 8620da1c1fb9", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 06:53:24] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 32500, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 11:08:45] [INFO] [pool-4 thread 37] rpc call GetVolumeInfo returned code 1070, msg success", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 19:43:07] [req-a083fc6e - - -] certificate will expire in 99214 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 14:20:24] [INFO] [for event80] certificate will expire in 85100 days, renew required", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 23:26:58] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 5411 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 14:54:58] [INFO] [pool-8 thread 44] task cfg.max.io submitted by user admin, priority 39424", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 22:11:45] [req-b1da239f - - -] receive heartbeat from node-74058, load 25 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 13:57:16] [INFO] [event handler32] cache entry 645c4e886b evicted, free slots 53169", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 02:19:00] [INFO] [AsyncDispatcher event handler] received message from 10.55566.25001.44339:47390, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 01:25:02] [INFO] [pool-4 thread 39] write 54907 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 21:42:22] [req-9c92bf05 - - -] task task-991 submitted by user admin, priority 1423", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 17:13:55] [INFO] [for event41] connection reset by peer, socket fd=33426", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 21:20:47] [INFO] [AsyncDispatcher event handler] certificate will expire in 97535 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 23:37:00] [INFO] [pool-3 thread 10] write 1698 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 19:23:33] [req-c61d8acc - - -] init module quota.db begin, worker threads 89913", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 23:51:14] [INFO] [handler dispatcher for95] update config key quota.db to value 2407", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 04:00:42] [INFO] [AsyncDispatcher event handler] update config key task-991 to value 46990", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 20:27:47] [INFO] [pool-7 thread 48] send audit event to kafka topic dsware-audit, seq=4775c44a0c86", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 07:53:53] [req-e9b0f887 - - -] process request op=task-991 done in 41602 ms", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 21:29:22] [INFO] [dispatcher event76] send audit event to kafka topic dsware-audit, seq=2667b4a99f8e", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 15:44:22] [INFO] [AsyncDispatcher event handler] cache entry bf1703c53eef evicted, free slots 51926", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 02:19:29] [INFO] [pool-8 thread 47] send audit event to kafka topic dsware-audit, seq=500e5c6ffd01", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 00:21:49] [req-13969a84 - - -] send audit event to kafka topic dsware-audit, seq=543fd288a69e", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 10:54:29] [INFO] [handler handler21] send audit event to kafka topic dsware-audit, seq=2da60969bbeb", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 10:58:08] [INFO] [AsyncDispatcher event handler] disk 3482 smart health status ok, temperature 54191 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 14:29:09] [INFO] [pool-7 thread 49] connection reset by peer, socket fd=47744", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 13:12:00] [req-1acc577a - - -] send audit event to kafka topic dsware-audit, seq=fb951bd466a4", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 11:55:29] [INFO] [for for for46] failed to read block blk_b4a74c61614a, retry 87859 times", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 04:23:45] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset f8b9a5c54559", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 11:29:40] [INFO] [pool-3 thread 50] cache entry 5632136da868 evicted, free slots 16448", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 17:24:29] [req-326f11b7 - - -] metadata journal truncated at offset 6cfb88c375b8", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 09:24:45] [INFO] [dispatcher dispatcher44] update config key snap-7c to value 98121", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 17:28:10] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 19946, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 08:14:17] [INFO] [pool-6 thread 24] write 26764 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 07:21:58] [req-d69cd91 - - -] write 54803 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 14:28:20] [INFO] [dispatcher event event11] received message from 10.4354.3620.77906:21391, dispatch to handler", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 18:49:56] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-3430, load 97 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 04:08:36] [INFO] [pool-7 thread 57] certificate will expire in 84857 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 11:35:24] [req-9a2d4364 - - -] failed to read block blk_4998b5daa62f, retry 5398 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 11:12:58] [INFO] [pool handler pool85] volume cfg.max.io changed state from active to degraded", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 02:33:23] [INFO] [AsyncDispatcher event handler] volume vol-3f2a changed state from active to degraded", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 16:16:01] [INFO] [pool-2 thread 14] send audit event to kafka topic dsware-audit, seq=8d06ee70aa5e", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 17:09:07] [req-55b8d018 - - -] task vol-3f2a submitted by user admin, priority 5044", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 14:04:17] [INFO] [for handler5] volume cfg.max.io changed state from active to degraded", "body_start": 44, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 15:24:25] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 43536 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 08:49:47] [INFO] [pool-3 thread 39] alarm cleared: disk usage back to 86 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 11:17:33] [req-969b07d9 - - -] write 76908 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 23:48:22] [INFO] [for dispatcher45] disk 16281 smart health status ok, temperature 59450 celsius", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 13:32:35] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=98454 queued=75820 max=37507", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 08:33:36] [INFO] [pool-6 thread 16] connection reset by peer, socket fd=28446", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 08:54:41] [req-bf2b1b3d - - -] certificate will expire in 28934 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 17:47:16] [INFO] [for dispatcher dispatcher72] rpc call GetVolumeInfo returned code 43335, msg success", "body_start": 59, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 07:55:09] [INFO] [AsyncDispatcher event handler] init module cfg.max.io begin, worker threads 5627", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 19:34:53] [INFO] [pool-8 thread 17] process request op=vol-3f2a done in 41178 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 09:03:57] [req-312f35b0 - - -] thread pool exhausted, active=38890 queued=22295 max=66601", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 10:47:31] [INFO] [pool event61] process request op=cfg.max.io done in 19889 ms", "body_start": 44, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 12:43:34] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset 506d3e535110", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 02:25:38] [INFO] [pool-1 thread 18] received message from 10.14025.63131.41164:91799, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 01:52:48] [req-1e7d147f - - -] metadata journal truncated at offset 535478faf3a3", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 06:59:58] [INFO] [dispatcher event event35] update config key quota.db to value 25499", "body_start": 56, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 11:35:36] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=71477 queued=55500 max=28838", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 08:34:55] [INFO] [pool-2 thread 1] connection reset by peer, socket fd=13548", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 16:51:28] [req-18674bdb - - -] volume vol-3f2a changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 05:01:45] [INFO] [handler for4] metadata journal truncated at offset a0d8d8328827", "body_start": 44, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 01:52:21] [INFO] [AsyncDispatcher event handler] process request op=snap-7c done in 19697 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 20:44:02] [INFO] [pool-8 thread 44] process request op=quota.db done in 78179 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 03:30:54] [req-222f40f1 - - -] thread pool exhausted, active=85806 queued=95755 max=89155", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 17:42:15] [INFO] [event handler pool73] received message from 10.27906.25234.63220:7747, dispatch to handler", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 05:52:29] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=96565 queued=86127 max=85940", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 18:54:35] [INFO] [pool-4 thread 51] task snap-7c submitted by user admin, priority 80580", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 14:56:55] [req-6ad9d6ea - - -] cache entry 2fb6e11fb4bf evicted, free slots 5601", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 15:38:16] [INFO] [for dispatcher13] received message from 10.63231.99068.52429:76530, dispatch to handler", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 21:00:13] [INFO] [AsyncDispatcher event handler] certificate will expire in 51745 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 06:17:11] [INFO] [pool-3 thread 54] process request op=vol-3f2a done in 65908 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 00:33:28] [req-b09ce09e - - -] rpc call GetVolumeInfo returned code 63799, msg success", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 16:07:54] [INFO] [pool pool93] failed to read block blk_ede3d03d35df, retry 39472 times", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 12:53:25] [INFO] [AsyncDispatcher event handler] update config key vol-3f2a to value 30771", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 17:55:43] [INFO] [pool-7 thread 64] connection reset by peer, socket fd=1200", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 21:05:32] [req-2cf52a5d - - -] metadata journal truncated at offset 985043f1eac2", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 11:20:43] [INFO] [dispatcher dispatcher event16] volume snap-7c changed state from active to degraded", "body_start": 61, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 19:53:30] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 97 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 00:46:21] [INFO] [pool-4 thread 51] certificate will expire in 45118 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 23:44:53] [req-c4f8078e - - -] start to sync volume data, total 14850 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 20:35:51] [INFO] [pool for event24] disk 63171 smart health status ok, temperature 87988 celsius", "body_start": 48, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 17:27:00] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=78615 queued=3605 max=48214", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 00:38:36] [INFO] [pool-2 thread 8] certificate will expire in 94071 days, renew required", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 10:42:41] [req-7135c86d - - -] disk 5444 smart health status ok, temperature 21636 celsius", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 22:57:11] [INFO] [pool pool dispatcher17] connection reset by peer, socket fd=16996", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 03:35:24] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 19539 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 08:41:44] [INFO] [pool-4 thread 8] task cfg.max.io submitted by user admin, priority 20615", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 11:24:14] [req-1bba676b - - -] alarm cleared: disk usage back to 37 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 07:01:41] [INFO] [handler dispatcher21] volume cfg.max.io changed state from active to degraded", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 08:54:26] [INFO] [AsyncDispatcher event handler] cache entry 3b58db1ed5d6 evicted, free slots 22689", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 23:20:21] [INFO] [pool-2 thread 15] cache entry a3b840a8b75f evicted, free slots 3344", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 21:40:56] [req-374bf915 - - -] receive heartbeat from node-28434, load 34 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 01:51:16] [INFO] [event event pool45] alarm cleared: disk usage back to 1 percent", "body_start": 50, "format": "bs3", "has_header": true}
+{"line": "[2026-03-08 14:54:04] [INFO] [AsyncDispatcher event handler] task snap-7c submitted by user admin, priority 76940", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 09:50:50] [INFO] [pool-9 thread 53] metadata journal truncated at offset 821de142fa9a", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 08:33:29] [req-81de8a34 - - -] write 54526 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 04:54:16] [INFO] [for for29] received message from 10.52170.37445.72398:39917, dispatch to handler", "body_start": 41, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 14:49:51] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 87021 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 02:26:02] [INFO] [pool-8 thread 19] failed to read block blk_38f26ea26cb5, retry 25029 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 20:00:11] [req-8f180410 - - -] update config key quota.db to value 76973", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 22:31:44] [INFO] [pool dispatcher handler17] cache entry 9826e3669ed evicted, free slots 15017", "body_start": 57, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 02:11:57] [INFO] [AsyncDispatcher event handler] process request op=quota.db done in 77623 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-07 02:32:08] [INFO] [pool-8 thread 38] certificate will expire in 96006 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 01:35:16] [req-c30fc492 - - -] update config key task-991 to value 9080", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 04:42:16] [INFO] [for dispatcher pool67] thread pool exhausted, active=30472 queued=9955 max=55314", "body_start": 53, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 01:35:50] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 72381, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 15:28:59] [INFO] [pool-3 thread 31] failed to read block blk_dcb67ee16a73, retry 94349 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 13:21:57] [req-4e33781b - - -] cache entry 13effa9986d8 evicted, free slots 35707", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 09:24:17] [INFO] [pool event pool70] checkpoint finished, elapsed 68492 seconds", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 07:33:05] [INFO] [AsyncDispatcher event handler] write 5318 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 07:00:47] [INFO] [pool-3 thread 56] thread pool exhausted, active=74818 queued=68854 max=34440", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 19:53:07] [req-ae58484d - - -] start to sync volume data, total 20324 chunks", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 22:39:40] [INFO] [event pool pool92] receive heartbeat from node-89013, load 90 percent", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 08:28:52] [INFO] [AsyncDispatcher event handler] cache entry fbf79d18ce8c evicted, free slots 2", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 16:46:10] [INFO] [pool-8 thread 47] rpc call GetVolumeInfo returned code 67719, msg success", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 06:26:08] [req-c0477c54 - - -] connection reset by peer, socket fd=30622", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 11:54:52] [INFO] [event handler31] received message from 10.15392.34743.39203:10261, dispatch to handler", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 10:49:52] [INFO] [AsyncDispatcher event handler] rpc call GetVolumeInfo returned code 52634, msg success", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 17:19:21] [INFO] [pool-9 thread 42] cache entry 7f86f02759b2 evicted, free slots 96555", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 18:21:34] [req-dfd969a3 - - -] update config key cfg.max.io to value 81702", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 09:42:01] [INFO] [handler event pool2] disk 94505 smart health status ok, temperature 2506 celsius", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 02:02:41] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=75b4b83a6795", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 10:58:19] [INFO] [pool-3 thread 1] received message from 10.55640.37038.74874:13018, dispatch to handler", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 16:05:50] [req-43778037 - - -] checkpoint finished, elapsed 31899 seconds", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 06:05:34] [INFO] [pool for4] metadata journal truncated at offset f370ee619414", "body_start": 41, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 19:09:20] [INFO] [AsyncDispatcher event handler] received message from 10.2237.74563.64465:13182, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 00:09:51] [INFO] [pool-8 thread 22] update config key task-991 to value 74157", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 13:34:35] [req-9f80027f - - -] rpc call GetVolumeInfo returned code 44572, msg success", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 12:18:40] [INFO] [handler pool pool13] init module quota.db begin, worker threads 8180", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 11:05:34] [INFO] [AsyncDispatcher event handler] process request op=cfg.max.io done in 39732 ms", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-06 15:48:03] [INFO] [pool-7 thread 4] write 18653 bytes to /data/dsware/task-991/chunk.dat", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 11:27:19] [req-69e9d3ef - - -] failed to read block blk_b108a97f7a11, retry 84543 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 19:31:32] [INFO] [event event21] task quota.db submitted by user admin, priority 4900", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 11:03:14] [INFO] [AsyncDispatcher event handler] task cfg.max.io submitted by user admin, priority 98581", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 13:21:55] [INFO] [pool-3 thread 35] rpc call GetVolumeInfo returned code 92877, msg success", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 09:09:00] [req-3edb80b - - -] connection reset by peer, socket fd=76725", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 04:47:18] [INFO] [handler pool pool45] received message from 10.58420.67262.81858:3049, dispatch to handler", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 01:44:13] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 55272 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-10 02:21:22] [INFO] [pool-8 thread 4] thread pool exhausted, active=72124 queued=12092 max=36366", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 19:32:08] [req-5a5ec835 - - -] init module cfg.max.io begin, worker threads 52764", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-09 16:23:15] [INFO] [handler pool86] process request op=vol-3f2a done in 99912 ms", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 02:04:03] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset fb5376a5829e", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 07:11:07] [INFO] [pool-2 thread 44] process request op=vol-3f2a done in 69184 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 02:45:31] [req-7ef6948c - - -] cache entry 2d4f0909b797 evicted, free slots 99292", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 12:34:37] [INFO] [handler event7] task quota.db submitted by user admin, priority 16352", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 03:34:17] [INFO] [AsyncDispatcher event handler] init module quota.db begin, worker threads 27333", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 10:03:37] [INFO] [pool-4 thread 48] certificate will expire in 95465 days, renew required", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 10:04:51] [req-fecdb175 - - -] cache entry 533a4445464d evicted, free slots 74744", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 10:58:46] [INFO] [for pool79] received message from 10.85577.44831.54673:50635, dispatch to handler", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 01:53:46] [INFO] [AsyncDispatcher event handler] certificate will expire in 68082 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 17:29:29] [INFO] [pool-5 thread 10] failed to read block blk_5dbbd46ad009, retry 62971 times", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 20:09:36] [req-15475806 - - -] checkpoint finished, elapsed 75261 seconds", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 10:42:50] [INFO] [dispatcher pool pool68] update config key task-991 to value 16412", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 14:23:51] [INFO] [AsyncDispatcher event handler] connection reset by peer, socket fd=81280", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 06:48:29] [INFO] [pool-2 thread 61] connection reset by peer, socket fd=21254", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 01:54:09] [req-784ed93e - - -] send audit event to kafka topic dsware-audit, seq=8126ac07bf48", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 14:58:23] [INFO] [event dispatcher pool36] cache entry a2ed11b7df93 evicted, free slots 66412", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 04:08:29] [INFO] [AsyncDispatcher event handler] cache entry 4839ad43e915 evicted, free slots 68101", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 16:21:35] [INFO] [pool-6 thread 39] alarm cleared: disk usage back to 12 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 06:40:17] [req-cdeddb1a - - -] connection reset by peer, socket fd=14207", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 18:54:18] [INFO] [for for event11] start to sync volume data, total 56063 chunks", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 16:55:27] [INFO] [AsyncDispatcher event handler] start to sync volume data, total 12084 chunks", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 18:30:17] [INFO] [pool-9 thread 27] update config key quota.db to value 13646", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 03:04:00] [req-c97f7ae2 - - -] cache entry d3749f78132b evicted, free slots 15896", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 11:37:37] [INFO] [dispatcher dispatcher event76] rpc call GetVolumeInfo returned code 42228, msg success", "body_start": 61, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 13:26:43] [INFO] [AsyncDispatcher event handler] alarm cleared: disk usage back to 32 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 05:48:29] [INFO] [pool-9 thread 6] thread pool exhausted, active=49703 queued=97530 max=2244", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 02:26:24] [req-49db2482 - - -] certificate will expire in 41384 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 14:19:01] [INFO] [pool for89] alarm cleared: disk usage back to 31 percent", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-10 05:12:55] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=75415 queued=9857 max=19030", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 16:30:43] [INFO] [pool-4 thread 18] connection reset by peer, socket fd=18338", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 05:18:49] [req-cc45b784 - - -] connection reset by peer, socket fd=95102", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 02:35:53] [INFO] [pool for45] alarm cleared: disk usage back to 62 percent", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 06:53:14] [INFO] [AsyncDispatcher event handler] task quota.db submitted by user admin, priority 43391", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 07:31:43] [INFO] [pool-7 thread 19] process request op=snap-7c done in 61628 ms", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 15:00:32] [req-239c8e4c - - -] receive heartbeat from node-84260, load 10 percent", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 10:18:16] [INFO] [pool event handler55] thread pool exhausted, active=56665 queued=28539 max=72026", "body_start": 52, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 21:23:29] [INFO] [AsyncDispatcher event handler] receive heartbeat from node-2660, load 33 percent", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 03:39:13] [INFO] [pool-1 thread 37] task quota.db submitted by user admin, priority 29342", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-05 03:41:36] [req-eabb2dd8 - - -] connection reset by peer, socket fd=3738", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 23:41:54] [INFO] [handler event88] volume cfg.max.io changed state from active to degraded", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 18:47:35] [INFO] [AsyncDispatcher event handler] write 75984 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 18:52:55] [INFO] [pool-9 thread 55] send audit event to kafka topic dsware-audit, seq=5f610f0703bb", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 06:20:06] [req-dee815b3 - - -] checkpoint finished, elapsed 85387 seconds", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 16:02:43] [INFO] [handler for86] metadata journal truncated at offset 4f9b6e8fa08d", "body_start": 45, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 00:53:30] [INFO] [AsyncDispatcher event handler] failed to read block blk_625f06f93fbd, retry 92679 times", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 13:08:47] [INFO] [pool-3 thread 31] receive heartbeat from node-5489, load 29 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 10:02:48] [req-e26371ac - - -] update config key cfg.max.io to value 1435", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 06:28:31] [INFO] [dispatcher pool handler99] checkpoint finished, elapsed 42238 seconds", "body_start": 57, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 09:30:04] [INFO] [AsyncDispatcher event handler] certificate will expire in 27444 days, renew required", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 10:29:09] [INFO] [pool-7 thread 6] alarm cleared: disk usage back to 10 percent", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 05:16:12] [req-8e02c7c2 - - -] thread pool exhausted, active=12116 queued=31184 max=72589", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 15:42:24] [INFO] [for event18] connection reset by peer, socket fd=16037", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-01 01:11:21] [INFO] [AsyncDispatcher event handler] received message from 10.79889.74799.95652:19211, dispatch to handler", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 22:01:29] [INFO] [pool-8 thread 41] checkpoint finished, elapsed 65594 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-06 18:10:54] [req-24f85869 - - -] write 71870 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 13:57:56] [INFO] [handler dispatcher handler9] connection reset by peer, socket fd=60523", "body_start": 59, "format": "bs3", "has_header": true}
+{"line": "[2026-03-06 17:11:04] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=3752 queued=22224 max=32586", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-04 23:14:21] [INFO] [pool-4 thread 10] send audit event to kafka topic dsware-audit, seq=8da36cbcc287", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 21:23:48] [req-910b0355 - - -] volume vol-3f2a changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 09:36:29] [INFO] [pool for93] update config key task-991 to value 76762", "body_start": 42, "format": "bs3", "has_header": true}
+{"line": "[2026-03-05 14:42:38] [INFO] [AsyncDispatcher event handler] write 69049 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 09:14:34] [INFO] [pool-7 thread 29] disk 55526 smart health status ok, temperature 77373 celsius", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-04 14:55:25] [req-f740bfd0 - - -] write 54649 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-03 01:11:38] [INFO] [pool handler78] init module vol-3f2a begin, worker threads 57883", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 16:06:19] [INFO] [AsyncDispatcher event handler] disk 49639 smart health status ok, temperature 52177 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 06:29:52] [INFO] [pool-2 thread 18] received message from 10.69406.56567.12400:53528, dispatch to handler", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 03:57:33] [req-65a01db7 - - -] certificate will expire in 83980 days, renew required", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 23:23:57] [INFO] [dispatcher dispatcher92] cache entry fa8386fde4ba evicted, free slots 25175", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 13:39:32] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=82290 queued=68531 max=38928", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-08 11:27:20] [INFO] [pool-1 thread 38] checkpoint finished, elapsed 97160 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 22:25:16] [req-8dab406b - - -] send audit event to kafka topic dsware-audit, seq=5c8de7922ba3", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 20:04:46] [INFO] [for handler event37] thread pool exhausted, active=73610 queued=36941 max=28279", "body_start": 51, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 10:41:30] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=59ca179c36b6", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-01 18:27:58] [INFO] [pool-4 thread 9] failed to read block blk_b056142deef1, retry 29199 times", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 05:05:43] [req-9c6b8e86 - - -] volume quota.db changed state from active to degraded", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-08 21:12:18] [INFO] [pool dispatcher12] cache entry 931ff2871a31 evicted, free slots 83826", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 04:12:49] [INFO] [AsyncDispatcher event handler] init module vol-3f2a begin, worker threads 84333", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 10:40:10] [INFO] [pool-5 thread 22] receive heartbeat from node-1976, load 59 percent", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-01 19:04:33] [req-ab206ae5 - - -] metadata journal truncated at offset 4076b3825082", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-10 12:17:08] [INFO] [pool for pool22] volume quota.db changed state from active to degraded", "body_start": 47, "format": "bs3", "has_header": true}
+{"line": "[2026-03-07 19:04:18] [INFO] [AsyncDispatcher event handler] init module snap-7c begin, worker threads 71055", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 12:06:38] [INFO] [pool-7 thread 36] metadata journal truncated at offset 4a0c7b9bfadd", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-10 17:52:22] [req-9514973 - - -] metadata journal truncated at offset d9d392d6e699", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-07 12:35:39] [INFO] [pool handler89] certificate will expire in 96972 days, renew required", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 01:57:35] [INFO] [AsyncDispatcher event handler] checkpoint finished, elapsed 9088 seconds", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 08:18:58] [INFO] [pool-7 thread 2] init module snap-7c begin, worker threads 18622", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-09 22:59:05] [req-c6de9449 - - -] connection reset by peer, socket fd=78757", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 07:06:25] [INFO] [pool dispatcher event53] checkpoint finished, elapsed 40920 seconds", "body_start": 55, "format": "bs3", "has_header": true}
+{"line": "[2026-03-04 20:05:36] [INFO] [AsyncDispatcher event handler] metadata journal truncated at offset 4249fdc20fed", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 21:44:19] [INFO] [pool-1 thread 5] failed to read block blk_8af55c4c08e9, retry 23399 times", "body_start": 47, "format": "bs1", "has_header": true}
+{"line": "[2026-03-07 08:56:04] [req-a5467adc - - -] received message from 10.17985.82016.80052:10803, dispatch to handler", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-06 15:12:34] [INFO] [pool handler41] disk 67446 smart health status ok, temperature 38092 celsius", "body_start": 46, "format": "bs3", "has_header": true}
+{"line": "[2026-03-02 01:33:26] [INFO] [AsyncDispatcher event handler] failed to read block blk_9338014318c5, retry 78394 times", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-09 01:10:50] [INFO] [pool-6 thread 57] init module task-991 begin, worker threads 22252", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-08 00:15:29] [req-3b6cab16 - - -] failed to read block blk_c5929cbd7a81, retry 27829 times", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-04 05:32:07] [INFO] [for event14] receive heartbeat from node-51527, load 4 percent", "body_start": 43, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 13:17:21] [INFO] [AsyncDispatcher event handler] thread pool exhausted, active=56097 queued=78439 max=23597", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-03 12:25:34] [INFO] [pool-2 thread 45] metadata journal truncated at offset dd84b003467f", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 13:42:59] [req-fe56e493 - - -] rpc call GetVolumeInfo returned code 44213, msg success", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-05 11:12:02] [INFO] [dispatcher pool39] update config key cfg.max.io to value 72650", "body_start": 49, "format": "bs3", "has_header": true}
+{"line": "[2026-03-09 11:28:57] [INFO] [AsyncDispatcher event handler] disk 19203 smart health status ok, temperature 34020 celsius", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-05 18:22:36] [INFO] [pool-7 thread 30] checkpoint finished, elapsed 8754 seconds", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-02 13:03:48] [req-895efec4 - - -] task cfg.max.io submitted by user admin, priority 60445", "body_start": 43, "format": "bs2", "has_header": true}
+{"line": "[2026-03-02 14:50:37] [INFO] [for dispatcher event40] checkpoint finished, elapsed 88318 seconds", "body_start": 54, "format": "bs3", "has_header": true}
+{"line": "[2026-03-03 12:45:23] [INFO] [AsyncDispatcher event handler] cache entry e9551b3c7be6 evicted, free slots 59150", "body_start": 61, "format": "bs0", "has_header": true}
+{"line": "[2026-03-02 20:52:41] [INFO] [pool-7 thread 51] write 17673 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 48, "format": "bs1", "has_header": true}
+{"line": "[2026-03-03 08:56:33] [req-57bceed - - -] certificate will expire in 81678 days, renew required", "body_start": 42, "format": "bs2", "has_header": true}
+{"line": "[2026-03-01 23:53:23] [INFO] [dispatcher pool event18] volume task-991 changed state from active to degraded", "body_start": 55, "format": "bs3", "has_header": true}

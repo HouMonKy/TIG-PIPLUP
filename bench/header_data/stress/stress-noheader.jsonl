@@ -1,0 +1,1000 @@
+{"line": "failed to read block blk_69ca582600e9, retry 14484 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 22:13:29] [NOTICE] send audit event to kafka topic dsware-audit, seq=cb7cec81292", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-99398, load 95 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 08:22:10 WARN rpc call GetVolumeInfo returned code 96173, msg success", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-82633, load 70 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 02:52:55] [WARN] certificate will expire in 37480 days, renew required", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=48652 queued=52439 max=3993", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 00:27:08 WARN update config key snap-7c to value 95544", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "cache entry c5bf5398952f evicted, free slots 46971", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 06:10:09] [DEBUG] certificate will expire in 81302 days, renew required", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-86672, load 53 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 08:21:56 NOTICE certificate will expire in 27034 days, renew required", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_4148902fc85a, retry 70867 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 05:31:23] [NOTICE] disk 17776 smart health status ok, temperature 63905 celsius", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "write 42753 bytes to /data/dsware/task-991/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 01:40:56 DEBUG certificate will expire in 64187 days, renew required", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 98 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 14:24:28] [ERROR] init module vol-3f2a begin, worker threads 71079", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=1526", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 10:03:34 INFO metadata journal truncated at offset dbc101ba88a", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.91030.87025.7630:57299, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 23:29:33] [INFO] alarm cleared: disk usage back to 25 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "task task-991 submitted by user admin, priority 93995", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 20:16:40 WARN checkpoint finished, elapsed 57638 seconds", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "disk 13644 smart health status ok, temperature 13475 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 16:13:01] [DEBUG] alarm cleared: disk usage back to 59 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_ac76f3285d7c, retry 79179 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 20:47:24 WARN write 53353 bytes to /data/dsware/task-991/chunk.dat", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=df0d90650490", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 02:44:07] [WARN] received message from 10.47190.13454.80483:94854, dispatch to handler", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "update config key cfg.max.io to value 77821", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 04:32:25 NOTICE task vol-3f2a submitted by user admin, priority 33552", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "received message from 10.92796.88647.88301:67814, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 18:12:22] [WARN] rpc call GetVolumeInfo returned code 87161, msg success", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "update config key quota.db to value 60694", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 22:25:15 WARN cache entry 6d49c9d4fa0 evicted, free slots 33510", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=57fc1c6cd2a1", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 06:45:20] [NOTICE] disk 55537 smart health status ok, temperature 94730 celsius", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=db3586e657c1", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 12:56:27 WARN start to sync volume data, total 29679 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-42208, load 10 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 21:56:25] [DEBUG] checkpoint finished, elapsed 73347 seconds", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 54177 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 18:40:23 NOTICE checkpoint finished, elapsed 15309 seconds", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 28753, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 08:44:23] [DEBUG] thread pool exhausted, active=20047 queued=34240 max=52483", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "process request op=task-991 done in 76371 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 16:53:09 WARN write 79260 bytes to /data/dsware/task-991/chunk.dat", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.28078.6037.15106:56106, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 11:49:44] [INFO] failed to read block blk_1695eac64b04, retry 66504 times", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "task cfg.max.io submitted by user admin, priority 66832", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 08:30:51 ERROR checkpoint finished, elapsed 25063 seconds", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 57 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 18:40:23] [ERROR] disk 94734 smart health status ok, temperature 1685 celsius", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset a927ac133bf4", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 10:22:22 WARN disk 29932 smart health status ok, temperature 15266 celsius", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-12737, load 94 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 02:54:42] [INFO] certificate will expire in 54766 days, renew required", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "write 6392 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 07:59:21 NOTICE checkpoint finished, elapsed 10771 seconds", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=88880", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 02:15:51] [NOTICE] update config key cfg.max.io to value 8246", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "update config key vol-3f2a to value 61627", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 00:38:49 WARN write 43547 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 41193, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 08:36:53] [WARN] metadata journal truncated at offset e738e17f1ce", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "process request op=snap-7c done in 38392 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 09:34:08 INFO failed to read block blk_7489b5507d62, retry 32558 times", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "task cfg.max.io submitted by user admin, priority 2049", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 17:03:07] [INFO] send audit event to kafka topic dsware-audit, seq=bf4a02ea388e", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset ec76b65320c9", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 22:20:48 DEBUG update config key quota.db to value 24336", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "process request op=task-991 done in 27433 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 01:49:32] [ERROR] disk 63567 smart health status ok, temperature 5648 celsius", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 30000 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 10:55:20 DEBUG metadata journal truncated at offset 319e0b0752e8", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 61938 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 06:23:56] [INFO] alarm cleared: disk usage back to 22 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 71577e7a051f", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 06:22:12 DEBUG init module vol-3f2a begin, worker threads 25442", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "cache entry 1e526a0bce66 evicted, free slots 7714", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 13:04:03] [WARN] connection reset by peer, socket fd=95237", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 70341 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 09:34:05 WARN failed to read block blk_55024f26bebd, retry 68457 times", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-27904, load 88 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 19:34:21] [NOTICE] send audit event to kafka topic dsware-audit, seq=7f09a3459648", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-63496, load 12 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 09:05:06 NOTICE process request op=snap-7c done in 51462 ms", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-62078, load 81 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 06:20:47] [DEBUG] send audit event to kafka topic dsware-audit, seq=85f2fbaf4147", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "received message from 10.47876.32933.32078:71409, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 03:36:27 WARN write 34734 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset b114eeedf5e4", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 05:55:22] [DEBUG] thread pool exhausted, active=29892 queued=1847 max=98228", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=8870ae5f86ab", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 04:26:40 NOTICE received message from 10.25015.1180.28079:1240, dispatch to handler", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "disk 49216 smart health status ok, temperature 96272 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 17:59:41] [WARN] update config key task-991 to value 90787", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "cache entry b0d3978d49c0 evicted, free slots 64037", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 22:10:41 DEBUG process request op=quota.db done in 25438 ms", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=c632f63480c1", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 18:08:04] [ERROR] volume cfg.max.io changed state from active to degraded", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume quota.db changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 07:33:56 WARN init module vol-3f2a begin, worker threads 86096", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "init module task-991 begin, worker threads 36601", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 17:49:25] [INFO] metadata journal truncated at offset 905eb34e24b0", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=40977", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 23:35:57 WARN received message from 10.99978.66659.46957:9560, dispatch to handler", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset 67b9bf295bf1", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 12:03:23] [ERROR] process request op=snap-7c done in 53340 ms", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 28680, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 09:26:40 ERROR write 37609 bytes to /data/dsware/task-991/chunk.dat", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 71743, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 06:04:09] [NOTICE] certificate will expire in 91059 days, renew required", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 58939 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 15:48:17 NOTICE metadata journal truncated at offset a42936a539d3", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "cache entry 1676564d8cc5 evicted, free slots 53723", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 21:00:27] [ERROR] disk 57546 smart health status ok, temperature 14180 celsius", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=6afb27ef1e77", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 18:50:26 INFO update config key snap-7c to value 87501", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "task task-991 submitted by user admin, priority 8478", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 04:04:00] [ERROR] received message from 10.64739.60809.12796:70970, dispatch to handler", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 70248 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 19:50:56 ERROR checkpoint finished, elapsed 89402 seconds", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 98103 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 11:25:23] [ERROR] init module snap-7c begin, worker threads 27174", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "task snap-7c submitted by user admin, priority 99223", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 11:55:42 DEBUG task task-991 submitted by user admin, priority 19848", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 06:17:20] [INFO] connection reset by peer, socket fd=18498", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset a2e56a619576", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 21:17:01 INFO update config key quota.db to value 6120", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 76909 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 05:35:50] [ERROR] send audit event to kafka topic dsware-audit, seq=cef92c83b1b8", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "disk 41502 smart health status ok, temperature 57361 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 17:47:35 WARN received message from 10.62378.65385.28791:53012, dispatch to handler", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-12199, load 69 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 16:45:51] [WARN] init module quota.db begin, worker threads 6228", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "process request op=cfg.max.io done in 81392 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 13:16:17 ERROR connection reset by peer, socket fd=24245", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 88443", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 07:41:02] [NOTICE] connection reset by peer, socket fd=73960", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=11588", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 06:11:12 ERROR certificate will expire in 11669 days, renew required", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-98101, load 67 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 09:51:08] [NOTICE] checkpoint finished, elapsed 17270 seconds", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "write 99597 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 20:02:35 INFO start to sync volume data, total 74443 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=29968 queued=27045 max=88083", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 12:31:52] [INFO] thread pool exhausted, active=55842 queued=43500 max=74385", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "received message from 10.37755.96369.6322:76257, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 16:13:22 ERROR cache entry 8fffa76c4454 evicted, free slots 51052", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "task quota.db submitted by user admin, priority 23795", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 13:56:08] [NOTICE] failed to read block blk_8af261dd0dfd, retry 6138 times", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset d3019067b3d0", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 02:12:42 DEBUG process request op=vol-3f2a done in 86998 ms", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 14469, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 18:17:59] [INFO] volume task-991 changed state from active to degraded", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 88567 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 00:30:56 INFO metadata journal truncated at offset 8dd0423fed77", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-11637, load 29 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 06:37:31] [WARN] receive heartbeat from node-86459, load 9 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "update config key vol-3f2a to value 733", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 05:28:51 INFO alarm cleared: disk usage back to 96 percent", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.74070.29758.56794:56450, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 03:03:57] [WARN] disk 34726 smart health status ok, temperature 27908 celsius", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 92967 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 05:56:23 ERROR init module cfg.max.io begin, worker threads 82034", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 91395, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 06:31:06] [WARN] init module quota.db begin, worker threads 6050", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "volume quota.db changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 23:30:11 DEBUG write 22309 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "volume snap-7c changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 17:27:38] [NOTICE] rpc call GetVolumeInfo returned code 87486, msg success", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=58064 queued=48262 max=81533", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 14:04:09 ERROR volume task-991 changed state from active to degraded", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "cache entry 351310c7738b evicted, free slots 8991", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 14:16:12] [WARN] volume cfg.max.io changed state from active to degraded", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "cache entry d74bbda98cdd evicted, free slots 60936", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 00:42:07 INFO thread pool exhausted, active=71015 queued=98217 max=52088", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "init module quota.db begin, worker threads 3256", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 02:02:56] [WARN] metadata journal truncated at offset 624939a1123a", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "cache entry e722776e7f5d evicted, free slots 92237", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 14:46:08 ERROR init module task-991 begin, worker threads 3953", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 92294, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 03:48:10] [WARN] send audit event to kafka topic dsware-audit, seq=fe131b09c457", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=48c58499f922", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 15:34:49 INFO certificate will expire in 86261 days, renew required", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 47 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 19:31:59] [NOTICE] process request op=vol-3f2a done in 49683 ms", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 62780 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 03:40:16 INFO receive heartbeat from node-12957, load 3 percent", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 82731 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 20:11:17] [ERROR] init module snap-7c begin, worker threads 26364", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "alarm cleared: disk usage back to 27 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 08:59:51 DEBUG metadata journal truncated at offset 8715f420f5a", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=69739", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 21:16:29] [NOTICE] failed to read block blk_b07c0ef14bce, retry 25168 times", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 78439 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 01:26:44 INFO init module cfg.max.io begin, worker threads 12025", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "write 59236 bytes to /data/dsware/task-991/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 08:24:33] [ERROR] failed to read block blk_8891ae48b480, retry 93865 times", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "write 66210 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 03:59:35 INFO metadata journal truncated at offset d85392a33dab", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 26842 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 08:48:38] [DEBUG] init module vol-3f2a begin, worker threads 67826", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume snap-7c changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 08:43:56 INFO rpc call GetVolumeInfo returned code 1313, msg success", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 23297 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 16:12:39] [INFO] thread pool exhausted, active=69668 queued=59650 max=81484", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_c3214e378f08, retry 5853 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 17:00:09 DEBUG cache entry ed7f363cd49c evicted, free slots 84051", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "process request op=quota.db done in 52433 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 21:33:05] [DEBUG] disk 59552 smart health status ok, temperature 73887 celsius", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "write 43828 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 02:50:16 WARN start to sync volume data, total 20779 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.72146.70410.21523:12764, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 03:25:36] [NOTICE] init module cfg.max.io begin, worker threads 13303", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 4e1488ee90cf", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 20:34:49 ERROR rpc call GetVolumeInfo returned code 71400, msg success", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "task snap-7c submitted by user admin, priority 94877", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 07:43:06] [DEBUG] failed to read block blk_9b32594e2dba, retry 88849 times", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=20562 queued=70882 max=94397", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 07:27:36 ERROR rpc call GetVolumeInfo returned code 64542, msg success", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 68251 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 17:49:01] [WARN] connection reset by peer, socket fd=31551", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-24524, load 48 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 05:09:21 WARN received message from 10.80329.3955.58934:83774, dispatch to handler", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_aaed202a242b, retry 63051 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 15:46:03] [INFO] process request op=cfg.max.io done in 67568 ms", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "cache entry 7a2a9927b0e5 evicted, free slots 44529", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 22:44:44 INFO update config key vol-3f2a to value 89821", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=82058 queued=28796 max=87863", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 21:19:54] [DEBUG] connection reset by peer, socket fd=79342", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 14:34:05 DEBUG failed to read block blk_e18df46d8258, retry 61049 times", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "init module cfg.max.io begin, worker threads 27096", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 19:40:51] [DEBUG] alarm cleared: disk usage back to 62 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "disk 69240 smart health status ok, temperature 31520 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 16:39:58 DEBUG metadata journal truncated at offset f06571d73f96", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "disk 8847 smart health status ok, temperature 67597 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 05:22:44] [INFO] task quota.db submitted by user admin, priority 22756", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 19:23:45 WARN start to sync volume data, total 56396 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "disk 18182 smart health status ok, temperature 49909 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 20:50:27] [WARN] task vol-3f2a submitted by user admin, priority 25972", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 534bdd60477", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 06:48:47 WARN task quota.db submitted by user admin, priority 58315", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "cache entry fe87bcfd398c evicted, free slots 17309", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 07:16:09] [ERROR] rpc call GetVolumeInfo returned code 66151, msg success", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 589 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 20:08:25 ERROR update config key cfg.max.io to value 22381", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=65699", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 17:30:46] [NOTICE] connection reset by peer, socket fd=7805", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 92491 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 20:58:40 DEBUG cache entry fae4aeaa61c6 evicted, free slots 22595", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 41242, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 08:23:20] [WARN] certificate will expire in 80 days, renew required", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=77191", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 05:30:51 DEBUG alarm cleared: disk usage back to 59 percent", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_23cf22f9e1fd, retry 56656 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 13:39:37] [ERROR] write 93316 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry b3694a3e64f5 evicted, free slots 34994", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 06:03:57 DEBUG cache entry 43ec3bf1469 evicted, free slots 33468", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 34 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 00:16:09] [NOTICE] send audit event to kafka topic dsware-audit, seq=a05a5670bce7", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 91614 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 10:23:55 DEBUG volume cfg.max.io changed state from active to degraded", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "disk 95073 smart health status ok, temperature 74156 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 02:16:40] [INFO] failed to read block blk_4b895e82a50, retry 51649 times", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_c2523a1868ff, retry 23699 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 13:09:12 NOTICE receive heartbeat from node-15772, load 32 percent", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=44944", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 06:49:19] [INFO] received message from 10.26096.48843.81894:63944, dispatch to handler", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_e4b98cc8ea4, retry 57338 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 23:19:34 NOTICE thread pool exhausted, active=54810 queued=45303 max=97225", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_2ce188d28b77, retry 69050 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 12:03:41] [DEBUG] metadata journal truncated at offset 8edd43a771bd", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=20379 queued=29366 max=52981", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 13:24:30 DEBUG failed to read block blk_1e76f08c099, retry 6209 times", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 8038", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 18:56:50] [ERROR] disk 93266 smart health status ok, temperature 55619 celsius", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "disk 88652 smart health status ok, temperature 70368 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 14:25:03 NOTICE disk 48410 smart health status ok, temperature 3946 celsius", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 36554 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 18:19:31] [NOTICE] start to sync volume data, total 40346 chunks", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_fae7799cdbb4, retry 7330 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 10:35:44 WARN alarm cleared: disk usage back to 10 percent", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=32813 queued=78756 max=60636", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 03:37:05] [ERROR] process request op=cfg.max.io done in 15916 ms", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry 1ea273ba8f01 evicted, free slots 63485", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 14:58:49 NOTICE metadata journal truncated at offset c157db918402", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "disk 57162 smart health status ok, temperature 4113 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 05:29:56] [NOTICE] volume snap-7c changed state from active to degraded", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-37948, load 58 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 05:29:42 DEBUG write 32364 bytes to /data/dsware/task-991/chunk.dat", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 14:01:00] [ERROR] task cfg.max.io submitted by user admin, priority 58586", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "update config key quota.db to value 55383", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 17:48:37 ERROR metadata journal truncated at offset b1f0e4434b8e", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "received message from 10.48293.42619.83675:37258, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 04:51:15] [WARN] volume cfg.max.io changed state from active to degraded", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "disk 12500 smart health status ok, temperature 15291 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 20:37:35 WARN disk 15180 smart health status ok, temperature 70415 celsius", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-19013, load 85 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 18:11:17] [INFO] init module cfg.max.io begin, worker threads 22420", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "init module task-991 begin, worker threads 92166", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 04:03:15 NOTICE task task-991 submitted by user admin, priority 79234", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 23:36:34] [WARN] alarm cleared: disk usage back to 70 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 134a86232298", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 10:27:10 ERROR cache entry f624dbb9d09c evicted, free slots 70963", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "volume cfg.max.io changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 18:32:38] [ERROR] received message from 10.51424.57970.12515:67956, dispatch to handler", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-38568, load 20 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 19:27:59 WARN send audit event to kafka topic dsware-audit, seq=4ad0b45c1a31", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "write 43711 bytes to /data/dsware/task-991/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 22:52:33] [NOTICE] failed to read block blk_66274d6754f3, retry 40734 times", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_1da72b20ac1, retry 84647 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 19:29:54 WARN start to sync volume data, total 24612 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "update config key task-991 to value 87827", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 17:56:30] [ERROR] update config key snap-7c to value 15403", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "received message from 10.46622.71600.29557:10858, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 04:00:56 INFO update config key quota.db to value 85435", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=80462", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 03:28:57] [DEBUG] connection reset by peer, socket fd=35141", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=61569", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 14:36:48 WARN process request op=task-991 done in 72585 ms", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 91317 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 01:11:39] [INFO] disk 61544 smart health status ok, temperature 63587 celsius", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "alarm cleared: disk usage back to 34 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 15:49:59 NOTICE connection reset by peer, socket fd=7850", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "process request op=cfg.max.io done in 88705 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 16:34:18] [NOTICE] connection reset by peer, socket fd=48880", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 7855 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 15:30:43 ERROR metadata journal truncated at offset 2f1b1b81b89b", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "init module vol-3f2a begin, worker threads 50220", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 18:44:51] [INFO] alarm cleared: disk usage back to 65 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=6bf8e9d9cf0c", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 19:16:12 NOTICE write 89335 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset eb4634b3f2cd", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 09:17:33] [INFO] checkpoint finished, elapsed 7969 seconds", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=92143", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 05:01:16 NOTICE received message from 10.94940.10073.51351:77522, dispatch to handler", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "volume cfg.max.io changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 16:15:45] [ERROR] cache entry 63b3b96d4bcc evicted, free slots 94046", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry f4c73ce43d92 evicted, free slots 16768", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 04:26:31 ERROR receive heartbeat from node-18864, load 94 percent", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_ebdb8b6140d8, retry 85367 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 00:51:58] [INFO] disk 44059 smart health status ok, temperature 5818 celsius", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-56355, load 4 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 08:43:35 WARN metadata journal truncated at offset 98299fb57ad8", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 45629, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 08:50:26] [ERROR] failed to read block blk_7b81777b06d0, retry 77601 times", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry 5f31198a7fc3 evicted, free slots 27528", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 17:03:37 NOTICE connection reset by peer, socket fd=82068", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "update config key vol-3f2a to value 13945", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 12:25:52] [WARN] init module task-991 begin, worker threads 99490", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "init module vol-3f2a begin, worker threads 71068", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 14:32:44 NOTICE disk 24152 smart health status ok, temperature 61851 celsius", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 53 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 20:09:54] [INFO] metadata journal truncated at offset dae570b90a52", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 31393 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 15:49:20 NOTICE disk 9068 smart health status ok, temperature 39435 celsius", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 40798 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 08:17:23] [INFO] thread pool exhausted, active=50217 queued=8577 max=33332", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "disk 22083 smart health status ok, temperature 72116 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 13:00:09 INFO process request op=snap-7c done in 76976 ms", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 21 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 20:56:55] [DEBUG] init module vol-3f2a begin, worker threads 89585", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "task cfg.max.io submitted by user admin, priority 23570", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 02:38:44 DEBUG init module snap-7c begin, worker threads 6557", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 50 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 06:16:40] [ERROR] volume vol-3f2a changed state from active to degraded", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "process request op=cfg.max.io done in 25323 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 03:10:06 INFO certificate will expire in 59109 days, renew required", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "update config key vol-3f2a to value 53257", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 03:50:36] [ERROR] failed to read block blk_b0621a9d9d77, retry 56228 times", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=18147", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 05:17:58 DEBUG connection reset by peer, socket fd=36631", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "task snap-7c submitted by user admin, priority 19501", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 01:53:18] [DEBUG] process request op=vol-3f2a done in 89914 ms", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=af52a96f4c46", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 17:39:39 WARN connection reset by peer, socket fd=69505", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=10961", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 09:11:42] [INFO] metadata journal truncated at offset f3f17fef6e3a", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "process request op=snap-7c done in 93222 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 19:42:48 ERROR write 26349 bytes to /data/dsware/task-991/chunk.dat", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 65008, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 04:41:20] [DEBUG] alarm cleared: disk usage back to 43 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=60562", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 09:34:33 INFO metadata journal truncated at offset b8cd27ae0401", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 10060 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 04:48:11] [ERROR] checkpoint finished, elapsed 6357 seconds", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume quota.db changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 16:41:02 INFO update config key cfg.max.io to value 14604", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "process request op=vol-3f2a done in 96244 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 18:28:46] [WARN] alarm cleared: disk usage back to 85 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "init module snap-7c begin, worker threads 99861", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 00:56:17 NOTICE update config key cfg.max.io to value 62853", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 5722 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 12:23:30] [WARN] checkpoint finished, elapsed 48783 seconds", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_d3f462b420c9, retry 62491 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 23:12:45 NOTICE connection reset by peer, socket fd=26331", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "disk 84972 smart health status ok, temperature 31030 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 05:11:55] [WARN] certificate will expire in 81203 days, renew required", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "process request op=quota.db done in 39864 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 00:41:44 NOTICE metadata journal truncated at offset 68e559b75587", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 84550 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 07:39:12] [DEBUG] send audit event to kafka topic dsware-audit, seq=538d4ae53bb3", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_98c116e1e475, retry 63178 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 11:46:51 WARN certificate will expire in 9874 days, renew required", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "write 40473 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 22:26:07] [DEBUG] certificate will expire in 67587 days, renew required", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "alarm cleared: disk usage back to 4 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 16:29:00 WARN thread pool exhausted, active=56095 queued=29951 max=78015", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "cache entry 2f8e60159ec evicted, free slots 26382", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 08:44:42] [DEBUG] certificate will expire in 79375 days, renew required", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "process request op=vol-3f2a done in 97489 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 08:05:03 INFO send audit event to kafka topic dsware-audit, seq=d68ac7556aca", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "cache entry 1cb6cc2bd52d evicted, free slots 26530", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 10:53:13] [INFO] init module snap-7c begin, worker threads 22327", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "write 62751 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 15:13:17 NOTICE volume task-991 changed state from active to degraded", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "disk 66131 smart health status ok, temperature 79023 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 03:39:23] [ERROR] connection reset by peer, socket fd=70898", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry 1367bb78151f evicted, free slots 98322", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 15:51:50 NOTICE init module vol-3f2a begin, worker threads 59429", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=b215431a5290", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 04:46:13] [NOTICE] alarm cleared: disk usage back to 64 percent", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "received message from 10.57589.63332.97268:7695, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 21:49:19 NOTICE alarm cleared: disk usage back to 38 percent", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 63136, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 18:16:29] [ERROR] failed to read block blk_b2fd3bb06eff, retry 32210 times", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "received message from 10.23088.40497.71125:2731, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 21:06:56 ERROR receive heartbeat from node-98864, load 20 percent", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "write 34158 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 04:14:32] [WARN] start to sync volume data, total 13924 chunks", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "cache entry 779a5990c77b evicted, free slots 10237", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 01:39:51 WARN failed to read block blk_6c28ffb595e1, retry 72140 times", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=77708 queued=66897 max=82614", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 23:15:53] [DEBUG] checkpoint finished, elapsed 60600 seconds", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=4cc140588d76", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 02:09:22 ERROR disk 56319 smart health status ok, temperature 12045 celsius", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "init module task-991 begin, worker threads 46665", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 20:06:13] [INFO] alarm cleared: disk usage back to 62 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-79985, load 86 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 10:40:37 WARN cache entry 865c580d2954 evicted, free slots 55562", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 17070 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 05:03:27] [WARN] received message from 10.11407.87492.14253:48193, dispatch to handler", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "disk 64363 smart health status ok, temperature 68769 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 11:50:59 WARN start to sync volume data, total 54055 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "task cfg.max.io submitted by user admin, priority 2538", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 23:23:02] [WARN] send audit event to kafka topic dsware-audit, seq=fb96ffc8351c", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "received message from 10.44035.31527.31850:88225, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 21:24:31 DEBUG write 70535 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "cache entry fa1cf4f033c0 evicted, free slots 60732", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 02:09:14] [ERROR] rpc call GetVolumeInfo returned code 38983, msg success", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=4299 queued=87549 max=22661", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 03:52:17 DEBUG checkpoint finished, elapsed 26480 seconds", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 5588 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 02:04:02] [DEBUG] checkpoint finished, elapsed 16947 seconds", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=14693", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 17:05:04 WARN disk 53873 smart health status ok, temperature 37569 celsius", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "task cfg.max.io submitted by user admin, priority 6158", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 00:49:31] [NOTICE] disk 61690 smart health status ok, temperature 54384 celsius", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 47958 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 08:28:26 INFO thread pool exhausted, active=20000 queued=70732 max=88871", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=70511 queued=32413 max=54936", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 17:57:19] [INFO] task quota.db submitted by user admin, priority 89360", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 89668 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 20:53:36 DEBUG send audit event to kafka topic dsware-audit, seq=b836baa43474", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 59132 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 19:10:53] [DEBUG] receive heartbeat from node-74671, load 15 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "disk 30487 smart health status ok, temperature 24017 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 05:20:12 DEBUG metadata journal truncated at offset 71084ebffae8", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "process request op=vol-3f2a done in 32265 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 07:10:10] [INFO] failed to read block blk_8d1c60990ccd, retry 39493 times", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "update config key vol-3f2a to value 79562", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 11:24:58 INFO volume cfg.max.io changed state from active to degraded", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-52998, load 7 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 21:12:09] [DEBUG] failed to read block blk_b50835c47575, retry 70107 times", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 887ad0c45f85", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 09:15:46 WARN process request op=quota.db done in 38796 ms", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 36 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 03:33:33] [NOTICE] metadata journal truncated at offset a3627de66493", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_5a6616410441, retry 10990 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 16:21:44 WARN send audit event to kafka topic dsware-audit, seq=54968f4f9671", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 65082 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 21:28:03] [INFO] rpc call GetVolumeInfo returned code 12248, msg success", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_9f6c29de93b2, retry 85620 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 18:35:12 INFO thread pool exhausted, active=2460 queued=26677 max=81453", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.42853.2571.94482:24061, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 08:35:04] [WARN] metadata journal truncated at offset 473c84a3df6d", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "process request op=task-991 done in 3761 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 19:24:07 WARN checkpoint finished, elapsed 62621 seconds", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=53387 queued=42124 max=12737", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 20:57:58] [ERROR] rpc call GetVolumeInfo returned code 52168, msg success", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 95896, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 16:12:46 WARN failed to read block blk_7659a1466c43, retry 70872 times", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=71266 queued=50497 max=96619", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 00:28:16] [NOTICE] failed to read block blk_3d1e27e2aad4, retry 63457 times", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 17764 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 04:42:09 NOTICE write 90869 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 58350 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 16:04:06] [DEBUG] send audit event to kafka topic dsware-audit, seq=1beedad0dd49", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 13684, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 18:56:29 DEBUG failed to read block blk_2f83fe8a94b2, retry 5956 times", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 21:27:02] [NOTICE] disk 90056 smart health status ok, temperature 12513 celsius", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "init module quota.db begin, worker threads 48316", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 05:53:20 ERROR connection reset by peer, socket fd=74111", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "update config key task-991 to value 87731", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 07:32:17] [ERROR] write 37447 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume snap-7c changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 17:46:16 INFO process request op=cfg.max.io done in 43547 ms", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=d5cc2c91214f", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 06:18:05] [WARN] write 66313 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 12299 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 00:22:24 NOTICE thread pool exhausted, active=89363 queued=39565 max=75018", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 66292, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 02:06:54] [ERROR] thread pool exhausted, active=45646 queued=27876 max=95132", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=27370 queued=21972 max=73285", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 13:47:58 INFO rpc call GetVolumeInfo returned code 89045, msg success", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "write 92764 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 02:48:52] [ERROR] send audit event to kafka topic dsware-audit, seq=36b8a1873b07", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 31833 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 07:31:08 INFO connection reset by peer, socket fd=89174", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=7d24db9331f8", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 00:38:53] [WARN] failed to read block blk_6575f365a5f9, retry 49732 times", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "process request op=snap-7c done in 75124 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 10:53:10 INFO write 20169 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=83563", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 22:19:06] [NOTICE] update config key snap-7c to value 67335", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-9945, load 66 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 08:30:27 DEBUG update config key cfg.max.io to value 22307", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "update config key quota.db to value 71279", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 19:26:16] [INFO] start to sync volume data, total 31870 chunks", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "cache entry c2f917ce6d54 evicted, free slots 45999", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 19:28:47 DEBUG metadata journal truncated at offset e5a32f9abb3", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "task snap-7c submitted by user admin, priority 63463", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 06:47:10] [DEBUG] thread pool exhausted, active=84324 queued=33066 max=25705", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "write 52467 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 01:50:35 ERROR volume task-991 changed state from active to degraded", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "process request op=snap-7c done in 8714 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 03:18:07] [NOTICE] task vol-3f2a submitted by user admin, priority 25805", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-86146, load 83 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 07:44:55 WARN send audit event to kafka topic dsware-audit, seq=da543a84202e", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "update config key vol-3f2a to value 56328", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 23:05:28] [DEBUG] certificate will expire in 11351 days, renew required", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "task snap-7c submitted by user admin, priority 3565", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 05:27:45 DEBUG rpc call GetVolumeInfo returned code 88359, msg success", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "disk 54869 smart health status ok, temperature 91005 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 23:21:54] [WARN] write 12909 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "alarm cleared: disk usage back to 50 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 03:48:40 WARN failed to read block blk_c31912d13376, retry 81165 times", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "process request op=snap-7c done in 72872 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 04:09:23] [ERROR] task quota.db submitted by user admin, priority 70248", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-48243, load 13 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 07:23:17 INFO received message from 10.69645.15086.7584:29336, dispatch to handler", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "volume snap-7c changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 07:16:55] [INFO] start to sync volume data, total 25010 chunks", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "task task-991 submitted by user admin, priority 8623", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 17:46:12 ERROR received message from 10.61525.85819.52487:82217, dispatch to handler", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "volume quota.db changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 20:22:35] [ERROR] write 37659 bytes to /data/dsware/task-991/chunk.dat", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 46e1b361ee66", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 09:41:05 INFO disk 27100 smart health status ok, temperature 51961 celsius", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 53582 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 01:18:44] [INFO] disk 43179 smart health status ok, temperature 69885 celsius", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "update config key snap-7c to value 66747", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 21:14:48 INFO start to sync volume data, total 92935 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 94353 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 23:01:41] [ERROR] volume vol-3f2a changed state from active to degraded", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 88836, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 18:44:35 WARN volume cfg.max.io changed state from active to degraded", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset 1896ae56a5e9", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 17:34:48] [DEBUG] receive heartbeat from node-21930, load 25 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 00:25:44 INFO rpc call GetVolumeInfo returned code 86804, msg success", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset f8d020dc37c3", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 12:06:02] [NOTICE] process request op=snap-7c done in 70855 ms", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset b2cc6398b228", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 07:08:31 NOTICE volume snap-7c changed state from active to degraded", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "init module snap-7c begin, worker threads 3548", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 20:28:52] [NOTICE] update config key quota.db to value 26981", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 93081 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 00:21:37 DEBUG cache entry 60ab41c57163 evicted, free slots 19612", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_49b57362a83e, retry 97883 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 03:03:49] [DEBUG] process request op=quota.db done in 19644 ms", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=53118 queued=77457 max=47868", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 19:24:30 WARN checkpoint finished, elapsed 54181 seconds", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=49791", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 03:40:35] [INFO] task vol-3f2a submitted by user admin, priority 32702", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=22344865a47", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 18:07:56 WARN volume task-991 changed state from active to degraded", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "task cfg.max.io submitted by user admin, priority 35700", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 23:23:30] [ERROR] thread pool exhausted, active=62455 queued=49872 max=44394", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "disk 85417 smart health status ok, temperature 81194 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 21:51:28 INFO cache entry f17d99c5a756 evicted, free slots 92008", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "disk 83093 smart health status ok, temperature 31830 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 14:21:32] [INFO] alarm cleared: disk usage back to 71 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-96165, load 13 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 18:21:00 DEBUG process request op=snap-7c done in 63516 ms", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=d153335ee4e5", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 12:16:47] [NOTICE] received message from 10.73067.26889.17975:50133, dispatch to handler", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "write 22695 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 10:47:48 DEBUG alarm cleared: disk usage back to 92 percent", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=92684 queued=82974 max=27886", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 14:24:35] [ERROR] received message from 10.86324.17361.84737:99325, dispatch to handler", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 28931", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 08:21:33 DEBUG thread pool exhausted, active=58219 queued=34665 max=47318", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=50773 queued=14536 max=71473", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 06:17:32] [NOTICE] connection reset by peer, socket fd=39698", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "update config key cfg.max.io to value 4150", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 17:46:10 INFO checkpoint finished, elapsed 38067 seconds", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "update config key cfg.max.io to value 80580", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 00:50:34] [NOTICE] send audit event to kafka topic dsware-audit, seq=e81a5302726a", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "cache entry 80dbd19dc06c evicted, free slots 63081", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 07:09:39 NOTICE connection reset by peer, socket fd=18063", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "disk 48574 smart health status ok, temperature 38704 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 07:39:06] [WARN] thread pool exhausted, active=54633 queued=13884 max=25140", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "init module cfg.max.io begin, worker threads 39815", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 11:11:19 INFO checkpoint finished, elapsed 69539 seconds", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "process request op=snap-7c done in 49138 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 18:14:36] [ERROR] task vol-3f2a submitted by user admin, priority 43860", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry 6363747f15b9 evicted, free slots 99550", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 21:32:58 NOTICE received message from 10.97088.33041.9497:75242, dispatch to handler", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset de5736261474", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 13:36:42] [ERROR] received message from 10.3124.35177.74325:84329, dispatch to handler", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-48889, load 9 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 08:02:57 INFO update config key cfg.max.io to value 21087", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "write 90110 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 01:07:14] [WARN] receive heartbeat from node-35538, load 7 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "volume snap-7c changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 03:09:25 WARN checkpoint finished, elapsed 55846 seconds", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "disk 169 smart health status ok, temperature 4245 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 19:25:35] [NOTICE] metadata journal truncated at offset 516e70d52672", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "task task-991 submitted by user admin, priority 11460", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 10:17:20 DEBUG thread pool exhausted, active=90383 queued=22308 max=18899", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 85 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 23:28:42] [DEBUG] task vol-3f2a submitted by user admin, priority 17937", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry d180ae65c442 evicted, free slots 76605", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 10:32:19 NOTICE alarm cleared: disk usage back to 52 percent", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset 7a2e091a7244", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 08:36:50] [NOTICE] receive heartbeat from node-95281, load 95 percent", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 626545cb5d2f", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 05:19:31 NOTICE received message from 10.26888.63925.47855:38896, dispatch to handler", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_a93b0667ac95, retry 35452 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 21:28:41] [WARN] write 95600 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-7962, load 2 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 18:46:26 INFO init module vol-3f2a begin, worker threads 57622", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset 3d368ae74151", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 06:53:10] [ERROR] alarm cleared: disk usage back to 33 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 50684 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 13:54:38 DEBUG send audit event to kafka topic dsware-audit, seq=b6be4972a05f", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=79206", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 15:55:03] [WARN] receive heartbeat from node-11248, load 69 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 32193 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 02:31:37 DEBUG failed to read block blk_28b324346ebf, retry 59997 times", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "init module vol-3f2a begin, worker threads 47544", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 03:01:18] [DEBUG] task vol-3f2a submitted by user admin, priority 49900", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-87368, load 26 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 20:29:38 NOTICE received message from 10.91301.43947.62189:14297, dispatch to handler", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "init module snap-7c begin, worker threads 49343", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 23:02:38] [INFO] metadata journal truncated at offset 63426168396b", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 9aa54a4e1b9a", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 09:10:45 DEBUG receive heartbeat from node-99187, load 10 percent", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=25216", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 14:16:41] [DEBUG] start to sync volume data, total 84334 chunks", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 24166 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 19:51:58 ERROR start to sync volume data, total 99895 chunks", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "write 41420 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 11:20:33] [NOTICE] failed to read block blk_968f9b579297, retry 29712 times", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=45295 queued=16316 max=72382", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 07:08:25 ERROR init module vol-3f2a begin, worker threads 91617", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "process request op=task-991 done in 63637 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 03:36:32] [INFO] connection reset by peer, socket fd=88281", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 6915 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 16:43:59 ERROR disk 98162 smart health status ok, temperature 90893 celsius", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "write 22700 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 14:49:58] [DEBUG] cache entry 5c16c507e11c evicted, free slots 45217", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 17:06:37 DEBUG checkpoint finished, elapsed 43453 seconds", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "disk 32772 smart health status ok, temperature 34744 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 09:37:55] [INFO] certificate will expire in 88985 days, renew required", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "volume cfg.max.io changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 23:04:07 NOTICE received message from 10.92737.20482.81063:17170, dispatch to handler", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "update config key cfg.max.io to value 25778", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 11:23:44] [DEBUG] send audit event to kafka topic dsware-audit, seq=e6b4c4ad3b0c", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=11709", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 07:31:42 INFO task quota.db submitted by user admin, priority 57599", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 15253 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 23:11:38] [NOTICE] start to sync volume data, total 61565 chunks", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "disk 30596 smart health status ok, temperature 22445 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 10:44:30 INFO received message from 10.47226.52420.17188:39083, dispatch to handler", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset 1e444a97dfa6", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 23:11:02] [INFO] process request op=cfg.max.io done in 15063 ms", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "write 88100 bytes to /data/dsware/task-991/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 04:02:16 NOTICE disk 66453 smart health status ok, temperature 28966 celsius", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 5 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 19:38:53] [WARN] received message from 10.76433.43244.19803:7801, dispatch to handler", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 80088 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 18:00:14 DEBUG received message from 10.74513.39240.72806:98840, dispatch to handler", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 38320, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 04:21:55] [WARN] failed to read block blk_74e0aaf967b6, retry 32713 times", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "write 92252 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 00:08:31 NOTICE volume snap-7c changed state from active to degraded", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 68393", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 00:21:48] [DEBUG] task task-991 submitted by user admin, priority 41415", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=76612", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 00:27:47 ERROR certificate will expire in 15433 days, renew required", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "write 39473 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 09:43:56] [INFO] checkpoint finished, elapsed 19137 seconds", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 274, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 05:02:03 ERROR process request op=vol-3f2a done in 40744 ms", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 58343 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 03:00:50] [DEBUG] volume task-991 changed state from active to degraded", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 57066 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 15:25:34 ERROR connection reset by peer, socket fd=48249", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=93699 queued=17578 max=38377", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 07:39:49] [WARN] certificate will expire in 65675 days, renew required", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "process request op=vol-3f2a done in 94632 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 05:44:16 WARN disk 41676 smart health status ok, temperature 67166 celsius", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 21289 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 18:49:06] [ERROR] certificate will expire in 56920 days, renew required", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "write 64412 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 20:22:38 NOTICE start to sync volume data, total 26839 chunks", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "update config key quota.db to value 44414", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 23:22:21] [WARN] init module cfg.max.io begin, worker threads 1317", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 4610 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 18:25:09 NOTICE task snap-7c submitted by user admin, priority 22420", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "write 45332 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 16:30:48] [WARN] metadata journal truncated at offset af3f617e21d9", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "process request op=cfg.max.io done in 96211 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 03:57:34 NOTICE alarm cleared: disk usage back to 2 percent", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 71185 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 06:59:50] [ERROR] process request op=cfg.max.io done in 28510 ms", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=28413ea9db69", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 06:24:42 NOTICE failed to read block blk_50bf1eb4268e, retry 29415 times", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=56050", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 20:06:31] [DEBUG] task task-991 submitted by user admin, priority 81069", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 88627 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 20:17:44 ERROR failed to read block blk_5a75e2d5b19e, retry 44760 times", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 69807 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 08:03:22] [INFO] volume vol-3f2a changed state from active to degraded", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 34834 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 12:51:00 NOTICE connection reset by peer, socket fd=56396", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 64 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 08:33:57] [ERROR] send audit event to kafka topic dsware-audit, seq=e6f9b06a979f", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "task snap-7c submitted by user admin, priority 95374", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 11:23:58 WARN write 2278 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 31934 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 13:49:04] [NOTICE] checkpoint finished, elapsed 39583 seconds", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "process request op=snap-7c done in 1917 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 14:06:58 WARN thread pool exhausted, active=66122 queued=62936 max=87319", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.91820.87120.70521:33290, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 07:36:39] [DEBUG] init module vol-3f2a begin, worker threads 6485", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 24588 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 01:56:38 WARN failed to read block blk_2d5e27d49ee6, retry 26721 times", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "update config key vol-3f2a to value 38142", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 07:09:14] [INFO] checkpoint finished, elapsed 36742 seconds", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_a69f4ac993d2, retry 23278 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 19:17:59 ERROR rpc call GetVolumeInfo returned code 21132, msg success", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "received message from 10.62503.598.73475:11451, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 10:15:28] [DEBUG] update config key cfg.max.io to value 44863", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "write 38547 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 00:05:58 INFO received message from 10.12520.74686.46735:22634, dispatch to handler", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-45567, load 87 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 15:07:44] [NOTICE] send audit event to kafka topic dsware-audit, seq=cde493b656c9", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "volume vol-3f2a changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 16:35:05 WARN checkpoint finished, elapsed 22575 seconds", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_92a7e686262b, retry 77176 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 05:54:37] [WARN] connection reset by peer, socket fd=52719", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "init module task-991 begin, worker threads 77157", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 13:38:25 ERROR update config key quota.db to value 91484", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_11eeed0da8ce, retry 41691 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 07:40:00] [INFO] connection reset by peer, socket fd=42000", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 55561 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 19:23:07 ERROR send audit event to kafka topic dsware-audit, seq=3c5e0ed03a10", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 22301 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 07:15:02] [NOTICE] start to sync volume data, total 51960 chunks", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=587bf4d132fb", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 13:46:16 ERROR received message from 10.98224.44858.72355:90017, dispatch to handler", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 47386 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 05:09:23] [WARN] receive heartbeat from node-83581, load 26 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "init module quota.db begin, worker threads 77304", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 07:53:46 INFO metadata journal truncated at offset e9c6d1003840", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.11080.77708.16810:87112, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 20:24:42] [WARN] task snap-7c submitted by user admin, priority 39393", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 89576, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 04:01:43 INFO init module quota.db begin, worker threads 14487", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "process request op=snap-7c done in 56720 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 15:25:27] [ERROR] checkpoint finished, elapsed 98051 seconds", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset 14ba8956a853", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 11:13:02 INFO process request op=snap-7c done in 29413 ms", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=47913", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 12:47:21] [INFO] write 20018 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=c48c72924583", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 04:49:45 WARN start to sync volume data, total 19965 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=30039 queued=28644 max=81057", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 00:13:19] [NOTICE] certificate will expire in 78092 days, renew required", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "write 225 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 02:23:13 INFO connection reset by peer, socket fd=76887", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 41133, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 03:37:57] [DEBUG] thread pool exhausted, active=88216 queued=44058 max=3075", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "connection reset by peer, socket fd=37026", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 14:23:36 ERROR connection reset by peer, socket fd=3468", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "update config key quota.db to value 43755", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 00:16:59] [DEBUG] task vol-3f2a submitted by user admin, priority 46598", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "disk 43346 smart health status ok, temperature 81731 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 21:10:36 NOTICE write 56576 bytes to /data/dsware/task-991/chunk.dat", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 72001 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 21:34:28] [WARN] received message from 10.43729.66207.80941:96334, dispatch to handler", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=11e4ed9270bb", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 06:54:36 INFO connection reset by peer, socket fd=97778", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 15773 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 10:35:50] [DEBUG] disk 30731 smart health status ok, temperature 99102 celsius", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "process request op=quota.db done in 7684 ms", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 10:16:42 INFO start to sync volume data, total 36177 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "write 56200 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 10:46:33] [NOTICE] received message from 10.96897.6775.3431:68719, dispatch to handler", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=98404 queued=57212 max=57543", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 02:01:34 DEBUG start to sync volume data, total 52870 chunks", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "disk 83928 smart health status ok, temperature 62072 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 10:02:07] [DEBUG] receive heartbeat from node-82147, load 91 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-19918, load 46 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 07:11:50 NOTICE receive heartbeat from node-31223, load 96 percent", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_322654645ee9, retry 63828 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 03:17:16] [ERROR] start to sync volume data, total 68758 chunks", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "received message from 10.45094.78259.21724:20456, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 16:36:16 DEBUG certificate will expire in 10408 days, renew required", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=28db1f7097df", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 03:43:02] [INFO] task task-991 submitted by user admin, priority 97927", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "disk 93978 smart health status ok, temperature 79273 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 15:27:35 INFO cache entry a50cc9757350 evicted, free slots 37703", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 61053 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 12:19:25] [INFO] alarm cleared: disk usage back to 20 percent", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "cache entry 77fcdf5dee85 evicted, free slots 8154", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 15:52:25 ERROR certificate will expire in 9845 days, renew required", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "volume snap-7c changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 18:33:44] [NOTICE] certificate will expire in 40352 days, renew required", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 36488 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 22:59:16 NOTICE volume snap-7c changed state from active to degraded", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 86 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 20:07:01] [ERROR] write 47136 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "received message from 10.51322.25554.35827:84557, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 08:23:43 INFO disk 63596 smart health status ok, temperature 5112 celsius", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "certificate will expire in 46240 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 23:52:38] [ERROR] write 85210 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "alarm cleared: disk usage back to 63 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 15:11:29 DEBUG checkpoint finished, elapsed 47086 seconds", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 77844", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 01:38:08] [ERROR] init module snap-7c begin, worker threads 75254", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "receive heartbeat from node-39262, load 68 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 19:28:06 NOTICE update config key task-991 to value 72799", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 39997 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 22:07:35] [ERROR] checkpoint finished, elapsed 40430 seconds", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=43711 queued=922 max=29155", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 10:40:54 INFO certificate will expire in 22210 days, renew required", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=5c11c5f43d63", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 07:44:44] [DEBUG] init module cfg.max.io begin, worker threads 21193", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "write 94196 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 10:33:41 WARN volume task-991 changed state from active to degraded", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=24982 queued=16053 max=15034", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 01:02:53] [WARN] update config key quota.db to value 40931", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "alarm cleared: disk usage back to 23 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 13:29:38 ERROR update config key task-991 to value 50740", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "update config key snap-7c to value 31811", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 18:27:23] [ERROR] failed to read block blk_b8a9f11ca2cf, retry 36240 times", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "start to sync volume data, total 45240 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 23:55:36 DEBUG start to sync volume data, total 68771 chunks", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-68169, load 39 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 06:22:38] [ERROR] volume quota.db changed state from active to degraded", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume task-991 changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 18:48:01 NOTICE rpc call GetVolumeInfo returned code 19518, msg success", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=85666 queued=63830 max=74138", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 21:23:26] [WARN] metadata journal truncated at offset 53ba82006b93", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 32750", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 17:33:47 INFO send audit event to kafka topic dsware-audit, seq=4284aaab4c10", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 45520", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 08:49:08] [WARN] received message from 10.8132.88346.63141:66130, dispatch to handler", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "update config key vol-3f2a to value 2750", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 17:04:03 NOTICE update config key vol-3f2a to value 65535", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "metadata journal truncated at offset 8154f505284e", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 23:36:04] [ERROR] disk 58137 smart health status ok, temperature 91592 celsius", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "thread pool exhausted, active=54327 queued=13440 max=28927", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 03:48:29 INFO rpc call GetVolumeInfo returned code 47372, msg success", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 88495 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 07:04:43] [WARN] task quota.db submitted by user admin, priority 73790", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 34594, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 19:43:46 ERROR task task-991 submitted by user admin, priority 69808", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_711159f57f96, retry 63211 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 14:43:11] [DEBUG] volume task-991 changed state from active to degraded", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry d1472e18a58b evicted, free slots 13911", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 13:07:21 INFO write 74405 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "disk 25015 smart health status ok, temperature 3190 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 04:23:13] [DEBUG] task cfg.max.io submitted by user admin, priority 41873", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 63728", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 10:24:33 ERROR init module vol-3f2a begin, worker threads 82964", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "write 90160 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 10:18:23] [ERROR] send audit event to kafka topic dsware-audit, seq=306d9fed3722", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "init module task-991 begin, worker threads 94039", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 20:18:47 DEBUG thread pool exhausted, active=52498 queued=73256 max=1212", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=2a9e6e0b4c4d", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 05:56:32] [ERROR] update config key cfg.max.io to value 57762", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "received message from 10.45281.24306.74447:76529, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 15:25:21 DEBUG process request op=cfg.max.io done in 1303 ms", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "write 52347 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 09:33:47] [NOTICE] metadata journal truncated at offset 7f9fe1ce0070", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_399ea85e2ca5, retry 85198 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 15:51:19 NOTICE failed to read block blk_8343752e9e1e, retry 71120 times", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=8692bffdc3ef", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 16:43:53] [ERROR] start to sync volume data, total 44695 chunks", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_612fbb4e3bb7, retry 51575 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 05:48:06 WARN disk 98550 smart health status ok, temperature 61714 celsius", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "write 39568 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 21:24:58] [DEBUG] connection reset by peer, socket fd=18237", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "received message from 10.98289.27686.90764:76008, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 13:28:40 ERROR init module quota.db begin, worker threads 17837", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 70211, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 11:52:28] [NOTICE] certificate will expire in 73719 days, renew required", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "write 78098 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 03:09:26 WARN cache entry d5094837d68 evicted, free slots 14945", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.702.33422.66089:85873, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-03 02:48:08] [DEBUG] certificate will expire in 83746 days, renew required", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "certificate will expire in 7098 days, renew required", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-10 10:46:15 INFO rpc call GetVolumeInfo returned code 81827, msg success", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "volume quota.db changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-02 23:58:11] [ERROR] send audit event to kafka topic dsware-audit, seq=8d186d4e9c90", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=48a6f787428f", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 00:33:57 ERROR disk 97395 smart health status ok, temperature 23876 celsius", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "start to sync volume data, total 13202 chunks", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 18:39:24] [DEBUG] write 57538 bytes to /data/dsware/task-991/chunk.dat", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=9fe5d66bed08", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 06:31:19 WARN cache entry 5363958c7556 evicted, free slots 97425", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "init module quota.db begin, worker threads 10357", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 13:21:28] [WARN] send audit event to kafka topic dsware-audit, seq=8a060fbc7e1d", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "disk 74699 smart health status ok, temperature 85160 celsius", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-06 05:45:53 WARN volume vol-3f2a changed state from active to degraded", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "received message from 10.19504.13829.14045:4059, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-10 12:00:12] [NOTICE] rpc call GetVolumeInfo returned code 84056, msg success", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "init module vol-3f2a begin, worker threads 56032", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 17:57:31 INFO thread pool exhausted, active=67321 queued=51845 max=15396", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "init module quota.db begin, worker threads 2114", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 16:51:43] [WARN] metadata journal truncated at offset 332ea74425c1", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "update config key task-991 to value 29284", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 04:17:37 DEBUG rpc call GetVolumeInfo returned code 87376, msg success", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "receive heartbeat from node-8282, load 5 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 01:53:26] [WARN] rpc call GetVolumeInfo returned code 32712, msg success", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "alarm cleared: disk usage back to 88 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-01 20:17:11 NOTICE certificate will expire in 93920 days, renew required", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_cb87df7acab8, retry 54671 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 11:59:38] [NOTICE] volume cfg.max.io changed state from active to degraded", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "rpc call GetVolumeInfo returned code 15487, msg success", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-03 16:41:08 NOTICE connection reset by peer, socket fd=61938", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "update config key vol-3f2a to value 73089", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 11:05:59] [NOTICE] volume task-991 changed state from active to degraded", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "failed to read block blk_47af55c01f79, retry 20003 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 19:14:02 WARN certificate will expire in 67073 days, renew required", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 94250 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 07:45:20] [ERROR] write 58820 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "received message from 10.8920.7790.55230:22233, dispatch to handler", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 17:57:48 INFO thread pool exhausted, active=72491 queued=41088 max=89112", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "alarm cleared: disk usage back to 92 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 01:57:28] [DEBUG] task cfg.max.io submitted by user admin, priority 44580", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "init module task-991 begin, worker threads 80529", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 05:13:28 NOTICE process request op=quota.db done in 15858 ms", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "cache entry fd2ce348148b evicted, free slots 58591", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 02:46:01] [DEBUG] receive heartbeat from node-83979, load 67 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "volume vol-3f2a changed state from active to degraded", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-02 15:59:44 INFO update config key task-991 to value 86173", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "checkpoint finished, elapsed 95188 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-08 07:18:17] [NOTICE] checkpoint finished, elapsed 34119 seconds", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "checkpoint finished, elapsed 44332 seconds", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 10:44:43 DEBUG cache entry ceac449624ea evicted, free slots 19781", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "task vol-3f2a submitted by user admin, priority 42149", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-01 08:59:50] [WARN] update config key vol-3f2a to value 55914", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "init module quota.db begin, worker threads 94539", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-04 01:37:08 WARN start to sync volume data, total 70197 chunks", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "connection reset by peer, socket fd=18956", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-04 13:03:40] [NOTICE] receive heartbeat from node-73911, load 62 percent", "body_start": 31, "format": "nh1", "has_header": true}
+{"line": "metadata journal truncated at offset b83544236753", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-07 07:27:53 ERROR receive heartbeat from node-70467, load 63 percent", "body_start": 26, "format": "nh3", "has_header": true}
+{"line": "thread pool exhausted, active=57973 queued=73868 max=76793", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-06 22:37:57] [ERROR] connection reset by peer, socket fd=8801", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry dfe526272ab8 evicted, free slots 369", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 13:34:34 NOTICE write 89307 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "write 54161 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-05 01:20:24] [WARN] failed to read block blk_b014f9e0cb6f, retry 87695 times", "body_start": 29, "format": "nh1", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=f5b462302b27", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-05 08:43:56 INFO update config key cfg.max.io to value 76786", "body_start": 25, "format": "nh3", "has_header": true}
+{"line": "failed to read block blk_6f1982de0287, retry 67952 times", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-09 05:24:58] [ERROR] certificate will expire in 46108 days, renew required", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "alarm cleared: disk usage back to 89 percent", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-09 20:45:21 NOTICE process request op=task-991 done in 25355 ms", "body_start": 27, "format": "nh3", "has_header": true}
+{"line": "send audit event to kafka topic dsware-audit, seq=e54381888508", "body_start": 0, "format": "none", "has_header": false}
+{"line": "[2026-03-07 21:31:57] [ERROR] receive heartbeat from node-41407, load 32 percent", "body_start": 30, "format": "nh1", "has_header": true}
+{"line": "cache entry e7f9db4b0f79 evicted, free slots 85036", "body_start": 0, "format": "none", "has_header": false}
+{"line": "2026-03-08 01:12:43 ERROR init module vol-3f2a begin, worker threads 23742", "body_start": 26, "format": "nh3", "has_header": true}

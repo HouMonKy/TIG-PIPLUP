@@ -1,0 +1,1000 @@
+{"line": "[NOTICE] [ha-monitor] [b39cfd4b] [dcae6e9f] (UTC) 2026-03-01 14:25:55.000000  DSWARE KMC cache entry 4a2139a40dfe evicted, free slots 3813", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 04:42:19.000000]  [INFO] [19a56746] [dme-server] send audit event to kafka topic dsware-audit, seq=fd4fb0567812", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 05:31:03] [/data/dsware/vol-52] [osd-daemon] [ERROR] failed to read block blk_d76e56bcf77c, retry 37057 times", "body_start": 65, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 12:04:41.000000] [ha-monitor] [INFO]: thread pool exhausted, active=12403 queued=35389 max=41343", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[ERROR] [main-worker] [58347f96] [62c8f4c1] (UTC) 2026-03-02 01:22:38.000000  DSWARE KMC alarm cleared: disk usage back to 25 percent", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 17:24:22,000000]  [WARN] [c6ccac69] [main-worker] receive heartbeat from node-88305, load 88 percent", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[INFO] [osd-daemon] [5e9879ff] [d49a72b4] (UTC) 2026-03-02 06:57:28,000000  DSWARE KMC rpc call GetVolumeInfo returned code 77329, msg success", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 13:28:57]write 63366 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 20:35:38]certificate will expire in 96680 days, renew required", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 13:43:33:000000][0260d2cc][WARN][e2164371][main-worker][947d6053][c0e27124]certificate will expire in 84776 days, renew required", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 18:15:27] [ERROR] [rep-worker] [msg-handler] cache entry 5c661c8c857b evicted, free slots 44581", "body_start": 57, "format": "fsm#2", "has_header": true}
+{"line": "[WARN] [rep-worker] [b779e1eb] [0f2c7bfc] (UTC) 2026-03-01 09:44:49  DSWARE KMC certificate will expire in 62120 days, renew required", "body_start": 80, "format": "fsa#1", "has_header": true}
+{"line": "[WARN] [dme-server] [eeb90725] [a47781d4] (UTC) 2026-03-02 06:33:37.000000  DSWARE KMC metadata journal truncated at offset a533ebc9d083", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[ERROR] [scheduler] [01b9a9d2] [6f6c866b] (UTC) 2026-03-01 14:29:42:000000  DSWARE KMC send audit event to kafka topic dsware-audit, seq=ada0a060af85", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 18:10:18.000000]  [DEBUG] [f5ff912a] [ism-agent] failed to read block blk_8321ff1fca7a, retry 98444 times", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 20:00:41]init module snap-7c begin, worker threads 8573", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 18:55:05] [/data/dsware/vol-52] [vbs-server] [ERROR] init module snap-7c begin, worker threads 9538", "body_start": 65, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 12:47:43:000000][WARN][dme-server] failed to read block blk_710eecfe3142, retry 51897 times", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 00:08:46,000000] [scheduler] [ism-agent] thread pool exhausted, active=17496 queued=36515 max=97742", "body_start": 53, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 21:10:48] [WARN] [main-worker] [msg-handler] init module snap-7c begin, worker threads 9569", "body_start": 57, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 23:00:59,000000] [WARN] [sync-task] [ism-agent] connection reset by peer, socket fd=30375", "body_start": 60, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 03:12:29,000000] [scheduler] [ERROR]: disk 65081 smart health status ok, temperature 19067 celsius", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 22:46:18.000000][f020d41a][DEBUG][61d0c649][rep-worker][f66f4152][a1e24baa]send audit event to kafka topic dsware-audit, seq=383f72f0d03b", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 13:22:25,000000]  [INFO] [55711203] [ism-agent] start to sync volume data, total 70214 chunks", "body_start": 60, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 06:07:45.000000][WARN][dme-server] volume quota.db changed state from active to degraded", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 12:23:30.000000][1852ddfe][DEBUG][889699ae][ha-monitor][0d1899ab][a36510bc]metadata journal truncated at offset 20d2671fbf17", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 06:32:39,000000] [/data/dsware/vol-09] [osd-daemon] [NOTICE] thread pool exhausted, active=41783 queued=85574 max=81445", "body_start": 73, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 09:14:41.000000] [/data/dsware/vol-27] [scheduler] [WARN] start to sync volume data, total 21733 chunks", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[WARN] [ha-monitor] [1d9dfb37] [db960629] (UTC) 2026-03-01 23:37:08,000000  DSWARE KMC checkpoint finished, elapsed 49526 seconds", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 05:18:39,000000][ERROR][dme-server] metadata journal truncated at offset c5e9436c0c37", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[WARN] [dme-server] [7aecec81] [2dc08cf1] (UTC) 2026-03-02 00:24:17,000000  DSWARE KMC alarm cleared: disk usage back to 61 percent", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 05:02:02:000000] [/data/dsware/vol-57] [sync-task] [DEBUG] alarm cleared: disk usage back to 59 percent", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[ERROR] [rep-worker] [317bcf01] [4073face] (UTC) 2026-03-02 01:29:18,000000  DSWARE KMC process request op=task-991 done in 5427 ms", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 23:27:30,000000][DEBUG][ism-agent] receive heartbeat from node-35781, load 69 percent", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 11:32:38,000000][INFO][msg-handler] init module task-991 begin, worker threads 2548", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 19:48:19,000000][a88e0b6a][ERROR] [7192cf65][sync-task]start to sync volume data, total 75081 chunks", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 18:38:32.000000] [dme-server] [WARN]: thread pool exhausted, active=44633 queued=87459 max=1226", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 10:10:22,000000][DEBUG][main-worker] failed to read block blk_620e4f4f6cdd, retry 15857 times", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 17:25:47][0fdc9ae1][WARN] [87e32764][main-worker]received message from 10.10119.6883.7155:2412, dispatch to handler", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 04:18:34] [ERROR] [sync-task] [scheduler] init module task-991 begin, worker threads 58852", "body_start": 54, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 09:05:39]  [INFO] [029ecc7d] [vbs-server] start to sync volume data, total 95619 chunks", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 11:16:20] [INFO] [rep-worker] [msg-handler] certificate will expire in 75752 days, renew required", "body_start": 56, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 04:20:07,000000] [INFO] [vbs-server] [sync-task] thread pool exhausted, active=68280 queued=88199 max=28084", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[NOTICE] [vbs-server] [1cd86293] [a5a01c5e] (UTC) 2026-03-01 15:33:48,000000  DSWARE KMC update config key task-991 to value 36062", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 03:30:14,000000] [/data/dsware/vol-44] [scheduler] [NOTICE] send audit event to kafka topic dsware-audit, seq=b23161b393f3", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 20:05:21.000000] [WARN] [vbs-server] [main-worker] rpc call GetVolumeInfo returned code 52442, msg success", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 22:23:31.000000][3f3adeab][WARN] [3147ba54][rep-worker]disk 55937 smart health status ok, temperature 43938 celsius", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[ERROR] [main-worker] [64028c6f] [538cc8d5] (UTC) 2026-03-02 07:04:53,000000  DSWARE KMC init module quota.db begin, worker threads 34121", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 13:47:40,000000] [main-worker] [DEBUG]: alarm cleared: disk usage back to 92 percent", "body_start": 52, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 11:53:19] [ism-agent] [ERROR]: write 95923 bytes to /data/dsware/task-991/chunk.dat", "body_start": 43, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 03:20:30] [msg-handler] [DEBUG]: start to sync volume data, total 80592 chunks", "body_start": 45, "format": "fsm#3", "has_header": true}
+{"line": "[WARN] [sync-task] [4f2f56a6] [3d34d1b4] (UTC) 2026-03-01 19:51:39,000000  DSWARE KMC process request op=task-991 done in 988 ms", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 23:04:40.000000][faaa50ed][DEBUG][8f114bb8][rep-worker][3d8bbea9][9b19a3c8]write 92576 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 18:57:10]  [NOTICE] [531e34fd] [dme-server] cache entry a2594d20b71d evicted, free slots 72025", "body_start": 56, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 21:28:40,000000] [ha-monitor] [INFO]: received message from 10.35802.10222.6002:11073, dispatch to handler", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 02:58:46,000000] [INFO] [vbs-server] [ha-monitor] alarm cleared: disk usage back to 45 percent", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 08:25:35.000000] [dme-server] [ism-agent] alarm cleared: disk usage back to 94 percent", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 09:15:18,000000] [ism-agent] [ha-monitor] failed to read block blk_503d000320f9, retry 51143 times", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 17:23:37] [main-worker] [dme-server] update config key snap-7c to value 82302", "body_start": 49, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 19:11:44,000000] [/data/dsware/vol-04] [main-worker] [WARN] received message from 10.56710.55558.37332:56654, dispatch to handler", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 18:54:07.000000] [INFO] [vbs-server] [msg-handler] update config key snap-7c to value 49731", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 16:50:11] [WARN] [osd-daemon] [osd-daemon] - cache entry c6b8d53971e1 evicted, free slots 2704", "body_start": 57, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 02:50:24:000000][7b3f3da0][ERROR] [85b9071b][vbs-server]receive heartbeat from node-75601, load 31 percent", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 18:22:25,000000] [main-worker] [NOTICE]: task vol-3f2a submitted by user admin, priority 44685", "body_start": 53, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 12:18:06][ac4848f9][ERROR] [1efc18ad][ha-monitor]receive heartbeat from node-19212, load 79 percent", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[INFO] [scheduler] [0ba97890] [2e824538] (UTC) 2026-03-01 12:42:28,000000  DSWARE KMC checkpoint finished, elapsed 82533 seconds", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 20:29:30][ea0a1e6c][INFO][b6afeb54][msg-handler][82a27dc2][9f8d3ea6]start to sync volume data, total 98150 chunks", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 23:40:29.000000] [INFO] [main-worker] [dme-server] update config key snap-7c to value 48664", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 15:30:37] [ERROR] [osd-daemon] [dme-server] - failed to read block blk_9c27ea6413f, retry 6292 times", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[WARN] [ism-agent] [b036b227] [5df38db9] (UTC) 2026-03-01 20:51:05,000000  DSWARE KMC rpc call GetVolumeInfo returned code 96600, msg success", "body_start": 86, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 08:55:02,000000] [DEBUG] [dme-server] [osd-daemon] thread pool exhausted, active=22170 queued=41020 max=18914", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 09:08:52:000000][WARN][scheduler] init module vol-3f2a begin, worker threads 86273", "body_start": 46, "format": "fsa#5", "has_header": true}
+{"line": "[ERROR] [rep-worker] [68015777] [cb600a2a] (UTC) 2026-03-01 09:23:59,000000  DSWARE KMC cache entry bf6820b6fadb evicted, free slots 12190", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 07:41:14,000000]write 5635 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 13:46:00.000000][WARN][osd-daemon] failed to read block blk_c7d99b1c0055, retry 87398 times", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 09:41:31:000000][a6e455cf][DEBUG][f7faa050][scheduler][9a6eb458][b1ec83b5]received message from 10.84957.35723.30655:18849, dispatch to handler", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 23:07:00:000000][9f6fc883][INFO] [28983a4b][scheduler]checkpoint finished, elapsed 40778 seconds", "body_start": 66, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 16:21:28.000000][WARN][scheduler] send audit event to kafka topic dsware-audit, seq=f2c9d415c656", "body_start": 46, "format": "fsm#5", "has_header": true}
+{"line": "[INFO] [vbs-server] [1aa1ae3d] [b8d55197] (UTC) 2026-03-01 17:01:58,000000  DSWARE KMC certificate will expire in 4798 days, renew required", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 16:55:08] [main-worker] [ism-agent] cache entry 94d9b2c1169b evicted, free slots 98259", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 16:37:29,000000][WARN][osd-daemon] certificate will expire in 7731 days, renew required", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 14:46:28,000000][DEBUG][msg-handler] alarm cleared: disk usage back to 7 percent", "body_start": 49, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 13:17:07,000000] [scheduler] [WARN]: receive heartbeat from node-66120, load 2 percent", "body_start": 49, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 08:08:16:000000] [/data/dsware/vol-54] [vbs-server] [DEBUG] thread pool exhausted, active=56721 queued=54501 max=71183", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 22:11:13] [osd-daemon] [NOTICE]: send audit event to kafka topic dsware-audit, seq=8e668d5490d", "body_start": 45, "format": "fsm#3", "has_header": true}
+{"line": "[INFO] [vbs-server] [739ffbe9] [a21ea3f0] (UTC) 2026-03-01 23:22:29,000000  DSWARE KMC task snap-7c submitted by user admin, priority 53599", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 13:47:25]  [DEBUG] [e8490909] [scheduler] volume cfg.max.io changed state from active to degraded", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 03:10:27,000000][83ce476c][DEBUG] [c07d19a8][scheduler]alarm cleared: disk usage back to 6 percent", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 02:36:08] [ism-agent] [NOTICE]: alarm cleared: disk usage back to 97 percent", "body_start": 44, "format": "fsm#3", "has_header": true}
+{"line": "[INFO] [osd-daemon] [8218a0b7] [37bd0947] (UTC) 2026-03-02 07:06:04.000000  DSWARE KMC receive heartbeat from node-93162, load 91 percent", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 22:16:10:000000][2cd49ce9][ERROR] [fdfcf552][dme-server]alarm cleared: disk usage back to 45 percent", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[INFO] [scheduler] [2b51ee13] [cb7468a4] (UTC) 2026-03-01 21:49:42:000000  DSWARE KMC certificate will expire in 71690 days, renew required", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[ERROR] [msg-handler] [b8f84425] [3a2a2a9e] (UTC) 2026-03-01 21:08:53.000000  DSWARE KMC disk 99840 smart health status ok, temperature 51908 celsius", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[ERROR] [scheduler] [dce52646] [75db0b4a] (UTC) 2026-03-02 05:48:31,000000  DSWARE KMC connection reset by peer, socket fd=60359", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 15:00:10.000000] [NOTICE] [rep-worker] [ha-monitor] disk 82979 smart health status ok, temperature 8832 celsius", "body_start": 64, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 16:13:56.000000] [DEBUG] [ism-agent] [main-worker] - rpc call GetVolumeInfo returned code 83647, msg success", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 02:12:34] [msg-handler] [ERROR]: rpc call GetVolumeInfo returned code 78879, msg success", "body_start": 45, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 15:44:21,000000][DEBUG][osd-daemon] volume cfg.max.io changed state from active to degraded", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 10:14:50,000000] [ERROR] [ism-agent] [dme-server] - task snap-7c submitted by user admin, priority 70726", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 00:57:38.000000][a4629e79][INFO][b7bf237a][osd-daemon][57f81194][f579f3a5]send audit event to kafka topic dsware-audit, seq=164893d0bef", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 17:57:04,000000][3c78c687][WARN] [134aa1ae][rep-worker]checkpoint finished, elapsed 87744 seconds", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 14:39:31]  [ERROR] [fad29173] [main-worker] thread pool exhausted, active=5629 queued=4541 max=26552", "body_start": 56, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 13:29:07] [NOTICE] [sync-task] [ha-monitor] - received message from 10.16591.82844.47648:79514, dispatch to handler", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 08:58:23.000000] [osd-daemon] [INFO]: disk 17858 smart health status ok, temperature 98092 celsius", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 03:28:22.000000] [/data/dsware/vol-34] [main-worker] [INFO] task task-991 submitted by user admin, priority 3514", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 13:06:30,000000] [DEBUG] [rep-worker] [main-worker] alarm cleared: disk usage back to 62 percent", "body_start": 64, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 21:20:52.000000] [ERROR] [msg-handler] [sync-task] thread pool exhausted, active=90894 queued=10409 max=69919", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 18:57:38:000000]  [DEBUG] [2d45e7d1] [vbs-server] cache entry 2cde4747214d evicted, free slots 29351", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 01:59:10.000000] [/data/dsware/vol-01] [sync-task] [NOTICE] cache entry a649dfd6ad67 evicted, free slots 10986", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 19:46:43,000000] [rep-worker] [WARN]: certificate will expire in 86890 days, renew required", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 18:43:22,000000] [WARN] [ism-agent] [sync-task] update config key task-991 to value 85065", "body_start": 60, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 07:15:30.000000] [scheduler] [msg-handler] process request op=task-991 done in 1212 ms", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 02:16:31][DEBUG][rep-worker] connection reset by peer, socket fd=1332", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 11:57:25]  [INFO] [fae2d54c] [ha-monitor] thread pool exhausted, active=61469 queued=39551 max=84566", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[INFO] [dme-server] [98ecfd2d] [52b3e8e8] (UTC) 2026-03-02 04:04:41.000000  DSWARE KMC certificate will expire in 673 days, renew required", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 11:01:16]  [WARN] [2604f8f5] [msg-handler] process request op=quota.db done in 34006 ms", "body_start": 55, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 12:57:31,000000]thread pool exhausted, active=46157 queued=50665 max=79499", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 21:15:55][INFO][scheduler] certificate will expire in 36002 days, renew required", "body_start": 39, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 03:51:39,000000] [INFO] [osd-daemon] [ha-monitor] - process request op=quota.db done in 35776 ms", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[INFO] [msg-handler] [e6ff4736] [9460b62b] (UTC) 2026-03-02 02:49:57  DSWARE KMC rpc call GetVolumeInfo returned code 92327, msg success", "body_start": 81, "format": "fsa#1", "has_header": true}
+{"line": "[ERROR] [scheduler] [45e2f8dd] [11b550b5] (UTC) 2026-03-01 22:24:56.000000  DSWARE KMC volume snap-7c changed state from active to degraded", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 20:52:34.000000][34058c9d][ERROR][bdd84939][main-worker][4ce30de7][b854f22e]rpc call GetVolumeInfo returned code 84089, msg success", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 09:29:00] [INFO] [ism-agent] [dme-server] certificate will expire in 5753 days, renew required", "body_start": 54, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 17:51:29.000000][INFO][ha-monitor] checkpoint finished, elapsed 37418 seconds", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 23:40:10,000000][WARN][scheduler] update config key vol-3f2a to value 48842", "body_start": 46, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 11:02:38] [ERROR] [rep-worker] [vbs-server] - start to sync volume data, total 88571 chunks", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 00:18:32][DEBUG][dme-server] failed to read block blk_2c094a92898b, retry 3659 times", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 18:18:48][DEBUG][main-worker] init module snap-7c begin, worker threads 15815", "body_start": 42, "format": "fsa#5", "has_header": true}
+{"line": "[INFO] [vbs-server] [654f801a] [8d7b514b] (UTC) 2026-03-01 21:02:45,000000  DSWARE KMC volume vol-3f2a changed state from active to degraded", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 02:14:54]send audit event to kafka topic dsware-audit, seq=9578aebfb84d", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 06:52:28:000000]  [NOTICE] [e7415792] [msg-handler] failed to read block blk_7764de4d094d, retry 64818 times", "body_start": 64, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 05:06:18,000000]  [DEBUG] [cccb1d39] [scheduler] metadata journal truncated at offset e10189a0c6c0", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 08:03:19.000000][ERROR][osd-daemon] thread pool exhausted, active=90589 queued=67584 max=27444", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 06:59:07.000000][79c4784f][DEBUG][4e261bc1][osd-daemon][6f235b18][c1108148]write 38281 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 06:09:17,000000] [scheduler] [INFO]: certificate will expire in 10735 days, renew required", "body_start": 49, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 13:19:07]  [NOTICE] [f11bfb5b] [dme-server] receive heartbeat from node-24302, load 64 percent", "body_start": 56, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 20:54:36] [ERROR] [scheduler] [ism-agent] metadata journal truncated at offset e06da4e80dbb", "body_start": 54, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 16:54:05,000000] [main-worker] [rep-worker] metadata journal truncated at offset 1fa4d3d42935", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 11:04:33.000000][10c2a80e][NOTICE][3098e8b3][msg-handler][256db623][eac6b835]write 21825 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 89, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 19:24:00.000000] [msg-handler] [ERROR]: metadata journal truncated at offset 33f218eea33a", "body_start": 52, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 11:13:58.000000] [sync-task] [ERROR]: start to sync volume data, total 43989 chunks", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 02:21:47] [ERROR] [main-worker] [ha-monitor] alarm cleared: disk usage back to 17 percent", "body_start": 57, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 18:39:26:000000] [/data/dsware/vol-35] [ha-monitor] [WARN] connection reset by peer, socket fd=52212", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 23:58:08:000000][NOTICE][osd-daemon] receive heartbeat from node-97176, load 75 percent", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 01:38:03.000000] [ERROR] [ha-monitor] [msg-handler] - checkpoint finished, elapsed 42973 seconds", "body_start": 66, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 05:09:30][NOTICE][rep-worker] rpc call GetVolumeInfo returned code 34158, msg success", "body_start": 42, "format": "fsm#5", "has_header": true}
+{"line": "[NOTICE] [rep-worker] [fffe75c6] [5afa6993] (UTC) 2026-03-01 14:57:53.000000  DSWARE KMC update config key quota.db to value 70519", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 05:49:35,000000][DEBUG][ha-monitor] start to sync volume data, total 26432 chunks", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 12:05:09.000000] [sync-task] [NOTICE]: checkpoint finished, elapsed 69626 seconds", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 22:39:01]metadata journal truncated at offset cbfd0fe1cb5a", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 09:31:12] [NOTICE] [ism-agent] [scheduler] process request op=vol-3f2a done in 34364 ms", "body_start": 55, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 23:34:10,000000]alarm cleared: disk usage back to 56 percent", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 13:51:09.000000]metadata journal truncated at offset db4d952ad950", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 14:45:28:000000][INFO][ism-agent] task snap-7c submitted by user admin, priority 16900", "body_start": 46, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 03:51:27,000000]  [NOTICE] [9461c049] [dme-server] receive heartbeat from node-46056, load 80 percent", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 13:37:41,000000] [vbs-server] [NOTICE]: update config key cfg.max.io to value 12145", "body_start": 52, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 09:13:09.000000][WARN][sync-task] checkpoint finished, elapsed 48248 seconds", "body_start": 46, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 08:15:53][ERROR][sync-task] thread pool exhausted, active=34018 queued=46778 max=29727", "body_start": 40, "format": "fsa#5", "has_header": true}
+{"line": "[INFO] [vbs-server] [d99e9619] [a32bab1b] (UTC) 2026-03-01 11:10:24,000000  DSWARE KMC volume task-991 changed state from active to degraded", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 18:24:41][INFO][main-worker] checkpoint finished, elapsed 34564 seconds", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 02:45:35,000000] [WARN] [scheduler] [main-worker] alarm cleared: disk usage back to 13 percent", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 13:20:06][WARN][main-worker] metadata journal truncated at offset 570c8dd5c2cb", "body_start": 41, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 19:39:15][6a7e1471][WARN][ec8b493c][ism-agent][e4c8c49b][95214102]rpc call GetVolumeInfo returned code 90891, msg success", "body_start": 78, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 13:52:39.000000] [WARN] [sync-task] [msg-handler] - task cfg.max.io submitted by user admin, priority 83117", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[NOTICE] [dme-server] [d0b84d1b] [3b8cbb78] (UTC) 2026-03-01 17:38:02  DSWARE KMC write 65601 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 82, "format": "fsm#0", "has_header": true}
+{"line": "[NOTICE] [osd-daemon] [72b27b1e] [391696b9] (UTC) 2026-03-02 07:34:48  DSWARE KMC receive heartbeat from node-39232, load 42 percent", "body_start": 82, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 16:37:12,000000] [ha-monitor] [ERROR]: start to sync volume data, total 40976 chunks", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[WARN] [scheduler] [521411c6] [37895620] (UTC) 2026-03-02 06:32:29:000000  DSWARE KMC send audit event to kafka topic dsware-audit, seq=892432cce1cc", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 00:16:51,000000] [ERROR] [main-worker] [scheduler] - connection reset by peer, socket fd=8849", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 23:53:18,000000] [ERROR] [osd-daemon] [rep-worker] cache entry 4b93c1fdb3b2 evicted, free slots 99693", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 03:57:24,000000]cache entry ce884c9783fc evicted, free slots 785", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 20:57:55.000000][INFO][ism-agent] disk 26569 smart health status ok, temperature 73631 celsius", "body_start": 46, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 02:39:43]certificate will expire in 11260 days, renew required", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 00:03:25] [WARN] [osd-daemon] [scheduler] disk 76607 smart health status ok, temperature 46710 celsius", "body_start": 54, "format": "fsm#2", "has_header": true}
+{"line": "[NOTICE] [sync-task] [d5a7c7cf] [0a1df40f] (UTC) 2026-03-01 22:58:10  DSWARE KMC rpc call GetVolumeInfo returned code 42413, msg success", "body_start": 81, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 12:29:03,000000] [msg-handler] [osd-daemon] metadata journal truncated at offset 5875e3a6b6e0", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 03:16:38.000000] [ERROR] [ism-agent] [rep-worker] - process request op=vol-3f2a done in 51381 ms", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 06:16:44.000000][WARN][osd-daemon] received message from 10.24140.51658.69632:38384, dispatch to handler", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 20:46:43]  [WARN] [2c08e42b] [dme-server] receive heartbeat from node-50176, load 92 percent", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 03:57:33] [sync-task] [DEBUG]: metadata journal truncated at offset f3f66c39e7e3", "body_start": 43, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 08:23:43.000000] [rep-worker] [dme-server] volume quota.db changed state from active to degraded", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 01:32:37,000000][WARN][main-worker] init module cfg.max.io begin, worker threads 15556", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 21:55:52.000000][5e4d73a4][WARN] [03d826c5][sync-task]alarm cleared: disk usage back to 87 percent", "body_start": 66, "format": "fsa#2", "has_header": true}
+{"line": "[ERROR] [ha-monitor] [ff36c5bd] [31f95a07] (UTC) 2026-03-01 08:46:26.000000  DSWARE KMC write 24823 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 23:01:57:000000]  [INFO] [d5d6346b] [rep-worker] cache entry a5088df161de evicted, free slots 54786", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 10:04:35,000000][7bbac09c][ERROR] [18e04d95][scheduler]certificate will expire in 95644 days, renew required", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 22:37:34,000000] [NOTICE] [msg-handler] [ism-agent] cache entry 619861c6b8f evicted, free slots 66231", "body_start": 64, "format": "fsm#2", "has_header": true}
+{"line": "[WARN] [dme-server] [b5d725ce] [ed294aa0] (UTC) 2026-03-02 00:40:58  DSWARE KMC cache entry 4a6189cb78ce evicted, free slots 54739", "body_start": 80, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 03:56:57,000000]  [INFO] [9251e2cf] [vbs-server] task cfg.max.io submitted by user admin, priority 33047", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 20:06:15,000000][INFO][ism-agent] task vol-3f2a submitted by user admin, priority 32980", "body_start": 46, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 15:48:09.000000] [rep-worker] [ERROR]: process request op=quota.db done in 83648 ms", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[NOTICE] [osd-daemon] [faa7b18a] [e784f9a1] (UTC) 2026-03-01 11:02:04.000000  DSWARE KMC receive heartbeat from node-54468, load 38 percent", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 23:20:29][DEBUG][ism-agent] certificate will expire in 87469 days, renew required", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 11:54:47.000000][7d9d8d8a][INFO][0307a6be][scheduler][c0cd0043][91dff04a]start to sync volume data, total 60924 chunks", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 07:42:25,000000][33be7c62][WARN][239a8645][ha-monitor][33184dca][666802ce]received message from 10.94079.63133.74774:13255, dispatch to handler", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 19:09:08:000000] [/data/dsware/vol-43] [msg-handler] [WARN] write 86634 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 12:15:38]thread pool exhausted, active=62052 queued=11056 max=37231", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 13:03:19][33656de8][INFO][4a0557a4][osd-daemon][48bebd0b][86313ae1]rpc call GetVolumeInfo returned code 80214, msg success", "body_start": 79, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 08:14:17:000000][NOTICE][rep-worker] receive heartbeat from node-72853, load 44 percent", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 17:03:22.000000][DEBUG][ha-monitor] alarm cleared: disk usage back to 8 percent", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 00:56:28,000000]certificate will expire in 61830 days, renew required", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 16:22:52.000000] [/data/dsware/vol-59] [scheduler] [NOTICE] start to sync volume data, total 88296 chunks", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 00:48:23.000000]start to sync volume data, total 97081 chunks", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 09:29:17.000000]metadata journal truncated at offset 6a426cbbc9c3", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 16:03:55:000000][b47cebaf][DEBUG][ad6d9337][dme-server][d96710df][d91c8a4d]task snap-7c submitted by user admin, priority 22362", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 13:03:09] [/data/dsware/vol-51] [dme-server] [WARN] volume vol-3f2a changed state from active to degraded", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 06:32:31.000000]disk 53109 smart health status ok, temperature 93647 celsius", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 18:17:11.000000]rpc call GetVolumeInfo returned code 58545, msg success", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 12:08:57.000000]  [DEBUG] [b77ee256] [dme-server] receive heartbeat from node-61578, load 11 percent", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 18:08:47][INFO][ism-agent] checkpoint finished, elapsed 31856 seconds", "body_start": 39, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 01:44:09,000000] [INFO] [main-worker] [sync-task] cache entry a98d7cdd6578 evicted, free slots 15051", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 14:59:08.000000][d99d791f][NOTICE] [bc3678bf][dme-server]write 30366 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 69, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 14:16:55,000000][7803c42e][INFO] [43894d0b][vbs-server]task quota.db submitted by user admin, priority 93451", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[INFO] [rep-worker] [ae570181] [c5b77e51] (UTC) 2026-03-02 07:24:54.000000  DSWARE KMC volume cfg.max.io changed state from active to degraded", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[ERROR] [main-worker] [3d25331f] [ff367432] (UTC) 2026-03-02 04:47:49:000000  DSWARE KMC update config key quota.db to value 89787", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 00:52:16.000000][404c40b3][DEBUG] [cf3f7c8f][dme-server]receive heartbeat from node-69291, load 60 percent", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 00:00:52,000000][4a932462][INFO] [121f13ad][rep-worker]process request op=task-991 done in 52954 ms", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 02:14:20.000000] [ha-monitor] [DEBUG]: volume cfg.max.io changed state from active to degraded", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 08:15:55.000000][860cef99][WARN] [5d41e9a1][main-worker]update config key task-991 to value 65503", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 14:56:06]disk 94577 smart health status ok, temperature 67666 celsius", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 18:31:26,000000] [WARN] [ism-agent] [osd-daemon] connection reset by peer, socket fd=75219", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 11:48:25,000000] [/data/dsware/vol-54] [sync-task] [WARN] start to sync volume data, total 2816 chunks", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 20:08:32] [INFO] [osd-daemon] [msg-handler] - init module cfg.max.io begin, worker threads 9077", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[WARN] [ha-monitor] [e93c06f4] [f9069956] (UTC) 2026-03-02 01:12:38:000000  DSWARE KMC alarm cleared: disk usage back to 90 percent", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 17:14:21,000000][34f53560][WARN] [da556262][ha-monitor]task quota.db submitted by user admin, priority 20568", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[INFO] [msg-handler] [7320d5d3] [9faa49de] (UTC) 2026-03-01 17:29:51,000000  DSWARE KMC init module task-991 begin, worker threads 20282", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 01:52:19] [vbs-server] [INFO]: checkpoint finished, elapsed 63825 seconds", "body_start": 43, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 05:00:33,000000][2c7284d2][ERROR] [90769d34][vbs-server]process request op=snap-7c done in 88719 ms", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 23:41:48,000000] [INFO] [msg-handler] [scheduler] - volume cfg.max.io changed state from active to degraded", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[ERROR] [sync-task] [24b580cb] [6c12fbd5] (UTC) 2026-03-01 15:17:49,000000  DSWARE KMC receive heartbeat from node-24406, load 6 percent", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 19:19:28]  [NOTICE] [b32dde01] [vbs-server] checkpoint finished, elapsed 51248 seconds", "body_start": 56, "format": "fsa#3", "has_header": true}
+{"line": "[WARN] [sync-task] [f93e11b5] [975a714a] (UTC) 2026-03-02 05:41:36,000000  DSWARE KMC thread pool exhausted, active=10775 queued=39454 max=72299", "body_start": 86, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 21:14:54.000000] [/data/dsware/vol-48] [ha-monitor] [NOTICE] failed to read block blk_902a38ee378d, retry 79175 times", "body_start": 73, "format": "fsa#4", "has_header": true}
+{"line": "[NOTICE] [msg-handler] [7b80eef9] [57fb317c] (UTC) 2026-03-02 02:29:03  DSWARE KMC start to sync volume data, total 15395 chunks", "body_start": 83, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 18:39:06:000000] [/data/dsware/vol-09] [msg-handler] [DEBUG] disk 24022 smart health status ok, temperature 15354 celsius", "body_start": 73, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 09:20:44,000000]  [NOTICE] [5117895e] [vbs-server] send audit event to kafka topic dsware-audit, seq=593ee787e4c4", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 05:24:29.000000] [vbs-server] [msg-handler] checkpoint finished, elapsed 35712 seconds", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 09:47:45.000000] [dme-server] [ERROR]: start to sync volume data, total 70810 chunks", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[ERROR] [msg-handler] [dcd893a1] [fb0c9a52] (UTC) 2026-03-02 01:08:00,000000  DSWARE KMC thread pool exhausted, active=42581 queued=73907 max=19916", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[WARN] [sync-task] [4255a4c6] [7a7f365f] (UTC) 2026-03-01 17:52:42  DSWARE KMC thread pool exhausted, active=87793 queued=3956 max=2471", "body_start": 79, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 01:56:41][180b8325][INFO][ec028a14][vbs-server][b70b8a1f][aba56dc6]received message from 10.36290.16995.39480:42798, dispatch to handler", "body_start": 79, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 11:12:24.000000] [DEBUG] [ha-monitor] [ha-monitor] - rpc call GetVolumeInfo returned code 89024, msg success", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[ERROR] [ism-agent] [8d6b0d7c] [70995a3a] (UTC) 2026-03-01 12:00:46  DSWARE KMC rpc call GetVolumeInfo returned code 73448, msg success", "body_start": 80, "format": "fsa#1", "has_header": true}
+{"line": "[NOTICE] [dme-server] [9f23ff72] [1f56d4e8] (UTC) 2026-03-01 10:39:03.000000  DSWARE KMC volume cfg.max.io changed state from active to degraded", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 18:29:23.000000]process request op=quota.db done in 98440 ms", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 10:54:40] [/data/dsware/vol-42] [scheduler] [INFO] start to sync volume data, total 74811 chunks", "body_start": 63, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 02:31:20] [NOTICE] [osd-daemon] [scheduler] thread pool exhausted, active=36725 queued=78942 max=60360", "body_start": 56, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 05:27:26] [sync-task] [ism-agent] thread pool exhausted, active=97345 queued=58552 max=70975", "body_start": 46, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 07:40:30,000000][WARN][rep-worker] receive heartbeat from node-74693, load 48 percent", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 06:57:46:000000][DEBUG][scheduler] metadata journal truncated at offset 2540e43b5b64", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 02:43:27:000000][52111794][INFO][89a1fce0][msg-handler][93f389e7][ffba72ab]disk 93531 smart health status ok, temperature 557 celsius", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 18:42:21,000000] [vbs-server] [ERROR]: metadata journal truncated at offset 5963d570b297", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 11:17:04.000000] [osd-daemon] [msg-handler] init module quota.db begin, worker threads 90754", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[WARN] [rep-worker] [b96dde83] [cef656cd] (UTC) 2026-03-02 06:38:22.000000  DSWARE KMC metadata journal truncated at offset 5482d37cf20a", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 02:20:50][INFO][msg-handler] receive heartbeat from node-98885, load 39 percent", "body_start": 41, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 05:39:36.000000] [sync-task] [main-worker] thread pool exhausted, active=10606 queued=21276 max=40901", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 14:58:03.000000][INFO][vbs-server] rpc call GetVolumeInfo returned code 56993, msg success", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 05:37:28,000000]task vol-3f2a submitted by user admin, priority 32729", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 12:06:22,000000] [/data/dsware/vol-02] [ism-agent] [INFO] connection reset by peer, socket fd=69089", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 02:41:03:000000][DEBUG][main-worker] disk 66771 smart health status ok, temperature 94017 celsius", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 12:16:44:000000][7ebae430][DEBUG][4cc59fa0][rep-worker][b1226820][2546541e]volume cfg.max.io changed state from active to degraded", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 10:46:08:000000] [/data/dsware/vol-48] [ism-agent] [DEBUG] receive heartbeat from node-21818, load 27 percent", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[DEBUG] [rep-worker] [ddc0895a] [491b028e] (UTC) 2026-03-01 12:30:49:000000  DSWARE KMC start to sync volume data, total 12873 chunks", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 12:05:43][ERROR][msg-handler] connection reset by peer, socket fd=79026", "body_start": 42, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 15:15:36][d2017627][ERROR] [d1f2d21d][sync-task]alarm cleared: disk usage back to 74 percent", "body_start": 60, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 17:09:13.000000][7fcaec67][DEBUG][a9414b59][vbs-server][04f4df16][5369c3be]update config key snap-7c to value 49014", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 22:33:04] [DEBUG] [sync-task] [msg-handler] - task snap-7c submitted by user admin, priority 97653", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 12:12:13.000000][84cbf830][ERROR] [81eae896][sync-task]task task-991 submitted by user admin, priority 34730", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 20:31:05][NOTICE][ism-agent] init module cfg.max.io begin, worker threads 4758", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 20:29:50] [/data/dsware/vol-19] [osd-daemon] [WARN] checkpoint finished, elapsed 11208 seconds", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 17:46:45,000000] [vbs-server] [ha-monitor] received message from 10.75862.70576.58675:43891, dispatch to handler", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 22:10:50.000000] [dme-server] [osd-daemon] send audit event to kafka topic dsware-audit, seq=d4d15c89a225", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 00:41:29,000000] [ism-agent] [scheduler] start to sync volume data, total 66013 chunks", "body_start": 53, "format": "fsm#4", "has_header": true}
+{"line": "[ERROR] [dme-server] [a4938910] [9586146a] (UTC) 2026-03-01 22:24:12,000000  DSWARE KMC alarm cleared: disk usage back to 11 percent", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[DEBUG] [msg-handler] [ef59d1d4] [edae0701] (UTC) 2026-03-01 15:44:53  DSWARE KMC disk 96613 smart health status ok, temperature 42708 celsius", "body_start": 82, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 17:27:13,000000] [msg-handler] [msg-handler] start to sync volume data, total 43715 chunks", "body_start": 57, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 03:08:10][8dfda03f][NOTICE][9a4f02a9][ism-agent][8db6fc32][652e2e58]write 12846 bytes to /data/dsware/task-991/chunk.dat", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 07:55:10.000000][NOTICE][main-worker] init module quota.db begin, worker threads 20258", "body_start": 50, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 08:14:54,000000] [WARN] [osd-daemon] [dme-server] - thread pool exhausted, active=82418 queued=93037 max=50568", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 11:11:17][WARN][vbs-server] init module cfg.max.io begin, worker threads 82461", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 04:06:35,000000]volume task-991 changed state from active to degraded", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 23:24:15.000000] [WARN] [main-worker] [vbs-server] failed to read block blk_77659d8de68f, retry 16644 times", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[WARN] [ism-agent] [9227974f] [ac7aaa46] (UTC) 2026-03-01 09:10:33,000000  DSWARE KMC send audit event to kafka topic dsware-audit, seq=f282483f0279", "body_start": 86, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 04:24:45][331bea4a][NOTICE][aeefe021][main-worker][cbd09ed2][6154da7a]send audit event to kafka topic dsware-audit, seq=e715c9708990", "body_start": 82, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 14:40:27][3a5ae265][DEBUG][c2dc99ae][osd-daemon][d723e9b8][38473d21]process request op=quota.db done in 92427 ms", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[WARN] [dme-server] [16474165] [6a3a821e] (UTC) 2026-03-01 18:56:41:000000  DSWARE KMC send audit event to kafka topic dsware-audit, seq=91b2ebcd543e", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 11:53:30,000000]  [NOTICE] [26d2de58] [dme-server] send audit event to kafka topic dsware-audit, seq=a81ddfc780e9", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 03:35:46,000000] [osd-daemon] [dme-server] start to sync volume data, total 20130 chunks", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 11:19:12][NOTICE][osd-daemon] task task-991 submitted by user admin, priority 88287", "body_start": 42, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 17:53:15] [WARN] [dme-server] [sync-task] - write 84233 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 56, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 07:26:10] [NOTICE] [vbs-server] [ism-agent] connection reset by peer, socket fd=21402", "body_start": 56, "format": "fsm#2", "has_header": true}
+{"line": "[DEBUG] [scheduler] [88e19a27] [f4939502] (UTC) 2026-03-02 07:41:01,000000  DSWARE KMC update config key vol-3f2a to value 75761", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 18:23:08:000000]  [ERROR] [00662a58] [msg-handler] cache entry 7a11ecad859c evicted, free slots 33479", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 05:00:07.000000][85cb551f][DEBUG][40c6ef79][scheduler][e0a6e61f][2cb2d6e6]thread pool exhausted, active=36742 queued=13774 max=20662", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 06:26:22.000000] [sync-task] [main-worker] metadata journal truncated at offset fa59e32cd686", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 07:28:45,000000][1d98508d][NOTICE] [26e64d11][ha-monitor]volume quota.db changed state from active to degraded", "body_start": 69, "format": "fsa#2", "has_header": true}
+{"line": "[DEBUG] [scheduler] [87d4b996] [218839dc] (UTC) 2026-03-02 05:24:38,000000  DSWARE KMC thread pool exhausted, active=4709 queued=51206 max=57439", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 21:16:54,000000] [WARN] [dme-server] [sync-task] failed to read block blk_f38d3e14a5d1, retry 87832 times", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 10:19:32][61ce9aec][INFO][99d3b07a][sync-task][d374bcc1][2cedbc3a]thread pool exhausted, active=67795 queued=88653 max=38480", "body_start": 78, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 08:29:11,000000] [DEBUG] [sync-task] [ism-agent] send audit event to kafka topic dsware-audit, seq=bf58d1b7e24c", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 06:41:13,000000][c07f7474][ERROR] [d892ff2e][osd-daemon]failed to read block blk_12d8d73d84ea, retry 12249 times", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 07:38:31,000000][WARN][rep-worker] write 18677 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 21:18:04,000000] [dme-server] [main-worker] send audit event to kafka topic dsware-audit, seq=bf7a8e65dd21", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 10:01:07.000000][NOTICE][ism-agent] received message from 10.52662.16255.26239:85520, dispatch to handler", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 10:43:50:000000][c668bfca][ERROR] [e8d7f44f][ha-monitor]cache entry 9531620b226b evicted, free slots 18344", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 18:37:50.000000] [INFO] [vbs-server] [main-worker] rpc call GetVolumeInfo returned code 35529, msg success", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[NOTICE] [scheduler] [4622266b] [6fc98ece] (UTC) 2026-03-01 10:36:25.000000  DSWARE KMC cache entry 8194b8a13253 evicted, free slots 29298", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 04:42:20.000000] [WARN] [scheduler] [msg-handler] - metadata journal truncated at offset 288bb1a6e10d", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 19:42:56,000000][baedccb9][INFO] [b4c82b25][main-worker]metadata journal truncated at offset 3ca9ff575154", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[WARN] [dme-server] [ec37e592] [66affc53] (UTC) 2026-03-01 11:30:12,000000  DSWARE KMC receive heartbeat from node-1605, load 82 percent", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 23:19:12] [/data/dsware/vol-25] [ism-agent] [INFO] process request op=cfg.max.io done in 85357 ms", "body_start": 63, "format": "fsa#4", "has_header": true}
+{"line": "[INFO] [osd-daemon] [46fa1e8e] [2b942f3c] (UTC) 2026-03-02 03:10:51:000000  DSWARE KMC process request op=vol-3f2a done in 11872 ms", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 20:25:04,000000][aec8d3bc][WARN] [be145938][ism-agent]connection reset by peer, socket fd=2560", "body_start": 66, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 09:17:53.000000][WARN][sync-task] task vol-3f2a submitted by user admin, priority 94864", "body_start": 46, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 02:10:06:000000][f1ce1730][DEBUG][b21f6a50][ha-monitor][0082e696][0f9bb3b8]metadata journal truncated at offset 69bb5f4bba3a", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[WARN] [sync-task] [23ae9bdd] [8d746c4a] (UTC) 2026-03-01 11:49:49  DSWARE KMC update config key vol-3f2a to value 71016", "body_start": 79, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 13:50:24][DEBUG][osd-daemon] certificate will expire in 43591 days, renew required", "body_start": 41, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 06:45:55.000000]update config key vol-3f2a to value 36233", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 17:01:18.000000] [/data/dsware/vol-13] [osd-daemon] [DEBUG] send audit event to kafka topic dsware-audit, seq=6f3ce78c64cb", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[INFO] [rep-worker] [460ff697] [cb5cf17f] (UTC) 2026-03-02 05:48:50:000000  DSWARE KMC volume quota.db changed state from active to degraded", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[ERROR] [main-worker] [9fb09618] [2a2d9134] (UTC) 2026-03-02 02:42:14,000000  DSWARE KMC cache entry 9fbdb08d39c9 evicted, free slots 17550", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 09:23:33,000000]cache entry 7b7720b69d4c evicted, free slots 22810", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 23:01:37]  [WARN] [245e98a9] [rep-worker] cache entry aef8f1483d0f evicted, free slots 55586", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 19:21:39,000000] [main-worker] [vbs-server] failed to read block blk_ddaf97523583, retry 84786 times", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 11:14:30][08692e83][DEBUG] [7318db43][ha-monitor]disk 95453 smart health status ok, temperature 21276 celsius", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[INFO] [ism-agent] [b5c76588] [84b39d88] (UTC) 2026-03-02 06:01:38.000000  DSWARE KMC update config key task-991 to value 70358", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 08:02:07,000000] [rep-worker] [vbs-server] task vol-3f2a submitted by user admin, priority 31366", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 14:15:46][eee02a7f][WARN] [ca046a94][sync-task]failed to read block blk_33c6a97ad613, retry 24754 times", "body_start": 59, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 02:45:44,000000]  [WARN] [db57a365] [osd-daemon] certificate will expire in 40090 days, renew required", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 19:29:17.000000] [dme-server] [INFO]: update config key task-991 to value 58742", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 21:57:36] [/data/dsware/vol-61] [osd-daemon] [WARN] process request op=snap-7c done in 73013 ms", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 02:55:32]  [ERROR] [2246c359] [ism-agent] send audit event to kafka topic dsware-audit, seq=e0a6192c1111", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 17:59:18] [osd-daemon] [DEBUG]: cache entry 8ca6ddc08a3a evicted, free slots 72864", "body_start": 44, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 21:04:16.000000] [scheduler] [msg-handler] disk 58989 smart health status ok, temperature 37838 celsius", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 21:27:51.000000][ERROR][ha-monitor] failed to read block blk_11ec79fcdbfa, retry 87940 times", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 23:07:09:000000]  [DEBUG] [bb64f9a6] [dme-server] init module cfg.max.io begin, worker threads 85006", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 22:02:22.000000][eb404a1c][WARN] [0d601cde][main-worker]rpc call GetVolumeInfo returned code 87832, msg success", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 06:07:45,000000][DEBUG][osd-daemon] process request op=cfg.max.io done in 36113 ms", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 15:32:03,000000][WARN][main-worker] write 48510 bytes to /data/dsware/task-991/chunk.dat", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 20:36:30.000000] [WARN] [main-worker] [scheduler] init module vol-3f2a begin, worker threads 20359", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 12:58:56][fa763be6][DEBUG] [ca01a96b][msg-handler]start to sync volume data, total 30078 chunks", "body_start": 62, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 09:55:38]received message from 10.42685.679.62099:14877, dispatch to handler", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 16:48:52,000000] [DEBUG] [scheduler] [osd-daemon] - cache entry dbe9d4410edd evicted, free slots 97328", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 07:56:26.000000] [main-worker] [scheduler] send audit event to kafka topic dsware-audit, seq=e35077509615", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 11:11:27.000000]  [NOTICE] [317860c6] [dme-server] disk 78943 smart health status ok, temperature 6291 celsius", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 17:33:53.000000][WARN][ha-monitor] rpc call GetVolumeInfo returned code 87801, msg success", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 20:14:21][eb993ca8][NOTICE] [d02e7287][sync-task]write 23444 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 23:20:06.000000][WARN][scheduler] update config key quota.db to value 19560", "body_start": 46, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 19:39:02.000000]init module quota.db begin, worker threads 17355", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 04:47:23,000000][NOTICE][ha-monitor] metadata journal truncated at offset e499fe914eaf", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 16:37:12] [ERROR] [msg-handler] [dme-server] metadata journal truncated at offset 69161524cb9e", "body_start": 57, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 10:47:56.000000] [INFO] [scheduler] [main-worker] - send audit event to kafka topic dsware-audit, seq=e686d8f791d4", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 10:01:05.000000] [WARN] [msg-handler] [msg-handler] init module vol-3f2a begin, worker threads 39579", "body_start": 64, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 04:10:08:000000] [/data/dsware/vol-61] [sync-task] [WARN] init module cfg.max.io begin, worker threads 194", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 01:10:56][WARN][osd-daemon] process request op=vol-3f2a done in 65532 ms", "body_start": 40, "format": "fsa#5", "has_header": true}
+{"line": "[WARN] [rep-worker] [1b14e260] [1fea204c] (UTC) 2026-03-01 23:33:56,000000  DSWARE KMC init module vol-3f2a begin, worker threads 4781", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 07:17:33.000000][DEBUG][ha-monitor] volume cfg.max.io changed state from active to degraded", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 09:56:33.000000] [scheduler] [rep-worker] disk 47546 smart health status ok, temperature 82285 celsius", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[DEBUG] [ism-agent] [9fd30883] [e57d5f3b] (UTC) 2026-03-01 10:40:43  DSWARE KMC task quota.db submitted by user admin, priority 25549", "body_start": 80, "format": "fsa#1", "has_header": true}
+{"line": "[ERROR] [ism-agent] [e947ad9b] [ea14a7b7] (UTC) 2026-03-01 14:55:06.000000  DSWARE KMC init module quota.db begin, worker threads 42113", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 14:38:33,000000]  [DEBUG] [8e91fdd6] [sync-task] certificate will expire in 16245 days, renew required", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 08:50:00][WARN][dme-server] metadata journal truncated at offset a95cdc579d10", "body_start": 40, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 20:22:16] [/data/dsware/vol-58] [ha-monitor] [INFO] failed to read block blk_83ab1e958e94, retry 2159 times", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 22:17:13,000000] [WARN] [scheduler] [osd-daemon] metadata journal truncated at offset 517c845c49dd", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 01:57:36,000000] [main-worker] [INFO]: failed to read block blk_4f50a205787d, retry 21670 times", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 02:34:03,000000][INFO][dme-server] update config key quota.db to value 18449", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 16:11:15:000000][0aa7e83d][WARN][b72fd682][dme-server][4cf2cf07][714d8f28]certificate will expire in 92594 days, renew required", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 01:03:04.000000][ERROR][osd-daemon] cache entry 35bfda8658a6 evicted, free slots 72037", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 16:33:58,000000][NOTICE][vbs-server] write 1597 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 49, "format": "fsm#5", "has_header": true}
+{"line": "[WARN] [scheduler] [cea71c49] [9caaeccb] (UTC) 2026-03-01 12:47:56.000000  DSWARE KMC failed to read block blk_66c655fec37, retry 32434 times", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 10:36:24,000000] [/data/dsware/vol-08] [scheduler] [WARN] checkpoint finished, elapsed 67595 seconds", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 04:41:47.000000] [msg-handler] [main-worker] certificate will expire in 59041 days, renew required", "body_start": 57, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 14:36:47.000000]init module cfg.max.io begin, worker threads 55935", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 05:11:22][WARN][main-worker] volume task-991 changed state from active to degraded", "body_start": 41, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 11:58:05.000000] [vbs-server] [scheduler] write 47139 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 04:13:32.000000][ERROR][sync-task] metadata journal truncated at offset 5c8639bae705", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 00:20:53,000000]receive heartbeat from node-3569, load 92 percent", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 05:30:33.000000]  [NOTICE] [0a0d97f9] [ha-monitor] checkpoint finished, elapsed 66065 seconds", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 23:55:31] [INFO] [main-worker] [vbs-server] - update config key task-991 to value 83715", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 19:47:09]metadata journal truncated at offset b5d2a0eaf33d", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 00:11:55] [/data/dsware/vol-29] [rep-worker] [DEBUG] init module cfg.max.io begin, worker threads 6698", "body_start": 65, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 14:52:39][WARN][main-worker] cache entry 129530e07bbb evicted, free slots 93835", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[INFO] [scheduler] [1870d2ca] [1b99c48e] (UTC) 2026-03-02 04:49:15,000000  DSWARE KMC received message from 10.46048.80274.31141:14937, dispatch to handler", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 21:19:38.000000][NOTICE][osd-daemon] failed to read block blk_e069a4d9d97, retry 39451 times", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 09:57:16.000000] [/data/dsware/vol-57] [ha-monitor] [NOTICE] process request op=cfg.max.io done in 19399 ms", "body_start": 73, "format": "fsa#4", "has_header": true}
+{"line": "[DEBUG] [main-worker] [67e9a73a] [40e590d3] (UTC) 2026-03-01 21:36:16  DSWARE KMC update config key task-991 to value 52666", "body_start": 82, "format": "fsm#0", "has_header": true}
+{"line": "[INFO] [dme-server] [872e966c] [777d0e78] (UTC) 2026-03-02 05:39:13,000000  DSWARE KMC process request op=snap-7c done in 17048 ms", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 15:27:04:000000] [/data/dsware/vol-61] [ism-agent] [WARN] checkpoint finished, elapsed 77178 seconds", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 07:07:31] [ism-agent] [ism-agent] certificate will expire in 1931 days, renew required", "body_start": 46, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 03:01:41,000000] [ism-agent] [NOTICE]: start to sync volume data, total 93341 chunks", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 01:25:26] [rep-worker] [sync-task] write 6440 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 47, "format": "fsm#4", "has_header": true}
+{"line": "[DEBUG] [msg-handler] [72fe33cd] [18b8095f] (UTC) 2026-03-01 12:13:35:000000  DSWARE KMC receive heartbeat from node-57909, load 52 percent", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 07:53:21.000000][INFO][rep-worker] start to sync volume data, total 67713 chunks", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 02:14:23,000000] [WARN] [scheduler] [ism-agent] init module quota.db begin, worker threads 5847", "body_start": 60, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 07:48:39,000000][7de1b571][NOTICE] [fbbd75bf][scheduler]start to sync volume data, total 89683 chunks", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 18:53:29.000000] [msg-handler] [rep-worker] connection reset by peer, socket fd=15850", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 09:46:35] [msg-handler] [vbs-server] start to sync volume data, total 60875 chunks", "body_start": 49, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]failed to read block blk_106d89439a8e, retry 56407 times", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 20:50:32] [osd-daemon] [DEBUG]: thread pool exhausted, active=95256 queued=64354 max=50956", "body_start": 44, "format": "fsm#3", "has_header": true}
+{"line": "[DEBUG] [scheduler] [205b2cf7] [2072460c] (UTC) 2026-03-01 21:22:45  DSWARE KMC alarm cleared: disk usage back to 57 percent", "body_start": 80, "format": "fsa#1", "has_header": true}
+{"line": "[ERROR] [dme-server] [59de7526] [92f2977c] (UTC) 2026-03-01 10:59:48,000000  DSWARE KMC metadata journal truncated at offset 842d617c1168", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 16:44:00] [WARN] [vbs-server] [vbs-server] send audit event to kafka topic dsware-audit, seq=c98a21148a24", "body_start": 55, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 12:04:11] [msg-handler] [WARN]: rpc call GetVolumeInfo returned code 49679, msg success", "body_start": 44, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 02:10:46:000000] [/data/dsware/vol-59] [scheduler] [WARN] certificate will expire in 91721 days, renew required", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 02:42:42]write 8515 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 21:03:17,000000] [/data/dsware/vol-14] [scheduler] [DEBUG] certificate will expire in 7135 days, renew required", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 11:47:44,000000] [/data/dsware/vol-48] [ism-agent] [NOTICE] checkpoint finished, elapsed 61167 seconds", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 14:17:17,000000] [ERROR] [sync-task] [scheduler] alarm cleared: disk usage back to 43 percent", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 03:13:59]  [WARN] [78737b33] [vbs-server] task vol-3f2a submitted by user admin, priority 78358", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 02:27:04.000000]alarm cleared: disk usage back to 17 percent", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 09:07:02][d2c218c0][WARN][27cc40ca][main-worker][eeab8c04][7fadf0f4]thread pool exhausted, active=84992 queued=27292 max=75855", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 22:09:19,000000][8a417b81][WARN] [10ebb99c][scheduler]rpc call GetVolumeInfo returned code 10896, msg success", "body_start": 66, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 07:46:57.000000] [NOTICE] [sync-task] [dme-server] - task snap-7c submitted by user admin, priority 83721", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 15:15:37] [/data/dsware/vol-50] [vbs-server] [WARN] cache entry 44e1c343ece evicted, free slots 392", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 11:51:15:000000]  [DEBUG] [3f1e209c] [sync-task] start to sync volume data, total 12177 chunks", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[INFO] [osd-daemon] [43075f04] [429aaf5a] (UTC) 2026-03-01 15:12:48,000000  DSWARE KMC thread pool exhausted, active=93452 queued=38889 max=37494", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 05:03:42] [INFO] [sync-task] [osd-daemon] - update config key quota.db to value 89138", "body_start": 56, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 13:29:13,000000][9602969b][WARN][9800d39d][scheduler][577b3e05][480fc4f5]task cfg.max.io submitted by user admin, priority 59895", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 11:49:54,000000][4bee779c][WARN][928d9247][main-worker][b50af648][5e0f53cb]received message from 10.90793.36709.1536:31807, dispatch to handler", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 16:22:33] [/data/dsware/vol-44] [dme-server] [WARN] failed to read block blk_84c1a1ff7ff4, retry 94522 times", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[DEBUG] [scheduler] [81a555b6] [d40b02f4] (UTC) 2026-03-02 07:27:09.000000  DSWARE KMC received message from 10.53798.26372.35248:77328, dispatch to handler", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[INFO] [sync-task] [3873f5a1] [c431705b] (UTC) 2026-03-01 19:27:45.000000  DSWARE KMC connection reset by peer, socket fd=3238", "body_start": 86, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 03:04:05.000000] [msg-handler] [rep-worker] task snap-7c submitted by user admin, priority 5937", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 17:14:22:000000][c8b7ee47][ERROR][965d4490][vbs-server][1dbbc650][12d1fbf1]process request op=cfg.max.io done in 82363 ms", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 10:16:03.000000][INFO][rep-worker] volume task-991 changed state from active to degraded", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[ERROR] [dme-server] [43a3187d] [21550e1c] (UTC) 2026-03-01 08:50:56,000000  DSWARE KMC write 52400 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 05:50:32] [sync-task] [INFO]: thread pool exhausted, active=36628 queued=90582 max=26972", "body_start": 42, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 23:46:01][ab097ac1][ERROR][da49f3b5][ha-monitor][0e3af8b2][06203c55]process request op=snap-7c done in 7760 ms", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 03:58:50,000000] [NOTICE] [vbs-server] [scheduler] - received message from 10.24119.42949.50034:18422, dispatch to handler", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 05:12:34,000000][INFO][vbs-server] process request op=vol-3f2a done in 19966 ms", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 01:57:20.000000] [/data/dsware/vol-19] [vbs-server] [ERROR] init module task-991 begin, worker threads 34024", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[WARN] [dme-server] [6d277e39] [5950f740] (UTC) 2026-03-01 15:52:30.000000  DSWARE KMC checkpoint finished, elapsed 48513 seconds", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 13:56:47] [osd-daemon] [NOTICE]: volume snap-7c changed state from active to degraded", "body_start": 45, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 20:09:41.000000] [dme-server] [DEBUG]: rpc call GetVolumeInfo returned code 81715, msg success", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[WARN] [dme-server] [5ad1484c] [fe74a3d6] (UTC) 2026-03-02 06:16:34.000000  DSWARE KMC start to sync volume data, total 51321 chunks", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 18:25:26,000000] [osd-daemon] [ERROR]: thread pool exhausted, active=1465 queued=52197 max=51603", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 17:03:26,000000] [ism-agent] [INFO]: init module cfg.max.io begin, worker threads 70996", "body_start": 49, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 08:31:33] [DEBUG] [ism-agent] [ism-agent] cache entry 37010f80b283 evicted, free slots 48152", "body_start": 54, "format": "fsm#2", "has_header": true}
+{"line": "[ERROR] [scheduler] [ffdccc0f] [43b77e0b] (UTC) 2026-03-01 18:37:42.000000  DSWARE KMC cache entry 70c18612ce58 evicted, free slots 25212", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 01:41:30,000000]receive heartbeat from node-76509, load 30 percent", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 01:23:57,000000][INFO][scheduler] metadata journal truncated at offset 49d81bcc7fc", "body_start": 46, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 10:23:03,000000] [NOTICE] [sync-task] [main-worker] disk 76758 smart health status ok, temperature 89744 celsius", "body_start": 64, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 07:24:44.000000] [NOTICE] [rep-worker] [main-worker] metadata journal truncated at offset aa9cc1950517", "body_start": 65, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 21:23:16.000000] [msg-handler] [sync-task] process request op=snap-7c done in 34716 ms", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 08:43:38.000000][40f5aff3][DEBUG] [96914a91][msg-handler]received message from 10.72556.8891.48556:1004, dispatch to handler", "body_start": 69, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 19:48:04.000000] [INFO] [osd-daemon] [msg-handler] - receive heartbeat from node-2945, load 79 percent", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 13:15:35] [main-worker] [DEBUG]: task cfg.max.io submitted by user admin, priority 68115", "body_start": 45, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 18:55:11.000000] [/data/dsware/vol-36] [msg-handler] [NOTICE] update config key snap-7c to value 4857", "body_start": 74, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 09:37:44.000000] [ERROR] [msg-handler] [main-worker] start to sync volume data, total 13992 chunks", "body_start": 65, "format": "fsm#2", "has_header": true}
+{"line": "[NOTICE] [scheduler] [f2bfce10] [8a03bd1f] (UTC) 2026-03-01 18:02:54.000000  DSWARE KMC connection reset by peer, socket fd=79154", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[DEBUG] [osd-daemon] [7b7d6396] [92dc875c] (UTC) 2026-03-02 00:11:36,000000  DSWARE KMC init module vol-3f2a begin, worker threads 92542", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 15:11:55.000000] [sync-task] [ERROR]: task task-991 submitted by user admin, priority 69387", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 22:48:22.000000] [DEBUG] [ha-monitor] [ism-agent] - connection reset by peer, socket fd=17690", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 11:35:15] [ha-monitor] [scheduler] write 65831 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 47, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 17:05:36:000000][WARN][scheduler] task snap-7c submitted by user admin, priority 15237", "body_start": 46, "format": "fsa#5", "has_header": true}
+{"line": "[ERROR] [scheduler] [f5955d7f] [915e6846] (UTC) 2026-03-01 10:20:55.000000  DSWARE KMC disk 90512 smart health status ok, temperature 70494 celsius", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 09:23:39,000000] [/data/dsware/vol-14] [osd-daemon] [INFO] init module cfg.max.io begin, worker threads 66374", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[WARN] [main-worker] [33eb4257] [1d734d1f] (UTC) 2026-03-01 19:43:11:000000  DSWARE KMC checkpoint finished, elapsed 86359 seconds", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 08:19:27]metadata journal truncated at offset e1b536268a55", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 05:51:03,000000] [INFO] [dme-server] [rep-worker] - alarm cleared: disk usage back to 74 percent", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 15:22:41,000000] [rep-worker] [DEBUG]: alarm cleared: disk usage back to 63 percent", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 19:16:58,000000]  [NOTICE] [33285674] [rep-worker] volume vol-3f2a changed state from active to degraded", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 11:01:17]  [INFO] [1ea44257] [dme-server] rpc call GetVolumeInfo returned code 15004, msg success", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 10:55:09.000000][DEBUG][ha-monitor] certificate will expire in 7477 days, renew required", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[DEBUG] [rep-worker] [b3fa0110] [889da269] (UTC) 2026-03-01 16:13:34.000000  DSWARE KMC receive heartbeat from node-55039, load 34 percent", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 18:21:12.000000] [/data/dsware/vol-46] [ism-agent] [NOTICE] received message from 10.43493.19729.15703:14614, dispatch to handler", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 15:22:36.000000] [/data/dsware/vol-28] [ha-monitor] [WARN] start to sync volume data, total 70035 chunks", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 16:41:18] [DEBUG] [osd-daemon] [scheduler] - update config key vol-3f2a to value 85460", "body_start": 57, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 23:38:56] [scheduler] [vbs-server] metadata journal truncated at offset 4e62b3309769", "body_start": 47, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 23:51:25:000000][c7ceb7ac][INFO][3212e305][scheduler][f354c2fd][5bbca989]receive heartbeat from node-51847, load 41 percent", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 13:40:43]  [WARN] [163a2fed] [osd-daemon] certificate will expire in 14764 days, renew required", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[DEBUG] [ism-agent] [ded1c266] [ac920c12] (UTC) 2026-03-02 00:50:40  DSWARE KMC task quota.db submitted by user admin, priority 26417", "body_start": 80, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 02:34:49,000000] [main-worker] [osd-daemon] rpc call GetVolumeInfo returned code 17298, msg success", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 09:40:44]  [ERROR] [26344585] [sync-task] receive heartbeat from node-53761, load 58 percent", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 07:49:20:000000][cc90eb04][DEBUG] [7c9eda66][dme-server]volume cfg.max.io changed state from active to degraded", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 16:03:35,000000][e1fcf3e7][INFO] [b4adbd88][ism-agent]received message from 10.50788.79479.55392:47649, dispatch to handler", "body_start": 66, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 11:09:05][DEBUG][sync-task] cache entry 5734c5fa0b78 evicted, free slots 49919", "body_start": 40, "format": "fsa#5", "has_header": true}
+{"line": "[WARN] [dme-server] [7f4a8650] [76c335e0] (UTC) 2026-03-01 14:42:24  DSWARE KMC update config key vol-3f2a to value 73574", "body_start": 80, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 10:00:47,000000] [ERROR] [osd-daemon] [dme-server] write 67551 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 16:35:40,000000][83f0d0a3][ERROR][c95821bb][sync-task][028a6a9c][f3a556b9]volume vol-3f2a changed state from active to degraded", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 01:56:20,000000] [rep-worker] [INFO]: write 40378 bytes to /data/dsware/task-991/chunk.dat", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 07:17:59]  [DEBUG] [66dbb709] [dme-server] failed to read block blk_b265335278a9, retry 76726 times", "body_start": 55, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 00:29:33,000000][DEBUG][sync-task] start to sync volume data, total 13492 chunks", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 11:16:12.000000][1e78c4ae][ERROR] [f63a6bb6][scheduler]checkpoint finished, elapsed 50015 seconds", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 13:00:31] [WARN] [main-worker] [ha-monitor] receive heartbeat from node-41103, load 83 percent", "body_start": 56, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 00:33:32,000000] [WARN] [rep-worker] [osd-daemon] - thread pool exhausted, active=87673 queued=55231 max=11173", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 03:09:51.000000] [ERROR] [rep-worker] [scheduler] received message from 10.31616.72711.43109:24207, dispatch to handler", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 19:48:41] [ism-agent] [DEBUG]: rpc call GetVolumeInfo returned code 56772, msg success", "body_start": 43, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 00:37:43] [scheduler] [WARN]: send audit event to kafka topic dsware-audit, seq=42eac91c179f", "body_start": 42, "format": "fsm#3", "has_header": true}
+{"line": "[DEBUG] [msg-handler] [bc8aebc6] [37b40a33] (UTC) 2026-03-02 03:05:47:000000  DSWARE KMC connection reset by peer, socket fd=57583", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 20:51:47:000000][ERROR][rep-worker] received message from 10.86764.87214.4301:48217, dispatch to handler", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 09:10:25.000000][0532ef05][WARN][28c1ee4d][osd-daemon][7f061e56][859d134e]cache entry 6885e6d2de79 evicted, free slots 34652", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 03:32:18.000000][WARN][osd-daemon] init module vol-3f2a begin, worker threads 75816", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[ERROR] [dme-server] [5180a031] [be7e88ea] (UTC) 2026-03-02 07:00:37,000000  DSWARE KMC alarm cleared: disk usage back to 63 percent", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 15:25:31] [sync-task] [msg-handler] certificate will expire in 87298 days, renew required", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 17:34:20.000000]  [ERROR] [6854d2aa] [msg-handler] thread pool exhausted, active=70767 queued=21674 max=5553", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 14:09:51][d8a73f6b][DEBUG] [04498bc8][msg-handler]cache entry c73874d8976c evicted, free slots 39006", "body_start": 62, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 18:38:08.000000]  [DEBUG] [7e94c981] [msg-handler] alarm cleared: disk usage back to 33 percent", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 02:07:00,000000] [scheduler] [ism-agent] received message from 10.24769.879.78355:67689, dispatch to handler", "body_start": 53, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 16:51:18] [main-worker] [INFO]: metadata journal truncated at offset f7a28a0f73a2", "body_start": 44, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 15:24:42] [DEBUG] [sync-task] [ha-monitor] update config key quota.db to value 15830", "body_start": 55, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 13:54:11:000000][b04ec905][WARN][ee2c40a0][ha-monitor][1bec87c2][81bb855b]connection reset by peer, socket fd=55707", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 19:34:04] [msg-handler] [vbs-server] volume task-991 changed state from active to degraded", "body_start": 49, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 19:32:26]  [INFO] [dfeaf68e] [ism-agent] volume vol-3f2a changed state from active to degraded", "body_start": 53, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 15:54:12.000000] [ERROR] [osd-daemon] [sync-task] - update config key task-991 to value 15640", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 14:08:17,000000] [INFO] [dme-server] [scheduler] - received message from 10.38048.3257.73247:97026, dispatch to handler", "body_start": 63, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 04:50:25.000000][INFO][msg-handler] send audit event to kafka topic dsware-audit, seq=b5d6f69ed245", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 14:01:49,000000][INFO][vbs-server] receive heartbeat from node-79775, load 77 percent", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 01:34:54] [DEBUG] [main-worker] [main-worker] - certificate will expire in 29624 days, renew required", "body_start": 60, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 09:23:02.000000]send audit event to kafka topic dsware-audit, seq=5458c54c8cca", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 10:31:40][ERROR][sync-task] task snap-7c submitted by user admin, priority 73300", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 13:21:21.000000][ae37ff39][WARN][6aeafa1c][osd-daemon][c66196bb][18f854fc]thread pool exhausted, active=19100 queued=86083 max=25813", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 20:10:34:000000][ea9c1d67][ERROR][cbac26f8][sync-task][47675715][954ec47d]task task-991 submitted by user admin, priority 94535", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[WARN] [ha-monitor] [5b8b0b03] [300830cd] (UTC) 2026-03-01 14:03:03,000000  DSWARE KMC failed to read block blk_c3c6e9712309, retry 99915 times", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[NOTICE] [vbs-server] [d428c25d] [de6d794b] (UTC) 2026-03-02 05:34:16:000000  DSWARE KMC init module vol-3f2a begin, worker threads 88169", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 11:14:17.000000] [WARN] [ha-monitor] [vbs-server] init module task-991 begin, worker threads 27437", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 04:20:32.000000][INFO][vbs-server] volume snap-7c changed state from active to degraded", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 15:29:04,000000] [rep-worker] [NOTICE]: thread pool exhausted, active=14511 queued=89148 max=43569", "body_start": 52, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 17:14:10]rpc call GetVolumeInfo returned code 24849, msg success", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 20:45:38:000000][19f458ac][NOTICE] [5a6958ad][scheduler]task cfg.max.io submitted by user admin, priority 31332", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 00:45:30,000000] [main-worker] [scheduler] rpc call GetVolumeInfo returned code 40291, msg success", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 13:42:38:000000] [/data/dsware/vol-15] [ha-monitor] [DEBUG] update config key quota.db to value 96865", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 17:53:51.000000][c169f299][DEBUG][9a917d7a][scheduler][934cb30f][b8f7cfea]receive heartbeat from node-89041, load 85 percent", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 14:55:15,000000] [ERROR] [dme-server] [sync-task] certificate will expire in 3246 days, renew required", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 19:43:40.000000]  [WARN] [159c646b] [dme-server] send audit event to kafka topic dsware-audit, seq=1df697f269df", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 03:20:39.000000]  [INFO] [82c00b61] [ha-monitor] cache entry b3023f8224cb evicted, free slots 40699", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 03:39:06,000000][WARN][ha-monitor] certificate will expire in 2671 days, renew required", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 00:30:24:000000] [/data/dsware/vol-22] [ism-agent] [INFO] metadata journal truncated at offset 2effaf9fb1ab", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 01:40:27,000000][e20db284][NOTICE][53622e78][ha-monitor][87de8df2][bb8c387a]update config key task-991 to value 15077", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 14:49:12,000000]write 74940 bytes to /data/dsware/task-991/chunk.dat", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 04:41:41:000000] [/data/dsware/vol-34] [rep-worker] [WARN] cache entry 34de81e38dde evicted, free slots 70026", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 07:25:58.000000]thread pool exhausted, active=52916 queued=69629 max=15482", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 09:29:32] [ERROR] [ism-agent] [scheduler] - send audit event to kafka topic dsware-audit, seq=3a99715fbd7d", "body_start": 56, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 10:42:44] [INFO] [main-worker] [dme-server] checkpoint finished, elapsed 25523 seconds", "body_start": 56, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 18:59:27,000000] [/data/dsware/vol-12] [scheduler] [NOTICE] checkpoint finished, elapsed 21061 seconds", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 08:43:30.000000][19ae8d57][INFO] [e785e4f6][osd-daemon]connection reset by peer, socket fd=24174", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 14:26:50] [scheduler] [NOTICE]: init module snap-7c begin, worker threads 21929", "body_start": 44, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 15:55:13] [NOTICE] [ha-monitor] [vbs-server] - checkpoint finished, elapsed 3852 seconds", "body_start": 59, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 10:18:53:000000] [/data/dsware/vol-32] [dme-server] [NOTICE] task snap-7c submitted by user admin, priority 89320", "body_start": 73, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 17:09:11.000000][5fe4c7eb][WARN][6492b262][dme-server][714b426a][52e8b4ea]thread pool exhausted, active=3978 queued=91176 max=99903", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 05:06:07] [/data/dsware/vol-23] [ism-agent] [ERROR] process request op=quota.db done in 85109 ms", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 07:57:38.000000]thread pool exhausted, active=23259 queued=31492 max=37477", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 12:22:43.000000] [main-worker] [INFO]: process request op=vol-3f2a done in 22095 ms", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 14:13:54] [/data/dsware/vol-38] [ism-agent] [NOTICE] receive heartbeat from node-83011, load 21 percent", "body_start": 65, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 16:15:21][9b1ab3bb][INFO] [09c2beae][rep-worker]rpc call GetVolumeInfo returned code 25255, msg success", "body_start": 60, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 05:40:55.000000] [osd-daemon] [vbs-server] task quota.db submitted by user admin, priority 47122", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 08:07:34,000000]cache entry ef5b50f0782d evicted, free slots 59771", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 04:09:15,000000][fca5fd2c][ERROR][8391e88d][osd-daemon][3702685d][24ce9426]alarm cleared: disk usage back to 5 percent", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 05:00:14,000000][356c76d2][ERROR] [d880db17][msg-handler]write 86288 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 69, "format": "fsa#2", "has_header": true}
+{"line": "[ERROR] [main-worker] [89e69963] [40d6bf48] (UTC) 2026-03-01 16:45:13  DSWARE KMC cache entry 14089ebfb92d evicted, free slots 97398", "body_start": 82, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 15:15:19.000000] [/data/dsware/vol-45] [rep-worker] [INFO] failed to read block blk_2ad1e9fc0a72, retry 2003 times", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 04:58:12:000000][DEBUG][scheduler] write 11486 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 23:35:38:000000]  [ERROR] [bb160f87] [sync-task] rpc call GetVolumeInfo returned code 20625, msg success", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 05:49:36.000000] [sync-task] [INFO]: receive heartbeat from node-34031, load 64 percent", "body_start": 49, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 06:29:56.000000] [WARN] [scheduler] [vbs-server] - certificate will expire in 68670 days, renew required", "body_start": 63, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 16:32:07] [DEBUG] [ha-monitor] [scheduler] metadata journal truncated at offset 140ce666d2dd", "body_start": 55, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 05:13:03,000000]task vol-3f2a submitted by user admin, priority 58101", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 19:06:32:000000][69f434c7][ERROR] [24ae64fe][msg-handler]update config key cfg.max.io to value 11314", "body_start": 69, "format": "fsa#2", "has_header": true}
+{"line": "[WARN] [sync-task] [b9db8f8b] [929f72ce] (UTC) 2026-03-01 18:09:18  DSWARE KMC failed to read block blk_6fad3210bc7e, retry 68784 times", "body_start": 79, "format": "fsm#0", "has_header": true}
+{"line": "[NOTICE] [sync-task] [9bbfce43] [1dd8638e] (UTC) 2026-03-01 17:38:16,000000  DSWARE KMC thread pool exhausted, active=54264 queued=22432 max=84422", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 11:55:48.000000][NOTICE][main-worker] send audit event to kafka topic dsware-audit, seq=2813ec57709f", "body_start": 50, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 16:25:21,000000] [main-worker] [NOTICE]: checkpoint finished, elapsed 10528 seconds", "body_start": 53, "format": "fsm#3", "has_header": true}
+{"line": "[DEBUG] [ism-agent] [92c3b4ff] [4d1f8180] (UTC) 2026-03-02 04:24:04,000000  DSWARE KMC rpc call GetVolumeInfo returned code 24523, msg success", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 04:50:37,000000][NOTICE][rep-worker] rpc call GetVolumeInfo returned code 64468, msg success", "body_start": 49, "format": "fsm#5", "has_header": true}
+{"line": "[DEBUG] [scheduler] [125b5174] [1adae872] (UTC) 2026-03-01 21:29:04.000000  DSWARE KMC failed to read block blk_ff702531c3ee, retry 73942 times", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 23:13:21,000000]  [DEBUG] [05328876] [scheduler] process request op=snap-7c done in 1646 ms", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 20:34:39][DEBUG][ism-agent] alarm cleared: disk usage back to 61 percent", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 13:30:22] [dme-server] [rep-worker] write 42447 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 10:16:17,000000][INFO][main-worker] receive heartbeat from node-63661, load 41 percent", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[WARN] [rep-worker] [286475d0] [b4cb60c6] (UTC) 2026-03-02 00:46:33.000000  DSWARE KMC process request op=vol-3f2a done in 27829 ms", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 20:47:08][e235ab9a][NOTICE][4b8bce9f][osd-daemon][33bf7ba9][d0104d06]metadata journal truncated at offset 392547e22d0b", "body_start": 81, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 02:52:50][NOTICE][main-worker] connection reset by peer, socket fd=63214", "body_start": 43, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 23:01:40,000000][ERROR][ha-monitor] write 86844 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[ERROR] [main-worker] [2c419070] [3d814d05] (UTC) 2026-03-02 05:30:12.000000  DSWARE KMC task cfg.max.io submitted by user admin, priority 33039", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[NOTICE] [rep-worker] [2ce5a883] [b3667e85] (UTC) 2026-03-01 13:27:50  DSWARE KMC failed to read block blk_4d0c39d1e89b, retry 7820 times", "body_start": 82, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 02:30:50,000000] [ERROR] [ism-agent] [dme-server] process request op=cfg.max.io done in 94958 ms", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 07:53:01][b7d6dd28][INFO][94ba1c06][osd-daemon][7e7672be][dd17c513]init module cfg.max.io begin, worker threads 68040", "body_start": 79, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 22:35:41][4501f9e9][WARN][4ea353e6][osd-daemon][4728e2f5][3847da43]receive heartbeat from node-32740, load 71 percent", "body_start": 79, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 06:48:29] [/data/dsware/vol-02] [vbs-server] [WARN] write 90919 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[INFO] [ha-monitor] [0bdb6276] [b8e62e4b] (UTC) 2026-03-01 08:23:24:000000  DSWARE KMC start to sync volume data, total 81772 chunks", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 02:53:59,000000] [dme-server] [rep-worker] certificate will expire in 13263 days, renew required", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 08:59:42,000000][NOTICE][rep-worker] write 62447 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 49, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 14:50:14.000000] [/data/dsware/vol-05] [sync-task] [WARN] connection reset by peer, socket fd=40118", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 04:10:37]volume quota.db changed state from active to degraded", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 11:03:57][NOTICE][ha-monitor] receive heartbeat from node-18810, load 30 percent", "body_start": 42, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 22:42:49,000000][WARN][ha-monitor] checkpoint finished, elapsed 17738 seconds", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[NOTICE] [msg-handler] [9e34444a] [bf4b6e45] (UTC) 2026-03-02 06:24:58:000000  DSWARE KMC checkpoint finished, elapsed 29083 seconds", "body_start": 90, "format": "fsa#1", "has_header": true}
+{"line": "[INFO] [scheduler] [5c76a0f7] [78d7fa63] (UTC) 2026-03-01 15:50:07  DSWARE KMC process request op=snap-7c done in 15985 ms", "body_start": 79, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 12:10:24] [osd-daemon] [main-worker] update config key quota.db to value 73327", "body_start": 49, "format": "fsm#4", "has_header": true}
+{"line": "[NOTICE] [main-worker] [71188239] [e66eaa07] (UTC) 2026-03-02 06:01:06,000000  DSWARE KMC write 31641 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 90, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 16:55:03,000000]task vol-3f2a submitted by user admin, priority 72893", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[NOTICE] [ism-agent] [e953f527] [7c3427fd] (UTC) 2026-03-02 00:54:09,000000  DSWARE KMC rpc call GetVolumeInfo returned code 1346, msg success", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 20:30:14.000000][INFO][osd-daemon] cache entry 8584daf3d1b0 evicted, free slots 40270", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 04:03:15] [vbs-server] [NOTICE]: thread pool exhausted, active=47367 queued=84703 max=45036", "body_start": 45, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 16:12:02,000000]received message from 10.30669.7453.94100:97207, dispatch to handler", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 13:25:52][DEBUG][scheduler] certificate will expire in 87298 days, renew required", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 05:00:07.000000]rpc call GetVolumeInfo returned code 91875, msg success", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 05:32:00,000000]volume vol-3f2a changed state from active to degraded", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 18:34:37.000000][WARN][main-worker] volume quota.db changed state from active to degraded", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[DEBUG] [ha-monitor] [fe893540] [0234dda3] (UTC) 2026-03-01 16:59:40.000000  DSWARE KMC init module task-991 begin, worker threads 78875", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 07:36:35.000000]process request op=vol-3f2a done in 8344 ms", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 00:57:24.000000] [DEBUG] [dme-server] [dme-server] start to sync volume data, total 69583 chunks", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 11:21:16,000000]  [NOTICE] [13503cda] [ism-agent] certificate will expire in 50309 days, renew required", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 03:21:50] [main-worker] [NOTICE]: received message from 10.75189.69566.81687:18433, dispatch to handler", "body_start": 46, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 19:37:35] [DEBUG] [dme-server] [rep-worker] - rpc call GetVolumeInfo returned code 66447, msg success", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 15:37:22:000000][WARN][rep-worker] send audit event to kafka topic dsware-audit, seq=a1d619a71d1a", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 19:29:51] [main-worker] [scheduler] init module task-991 begin, worker threads 93619", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 07:20:47.000000][c4c366b0][NOTICE][92383f4a][sync-task][548ba6b4][4db4860c]volume snap-7c changed state from active to degraded", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 14:48:59] [INFO] [main-worker] [vbs-server] received message from 10.50736.97412.51072:13528, dispatch to handler", "body_start": 56, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 21:17:34.000000] [rep-worker] [NOTICE]: write 86980 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 52, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 17:20:09,000000][3ed7071a][NOTICE] [438129a2][dme-server]certificate will expire in 60000 days, renew required", "body_start": 69, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 10:31:08.000000][e7720618][WARN][64fffc29][ism-agent][7e635514][e4660a92]checkpoint finished, elapsed 28777 seconds", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 09:19:05]certificate will expire in 32221 days, renew required", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[INFO] [main-worker] [d2243c8c] [e0ce9ff2] (UTC) 2026-03-02 00:29:47,000000  DSWARE KMC received message from 10.20813.43679.96973:89090, dispatch to handler", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 20:10:14.000000] [ha-monitor] [scheduler] init module cfg.max.io begin, worker threads 2689", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 03:48:08,000000][7e1b3bc4][ERROR][028d2a9b][osd-daemon][aaa69026][3e9a10e3]rpc call GetVolumeInfo returned code 10673, msg success", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 20:39:02:000000][6669fdff][ERROR] [d9977851][ha-monitor]thread pool exhausted, active=54752 queued=8941 max=5033", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 19:59:36,000000] [scheduler] [msg-handler] volume cfg.max.io changed state from active to degraded", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 11:05:29]  [NOTICE] [812d0726] [msg-handler] task cfg.max.io submitted by user admin, priority 74128", "body_start": 57, "format": "fsa#3", "has_header": true}
+{"line": "[ERROR] [ism-agent] [b8ac836a] [8081b1c8] (UTC) 2026-03-02 04:34:14,000000  DSWARE KMC rpc call GetVolumeInfo returned code 6352, msg success", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 23:35:47] [dme-server] [INFO]: receive heartbeat from node-99843, load 82 percent", "body_start": 43, "format": "fsm#3", "has_header": true}
+{"line": "[WARN] [rep-worker] [7eabdb71] [d77a2c9f] (UTC) 2026-03-02 01:42:05,000000  DSWARE KMC write 88109 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 09:06:10,000000] [/data/dsware/vol-39] [dme-server] [ERROR] write 27904 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 21:30:49] [scheduler] [DEBUG]: send audit event to kafka topic dsware-audit, seq=fe1f842a11c2", "body_start": 43, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 07:14:16.000000]  [ERROR] [4b901727] [sync-task] failed to read block blk_833bfccda7e7, retry 26912 times", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 01:18:56.000000][1d4a9fb5][ERROR][c3427b8b][sync-task][42ee9fcc][7d856fcc]start to sync volume data, total 31244 chunks", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 02:03:24,000000] [ha-monitor] [INFO]: cache entry 25027fa08f1a evicted, free slots 95514", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 00:52:13,000000][WARN][main-worker] disk 3828 smart health status ok, temperature 66229 celsius", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 12:38:23][1391c2dd][WARN][1695b1cf][main-worker][1c31eec3][aa5bf1c1]receive heartbeat from node-91637, load 90 percent", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 09:35:16][ERROR][ism-agent] update config key task-991 to value 69167", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[WARN] [main-worker] [2b7f5362] [19674ecc] (UTC) 2026-03-01 10:46:52,000000  DSWARE KMC alarm cleared: disk usage back to 22 percent", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 22:13:51] [WARN] [main-worker] [msg-handler] - alarm cleared: disk usage back to 70 percent", "body_start": 59, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 01:24:09,000000] [/data/dsware/vol-60] [rep-worker] [ERROR] checkpoint finished, elapsed 17414 seconds", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 09:54:37:000000][d61cfe15][NOTICE] [af36a1f5][rep-worker]receive heartbeat from node-28543, load 16 percent", "body_start": 69, "format": "fsa#2", "has_header": true}
+{"line": "[NOTICE] [vbs-server] [2835ab8d] [afad8d8e] (UTC) 2026-03-01 11:58:13,000000  DSWARE KMC disk 53819 smart health status ok, temperature 41438 celsius", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[INFO] [rep-worker] [e43c6429] [317b93d6] (UTC) 2026-03-01 12:14:37,000000  DSWARE KMC metadata journal truncated at offset 714145e231d4", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 01:28:47,000000] [DEBUG] [rep-worker] [vbs-server] process request op=vol-3f2a done in 31616 ms", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 09:16:35,000000] [ERROR] [vbs-server] [ha-monitor] - process request op=cfg.max.io done in 94097 ms", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 10:27:36.000000] [/data/dsware/vol-42] [ha-monitor] [INFO] start to sync volume data, total 38590 chunks", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 23:06:34,000000][WARN][main-worker] failed to read block blk_4c6d435d122f, retry 92183 times", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 13:59:02,000000] [osd-daemon] [NOTICE]: alarm cleared: disk usage back to 11 percent", "body_start": 52, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 18:03:02] [sync-task] [INFO]: write 62292 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 42, "format": "fsm#3", "has_header": true}
+{"line": "[ERROR] [dme-server] [58bc34fa] [1e32fbf9] (UTC) 2026-03-01 19:45:56:000000  DSWARE KMC connection reset by peer, socket fd=49980", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 15:12:34] [sync-task] [ha-monitor] failed to read block blk_1acdbe34016c, retry 94890 times", "body_start": 47, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 06:05:45] [WARN] [sync-task] [ha-monitor] volume quota.db changed state from active to degraded", "body_start": 54, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 01:39:31,000000] [ERROR] [msg-handler] [scheduler] task quota.db submitted by user admin, priority 33054", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 00:04:35.000000][INFO][rep-worker] process request op=snap-7c done in 26277 ms", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 18:09:59:000000][INFO][vbs-server] thread pool exhausted, active=37371 queued=61381 max=35974", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 12:13:35.000000][8e18dec6][NOTICE][ebe36465][osd-daemon][89961724][73080909]receive heartbeat from node-4415, load 61 percent", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 18:09:30,000000][a3f2c34f][ERROR][893c7e94][main-worker][f8f6f133][1f725680]cache entry f152606c4110 evicted, free slots 15418", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 15:01:46,000000]process request op=task-991 done in 71831 ms", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 19:33:34][DEBUG][ism-agent] receive heartbeat from node-96871, load 59 percent", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[NOTICE] [ism-agent] [f4f794ba] [167c8a75] (UTC) 2026-03-01 10:19:46.000000  DSWARE KMC metadata journal truncated at offset 2c7705e5e09a", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[INFO] [vbs-server] [8a9c238f] [5d1c0644] (UTC) 2026-03-01 13:45:12  DSWARE KMC write 6347 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 80, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 18:12:38] [/data/dsware/vol-45] [ha-monitor] [WARN] task vol-3f2a submitted by user admin, priority 18177", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 21:56:44.000000][39ef9a75][INFO][991b6f20][dme-server][fd3f1ae3][a12d809c]volume snap-7c changed state from active to degraded", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 11:05:55,000000] [vbs-server] [ERROR]: metadata journal truncated at offset b97b6e17bafa", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 06:38:31.000000][ERROR][ha-monitor] checkpoint finished, elapsed 77219 seconds", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 14:04:02:000000][b25b783b][DEBUG] [6ee1e524][ism-agent]volume snap-7c changed state from active to degraded", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 04:10:49.000000]cache entry 26a0e115faec evicted, free slots 71942", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[ERROR] [osd-daemon] [fa54c143] [6704d48e] (UTC) 2026-03-01 16:23:13,000000  DSWARE KMC failed to read block blk_6868fc6e8c1c, retry 54313 times", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 23:53:24][e8f1c165][NOTICE] [e91b28d7][sync-task]receive heartbeat from node-9120, load 28 percent", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 19:05:42.000000] [ERROR] [rep-worker] [main-worker] - certificate will expire in 65630 days, renew required", "body_start": 66, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 13:43:26.000000][65777d5a][WARN][4b900ad9][rep-worker][0f94d796][922788b1]cache entry 8872c43c9ecc evicted, free slots 65731", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 14:42:58] [ism-agent] [dme-server] received message from 10.43123.32360.52027:56140, dispatch to handler", "body_start": 47, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 13:09:01.000000] [ERROR] [ha-monitor] [scheduler] - metadata journal truncated at offset 2eaa2377f47a", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[INFO] [rep-worker] [a6502ae6] [f0ea76b0] (UTC) 2026-03-01 22:53:34  DSWARE KMC rpc call GetVolumeInfo returned code 91832, msg success", "body_start": 80, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 17:39:08] [main-worker] [rep-worker] update config key quota.db to value 49747", "body_start": 49, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 18:34:25.000000][WARN][rep-worker] cache entry 4224094868b5 evicted, free slots 36203", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 04:25:54,000000] [NOTICE] [osd-daemon] [main-worker] write 83900 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 65, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 10:16:56] [INFO] [scheduler] [main-worker] process request op=vol-3f2a done in 59103 ms", "body_start": 55, "format": "fsm#2", "has_header": true}
+{"line": "[INFO] [osd-daemon] [0564b320] [feab0677] (UTC) 2026-03-01 13:16:49.000000  DSWARE KMC disk 1593 smart health status ok, temperature 22071 celsius", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 14:31:40][7b307fbb][DEBUG][9df96a7f][rep-worker][1c9a2d8d][5d7b340a]update config key cfg.max.io to value 22036", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 18:51:55] [osd-daemon] [WARN]: send audit event to kafka topic dsware-audit, seq=d739807f73ea", "body_start": 43, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 20:34:19.000000] [vbs-server] [rep-worker] alarm cleared: disk usage back to 73 percent", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[INFO] [msg-handler] [c8da44dd] [ea18bc93] (UTC) 2026-03-01 14:46:26,000000  DSWARE KMC start to sync volume data, total 12512 chunks", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 03:47:36,000000] [/data/dsware/vol-54] [dme-server] [WARN] init module snap-7c begin, worker threads 11911", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[INFO] [sync-task] [f17dd878] [cec1bfb6] (UTC) 2026-03-01 15:57:18.000000  DSWARE KMC send audit event to kafka topic dsware-audit, seq=629ab26e6355", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 07:59:56,000000] [sync-task] [ism-agent] send audit event to kafka topic dsware-audit, seq=8cfba36d180b", "body_start": 53, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 07:21:46] [/data/dsware/vol-40] [ism-agent] [WARN] start to sync volume data, total 81188 chunks", "body_start": 63, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 12:07:26,000000] [main-worker] [vbs-server] send audit event to kafka topic dsware-audit, seq=c6574e6ca876", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 19:17:43,000000]  [WARN] [e647cd9f] [msg-handler] rpc call GetVolumeInfo returned code 19463, msg success", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 05:39:46,000000][373000a3][NOTICE] [91253c13][sync-task]alarm cleared: disk usage back to 75 percent", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 20:09:24,000000][d0c44681][INFO] [b0b89001][msg-handler]thread pool exhausted, active=43864 queued=60830 max=90536", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 10:05:31,000000][db2e1b09][ERROR][cb770a4d][rep-worker][5cbc848c][5f6aa312]alarm cleared: disk usage back to 44 percent", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 03:16:53.000000][DEBUG][main-worker] certificate will expire in 60163 days, renew required", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 21:42:09,000000] [WARN] [dme-server] [ha-monitor] update config key vol-3f2a to value 34092", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 16:57:35.000000] [WARN] [ha-monitor] [msg-handler] - init module snap-7c begin, worker threads 62854", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[DEBUG] [main-worker] [b81022e2] [303767af] (UTC) 2026-03-01 17:36:44.000000  DSWARE KMC init module quota.db begin, worker threads 96701", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 09:46:31:000000][NOTICE][dme-server] task snap-7c submitted by user admin, priority 18418", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[INFO] [main-worker] [6156e412] [5c84ed1f] (UTC) 2026-03-01 19:46:34.000000  DSWARE KMC metadata journal truncated at offset e4fb503dbfe7", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 14:32:27.000000][NOTICE][msg-handler] send audit event to kafka topic dsware-audit, seq=f168be0973de", "body_start": 50, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 16:02:42.000000][INFO][sync-task] volume cfg.max.io changed state from active to degraded", "body_start": 46, "format": "fsm#5", "has_header": true}
+{"line": "[NOTICE] [vbs-server] [3c805d95] [c607a4f7] (UTC) 2026-03-01 21:47:59  DSWARE KMC alarm cleared: disk usage back to 22 percent", "body_start": 82, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 21:59:25] [msg-handler] [NOTICE]: thread pool exhausted, active=78856 queued=11225 max=80160", "body_start": 46, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 04:46:10.000000][INFO][main-worker] receive heartbeat from node-98275, load 31 percent", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 06:15:13:000000][627dcad5][NOTICE] [4c9bc9a2][main-worker]volume cfg.max.io changed state from active to degraded", "body_start": 70, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 18:41:14.000000][bd8d1647][DEBUG] [3f25df3a][osd-daemon]cache entry 895785d5d7b6 evicted, free slots 54689", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 00:01:37:000000][553730f0][WARN][5f9533fd][msg-handler][4c61fd91][1a465b13]certificate will expire in 24116 days, renew required", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 14:54:25] [ism-agent] [msg-handler] volume vol-3f2a changed state from active to degraded", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 01:19:28.000000][de473e84][NOTICE][54dd4991][rep-worker][b31a7305][56b2343b]init module vol-3f2a begin, worker threads 24557", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 02:39:30][INFO][ha-monitor] start to sync volume data, total 33650 chunks", "body_start": 40, "format": "fsa#5", "has_header": true}
+{"line": "[INFO] [vbs-server] [a3428baf] [91158c48] (UTC) 2026-03-01 23:42:32,000000  DSWARE KMC metadata journal truncated at offset 9832e68d90f1", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 19:57:34.000000][WARN][msg-handler] send audit event to kafka topic dsware-audit, seq=febf71d39e95", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 21:41:21,000000] [vbs-server] [INFO]: receive heartbeat from node-47690, load 91 percent", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[ERROR] [main-worker] [1d53cf9f] [d01fe437] (UTC) 2026-03-02 00:59:13,000000  DSWARE KMC certificate will expire in 47594 days, renew required", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 03:59:02,000000]certificate will expire in 74373 days, renew required", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[ERROR] [vbs-server] [ce8ad650] [e3c3baad] (UTC) 2026-03-01 09:42:34,000000  DSWARE KMC metadata journal truncated at offset 70649fa971c6", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]send audit event to kafka topic dsware-audit, seq=907e1713054b", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[DEBUG] [vbs-server] [78396afc] [26bdfdff] (UTC) 2026-03-02 07:23:57,000000  DSWARE KMC thread pool exhausted, active=66733 queued=19003 max=64423", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 03:46:02.000000] [/data/dsware/vol-28] [ha-monitor] [WARN] certificate will expire in 19285 days, renew required", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[NOTICE] [ism-agent] [2f6d7559] [47693126] (UTC) 2026-03-01 09:37:43,000000  DSWARE KMC task task-991 submitted by user admin, priority 98705", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 12:27:31:000000] [/data/dsware/vol-44] [scheduler] [WARN] init module vol-3f2a begin, worker threads 74235", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[DEBUG] [rep-worker] [1805995f] [4cef8e59] (UTC) 2026-03-01 21:55:09.000000  DSWARE KMC rpc call GetVolumeInfo returned code 68949, msg success", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 21:41:04][WARN][ism-agent] send audit event to kafka topic dsware-audit, seq=419895f21b3", "body_start": 39, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 17:21:57,000000] [DEBUG] [rep-worker] [ism-agent] - start to sync volume data, total 73542 chunks", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 04:34:01.000000][DEBUG][msg-handler] process request op=snap-7c done in 84801 ms", "body_start": 49, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 09:25:29.000000][c7fdf54d][INFO] [64537c3a][dme-server]volume vol-3f2a changed state from active to degraded", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 08:02:24.000000][144c40a3][INFO][1ab473ad][dme-server][252cc124][cf3d846c]task cfg.max.io submitted by user admin, priority 65249", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[INFO] [rep-worker] [4b13477e] [507ca9d5] (UTC) 2026-03-01 15:51:42.000000  DSWARE KMC send audit event to kafka topic dsware-audit, seq=f339cfa8cb07", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 19:20:59.000000] [ism-agent] [WARN]: rpc call GetVolumeInfo returned code 38838, msg success", "body_start": 49, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 02:32:17] [DEBUG] [osd-daemon] [main-worker] - metadata journal truncated at offset e6ddd358f2ba", "body_start": 59, "format": "fsm#1", "has_header": true}
+{"line": "[WARN] [msg-handler] [cad84ee7] [814eca5e] (UTC) 2026-03-01 11:18:00.000000  DSWARE KMC thread pool exhausted, active=63472 queued=5333 max=19296", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 05:57:08.000000][INFO][dme-server] cache entry 6918fc381806 evicted, free slots 73142", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 00:03:37] [/data/dsware/vol-41] [scheduler] [INFO] volume quota.db changed state from active to degraded", "body_start": 63, "format": "fsa#4", "has_header": true}
+{"line": "[INFO] [main-worker] [2ed819f3] [f7af97fa] (UTC) 2026-03-01 10:18:38  DSWARE KMC update config key cfg.max.io to value 84262", "body_start": 81, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 07:37:06] [ha-monitor] [INFO]: send audit event to kafka topic dsware-audit, seq=39e0d7d085", "body_start": 43, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 01:33:08,000000] [msg-handler] [ism-agent] task snap-7c submitted by user admin, priority 33447", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 15:24:36.000000] [INFO] [vbs-server] [msg-handler] update config key quota.db to value 48455", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[ERROR] [sync-task] [e638cb08] [fbfc535b] (UTC) 2026-03-02 02:04:47.000000  DSWARE KMC volume vol-3f2a changed state from active to degraded", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 05:37:10,000000] [WARN] [vbs-server] [vbs-server] start to sync volume data, total 90191 chunks", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 13:38:42] [ha-monitor] [osd-daemon] failed to read block blk_cc229609576, retry 26581 times", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[WARN] [main-worker] [d0303c68] [bf46945f] (UTC) 2026-03-01 13:38:30:000000  DSWARE KMC certificate will expire in 7480 days, renew required", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 23:18:17,000000]  [WARN] [9aafaf43] [dme-server] write 82745 bytes to /data/dsware/task-991/chunk.dat", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 04:59:12:000000]  [NOTICE] [ab92b451] [osd-daemon] rpc call GetVolumeInfo returned code 694, msg success", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 11:24:51] [/data/dsware/vol-03] [sync-task] [WARN] failed to read block blk_29d7dcb7d23b, retry 49783 times", "body_start": 63, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 04:11:32:000000] [/data/dsware/vol-39] [osd-daemon] [DEBUG] certificate will expire in 7117 days, renew required", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 15:20:39.000000]  [ERROR] [7f527d07] [ha-monitor] send audit event to kafka topic dsware-audit, seq=890fccaad083", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 16:49:10] [WARN] [main-worker] [osd-daemon] - checkpoint finished, elapsed 60456 seconds", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[WARN] [vbs-server] [bfeeea3f] [f6fa1e51] (UTC) 2026-03-01 08:49:49.000000  DSWARE KMC send audit event to kafka topic dsware-audit, seq=9aea6b0e8edd", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[DEBUG] [scheduler] [1725ff26] [73cb6f68] (UTC) 2026-03-01 22:48:07,000000  DSWARE KMC task vol-3f2a submitted by user admin, priority 25356", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[WARN] [sync-task] [4aa2b7d8] [1d1222c9] (UTC) 2026-03-01 13:54:05,000000  DSWARE KMC received message from 10.14541.68619.55437:93272, dispatch to handler", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 08:40:47,000000] [ERROR] [dme-server] [ism-agent] update config key task-991 to value 47373", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 00:50:22][DEBUG][sync-task] failed to read block blk_bef9a5ed6f1e, retry 94327 times", "body_start": 40, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 06:20:42,000000] [msg-handler] [NOTICE]: task vol-3f2a submitted by user admin, priority 55131", "body_start": 53, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 10:50:51.000000][ERROR][osd-daemon] init module quota.db begin, worker threads 97262", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 13:49:33][50f9a0e8][INFO][555b5121][dme-server][de901448][29bf0915]write 95853 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 79, "format": "fsa#0", "has_header": true}
+{"line": "[DEBUG] [ism-agent] [31c80b1d] [d8d5e19a] (UTC) 2026-03-01 12:11:13  DSWARE KMC receive heartbeat from node-28230, load 58 percent", "body_start": 80, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 18:34:56] [DEBUG] [ha-monitor] [dme-server] - received message from 10.77926.83649.89407:92802, dispatch to handler", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 03:35:55] [ERROR] [sync-task] [msg-handler] - alarm cleared: disk usage back to 52 percent", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[ERROR] [ism-agent] [0e37cd83] [d222618e] (UTC) 2026-03-02 06:55:02,000000  DSWARE KMC send audit event to kafka topic dsware-audit, seq=9eb27e40e3e", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 09:11:48,000000][41c0290c][INFO][407778d7][osd-daemon][efd0ec82][103aa102]disk 97651 smart health status ok, temperature 84617 celsius", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 01:15:37][NOTICE][osd-daemon] received message from 10.49586.88945.98175:66574, dispatch to handler", "body_start": 42, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 13:32:44,000000][3e78b445][INFO] [a58c1265][osd-daemon]rpc call GetVolumeInfo returned code 67786, msg success", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[DEBUG] [msg-handler] [9778b5b1] [c3727ecb] (UTC) 2026-03-01 23:59:00.000000  DSWARE KMC process request op=task-991 done in 65764 ms", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 05:32:26.000000] [dme-server] [INFO]: failed to read block blk_4e6fc7ddbb0f, retry 12308 times", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 10:21:17]write 73709 bytes to /data/dsware/task-991/chunk.dat", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 00:44:27.000000] [/data/dsware/vol-52] [sync-task] [INFO] receive heartbeat from node-577, load 31 percent", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 20:45:40][NOTICE][sync-task] received message from 10.41183.50288.19816:94540, dispatch to handler", "body_start": 41, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 19:02:13,000000] [INFO] [ism-agent] [main-worker] write 37280 bytes to /data/dsware/task-991/chunk.dat", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[ERROR] [main-worker] [d5e1edde] [a55affa5] (UTC) 2026-03-02 05:21:23.000000  DSWARE KMC start to sync volume data, total 52597 chunks", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[NOTICE] [ha-monitor] [3d7bf7e1] [4cbae8b0] (UTC) 2026-03-01 17:42:14,000000  DSWARE KMC write 80550 bytes to /data/dsware/task-991/chunk.dat", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 02:21:56:000000]  [DEBUG] [a05c46be] [ha-monitor] process request op=quota.db done in 22230 ms", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[INFO] [dme-server] [daa21dbf] [b46c09a7] (UTC) 2026-03-01 19:53:45.000000  DSWARE KMC update config key quota.db to value 77880", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[ERROR] [osd-daemon] [792034b1] [a2ffa0cb] (UTC) 2026-03-02 07:41:39  DSWARE KMC volume task-991 changed state from active to degraded", "body_start": 81, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 04:06:01] [/data/dsware/vol-20] [scheduler] [ERROR] init module cfg.max.io begin, worker threads 47657", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 02:51:32:000000][1969b386][DEBUG][7dd01531][msg-handler][15a221dd][3aadca06]alarm cleared: disk usage back to 91 percent", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 08:46:29,000000] [ism-agent] [scheduler] connection reset by peer, socket fd=85399", "body_start": 53, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 13:46:50,000000] [DEBUG] [ha-monitor] [ha-monitor] - task vol-3f2a submitted by user admin, priority 38676", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 22:40:21] [ha-monitor] [DEBUG]: cache entry 3c5231ca3fe evicted, free slots 95249", "body_start": 44, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 03:44:39.000000]  [DEBUG] [d58b6d42] [ism-agent] failed to read block blk_964d8f955b42, retry 29096 times", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 06:41:43,000000]receive heartbeat from node-8044, load 19 percent", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 08:59:51.000000] [vbs-server] [NOTICE]: certificate will expire in 8637 days, renew required", "body_start": 52, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 02:31:38,000000] [ism-agent] [NOTICE]: start to sync volume data, total 51583 chunks", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 11:17:11]start to sync volume data, total 34297 chunks", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 00:48:29]  [INFO] [ea7f5372] [rep-worker] thread pool exhausted, active=47821 queued=29806 max=38838", "body_start": 54, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 12:32:51.000000]cache entry 82b5272aa9cc evicted, free slots 70740", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 00:34:23:000000][38c03c44][NOTICE] [88df8eef][rep-worker]task vol-3f2a submitted by user admin, priority 85308", "body_start": 69, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 16:25:56.000000] [scheduler] [NOTICE]: rpc call GetVolumeInfo returned code 63329, msg success", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 18:53:32,000000] [INFO] [osd-daemon] [msg-handler] start to sync volume data, total 40245 chunks", "body_start": 63, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 03:50:07]received message from 10.97489.20037.4066:79723, dispatch to handler", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 06:11:00] [DEBUG] [ha-monitor] [vbs-server] - failed to read block blk_c424b4549c5a, retry 46210 times", "body_start": 58, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 07:48:35.000000] [scheduler] [msg-handler] volume quota.db changed state from active to degraded", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 12:07:40]  [DEBUG] [c10dba8d] [main-worker] alarm cleared: disk usage back to 23 percent", "body_start": 56, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 23:44:58]connection reset by peer, socket fd=51859", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 05:18:07,000000][e351375d][DEBUG][15ca4671][msg-handler][b2e84735][4d54c8d2]certificate will expire in 10886 days, renew required", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 23:21:51,000000]receive heartbeat from node-49727, load 13 percent", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 11:09:02.000000] [/data/dsware/vol-49] [scheduler] [ERROR] init module snap-7c begin, worker threads 86256", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 00:18:26,000000][WARN][ha-monitor] failed to read block blk_c63c93ed3592, retry 7290 times", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[INFO] [scheduler] [bd49c652] [df3d3d77] (UTC) 2026-03-02 02:07:14,000000  DSWARE KMC write 43905 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 86, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 00:12:26.000000] [main-worker] [ha-monitor] cache entry c9841830a49d evicted, free slots 92076", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 19:22:29,000000] [WARN] [vbs-server] [vbs-server] connection reset by peer, socket fd=40064", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 10:00:57,000000][85bb7584][WARN][6e69aeae][ism-agent][c27a3932][ab156fa8]received message from 10.15654.98733.47005:78311, dispatch to handler", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 15:10:28,000000][INFO][ism-agent] task cfg.max.io submitted by user admin, priority 43592", "body_start": 46, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 05:47:11][48fdd231][WARN] [09f867dc][main-worker]cache entry 72c1141d4fe1 evicted, free slots 75965", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 00:12:56:000000] [/data/dsware/vol-10] [msg-handler] [DEBUG] process request op=quota.db done in 89288 ms", "body_start": 73, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 21:17:12.000000][INFO][dme-server] connection reset by peer, socket fd=24742", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 13:39:01:000000][95544e2a][DEBUG] [4be6d52c][vbs-server]certificate will expire in 62849 days, renew required", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 01:42:30][DEBUG][osd-daemon] checkpoint finished, elapsed 8998 seconds", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 08:56:39,000000] [/data/dsware/vol-62] [rep-worker] [INFO] rpc call GetVolumeInfo returned code 37538, msg success", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 07:37:18.000000] [WARN] [scheduler] [vbs-server] volume task-991 changed state from active to degraded", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 12:39:02.000000] [/data/dsware/vol-57] [dme-server] [INFO] certificate will expire in 44359 days, renew required", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 20:49:38:000000] [/data/dsware/vol-58] [osd-daemon] [INFO] send audit event to kafka topic dsware-audit, seq=1f8910f5b023", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[WARN] [main-worker] [9afec668] [f8cf0228] (UTC) 2026-03-01 13:10:13,000000  DSWARE KMC cache entry aa92f39c3b14 evicted, free slots 71429", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 04:51:04,000000] [msg-handler] [rep-worker] update config key task-991 to value 82155", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 00:28:59] [vbs-server] [main-worker] certificate will expire in 21053 days, renew required", "body_start": 49, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 15:19:37.000000] [WARN] [vbs-server] [dme-server] - send audit event to kafka topic dsware-audit, seq=f95bcf494842", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[DEBUG] [rep-worker] [28644cd2] [ad60aeca] (UTC) 2026-03-02 01:56:02.000000  DSWARE KMC update config key snap-7c to value 80916", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[NOTICE] [rep-worker] [6e80d694] [bb85edd2] (UTC) 2026-03-01 08:27:52.000000  DSWARE KMC thread pool exhausted, active=1242 queued=80980 max=53242", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 16:52:43] [msg-handler] [DEBUG]: update config key snap-7c to value 79576", "body_start": 45, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 09:39:47,000000] [msg-handler] [NOTICE]: volume snap-7c changed state from active to degraded", "body_start": 53, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 14:57:10,000000] [vbs-server] [DEBUG]: thread pool exhausted, active=76627 queued=50948 max=87514", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 21:59:17.000000][NOTICE][ha-monitor] disk 85479 smart health status ok, temperature 7458 celsius", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 15:18:17:000000][2c0301ce][WARN][53d8d0cb][scheduler][e8cccc94][e27c5b64]cache entry d84ccfeed15f evicted, free slots 17745", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 18:58:42,000000][ERROR][vbs-server] task vol-3f2a submitted by user admin, priority 90014", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 16:33:56]failed to read block blk_9818c54fe104, retry 55492 times", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[DEBUG] [main-worker] [f31aded7] [783c39b0] (UTC) 2026-03-02 00:46:42,000000  DSWARE KMC task quota.db submitted by user admin, priority 99841", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 18:44:39.000000][WARN][vbs-server] connection reset by peer, socket fd=30504", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 09:05:05,000000] [/data/dsware/vol-03] [ha-monitor] [DEBUG] process request op=vol-3f2a done in 71982 ms", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 17:36:29,000000][757d858e][NOTICE] [eac866df][scheduler]metadata journal truncated at offset 92a817680fe", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 10:06:43] [vbs-server] [osd-daemon] receive heartbeat from node-60190, load 75 percent", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 01:04:22,000000] [/data/dsware/vol-18] [main-worker] [WARN] rpc call GetVolumeInfo returned code 11238, msg success", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 00:10:31,000000]  [DEBUG] [2d64a539] [dme-server] metadata journal truncated at offset 939a55afe796", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 03:10:53,000000]connection reset by peer, socket fd=18757", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 18:00:23.000000][2e099434][ERROR][96ece3e1][osd-daemon][71af0216][f568f008]failed to read block blk_e48588e375eb, retry 48234 times", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 14:52:54.000000][ERROR][dme-server] init module snap-7c begin, worker threads 49021", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[ERROR] [osd-daemon] [de44f37c] [c5b10c61] (UTC) 2026-03-01 16:07:34:000000  DSWARE KMC received message from 10.43192.43853.25559:56246, dispatch to handler", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 00:17:09.000000] [INFO] [sync-task] [osd-daemon] metadata journal truncated at offset cd6629254abc", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 13:12:23.000000]  [ERROR] [aa9c4743] [ism-agent] write 79925 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 18:49:23][INFO][rep-worker] checkpoint finished, elapsed 79930 seconds", "body_start": 40, "format": "fsa#5", "has_header": true}
+{"line": "[ERROR] [rep-worker] [7822b62e] [5122ea58] (UTC) 2026-03-01 13:26:59:000000  DSWARE KMC task snap-7c submitted by user admin, priority 36079", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 15:43:03]task vol-3f2a submitted by user admin, priority 44427", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 23:56:40,000000]init module snap-7c begin, worker threads 29490", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 05:15:21,000000] [rep-worker] [NOTICE]: receive heartbeat from node-41592, load 84 percent", "body_start": 52, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 03:39:02][242712cc][INFO] [2b4d2e40][main-worker]start to sync volume data, total 15619 chunks", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 06:32:13.000000] [INFO] [dme-server] [rep-worker] - start to sync volume data, total 86958 chunks", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 15:34:30:000000]  [ERROR] [c1bdcfb4] [ha-monitor] write 95029 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 04:17:24.000000][NOTICE][ism-agent] cache entry 4753fe782238 evicted, free slots 81704", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 03:02:35,000000][612a8cd0][NOTICE] [cf19a58b][sync-task]send audit event to kafka topic dsware-audit, seq=ee4c69a99f73", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 06:20:12] [ERROR] [scheduler] [dme-server] send audit event to kafka topic dsware-audit, seq=a997230281b6", "body_start": 55, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 21:59:57:000000][5db0c280][NOTICE][bd60c1f9][ha-monitor][ba0f587b][8f5fb1f7]init module quota.db begin, worker threads 26352", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 04:11:52][791fac5a][DEBUG] [7d356781][vbs-server]alarm cleared: disk usage back to 50 percent", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 09:35:26,000000] [NOTICE] [main-worker] [scheduler] start to sync volume data, total 45277 chunks", "body_start": 64, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 23:17:37] [ERROR] [dme-server] [main-worker] init module snap-7c begin, worker threads 49938", "body_start": 57, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 02:18:52:000000][2a909b1a][DEBUG][8c65e1d9][msg-handler][28b72720][304dd577]checkpoint finished, elapsed 34643 seconds", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 21:31:12]init module snap-7c begin, worker threads 35377", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[DEBUG] [dme-server] [ae1b80b6] [d45ff15f] (UTC) 2026-03-01 13:47:18.000000  DSWARE KMC start to sync volume data, total 26880 chunks", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[WARN] [rep-worker] [a4692a8a] [9a6c5a76] (UTC) 2026-03-01 10:11:06.000000  DSWARE KMC checkpoint finished, elapsed 37224 seconds", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 06:38:01.000000][97c4ceb6][DEBUG][5954e698][ism-agent][b0d1c180][bad8cdc4]task vol-3f2a submitted by user admin, priority 77776", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 00:52:00,000000] [NOTICE] [vbs-server] [vbs-server] alarm cleared: disk usage back to 4 percent", "body_start": 64, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 11:39:19,000000] [ha-monitor] [DEBUG]: thread pool exhausted, active=40196 queued=76478 max=22989", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 18:00:11] [dme-server] [dme-server] checkpoint finished, elapsed 47818 seconds", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 19:28:53,000000][ERROR][rep-worker] certificate will expire in 97755 days, renew required", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 10:30:30,000000] [INFO] [rep-worker] [ha-monitor] rpc call GetVolumeInfo returned code 1036, msg success", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 11:55:08:000000]  [ERROR] [0bb2a3fc] [vbs-server] certificate will expire in 85864 days, renew required", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-01 09:44:14] [rep-worker] [vbs-server] write 42118 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 18:50:14.000000][89039575][INFO][e18b6aaf][scheduler][b2dbcbbe][bfe95cb7]receive heartbeat from node-50653, load 96 percent", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 01:59:22] [INFO] [ha-monitor] [sync-task] - init module task-991 begin, worker threads 80170", "body_start": 56, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]metadata journal truncated at offset d08e3cd48141", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 10:30:02.000000][26e76768][INFO] [a3f4d095][sync-task]send audit event to kafka topic dsware-audit, seq=926add66fd69", "body_start": 66, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 15:48:48][153fbfef][NOTICE][d27a2890][ha-monitor][db5aac73][ea18640b]alarm cleared: disk usage back to 96 percent", "body_start": 81, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 10:43:02.000000] [DEBUG] [ha-monitor] [msg-handler] volume task-991 changed state from active to degraded", "body_start": 64, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 07:20:34.000000] [DEBUG] [ha-monitor] [osd-daemon] - received message from 10.46879.54088.4922:37072, dispatch to handler", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 23:36:15] [ERROR] [vbs-server] [vbs-server] write 26043 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 56, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 19:10:15] [INFO] [ism-agent] [rep-worker] volume vol-3f2a changed state from active to degraded", "body_start": 54, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 06:52:15,000000] [rep-worker] [ERROR]: alarm cleared: disk usage back to 81 percent", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 01:34:08][INFO][sync-task] send audit event to kafka topic dsware-audit, seq=cd60ca594dea", "body_start": 39, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 04:07:00,000000] [DEBUG] [sync-task] [scheduler] - thread pool exhausted, active=86078 queued=37966 max=52444", "body_start": 63, "format": "fsm#1", "has_header": true}
+{"line": "[ERROR] [osd-daemon] [2587d154] [05f84793] (UTC) 2026-03-01 08:13:47  DSWARE KMC metadata journal truncated at offset 947fb83bc3fe", "body_start": 81, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 16:23:32.000000]send audit event to kafka topic dsware-audit, seq=a490cb3f89ea", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 20:21:12,000000][WARN][osd-daemon] rpc call GetVolumeInfo returned code 74084, msg success", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[INFO] [vbs-server] [fb7614e0] [0f5e5053] (UTC) 2026-03-01 12:17:04,000000  DSWARE KMC process request op=vol-3f2a done in 37060 ms", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[ERROR] [msg-handler] [85e78e20] [eba55296] (UTC) 2026-03-02 00:38:22.000000  DSWARE KMC receive heartbeat from node-60464, load 57 percent", "body_start": 89, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 15:58:42][ERROR][vbs-server] volume task-991 changed state from active to degraded", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 13:33:22.000000]metadata journal truncated at offset 704d9ec97e19", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 01:28:40][58518a2c][DEBUG] [b18997ce][dme-server]init module cfg.max.io begin, worker threads 22922", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 17:01:22.000000][DEBUG][rep-worker] start to sync volume data, total 8110 chunks", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 23:06:36,000000] [INFO] [dme-server] [dme-server] alarm cleared: disk usage back to 25 percent", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 06:09:41,000000][NOTICE][ha-monitor] checkpoint finished, elapsed 54775 seconds", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 00:04:25.000000][DEBUG][ism-agent] connection reset by peer, socket fd=3731", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 10:51:47][7cc48fe0][DEBUG][85ccd575][rep-worker][739a73ca][44e21df4]rpc call GetVolumeInfo returned code 45901, msg success", "body_start": 80, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 17:25:58,000000] [osd-daemon] [ism-agent] metadata journal truncated at offset 6a384e04b689", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 09:56:01,000000][WARN][sync-task] certificate will expire in 4523 days, renew required", "body_start": 46, "format": "fsm#5", "has_header": true}
+{"line": "[DEBUG] [scheduler] [427664af] [48a45d77] (UTC) 2026-03-02 02:55:07:000000  DSWARE KMC metadata journal truncated at offset 7d89feae35da", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 06:37:39][ERROR][vbs-server] cache entry e46206f45dac evicted, free slots 55630", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]metadata journal truncated at offset e558fe6faf3e", "body_start": 81, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 22:03:24,000000] [vbs-server] [dme-server] metadata journal truncated at offset 9fc1b6ffb6ad", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 23:55:58.000000] [main-worker] [ha-monitor] volume cfg.max.io changed state from active to degraded", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 18:19:08,000000][WARN][ha-monitor] metadata journal truncated at offset a0723266a2da", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 08:26:07][DEBUG][sync-task] cache entry 202ba9d37eda evicted, free slots 4503", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[NOTICE] [msg-handler] [902aa3b5] [97fb1153] (UTC) 2026-03-02 01:52:38  DSWARE KMC process request op=vol-3f2a done in 52880 ms", "body_start": 83, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 18:46:42] [/data/dsware/vol-58] [dme-server] [WARN] process request op=cfg.max.io done in 22402 ms", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 01:21:45.000000] [NOTICE] [scheduler] [main-worker] - receive heartbeat from node-39973, load 95 percent", "body_start": 66, "format": "fsm#1", "has_header": true}
+{"line": "[DEBUG] [sync-task] [dac67247] [4b88e0fa] (UTC) 2026-03-01 20:51:28  DSWARE KMC connection reset by peer, socket fd=72068", "body_start": 80, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 05:57:52,000000][5c29cfa0][ERROR][599a35cf][msg-handler][e2bae9d7][0a75d65b]init module quota.db begin, worker threads 67", "body_start": 88, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 22:36:30] [msg-handler] [vbs-server] failed to read block blk_b1a5650922b5, retry 67597 times", "body_start": 49, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 06:03:29,000000][f04568ee][WARN][ef7aab43][ha-monitor][d7105223][ebcefa30]update config key task-991 to value 79310", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 19:05:02.000000]metadata journal truncated at offset 4afbe705fce2", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 06:35:07] [/data/dsware/vol-06] [vbs-server] [NOTICE] receive heartbeat from node-84180, load 62 percent", "body_start": 66, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 16:41:24,000000] [ha-monitor] [main-worker] send audit event to kafka topic dsware-audit, seq=e8230bdacc91", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 22:12:03.000000][WARN][vbs-server] write 6916 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 16:17:41] [ERROR] [vbs-server] [scheduler] - process request op=cfg.max.io done in 45628 ms", "body_start": 57, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 16:46:07] [ERROR] [sync-task] [ha-monitor] - rpc call GetVolumeInfo returned code 82084, msg success", "body_start": 57, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 04:05:38.000000] [scheduler] [DEBUG]: metadata journal truncated at offset c824dafd1a8d", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[ERROR] [rep-worker] [38db88f6] [63fbe1ae] (UTC) 2026-03-02 00:46:11  DSWARE KMC metadata journal truncated at offset 752fb840db3c", "body_start": 81, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 16:58:35,000000]  [ERROR] [3af0bc8f] [sync-task] start to sync volume data, total 85679 chunks", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 05:58:04.000000]  [ERROR] [a9dbf740] [vbs-server] write 28708 bytes to /data/dsware/task-991/chunk.dat", "body_start": 62, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 02:31:51,000000] [msg-handler] [osd-daemon] volume vol-3f2a changed state from active to degraded", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 22:39:22,000000] [DEBUG] [scheduler] [sync-task] thread pool exhausted, active=86980 queued=92759 max=99109", "body_start": 61, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 08:04:57] [ism-agent] [sync-task] volume snap-7c changed state from active to degraded", "body_start": 46, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 15:50:29.000000] [/data/dsware/vol-03] [rep-worker] [WARN] volume cfg.max.io changed state from active to degraded", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 14:03:31] [main-worker] [NOTICE]: start to sync volume data, total 65450 chunks", "body_start": 46, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 05:42:14] [/data/dsware/vol-25] [ha-monitor] [WARN] start to sync volume data, total 93152 chunks", "body_start": 64, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 05:14:05][17764b3b][DEBUG] [b8a1e293][osd-daemon]update config key quota.db to value 1834", "body_start": 61, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 18:36:08][WARN][msg-handler] disk 55184 smart health status ok, temperature 39684 celsius", "body_start": 41, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 05:38:16,000000]certificate will expire in 51188 days, renew required", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 05:00:59,000000][68af2e3f][DEBUG] [418f57de][vbs-server]write 45039 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 23:39:57,000000] [ism-agent] [vbs-server] cache entry 1835baaa7f2 evicted, free slots 87717", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[WARN] [vbs-server] [bc65d5c8] [d9278ea4] (UTC) 2026-03-01 16:01:41  DSWARE KMC thread pool exhausted, active=72846 queued=44519 max=1879", "body_start": 80, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 20:02:55.000000] [vbs-server] [DEBUG]: init module vol-3f2a begin, worker threads 52514", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 19:29:31,000000] [sync-task] [rep-worker] disk 34387 smart health status ok, temperature 64050 celsius", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 21:24:28.000000][a0818564][DEBUG][9e999f22][ism-agent][14502ccf][d7900489]volume quota.db changed state from active to degraded", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[DEBUG] [msg-handler] [9713ec93] [fe072470] (UTC) 2026-03-01 16:49:38  DSWARE KMC alarm cleared: disk usage back to 8 percent", "body_start": 82, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 03:11:04][c739a9fc][DEBUG] [b432cbd6][scheduler]connection reset by peer, socket fd=96008", "body_start": 60, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 20:19:54,000000] [ha-monitor] [DEBUG]: rpc call GetVolumeInfo returned code 45752, msg success", "body_start": 51, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 10:33:18.000000] [sync-task] [INFO]: init module snap-7c begin, worker threads 15070", "body_start": 49, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-02 03:52:32,000000][e8ec179a][DEBUG][e38f7853][osd-daemon][a7fb3572][d537bb89]cache entry 4310cdef751a evicted, free slots 42543", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 05:38:54.000000][DEBUG][msg-handler] update config key quota.db to value 78534", "body_start": 49, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 11:51:46,000000]  [INFO] [274a4ff9] [sync-task] checkpoint finished, elapsed 15553 seconds", "body_start": 60, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 03:44:21.000000][83e07ce3][DEBUG][09aa1671][vbs-server][30a84b06][571d9ecd]send audit event to kafka topic dsware-audit, seq=c718cc65205", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 03:02:24.000000][INFO][osd-daemon] volume cfg.max.io changed state from active to degraded", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[NOTICE] [sync-task] [01dee528] [3c277703] (UTC) 2026-03-02 03:37:42,000000  DSWARE KMC certificate will expire in 30305 days, renew required", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 21:37:06,000000] [rep-worker] [WARN]: write 65995 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 50, "format": "fsm#3", "has_header": true}
+{"line": "[2026-03-01 13:08:07.000000][8954291d][DEBUG] [c2f22dc7][dme-server]certificate will expire in 58574 days, renew required", "body_start": 68, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 23:23:19,000000] [dme-server] [dme-server] alarm cleared: disk usage back to 89 percent", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 02:53:23][6b6f33cc][NOTICE][f905096b][main-worker][25ca146d][9824df62]received message from 10.24085.79948.75365:65786, dispatch to handler", "body_start": 82, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 04:46:31.000000] [NOTICE] [dme-server] [sync-task] - process request op=snap-7c done in 51765 ms", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-02 00:25:02,000000]failed to read block blk_772cb1fc0786, retry 31872 times", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 08:35:02.000000] [ism-agent] [sync-task] alarm cleared: disk usage back to 13 percent", "body_start": 53, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 04:52:36][ERROR][scheduler] failed to read block blk_4cf61e499518, retry 50172 times", "body_start": 40, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 08:19:50] [/data/dsware/vol-15] [dme-server] [DEBUG] update config key snap-7c to value 6717", "body_start": 65, "format": "fsa#4", "has_header": true}
+{"line": "[WARN] [osd-daemon] [a7257e31] [0459d33b] (UTC) 2026-03-01 14:26:13.000000  DSWARE KMC receive heartbeat from node-32556, load 17 percent", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 04:56:29] [WARN] [vbs-server] [ha-monitor] send audit event to kafka topic dsware-audit, seq=a5f6b2a70c93", "body_start": 55, "format": "fsm#2", "has_header": true}
+{"line": "[NOTICE] [main-worker] [3b1c8cb5] [51603944] (UTC) 2026-03-02 05:25:10:000000  DSWARE KMC volume snap-7c changed state from active to degraded", "body_start": 90, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-01 09:16:48.000000][3fb0a719][NOTICE][0ef8720c][ism-agent][97b84f46][e5203acf]process request op=cfg.max.io done in 51932 ms", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 13:26:40.000000] [INFO] [ha-monitor] [ha-monitor] task snap-7c submitted by user admin, priority 1281", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 21:55:41.000000]write 75160 bytes to /data/dsware/snap-7c/chunk.dat", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 20:13:01] [WARN] [dme-server] [scheduler] - failed to read block blk_5097c23635df, retry 69922 times", "body_start": 56, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 18:19:20,000000][ea9ffe27][INFO][60d5499c][scheduler][508d5588][56435823]received message from 10.40487.34544.75276:27436, dispatch to handler", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 09:09:28.000000] [INFO] [osd-daemon] [rep-worker] metadata journal truncated at offset 47362bbad2e", "body_start": 62, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 21:37:16:000000] [/data/dsware/vol-48] [osd-daemon] [DEBUG] write 25176 bytes to /data/dsware/vol-3f2a/chunk.dat", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[ERROR] [msg-handler] [eb169253] [8b229309] (UTC) 2026-03-01 16:17:20,000000  DSWARE KMC write 14068 bytes to /data/dsware/task-991/chunk.dat", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 00:20:57,000000][314b551e][ERROR][a938b9a7][ism-agent][e0390766][3b10d59f]checkpoint finished, elapsed 43203 seconds", "body_start": 86, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 22:54:08:000000]  [INFO] [3f601775] [rep-worker] volume cfg.max.io changed state from active to degraded", "body_start": 61, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 02:25:32,000000][INFO][dme-server] checkpoint finished, elapsed 92597 seconds", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[INFO] [main-worker] [4964fc53] [2f9b907f] (UTC) 2026-03-01 08:07:27.000000  DSWARE KMC write 299 bytes to /data/dsware/task-991/chunk.dat", "body_start": 88, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 06:48:38,000000] [msg-handler] [vbs-server] alarm cleared: disk usage back to 13 percent", "body_start": 56, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 05:14:50:000000][NOTICE][msg-handler] init module task-991 begin, worker threads 96060", "body_start": 50, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 17:53:35]thread pool exhausted, active=67337 queued=48008 max=28662", "body_start": 21, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-01 10:49:33.000000] [NOTICE] [ha-monitor] [msg-handler] alarm cleared: disk usage back to 87 percent", "body_start": 65, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-02 00:44:27,000000] [/data/dsware/vol-05] [ism-agent] [NOTICE] failed to read block blk_cf1b8349aeb7, retry 74417 times", "body_start": 72, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 03:57:24] [main-worker] [main-worker] receive heartbeat from node-8082, load 73 percent", "body_start": 50, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 11:11:48,000000][INFO][main-worker] cache entry d281046e8adc evicted, free slots 8437", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-02 01:50:14:000000] [/data/dsware/vol-48] [ism-agent] [INFO] cache entry 7f31f8c86c8e evicted, free slots 39603", "body_start": 70, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 21:52:17] [/data/dsware/vol-37] [main-worker] [WARN] certificate will expire in 39690 days, renew required", "body_start": 65, "format": "fsa#4", "has_header": true}
+{"line": "[NOTICE] [rep-worker] [781c0b22] [6b86bbad] (UTC) 2026-03-01 23:33:48.000000  DSWARE KMC rpc call GetVolumeInfo returned code 52542, msg success", "body_start": 89, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 05:52:42.000000]  [NOTICE] [1fdf7a4e] [dme-server] metadata journal truncated at offset d43654892219", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 02:06:13,000000] [dme-server] [sync-task] failed to read block blk_bde5e57f3a62, retry 62363 times", "body_start": 54, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 15:12:24.000000][aa936d27][WARN] [3f56295d][vbs-server]rpc call GetVolumeInfo returned code 9130, msg success", "body_start": 67, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 23:50:58,000000] [sync-task] [msg-handler] init module quota.db begin, worker threads 34837", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 15:25:44.000000][DEBUG][osd-daemon] process request op=quota.db done in 81284 ms", "body_start": 48, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 03:50:49] [osd-daemon] [vbs-server] certificate will expire in 70557 days, renew required", "body_start": 48, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-02 04:15:40][621fd2cf][WARN] [2fcf0a40][rep-worker]certificate will expire in 79464 days, renew required", "body_start": 60, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-02 02:09:19] [NOTICE] [rep-worker] [sync-task] metadata journal truncated at offset c72641099594", "body_start": 56, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 12:23:57.000000] [DEBUG] [scheduler] [msg-handler] - failed to read block blk_db3d043e145d, retry 22671 times", "body_start": 65, "format": "fsm#1", "has_header": true}
+{"line": "[2026-03-01 15:40:47.000000][WARN][ha-monitor] update config key snap-7c to value 90909", "body_start": 47, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-01 15:43:04,000000][NOTICE][ha-monitor] volume snap-7c changed state from active to degraded", "body_start": 49, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 05:20:00,000000][ERROR][sync-task] process request op=quota.db done in 87701 ms", "body_start": 47, "format": "fsa#5", "has_header": true}
+{"line": "[2026-03-01 14:09:11:000000][a7a48f99][INFO] [3356e1ed][sync-task]start to sync volume data, total 14620 chunks", "body_start": 66, "format": "fsa#2", "has_header": true}
+{"line": "[2026-03-01 16:44:15][DEBUG][ha-monitor] rpc call GetVolumeInfo returned code 52722, msg success", "body_start": 41, "format": "fsa#5", "has_header": true}
+{"line": "[NOTICE] [ism-agent] [f35fea74] [df0d4a6b] (UTC) 2026-03-02 07:30:42,000000  DSWARE KMC write 21140 bytes to /data/dsware/cfg.max.io/chunk.dat", "body_start": 88, "format": "fsm#0", "has_header": true}
+{"line": "[INFO] [vbs-server] [54992e75] [cc8bcaeb] (UTC) 2026-03-02 06:30:22,000000  DSWARE KMC process request op=quota.db done in 26955 ms", "body_start": 87, "format": "fsa#1", "has_header": true}
+{"line": "[2026-03-02 05:50:03:000000] [/data/dsware/vol-55] [msg-handler] [NOTICE] task quota.db submitted by user admin, priority 40058", "body_start": 74, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-01 20:15:30][ERROR][dme-server] disk 88053 smart health status ok, temperature 56586 celsius", "body_start": 41, "format": "fsm#5", "has_header": true}
+{"line": "[2026-03-02 04:47:16] [INFO] [scheduler] [dme-server] thread pool exhausted, active=94268 queued=22028 max=38535", "body_start": 54, "format": "fsm#2", "has_header": true}
+{"line": "[2026-03-01 17:43:13,000000][dbbd4b30][DEBUG][d06b1ee7][rep-worker][3f04b03c][572640bb]alarm cleared: disk usage back to 70 percent", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-02 07:07:40,000000] [ha-monitor] [dme-server] volume vol-3f2a changed state from active to degraded", "body_start": 55, "format": "fsm#4", "has_header": true}
+{"line": "[2026-03-01 14:33:14.000000] [DEBUG] [osd-daemon] [ism-agent] - thread pool exhausted, active=62835 queued=49205 max=33630", "body_start": 64, "format": "fsm#1", "has_header": true}
+{"line": "[WARN] [osd-daemon] [bfef82c0] [24490129] (UTC) 2026-03-02 07:33:25,000000  DSWARE KMC metadata journal truncated at offset f55e8b29b420", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[INFO] [scheduler] [e1c9da73] [f933434d] (UTC) 2026-03-01 21:45:25.000000  DSWARE KMC receive heartbeat from node-21694, load 7 percent", "body_start": 86, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-02 01:46:56,000000]write 80705 bytes to /data/dsware/quota.db/chunk.dat", "body_start": 28, "format": "fsm#6", "has_header": true}
+{"line": "[2026-03-02 07:06:14.000000][e7bf341a][DEBUG][b52f1c03][rep-worker][56620775][d3340015]alarm cleared: disk usage back to 10 percent", "body_start": 87, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 11:10:18.000000] [/data/dsware/vol-61] [ism-agent] [ERROR] task vol-3f2a submitted by user admin, priority 76541", "body_start": 71, "format": "fsa#4", "has_header": true}
+{"line": "[2026-03-02 06:58:30.000000][1f7c5a48][INFO][d01f54d9][ism-agent][c4a70a91][ea8cf797]task quota.db submitted by user admin, priority 69466", "body_start": 85, "format": "fsa#0", "has_header": true}
+{"line": "[2026-03-01 23:09:51:000000]  [NOTICE] [ee186f61] [osd-daemon] received message from 10.95283.12630.33332:42636, dispatch to handler", "body_start": 63, "format": "fsa#3", "has_header": true}
+{"line": "[2026-03-02 06:07:04,000000][ERROR][rep-worker] init module cfg.max.io begin, worker threads 31976", "body_start": 48, "format": "fsa#5", "has_header": true}
+{"line": "[ERROR] [ism-agent] [d357628b] [e701cd4e] (UTC) 2026-03-02 05:44:33  DSWARE KMC start to sync volume data, total 68182 chunks", "body_start": 80, "format": "fsm#0", "has_header": true}
+{"line": "[WARN] [osd-daemon] [4a9a2489] [86f3ec23] (UTC) 2026-03-02 06:03:17,000000  DSWARE KMC rpc call GetVolumeInfo returned code 27765, msg success", "body_start": 87, "format": "fsm#0", "has_header": true}
+{"line": "[DEBUG] [rep-worker] [630fe0c6] [ee722f0b] (UTC) 2026-03-01 20:44:36  DSWARE KMC connection reset by peer, socket fd=50143", "body_start": 81, "format": "fsm#0", "has_header": true}
+{"line": "[2026-03-01 21:19:11] [/data/dsware/vol-49] [ha-monitor] [ERROR] connection reset by peer, socket fd=57819", "body_start": 65, "format": "fsa#4", "has_header": true}
