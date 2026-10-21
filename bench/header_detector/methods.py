@@ -38,8 +38,8 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 
 from .tokentypes import (
-    STRONG_TYPES, classify, is_headerish, signature, tokenize,
-    token_boundary_to_char, type_family,
+    STRONG_TYPES, classify, is_headerish, signature_from_tokens, tokenize,
+    token_boundary_to_char, tokens_to_boundary_char, type_family,
 )
 
 MAX_POS = 16
@@ -59,12 +59,12 @@ class PositionStats:
     Type consistency is computed at family level (see ``type_family``).
     """
 
-    def __init__(self, lines: list[str]):
+    def __init__(self, lines: list[str], tok=tokenize):
         self.value_counters: list[Counter] = []
         self.type_counters: list[Counter] = []
         self.n_at_pos: list[int] = []
         for line in lines:
-            toks = tokenize(line)
+            toks = tok(line)
             for j, t in enumerate(toks[:MAX_POS]):
                 if j >= len(self.value_counters):
                     self.value_counters.append(Counter())
@@ -111,8 +111,11 @@ class M1Detector:
     name = "M1"
     uses_types = False
 
+    def __init__(self, tokenizer=None):
+        self._tok = tokenizer or tokenize
+
     def fit(self, lines: list[str]) -> "M1Detector":
-        self.stats = PositionStats(lines)
+        self.stats = PositionStats(lines, self._tok)
         self.boundary = 0
         for j in range(MAX_POS):
             if self.stats.n(j) < max(3, len(lines) * 0.5):
@@ -126,15 +129,19 @@ class M1Detector:
         return self.boundary
 
     def predict(self, line: str) -> int:
-        return token_boundary_to_char(line, self.predict_token_boundary(line))
+        return tokens_to_boundary_char(
+            line, self._tok(line), self.predict_token_boundary(line))
 
 
 class M2Detector:
     name = "M2"
     uses_types = True
 
+    def __init__(self, tokenizer=None):
+        self._tok = tokenizer or tokenize
+
     def fit(self, lines: list[str]) -> "M2Detector":
-        self.stats = PositionStats(lines)
+        self.stats = PositionStats(lines, self._tok)
         self.boundary = 0
         for j in range(MAX_POS):
             if self.stats.n(j) < max(3, len(lines) * 0.5):
@@ -149,7 +156,8 @@ class M2Detector:
         return self.boundary
 
     def predict(self, line: str) -> int:
-        return token_boundary_to_char(line, self.predict_token_boundary(line))
+        return tokens_to_boundary_char(
+            line, self._tok(line), self.predict_token_boundary(line))
 
 
 class _Leaf:
@@ -161,14 +169,15 @@ class _Leaf:
 
 
 class _Split:
-    __slots__ = ("pos", "children", "fallback", "by_value")
+    __slots__ = ("pos", "children", "fallback", "by_value", "by_kind")
 
     def __init__(self, pos: int, children: dict, fallback: dict,
-                 by_value: bool = False):
+                 by_value: bool = False, by_kind: bool = False):
         self.pos = pos
         self.children = children  # key -> node
         self.fallback = fallback  # family -> modal leaf boundary
         self.by_value = by_value  # True: children keyed by token text
+        self.by_kind = by_kind    # True: children keyed by inner kind
 
 
 def _modal_leaf_boundaries(node, acc: dict) -> None:
@@ -214,13 +223,16 @@ class M3Detector:
     uses_types = True
     uses_grouping = True
 
+    def __init__(self, tokenizer=None):
+        self._tok = tokenizer or tokenize
+
     def fit(self, lines: list[str]) -> "M3Detector":
         self.n_train = len(lines)
         self.n_leaves = 0
         self.n_splits = 0
         groups: dict[tuple, list[str]] = defaultdict(list)
         for line in lines:
-            groups[signature(line, M3_SIG_LEN)].append(line)
+            groups[signature_from_tokens(self._tok(line), M3_SIG_LEN)].append(line)
         self.group_trees: dict[tuple, object] = {}
         self.group_sizes = {sig: len(v) for sig, v in groups.items()}
         for sig, glines in groups.items():
@@ -236,8 +248,7 @@ class M3Detector:
         return self
 
     # -- learning ---------------------------------------------------------
-    @staticmethod
-    def _has_unclosed_bracket(lines: list[str], j: int) -> bool:
+    def _has_unclosed_bracket(self, lines: list[str], j: int) -> bool:
         """True when >= half of the lines have an unclosed '[' before pos j.
 
         This marks that the scan is INSIDE a multi-token bracket field
@@ -245,12 +256,23 @@ class M3Detector:
         content, not body words.
         """
         hits = 0
-        for line in lines:
-            toks = tokenize(line)
+        for line, toks in self._lines_tokens(lines):
             depth = 0
             for t in toks[:j]:
                 depth += t.text.count("[") - t.text.count("]")
             if depth > 0:
+                hits += 1
+        return hits >= 0.5 * len(lines)
+
+    def _bracket_closes_later(self, lines: list[str], j: int) -> bool:
+        """True when >= half of the lines CLOSE the bracket opened at pos j
+        at any later character (including inside the same span).  A bracket
+        that never closes ("[lease janitor flushed ...") is not a header
+        field; consuming it would eat body text (challenge category:
+        unclosed brackets)."""
+        hits = 0
+        for line, toks in self._lines_tokens(lines):
+            if j < len(toks) and "]" in line[toks[j].start + 1:]:
                 hits += 1
         return hits >= 0.5 * len(lines)
 
@@ -259,13 +281,48 @@ class M3Detector:
         if b <= 0:
             return False
         hits = 0
-        for line in lines:
-            toks = tokenize(line)
+        for line, toks in self._lines_tokens(lines):
             if any(
                 type_family(classify(t.text)) in STRONG_TYPES for t in toks[:b]
             ):
                 hits += 1
         return hits >= 0.5 * len(lines)
+
+    def _last_strong_pos(self, lines: list[str], b: int) -> int:
+        """Last position j < b where >= half of the lines carry a STRONG
+        type span (see ``_strong_prefix_len`` for the span Guard B)."""
+        best = -1
+        for j in range(b):
+            hits = 0
+            for line, toks in self._lines_tokens(lines):
+                if j < len(toks) and (
+                        type_family(classify(toks[j].text)) in STRONG_TYPES):
+                    hits += 1
+            if hits >= 0.5 * len(lines):
+                best = j
+        return best
+
+    def _strong_prefix_len(self, lines: list[str], b: int) -> int:
+        """Length of the maximal CONTIGUOUS strong run from position 0.
+
+        Used as the span Guard B fallback: when a body template was
+        swallowed, only a strong prefix starting at position 0 is trusted
+        as unambiguous header evidence.  A strong span in the MIDDLE of
+        the line (a bracket inside the body, e.g. "status [ok 77] ...")
+        does not count -- the run must start at 0.
+        """
+        run = 0
+        for j in range(b):
+            hits = 0
+            for line, toks in self._lines_tokens(lines):
+                if j < len(toks) and (
+                        type_family(classify(toks[j].text)) in STRONG_TYPES):
+                    hits += 1
+            if hits >= 0.5 * len(lines):
+                run = j + 1
+            else:
+                break
+        return run
 
     def _leaf(self, lines: list[str], b: int, last_split: int | None) -> _Leaf:
         if b > 0:
@@ -276,25 +333,77 @@ class M3Detector:
                 # room for a body -> a body template was swallowed.
                 # Fall back to the last split position (where this partition
                 # diverged structurally), else keep the original line.
-                lens = sorted(len(tokenize(l)) for l in lines)
+                lens = sorted(len(t) for l, t in self._lines_tokens(lines))
                 med = lens[len(lens) // 2] if lens else 0
                 if med > 0 and b > 0.75 * med:
-                    b = last_split if last_split is not None else 0
-                    if b > 0 and not self._prefix_has_strong(lines, b):
-                        b = 0
+                    b = self._guard_b_fallback(lines, b, last_split)
         self.n_leaves += 1
         return _Leaf(b, len(lines))
+
+    def _guard_b_fallback(self, lines: list[str], b: int,
+                          last_split: int | None) -> int:
+        """Base M3: fall back to the last split position, else keep."""
+        b = last_split if last_split is not None else 0
+        if b > 0 and not self._prefix_has_strong(lines, b):
+            b = 0
+        return b
 
     def _value_split(self, lines: list[str], j: int):
         """Partition lines by their token VALUE at position j."""
         parts: dict[str, list[str]] = defaultdict(list)
-        for line in lines:
-            toks = tokenize(line)
+        for line, toks in self._lines_tokens(lines):
             parts[toks[j].text if j < len(toks) else "SHORT"].append(line)
         return parts
 
+    def _bracket_position_is_body(self, lines: list[str], j: int) -> bool:
+        """Hook: True when the BRACKET-family position j holds wrapped
+        free-text content rather than a structural header field.
+
+        Base M3 always returns False (a bracket-wrapped token is treated
+        like any other header-ish type).  The E2 span-aware subclass
+        overrides this (content-bracket guard).
+        """
+        return False
+
+    def _inner_kind_of(self, inner: str | None) -> str:
+        """Kind of a bracket inner at walk time (base: always structural)."""
+        return "structural"
+
+    def _bracket_structure_ahead(self, lines: list[str], j: int,
+                                 lookahead: int = 3) -> bool:
+        """True when >= half of the lines carry a bracket-family span in
+        positions (j, j+lookahead].  Used to decide whether a structural
+        partition of a kind split may keep scanning: header id brackets
+        are followed by more brackets ("[t][i][i][l][content]"), while a
+        lone id bracket followed by plain words is a body fragment
+        ("[user5639] opened session")."""
+        hits = 0
+        for _line, toks in self._lines_tokens(lines):
+            found = False
+            for t in toks[j + 1:j + 1 + lookahead]:
+                fam = type_family(classify(t.text))
+                if fam.startswith("BRACKET"):
+                    found = True
+                    break
+            if found:
+                hits += 1
+        return hits >= 0.5 * len(lines)
+
+    def _bracket_kind_partition(self, lines: list[str], j: int):
+        """Hook: partition the BRACKET-family position j into
+        {"content": [...], "structural": [...]} when BOTH kinds are
+        present and the content side is diverse free text.
+
+        Returns None when no kind split applies.  Base M3 always returns
+        None; the E2 span-aware subclass overrides this so that mixed
+        formats sharing a signature (e.g. "[t][i][i][l][CONTENT]..." vs
+        "[t][i][i][i][l][CONTENT]...") split instead of the majority
+        kind deciding for everyone.
+        """
+        return None
+
     def _build(self, lines: list[str], j: int, last_split: int | None = None):
-        stats = PositionStats(lines)
+        stats = PositionStats(lines, self._tok)
         while j < MAX_POS:
             n = stats.n(j)
             if n < max(3, len(lines) * 0.5):
@@ -304,6 +413,28 @@ class M3Detector:
                 continue
             fam, famcons = stats.top_type(j)
             if famcons >= TYPE_CONSISTENCY:
+                if fam == "BRACKET":
+                    kind_parts = self._bracket_kind_partition(lines, j)
+                    if kind_parts is not None:
+                        children = {}
+                        for kind_k, part in kind_parts.items():
+                            if kind_k == "content" or len(part) < M3_GROUP_MIN:
+                                children[kind_k] = self._leaf(part, j, j)
+                            elif self._bracket_structure_ahead(part, j):
+                                children[kind_k] = self._build(part, j + 1, j)
+                            else:
+                                # structural values not followed by more
+                                # structure: treat as body fragment
+                                children[kind_k] = self._leaf(part, j, j)
+                        self.n_splits += 1
+                        return self._mk_split(j, children, by_kind=True)
+                    if self._bracket_position_is_body(lines, j):
+                        # hook (E2-C): bracket-wrapped free text is body
+                        return self._leaf(lines, j, last_split)
+                if (fam == "BRACKET_OPEN"
+                        and not self._bracket_closes_later(lines, j)):
+                    # an opener that never closes is not a header field
+                    return self._leaf(lines, j, last_split)
                 if is_headerish(fam):
                     j += 1
                     continue
@@ -318,12 +449,11 @@ class M3Detector:
                         else:
                             children[val] = self._build(part, j + 1, j)
                     self.n_splits += 1
-                    return self._mk_split(j, children)
+                    return self._mk_split(j, children, by_value=True)
                 return self._leaf(lines, j, last_split)  # weak failure: body
             # family-mixed position: split
             parts: dict = defaultdict(list)
-            for line in lines:
-                toks = tokenize(line)
+            for line, toks in self._lines_tokens(lines):
                 if j >= len(toks):
                     key = "SHORT"
                 else:
@@ -355,7 +485,7 @@ class M3Detector:
                         else:
                             sub[val] = self._build(vpart, j + 1, j)
                     self.n_splits += 1
-                    children[key] = self._mk_split(j, sub)
+                    children[key] = self._mk_split(j, sub, by_value=True)
                 else:
                     # weak family after mixed structure: body, stop here
                     children[key] = self._leaf(part, j, j)
@@ -363,11 +493,12 @@ class M3Detector:
             return self._mk_split(j, children)
         return self._leaf(lines, MAX_POS, last_split)
 
-    def _mk_split(self, j: int, children: dict, by_value: bool = False) -> _Split:
+    def _mk_split(self, j: int, children: dict, by_value: bool = False,
+                  by_kind: bool = False) -> _Split:
         # fallback: modal leaf boundary per family for value misses
         fam_modal: dict[str, dict[int, int]] = defaultdict(dict)
         for key, child in children.items():
-            if by_value:
+            if by_value or by_kind:
                 fam_k = "*"
             else:
                 fam_k = key[0] if isinstance(key, tuple) else (
@@ -381,12 +512,12 @@ class M3Detector:
             fam_k: max(cnt.items(), key=lambda kv: kv[1])[0]
             for fam_k, cnt in fam_modal.items()
         }
-        return _Split(j, children, fallback, by_value)
+        return _Split(j, children, fallback, by_value, by_kind)
 
     # -- inference --------------------------------------------------------
     def predict_token_boundary(self, line: str) -> int:
-        toks = tokenize(line)
-        sig = signature(line, M3_SIG_LEN)
+        toks = self._tok(line)
+        sig = signature_from_tokens(toks, M3_SIG_LEN)
         node = self.group_trees.get(sig)
         if node is None:
             return 0  # unseen format family: conservative keep
@@ -394,7 +525,14 @@ class M3Detector:
             j = node.pos
             if j >= len(toks):
                 return j
-            if node.by_value:
+            if node.by_kind:
+                t = toks[j].text
+                inner = t[1:-1] if (len(t) >= 2 and t[0] == "[" and t[-1] == "]") else None
+                key = self._inner_kind_of(inner)
+                child = node.children.get(key)
+                if child is None:
+                    return node.fallback.get("*", 0)
+            elif node.by_value:
                 key = toks[j].text
                 child = node.children.get(key)
                 if child is None:
@@ -413,7 +551,11 @@ class M3Detector:
         return node.boundary
 
     def predict(self, line: str) -> int:
-        return token_boundary_to_char(line, self.predict_token_boundary(line))
+        return tokens_to_boundary_char(
+            line, self._tok(line), self.predict_token_boundary(line))
+
+    def _lines_tokens(self, lines: list[str]):
+        return [(l, self._tok(l)) for l in lines]
 
 
 class M4Detector(M3Detector):
@@ -421,14 +563,15 @@ class M4Detector(M3Detector):
 
     def predict_token_boundary(self, line: str) -> int:
         b = super().predict_token_boundary(line)
-        toks = tokenize(line)
+        toks = self._tok(line)
         if 0 < b < len(toks):
             if classify(toks[b].text) in VALUE_LIKE_TYPES:
                 b -= 1  # pull back: first body token looks like a value
         return b
 
     def predict(self, line: str) -> int:
-        return token_boundary_to_char(line, self.predict_token_boundary(line))
+        return tokens_to_boundary_char(
+            line, self._tok(line), self.predict_token_boundary(line))
 
 
 ALL_METHODS = [M1Detector, M2Detector, M3Detector, M4Detector]

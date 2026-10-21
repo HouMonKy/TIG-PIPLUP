@@ -217,15 +217,38 @@ def type_family(t: str) -> str:
     return t
 
 
-def signature(line: str, length: int = 4) -> tuple:
-    """Short typed prefix signature used for M3 grouping (family level)."""
-    toks = tokenize(line)
+def signature_from_tokens(tokens: list, length: int = 4) -> tuple:
+    """Short typed prefix signature from pre-tokenized tokens.
+
+    ``tokens`` only needs ``.text`` (whitespace Token or Span).
+    """
     sig = []
-    for t in toks[:length]:
+    for t in tokens[:length]:
         sig.append(type_family(classify(t.text)))
     while len(sig) < length:
         sig.append("SHORT")
     return tuple(sig)
+
+
+def signature(line: str, length: int = 4) -> tuple:
+    """Short typed prefix signature used for M3 grouping (family level)."""
+    return signature_from_tokens(tokenize(line), length)
+
+
+def tokens_to_boundary_char(line: str, toks: list, b: int) -> int:
+    """Convert a token/span-index boundary to a char offset of body start.
+
+    Works for whitespace Tokens and Spans (both carry .start/.end).
+    b <= 0 -> 0 (keep original).  b == len(toks) -> end of line.
+    b > len(toks) -> 0 (line shorter than learned boundary: keep original).
+    """
+    if b <= 0:
+        return 0
+    if b >= len(toks):
+        if b == len(toks):
+            return len(line.rstrip())
+        return 0
+    return toks[b].start
 
 
 def token_boundary_to_char(line: str, b: int) -> int:
@@ -235,11 +258,4 @@ def token_boundary_to_char(line: str, b: int) -> int:
     If the line has fewer than b tokens, returns 0 (keep original, safe
     fallback for truncated lines).  If b == len(tokens), returns len(line).
     """
-    if b <= 0:
-        return 0
-    toks = tokenize(line)
-    if b >= len(toks):
-        if b == len(toks):
-            return len(line.rstrip())
-        return 0  # line shorter than learned boundary: keep original
-    return toks[b].start
+    return tokens_to_boundary_char(line, tokenize(line), b)

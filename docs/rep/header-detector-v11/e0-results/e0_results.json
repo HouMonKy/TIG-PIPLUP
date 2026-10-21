@@ -2194,22 +2194,54 @@
    "M3": {
     "n": 1500,
     "counts": {
-     "correct": 1125,
+     "correct": 1223,
      "over_strip": 0,
-     "under_strip": 21,
-     "abstain": 354
+     "under_strip": 277,
+     "abstain": 0
     },
-    "boundary_accuracy": 0.75,
+    "boundary_accuracy": 0.8153,
     "over_strip_rate": 0.0,
-    "under_strip_rate": 0.014,
-    "abstain_rate": 0.236,
-    "auto_strip_coverage": 0.764,
-    "accepted_boundary_accuracy": 0.9817,
+    "under_strip_rate": 0.1847,
+    "abstain_rate": 0.0,
+    "auto_strip_coverage": 1.0,
+    "accepted_boundary_accuracy": 0.8153,
     "body_integrity_char": 1.0,
     "body_integrity_line": 1.0,
     "examples": {
      "over_strip": [],
      "under_strip": [
+      {
+       "line": "2015-10-18 18:04:24,284 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000006_0 is : 0.19266446",
+       "gt_body_start": 112,
+       "pred_body_start": 34,
+       "gt_header": "2015-10-18 18:04:24,284 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
+       "pred_header": "2015-10-18 18:04:24,284 INFO [IPC ",
+       "format": ""
+      },
+      {
+       "line": "2015-10-18 18:04:54,708 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000004_0 is : 0.44968578",
+       "gt_body_start": 112,
+       "pred_body_start": 34,
+       "gt_header": "2015-10-18 18:04:54,708 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
+       "pred_header": "2015-10-18 18:04:54,708 INFO [IPC ",
+       "format": ""
+      },
+      {
+       "line": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000007_0 is : 0.35880664",
+       "gt_body_start": 112,
+       "pred_body_start": 34,
+       "gt_header": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
+       "pred_header": "2015-10-18 18:04:47,942 INFO [IPC ",
+       "format": ""
+      },
+      {
+       "line": "2015-10-18 18:03:58,611 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: JVM with ID : jvm_1445144423722_0020_m_000008 asked for a task",
+       "gt_body_start": 112,
+       "pred_body_start": 34,
+       "gt_header": "2015-10-18 18:03:58,611 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
+       "pred_header": "2015-10-18 18:03:58,611 INFO [IPC ",
+       "format": ""
+      },
       {
        "line": "2015-10-18 18:04:50,208 INFO [ContainerLauncher #0] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy: Opening proxy : MSRA-SA-41.fareast.corp.microsoft.com:7109",
        "gt_body_start": 125,
@@ -2219,160 +2251,47 @@
        "format": ""
       },
       {
-       "line": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Launching attempt_1445144423722_0020_m_000000_0",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:02:01,041 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Shuffle port returned by ContainerManager for attempt_1445144423722_0020_m_000002",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:02:01,041 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:02:01,041 INFO [ContainerLauncher #2] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:06:26,029 INFO [ContainerLauncher #1] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: KILLING attempt_1445144423722_0020_m_000002_0",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:06:26,029 INFO [ContainerLauncher #1] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:06:26,029 INFO [ContainerLauncher #1] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:01:58,916 INFO [ContainerLauncher #1] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Launching attempt_1445144423722_0020_m_000001_0",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:01:58,916 INFO [ContainerLauncher #1] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:01:58,916 INFO [ContainerLauncher #1] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy: Opening proxy : 04DN8IQ.fareast.corp.microsoft.com:54883",
-       "gt_body_start": 125,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolPr",
-       "pred_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Processing the event EventType: CONTAINER_REMOTE_CLEANUP for container container_",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:02:00,979 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Launching attempt_1445144423722_0020_m_000002_0",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:02:00,979 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:02:00,979 INFO [ContainerLauncher #2] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy: Opening proxy : MININT-FNANLI5.fareast.corp.microsoft.com:52368",
-       "gt_body_start": 125,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolPr",
-       "pred_header": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Processing the event EventType: CONTAINER_REMOTE_LAUNCH for container container_1",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] ",
-       "format": ""
-      }
-     ],
-     "abstain": [
-      {
-       "line": "2015-10-18 18:04:24,284 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000006_0 is : 0.19266446",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:04:24,284 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:04:54,708 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000004_0 is : 0.44968578",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:04:54,708 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000007_0 is : 0.35880664",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:03:58,611 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: JVM with ID : jvm_1445144423722_0020_m_000008 asked for a task",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:03:58,611 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
-       "format": ""
-      },
-      {
        "line": "2015-10-18 18:06:28,123 INFO [IPC Server handler 8 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000001_0 is : 0.37551183",
        "gt_body_start": 111,
-       "pred_body_start": 0,
+       "pred_body_start": 34,
        "gt_header": "2015-10-18 18:06:28,123 INFO [IPC Server handler 8 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:06:28,123 INFO [IPC ",
        "format": ""
       },
       {
        "line": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000004_0 is : 0.36388028",
        "gt_body_start": 112,
-       "pred_body_start": 0,
+       "pred_body_start": 34,
        "gt_header": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:04:47,942 INFO [IPC ",
        "format": ""
       },
       {
        "line": "2015-10-18 18:01:53,510 INFO [IPC Server listener on 62270] org.apache.hadoop.ipc.Server: IPC Server listener on 62270: starting",
        "gt_body_start": 90,
-       "pred_body_start": 0,
+       "pred_body_start": 34,
        "gt_header": "2015-10-18 18:01:53,510 INFO [IPC Server listener on 62270] org.apache.hadoop.ipc.Server: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:01:53,510 INFO [IPC ",
        "format": ""
       },
       {
        "line": "2015-10-18 18:04:41,879 INFO [IPC Server handler 5 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000003_0 is : 0.9185183",
        "gt_body_start": 111,
-       "pred_body_start": 0,
+       "pred_body_start": 34,
        "gt_header": "2015-10-18 18:04:41,879 INFO [IPC Server handler 5 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:04:41,879 INFO [IPC ",
        "format": ""
       },
       {
        "line": "2015-10-18 18:05:57,024 WARN [DataStreamer for file /tmp/hadoop-yarn/staging/msrabi/.staging/job_1445144423722_0020/job_1445144423722_0020_1.jhist block BP-1347369012-10.190.173.170-1444972147527:blk_",
        "gt_body_start": 251,
-       "pred_body_start": 0,
+       "pred_body_start": 43,
        "gt_header": "2015-10-18 18:05:57,024 WARN [DataStreamer for file /tmp/hadoop-yarn/staging/msrabi/.staging/job_1445144423722_0020/job_",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:02:29,090 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000002_0 is : 0.103304505",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:02:29,090 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:05:57,024 WARN [DataStreamer ",
        "format": ""
       }
-     ]
+     ],
+     "abstain": []
     },
     "_diag": {
      "n_leaves": 18,
@@ -2382,22 +2301,54 @@
    "M4": {
     "n": 1500,
     "counts": {
-     "correct": 1116,
+     "correct": 1165,
      "over_strip": 0,
-     "under_strip": 30,
-     "abstain": 354
+     "under_strip": 335,
+     "abstain": 0
     },
-    "boundary_accuracy": 0.744,
+    "boundary_accuracy": 0.7767,
     "over_strip_rate": 0.0,
-    "under_strip_rate": 0.02,
-    "abstain_rate": 0.236,
-    "auto_strip_coverage": 0.764,
-    "accepted_boundary_accuracy": 0.9738,
+    "under_strip_rate": 0.2233,
+    "abstain_rate": 0.0,
+    "auto_strip_coverage": 1.0,
+    "accepted_boundary_accuracy": 0.7767,
     "body_integrity_char": 1.0,
     "body_integrity_line": 1.0,
     "examples": {
      "over_strip": [],
      "under_strip": [
+      {
+       "line": "2015-10-18 18:04:24,284 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000006_0 is : 0.19266446",
+       "gt_body_start": 112,
+       "pred_body_start": 34,
+       "gt_header": "2015-10-18 18:04:24,284 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
+       "pred_header": "2015-10-18 18:04:24,284 INFO [IPC ",
+       "format": ""
+      },
+      {
+       "line": "2015-10-18 18:04:54,708 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000004_0 is : 0.44968578",
+       "gt_body_start": 112,
+       "pred_body_start": 34,
+       "gt_header": "2015-10-18 18:04:54,708 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
+       "pred_header": "2015-10-18 18:04:54,708 INFO [IPC ",
+       "format": ""
+      },
+      {
+       "line": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000007_0 is : 0.35880664",
+       "gt_body_start": 112,
+       "pred_body_start": 34,
+       "gt_header": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
+       "pred_header": "2015-10-18 18:04:47,942 INFO [IPC ",
+       "format": ""
+      },
+      {
+       "line": "2015-10-18 18:03:58,611 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: JVM with ID : jvm_1445144423722_0020_m_000008 asked for a task",
+       "gt_body_start": 112,
+       "pred_body_start": 34,
+       "gt_header": "2015-10-18 18:03:58,611 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
+       "pred_header": "2015-10-18 18:03:58,611 INFO [IPC ",
+       "format": ""
+      },
       {
        "line": "2015-10-18 18:04:50,208 INFO [ContainerLauncher #0] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy: Opening proxy : MSRA-SA-41.fareast.corp.microsoft.com:7109",
        "gt_body_start": 125,
@@ -2407,160 +2358,47 @@
        "format": ""
       },
       {
-       "line": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Launching attempt_1445144423722_0020_m_000000_0",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:01:51,916 INFO [main] org.apache.hadoop.http.HttpServer2: Added filter AM_PROXY_FILTER (class=org.apache.hadoop.yarn.server.webproxy.amfilter.AmIpFilter) to context static",
-       "gt_body_start": 72,
-       "pred_body_start": 36,
-       "gt_header": "2015-10-18 18:01:51,916 INFO [main] org.apache.hadoop.http.HttpServer2: ",
-       "pred_header": "2015-10-18 18:01:51,916 INFO [main] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:02:01,041 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Shuffle port returned by ContainerManager for attempt_1445144423722_0020_m_000002",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:02:01,041 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:02:01,041 INFO [ContainerLauncher #2] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:06:26,029 INFO [ContainerLauncher #1] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: KILLING attempt_1445144423722_0020_m_000002_0",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:06:26,029 INFO [ContainerLauncher #1] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:06:26,029 INFO [ContainerLauncher #1] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:01:51,916 INFO [main] org.apache.hadoop.http.HttpServer2: Added global filter 'safety' (class=org.apache.hadoop.http.HttpServer2$QuotingInputFilter)",
-       "gt_body_start": 72,
-       "pred_body_start": 36,
-       "gt_header": "2015-10-18 18:01:51,916 INFO [main] org.apache.hadoop.http.HttpServer2: ",
-       "pred_header": "2015-10-18 18:01:51,916 INFO [main] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:01:58,916 INFO [ContainerLauncher #1] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Launching attempt_1445144423722_0020_m_000001_0",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:01:58,916 INFO [ContainerLauncher #1] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:01:58,916 INFO [ContainerLauncher #1] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolProxy: Opening proxy : 04DN8IQ.fareast.corp.microsoft.com:54883",
-       "gt_body_start": 125,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] org.apache.hadoop.yarn.client.api.impl.ContainerManagementProtocolPr",
-       "pred_header": "2015-10-18 18:01:57,291 INFO [ContainerLauncher #0] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: Processing the event EventType: CONTAINER_REMOTE_CLEANUP for container container_",
-       "gt_body_start": 119,
-       "pred_body_start": 52,
-       "gt_header": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] org.apache.hadoop.mapreduce.v2.app.launcher.ContainerLauncherImpl: ",
-       "pred_header": "2015-10-18 18:06:28,217 INFO [ContainerLauncher #2] ",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:06:26,139 INFO [Thread-50] org.apache.hadoop.mapreduce.v2.app.rm.RMContainerAllocator: Added attempt_1445144423722_0020_m_000002_1 to list of failed maps",
-       "gt_body_start": 101,
-       "pred_body_start": 41,
-       "gt_header": "2015-10-18 18:06:26,139 INFO [Thread-50] org.apache.hadoop.mapreduce.v2.app.rm.RMContainerAllocator: ",
-       "pred_header": "2015-10-18 18:06:26,139 INFO [Thread-50] ",
-       "format": ""
-      }
-     ],
-     "abstain": [
-      {
-       "line": "2015-10-18 18:04:24,284 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000006_0 is : 0.19266446",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:04:24,284 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:04:54,708 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000004_0 is : 0.44968578",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:04:54,708 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000007_0 is : 0.35880664",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:03:58,611 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: JVM with ID : jvm_1445144423722_0020_m_000008 asked for a task",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:03:58,611 INFO [IPC Server handler 20 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
-       "format": ""
-      },
-      {
        "line": "2015-10-18 18:06:28,123 INFO [IPC Server handler 8 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000001_0 is : 0.37551183",
        "gt_body_start": 111,
-       "pred_body_start": 0,
+       "pred_body_start": 34,
        "gt_header": "2015-10-18 18:06:28,123 INFO [IPC Server handler 8 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:06:28,123 INFO [IPC ",
        "format": ""
       },
       {
        "line": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000004_0 is : 0.36388028",
        "gt_body_start": 112,
-       "pred_body_start": 0,
+       "pred_body_start": 34,
        "gt_header": "2015-10-18 18:04:47,942 INFO [IPC Server handler 21 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:04:47,942 INFO [IPC ",
        "format": ""
       },
       {
        "line": "2015-10-18 18:01:53,510 INFO [IPC Server listener on 62270] org.apache.hadoop.ipc.Server: IPC Server listener on 62270: starting",
        "gt_body_start": 90,
-       "pred_body_start": 0,
+       "pred_body_start": 34,
        "gt_header": "2015-10-18 18:01:53,510 INFO [IPC Server listener on 62270] org.apache.hadoop.ipc.Server: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:01:53,510 INFO [IPC ",
        "format": ""
       },
       {
        "line": "2015-10-18 18:04:41,879 INFO [IPC Server handler 5 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000003_0 is : 0.9185183",
        "gt_body_start": 111,
-       "pred_body_start": 0,
+       "pred_body_start": 34,
        "gt_header": "2015-10-18 18:04:41,879 INFO [IPC Server handler 5 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:04:41,879 INFO [IPC ",
        "format": ""
       },
       {
        "line": "2015-10-18 18:05:57,024 WARN [DataStreamer for file /tmp/hadoop-yarn/staging/msrabi/.staging/job_1445144423722_0020/job_1445144423722_0020_1.jhist block BP-1347369012-10.190.173.170-1444972147527:blk_",
        "gt_body_start": 251,
-       "pred_body_start": 0,
+       "pred_body_start": 43,
        "gt_header": "2015-10-18 18:05:57,024 WARN [DataStreamer for file /tmp/hadoop-yarn/staging/msrabi/.staging/job_1445144423722_0020/job_",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "2015-10-18 18:02:29,090 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: Progress of TaskAttempt attempt_1445144423722_0020_m_000002_0 is : 0.103304505",
-       "gt_body_start": 112,
-       "pred_body_start": 0,
-       "gt_header": "2015-10-18 18:02:29,090 INFO [IPC Server handler 14 on 62270] org.apache.hadoop.mapred.TaskAttemptListenerImpl: ",
-       "pred_header": "",
+       "pred_header": "2015-10-18 18:05:57,024 WARN [DataStreamer ",
        "format": ""
       }
-     ]
+     ],
+     "abstain": []
     },
     "_diag": {
      "n_leaves": 18,
@@ -4486,185 +4324,129 @@
    "M3": {
     "n": 1500,
     "counts": {
-     "correct": 65,
-     "over_strip": 48,
-     "under_strip": 0,
-     "abstain": 1387
+     "correct": 1201,
+     "over_strip": 296,
+     "under_strip": 3,
+     "abstain": 0
     },
-    "boundary_accuracy": 0.0433,
-    "over_strip_rate": 0.032,
-    "under_strip_rate": 0.0,
-    "abstain_rate": 0.9247,
-    "auto_strip_coverage": 0.0753,
-    "accepted_boundary_accuracy": 0.5752,
-    "body_integrity_char": 0.9858,
-    "body_integrity_line": 0.968,
+    "boundary_accuracy": 0.8007,
+    "over_strip_rate": 0.1973,
+    "under_strip_rate": 0.002,
+    "abstain_rate": 0.0,
+    "auto_strip_coverage": 1.0,
+    "accepted_boundary_accuracy": 0.8007,
+    "body_integrity_char": 0.9125,
+    "body_integrity_line": 0.8027,
     "examples": {
      "over_strip": [
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:08.769 2931 INFO nova.compute.manager [-] [instance: d54b44eb-2d1a-4aa2-ba6b-074d35f8f12c] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:08.769 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:08.769 2931 INFO nova.compute.manager [-] [instance: d54b44eb-2d",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:07:12.637 2931 INFO nova.virt.libvirt.driver [req-74b000e1-54e1-4761-ba25-545a517f42f9 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c",
+       "gt_body_start": 213,
+       "pred_body_start": 262,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:07:12.637 2931 INFO nova.virt.libvirt.driver [req-74b000e1-54e1-476",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:07:12.637 2931 INFO nova.virt.libvirt.driver [req-74b000e1-54e1-476",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.756 2931 INFO nova.virt.libvirt.driver [-] [instance: c62f4f25-982c-4ea2-b5e4-93000edfcfbf] Instance spawned successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.756 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.756 2931 INFO nova.virt.libvirt.driver [-] [instance: c62f4f2",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:55.419 2931 INFO nova.compute.claims [req-afb5ee70-39d1-435e-9bf9-2fc3339c5b5b 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e",
+       "gt_body_start": 208,
+       "pred_body_start": 257,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:55.419 2931 INFO nova.compute.claims [req-afb5ee70-39d1-435e-9bf",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:55.419 2931 INFO nova.compute.claims [req-afb5ee70-39d1-435e-9bf",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:04:41.170 2931 INFO nova.compute.manager [-] [instance: af5f7392-f7d4-4298-b647-c98924c64aa1] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:04:41.170 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:04:41.170 2931 INFO nova.compute.manager [-] [instance: af5f7392-f7",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:03:57.509 2931 INFO nova.compute.claims [req-d6986b54-3735-4a42-9074-0ba7d9717de9 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e",
+       "gt_body_start": 208,
+       "pred_body_start": 257,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:03:57.509 2931 INFO nova.compute.claims [req-d6986b54-3735-4a42-907",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:03:57.509 2931 INFO nova.compute.claims [req-d6986b54-3735-4a42-907",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:57.370 2931 INFO nova.compute.manager [-] [instance: d6b7bd36-2943-4363-9235-fffdd89ea40e] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:57.370 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:57.370 2931 INFO nova.compute.manager [-] [instance: d6b7bd36-29",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:06.961 2931 INFO nova.compute.claims [req-868a5460-dbb6-416b-b4c4-a98abae6c847 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e",
+       "gt_body_start": 208,
+       "pred_body_start": 257,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:06.961 2931 INFO nova.compute.claims [req-868a5460-dbb6-416b-b4c",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:06.961 2931 INFO nova.compute.claims [req-868a5460-dbb6-416b-b4c",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:32.974 2931 INFO nova.compute.manager [-] [instance: b9000564-fe1a-409b-b8cc-1e88b294cd1d] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:32.974 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:32.974 2931 INFO nova.compute.manager [-] [instance: b9000564-fe",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:48.237 2931 INFO nova.compute.manager [req-31453286-67b1-4c86-89bc-445a668da2d9 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9",
+       "gt_body_start": 209,
+       "pred_body_start": 258,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:48.237 2931 INFO nova.compute.manager [req-31453286-67b1-4c86-89",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:48.237 2931 INFO nova.compute.manager [req-31453286-67b1-4c86-89",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:26.601 2931 INFO nova.virt.libvirt.driver [-] [instance: 17288ea8-cbf4-4f0e-94fe-853fd2735f29] Instance spawned successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:26.601 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:26.601 2931 INFO nova.virt.libvirt.driver [-] [instance: 17288ea",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:24.636 2931 INFO nova.virt.libvirt.driver [req-2aa6387d-95fb-4fd7-b1be-f36ebc5c11a6 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c",
+       "gt_body_start": 213,
+       "pred_body_start": 262,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:24.636 2931 INFO nova.virt.libvirt.driver [req-2aa6387d-95fb-4fd",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:24.636 2931 INFO nova.virt.libvirt.driver [req-2aa6387d-95fb-4fd",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:17.754 2931 INFO nova.virt.libvirt.driver [-] [instance: b9000564-fe1a-409b-b8cc-1e88b294cd1d] Instance destroyed successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:17.754 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:17.754 2931 INFO nova.virt.libvirt.driver [-] [instance: b900056",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:00.012 2931 INFO nova.compute.manager [req-d82fab16-60f8-4c9f-bde8-f362f57bdd40 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9",
+       "gt_body_start": 209,
+       "pred_body_start": 258,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:00.012 2931 INFO nova.compute.manager [req-d82fab16-60f8-4c9f-bd",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:00.012 2931 INFO nova.compute.manager [req-d82fab16-60f8-4c9f-bd",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:14.735 2931 INFO nova.compute.manager [-] [instance: 96abccce-8d1f-4e07-b6d1-4b2ab87e23b4] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:14.735 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:14.735 2931 INFO nova.compute.manager [-] [instance: 96abccce-8d",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.757 2931 INFO nova.compute.manager [req-6f9ecdfe-481c-4535-9bdc-45d86085d739 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9",
+       "gt_body_start": 209,
+       "pred_body_start": 258,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.757 2931 INFO nova.compute.manager [req-6f9ecdfe-481c-4535-9b",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.757 2931 INFO nova.compute.manager [req-6f9ecdfe-481c-4535-9b",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:34.059 2931 INFO nova.virt.libvirt.driver [-] [instance: 17288ea8-cbf4-4f0e-94fe-853fd2735f29] Instance destroyed successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:34.059 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:34.059 2931 INFO nova.virt.libvirt.driver [-] [instance: 17288ea",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:47.999 2931 INFO nova.virt.libvirt.driver [req-98474cd9-61e1-4afe-bd52-676a577b058f 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c",
+       "gt_body_start": 213,
+       "pred_body_start": 262,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:47.999 2931 INFO nova.virt.libvirt.driver [req-98474cd9-61e1-4af",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:47.999 2931 INFO nova.virt.libvirt.driver [req-98474cd9-61e1-4af",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:06:22.565 2931 INFO nova.virt.libvirt.driver [-] [instance: fecdd5a9-3ca0-4c82-9336-63b7774f738e] Instance spawned successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:06:22.565 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:06:22.565 2931 INFO nova.virt.libvirt.driver [-] [instance: fecdd5a",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:15.050 2931 INFO nova.compute.claims [req-beb938db-df6e-4611-8113-1a148a0224bc 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e",
+       "gt_body_start": 208,
+       "pred_body_start": 257,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:15.050 2931 INFO nova.compute.claims [req-beb938db-df6e-4611-811",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:15.050 2931 INFO nova.compute.claims [req-beb938db-df6e-4611-811",
        "format": ""
       }
      ],
-     "under_strip": [],
-     "abstain": [
+     "under_strip": [
       {
-       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:10:20.581 25746 INFO nova.osapi_compute.wsgi.server [req-5068a20e-3eff-480e-aa0f-11d004908fe4 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
+       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:04:58.630 25751 INFO nova.osapi_compute.wsgi.server [req-ec851719-5052-4fee-8b0a-3c33b586efd1 d16a600c5e2a47fe98aee00ee4cb9743 e9746973ac574c6b8a9e8857",
        "gt_body_start": 216,
-       "pred_body_start": 0,
-       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:10:20.581 25746 INFO nova.osapi_compute.wsgi.server [req-5068a20e-3eff-",
-       "pred_header": "",
+       "pred_body_start": 143,
+       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:04:58.630 25751 INFO nova.osapi_compute.wsgi.server [req-ec851719-5052-",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:04:58.630 25751 INFO nova.osapi_compute.wsgi.server [req-ec851719-5052-",
        "format": ""
       },
       {
-       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:49.771 25746 INFO nova.osapi_compute.wsgi.server [req-e48f0708-5059-4eb3-8742-55fb03247cd9 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
+       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:11.798 25740 INFO nova.osapi_compute.wsgi.server [req-1c0b524e-3746-4307-b884-a4ae0ee3bac9 d16a600c5e2a47fe98aee00ee4cb9743 e9746973ac574c6b8a9e8857",
        "gt_body_start": 216,
-       "pred_body_start": 0,
-       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:49.771 25746 INFO nova.osapi_compute.wsgi.server [req-e48f0708-5059-",
-       "pred_header": "",
+       "pred_body_start": 143,
+       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:11.798 25740 INFO nova.osapi_compute.wsgi.server [req-1c0b524e-3746-",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:11.798 25740 INFO nova.osapi_compute.wsgi.server [req-1c0b524e-3746-",
        "format": ""
       },
       {
-       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:21.526 25746 INFO nova.osapi_compute.wsgi.server [req-c1a9a7e5-bc9c-40eb-8ec5-5a07a611b661 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
+       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:11.861 25740 INFO nova.osapi_compute.wsgi.server [req-56339001-1664-4389-b65c-2a5328d70e88 d16a600c5e2a47fe98aee00ee4cb9743 e9746973ac574c6b8a9e8857",
        "gt_body_start": 216,
-       "pred_body_start": 0,
-       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:21.526 25746 INFO nova.osapi_compute.wsgi.server [req-c1a9a7e5-bc9c-",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:18.774 25746 INFO nova.osapi_compute.wsgi.server [req-44948c02-9c44-4f95-b4dd-08d7e4df65da 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
-       "gt_body_start": 216,
-       "pred_body_start": 0,
-       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:18.774 25746 INFO nova.osapi_compute.wsgi.server [req-44948c02-9c44-",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:07:00.740 25746 INFO nova.osapi_compute.wsgi.server [req-178e4577-d563-4131-a9cb-021a4ef7b10c 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
-       "gt_body_start": 216,
-       "pred_body_start": 0,
-       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:07:00.740 25746 INFO nova.osapi_compute.wsgi.server [req-178e4577-d563-",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:11:37.744 25746 INFO nova.osapi_compute.wsgi.server [req-16da8660-30be-44ba-990e-63231063b762 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
-       "gt_body_start": 216,
-       "pred_body_start": 0,
-       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:11:37.744 25746 INFO nova.osapi_compute.wsgi.server [req-16da8660-30be-",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:09:57.846 25778 INFO nova.metadata.wsgi.server [req-c22c0e7f-ff55-4389-9c48-bf72dda87ce7 - - - - -] 10.11.21.136,10.11.10.1 \"GET /latest/meta-data/plac",
-       "gt_body_start": 149,
-       "pred_body_start": 0,
-       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:09:57.846 25778 INFO nova.metadata.wsgi.server [req-c22c0e7f-ff55-4389-",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:55.147 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5-4778-b57e-5854eb7b8b09 - - - - -] Removing base or swap file: /var/lib/nova/ins",
-       "gt_body_start": 155,
-       "pred_body_start": 0,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:55.147 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:40.383 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5-4778-b57e-5854eb7b8b09 - - - - -] image 0673dd71-34c5-4fbb-86c4-40623fbe45b4 at",
-       "gt_body_start": 155,
-       "pred_body_start": 0,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:40.383 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5",
-       "pred_header": "",
-       "format": ""
-      },
-      {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:25.426 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5-4778-b57e-5854eb7b8b09 - - - - -] image 0673dd71-34c5-4fbb-86c4-40623fbe45b4 at",
-       "gt_body_start": 155,
-       "pred_body_start": 0,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:25.426 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5",
-       "pred_header": "",
+       "pred_body_start": 143,
+       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:11.861 25740 INFO nova.osapi_compute.wsgi.server [req-56339001-1664-",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:11.861 25740 INFO nova.osapi_compute.wsgi.server [req-56339001-1664-",
        "format": ""
       }
-     ]
+     ],
+     "abstain": []
     },
     "_diag": {
      "n_leaves": 10,
@@ -4674,185 +4456,185 @@
    "M4": {
     "n": 1500,
     "counts": {
-     "correct": 65,
-     "over_strip": 48,
-     "under_strip": 0,
-     "abstain": 1387
+     "correct": 617,
+     "over_strip": 296,
+     "under_strip": 587,
+     "abstain": 0
     },
-    "boundary_accuracy": 0.0433,
-    "over_strip_rate": 0.032,
-    "under_strip_rate": 0.0,
-    "abstain_rate": 0.9247,
-    "auto_strip_coverage": 0.0753,
-    "accepted_boundary_accuracy": 0.5752,
-    "body_integrity_char": 0.9858,
-    "body_integrity_line": 0.968,
+    "boundary_accuracy": 0.4113,
+    "over_strip_rate": 0.1973,
+    "under_strip_rate": 0.3913,
+    "abstain_rate": 0.0,
+    "auto_strip_coverage": 1.0,
+    "accepted_boundary_accuracy": 0.4113,
+    "body_integrity_char": 0.9125,
+    "body_integrity_line": 0.8027,
     "examples": {
      "over_strip": [
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:08.769 2931 INFO nova.compute.manager [-] [instance: d54b44eb-2d1a-4aa2-ba6b-074d35f8f12c] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:08.769 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:08.769 2931 INFO nova.compute.manager [-] [instance: d54b44eb-2d",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:07:12.637 2931 INFO nova.virt.libvirt.driver [req-74b000e1-54e1-4761-ba25-545a517f42f9 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c",
+       "gt_body_start": 213,
+       "pred_body_start": 262,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:07:12.637 2931 INFO nova.virt.libvirt.driver [req-74b000e1-54e1-476",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:07:12.637 2931 INFO nova.virt.libvirt.driver [req-74b000e1-54e1-476",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.756 2931 INFO nova.virt.libvirt.driver [-] [instance: c62f4f25-982c-4ea2-b5e4-93000edfcfbf] Instance spawned successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.756 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.756 2931 INFO nova.virt.libvirt.driver [-] [instance: c62f4f2",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:55.419 2931 INFO nova.compute.claims [req-afb5ee70-39d1-435e-9bf9-2fc3339c5b5b 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e",
+       "gt_body_start": 208,
+       "pred_body_start": 257,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:55.419 2931 INFO nova.compute.claims [req-afb5ee70-39d1-435e-9bf",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:55.419 2931 INFO nova.compute.claims [req-afb5ee70-39d1-435e-9bf",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:04:41.170 2931 INFO nova.compute.manager [-] [instance: af5f7392-f7d4-4298-b647-c98924c64aa1] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:04:41.170 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:04:41.170 2931 INFO nova.compute.manager [-] [instance: af5f7392-f7",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:03:57.509 2931 INFO nova.compute.claims [req-d6986b54-3735-4a42-9074-0ba7d9717de9 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e",
+       "gt_body_start": 208,
+       "pred_body_start": 257,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:03:57.509 2931 INFO nova.compute.claims [req-d6986b54-3735-4a42-907",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:03:57.509 2931 INFO nova.compute.claims [req-d6986b54-3735-4a42-907",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:57.370 2931 INFO nova.compute.manager [-] [instance: d6b7bd36-2943-4363-9235-fffdd89ea40e] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:57.370 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:57.370 2931 INFO nova.compute.manager [-] [instance: d6b7bd36-29",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:06.961 2931 INFO nova.compute.claims [req-868a5460-dbb6-416b-b4c4-a98abae6c847 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e",
+       "gt_body_start": 208,
+       "pred_body_start": 257,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:06.961 2931 INFO nova.compute.claims [req-868a5460-dbb6-416b-b4c",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:06.961 2931 INFO nova.compute.claims [req-868a5460-dbb6-416b-b4c",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:32.974 2931 INFO nova.compute.manager [-] [instance: b9000564-fe1a-409b-b8cc-1e88b294cd1d] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:32.974 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:32.974 2931 INFO nova.compute.manager [-] [instance: b9000564-fe",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:48.237 2931 INFO nova.compute.manager [req-31453286-67b1-4c86-89bc-445a668da2d9 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9",
+       "gt_body_start": 209,
+       "pred_body_start": 258,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:48.237 2931 INFO nova.compute.manager [req-31453286-67b1-4c86-89",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:48.237 2931 INFO nova.compute.manager [req-31453286-67b1-4c86-89",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:26.601 2931 INFO nova.virt.libvirt.driver [-] [instance: 17288ea8-cbf4-4f0e-94fe-853fd2735f29] Instance spawned successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:26.601 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:26.601 2931 INFO nova.virt.libvirt.driver [-] [instance: 17288ea",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:24.636 2931 INFO nova.virt.libvirt.driver [req-2aa6387d-95fb-4fd7-b1be-f36ebc5c11a6 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c",
+       "gt_body_start": 213,
+       "pred_body_start": 262,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:24.636 2931 INFO nova.virt.libvirt.driver [req-2aa6387d-95fb-4fd",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:24.636 2931 INFO nova.virt.libvirt.driver [req-2aa6387d-95fb-4fd",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:17.754 2931 INFO nova.virt.libvirt.driver [-] [instance: b9000564-fe1a-409b-b8cc-1e88b294cd1d] Instance destroyed successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:17.754 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:00:17.754 2931 INFO nova.virt.libvirt.driver [-] [instance: b900056",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:00.012 2931 INFO nova.compute.manager [req-d82fab16-60f8-4c9f-bde8-f362f57bdd40 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9",
+       "gt_body_start": 209,
+       "pred_body_start": 258,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:00.012 2931 INFO nova.compute.manager [req-d82fab16-60f8-4c9f-bd",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:00.012 2931 INFO nova.compute.manager [req-d82fab16-60f8-4c9f-bd",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:14.735 2931 INFO nova.compute.manager [-] [instance: 96abccce-8d1f-4e07-b6d1-4b2ab87e23b4] VM Stopped (Lifecycle Event)",
-       "gt_body_start": 98,
-       "pred_body_start": 147,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:14.735 2931 INFO nova.compute.manager [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:14.735 2931 INFO nova.compute.manager [-] [instance: 96abccce-8d",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.757 2931 INFO nova.compute.manager [req-6f9ecdfe-481c-4535-9bdc-45d86085d739 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9",
+       "gt_body_start": 209,
+       "pred_body_start": 258,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.757 2931 INFO nova.compute.manager [req-6f9ecdfe-481c-4535-9b",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:13:57.757 2931 INFO nova.compute.manager [req-6f9ecdfe-481c-4535-9b",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:34.059 2931 INFO nova.virt.libvirt.driver [-] [instance: 17288ea8-cbf4-4f0e-94fe-853fd2735f29] Instance destroyed successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:34.059 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:34.059 2931 INFO nova.virt.libvirt.driver [-] [instance: 17288ea",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:47.999 2931 INFO nova.virt.libvirt.driver [req-98474cd9-61e1-4afe-bd52-676a577b058f 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c",
+       "gt_body_start": 213,
+       "pred_body_start": 262,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:47.999 2931 INFO nova.virt.libvirt.driver [req-98474cd9-61e1-4af",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:47.999 2931 INFO nova.virt.libvirt.driver [req-98474cd9-61e1-4af",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:06:22.565 2931 INFO nova.virt.libvirt.driver [-] [instance: fecdd5a9-3ca0-4c82-9336-63b7774f738e] Instance spawned successfully.",
-       "gt_body_start": 102,
-       "pred_body_start": 151,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:06:22.565 2931 INFO nova.virt.libvirt.driver [-] ",
-       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:06:22.565 2931 INFO nova.virt.libvirt.driver [-] [instance: fecdd5a",
+       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:15.050 2931 INFO nova.compute.claims [req-beb938db-df6e-4611-8113-1a148a0224bc 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335e4c35a9e",
+       "gt_body_start": 208,
+       "pred_body_start": 257,
+       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:15.050 2931 INFO nova.compute.claims [req-beb938db-df6e-4611-811",
+       "pred_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:12:15.050 2931 INFO nova.compute.claims [req-beb938db-df6e-4611-811",
        "format": ""
       }
      ],
-     "under_strip": [],
-     "abstain": [
+     "under_strip": [
       {
        "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:10:20.581 25746 INFO nova.osapi_compute.wsgi.server [req-5068a20e-3eff-480e-aa0f-11d004908fe4 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
        "gt_body_start": 216,
-       "pred_body_start": 0,
+       "pred_body_start": 213,
        "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:10:20.581 25746 INFO nova.osapi_compute.wsgi.server [req-5068a20e-3eff-",
-       "pred_header": "",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:10:20.581 25746 INFO nova.osapi_compute.wsgi.server [req-5068a20e-3eff-",
        "format": ""
       },
       {
        "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:49.771 25746 INFO nova.osapi_compute.wsgi.server [req-e48f0708-5059-4eb3-8742-55fb03247cd9 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
        "gt_body_start": 216,
-       "pred_body_start": 0,
+       "pred_body_start": 213,
        "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:49.771 25746 INFO nova.osapi_compute.wsgi.server [req-e48f0708-5059-",
-       "pred_header": "",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:49.771 25746 INFO nova.osapi_compute.wsgi.server [req-e48f0708-5059-",
        "format": ""
       },
       {
        "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:21.526 25746 INFO nova.osapi_compute.wsgi.server [req-c1a9a7e5-bc9c-40eb-8ec5-5a07a611b661 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
        "gt_body_start": 216,
-       "pred_body_start": 0,
+       "pred_body_start": 213,
        "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:21.526 25746 INFO nova.osapi_compute.wsgi.server [req-c1a9a7e5-bc9c-",
-       "pred_header": "",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:05:21.526 25746 INFO nova.osapi_compute.wsgi.server [req-c1a9a7e5-bc9c-",
        "format": ""
       },
       {
        "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:18.774 25746 INFO nova.osapi_compute.wsgi.server [req-44948c02-9c44-4f95-b4dd-08d7e4df65da 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
        "gt_body_start": 216,
-       "pred_body_start": 0,
+       "pred_body_start": 213,
        "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:18.774 25746 INFO nova.osapi_compute.wsgi.server [req-44948c02-9c44-",
-       "pred_header": "",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:18.774 25746 INFO nova.osapi_compute.wsgi.server [req-44948c02-9c44-",
        "format": ""
       },
       {
        "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:07:00.740 25746 INFO nova.osapi_compute.wsgi.server [req-178e4577-d563-4131-a9cb-021a4ef7b10c 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
        "gt_body_start": 216,
-       "pred_body_start": 0,
+       "pred_body_start": 213,
        "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:07:00.740 25746 INFO nova.osapi_compute.wsgi.server [req-178e4577-d563-",
-       "pred_header": "",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:07:00.740 25746 INFO nova.osapi_compute.wsgi.server [req-178e4577-d563-",
        "format": ""
       },
       {
        "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:11:37.744 25746 INFO nova.osapi_compute.wsgi.server [req-16da8660-30be-44ba-990e-63231063b762 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
        "gt_body_start": 216,
-       "pred_body_start": 0,
+       "pred_body_start": 213,
        "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:11:37.744 25746 INFO nova.osapi_compute.wsgi.server [req-16da8660-30be-",
-       "pred_header": "",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:11:37.744 25746 INFO nova.osapi_compute.wsgi.server [req-16da8660-30be-",
        "format": ""
       },
       {
-       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:09:57.846 25778 INFO nova.metadata.wsgi.server [req-c22c0e7f-ff55-4389-9c48-bf72dda87ce7 - - - - -] 10.11.21.136,10.11.10.1 \"GET /latest/meta-data/plac",
-       "gt_body_start": 149,
-       "pred_body_start": 0,
-       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:09:57.846 25778 INFO nova.metadata.wsgi.server [req-c22c0e7f-ff55-4389-",
-       "pred_header": "",
+       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:13:46.412 25746 INFO nova.osapi_compute.wsgi.server [req-3f4867ee-5402-4e7f-bf24-41c58b20e80b 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
+       "gt_body_start": 216,
+       "pred_body_start": 213,
+       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:13:46.412 25746 INFO nova.osapi_compute.wsgi.server [req-3f4867ee-5402-",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:13:46.412 25746 INFO nova.osapi_compute.wsgi.server [req-3f4867ee-5402-",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:55.147 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5-4778-b57e-5854eb7b8b09 - - - - -] Removing base or swap file: /var/lib/nova/ins",
-       "gt_body_start": 155,
-       "pred_body_start": 0,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:05:55.147 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5",
-       "pred_header": "",
+       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:00:10.978 25746 INFO nova.osapi_compute.wsgi.server [req-d81279b2-d9df-48b7-9c36-edab3801c067 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
+       "gt_body_start": 216,
+       "pred_body_start": 213,
+       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:00:10.978 25746 INFO nova.osapi_compute.wsgi.server [req-d81279b2-d9df-",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:00:10.978 25746 INFO nova.osapi_compute.wsgi.server [req-d81279b2-d9df-",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:40.383 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5-4778-b57e-5854eb7b8b09 - - - - -] image 0673dd71-34c5-4fbb-86c4-40623fbe45b4 at",
-       "gt_body_start": 155,
-       "pred_body_start": 0,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:01:40.383 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5",
-       "pred_header": "",
+       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:09:32.661 25746 INFO nova.osapi_compute.wsgi.server [req-fd4a841b-8d46-4485-b466-117bf8e53a94 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
+       "gt_body_start": 216,
+       "pred_body_start": 213,
+       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:09:32.661 25746 INFO nova.osapi_compute.wsgi.server [req-fd4a841b-8d46-",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:09:32.661 25746 INFO nova.osapi_compute.wsgi.server [req-fd4a841b-8d46-",
        "format": ""
       },
       {
-       "line": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:25.426 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5-4778-b57e-5854eb7b8b09 - - - - -] image 0673dd71-34c5-4fbb-86c4-40623fbe45b4 at",
-       "gt_body_start": 155,
-       "pred_body_start": 0,
-       "gt_header": "nova-compute.log.1.2017-05-16_13:55:31 2017-05-16 00:08:25.426 2931 INFO nova.virt.libvirt.imagecache [req-addc1839-2ed5",
-       "pred_header": "",
+       "line": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:01.692 25746 INFO nova.osapi_compute.wsgi.server [req-871a45c2-0c1b-4c81-9fac-cb018a99a9ff 113d3a99c3da401fbd62cc2caa5b96d2 54fadb412c4e40cdbaed9335",
+       "gt_body_start": 216,
+       "pred_body_start": 213,
+       "gt_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:01.692 25746 INFO nova.osapi_compute.wsgi.server [req-871a45c2-0c1b-",
+       "pred_header": "nova-api.log.1.2017-05-16_13:53:08 2017-05-16 00:06:01.692 25746 INFO nova.osapi_compute.wsgi.server [req-871a45c2-0c1b-",
        "format": ""
       }
-     ]
+     ],
+     "abstain": []
     },
     "_diag": {
      "n_leaves": 10,
@@ -6632,104 +6414,104 @@
    "M3": {
     "n": 700,
     "counts": {
-     "correct": 269,
+     "correct": 690,
      "over_strip": 0,
-     "under_strip": 0,
-     "abstain": 431
+     "under_strip": 10,
+     "abstain": 0
     },
-    "boundary_accuracy": 0.3843,
+    "boundary_accuracy": 0.9857,
     "over_strip_rate": 0.0,
-    "under_strip_rate": 0.0,
-    "abstain_rate": 0.6157,
-    "auto_strip_coverage": 0.3843,
-    "accepted_boundary_accuracy": 1.0,
+    "under_strip_rate": 0.0143,
+    "abstain_rate": 0.0,
+    "auto_strip_coverage": 1.0,
+    "accepted_boundary_accuracy": 0.9857,
     "body_integrity_char": 1.0,
     "body_integrity_line": 1.0,
     "examples": {
      "over_strip": [],
-     "under_strip": [],
-     "abstain": [
+     "under_strip": [
       {
-       "line": "[2026-03-10 05:09:11] [INFO] [handler dispatcher for53] failed to read block blk_e51fc26593b4, retry 32624 times",
+       "line": "[2026-03-07 13:25:05] [INFO] [event handler pool27] update config key vol-3f2a to value 90023",
+       "gt_body_start": 52,
+       "pred_body_start": 36,
+       "gt_header": "[2026-03-07 13:25:05] [INFO] [event handler pool27] ",
+       "pred_header": "[2026-03-07 13:25:05] [INFO] [event ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-10 13:41:34] [INFO] [for handler dispatcher92] metadata journal truncated at offset a37b7eaa8951",
        "gt_body_start": 56,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-10 05:09:11] [INFO] [handler dispatcher for53] ",
-       "pred_header": "",
+       "pred_body_start": 34,
+       "gt_header": "[2026-03-10 13:41:34] [INFO] [for handler dispatcher92] ",
+       "pred_header": "[2026-03-10 13:41:34] [INFO] [for ",
        "format": "bs3"
       },
       {
-       "line": "[2026-03-05 14:10:06] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=7f4f8cfc3521",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-05 14:10:06] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
-      },
-      {
-       "line": "[2026-03-03 08:46:59] [INFO] [pool-6 thread 64] write 62740 bytes to /data/dsware/cfg.max.io/chunk.dat",
-       "gt_body_start": 48,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-03 08:46:59] [INFO] [pool-6 thread 64] ",
-       "pred_header": "",
-       "format": "bs1"
-      },
-      {
-       "line": "[2026-03-05 01:12:13] [INFO] [AsyncDispatcher event handler] cache entry cfbd4ec71243 evicted, free slots 44785",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-05 01:12:13] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
-      },
-      {
-       "line": "[2026-03-09 13:40:29] [INFO] [AsyncDispatcher event handler] received message from 10.80243.99615.32535:94412, dispatch to handler",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-09 13:40:29] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
-      },
-      {
-       "line": "[2026-03-04 02:02:14] [INFO] [AsyncDispatcher event handler] disk 27768 smart health status ok, temperature 47351 celsius",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-04 02:02:14] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
-      },
-      {
-       "line": "[2026-03-09 10:48:40] [INFO] [pool-9 thread 28] start to sync volume data, total 50636 chunks",
-       "gt_body_start": 48,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-09 10:48:40] [INFO] [pool-9 thread 28] ",
-       "pred_header": "",
-       "format": "bs1"
-      },
-      {
-       "line": "[2026-03-02 18:15:03] [INFO] [event dispatcher handler76] receive heartbeat from node-7135, load 50 percent",
-       "gt_body_start": 58,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 18:15:03] [INFO] [event dispatcher handler76] ",
-       "pred_header": "",
+       "line": "[2026-03-08 17:42:15] [INFO] [event handler pool73] received message from 10.27906.25234.63220:7747, dispatch to handler",
+       "gt_body_start": 52,
+       "pred_body_start": 36,
+       "gt_header": "[2026-03-08 17:42:15] [INFO] [event handler pool73] ",
+       "pred_header": "[2026-03-08 17:42:15] [INFO] [event ",
        "format": "bs3"
       },
       {
-       "line": "[2026-03-09 20:20:56] [INFO] [AsyncDispatcher event handler] volume snap-7c changed state from active to degraded",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-09 20:20:56] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
+       "line": "[2026-03-03 20:14:16] [INFO] [for handler pool46] checkpoint finished, elapsed 56701 seconds",
+       "gt_body_start": 50,
+       "pred_body_start": 34,
+       "gt_header": "[2026-03-03 20:14:16] [INFO] [for handler pool46] ",
+       "pred_header": "[2026-03-03 20:14:16] [INFO] [for ",
+       "format": "bs3"
       },
       {
-       "line": "[2026-03-09 09:33:37] [INFO] [pool-2 thread 50] certificate will expire in 95012 days, renew required",
-       "gt_body_start": 48,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-09 09:33:37] [INFO] [pool-2 thread 50] ",
-       "pred_header": "",
-       "format": "bs1"
+       "line": "[2026-03-04 12:01:35] [INFO] [pool handler dispatcher9] alarm cleared: disk usage back to 60 percent",
+       "gt_body_start": 56,
+       "pred_body_start": 35,
+       "gt_header": "[2026-03-04 12:01:35] [INFO] [pool handler dispatcher9] ",
+       "pred_header": "[2026-03-04 12:01:35] [INFO] [pool ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-02 18:27:34] [INFO] [event handler event51] receive heartbeat from node-23213, load 40 percent",
+       "gt_body_start": 53,
+       "pred_body_start": 36,
+       "gt_header": "[2026-03-02 18:27:34] [INFO] [event handler event51] ",
+       "pred_header": "[2026-03-02 18:27:34] [INFO] [event ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-05 11:06:14] [INFO] [dispatcher handler pool2] receive heartbeat from node-30450, load 60 percent",
+       "gt_body_start": 56,
+       "pred_body_start": 41,
+       "gt_header": "[2026-03-05 11:06:14] [INFO] [dispatcher handler pool2] ",
+       "pred_header": "[2026-03-05 11:06:14] [INFO] [dispatcher ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-06 17:26:31] [INFO] [for handler handler61] cache entry 69957ceb5115 evicted, free slots 66926",
+       "gt_body_start": 53,
+       "pred_body_start": 34,
+       "gt_header": "[2026-03-06 17:26:31] [INFO] [for handler handler61] ",
+       "pred_header": "[2026-03-06 17:26:31] [INFO] [for ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-05 11:12:58] [INFO] [pool handler pool85] volume cfg.max.io changed state from active to degraded",
+       "gt_body_start": 51,
+       "pred_body_start": 35,
+       "gt_header": "[2026-03-05 11:12:58] [INFO] [pool handler pool85] ",
+       "pred_header": "[2026-03-05 11:12:58] [INFO] [pool ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-06 20:04:46] [INFO] [for handler event37] thread pool exhausted, active=73610 queued=36941 max=28279",
+       "gt_body_start": 51,
+       "pred_body_start": 34,
+       "gt_header": "[2026-03-06 20:04:46] [INFO] [for handler event37] ",
+       "pred_header": "[2026-03-06 20:04:46] [INFO] [for ",
+       "format": "bs3"
       }
-     ]
+     ],
+     "abstain": []
     },
     "_diag": {
      "n_leaves": 41,
@@ -6739,104 +6521,104 @@
    "M4": {
     "n": 700,
     "counts": {
-     "correct": 269,
+     "correct": 690,
      "over_strip": 0,
-     "under_strip": 0,
-     "abstain": 431
+     "under_strip": 10,
+     "abstain": 0
     },
-    "boundary_accuracy": 0.3843,
+    "boundary_accuracy": 0.9857,
     "over_strip_rate": 0.0,
-    "under_strip_rate": 0.0,
-    "abstain_rate": 0.6157,
-    "auto_strip_coverage": 0.3843,
-    "accepted_boundary_accuracy": 1.0,
+    "under_strip_rate": 0.0143,
+    "abstain_rate": 0.0,
+    "auto_strip_coverage": 1.0,
+    "accepted_boundary_accuracy": 0.9857,
     "body_integrity_char": 1.0,
     "body_integrity_line": 1.0,
     "examples": {
      "over_strip": [],
-     "under_strip": [],
-     "abstain": [
+     "under_strip": [
       {
-       "line": "[2026-03-10 05:09:11] [INFO] [handler dispatcher for53] failed to read block blk_e51fc26593b4, retry 32624 times",
+       "line": "[2026-03-07 13:25:05] [INFO] [event handler pool27] update config key vol-3f2a to value 90023",
+       "gt_body_start": 52,
+       "pred_body_start": 36,
+       "gt_header": "[2026-03-07 13:25:05] [INFO] [event handler pool27] ",
+       "pred_header": "[2026-03-07 13:25:05] [INFO] [event ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-10 13:41:34] [INFO] [for handler dispatcher92] metadata journal truncated at offset a37b7eaa8951",
        "gt_body_start": 56,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-10 05:09:11] [INFO] [handler dispatcher for53] ",
-       "pred_header": "",
+       "pred_body_start": 34,
+       "gt_header": "[2026-03-10 13:41:34] [INFO] [for handler dispatcher92] ",
+       "pred_header": "[2026-03-10 13:41:34] [INFO] [for ",
        "format": "bs3"
       },
       {
-       "line": "[2026-03-05 14:10:06] [INFO] [AsyncDispatcher event handler] send audit event to kafka topic dsware-audit, seq=7f4f8cfc3521",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-05 14:10:06] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
-      },
-      {
-       "line": "[2026-03-03 08:46:59] [INFO] [pool-6 thread 64] write 62740 bytes to /data/dsware/cfg.max.io/chunk.dat",
-       "gt_body_start": 48,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-03 08:46:59] [INFO] [pool-6 thread 64] ",
-       "pred_header": "",
-       "format": "bs1"
-      },
-      {
-       "line": "[2026-03-05 01:12:13] [INFO] [AsyncDispatcher event handler] cache entry cfbd4ec71243 evicted, free slots 44785",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-05 01:12:13] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
-      },
-      {
-       "line": "[2026-03-09 13:40:29] [INFO] [AsyncDispatcher event handler] received message from 10.80243.99615.32535:94412, dispatch to handler",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-09 13:40:29] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
-      },
-      {
-       "line": "[2026-03-04 02:02:14] [INFO] [AsyncDispatcher event handler] disk 27768 smart health status ok, temperature 47351 celsius",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-04 02:02:14] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
-      },
-      {
-       "line": "[2026-03-09 10:48:40] [INFO] [pool-9 thread 28] start to sync volume data, total 50636 chunks",
-       "gt_body_start": 48,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-09 10:48:40] [INFO] [pool-9 thread 28] ",
-       "pred_header": "",
-       "format": "bs1"
-      },
-      {
-       "line": "[2026-03-02 18:15:03] [INFO] [event dispatcher handler76] receive heartbeat from node-7135, load 50 percent",
-       "gt_body_start": 58,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 18:15:03] [INFO] [event dispatcher handler76] ",
-       "pred_header": "",
+       "line": "[2026-03-08 17:42:15] [INFO] [event handler pool73] received message from 10.27906.25234.63220:7747, dispatch to handler",
+       "gt_body_start": 52,
+       "pred_body_start": 36,
+       "gt_header": "[2026-03-08 17:42:15] [INFO] [event handler pool73] ",
+       "pred_header": "[2026-03-08 17:42:15] [INFO] [event ",
        "format": "bs3"
       },
       {
-       "line": "[2026-03-09 20:20:56] [INFO] [AsyncDispatcher event handler] volume snap-7c changed state from active to degraded",
-       "gt_body_start": 61,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-09 20:20:56] [INFO] [AsyncDispatcher event handler] ",
-       "pred_header": "",
-       "format": "bs0"
+       "line": "[2026-03-03 20:14:16] [INFO] [for handler pool46] checkpoint finished, elapsed 56701 seconds",
+       "gt_body_start": 50,
+       "pred_body_start": 34,
+       "gt_header": "[2026-03-03 20:14:16] [INFO] [for handler pool46] ",
+       "pred_header": "[2026-03-03 20:14:16] [INFO] [for ",
+       "format": "bs3"
       },
       {
-       "line": "[2026-03-09 09:33:37] [INFO] [pool-2 thread 50] certificate will expire in 95012 days, renew required",
-       "gt_body_start": 48,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-09 09:33:37] [INFO] [pool-2 thread 50] ",
-       "pred_header": "",
-       "format": "bs1"
+       "line": "[2026-03-04 12:01:35] [INFO] [pool handler dispatcher9] alarm cleared: disk usage back to 60 percent",
+       "gt_body_start": 56,
+       "pred_body_start": 35,
+       "gt_header": "[2026-03-04 12:01:35] [INFO] [pool handler dispatcher9] ",
+       "pred_header": "[2026-03-04 12:01:35] [INFO] [pool ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-02 18:27:34] [INFO] [event handler event51] receive heartbeat from node-23213, load 40 percent",
+       "gt_body_start": 53,
+       "pred_body_start": 36,
+       "gt_header": "[2026-03-02 18:27:34] [INFO] [event handler event51] ",
+       "pred_header": "[2026-03-02 18:27:34] [INFO] [event ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-05 11:06:14] [INFO] [dispatcher handler pool2] receive heartbeat from node-30450, load 60 percent",
+       "gt_body_start": 56,
+       "pred_body_start": 41,
+       "gt_header": "[2026-03-05 11:06:14] [INFO] [dispatcher handler pool2] ",
+       "pred_header": "[2026-03-05 11:06:14] [INFO] [dispatcher ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-06 17:26:31] [INFO] [for handler handler61] cache entry 69957ceb5115 evicted, free slots 66926",
+       "gt_body_start": 53,
+       "pred_body_start": 34,
+       "gt_header": "[2026-03-06 17:26:31] [INFO] [for handler handler61] ",
+       "pred_header": "[2026-03-06 17:26:31] [INFO] [for ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-05 11:12:58] [INFO] [pool handler pool85] volume cfg.max.io changed state from active to degraded",
+       "gt_body_start": 51,
+       "pred_body_start": 35,
+       "gt_header": "[2026-03-05 11:12:58] [INFO] [pool handler pool85] ",
+       "pred_header": "[2026-03-05 11:12:58] [INFO] [pool ",
+       "format": "bs3"
+      },
+      {
+       "line": "[2026-03-06 20:04:46] [INFO] [for handler event37] thread pool exhausted, active=73610 queued=36941 max=28279",
+       "gt_body_start": 51,
+       "pred_body_start": 34,
+       "gt_header": "[2026-03-06 20:04:46] [INFO] [for handler event37] ",
+       "pred_header": "[2026-03-06 20:04:46] [INFO] [for ",
+       "format": "bs3"
       }
-     ]
+     ],
+     "abstain": []
     },
     "_diag": {
      "n_leaves": 41,
@@ -7056,15 +6838,15 @@
     "counts": {
      "correct": 255,
      "over_strip": 23,
-     "under_strip": 62,
-     "abstain": 360
+     "under_strip": 216,
+     "abstain": 206
     },
     "boundary_accuracy": 0.3643,
     "over_strip_rate": 0.0329,
-    "under_strip_rate": 0.0886,
-    "abstain_rate": 0.5143,
-    "auto_strip_coverage": 0.4857,
-    "accepted_boundary_accuracy": 0.75,
+    "under_strip_rate": 0.3086,
+    "abstain_rate": 0.2943,
+    "auto_strip_coverage": 0.7057,
+    "accepted_boundary_accuracy": 0.5162,
     "body_integrity_char": 0.9943,
     "body_integrity_line": 0.9671,
     "examples": {
@@ -7160,6 +6942,14 @@
        "format": "deploy#0"
       },
       {
+       "line": "[2026-03-01 22:38:47,000000]^10.42.78.72^-^failed to read block blk_143a4f560ed5, retry 67017 times",
+       "gt_body_start": 43,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 22:38:47,000000]^10.42.78.72^-^",
+       "pred_header": "[2026-03-01 ",
+       "format": "deploy#13"
+      },
+      {
        "line": "[02/Mar/2026:07:01:02 ] [DEBUG] [main-worker] [dsware-5] [863dfcd6] [0a8aeb94]disk 70769 smart health status ok, temperature 74044 celsius",
        "gt_body_start": 78,
        "pred_body_start": 57,
@@ -7176,60 +6966,52 @@
        "format": "deploy#0"
       },
       {
-       "line": "[01/Mar/2026:16:41:50 ] [NOTICE] [dme-server] [dsware-3] [723b80d4] [28c2cce9]process request op=quota.db done in 74162 ms",
-       "gt_body_start": 78,
-       "pred_body_start": 57,
-       "gt_header": "[01/Mar/2026:16:41:50 ] [NOTICE] [dme-server] [dsware-3] [723b80d4] [28c2cce9]",
-       "pred_header": "[01/Mar/2026:16:41:50 ] [NOTICE] [dme-server] [dsware-3] ",
-       "format": "deploy#0"
+       "line": "[2026-03-02 00:11:53,000000 ][ERROR]thread pool exhausted, active=68280 queued=59020 max=54262",
+       "gt_body_start": 36,
+       "pred_body_start": 28,
+       "gt_header": "[2026-03-02 00:11:53,000000 ][ERROR]",
+       "pred_header": "[2026-03-02 00:11:53,000000 ",
+       "format": "deploy#12"
       },
       {
-       "line": "[2026-03-01 16:54:52] [DEBUG] [rep-worker] [dsware-2] [74962764] [6a18ce4c]thread pool exhausted, active=25485 queued=94155 max=91272",
-       "gt_body_start": 75,
-       "pred_body_start": 65,
-       "gt_header": "[2026-03-01 16:54:52] [DEBUG] [rep-worker] [dsware-2] [74962764] [6a18ce4c]",
-       "pred_header": "[2026-03-01 16:54:52] [DEBUG] [rep-worker] [dsware-2] [74962764] ",
-       "format": "deploy#0"
+       "line": "[2026-03-02 03:58:59:000000][761579e7][NOTICE][12b99a50][ism-agent]failed to read block blk_1923402d105b, retry 25875 times",
+       "gt_body_start": 67,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 03:58:59:000000][761579e7][NOTICE][12b99a50][ism-agent]",
+       "pred_header": "[2026-03-02 ",
+       "format": "deploy#1"
       },
       {
-       "line": "[01/Mar/2026:10:29:53 ] [INFO] [ha-monitor] [dsware-5] [b9e439ef] [d46b7756]init module quota.db begin, worker threads 45625",
-       "gt_body_start": 76,
-       "pred_body_start": 55,
-       "gt_header": "[01/Mar/2026:10:29:53 ] [INFO] [ha-monitor] [dsware-5] [b9e439ef] [d46b7756]",
-       "pred_header": "[01/Mar/2026:10:29:53 ] [INFO] [ha-monitor] [dsware-5] ",
-       "format": "deploy#0"
+       "line": "[2026-03-01 10:30:34,000000][e0827f76][DEBUG][ddb449dc][ism-agent]metadata journal truncated at offset 161d53c9fe59",
+       "gt_body_start": 66,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 10:30:34,000000][e0827f76][DEBUG][ddb449dc][ism-agent]",
+       "pred_header": "[2026-03-01 ",
+       "format": "deploy#1"
       },
       {
-       "line": "[2026-03-01 20:08:04] [ERROR] [vbs-server] [dsware-1] [d500c147] [2cf6073b]volume task-991 changed state from active to degraded",
-       "gt_body_start": 75,
-       "pred_body_start": 65,
-       "gt_header": "[2026-03-01 20:08:04] [ERROR] [vbs-server] [dsware-1] [d500c147] [2cf6073b]",
-       "pred_header": "[2026-03-01 20:08:04] [ERROR] [vbs-server] [dsware-1] [d500c147] ",
-       "format": "deploy#0"
+       "line": "[01/Mar/2026:12:18:26 ][NOTICE]start to sync volume data, total 84072 chunks",
+       "gt_body_start": 31,
+       "pred_body_start": 22,
+       "gt_header": "[01/Mar/2026:12:18:26 ][NOTICE]",
+       "pred_header": "[01/Mar/2026:12:18:26 ",
+       "format": "deploy#12"
       },
       {
-       "line": "[2026-03-01 16:34:45.000000] [WARN] [scheduler] [dsware-2] [9e719a56] [5ca59057]init module quota.db begin, worker threads 28740",
-       "gt_body_start": 80,
-       "pred_body_start": 70,
-       "gt_header": "[2026-03-01 16:34:45.000000] [WARN] [scheduler] [dsware-2] [9e719a56] [5ca59057]",
-       "pred_header": "[2026-03-01 16:34:45.000000] [WARN] [scheduler] [dsware-2] [9e719a56] ",
-       "format": "deploy#0"
+       "line": "[2026-03-01 10:35:51:000000][INFO]process request op=task-991 done in 29912 ms",
+       "gt_body_start": 34,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 10:35:51:000000][INFO]",
+       "pred_header": "[2026-03-01 ",
+       "format": "deploy#12"
       },
       {
-       "line": "[02/Mar/2026:02:45:51 ] [NOTICE] [msg-handler] [dsware-3] [4a90cd0c] [6de299a1]start to sync volume data, total 80584 chunks",
-       "gt_body_start": 79,
-       "pred_body_start": 58,
-       "gt_header": "[02/Mar/2026:02:45:51 ] [NOTICE] [msg-handler] [dsware-3] [4a90cd0c] [6de299a1]",
-       "pred_header": "[02/Mar/2026:02:45:51 ] [NOTICE] [msg-handler] [dsware-3] ",
-       "format": "deploy#0"
-      },
-      {
-       "line": "[2026-03-01 19:25:16,000000] [DEBUG] [dme-server] [dsware-7] [b0c4a01c] [34323ec6]task quota.db submitted by user admin, priority 80147",
-       "gt_body_start": 82,
-       "pred_body_start": 72,
-       "gt_header": "[2026-03-01 19:25:16,000000] [DEBUG] [dme-server] [dsware-7] [b0c4a01c] [34323ec6]",
-       "pred_header": "[2026-03-01 19:25:16,000000] [DEBUG] [dme-server] [dsware-7] [b0c4a01c] ",
-       "format": "deploy#0"
+       "line": "[2026-03-01 08:12:33.000000]certificate will expire in 64679 days, renew required",
+       "gt_body_start": 28,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 08:12:33.000000]",
+       "pred_header": "[2026-03-01 ",
+       "format": "deploy#15"
       }
      ],
      "abstain": [
@@ -7250,14 +7032,6 @@
        "format": "deploy#7"
       },
       {
-       "line": "[2026-03-01 22:38:47,000000]^10.42.78.72^-^failed to read block blk_143a4f560ed5, retry 67017 times",
-       "gt_body_start": 43,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-01 22:38:47,000000]^10.42.78.72^-^",
-       "pred_header": "",
-       "format": "deploy#13"
-      },
-      {
        "line": "[2026-03-01 08:15:46:000000][NOTICE][osd-daemon] volume snap-7c changed state from active to degraded",
        "gt_body_start": 49,
        "pred_body_start": 0,
@@ -7272,22 +7046,6 @@
        "gt_header": "[2026-03-01 10:16:01,000000] ",
        "pred_header": "",
        "format": "deploy#14"
-      },
-      {
-       "line": "[2026-03-02 00:11:53,000000 ][ERROR]thread pool exhausted, active=68280 queued=59020 max=54262",
-       "gt_body_start": 36,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 00:11:53,000000 ][ERROR]",
-       "pred_header": "",
-       "format": "deploy#12"
-      },
-      {
-       "line": "[2026-03-02 03:58:59:000000][761579e7][NOTICE][12b99a50][ism-agent]failed to read block blk_1923402d105b, retry 25875 times",
-       "gt_body_start": 67,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 03:58:59:000000][761579e7][NOTICE][12b99a50][ism-agent]",
-       "pred_header": "",
-       "format": "deploy#1"
       },
       {
        "line": "[2026-03-01 16:26:08,000000] write 18837 bytes to /data/dsware/quota.db/chunk.dat",
@@ -7312,6 +7070,30 @@
        "gt_header": "02/Mar/2026:04:01:42  : [540] [DEBUG] ",
        "pred_header": "",
        "format": "deploy#5"
+      },
+      {
+       "line": "[02/Mar/2026:07:43:46 ][NOTICE][ism-agent][6919][b189727f]alarm cleared: disk usage back to 89 percent",
+       "gt_body_start": 58,
+       "pred_body_start": 0,
+       "gt_header": "[02/Mar/2026:07:43:46 ][NOTICE][ism-agent][6919][b189727f]",
+       "pred_header": "",
+       "format": "deploy#2"
+      },
+      {
+       "line": "[2026-03-01 21:25:54] volume task-991 changed state from active to degraded",
+       "gt_body_start": 22,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 21:25:54] ",
+       "pred_header": "",
+       "format": "deploy#14"
+      },
+      {
+       "line": "[01/Mar/2026:19:34:57 ][DEBUG]cache entry 6f6861ae3f21 evicted, free slots 71449",
+       "gt_body_start": 30,
+       "pred_body_start": 0,
+       "gt_header": "[01/Mar/2026:19:34:57 ][DEBUG]",
+       "pred_header": "",
+       "format": "deploy#12"
       }
      ]
     },
@@ -7325,15 +7107,15 @@
     "counts": {
      "correct": 259,
      "over_strip": 19,
-     "under_strip": 62,
-     "abstain": 360
+     "under_strip": 216,
+     "abstain": 206
     },
     "boundary_accuracy": 0.37,
     "over_strip_rate": 0.0271,
-    "under_strip_rate": 0.0886,
-    "abstain_rate": 0.5143,
-    "auto_strip_coverage": 0.4857,
-    "accepted_boundary_accuracy": 0.7618,
+    "under_strip_rate": 0.3086,
+    "abstain_rate": 0.2943,
+    "auto_strip_coverage": 0.7057,
+    "accepted_boundary_accuracy": 0.5243,
     "body_integrity_char": 0.995,
     "body_integrity_line": 0.9729,
     "examples": {
@@ -7429,6 +7211,14 @@
        "format": "deploy#0"
       },
       {
+       "line": "[2026-03-01 22:38:47,000000]^10.42.78.72^-^failed to read block blk_143a4f560ed5, retry 67017 times",
+       "gt_body_start": 43,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 22:38:47,000000]^10.42.78.72^-^",
+       "pred_header": "[2026-03-01 ",
+       "format": "deploy#13"
+      },
+      {
        "line": "[02/Mar/2026:07:01:02 ] [DEBUG] [main-worker] [dsware-5] [863dfcd6] [0a8aeb94]disk 70769 smart health status ok, temperature 74044 celsius",
        "gt_body_start": 78,
        "pred_body_start": 57,
@@ -7445,60 +7235,52 @@
        "format": "deploy#0"
       },
       {
-       "line": "[01/Mar/2026:16:41:50 ] [NOTICE] [dme-server] [dsware-3] [723b80d4] [28c2cce9]process request op=quota.db done in 74162 ms",
-       "gt_body_start": 78,
-       "pred_body_start": 57,
-       "gt_header": "[01/Mar/2026:16:41:50 ] [NOTICE] [dme-server] [dsware-3] [723b80d4] [28c2cce9]",
-       "pred_header": "[01/Mar/2026:16:41:50 ] [NOTICE] [dme-server] [dsware-3] ",
-       "format": "deploy#0"
+       "line": "[2026-03-02 00:11:53,000000 ][ERROR]thread pool exhausted, active=68280 queued=59020 max=54262",
+       "gt_body_start": 36,
+       "pred_body_start": 28,
+       "gt_header": "[2026-03-02 00:11:53,000000 ][ERROR]",
+       "pred_header": "[2026-03-02 00:11:53,000000 ",
+       "format": "deploy#12"
       },
       {
-       "line": "[2026-03-01 16:54:52] [DEBUG] [rep-worker] [dsware-2] [74962764] [6a18ce4c]thread pool exhausted, active=25485 queued=94155 max=91272",
-       "gt_body_start": 75,
-       "pred_body_start": 65,
-       "gt_header": "[2026-03-01 16:54:52] [DEBUG] [rep-worker] [dsware-2] [74962764] [6a18ce4c]",
-       "pred_header": "[2026-03-01 16:54:52] [DEBUG] [rep-worker] [dsware-2] [74962764] ",
-       "format": "deploy#0"
+       "line": "[2026-03-02 03:58:59:000000][761579e7][NOTICE][12b99a50][ism-agent]failed to read block blk_1923402d105b, retry 25875 times",
+       "gt_body_start": 67,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 03:58:59:000000][761579e7][NOTICE][12b99a50][ism-agent]",
+       "pred_header": "[2026-03-02 ",
+       "format": "deploy#1"
       },
       {
-       "line": "[01/Mar/2026:10:29:53 ] [INFO] [ha-monitor] [dsware-5] [b9e439ef] [d46b7756]init module quota.db begin, worker threads 45625",
-       "gt_body_start": 76,
-       "pred_body_start": 55,
-       "gt_header": "[01/Mar/2026:10:29:53 ] [INFO] [ha-monitor] [dsware-5] [b9e439ef] [d46b7756]",
-       "pred_header": "[01/Mar/2026:10:29:53 ] [INFO] [ha-monitor] [dsware-5] ",
-       "format": "deploy#0"
+       "line": "[2026-03-01 10:30:34,000000][e0827f76][DEBUG][ddb449dc][ism-agent]metadata journal truncated at offset 161d53c9fe59",
+       "gt_body_start": 66,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 10:30:34,000000][e0827f76][DEBUG][ddb449dc][ism-agent]",
+       "pred_header": "[2026-03-01 ",
+       "format": "deploy#1"
       },
       {
-       "line": "[2026-03-01 20:08:04] [ERROR] [vbs-server] [dsware-1] [d500c147] [2cf6073b]volume task-991 changed state from active to degraded",
-       "gt_body_start": 75,
-       "pred_body_start": 65,
-       "gt_header": "[2026-03-01 20:08:04] [ERROR] [vbs-server] [dsware-1] [d500c147] [2cf6073b]",
-       "pred_header": "[2026-03-01 20:08:04] [ERROR] [vbs-server] [dsware-1] [d500c147] ",
-       "format": "deploy#0"
+       "line": "[01/Mar/2026:12:18:26 ][NOTICE]start to sync volume data, total 84072 chunks",
+       "gt_body_start": 31,
+       "pred_body_start": 22,
+       "gt_header": "[01/Mar/2026:12:18:26 ][NOTICE]",
+       "pred_header": "[01/Mar/2026:12:18:26 ",
+       "format": "deploy#12"
       },
       {
-       "line": "[2026-03-01 16:34:45.000000] [WARN] [scheduler] [dsware-2] [9e719a56] [5ca59057]init module quota.db begin, worker threads 28740",
-       "gt_body_start": 80,
-       "pred_body_start": 70,
-       "gt_header": "[2026-03-01 16:34:45.000000] [WARN] [scheduler] [dsware-2] [9e719a56] [5ca59057]",
-       "pred_header": "[2026-03-01 16:34:45.000000] [WARN] [scheduler] [dsware-2] [9e719a56] ",
-       "format": "deploy#0"
+       "line": "[2026-03-01 10:35:51:000000][INFO]process request op=task-991 done in 29912 ms",
+       "gt_body_start": 34,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 10:35:51:000000][INFO]",
+       "pred_header": "[2026-03-01 ",
+       "format": "deploy#12"
       },
       {
-       "line": "[02/Mar/2026:02:45:51 ] [NOTICE] [msg-handler] [dsware-3] [4a90cd0c] [6de299a1]start to sync volume data, total 80584 chunks",
-       "gt_body_start": 79,
-       "pred_body_start": 58,
-       "gt_header": "[02/Mar/2026:02:45:51 ] [NOTICE] [msg-handler] [dsware-3] [4a90cd0c] [6de299a1]",
-       "pred_header": "[02/Mar/2026:02:45:51 ] [NOTICE] [msg-handler] [dsware-3] ",
-       "format": "deploy#0"
-      },
-      {
-       "line": "[2026-03-01 19:25:16,000000] [DEBUG] [dme-server] [dsware-7] [b0c4a01c] [34323ec6]task quota.db submitted by user admin, priority 80147",
-       "gt_body_start": 82,
-       "pred_body_start": 72,
-       "gt_header": "[2026-03-01 19:25:16,000000] [DEBUG] [dme-server] [dsware-7] [b0c4a01c] [34323ec6]",
-       "pred_header": "[2026-03-01 19:25:16,000000] [DEBUG] [dme-server] [dsware-7] [b0c4a01c] ",
-       "format": "deploy#0"
+       "line": "[2026-03-01 08:12:33.000000]certificate will expire in 64679 days, renew required",
+       "gt_body_start": 28,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 08:12:33.000000]",
+       "pred_header": "[2026-03-01 ",
+       "format": "deploy#15"
       }
      ],
      "abstain": [
@@ -7519,14 +7301,6 @@
        "format": "deploy#7"
       },
       {
-       "line": "[2026-03-01 22:38:47,000000]^10.42.78.72^-^failed to read block blk_143a4f560ed5, retry 67017 times",
-       "gt_body_start": 43,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-01 22:38:47,000000]^10.42.78.72^-^",
-       "pred_header": "",
-       "format": "deploy#13"
-      },
-      {
        "line": "[2026-03-01 08:15:46:000000][NOTICE][osd-daemon] volume snap-7c changed state from active to degraded",
        "gt_body_start": 49,
        "pred_body_start": 0,
@@ -7541,22 +7315,6 @@
        "gt_header": "[2026-03-01 10:16:01,000000] ",
        "pred_header": "",
        "format": "deploy#14"
-      },
-      {
-       "line": "[2026-03-02 00:11:53,000000 ][ERROR]thread pool exhausted, active=68280 queued=59020 max=54262",
-       "gt_body_start": 36,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 00:11:53,000000 ][ERROR]",
-       "pred_header": "",
-       "format": "deploy#12"
-      },
-      {
-       "line": "[2026-03-02 03:58:59:000000][761579e7][NOTICE][12b99a50][ism-agent]failed to read block blk_1923402d105b, retry 25875 times",
-       "gt_body_start": 67,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 03:58:59:000000][761579e7][NOTICE][12b99a50][ism-agent]",
-       "pred_header": "",
-       "format": "deploy#1"
       },
       {
        "line": "[2026-03-01 16:26:08,000000] write 18837 bytes to /data/dsware/quota.db/chunk.dat",
@@ -7581,6 +7339,30 @@
        "gt_header": "02/Mar/2026:04:01:42  : [540] [DEBUG] ",
        "pred_header": "",
        "format": "deploy#5"
+      },
+      {
+       "line": "[02/Mar/2026:07:43:46 ][NOTICE][ism-agent][6919][b189727f]alarm cleared: disk usage back to 89 percent",
+       "gt_body_start": 58,
+       "pred_body_start": 0,
+       "gt_header": "[02/Mar/2026:07:43:46 ][NOTICE][ism-agent][6919][b189727f]",
+       "pred_header": "",
+       "format": "deploy#2"
+      },
+      {
+       "line": "[2026-03-01 21:25:54] volume task-991 changed state from active to degraded",
+       "gt_body_start": 22,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 21:25:54] ",
+       "pred_header": "",
+       "format": "deploy#14"
+      },
+      {
+       "line": "[01/Mar/2026:19:34:57 ][DEBUG]cache entry 6f6861ae3f21 evicted, free slots 71449",
+       "gt_body_start": 30,
+       "pred_body_start": 0,
+       "gt_header": "[01/Mar/2026:19:34:57 ][DEBUG]",
+       "pred_header": "",
+       "format": "deploy#12"
       }
      ]
     },
@@ -7802,15 +7584,15 @@
     "counts": {
      "correct": 466,
      "over_strip": 35,
-     "under_strip": 41,
-     "abstain": 158
+     "under_strip": 100,
+     "abstain": 99
     },
     "boundary_accuracy": 0.6657,
     "over_strip_rate": 0.05,
-    "under_strip_rate": 0.0586,
-    "abstain_rate": 0.2257,
-    "auto_strip_coverage": 0.7743,
-    "accepted_boundary_accuracy": 0.8598,
+    "under_strip_rate": 0.1429,
+    "abstain_rate": 0.1414,
+    "auto_strip_coverage": 0.8586,
+    "accepted_boundary_accuracy": 0.7754,
     "body_integrity_char": 0.9923,
     "body_integrity_line": 0.95,
     "examples": {
@@ -7898,12 +7680,68 @@
      ],
      "under_strip": [
       {
+       "line": "[2026-03-02 06:41:43,000000]receive heartbeat from node-8044, load 19 percent",
+       "gt_body_start": 28,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 06:41:43,000000]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsm#6"
+      },
+      {
        "line": "[2026-03-01 15:55:13] [NOTICE] [ha-monitor] [vbs-server] - checkpoint finished, elapsed 3852 seconds",
        "gt_body_start": 59,
        "pred_body_start": 57,
        "gt_header": "[2026-03-01 15:55:13] [NOTICE] [ha-monitor] [vbs-server] - ",
        "pred_header": "[2026-03-01 15:55:13] [NOTICE] [ha-monitor] [vbs-server] ",
        "format": "fsm#1"
+      },
+      {
+       "line": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]metadata journal truncated at offset e558fe6faf3e",
+       "gt_body_start": 81,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]metadata journal truncated at offset d08e3cd48141",
+       "gt_body_start": 80,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]send audit event to kafka topic dsware-audit, seq=907e1713054b",
+       "gt_body_start": 88,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]",
+       "pred_header": "[2026-03-01 ",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]failed to read block blk_106d89439a8e, retry 56407 times",
+       "gt_body_start": 80,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-02 05:38:16,000000]certificate will expire in 51188 days, renew required",
+       "gt_body_start": 28,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 05:38:16,000000]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsm#6"
+      },
+      {
+       "line": "[2026-03-01 19:39:15][6a7e1471][WARN][ec8b493c][ism-agent][e4c8c49b][95214102]rpc call GetVolumeInfo returned code 90891, msg success",
+       "gt_body_start": 78,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 19:39:15][6a7e1471][WARN][ec8b493c][ism-agent][e4c8c49b][95214102]",
+       "pred_header": "[2026-03-01 ",
+       "format": "fsa#0"
       },
       {
        "line": "[2026-03-01 15:30:37] [ERROR] [osd-daemon] [dme-server] - failed to read block blk_9c27ea6413f, retry 6292 times",
@@ -7914,68 +7752,12 @@
        "format": "fsm#1"
       },
       {
-       "line": "[2026-03-02 06:32:13.000000] [INFO] [dme-server] [rep-worker] - start to sync volume data, total 86958 chunks",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-02 06:32:13.000000] [INFO] [dme-server] [rep-worker] - ",
-       "pred_header": "[2026-03-02 06:32:13.000000] [INFO] [dme-server] [rep-worker] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 11:02:38] [ERROR] [rep-worker] [vbs-server] - start to sync volume data, total 88571 chunks",
-       "gt_body_start": 58,
-       "pred_body_start": 56,
-       "gt_header": "[2026-03-01 11:02:38] [ERROR] [rep-worker] [vbs-server] - ",
-       "pred_header": "[2026-03-01 11:02:38] [ERROR] [rep-worker] [vbs-server] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 15:54:12.000000] [ERROR] [osd-daemon] [sync-task] - update config key task-991 to value 15640",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-01 15:54:12.000000] [ERROR] [osd-daemon] [sync-task] - ",
-       "pred_header": "[2026-03-01 15:54:12.000000] [ERROR] [osd-daemon] [sync-task] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 14:33:14.000000] [DEBUG] [osd-daemon] [ism-agent] - thread pool exhausted, active=62835 queued=49205 max=33630",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-01 14:33:14.000000] [DEBUG] [osd-daemon] [ism-agent] - ",
-       "pred_header": "[2026-03-01 14:33:14.000000] [DEBUG] [osd-daemon] [ism-agent] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 15:19:37.000000] [WARN] [vbs-server] [dme-server] - send audit event to kafka topic dsware-audit, seq=f95bcf494842",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-01 15:19:37.000000] [WARN] [vbs-server] [dme-server] - ",
-       "pred_header": "[2026-03-01 15:19:37.000000] [WARN] [vbs-server] [dme-server] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 18:34:56] [DEBUG] [ha-monitor] [dme-server] - received message from 10.77926.83649.89407:92802, dispatch to handler",
-       "gt_body_start": 58,
-       "pred_body_start": 56,
-       "gt_header": "[2026-03-01 18:34:56] [DEBUG] [ha-monitor] [dme-server] - ",
-       "pred_header": "[2026-03-01 18:34:56] [DEBUG] [ha-monitor] [dme-server] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 22:33:04] [DEBUG] [sync-task] [msg-handler] - task snap-7c submitted by user admin, priority 97653",
-       "gt_body_start": 58,
-       "pred_body_start": 56,
-       "gt_header": "[2026-03-01 22:33:04] [DEBUG] [sync-task] [msg-handler] - ",
-       "pred_header": "[2026-03-01 22:33:04] [DEBUG] [sync-task] [msg-handler] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-02 03:16:38.000000] [ERROR] [ism-agent] [rep-worker] - process request op=vol-3f2a done in 51381 ms",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-02 03:16:38.000000] [ERROR] [ism-agent] [rep-worker] - ",
-       "pred_header": "[2026-03-02 03:16:38.000000] [ERROR] [ism-agent] [rep-worker] ",
-       "format": "fsm#1"
+       "line": "[2026-03-02 02:53:23][6b6f33cc][NOTICE][f905096b][main-worker][25ca146d][9824df62]received message from 10.24085.79948.75365:65786, dispatch to handler",
+       "gt_body_start": 82,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 02:53:23][6b6f33cc][NOTICE][f905096b][main-worker][25ca146d][9824df62]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsa#0"
       }
      ],
      "abstain": [
@@ -7984,14 +7766,6 @@
        "gt_body_start": 21,
        "pred_body_start": 0,
        "gt_header": "[2026-03-02 02:42:42]",
-       "pred_header": "",
-       "format": "fsm#6"
-      },
-      {
-       "line": "[2026-03-02 06:41:43,000000]receive heartbeat from node-8044, load 19 percent",
-       "gt_body_start": 28,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 06:41:43,000000]",
        "pred_header": "",
        "format": "fsm#6"
       },
@@ -8012,22 +7786,6 @@
        "format": "fsa#2"
       },
       {
-       "line": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]metadata journal truncated at offset e558fe6faf3e",
-       "gt_body_start": 81,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]",
-       "pred_header": "",
-       "format": "fsa#0"
-      },
-      {
-       "line": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]metadata journal truncated at offset d08e3cd48141",
-       "gt_body_start": 80,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]",
-       "pred_header": "",
-       "format": "fsa#0"
-      },
-      {
        "line": "[2026-03-01 15:18:17:000000][2c0301ce][WARN][53d8d0cb][scheduler][e8cccc94][e27c5b64]cache entry d84ccfeed15f evicted, free slots 17745",
        "gt_body_start": 85,
        "pred_body_start": 0,
@@ -8036,28 +7794,52 @@
        "format": "fsa#0"
       },
       {
-       "line": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]send audit event to kafka topic dsware-audit, seq=907e1713054b",
-       "gt_body_start": 88,
+       "line": "[2026-03-02 06:58:30.000000][1f7c5a48][INFO][d01f54d9][ism-agent][c4a70a91][ea8cf797]task quota.db submitted by user admin, priority 69466",
+       "gt_body_start": 85,
        "pred_body_start": 0,
-       "gt_header": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]",
+       "gt_header": "[2026-03-02 06:58:30.000000][1f7c5a48][INFO][d01f54d9][ism-agent][c4a70a91][ea8cf797]",
        "pred_header": "",
        "format": "fsa#0"
       },
       {
-       "line": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]failed to read block blk_106d89439a8e, retry 56407 times",
-       "gt_body_start": 80,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]",
-       "pred_header": "",
-       "format": "fsa#0"
-      },
-      {
-       "line": "[2026-03-02 05:38:16,000000]certificate will expire in 51188 days, renew required",
+       "line": "[2026-03-02 02:27:04.000000]alarm cleared: disk usage back to 17 percent",
        "gt_body_start": 28,
        "pred_body_start": 0,
-       "gt_header": "[2026-03-02 05:38:16,000000]",
+       "gt_header": "[2026-03-02 02:27:04.000000]",
        "pred_header": "",
        "format": "fsm#6"
+      },
+      {
+       "line": "[2026-03-01 17:09:13.000000][7fcaec67][DEBUG][a9414b59][vbs-server][04f4df16][5369c3be]update config key snap-7c to value 49014",
+       "gt_body_start": 87,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 17:09:13.000000][7fcaec67][DEBUG][a9414b59][vbs-server][04f4df16][5369c3be]",
+       "pred_header": "",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-01 22:16:10:000000][2cd49ce9][ERROR] [fdfcf552][dme-server]alarm cleared: disk usage back to 45 percent",
+       "gt_body_start": 68,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 22:16:10:000000][2cd49ce9][ERROR] [fdfcf552][dme-server]",
+       "pred_header": "",
+       "format": "fsa#2"
+      },
+      {
+       "line": "[2026-03-02 06:38:31.000000][ERROR][ha-monitor] checkpoint finished, elapsed 77219 seconds",
+       "gt_body_start": 48,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-02 06:38:31.000000][ERROR][ha-monitor] ",
+       "pred_header": "",
+       "format": "fsm#5"
+      },
+      {
+       "line": "[2026-03-01 23:40:10,000000][WARN][scheduler] update config key vol-3f2a to value 48842",
+       "gt_body_start": 46,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 23:40:10,000000][WARN][scheduler] ",
+       "pred_header": "",
+       "format": "fsa#5"
       }
      ]
     },
@@ -8071,15 +7853,15 @@
     "counts": {
      "correct": 466,
      "over_strip": 35,
-     "under_strip": 41,
-     "abstain": 158
+     "under_strip": 100,
+     "abstain": 99
     },
     "boundary_accuracy": 0.6657,
     "over_strip_rate": 0.05,
-    "under_strip_rate": 0.0586,
-    "abstain_rate": 0.2257,
-    "auto_strip_coverage": 0.7743,
-    "accepted_boundary_accuracy": 0.8598,
+    "under_strip_rate": 0.1429,
+    "abstain_rate": 0.1414,
+    "auto_strip_coverage": 0.8586,
+    "accepted_boundary_accuracy": 0.7754,
     "body_integrity_char": 0.9923,
     "body_integrity_line": 0.95,
     "examples": {
@@ -8167,12 +7949,68 @@
      ],
      "under_strip": [
       {
+       "line": "[2026-03-02 06:41:43,000000]receive heartbeat from node-8044, load 19 percent",
+       "gt_body_start": 28,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 06:41:43,000000]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsm#6"
+      },
+      {
        "line": "[2026-03-01 15:55:13] [NOTICE] [ha-monitor] [vbs-server] - checkpoint finished, elapsed 3852 seconds",
        "gt_body_start": 59,
        "pred_body_start": 57,
        "gt_header": "[2026-03-01 15:55:13] [NOTICE] [ha-monitor] [vbs-server] - ",
        "pred_header": "[2026-03-01 15:55:13] [NOTICE] [ha-monitor] [vbs-server] ",
        "format": "fsm#1"
+      },
+      {
+       "line": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]metadata journal truncated at offset e558fe6faf3e",
+       "gt_body_start": 81,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]metadata journal truncated at offset d08e3cd48141",
+       "gt_body_start": 80,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]send audit event to kafka topic dsware-audit, seq=907e1713054b",
+       "gt_body_start": 88,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]",
+       "pred_header": "[2026-03-01 ",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]failed to read block blk_106d89439a8e, retry 56407 times",
+       "gt_body_start": 80,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-02 05:38:16,000000]certificate will expire in 51188 days, renew required",
+       "gt_body_start": 28,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 05:38:16,000000]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsm#6"
+      },
+      {
+       "line": "[2026-03-01 19:39:15][6a7e1471][WARN][ec8b493c][ism-agent][e4c8c49b][95214102]rpc call GetVolumeInfo returned code 90891, msg success",
+       "gt_body_start": 78,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-01 19:39:15][6a7e1471][WARN][ec8b493c][ism-agent][e4c8c49b][95214102]",
+       "pred_header": "[2026-03-01 ",
+       "format": "fsa#0"
       },
       {
        "line": "[2026-03-01 15:30:37] [ERROR] [osd-daemon] [dme-server] - failed to read block blk_9c27ea6413f, retry 6292 times",
@@ -8183,68 +8021,12 @@
        "format": "fsm#1"
       },
       {
-       "line": "[2026-03-02 06:32:13.000000] [INFO] [dme-server] [rep-worker] - start to sync volume data, total 86958 chunks",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-02 06:32:13.000000] [INFO] [dme-server] [rep-worker] - ",
-       "pred_header": "[2026-03-02 06:32:13.000000] [INFO] [dme-server] [rep-worker] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 11:02:38] [ERROR] [rep-worker] [vbs-server] - start to sync volume data, total 88571 chunks",
-       "gt_body_start": 58,
-       "pred_body_start": 56,
-       "gt_header": "[2026-03-01 11:02:38] [ERROR] [rep-worker] [vbs-server] - ",
-       "pred_header": "[2026-03-01 11:02:38] [ERROR] [rep-worker] [vbs-server] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 15:54:12.000000] [ERROR] [osd-daemon] [sync-task] - update config key task-991 to value 15640",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-01 15:54:12.000000] [ERROR] [osd-daemon] [sync-task] - ",
-       "pred_header": "[2026-03-01 15:54:12.000000] [ERROR] [osd-daemon] [sync-task] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 14:33:14.000000] [DEBUG] [osd-daemon] [ism-agent] - thread pool exhausted, active=62835 queued=49205 max=33630",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-01 14:33:14.000000] [DEBUG] [osd-daemon] [ism-agent] - ",
-       "pred_header": "[2026-03-01 14:33:14.000000] [DEBUG] [osd-daemon] [ism-agent] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 15:19:37.000000] [WARN] [vbs-server] [dme-server] - send audit event to kafka topic dsware-audit, seq=f95bcf494842",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-01 15:19:37.000000] [WARN] [vbs-server] [dme-server] - ",
-       "pred_header": "[2026-03-01 15:19:37.000000] [WARN] [vbs-server] [dme-server] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 18:34:56] [DEBUG] [ha-monitor] [dme-server] - received message from 10.77926.83649.89407:92802, dispatch to handler",
-       "gt_body_start": 58,
-       "pred_body_start": 56,
-       "gt_header": "[2026-03-01 18:34:56] [DEBUG] [ha-monitor] [dme-server] - ",
-       "pred_header": "[2026-03-01 18:34:56] [DEBUG] [ha-monitor] [dme-server] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-01 22:33:04] [DEBUG] [sync-task] [msg-handler] - task snap-7c submitted by user admin, priority 97653",
-       "gt_body_start": 58,
-       "pred_body_start": 56,
-       "gt_header": "[2026-03-01 22:33:04] [DEBUG] [sync-task] [msg-handler] - ",
-       "pred_header": "[2026-03-01 22:33:04] [DEBUG] [sync-task] [msg-handler] ",
-       "format": "fsm#1"
-      },
-      {
-       "line": "[2026-03-02 03:16:38.000000] [ERROR] [ism-agent] [rep-worker] - process request op=vol-3f2a done in 51381 ms",
-       "gt_body_start": 64,
-       "pred_body_start": 62,
-       "gt_header": "[2026-03-02 03:16:38.000000] [ERROR] [ism-agent] [rep-worker] - ",
-       "pred_header": "[2026-03-02 03:16:38.000000] [ERROR] [ism-agent] [rep-worker] ",
-       "format": "fsm#1"
+       "line": "[2026-03-02 02:53:23][6b6f33cc][NOTICE][f905096b][main-worker][25ca146d][9824df62]received message from 10.24085.79948.75365:65786, dispatch to handler",
+       "gt_body_start": 82,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 02:53:23][6b6f33cc][NOTICE][f905096b][main-worker][25ca146d][9824df62]",
+       "pred_header": "[2026-03-02 ",
+       "format": "fsa#0"
       }
      ],
      "abstain": [
@@ -8253,14 +8035,6 @@
        "gt_body_start": 21,
        "pred_body_start": 0,
        "gt_header": "[2026-03-02 02:42:42]",
-       "pred_header": "",
-       "format": "fsm#6"
-      },
-      {
-       "line": "[2026-03-02 06:41:43,000000]receive heartbeat from node-8044, load 19 percent",
-       "gt_body_start": 28,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 06:41:43,000000]",
        "pred_header": "",
        "format": "fsm#6"
       },
@@ -8281,22 +8055,6 @@
        "format": "fsa#2"
       },
       {
-       "line": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]metadata journal truncated at offset e558fe6faf3e",
-       "gt_body_start": 81,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 00:24:58][64ddd057][NOTICE][6d7a7048][dme-server][c383acfc][8c880ca5]",
-       "pred_header": "",
-       "format": "fsa#0"
-      },
-      {
-       "line": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]metadata journal truncated at offset d08e3cd48141",
-       "gt_body_start": 80,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 03:58:37][7479e9ce][ERROR][7908d310][osd-daemon][597b0e50][93dba5e7]",
-       "pred_header": "",
-       "format": "fsa#0"
-      },
-      {
        "line": "[2026-03-01 15:18:17:000000][2c0301ce][WARN][53d8d0cb][scheduler][e8cccc94][e27c5b64]cache entry d84ccfeed15f evicted, free slots 17745",
        "gt_body_start": 85,
        "pred_body_start": 0,
@@ -8305,28 +8063,52 @@
        "format": "fsa#0"
       },
       {
-       "line": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]send audit event to kafka topic dsware-audit, seq=907e1713054b",
-       "gt_body_start": 88,
+       "line": "[2026-03-02 06:58:30.000000][1f7c5a48][INFO][d01f54d9][ism-agent][c4a70a91][ea8cf797]task quota.db submitted by user admin, priority 69466",
+       "gt_body_start": 85,
        "pred_body_start": 0,
-       "gt_header": "[2026-03-01 21:09:48.000000][061d5281][ERROR][2620c9e3][main-worker][e6bae922][0992d9fc]",
+       "gt_header": "[2026-03-02 06:58:30.000000][1f7c5a48][INFO][d01f54d9][ism-agent][c4a70a91][ea8cf797]",
        "pred_header": "",
        "format": "fsa#0"
       },
       {
-       "line": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]failed to read block blk_106d89439a8e, retry 56407 times",
-       "gt_body_start": 80,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 01:15:39][a8aac3b4][WARN][afa6f83d][main-worker][c291b1ee][784eb293]",
-       "pred_header": "",
-       "format": "fsa#0"
-      },
-      {
-       "line": "[2026-03-02 05:38:16,000000]certificate will expire in 51188 days, renew required",
+       "line": "[2026-03-02 02:27:04.000000]alarm cleared: disk usage back to 17 percent",
        "gt_body_start": 28,
        "pred_body_start": 0,
-       "gt_header": "[2026-03-02 05:38:16,000000]",
+       "gt_header": "[2026-03-02 02:27:04.000000]",
        "pred_header": "",
        "format": "fsm#6"
+      },
+      {
+       "line": "[2026-03-01 17:09:13.000000][7fcaec67][DEBUG][a9414b59][vbs-server][04f4df16][5369c3be]update config key snap-7c to value 49014",
+       "gt_body_start": 87,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 17:09:13.000000][7fcaec67][DEBUG][a9414b59][vbs-server][04f4df16][5369c3be]",
+       "pred_header": "",
+       "format": "fsa#0"
+      },
+      {
+       "line": "[2026-03-01 22:16:10:000000][2cd49ce9][ERROR] [fdfcf552][dme-server]alarm cleared: disk usage back to 45 percent",
+       "gt_body_start": 68,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 22:16:10:000000][2cd49ce9][ERROR] [fdfcf552][dme-server]",
+       "pred_header": "",
+       "format": "fsa#2"
+      },
+      {
+       "line": "[2026-03-02 06:38:31.000000][ERROR][ha-monitor] checkpoint finished, elapsed 77219 seconds",
+       "gt_body_start": 48,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-02 06:38:31.000000][ERROR][ha-monitor] ",
+       "pred_header": "",
+       "format": "fsm#5"
+      },
+      {
+       "line": "[2026-03-01 23:40:10,000000][WARN][scheduler] update config key vol-3f2a to value 48842",
+       "gt_body_start": 46,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 23:40:10,000000][WARN][scheduler] ",
+       "pred_header": "",
+       "format": "fsa#5"
       }
      ]
     },
@@ -9294,102 +9076,102 @@
     "counts": {
      "correct": 0,
      "over_strip": 0,
-     "under_strip": 0,
-     "abstain": 700
+     "under_strip": 700,
+     "abstain": 0
     },
     "boundary_accuracy": 0.0,
     "over_strip_rate": 0.0,
-    "under_strip_rate": 0.0,
-    "abstain_rate": 1.0,
-    "auto_strip_coverage": 0.0,
-    "accepted_boundary_accuracy": null,
+    "under_strip_rate": 1.0,
+    "abstain_rate": 0.0,
+    "auto_strip_coverage": 1.0,
+    "accepted_boundary_accuracy": 0.0,
     "body_integrity_char": 1.0,
     "body_integrity_line": 1.0,
     "examples": {
      "over_strip": [],
-     "under_strip": [],
-     "abstain": [
+     "under_strip": [
       {
        "line": "[2026-03-01 21:23:45][d5b2cf12][01e70378][DEBUG][send audit event to kafka topic dsware-audit, seq=486f9636884][TaskScheduler][net_srv.cpp:2163][pid:11867,tid:32380]",
        "gt_body_start": 48,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 21:23:45][d5b2cf12][01e70378][DEBUG]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#2"
       },
       {
        "line": "[2026-03-02 01:23:09.000000][INFO][alarm cleared: disk usage back to 29 percent][NameNode][net_srv.cpp:2459][pid:47109,tid:55081]",
        "gt_body_start": 34,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-02 01:23:09.000000][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-02 ",
        "format": "Messages#4"
       },
       {
        "line": "[2026-03-02 05:42:05.000000][10a0fe38][077a965a][3db05489][b9a707ce][INFO][init module snap-7c begin, worker threads 49074][NetServer][net_srv.cpp:1410][pid:31379,tid:25800]",
        "gt_body_start": 74,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-02 05:42:05.000000][10a0fe38][077a965a][3db05489][b9a707ce][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-02 ",
        "format": "Messages#0"
       },
       {
        "line": "[2026-03-01 12:13:38.000000][3e501ff4][02973335][6a291f79][48e2cede][ERROR][cache entry e37abb52be63 evicted, free slots 58954][ClusterMgr][net_srv.cpp:2483][pid:34685,tid:32005]",
        "gt_body_start": 75,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 12:13:38.000000][3e501ff4][02973335][6a291f79][48e2cede][ERROR]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#0"
       },
       {
        "line": "[2026-03-02 01:05:30][faf999dd][964e1f14][ff5e3665][9535490b][DEBUG][cache entry a85bdc77823c evicted, free slots 63596][HeartbeatMgr][volume_mgr.cpp:639][pid:52956,tid:32383]",
        "gt_body_start": 68,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-02 01:05:30][faf999dd][964e1f14][ff5e3665][9535490b][DEBUG]",
-       "pred_header": "",
+       "pred_header": "[2026-03-02 ",
        "format": "Messages#0"
       },
       {
        "line": "[2026-03-01 16:47:48.000000][b4b306e9][c95a1d10][364972f2][e7ac2ddc][NOTICE][write 24152 bytes to /data/dsware/snap-7c/chunk.dat][HeartbeatMgr][net_srv.cpp:689][pid:17747,tid:46338]",
        "gt_body_start": 76,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 16:47:48.000000][b4b306e9][c95a1d10][364972f2][e7ac2ddc][NOTICE]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#0"
       },
       {
        "line": "[2026-03-01 22:54:32][c7e9d1a7][ec1f72a3][INFO][disk 91182 smart health status ok, temperature 91454 celsius][NameNode][net_srv.cpp:2571][pid:15740,tid:35676]",
        "gt_body_start": 47,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 22:54:32][c7e9d1a7][ec1f72a3][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#2"
       },
       {
        "line": "[2026-03-01 12:05:35][0b6e87ca][630b012f][9c491f39][INFO][write 22345 bytes to /data/dsware/snap-7c/chunk.dat][ClusterMgr][volume_mgr.cpp:2151][pid:13785,tid:13859]",
        "gt_body_start": 57,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 12:05:35][0b6e87ca][630b012f][9c491f39][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#1"
       },
       {
        "line": "[2026-03-02 00:20:14.000000][c9bd4d42][108ecdcf][INFO][failed to read block blk_b4ae5200a61a, retry 52367 times][AuthModule][volume_mgr.cpp:941][pid:58915,tid:25859]",
        "gt_body_start": 54,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-02 00:20:14.000000][c9bd4d42][108ecdcf][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-02 ",
        "format": "Messages#2"
       },
       {
        "line": "[2026-03-01 17:55:55][69a5f944][3694e9d4][24cf8147][INFO][process request op=vol-3f2a done in 24913 ms][NameNode][msg_handler.cpp:2319][pid:14061,tid:41038]",
        "gt_body_start": 57,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 17:55:55][69a5f944][3694e9d4][24cf8147][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#1"
       }
-     ]
+     ],
+     "abstain": []
     },
     "_diag": {
      "n_leaves": 300,
@@ -9401,102 +9183,102 @@
     "counts": {
      "correct": 0,
      "over_strip": 0,
-     "under_strip": 0,
-     "abstain": 700
+     "under_strip": 700,
+     "abstain": 0
     },
     "boundary_accuracy": 0.0,
     "over_strip_rate": 0.0,
-    "under_strip_rate": 0.0,
-    "abstain_rate": 1.0,
-    "auto_strip_coverage": 0.0,
-    "accepted_boundary_accuracy": null,
+    "under_strip_rate": 1.0,
+    "abstain_rate": 0.0,
+    "auto_strip_coverage": 1.0,
+    "accepted_boundary_accuracy": 0.0,
     "body_integrity_char": 1.0,
     "body_integrity_line": 1.0,
     "examples": {
      "over_strip": [],
-     "under_strip": [],
-     "abstain": [
+     "under_strip": [
       {
        "line": "[2026-03-01 21:23:45][d5b2cf12][01e70378][DEBUG][send audit event to kafka topic dsware-audit, seq=486f9636884][TaskScheduler][net_srv.cpp:2163][pid:11867,tid:32380]",
        "gt_body_start": 48,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 21:23:45][d5b2cf12][01e70378][DEBUG]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#2"
       },
       {
        "line": "[2026-03-02 01:23:09.000000][INFO][alarm cleared: disk usage back to 29 percent][NameNode][net_srv.cpp:2459][pid:47109,tid:55081]",
        "gt_body_start": 34,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-02 01:23:09.000000][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-02 ",
        "format": "Messages#4"
       },
       {
        "line": "[2026-03-02 05:42:05.000000][10a0fe38][077a965a][3db05489][b9a707ce][INFO][init module snap-7c begin, worker threads 49074][NetServer][net_srv.cpp:1410][pid:31379,tid:25800]",
        "gt_body_start": 74,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-02 05:42:05.000000][10a0fe38][077a965a][3db05489][b9a707ce][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-02 ",
        "format": "Messages#0"
       },
       {
        "line": "[2026-03-01 12:13:38.000000][3e501ff4][02973335][6a291f79][48e2cede][ERROR][cache entry e37abb52be63 evicted, free slots 58954][ClusterMgr][net_srv.cpp:2483][pid:34685,tid:32005]",
        "gt_body_start": 75,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 12:13:38.000000][3e501ff4][02973335][6a291f79][48e2cede][ERROR]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#0"
       },
       {
        "line": "[2026-03-02 01:05:30][faf999dd][964e1f14][ff5e3665][9535490b][DEBUG][cache entry a85bdc77823c evicted, free slots 63596][HeartbeatMgr][volume_mgr.cpp:639][pid:52956,tid:32383]",
        "gt_body_start": 68,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-02 01:05:30][faf999dd][964e1f14][ff5e3665][9535490b][DEBUG]",
-       "pred_header": "",
+       "pred_header": "[2026-03-02 ",
        "format": "Messages#0"
       },
       {
        "line": "[2026-03-01 16:47:48.000000][b4b306e9][c95a1d10][364972f2][e7ac2ddc][NOTICE][write 24152 bytes to /data/dsware/snap-7c/chunk.dat][HeartbeatMgr][net_srv.cpp:689][pid:17747,tid:46338]",
        "gt_body_start": 76,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 16:47:48.000000][b4b306e9][c95a1d10][364972f2][e7ac2ddc][NOTICE]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#0"
       },
       {
        "line": "[2026-03-01 22:54:32][c7e9d1a7][ec1f72a3][INFO][disk 91182 smart health status ok, temperature 91454 celsius][NameNode][net_srv.cpp:2571][pid:15740,tid:35676]",
        "gt_body_start": 47,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 22:54:32][c7e9d1a7][ec1f72a3][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#2"
       },
       {
        "line": "[2026-03-01 12:05:35][0b6e87ca][630b012f][9c491f39][INFO][write 22345 bytes to /data/dsware/snap-7c/chunk.dat][ClusterMgr][volume_mgr.cpp:2151][pid:13785,tid:13859]",
        "gt_body_start": 57,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 12:05:35][0b6e87ca][630b012f][9c491f39][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#1"
       },
       {
        "line": "[2026-03-02 00:20:14.000000][c9bd4d42][108ecdcf][INFO][failed to read block blk_b4ae5200a61a, retry 52367 times][AuthModule][volume_mgr.cpp:941][pid:58915,tid:25859]",
        "gt_body_start": 54,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-02 00:20:14.000000][c9bd4d42][108ecdcf][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-02 ",
        "format": "Messages#2"
       },
       {
        "line": "[2026-03-01 17:55:55][69a5f944][3694e9d4][24cf8147][INFO][process request op=vol-3f2a done in 24913 ms][NameNode][msg_handler.cpp:2319][pid:14061,tid:41038]",
        "gt_body_start": 57,
-       "pred_body_start": 0,
+       "pred_body_start": 12,
        "gt_header": "[2026-03-01 17:55:55][69a5f944][3694e9d4][24cf8147][INFO]",
-       "pred_header": "",
+       "pred_header": "[2026-03-01 ",
        "format": "Messages#1"
       }
-     ]
+     ],
+     "abstain": []
     },
     "_diag": {
      "n_leaves": 300,
@@ -9974,17 +9756,17 @@
    "M3": {
     "n": 700,
     "counts": {
-     "correct": 231,
+     "correct": 321,
      "over_strip": 0,
-     "under_strip": 171,
-     "abstain": 298
+     "under_strip": 252,
+     "abstain": 127
     },
-    "boundary_accuracy": 0.33,
+    "boundary_accuracy": 0.4586,
     "over_strip_rate": 0.0,
-    "under_strip_rate": 0.2443,
-    "abstain_rate": 0.4257,
-    "auto_strip_coverage": 0.5743,
-    "accepted_boundary_accuracy": 0.5746,
+    "under_strip_rate": 0.36,
+    "abstain_rate": 0.1814,
+    "auto_strip_coverage": 0.8186,
+    "accepted_boundary_accuracy": 0.5602,
     "body_integrity_char": 1.0,
     "body_integrity_line": 1.0,
     "examples": {
@@ -9997,6 +9779,30 @@
        "gt_header": "[2026-03-01 13:04:24 CST]  [INFO] [cde9e043] [osd-daemon] ",
        "pred_header": "[2026-03-01 13:04:24 CST]  [INFO] [cde9e043] ",
        "format": "oam-console#4"
+      },
+      {
+       "line": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]connection reset by peer, socket fd=17695",
+       "gt_body_start": 67,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]",
+       "pred_header": "[2026-03-02 ",
+       "format": "oam-console#1"
+      },
+      {
+       "line": "[2026-03-02 06:37:31 ]start to sync volume data, total 9936 chunks",
+       "gt_body_start": 22,
+       "pred_body_start": 21,
+       "gt_header": "[2026-03-02 06:37:31 ]",
+       "pred_header": "[2026-03-02 06:37:31 ",
+       "format": "oam-console#10"
+      },
+      {
+       "line": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]received message from 10.926.10787.34744:43390, dispatch to handler",
+       "gt_body_start": 69,
+       "pred_body_start": 28,
+       "gt_header": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]",
+       "pred_header": "[2026-03-01 23:31:12.000000 ",
+       "format": "oam-console#1"
       },
       {
        "line": "[2026-03-01 12:01:30,000000 ]  [INFO] [a86d080f] [ha-monitor] thread pool exhausted, active=67239 queued=81277 max=24016",
@@ -10015,6 +9821,22 @@
        "format": "oam-console#3"
       },
       {
+       "line": "[2026/03/01 17:33:49]connection reset by peer, socket fd=91204",
+       "gt_body_start": 21,
+       "pred_body_start": 12,
+       "gt_header": "[2026/03/01 17:33:49]",
+       "pred_header": "[2026/03/01 ",
+       "format": "oam-console#10"
+      },
+      {
+       "line": "[01/Mar/2026:19:30:52 ][c2e96e7e][INFO][acf0995f][msg-handler]receive heartbeat from node-57684, load 36 percent",
+       "gt_body_start": 62,
+       "pred_body_start": 22,
+       "gt_header": "[01/Mar/2026:19:30:52 ][c2e96e7e][INFO][acf0995f][msg-handler]",
+       "pred_header": "[01/Mar/2026:19:30:52 ",
+       "format": "oam-console#1"
+      },
+      {
        "line": "[DEBUG] [sync-task] [33ecaae1] [b787291d] (UTC) 02/Mar/2026:02:39:13   DSWARE KMC metadata journal truncated at offset fd2f0f4b5a4f",
        "gt_body_start": 82,
        "pred_body_start": 78,
@@ -10029,46 +9851,6 @@
        "gt_header": "[2026-03-02 00:46:18,000000 ]  [NOTICE] [0518c334] [ha-monitor] ",
        "pred_header": "[2026-03-02 00:46:18,000000 ]  [NOTICE] [0518c334] ",
        "format": "oam-console#4"
-      },
-      {
-       "line": "[ERROR] [osd-daemon] [1fff4cc7] [cb894fee] (UTC) 2026-03-01 13:28:52  DSWARE KMC received message from 10.5044.61000.66112:89786, dispatch to handler",
-       "gt_body_start": 81,
-       "pred_body_start": 70,
-       "gt_header": "[ERROR] [osd-daemon] [1fff4cc7] [cb894fee] (UTC) 2026-03-01 13:28:52  DSWARE KMC ",
-       "pred_header": "[ERROR] [osd-daemon] [1fff4cc7] [cb894fee] (UTC) 2026-03-01 13:28:52  ",
-       "format": "oam-console#2"
-      },
-      {
-       "line": "[2026-03-01 13:49:48,000000 ]  [DEBUG] [83d660a6] [rep-worker] thread pool exhausted, active=61193 queued=73177 max=11562",
-       "gt_body_start": 63,
-       "pred_body_start": 50,
-       "gt_header": "[2026-03-01 13:49:48,000000 ]  [DEBUG] [83d660a6] [rep-worker] ",
-       "pred_header": "[2026-03-01 13:49:48,000000 ]  [DEBUG] [83d660a6] ",
-       "format": "oam-console#4"
-      },
-      {
-       "line": "2026-03-01 19:08:24.000000 UT----receive heartbeat from node-24217, load 62 percent",
-       "gt_body_start": 33,
-       "pred_body_start": 27,
-       "gt_header": "2026-03-01 19:08:24.000000 UT----",
-       "pred_header": "2026-03-01 19:08:24.000000 ",
-       "format": "oam-console#8"
-      },
-      {
-       "line": "[2026-03-01 19:55:43 ]  [ERROR] [96557950] [msg-handler] task vol-3f2a submitted by user admin, priority 37265",
-       "gt_body_start": 57,
-       "pred_body_start": 43,
-       "gt_header": "[2026-03-01 19:55:43 ]  [ERROR] [96557950] [msg-handler] ",
-       "pred_header": "[2026-03-01 19:55:43 ]  [ERROR] [96557950] ",
-       "format": "oam-console#4"
-      },
-      {
-       "line": "[ERROR] [ha-monitor] [5ddc04bf] [c0ddecb8] (UTC) 2026-03-02 00:36:14.000000  DSWARE KMC start to sync volume data, total 61771 chunks",
-       "gt_body_start": 88,
-       "pred_body_start": 77,
-       "gt_header": "[ERROR] [ha-monitor] [5ddc04bf] [c0ddecb8] (UTC) 2026-03-02 00:36:14.000000  DSWARE KMC ",
-       "pred_header": "[ERROR] [ha-monitor] [5ddc04bf] [c0ddecb8] (UTC) 2026-03-02 00:36:14.000000  ",
-       "format": "oam-console#2"
       }
      ],
      "abstain": [
@@ -10081,46 +9863,6 @@
        "format": "oam-console#8"
       },
       {
-       "line": "[02/Mar/2026:01:19:02 ][[NOTICE] receive heartbeat from node-47448, load 33 percent",
-       "gt_body_start": 33,
-       "pred_body_start": 0,
-       "gt_header": "[02/Mar/2026:01:19:02 ][[NOTICE] ",
-       "pred_header": "",
-       "format": "oam-console#7"
-      },
-      {
-       "line": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]connection reset by peer, socket fd=17695",
-       "gt_body_start": 67,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]",
-       "pred_header": "",
-       "format": "oam-console#1"
-      },
-      {
-       "line": "[2026-03-02 06:37:31 ]start to sync volume data, total 9936 chunks",
-       "gt_body_start": 22,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 06:37:31 ]",
-       "pred_header": "",
-       "format": "oam-console#10"
-      },
-      {
-       "line": "[2026-03-02 00:44:24.000000][[DEBUG] cache entry 77355ad2c000 evicted, free slots 45200",
-       "gt_body_start": 37,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 00:44:24.000000][[DEBUG] ",
-       "pred_header": "",
-       "format": "oam-console#7"
-      },
-      {
-       "line": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]received message from 10.926.10787.34744:43390, dispatch to handler",
-       "gt_body_start": 69,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]",
-       "pred_header": "",
-       "format": "oam-console#1"
-      },
-      {
        "line": "[2026-03-02 06:16:05.000000][dme-server][worker-6][2689][ERROR] update config key vol-3f2a to value 28511",
        "gt_body_start": 64,
        "pred_body_start": 0,
@@ -10129,28 +9871,68 @@
        "format": "oam-console#0"
       },
       {
-       "line": "[2026-03-01 14:58:59 ][[INFO] checkpoint finished, elapsed 77468 seconds",
+       "line": "2026-03-02 03:49:53.000000----checkpoint finished, elapsed 52297 seconds",
        "gt_body_start": 30,
        "pred_body_start": 0,
-       "gt_header": "[2026-03-01 14:58:59 ][[INFO] ",
+       "gt_header": "2026-03-02 03:49:53.000000----",
        "pred_header": "",
-       "format": "oam-console#7"
+       "format": "oam-console#8"
       },
       {
-       "line": "[2026/03/01 17:33:49]connection reset by peer, socket fd=91204",
-       "gt_body_start": 21,
+       "line": "01/Mar/2026:16:33:14 ----process request op=vol-3f2a done in 94818 ms",
+       "gt_body_start": 25,
        "pred_body_start": 0,
-       "gt_header": "[2026/03/01 17:33:49]",
+       "gt_header": "01/Mar/2026:16:33:14 ----",
        "pred_header": "",
-       "format": "oam-console#10"
+       "format": "oam-console#8"
       },
       {
-       "line": "[2026-03-02 05:51:11.000000 UT][ism-agent][main][8840][NOTICE] process request op=task-991 done in 47022 ms",
-       "gt_body_start": 63,
+       "line": "2026-03-01 14:37:13.000000----disk 57332 smart health status ok, temperature 52935 celsius",
+       "gt_body_start": 30,
        "pred_body_start": 0,
-       "gt_header": "[2026-03-02 05:51:11.000000 UT][ism-agent][main][8840][NOTICE] ",
+       "gt_header": "2026-03-01 14:37:13.000000----",
        "pred_header": "",
-       "format": "oam-console#0"
+       "format": "oam-console#8"
+      },
+      {
+       "line": "2026-03-01 10:12:26.000000----metadata journal truncated at offset df05b614a302",
+       "gt_body_start": 30,
+       "pred_body_start": 0,
+       "gt_header": "2026-03-01 10:12:26.000000----",
+       "pred_header": "",
+       "format": "oam-console#8"
+      },
+      {
+       "line": "2026-03-01 20:38:44 ----update config key cfg.max.io to value 84382",
+       "gt_body_start": 24,
+       "pred_body_start": 0,
+       "gt_header": "2026-03-01 20:38:44 ----",
+       "pred_header": "",
+       "format": "oam-console#8"
+      },
+      {
+       "line": "01/Mar/2026:11:29:00 ----connection reset by peer, socket fd=74815",
+       "gt_body_start": 25,
+       "pred_body_start": 0,
+       "gt_header": "01/Mar/2026:11:29:00 ----",
+       "pred_header": "",
+       "format": "oam-console#8"
+      },
+      {
+       "line": "[2026-03-01 16:49:50.000000]: volume cfg.max.io changed state from active to degraded",
+       "gt_body_start": 30,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 16:49:50.000000]: ",
+       "pred_header": "",
+       "format": "oam-console#9"
+      },
+      {
+       "line": "[01/Mar/2026:08:33:00 ]: write 73564 bytes to /data/dsware/snap-7c/chunk.dat",
+       "gt_body_start": 25,
+       "pred_body_start": 0,
+       "gt_header": "[01/Mar/2026:08:33:00 ]: ",
+       "pred_header": "",
+       "format": "oam-console#9"
       }
      ]
     },
@@ -10162,17 +9944,17 @@
    "M4": {
     "n": 700,
     "counts": {
-     "correct": 231,
+     "correct": 321,
      "over_strip": 0,
-     "under_strip": 171,
-     "abstain": 298
+     "under_strip": 252,
+     "abstain": 127
     },
-    "boundary_accuracy": 0.33,
+    "boundary_accuracy": 0.4586,
     "over_strip_rate": 0.0,
-    "under_strip_rate": 0.2443,
-    "abstain_rate": 0.4257,
-    "auto_strip_coverage": 0.5743,
-    "accepted_boundary_accuracy": 0.5746,
+    "under_strip_rate": 0.36,
+    "abstain_rate": 0.1814,
+    "auto_strip_coverage": 0.8186,
+    "accepted_boundary_accuracy": 0.5602,
     "body_integrity_char": 1.0,
     "body_integrity_line": 1.0,
     "examples": {
@@ -10185,6 +9967,30 @@
        "gt_header": "[2026-03-01 13:04:24 CST]  [INFO] [cde9e043] [osd-daemon] ",
        "pred_header": "[2026-03-01 13:04:24 CST]  [INFO] [cde9e043] ",
        "format": "oam-console#4"
+      },
+      {
+       "line": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]connection reset by peer, socket fd=17695",
+       "gt_body_start": 67,
+       "pred_body_start": 12,
+       "gt_header": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]",
+       "pred_header": "[2026-03-02 ",
+       "format": "oam-console#1"
+      },
+      {
+       "line": "[2026-03-02 06:37:31 ]start to sync volume data, total 9936 chunks",
+       "gt_body_start": 22,
+       "pred_body_start": 21,
+       "gt_header": "[2026-03-02 06:37:31 ]",
+       "pred_header": "[2026-03-02 06:37:31 ",
+       "format": "oam-console#10"
+      },
+      {
+       "line": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]received message from 10.926.10787.34744:43390, dispatch to handler",
+       "gt_body_start": 69,
+       "pred_body_start": 28,
+       "gt_header": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]",
+       "pred_header": "[2026-03-01 23:31:12.000000 ",
+       "format": "oam-console#1"
       },
       {
        "line": "[2026-03-01 12:01:30,000000 ]  [INFO] [a86d080f] [ha-monitor] thread pool exhausted, active=67239 queued=81277 max=24016",
@@ -10203,6 +10009,22 @@
        "format": "oam-console#3"
       },
       {
+       "line": "[2026/03/01 17:33:49]connection reset by peer, socket fd=91204",
+       "gt_body_start": 21,
+       "pred_body_start": 12,
+       "gt_header": "[2026/03/01 17:33:49]",
+       "pred_header": "[2026/03/01 ",
+       "format": "oam-console#10"
+      },
+      {
+       "line": "[01/Mar/2026:19:30:52 ][c2e96e7e][INFO][acf0995f][msg-handler]receive heartbeat from node-57684, load 36 percent",
+       "gt_body_start": 62,
+       "pred_body_start": 22,
+       "gt_header": "[01/Mar/2026:19:30:52 ][c2e96e7e][INFO][acf0995f][msg-handler]",
+       "pred_header": "[01/Mar/2026:19:30:52 ",
+       "format": "oam-console#1"
+      },
+      {
        "line": "[DEBUG] [sync-task] [33ecaae1] [b787291d] (UTC) 02/Mar/2026:02:39:13   DSWARE KMC metadata journal truncated at offset fd2f0f4b5a4f",
        "gt_body_start": 82,
        "pred_body_start": 78,
@@ -10217,46 +10039,6 @@
        "gt_header": "[2026-03-02 00:46:18,000000 ]  [NOTICE] [0518c334] [ha-monitor] ",
        "pred_header": "[2026-03-02 00:46:18,000000 ]  [NOTICE] [0518c334] ",
        "format": "oam-console#4"
-      },
-      {
-       "line": "[ERROR] [osd-daemon] [1fff4cc7] [cb894fee] (UTC) 2026-03-01 13:28:52  DSWARE KMC received message from 10.5044.61000.66112:89786, dispatch to handler",
-       "gt_body_start": 81,
-       "pred_body_start": 70,
-       "gt_header": "[ERROR] [osd-daemon] [1fff4cc7] [cb894fee] (UTC) 2026-03-01 13:28:52  DSWARE KMC ",
-       "pred_header": "[ERROR] [osd-daemon] [1fff4cc7] [cb894fee] (UTC) 2026-03-01 13:28:52  ",
-       "format": "oam-console#2"
-      },
-      {
-       "line": "[2026-03-01 13:49:48,000000 ]  [DEBUG] [83d660a6] [rep-worker] thread pool exhausted, active=61193 queued=73177 max=11562",
-       "gt_body_start": 63,
-       "pred_body_start": 50,
-       "gt_header": "[2026-03-01 13:49:48,000000 ]  [DEBUG] [83d660a6] [rep-worker] ",
-       "pred_header": "[2026-03-01 13:49:48,000000 ]  [DEBUG] [83d660a6] ",
-       "format": "oam-console#4"
-      },
-      {
-       "line": "2026-03-01 19:08:24.000000 UT----receive heartbeat from node-24217, load 62 percent",
-       "gt_body_start": 33,
-       "pred_body_start": 27,
-       "gt_header": "2026-03-01 19:08:24.000000 UT----",
-       "pred_header": "2026-03-01 19:08:24.000000 ",
-       "format": "oam-console#8"
-      },
-      {
-       "line": "[2026-03-01 19:55:43 ]  [ERROR] [96557950] [msg-handler] task vol-3f2a submitted by user admin, priority 37265",
-       "gt_body_start": 57,
-       "pred_body_start": 43,
-       "gt_header": "[2026-03-01 19:55:43 ]  [ERROR] [96557950] [msg-handler] ",
-       "pred_header": "[2026-03-01 19:55:43 ]  [ERROR] [96557950] ",
-       "format": "oam-console#4"
-      },
-      {
-       "line": "[ERROR] [ha-monitor] [5ddc04bf] [c0ddecb8] (UTC) 2026-03-02 00:36:14.000000  DSWARE KMC start to sync volume data, total 61771 chunks",
-       "gt_body_start": 88,
-       "pred_body_start": 77,
-       "gt_header": "[ERROR] [ha-monitor] [5ddc04bf] [c0ddecb8] (UTC) 2026-03-02 00:36:14.000000  DSWARE KMC ",
-       "pred_header": "[ERROR] [ha-monitor] [5ddc04bf] [c0ddecb8] (UTC) 2026-03-02 00:36:14.000000  ",
-       "format": "oam-console#2"
       }
      ],
      "abstain": [
@@ -10269,46 +10051,6 @@
        "format": "oam-console#8"
       },
       {
-       "line": "[02/Mar/2026:01:19:02 ][[NOTICE] receive heartbeat from node-47448, load 33 percent",
-       "gt_body_start": 33,
-       "pred_body_start": 0,
-       "gt_header": "[02/Mar/2026:01:19:02 ][[NOTICE] ",
-       "pred_header": "",
-       "format": "oam-console#7"
-      },
-      {
-       "line": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]connection reset by peer, socket fd=17695",
-       "gt_body_start": 67,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 04:49:26:000000][d6b2bf0a][DEBUG][3ab12297][osd-daemon]",
-       "pred_header": "",
-       "format": "oam-console#1"
-      },
-      {
-       "line": "[2026-03-02 06:37:31 ]start to sync volume data, total 9936 chunks",
-       "gt_body_start": 22,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 06:37:31 ]",
-       "pred_header": "",
-       "format": "oam-console#10"
-      },
-      {
-       "line": "[2026-03-02 00:44:24.000000][[DEBUG] cache entry 77355ad2c000 evicted, free slots 45200",
-       "gt_body_start": 37,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-02 00:44:24.000000][[DEBUG] ",
-       "pred_header": "",
-       "format": "oam-console#7"
-      },
-      {
-       "line": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]received message from 10.926.10787.34744:43390, dispatch to handler",
-       "gt_body_start": 69,
-       "pred_body_start": 0,
-       "gt_header": "[2026-03-01 23:31:12.000000 UT][7abea1c8][WARN][f34fe789][dme-server]",
-       "pred_header": "",
-       "format": "oam-console#1"
-      },
-      {
        "line": "[2026-03-02 06:16:05.000000][dme-server][worker-6][2689][ERROR] update config key vol-3f2a to value 28511",
        "gt_body_start": 64,
        "pred_body_start": 0,
@@ -10317,28 +10059,68 @@
        "format": "oam-console#0"
       },
       {
-       "line": "[2026-03-01 14:58:59 ][[INFO] checkpoint finished, elapsed 77468 seconds",
+       "line": "2026-03-02 03:49:53.000000----checkpoint finished, elapsed 52297 seconds",
        "gt_body_start": 30,
        "pred_body_start": 0,
-       "gt_header": "[2026-03-01 14:58:59 ][[INFO] ",
+       "gt_header": "2026-03-02 03:49:53.000000----",
        "pred_header": "",
-       "format": "oam-console#7"
+       "format": "oam-console#8"
       },
       {
-       "line": "[2026/03/01 17:33:49]connection reset by peer, socket fd=91204",
-       "gt_body_start": 21,
+       "line": "01/Mar/2026:16:33:14 ----process request op=vol-3f2a done in 94818 ms",
+       "gt_body_start": 25,
        "pred_body_start": 0,
-       "gt_header": "[2026/03/01 17:33:49]",
+       "gt_header": "01/Mar/2026:16:33:14 ----",
        "pred_header": "",
-       "format": "oam-console#10"
+       "format": "oam-console#8"
       },
       {
-       "line": "[2026-03-02 05:51:11.000000 UT][ism-agent][main][8840][NOTICE] process request op=task-991 done in 47022 ms",
-       "gt_body_start": 63,
+       "line": "2026-03-01 14:37:13.000000----disk 57332 smart health status ok, temperature 52935 celsius",
+       "gt_body_start": 30,
        "pred_body_start": 0,
-       "gt_header": "[2026-03-02 05:51:11.000000 UT][ism-agent][main][8840][NOTICE] ",
+       "gt_header": "2026-03-01 14:37:13.000000----",
        "pred_header": "",
-       "format": "oam-console#0"
+       "format": "oam-console#8"
+      },
+      {
+       "line": "2026-03-01 10:12:26.000000----metadata journal truncated at offset df05b614a302",
+       "gt_body_start": 30,
+       "pred_body_start": 0,
+       "gt_header": "2026-03-01 10:12:26.000000----",
+       "pred_header": "",
+       "format": "oam-console#8"
+      },
+      {
+       "line": "2026-03-01 20:38:44 ----update config key cfg.max.io to value 84382",
+       "gt_body_start": 24,
+       "pred_body_start": 0,
+       "gt_header": "2026-03-01 20:38:44 ----",
+       "pred_header": "",
+       "format": "oam-console#8"
+      },
+      {
+       "line": "01/Mar/2026:11:29:00 ----connection reset by peer, socket fd=74815",
+       "gt_body_start": 25,
+       "pred_body_start": 0,
+       "gt_header": "01/Mar/2026:11:29:00 ----",
+       "pred_header": "",
+       "format": "oam-console#8"
+      },
+      {
+       "line": "[2026-03-01 16:49:50.000000]: volume cfg.max.io changed state from active to degraded",
+       "gt_body_start": 30,
+       "pred_body_start": 0,
+       "gt_header": "[2026-03-01 16:49:50.000000]: ",
+       "pred_header": "",
+       "format": "oam-console#9"
+      },
+      {
+       "line": "[01/Mar/2026:08:33:00 ]: write 73564 bytes to /data/dsware/snap-7c/chunk.dat",
+       "gt_body_start": 25,
+       "pred_body_start": 0,
+       "gt_header": "[01/Mar/2026:08:33:00 ]: ",
+       "pred_header": "",
+       "format": "oam-console#9"
       }
      ]
     },
@@ -10794,24 +10576,24 @@
     "body_integrity_line": 0.9998
    },
    "M3": {
-    "boundary_accuracy": 0.7616,
-    "over_strip_rate": 0.0165,
-    "under_strip_rate": 0.0378,
-    "abstain_rate": 0.1842,
-    "auto_strip_coverage": 0.8158,
-    "accepted_boundary_accuracy": 0.8944,
-    "body_integrity_char": 0.9947,
-    "body_integrity_line": 0.9835
+    "boundary_accuracy": 0.8203,
+    "over_strip_rate": 0.0283,
+    "under_strip_rate": 0.0501,
+    "abstain_rate": 0.1013,
+    "auto_strip_coverage": 0.8987,
+    "accepted_boundary_accuracy": 0.899,
+    "body_integrity_char": 0.9895,
+    "body_integrity_line": 0.9717
    },
    "M4": {
-    "boundary_accuracy": 0.7385,
-    "over_strip_rate": 0.0164,
-    "under_strip_rate": 0.0609,
-    "abstain_rate": 0.1842,
-    "auto_strip_coverage": 0.8158,
-    "accepted_boundary_accuracy": 0.8682,
-    "body_integrity_char": 0.9947,
-    "body_integrity_line": 0.9836
+    "boundary_accuracy": 0.7671,
+    "over_strip_rate": 0.0282,
+    "under_strip_rate": 0.1034,
+    "abstain_rate": 0.1013,
+    "auto_strip_coverage": 0.8987,
+    "accepted_boundary_accuracy": 0.8404,
+    "body_integrity_char": 0.9895,
+    "body_integrity_line": 0.9718
    }
   },
   "stress": {
@@ -10836,22 +10618,22 @@
     "body_integrity_line": 1.0
    },
    "M3": {
-    "boundary_accuracy": 0.49,
+    "boundary_accuracy": 0.5813,
     "over_strip_rate": 0.0739,
-    "under_strip_rate": 0.0525,
-    "abstain_rate": 0.3836,
-    "auto_strip_coverage": 0.5539,
-    "accepted_boundary_accuracy": 0.8038,
+    "under_strip_rate": 0.2318,
+    "abstain_rate": 0.113,
+    "auto_strip_coverage": 0.8245,
+    "accepted_boundary_accuracy": 0.66,
     "body_integrity_char": 0.9852,
     "body_integrity_line": 0.9261
    },
    "M4": {
-    "boundary_accuracy": 0.4536,
+    "boundary_accuracy": 0.5448,
     "over_strip_rate": 0.0732,
-    "under_strip_rate": 0.0896,
-    "abstain_rate": 0.3836,
-    "auto_strip_coverage": 0.5539,
-    "accepted_boundary_accuracy": 0.7614,
+    "under_strip_rate": 0.2689,
+    "abstain_rate": 0.113,
+    "auto_strip_coverage": 0.8245,
+    "accepted_boundary_accuracy": 0.6224,
     "body_integrity_char": 0.9853,
     "body_integrity_line": 0.9268
    }
@@ -10878,24 +10660,24 @@
     "body_integrity_line": 0.9999
    },
    "M3": {
-    "boundary_accuracy": 0.6628,
-    "over_strip_rate": 0.0374,
-    "under_strip_rate": 0.0431,
-    "abstain_rate": 0.2567,
-    "auto_strip_coverage": 0.7206,
-    "accepted_boundary_accuracy": 0.8627,
-    "body_integrity_char": 0.9913,
-    "body_integrity_line": 0.9626
+    "boundary_accuracy": 0.7334,
+    "over_strip_rate": 0.0449,
+    "under_strip_rate": 0.1162,
+    "abstain_rate": 0.1056,
+    "auto_strip_coverage": 0.8717,
+    "accepted_boundary_accuracy": 0.8079,
+    "body_integrity_char": 0.9879,
+    "body_integrity_line": 0.9551
    },
    "M4": {
-    "boundary_accuracy": 0.6349,
-    "over_strip_rate": 0.0371,
-    "under_strip_rate": 0.0714,
-    "abstain_rate": 0.2567,
-    "auto_strip_coverage": 0.7206,
-    "accepted_boundary_accuracy": 0.8308,
-    "body_integrity_char": 0.9913,
-    "body_integrity_line": 0.9629
+    "boundary_accuracy": 0.6863,
+    "over_strip_rate": 0.0446,
+    "under_strip_rate": 0.1636,
+    "abstain_rate": 0.1056,
+    "auto_strip_coverage": 0.8717,
+    "accepted_boundary_accuracy": 0.7574,
+    "body_integrity_char": 0.988,
+    "body_integrity_line": 0.9554
    }
   }
  }
