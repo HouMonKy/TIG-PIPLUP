@@ -95,7 +95,9 @@ class ParamAnomalyDetector:
         result: Dict[str, Dict[str, list]] = defaultdict(
             lambda: defaultdict(list))
         for entry in log_entries or []:
-            module = str(getattr(entry, "module", "")).lower()
+            # 分组键保持业务传入的原始 module（与语义/频率检测的
+            # 分组一致，供上层 merge 对齐）；路由归一在 detect() 内
+            module = getattr(entry, "module", "")
             source = getattr(entry, "source", "")
             outliers, _ = self._run([entry], window_size)
             result[module][source].extend(outliers)
