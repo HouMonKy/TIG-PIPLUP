@@ -268,3 +268,59 @@ python3 bench/header_adaptive.py
 learn/val/test = 30/20/50%、over_margin 0.02、min_val_acc 0.50、
 max_val_over 0.02、filter 门 0.60/0.02、τ 默认 0.75。
 环境：Python 3.13.5，纯标准库。
+
+---
+
+## 附录 A：E1 指标补充（2026-10-21，E2 实验期间按指令补充）
+
+本附录仅补充统计，数据全部取自已提交的 `e1-results/e1_results.json`，
+未改动 E1 任何算法实现与实验数据。
+
+### A.1 E1-A 覆盖率与接受准确率（宏平均）
+
+| 套件 | Auto-strip Coverage | Accepted Boundary Accuracy | Abstain Rate |
+|---|---:|---:|---:|
+| Loghub | 0.7968 | 0.9728 | 0.2032 |
+| 压力集 | 0.3805 | 0.9527 | 0.5567 |
+| all22 | 0.6454 | 0.9654 | 0.3318 |
+
+### A.2 规则集构成（E1-A）
+
+- 候选规则族 234 个；**KEEP 173 个（73.9%）**，部署剥离规则 61 个
+  （M2 52 / M3 9）。高 KEEP 比例是 over-strip 优先选择准则的直接
+  结果：不可靠格式宁可不剥。
+
+### A.3 E1-A 与 M3 相同测试集上的误删原始计数
+
+- E1-A 全部 22 个测试集 over-strip 总行数：**13**
+- M3-raw（同一测试集）：**601**（约 46×）
+
+### A.4 各数据集质量变化（E1-A − M3-raw，Boundary Accuracy）
+
+- **改善**：Mac +9.8pp、Proxifier +4.3pp、oam-console +4.4pp、
+  HPC +2.4pp、Hadoop +1.3pp、BGL +0.5pp
+- **下降（全部为安全性拒绝剥离所致，over → 0）**：
+  dsware −31.8pp（over 23→0）、host-body −16.8pp（over 255→0）、
+  bracket-space −14.6pp、OpenStack −4.1pp（over 33→0）、
+  deploy −3.4pp（over 29→0）
+- 持平：Apache/HDFS/Linux/OpenSSH/Spark/TBird/Zookeeper/
+  noheader/pure-word/Messages/HealthApp
+
+### A.5 LODO 中未知来源的 KEEP 率与 Over-strip
+
+- 宏平均：**KEEP 率 68.1%**（覆盖率 31.9%），**Over-strip 1.58%**
+- Loghub 同构签名迁移安全：Linux 0.996（over 0.2%）、OpenSSH 1.000、
+  Thunderbird 0.991、BGL 0.910，均零/近零 over
+- 压力格式间迁移仍有风险：dsware LODO over 12.8%、host-body 19.6%，
+  deploy 1.0%、oam 1.2%——**维持 §2.4 结论：未知来源回退必须保守**
+  （仅迁移高置信规则或保留原文）
+
+### A.6 与 E2 的衔接说明
+
+E2 期间发现 E0 M3 存在 by_value 遍历缺陷（详见
+`exp/header-v11-span` 分支 `docs/rep/header-detector-v11/e2-span-report.md`
+§1.3）：E1 中的 M3-raw 参照值基于未修复实现，E1 内部各变体对比
+自洽不受影响，但 M3 绝对水平被低估；跨实验引用 M3 数值时以 E2 报告
+的修正表为准（all22 0.663→0.733，E0 原协议）。E1 的规则学习框架
+（(source, signature) 键控 + 验证集选择）可直接在 E2 的 span 签名上
+重建。
