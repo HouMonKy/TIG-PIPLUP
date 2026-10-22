@@ -1,0 +1,12 @@
+59ee23fc452cdb7f62720068c7841ab1652322a6bf33f79f89f893b5d39fcd85  docs/rep/header-detector-v11/e0-baseline-report.md
+ebe3e362f6b01be36ecd9f78d91958c35e5896a1448b2d27afbc26c908dc73d4  docs/rep/header-detector-v11/e1-adaptive-report.md
+d7b592879ac13ac9f5d91d41a31e329fd5bea206a40994a9aa120968b04d1b9f  docs/rep/header-detector-v11/e2-span-report.md
+4aaf9c5abac6a40645ad74f7b141ea5d69507da554b3ee06d7bc43793d6d0ac8  docs/rep/header-detector-v11/e3-gate-report.md
+5ab37540883e0df431e9a8ca9e7ea297bc6f8850c2053f331822834cc063a59f  docs/rep/header-detector-v11/e4-runtime-report.md
+f8fc556704202ebf56aa111c0860b8ca99abcf4abf7043e17b0fae6381867e43  docs/rep/header-detector-v11/e0-results/e0_results.json
+028a1fe1e45e28085d9109c7528113bf4a422add69b7d2b6ab23c0ec88f720e3  docs/rep/header-detector-v11/e1-results/e1_results.json
+9c1e7ac55c9c1d5cb644291c0dde87ee1ae2baf3abb12ef6a10ed10e6aa1e79e  docs/rep/header-detector-v11/e2-results/e2_results.json
+b87d191e0333b5a0ff977548684f1b1f27a4f36884548cac55a72085562c4d7e  docs/rep/header-detector-v11/e3-results/e3_results.json
+5d8eb91a91b34a568e89d2cb570c965d5b8817ec074d0af127249dbcfb447b87  docs/rep/header-detector-v11/e4-results/e4_results.json
+ce6f2bc68f19c1655d5512bfea74302262dc7dce2f1a63e664129c36d37cff25  docs/rep/header-detector-v11/e4-results/rules_tau0.4.json
+dbc2d59b9bb797cc2c89572bca57b53498cd8a8645f7e01a18811dbde9e5d535  docs/rep/header-detector-v11/e4-results/rules_tau0.2.json
