@@ -1,0 +1,1526 @@
+{
+ "config": {
+  "split": "learn/val/test = 30/20/50, seed 42 (identical to E2/E3)",
+  "taus": [
+   0.4,
+   0.2
+  ],
+  "warmup_lines": 300,
+  "n_repeat": 5,
+  "runtimes": {
+   "P0": "E3-B full path (fitted E2-D predict + gate, redundant re-tokenization)",
+   "P1": "compiled flat rules, sequential candidate matching",
+   "P2": "source index + signature index tree walk",
+   "P3": "P2 fused: single pass, lazy classify cache, precomputed accept sets"
+  }
+ },
+ "compile_meta": {
+  "0.4": {
+   "fit_seconds": 1.129,
+   "val_stats_seconds": 0.473,
+   "total_seconds": 1.603,
+   "n_sources": 23,
+   "totals": {
+    "n_trees": 215,
+    "n_flat_rules": 659,
+    "n_gate_entries": 96,
+    "n_gate_accepted": 58
+   }
+  },
+  "0.2": {
+   "fit_seconds": 1.146,
+   "val_stats_seconds": 0.48,
+   "total_seconds": 1.627,
+   "n_sources": 23,
+   "totals": {
+    "n_trees": 215,
+    "n_flat_rules": 659,
+    "n_gate_entries": 96,
+    "n_gate_accepted": 72
+   }
+  }
+ },
+ "rule_stats": {
+  "0.4": {
+   "Apache": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 4,
+    "n_nodes": 4,
+    "n_flat_rules": 4,
+    "n_gate_entries": 3,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 4,
+    "tree_max_need_p90": 4
+   },
+   "BGL": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 4,
+    "n_nodes": 16,
+    "n_flat_rules": 19,
+    "n_gate_entries": 2,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 11,
+    "tree_max_need_p90": 11
+   },
+   "HDFS": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 5,
+    "n_flat_rules": 6,
+    "n_gate_entries": 2,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   },
+   "HPC": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 16,
+    "n_nodes": 16,
+    "n_flat_rules": 16,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 8,
+    "tree_max_need_p90": 7
+   },
+   "Hadoop": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 9,
+    "n_flat_rules": 11,
+    "n_gate_entries": 3,
+    "n_gate_accepted": 3,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   },
+   "HealthApp": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 24,
+    "n_nodes": 24,
+    "n_flat_rules": 24,
+    "n_gate_entries": 0,
+    "n_gate_accepted": 0,
+    "tree_max_need_max": 4,
+    "tree_max_need_p90": 4
+   },
+   "Linux": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 1,
+    "n_flat_rules": 1,
+    "n_gate_entries": 3,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   },
+   "Mac": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 2,
+    "n_nodes": 65,
+    "n_flat_rules": 81,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 10,
+    "tree_max_need_p90": 10
+   },
+   "OpenSSH": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 3,
+    "n_flat_rules": 4,
+    "n_gate_entries": 1,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   },
+   "OpenStack": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 64,
+    "n_flat_rules": 85,
+    "n_gate_entries": 2,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 9,
+    "tree_max_need_p90": 9
+   },
+   "Proxifier": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 3,
+    "n_nodes": 12,
+    "n_flat_rules": 18,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 3,
+    "tree_max_need_max": 8,
+    "tree_max_need_p90": 8
+   },
+   "Spark": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 4,
+    "n_flat_rules": 5,
+    "n_gate_entries": 1,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 5,
+    "tree_max_need_p90": 5
+   },
+   "Thunderbird": {
+    "suite": "loghub",
+    "n_learn": 597,
+    "n_val": 398,
+    "n_trees": 2,
+    "n_nodes": 15,
+    "n_flat_rules": 19,
+    "n_gate_entries": 3,
+    "n_gate_accepted": 3,
+    "tree_max_need_max": 11,
+    "tree_max_need_p90": 11
+   },
+   "Zookeeper": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 1,
+    "n_flat_rules": 1,
+    "n_gate_entries": 1,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 7,
+    "tree_max_need_p90": 7
+   },
+   "stress-bracket-space.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 7,
+    "n_nodes": 7,
+    "n_flat_rules": 7,
+    "n_gate_entries": 5,
+    "n_gate_accepted": 3,
+    "tree_max_need_max": 4,
+    "tree_max_need_p90": 4
+   },
+   "stress-deploy.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 54,
+    "n_nodes": 106,
+    "n_flat_rules": 110,
+    "n_gate_entries": 13,
+    "n_gate_accepted": 8,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 4
+   },
+   "stress-dsware.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 7,
+    "n_nodes": 49,
+    "n_flat_rules": 58,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 5,
+    "tree_max_need_max": 10,
+    "tree_max_need_p90": 10
+   },
+   "stress-host-body.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 11,
+    "n_nodes": 16,
+    "n_flat_rules": 18,
+    "n_gate_entries": 10,
+    "n_gate_accepted": 6,
+    "tree_max_need_max": 5,
+    "tree_max_need_p90": 5
+   },
+   "stress-messages.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 1,
+    "n_nodes": 11,
+    "n_flat_rules": 16,
+    "n_gate_entries": 1,
+    "n_gate_accepted": 0,
+    "tree_max_need_max": 9,
+    "tree_max_need_p90": 9
+   },
+   "stress-noheader.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 23,
+    "n_nodes": 23,
+    "n_flat_rules": 23,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 3,
+    "tree_max_need_max": 4,
+    "tree_max_need_p90": 4
+   },
+   "stress-oam-console.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 37,
+    "n_nodes": 111,
+    "n_flat_rules": 114,
+    "n_gate_entries": 8,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 8,
+    "tree_max_need_p90": 4
+   },
+   "stress-pure-word.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 3,
+    "n_nodes": 3,
+    "n_flat_rules": 3,
+    "n_gate_entries": 2,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 7,
+    "tree_max_need_p90": 7
+   },
+   "challenge-brackets": {
+    "suite": "challenge",
+    "n_learn": 480,
+    "n_val": 320,
+    "n_trees": 10,
+    "n_nodes": 14,
+    "n_flat_rules": 16,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 5,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   }
+  },
+  "0.2": {
+   "Apache": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 4,
+    "n_nodes": 4,
+    "n_flat_rules": 4,
+    "n_gate_entries": 3,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 4,
+    "tree_max_need_p90": 4
+   },
+   "BGL": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 4,
+    "n_nodes": 16,
+    "n_flat_rules": 19,
+    "n_gate_entries": 2,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 11,
+    "tree_max_need_p90": 11
+   },
+   "HDFS": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 5,
+    "n_flat_rules": 6,
+    "n_gate_entries": 2,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   },
+   "HPC": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 16,
+    "n_nodes": 16,
+    "n_flat_rules": 16,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 8,
+    "tree_max_need_p90": 7
+   },
+   "Hadoop": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 9,
+    "n_flat_rules": 11,
+    "n_gate_entries": 3,
+    "n_gate_accepted": 3,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   },
+   "HealthApp": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 24,
+    "n_nodes": 24,
+    "n_flat_rules": 24,
+    "n_gate_entries": 0,
+    "n_gate_accepted": 0,
+    "tree_max_need_max": 4,
+    "tree_max_need_p90": 4
+   },
+   "Linux": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 1,
+    "n_flat_rules": 1,
+    "n_gate_entries": 3,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   },
+   "Mac": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 2,
+    "n_nodes": 65,
+    "n_flat_rules": 81,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 4,
+    "tree_max_need_max": 10,
+    "tree_max_need_p90": 10
+   },
+   "OpenSSH": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 3,
+    "n_flat_rules": 4,
+    "n_gate_entries": 1,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   },
+   "OpenStack": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 64,
+    "n_flat_rules": 85,
+    "n_gate_entries": 2,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 9,
+    "tree_max_need_p90": 9
+   },
+   "Proxifier": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 3,
+    "n_nodes": 12,
+    "n_flat_rules": 18,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 3,
+    "tree_max_need_max": 8,
+    "tree_max_need_p90": 8
+   },
+   "Spark": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 4,
+    "n_flat_rules": 5,
+    "n_gate_entries": 1,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 5,
+    "tree_max_need_p90": 5
+   },
+   "Thunderbird": {
+    "suite": "loghub",
+    "n_learn": 597,
+    "n_val": 398,
+    "n_trees": 2,
+    "n_nodes": 15,
+    "n_flat_rules": 19,
+    "n_gate_entries": 3,
+    "n_gate_accepted": 3,
+    "tree_max_need_max": 11,
+    "tree_max_need_p90": 11
+   },
+   "Zookeeper": {
+    "suite": "loghub",
+    "n_learn": 600,
+    "n_val": 400,
+    "n_trees": 1,
+    "n_nodes": 1,
+    "n_flat_rules": 1,
+    "n_gate_entries": 1,
+    "n_gate_accepted": 1,
+    "tree_max_need_max": 7,
+    "tree_max_need_p90": 7
+   },
+   "stress-bracket-space.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 7,
+    "n_nodes": 7,
+    "n_flat_rules": 7,
+    "n_gate_entries": 5,
+    "n_gate_accepted": 5,
+    "tree_max_need_max": 4,
+    "tree_max_need_p90": 4
+   },
+   "stress-deploy.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 54,
+    "n_nodes": 106,
+    "n_flat_rules": 110,
+    "n_gate_entries": 13,
+    "n_gate_accepted": 10,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 4
+   },
+   "stress-dsware.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 7,
+    "n_nodes": 49,
+    "n_flat_rules": 58,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 6,
+    "tree_max_need_max": 10,
+    "tree_max_need_p90": 10
+   },
+   "stress-host-body.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 11,
+    "n_nodes": 16,
+    "n_flat_rules": 18,
+    "n_gate_entries": 10,
+    "n_gate_accepted": 6,
+    "tree_max_need_max": 5,
+    "tree_max_need_p90": 5
+   },
+   "stress-messages.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 1,
+    "n_nodes": 11,
+    "n_flat_rules": 16,
+    "n_gate_entries": 1,
+    "n_gate_accepted": 0,
+    "tree_max_need_max": 9,
+    "tree_max_need_p90": 9
+   },
+   "stress-noheader.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 23,
+    "n_nodes": 23,
+    "n_flat_rules": 23,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 6,
+    "tree_max_need_max": 4,
+    "tree_max_need_p90": 4
+   },
+   "stress-oam-console.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 37,
+    "n_nodes": 111,
+    "n_flat_rules": 114,
+    "n_gate_entries": 8,
+    "n_gate_accepted": 5,
+    "tree_max_need_max": 8,
+    "tree_max_need_p90": 4
+   },
+   "stress-pure-word.jsonl": {
+    "suite": "stress",
+    "n_learn": 300,
+    "n_val": 200,
+    "n_trees": 3,
+    "n_nodes": 3,
+    "n_flat_rules": 3,
+    "n_gate_entries": 2,
+    "n_gate_accepted": 2,
+    "tree_max_need_max": 7,
+    "tree_max_need_p90": 7
+   },
+   "challenge-brackets": {
+    "suite": "challenge",
+    "n_learn": 480,
+    "n_val": 320,
+    "n_trees": 10,
+    "n_nodes": 14,
+    "n_flat_rules": 16,
+    "n_gate_entries": 6,
+    "n_gate_accepted": 5,
+    "tree_max_need_max": 6,
+    "tree_max_need_p90": 6
+   }
+  }
+ },
+ "equivalence": {
+  "tau=0.4": {
+   "variants": {
+    "P1": {
+     "n": 18798,
+     "agree": 18798,
+     "action_mismatch": 0,
+     "offset_mismatch": 0,
+     "new_over_strip": 0,
+     "examples": []
+    },
+    "P2": {
+     "n": 18798,
+     "agree": 18798,
+     "action_mismatch": 0,
+     "offset_mismatch": 0,
+     "new_over_strip": 0,
+     "examples": []
+    },
+    "P3": {
+     "n": 18798,
+     "agree": 18798,
+     "action_mismatch": 0,
+     "offset_mismatch": 0,
+     "new_over_strip": 0,
+     "examples": []
+    },
+    "metrics": {
+     "P0": {
+      "n": 18798,
+      "boundary_accuracy": 0.7183,
+      "over_strip_rate": 0.0045,
+      "under_strip_rate": 0.0105,
+      "abstain_rate": 0.2668,
+      "auto_strip_coverage": 0.7143,
+      "accepted_boundary_accuracy": 0.9791,
+      "body_integrity_char": 0.9991,
+      "body_integrity_line": 0.9955
+     },
+     "P3": {
+      "n": 18798,
+      "boundary_accuracy": 0.7183,
+      "over_strip_rate": 0.0045,
+      "under_strip_rate": 0.0105,
+      "abstain_rate": 0.2668,
+      "auto_strip_coverage": 0.7143,
+      "accepted_boundary_accuracy": 0.9791,
+      "body_integrity_char": 0.9991,
+      "body_integrity_line": 0.9955
+     }
+    }
+   },
+   "e3_check": {
+    "tau_b": 0.4,
+    "p0_equals_e3b_pooled": true,
+    "e3b": {
+     "n": 18798,
+     "boundary_accuracy": 0.7183,
+     "over_strip_rate": 0.0045,
+     "under_strip_rate": 0.0105,
+     "abstain_rate": 0.2668,
+     "auto_strip_coverage": 0.7143,
+     "accepted_boundary_accuracy": 0.9791,
+     "body_integrity_char": 0.9991,
+     "body_integrity_line": 0.9955
+    }
+   }
+  },
+  "tau=0.2": {
+   "variants": {
+    "P1": {
+     "n": 18798,
+     "agree": 18798,
+     "action_mismatch": 0,
+     "offset_mismatch": 0,
+     "new_over_strip": 0,
+     "examples": []
+    },
+    "P2": {
+     "n": 18798,
+     "agree": 18798,
+     "action_mismatch": 0,
+     "offset_mismatch": 0,
+     "new_over_strip": 0,
+     "examples": []
+    },
+    "P3": {
+     "n": 18798,
+     "agree": 18798,
+     "action_mismatch": 0,
+     "offset_mismatch": 0,
+     "new_over_strip": 0,
+     "examples": []
+    },
+    "metrics": {
+     "P0": {
+      "n": 18798,
+      "boundary_accuracy": 0.765,
+      "over_strip_rate": 0.0091,
+      "under_strip_rate": 0.0155,
+      "abstain_rate": 0.2104,
+      "auto_strip_coverage": 0.7707,
+      "accepted_boundary_accuracy": 0.968,
+      "body_integrity_char": 0.9978,
+      "body_integrity_line": 0.9909
+     },
+     "P3": {
+      "n": 18798,
+      "boundary_accuracy": 0.765,
+      "over_strip_rate": 0.0091,
+      "under_strip_rate": 0.0155,
+      "abstain_rate": 0.2104,
+      "auto_strip_coverage": 0.7707,
+      "accepted_boundary_accuracy": 0.968,
+      "body_integrity_char": 0.9978,
+      "body_integrity_line": 0.9909
+     }
+    }
+   },
+   "e3_check": null
+  }
+ },
+ "performance": {
+  "high_hit_rate": {
+   "n": 13428,
+   "P0": {
+    "wall_s": 0.9,
+    "ns_avg": 69607.3,
+    "ns_p50": 67708,
+    "ns_p95": 101000,
+    "ns_p99": 117959,
+    "lines_per_s": 14323.9,
+    "cpu_ns_per_line": 69727.4,
+    "lines_per_s_min": 14221.0,
+    "lines_per_s_max": 14356.1,
+    "n_repeat": 5
+   },
+   "P1": {
+    "wall_s": 0.3,
+    "ns_avg": 19360.5,
+    "ns_p50": 18333,
+    "ns_p95": 30750,
+    "ns_p99": 38125,
+    "lines_per_s": 51237.5,
+    "cpu_ns_per_line": 19496.9,
+    "lines_per_s_min": 50980.9,
+    "lines_per_s_max": 51279.6,
+    "n_repeat": 5
+   },
+   "P2": {
+    "wall_s": 0.3,
+    "ns_avg": 18652.6,
+    "ns_p50": 18333,
+    "ns_p95": 25625,
+    "ns_p99": 30541,
+    "lines_per_s": 53132.0,
+    "cpu_ns_per_line": 18792.4,
+    "lines_per_s_min": 52786.2,
+    "lines_per_s_max": 53459.0,
+    "n_repeat": 5
+   },
+   "P3": {
+    "wall_s": 0.1,
+    "ns_avg": 6029.9,
+    "ns_p50": 5875,
+    "ns_p95": 9292,
+    "ns_p99": 10208,
+    "lines_per_s": 162374.6,
+    "cpu_ns_per_line": 6151.3,
+    "lines_per_s_min": 159156.7,
+    "lines_per_s_max": 163148.3,
+    "n_repeat": 5
+   }
+  },
+  "low_hit_rate": {
+   "n": 5370,
+   "P0": {
+    "wall_s": 0.3,
+    "ns_avg": 53598.7,
+    "ns_p50": 48084,
+    "ns_p95": 120083,
+    "ns_p99": 128833,
+    "lines_per_s": 18592.1,
+    "cpu_ns_per_line": 53734.8,
+    "lines_per_s_min": 18565.5,
+    "lines_per_s_max": 18649.5,
+    "n_repeat": 5
+   },
+   "P1": {
+    "wall_s": 0.1,
+    "ns_avg": 25428.8,
+    "ns_p50": 15916,
+    "ns_p95": 74083,
+    "ns_p99": 162000,
+    "lines_per_s": 39047.7,
+    "cpu_ns_per_line": 25589.9,
+    "lines_per_s_min": 38941.8,
+    "lines_per_s_max": 39106.4,
+    "n_repeat": 5
+   },
+   "P2": {
+    "wall_s": 0.1,
+    "ns_avg": 17498.6,
+    "ns_p50": 15541,
+    "ns_p95": 31083,
+    "ns_p99": 34959,
+    "lines_per_s": 56628.3,
+    "cpu_ns_per_line": 17645.4,
+    "lines_per_s_min": 56482.1,
+    "lines_per_s_max": 56734.4,
+    "n_repeat": 5
+   },
+   "P3": {
+    "wall_s": 0.0,
+    "ns_avg": 5624.3,
+    "ns_p50": 3667,
+    "ns_p95": 15125,
+    "ns_p99": 16583,
+    "lines_per_s": 173968.9,
+    "cpu_ns_per_line": 5743.9,
+    "lines_per_s_min": 172870.3,
+    "lines_per_s_max": 174972.2,
+    "n_repeat": 5
+   }
+  },
+  "unknown_source": {
+   "n": 18798,
+   "P0": {
+    "wall_s": 0.0,
+    "ns_avg": 111.4,
+    "ns_p50": 125,
+    "ns_p95": 125,
+    "ns_p99": 167,
+    "lines_per_s": 5667240.9,
+    "cpu_ns_per_line": 176.6,
+    "lines_per_s_min": 4594122.3,
+    "lines_per_s_max": 6132115.4,
+    "n_repeat": 5
+   },
+   "P1": {
+    "wall_s": 0.0,
+    "ns_avg": 121.9,
+    "ns_p50": 125,
+    "ns_p95": 167,
+    "ns_p99": 167,
+    "lines_per_s": 5766993.4,
+    "cpu_ns_per_line": 173.6,
+    "lines_per_s_min": 5424389.7,
+    "lines_per_s_max": 5906445.1,
+    "n_repeat": 5
+   },
+   "P2": {
+    "wall_s": 0.0,
+    "ns_avg": 113.3,
+    "ns_p50": 125,
+    "ns_p95": 125,
+    "ns_p99": 167,
+    "lines_per_s": 6092037.7,
+    "cpu_ns_per_line": 164.2,
+    "lines_per_s_min": 5596308.3,
+    "lines_per_s_max": 6211734.2,
+    "n_repeat": 5
+   },
+   "P3": {
+    "wall_s": 0.0,
+    "ns_avg": 152.7,
+    "ns_p50": 166,
+    "ns_p95": 167,
+    "ns_p99": 208,
+    "lines_per_s": 4856319.1,
+    "cpu_ns_per_line": 206.0,
+    "lines_per_s_min": 4670261.9,
+    "lines_per_s_max": 4976801.1,
+    "n_repeat": 5
+   }
+  },
+  "repeated_line": {
+   "n": 2000,
+   "P0": {
+    "wall_s": 0.1,
+    "ns_avg": 66989.8,
+    "ns_p50": 66542,
+    "ns_p95": 72083,
+    "ns_p99": 80666,
+    "lines_per_s": 14905.1,
+    "cpu_ns_per_line": 67021.0,
+    "lines_per_s_min": 14810.1,
+    "lines_per_s_max": 14934.6,
+    "n_repeat": 5
+   },
+   "P1": {
+    "wall_s": 0.0,
+    "ns_avg": 20585.4,
+    "ns_p50": 20416,
+    "ns_p95": 22917,
+    "ns_p99": 27375,
+    "lines_per_s": 48363.7,
+    "cpu_ns_per_line": 20656.0,
+    "lines_per_s_min": 47939.3,
+    "lines_per_s_max": 48640.6,
+    "n_repeat": 5
+   },
+   "P2": {
+    "wall_s": 0.0,
+    "ns_avg": 19332.3,
+    "ns_p50": 19209,
+    "ns_p95": 19750,
+    "ns_p99": 26042,
+    "lines_per_s": 51480.9,
+    "cpu_ns_per_line": 19408.0,
+    "lines_per_s_min": 51287.0,
+    "lines_per_s_max": 51633.1,
+    "n_repeat": 5
+   },
+   "P3": {
+    "wall_s": 0.0,
+    "ns_avg": 5439.8,
+    "ns_p50": 5375,
+    "ns_p95": 5584,
+    "ns_p99": 7500,
+    "lines_per_s": 180856.4,
+    "cpu_ns_per_line": 5524.0,
+    "lines_per_s_min": 179918.1,
+    "lines_per_s_max": 182177.0,
+    "n_repeat": 5
+   }
+  },
+  "many_distinct": {
+   "n": 18798,
+   "P0": {
+    "wall_s": 1.2,
+    "ns_avg": 64726.3,
+    "ns_p50": 65042,
+    "ns_p95": 109917,
+    "ns_p99": 125417,
+    "lines_per_s": 15404.8,
+    "cpu_ns_per_line": 64830.2,
+    "lines_per_s_min": 15328.8,
+    "lines_per_s_max": 15435.2,
+    "n_repeat": 5
+   },
+   "P1": {
+    "wall_s": 0.4,
+    "ns_avg": 20997.5,
+    "ns_p50": 18000,
+    "ns_p95": 36875,
+    "ns_p99": 114417,
+    "lines_per_s": 47309.6,
+    "cpu_ns_per_line": 21107.5,
+    "lines_per_s_min": 47168.2,
+    "lines_per_s_max": 47326.6,
+    "n_repeat": 5
+   },
+   "P2": {
+    "wall_s": 0.3,
+    "ns_avg": 18172.1,
+    "ns_p50": 17875,
+    "ns_p95": 28833,
+    "ns_p99": 32792,
+    "lines_per_s": 54573.2,
+    "cpu_ns_per_line": 18308.4,
+    "lines_per_s_min": 54089.2,
+    "lines_per_s_max": 54852.6,
+    "n_repeat": 5
+   },
+   "P3": {
+    "wall_s": 0.1,
+    "ns_avg": 5869.5,
+    "ns_p50": 5667,
+    "ns_p95": 9958,
+    "ns_p99": 15625,
+    "lines_per_s": 166960.6,
+    "cpu_ns_per_line": 5981.6,
+    "lines_per_s_min": 166369.0,
+    "lines_per_s_max": 167470.6,
+    "n_repeat": 5
+   }
+  },
+  "long_lines": {
+   "n": 930,
+   "P0": {
+    "wall_s": 0.1,
+    "ns_avg": 116895.5,
+    "ns_p50": 116250,
+    "ns_p95": 131791,
+    "ns_p99": 156292,
+    "lines_per_s": 8539.1,
+    "cpu_ns_per_line": 116933.3,
+    "lines_per_s_min": 8525.9,
+    "lines_per_s_max": 8569.5,
+    "n_repeat": 5
+   },
+   "P1": {
+    "wall_s": 0.0,
+    "ns_avg": 52622.8,
+    "ns_p50": 33500,
+    "ns_p95": 159875,
+    "ns_p99": 175583,
+    "lines_per_s": 18939.9,
+    "cpu_ns_per_line": 52745.2,
+    "lines_per_s_min": 18871.1,
+    "lines_per_s_max": 18944.6,
+    "n_repeat": 5
+   },
+   "P2": {
+    "wall_s": 0.0,
+    "ns_avg": 30030.7,
+    "ns_p50": 30000,
+    "ns_p95": 34500,
+    "ns_p99": 39833,
+    "lines_per_s": 33148.3,
+    "cpu_ns_per_line": 30143.0,
+    "lines_per_s_min": 33099.7,
+    "lines_per_s_max": 33316.3,
+    "n_repeat": 5
+   },
+   "P3": {
+    "wall_s": 0.0,
+    "ns_avg": 8820.6,
+    "ns_p50": 8833,
+    "ns_p95": 9958,
+    "ns_p99": 11541,
+    "lines_per_s": 112174.3,
+    "cpu_ns_per_line": 8908.6,
+    "lines_per_s_min": 110239.1,
+    "lines_per_s_max": 112751.8,
+    "n_repeat": 5
+   }
+  },
+  "mixed_formats": {
+   "n": 18798,
+   "P0": {
+    "wall_s": 1.2,
+    "ns_avg": 66087.5,
+    "ns_p50": 66625,
+    "ns_p95": 111834,
+    "ns_p99": 127583,
+    "lines_per_s": 15082.7,
+    "cpu_ns_per_line": 66220.2,
+    "lines_per_s_min": 15062.8,
+    "lines_per_s_max": 15133.1,
+    "n_repeat": 5
+   },
+   "P1": {
+    "wall_s": 0.4,
+    "ns_avg": 21868.5,
+    "ns_p50": 18625,
+    "ns_p95": 38208,
+    "ns_p99": 117292,
+    "lines_per_s": 45294.1,
+    "cpu_ns_per_line": 22049.1,
+    "lines_per_s_min": 45149.8,
+    "lines_per_s_max": 45481.5,
+    "n_repeat": 5
+   },
+   "P2": {
+    "wall_s": 0.4,
+    "ns_avg": 18925.2,
+    "ns_p50": 18458,
+    "ns_p95": 30375,
+    "ns_p99": 35125,
+    "lines_per_s": 52246.1,
+    "cpu_ns_per_line": 19117.2,
+    "lines_per_s_min": 52046.4,
+    "lines_per_s_max": 52324.5,
+    "n_repeat": 5
+   },
+   "P3": {
+    "wall_s": 0.1,
+    "ns_avg": 6299.6,
+    "ns_p50": 6042,
+    "ns_p95": 10584,
+    "ns_p99": 16708,
+    "lines_per_s": 154276.8,
+    "cpu_ns_per_line": 6472.4,
+    "lines_per_s_min": 152994.4,
+    "lines_per_s_max": 156023.4,
+    "n_repeat": 5
+   }
+  },
+  "bracket_prefix": {
+   "n": 800,
+   "P0": {
+    "wall_s": 0.0,
+    "ns_avg": 51743.9,
+    "ns_p50": 56750,
+    "ns_p95": 72416,
+    "ns_p99": 77125,
+    "lines_per_s": 19258.0,
+    "cpu_ns_per_line": 51865.0,
+    "lines_per_s_min": 19200.8,
+    "lines_per_s_max": 19296.5,
+    "n_repeat": 5
+   },
+   "P1": {
+    "wall_s": 0.0,
+    "ns_avg": 15275.0,
+    "ns_p50": 15583,
+    "ns_p95": 20209,
+    "ns_p99": 24125,
+    "lines_per_s": 64986.5,
+    "cpu_ns_per_line": 15373.8,
+    "lines_per_s_min": 64585.8,
+    "lines_per_s_max": 65502.4,
+    "n_repeat": 5
+   },
+   "P2": {
+    "wall_s": 0.0,
+    "ns_avg": 15266.5,
+    "ns_p50": 15667,
+    "ns_p95": 20125,
+    "ns_p99": 23542,
+    "lines_per_s": 65015.5,
+    "cpu_ns_per_line": 15366.2,
+    "lines_per_s_min": 64364.3,
+    "lines_per_s_max": 65229.4,
+    "n_repeat": 5
+   },
+   "P3": {
+    "wall_s": 0.0,
+    "ns_avg": 5183.3,
+    "ns_p50": 5000,
+    "ns_p95": 9208,
+    "ns_p99": 9708,
+    "lines_per_s": 188998.7,
+    "cpu_ns_per_line": 5291.2,
+    "lines_per_s_min": 179367.2,
+    "lines_per_s_max": 192498.6,
+    "n_repeat": 5
+   }
+  },
+  "rule_load": {
+   "rule_file_bytes": 155039,
+   "json_parse_s": 0.0008,
+   "index_build_s": 0.0002,
+   "n_sources": 23,
+   "totals": {
+    "n_trees": 215,
+    "n_flat_rules": 659,
+    "n_gate_entries": 96,
+    "n_gate_accepted": 58
+   }
+  },
+  "scaling": {
+   "sources_x1": {
+    "n_sources": 23,
+    "P2": {
+     "wall_s": 0.0,
+     "ns_avg": 18768.1,
+     "ns_p50": 18291,
+     "ns_p95": 29625,
+     "ns_p99": 35167,
+     "lines_per_s": 52845.3,
+     "cpu_ns_per_line": 18905.5,
+     "lines_per_s_min": 52610.0,
+     "lines_per_s_max": 53164.5,
+     "n_repeat": 3
+    },
+    "P3": {
+     "wall_s": 0.0,
+     "ns_avg": 6339.3,
+     "ns_p50": 5792,
+     "ns_p95": 12541,
+     "ns_p99": 17083,
+     "lines_per_s": 154857.7,
+     "cpu_ns_per_line": 6449.0,
+     "lines_per_s_min": 151879.5,
+     "lines_per_s_max": 155675.8,
+     "n_repeat": 3
+    }
+   },
+   "sources_x8": {
+    "n_sources": 184,
+    "P2": {
+     "wall_s": 0.0,
+     "ns_avg": 18723.4,
+     "ns_p50": 18209,
+     "ns_p95": 29250,
+     "ns_p99": 34709,
+     "lines_per_s": 53030.6,
+     "cpu_ns_per_line": 18849.5,
+     "lines_per_s_min": 52721.0,
+     "lines_per_s_max": 53041.5,
+     "n_repeat": 3
+    },
+    "P3": {
+     "wall_s": 0.0,
+     "ns_avg": 6366.1,
+     "ns_p50": 5875,
+     "ns_p95": 11542,
+     "ns_p99": 17000,
+     "lines_per_s": 154200.5,
+     "cpu_ns_per_line": 6480.5,
+     "lines_per_s_min": 152609.6,
+     "lines_per_s_max": 155074.3,
+     "n_repeat": 3
+    }
+   },
+   "sources_x32": {
+    "n_sources": 736,
+    "P2": {
+     "wall_s": 0.0,
+     "ns_avg": 18706.4,
+     "ns_p50": 18209,
+     "ns_p95": 29167,
+     "ns_p99": 34916,
+     "lines_per_s": 52922.4,
+     "cpu_ns_per_line": 18887.0,
+     "lines_per_s_min": 52676.0,
+     "lines_per_s_max": 53143.8,
+     "n_repeat": 3
+    },
+    "P3": {
+     "wall_s": 0.0,
+     "ns_avg": 6368.5,
+     "ns_p50": 5875,
+     "ns_p95": 12166,
+     "ns_p99": 17042,
+     "lines_per_s": 154053.5,
+     "cpu_ns_per_line": 6487.0,
+     "lines_per_s_min": 152824.4,
+     "lines_per_s_max": 154074.8,
+     "n_repeat": 3
+    }
+   },
+   "p1_rule_list": {
+    "largest_source": {
+     "name": "stress-oam-console.jsonl",
+     "n_flat_rules": 114,
+     "P1": {
+      "wall_s": 0.0,
+      "ns_avg": 31148.4,
+      "ns_p50": 19708,
+      "ns_p95": 127333,
+      "ns_p99": 146459,
+      "lines_per_s": 32002.4,
+      "cpu_ns_per_line": 31287.4,
+      "lines_per_s_min": 31675.7,
+      "lines_per_s_max": 32070.3,
+      "n_repeat": 3
+     }
+    },
+    "smallest_source": {
+     "name": "Linux",
+     "n_flat_rules": 1,
+     "P1": {
+      "wall_s": 0.0,
+      "ns_avg": 16386.5,
+      "ns_p50": 16125,
+      "ns_p95": 21834,
+      "ns_p99": 29625,
+      "lines_per_s": 60713.6,
+      "cpu_ns_per_line": 16494.3,
+      "lines_per_s_min": 56366.9,
+      "lines_per_s_max": 61097.3,
+      "n_repeat": 3
+     }
+    }
+   }
+  }
+ },
+ "safety": {
+  "unknown_source": {
+   "n": 18798,
+   "violations": 0
+  },
+  "cross_source": {
+   "Apache": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "BGL": {
+    "accept": 366,
+    "keep": 17432,
+    "over_strip": 0
+   },
+   "HDFS": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "HPC": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "Hadoop": {
+    "accept": 1,
+    "keep": 17797,
+    "over_strip": 0
+   },
+   "HealthApp": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "Linux": {
+    "accept": 1000,
+    "keep": 16798,
+    "over_strip": 0
+   },
+   "Mac": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "OpenSSH": {
+    "accept": 923,
+    "keep": 16875,
+    "over_strip": 0
+   },
+   "OpenStack": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "Proxifier": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "Spark": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "Thunderbird": {
+    "accept": 718,
+    "keep": 17082,
+    "over_strip": 0
+   },
+   "Zookeeper": {
+    "accept": 0,
+    "keep": 17798,
+    "over_strip": 0
+   },
+   "stress-bracket-space.jsonl": {
+    "accept": 643,
+    "keep": 17655,
+    "over_strip": 54
+   },
+   "stress-deploy.jsonl": {
+    "accept": 2395,
+    "keep": 15903,
+    "over_strip": 577
+   },
+   "stress-dsware.jsonl": {
+    "accept": 1707,
+    "keep": 16591,
+    "over_strip": 570
+   },
+   "stress-host-body.jsonl": {
+    "accept": 1182,
+    "keep": 17116,
+    "over_strip": 54
+   },
+   "stress-messages.jsonl": {
+    "accept": 0,
+    "keep": 18298,
+    "over_strip": 0
+   },
+   "stress-noheader.jsonl": {
+    "accept": 172,
+    "keep": 18126,
+    "over_strip": 0
+   },
+   "stress-oam-console.jsonl": {
+    "accept": 221,
+    "keep": 18077,
+    "over_strip": 100
+   },
+   "stress-pure-word.jsonl": {
+    "accept": 0,
+    "keep": 18298,
+    "over_strip": 0
+   },
+   "challenge-brackets": {
+    "accept": 2538,
+    "keep": 15460,
+    "over_strip": 136
+   }
+  },
+  "dsware_focus": {
+   "accept": 1707,
+   "keep": 16591,
+   "over_strip": 570,
+   "examples": [
+    {
+     "target": "stress-bracket-space.jsonl",
+     "from": "Apache",
+     "line": "[Sun Dec 04 15:59:01 2005] [error] [client 24.83.37.136] Directory index forbidden by rule: /var/www/html/",
+     "off": 57,
+     "gt": 35
+    },
+    {
+     "target": "stress-bracket-space.jsonl",
+     "from": "Apache",
+     "line": "[Sun Dec 04 10:53:30 2005] [error] [client 218.76.139.20] Directory index forbidden by rule: /var/www/html/",
+     "off": 58,
+     "gt": 35
+    },
+    {
+     "target": "stress-bracket-space.jsonl",
+     "from": "Apache",
+     "line": "[Sun Dec 04 07:45:45 2005] [error] [client 63.13.186.196] Directory index forbidden by rule: /var/www/html/",
+     "off": 58,
+     "gt": 35
+    },
+    {
+     "target": "stress-bracket-space.jsonl",
+     "from": "Apache",
+     "line": "[Mon Dec 05 19:00:56 2005] [error] [client 68.228.3.15] Directory index forbidden by rule: /var/www/html/",
+     "off": 56,
+     "gt": 35
+    },
+    {
+     "target": "stress-bracket-space.jsonl",
+     "from": "Apache",
+     "line": "[Mon Dec 05 14:11:43 2005] [error] [client 141.154.18.244] Directory index forbidden by rule: /var/www/html/",
+     "off": 59,
+     "gt": 35
+    }
+   ]
+  },
+  "gate_rejects": {
+   "total_gated_keep": 3190,
+   "no_val_evidence": 8
+  },
+  "lodo_isolation": {
+   "Apache": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "BGL": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "HDFS": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "HPC": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "Hadoop": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "HealthApp": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "Linux": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "Mac": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "OpenSSH": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "OpenStack": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "Proxifier": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "Spark": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "Thunderbird": {
+    "n": 998,
+    "not_kept": 0
+   },
+   "Zookeeper": {
+    "n": 1000,
+    "not_kept": 0
+   },
+   "stress-bracket-space.jsonl": {
+    "n": 500,
+    "not_kept": 0
+   },
+   "stress-deploy.jsonl": {
+    "n": 500,
+    "not_kept": 0
+   },
+   "stress-dsware.jsonl": {
+    "n": 500,
+    "not_kept": 0
+   },
+   "stress-host-body.jsonl": {
+    "n": 500,
+    "not_kept": 0
+   },
+   "stress-messages.jsonl": {
+    "n": 500,
+    "not_kept": 0
+   },
+   "stress-noheader.jsonl": {
+    "n": 500,
+    "not_kept": 0
+   },
+   "stress-oam-console.jsonl": {
+    "n": 500,
+    "not_kept": 0
+   },
+   "stress-pure-word.jsonl": {
+    "n": 500,
+    "not_kept": 0
+   },
+   "challenge-brackets": {
+    "n": 800,
+    "not_kept": 0
+   }
+  }
+ },
+ "_rss_kb_at_end": 66240512
+}
