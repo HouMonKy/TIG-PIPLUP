@@ -1,0 +1,157 @@
+"""生产基线上的最小结构合并回归；不依赖上一轮重构接口。"""
+import itertools
+import random
+import re
+
+import pytest
+
+from src.data_process.template_extractor.parsing_algorithm.PIPLUP import (
+    Logcluster, LogParser, _light_digit_re, _structure_aware_merge, path_delimiters,
+)
+from src.data_process.template_extractor.parsing_algorithm.postprocessing import correct_single_template
+from src.data_process.template_extractor.parsing_algorithm.preprocessing import preprocess, sequence
+
+
+def covers(template, text):
+    return re.fullmatch('.*?'.join(re.escape(p) for p in template.split('<*>')), text, re.S) is not None
+
+
+@pytest.mark.parametrize('a,b,expected', [
+    ('name(DMI_SysPowerCheckThread)', 'name(DMI_CpuFreqOptThread)', 'name(<*>)'),
+    ('(xnet_r0_0_14)', '(xnet_r0_0_50)', '(xnet_<*>)'),
+    ('xnet_r0_0_14', 'xnet_r0_0_50', 'xnet_<*>'),
+    ('GlobalInfo;)', 'FrameInfo;)', '<*>;)'),
+    ('0,', '5,', '<*>,'),
+    ('<*>', '0,', '<*>'),
+    ('key:<*>', 'key:0,', 'key:<*>'),
+    ('key:a(x)', 'key:b(y)', 'key:<*>)'),
+    ('[a(x)]', '[b(y)]', '[<*>)]'),
+    ('(a)(num:1)', '(b)(num:1)', '(<*>)(num:1)'),
+    ('a:fooX', 'b:fooY', '<*>:foo<*>'),
+])
+def test_merge_examples(a, b, expected):
+    for left, right in ((a, b), (b, a)):
+        merged = _structure_aware_merge(left, right, path_delimiters)
+        assert merged == expected
+        assert covers(merged, left) and covers(merged, right)
+
+
+def test_progressive_merge_preserves_history():
+    rng = random.Random(42)
+    atoms = ['abc', 'def', '14', '50', '<*>', '(', ')', '[', ']', '{', '}', ':', '_', ',', ';']
+    for _ in range(500):
+        history = [''.join(rng.choices(atoms, k=rng.randrange(1, 9))) for _ in range(5)]
+        merged = history[0]
+        for token in history[1:]:
+            merged = _structure_aware_merge(merged, token, path_delimiters)
+        for token in history:
+            assert covers(merged, token), (merged, token, history)
+            assert covers(merged, token.replace('<*>', 'payload(42)'))
+
+
+@pytest.mark.parametrize('text', ['name(<*>)', '(xnet_<*>)', '[<*>)]', 'key:<*>)', '(<*>)(num:<*>)', 'value <*>, next', '<*>=<*>'])
+def test_postprocess_keeps_structure(text):
+    assert correct_single_template(text) == text
+
+
+def test_multi_path_merge_covers_all_paths():
+    rows = [['event', 'name(a)'], ['event', 'other(b)'], ['event', 'name(c)']]
+    for order in itertools.permutations(rows):
+        cluster = Logcluster(list(order[0]), br_thresh=2)
+        for row in order[1:]:
+            cluster.updateSequence(list(row))
+        for row in rows:
+            assert any(covers(t, ' '.join(row)) for t in cluster.templateList)
+
+
+@pytest.mark.parametrize('estimation', [False, True])
+def test_redundant_masks_equivalent(estimation):
+    original = list(sequence)
+    original.insert(2, 'epoch_ms_13d')
+    original.insert(4, 'code_line_num')
+    for n in (0, 1, 178, 1500001430000, 9999999999999):
+        for text in (f'[{n}] ready', f'[module.c:action,{n}] done', f'[{n}] [app,pid:12,tid:45] count:{n}', f'value,{n}]suffix'):
+            old = preprocess(text, estimation_stage=estimation, use_sequence=original)
+            new = preprocess(text, estimation_stage=estimation)
+            assert (old[0] if estimation else old) == (new[0] if estimation else new)
+
+
+def test_light_normalization():
+    assert _light_digit_re.sub('0', 'Arg:0_1_5') == 'Arg:0'
+    for text in ('key:value', 'a_b', '()<*>', ',;_+-/'):
+        assert _light_digit_re.sub('0', text) == text
+
+
+@pytest.mark.parametrize('cache', [False, True])
+def test_parser_smoke(cache):
+    parser = LogParser('<Content>', 'minimal-test', use_cache=False, use_template_cache=cache, br_thresh=2)
+    logs = ['worker name(DMI_SysPowerCheckThread) ready', 'worker name(DMI_CpuFreqOptThread) ready', 'worker name(DMI_OtherThread) ready']
+    for _ in range(2):
+        templates = parser.parse_list(logs)
+        assert len(templates) == len(logs)
+        assert all(covers(t, log) for t, log in zip(templates, logs))
+
+
+def test_template_matches_original_semantics():
+    import regex
+    values = ['', 'abc', '中文', 'İıſK', '<*>', 'a<*>b', 'a\nb', 'a\nb\n',
+              '[x](y)', 'a.b+$', '<*><*>', 'a<*>b<*>c']
+    for template, text in itertools.product(values, repeat=2):
+        pattern = '.*?'.join(regex.escape(p) for p in regex.split(r'<\*>', template))
+        expected = bool(regex.fullmatch(f'^{pattern}$', text, regex.DOTALL))
+        assert Logcluster.templateMatches(template, text) == expected
+
+
+def test_template_matches_repeated_and_changed_template():
+    assert Logcluster.templateMatches('worker <*> ready', 'worker foo ready')
+    assert not Logcluster.templateMatches('worker <*> ready', 'worker foo failed')
+    assert Logcluster.templateMatches('worker <*> failed', 'worker foo failed')
+    assert Logcluster.templateMatches('worker <*> ready', 'worker bar ready')
+
+
+def test_regex_cache_keeps_counts_and_final_templates():
+    parser = LogParser('<Content>', 'regex-cache-test', use_cache=False,
+                       use_template_cache=False, br_thresh=1)
+    output = parser.parse_list(['worker name(foo) ready', 'worker name(foo) ready',
+                               'worker name(bar) ready'])
+    assert output == ['worker name(<*>) ready'] * 3
+    assert len(parser.logCluL) == 1
+    assert parser.logCluL[0].hit_time == 3
+    assert parser.logCluL[0].templateList == ['worker name(<*>) ready']
+    parser.parse_list(['worker name(baz) ready'] * 2)
+    assert parser.logCluL[0].hit_time == 5
+
+
+@pytest.mark.parametrize('logs,expected_preprocess_calls', [
+    (['worker count:1 ready', 'worker count:2 ready', 'worker count:3 ready'], 1),
+    (['worker file /var/log/alpha ready', 'worker file /var/log/beta ready',
+      'worker file /var/log/gamma ready'], 3),
+])
+def test_both_cache_levels_count_every_line(logs, expected_preprocess_calls):
+    from unittest.mock import patch
+    from src.data_process.template_extractor.parsing_algorithm import PIPLUP as module
+    cached = LogParser('<Content>', 'counts', use_cache=False, use_template_cache=True)
+    plain = LogParser('<Content>', 'counts', use_cache=False, use_template_cache=False)
+    with patch.object(module, 'preprocess', wraps=module.preprocess) as preprocessing:
+        output = cached.parse_list(logs)
+        assert preprocessing.call_count == expected_preprocess_calls
+    assert output == plain.parse_list(logs)
+    assert len(cached.logCluL) == 1
+    assert cached.logCluL[0].hit_time == len(logs)
+    assert cached.logCluL[0].logIDL == []
+    assert cached.parse_list(logs) == output
+    assert cached.logCluL[0].hit_time == 2 * len(logs)
+    assert cached.logCluL[0].logIDL == []
+
+
+@pytest.mark.parametrize('br_thresh', [1, 5])
+def test_cached_rows_use_final_candidates(br_thresh):
+    logs = ['worker name(foo) ready', 'worker name(foo) ready', 'worker name(bar) ready',
+            'worker name(foo) ready', 'worker name(bar) ready']
+    cached = LogParser('<Content>', 'final', use_cache=False, use_template_cache=True,
+                       br_thresh=br_thresh)
+    plain = LogParser('<Content>', 'final', use_cache=False, use_template_cache=False,
+                      br_thresh=br_thresh)
+    assert cached.parse_list(logs) == plain.parse_list(logs)
+    assert cached.logCluL[0].templateList == plain.logCluL[0].templateList
+    assert sum(c.hit_time for c in cached.logCluL) == len(logs)
