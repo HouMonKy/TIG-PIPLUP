@@ -23,80 +23,163 @@ path_delimiters = {  # reduced set of delimiters for tokenizing for checking the
 
 
 def _structure_aware_merge(t1, t2, delimiters):
-    """保留分隔符边界的共同前缀、后缀及同位置中段。"""
+    """
+    基于前缀锚定的结构感知合并。
+
+    合并规则：
+    1. 如果 t1 == t2，直接返回。
+    2. 如果已有通配模板能够覆盖另一 Token：
+       - head 存在字母锚点：保留已有模板。
+       - head 不存在字母锚点：退化为 <*>。
+    3. 计算 LCP，提取公共前缀 head。
+    4. head 不包含字母时，直接返回 <*>。
+    5. 计算 LCS，只保留末尾连续的公共结构性分隔符作为 tail。
+    6. middle 不再提取，统一使用 <*>。
+    7. 执行长度检查和覆盖校验，失败则退化为 <*>。
+
+    最终模板形式：
+        head + <*> + tail
+    """
+
+    # ============================================================
+    # 1. 完全相同，直接返回
+    # ============================================================
     if t1 == t2:
         return t1
 
+    # ============================================================
+    # 2. 定义覆盖检查
+    # ============================================================
     def covers(general, specific):
-        pattern = '.*?'.join(re.escape(p) for p in general.split('<*>'))
-        return re.fullmatch(pattern, specific, re.DOTALL) is not None
+        pattern = '.*?'.join(
+            re.escape(p) for p in general.split('<*>')
+        )
+        return re.fullmatch(
+            pattern, specific, re.DOTALL
+        ) is not None
 
-    # 已有通配模板覆盖新 token 时保持不变，避免收窄历史匹配范围。
-    # 例如 <*> + 0, 仍为 <*>；仅当两侧都有逗号时才保留逗号。
+    # ============================================================
+    # 3. 已有通配模板覆盖检查
+    # ============================================================
     for general, specific in ((t1, t2), (t2, t1)):
-        if '<*>' in general and covers(general, specific):
-            return general
 
+        if '<*>' in general and covers(general, specific):
+
+            # 只检查第一个 <*> 之前的公共前缀是否存在字母锚点。
+            # 避免保留 <*>:<*>、<*>:foo<*>、<*>e 等无意义结构。
+            existing_head = general.split('<*>', 1)[0]
+
+            if any(ch.isalpha() for ch in existing_head):
+                return general
+
+            return '<*>'
+
+    # ============================================================
+    # 4. 计算最长公共前缀 LCP
+    # ============================================================
     lcp_len = 0
+
     for c1, c2 in zip(t1, t2):
         if c1 != c2:
             break
         lcp_len += 1
 
+    # ============================================================
+    # 5. 提取公共前缀 head
+    #    沿用原有逻辑，不修改下划线的处理方式
+    # ============================================================
     head_end = -1
+
     for i in range(lcp_len - 1, -1, -1):
         if t1[i] in delimiters and t1[i] != '_':
             head_end = i
             break
+
     if head_end >= 0:
+
         for i in range(head_end + 1, lcp_len):
+
             if t1[i] == '_' and '_' in delimiters:
+
                 if i < lcp_len - 1:
                     head_end = i
+
                 break
+
     else:
+
         for i in range(lcp_len):
+
             if t1[i] in delimiters:
                 head_end = i
                 break
+
     head = t1[:head_end + 1]
 
+    # ============================================================
+    # 6. Head 字母锚点门控
+    #    没有字母前缀，不保留任何内部结构
+    # ============================================================
+    if not any(ch.isalpha() for ch in head):
+        return '<*>'
+
+    # ============================================================
+    # 7. 计算最长公共后缀 LCS
+    # ============================================================
     lcs_len = 0
+
     for c1, c2 in zip(reversed(t1), reversed(t2)):
         if c1 != c2:
             break
         lcs_len += 1
+
+    # ============================================================
+    # 8. 提取公共后缀 tail
+    #    只保留末尾连续的公共结构性分隔符
+    #    不保留普通字母、数字组成的公共后缀
+    # ============================================================
     tail = ''
+
     if lcs_len:
+
         start = len(t1) - lcs_len
-        tail = t1[start:]
-        for i in range(start, len(t1)):
-            if t1[i] in delimiters:
-                tail = t1[i:]
+
+        tail_start = len(t1)
+
+        for i in range(len(t1) - 1, start - 1, -1):
+
+            if t1[i] in delimiters and t1[i] != '_':
+                tail_start = i
+
+            else:
                 break
 
-    middle = ''
-    if not tail:
-        i = lcp_len
-        while i < min(len(t1), len(t2)):
-            if t1[i] in delimiters and t1[i] != '_' and t1[i] == t2[i]:
-                j = i + 1
-                while j < min(len(t1), len(t2)) and t1[j] == t2[j]:
-                    j += 1
-                if j - i > max(1, len(middle)):
-                    middle = t1[i:j]
-                i = j
-            else:
-                i += 1
+        if tail_start < len(t1):
+            tail = t1[tail_start:]
 
-    # 不按括号计数删补字符：开括号可能在 <*> 中，或在相邻 token 中。
-    # 保留双方共有的闭括号及完整嵌套后缀，交给覆盖校验保证结果有效。
-    if len(head) + len(middle) + len(tail) >= min(len(t1), len(t2)):
+    # ============================================================
+    # 9. 长度检查
+    #    head + tail 不应覆盖较短 Token 的全部内容
+    # ============================================================
+    if len(head) + len(tail) >= min(len(t1), len(t2)):
         return '<*>'
-    result = head + '<*>' + (middle + '<*>' if middle else '') + tail
-    # 防止 LCP/LCS 切开已有 <*>，以及中段和前后缀重叠。
-    if not all(covers(result, token) for token in (t1, t2)):
+
+    # ============================================================
+    # 10. 生成最终模板
+    #     middle 不再进行提取，统一泛化为 <*>
+    # ============================================================
+    result = head + '<*>' + tail
+
+    # ============================================================
+    # 11. 覆盖校验
+    #     必须同时覆盖两个原始 Token
+    # ============================================================
+    if not all(
+        covers(result, token)
+        for token in (t1, t2)
+    ):
         return '<*>'
+
     return result
 
 
