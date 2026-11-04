@@ -1,469 +1,102 @@
-import re
+import regex as re
 import os
 import zlib
 # pandas 已移除：DataFrame+iterrows 替换为 range+list 索引（优化1）
 import logging
 from datetime import datetime
 import pickle
-import weakref
 
 from .preprocessing import preprocess
 from .postprocessing import correct_single_template
-from .token_structure import (
-    structure_similarity, split_kv, merge_kv_tokens, merge_values,
-    _is_variable_like)
 from src.common.global_config import GlobalConfig
 
 logger = logging.getLogger(__name__)
 
-# 注：regex 模块已替换为标准库 re。本模块用到的模式（re.escape、<\*>、
-# .*?、lookbehind/lookahead）均为两者共有语法，且 escape 对空格/特殊字符
-# 的处理经实测一致（' ' → '\ '，'<*>' → '<\*>'）；regex 模块的每次
-# escape/_compile 都有可观的 enum 校验与初始化开销（cProfile 中合计
-# >0.6s/2 万行），标准库 re 无此负担。
-
-# 轻量归一化正则：替换连续的[数字+分隔符]序列，用于预处理前 CRC32 缓存预检
-# 匹配至少含一个数字的连续字符序列，字符 ∈ {数字, 分隔符, 下划线}
-# 下划线 _ 属于 \w，在日志中广泛用于连接复合数值（如 Arg:0_1_5、Cap:15749414426_16561907771）
-# 冒号 : 不纳入——它是 key:value 分隔符（Cap:、Arg:），应保留
-_light_digit_re = re.compile(r'(?=[\d\s.,;\-/+_]*\d)[\d\s.,;\-/+_]+')
+# 轻量归一化正则：仅替换数字序列，用于预处理前 CRC32 缓存预检
+_light_digit_re = re.compile(r'\d+')
 
 path_delimiters = {  # reduced set of delimiters for tokenizing for checking the path-like strings
         ' ', ',', '!', ';', ':',
         '=', '|', '"', "'", '+', '.',
-        '[', ']', '(', ')', '{', '}',
-        '_'  # 下划线：日志标识符（如 xnet_m50_x0、conn_mode、down_count）用 _ 连接，
-             # 不含 _ 时 _structure_aware_merge 回退到 ( 等粗粒度分隔符，导致过度泛化
+        '[', ']', '(', ')', '{', '}', '_'
     }
 
 
-# 模块级缓存统一封顶：超限整表清空（只丢缓存可重建，不影响正确性）
-_CACHE_LIMIT = 1 << 16
-# jaccardSimilarity 的模板词集合缓存
-_WORD_SET_CACHE = {}
-
-
-def _wildcard_fullmatch(template, text):
-    """线性通配符全匹配：判定 text 能否被 template（<*> 为通配）完整覆盖。
-
-    等价于 re.fullmatch('.*?'.join(escape(段)), text, re.DOTALL)（按 <*>
-    切分的字面量段间用非贪婪任意内容连接），但改为贪心最早匹配：
-    首段必须为前缀，中间段依次取 >= 当前位置的最早出现，末段必须为
-    后缀且起点不早于前段终点。O(n×段数) 纯字符串查找，彻底消除
-    .*? 链在近似失配长行上的组合回溯。
-
-    贪心正确性（交换论证）：中间段取最早出现位置为后续段保留最大
-    空间，存在可行分解当且仅当贪心可行；全匹配下 .*? 的懒惰/贪婪
-    不改变匹配存在性。
-    """
-    if template == text:
-        return True
-    if '<*>' not in template:
-        return False
-    segs = template.split('<*>')
-    n = len(text)
-
-    head = segs[0]
-    if head:
-        if not text.startswith(head):
-            return False
-        pos = len(head)
-    else:
-        pos = 0
-
-    for seg in segs[1:-1]:
-        if not seg:
-            continue
-        idx = text.find(seg, pos)
-        if idx == -1:
-            return False
-        pos = idx + len(seg)
-
-    tail = segs[-1]
-    if tail:
-        start = n - len(tail)
-        if start < pos:
-            return False
-        return text.startswith(tail, start)
-    return True
-
-
-def _token_covers(template_token, text):
-    """模板 token（可含 <*>）作为模式是否能覆盖 text 字符串。"""
-    return _wildcard_fullmatch(template_token, text)
-
-
-class _ClusterPattern:
-    """簇模板的线性匹配器：复刻原正则 ^W1\\s*W2 .. <*> .. Wk$ 的
-    fullmatch + IGNORECASE + DOTALL 语义，无回溯。
-
-    语义对应关系（与原 _compile_regex_patterns 产出的模式一致）：
-    - 模板按 <*> 切段，段内按空白切词；<*> → 任意内容（原 .*?）
-    - 段内词间隙 → 任意空白串（原 \\s*，含 0 个）
-    - 大小写不敏感（模板词与文本预 lower；日志内容以 ASCII 为主，
-      极端 Unicode casefold 差异不覆盖——原正则同样不依赖）
-
-    零回溯的关键：词间隙必须全空白，且词首字符必为非空白——
-    下一词必须恰好起于上一个词之后的第一个非空白字符，间隙分解
-    唯一确定。通配区后的段首词按出现位置迭代（段内确定性匹配
-    失败才前进到下一出现位置）。
-    """
-
-    __slots__ = ('segments',)
-
-    def __init__(self, template):
-        # 每段：小写词列表；空段（连续 <*> / 首尾 <*>）→ 空列表
-        self.segments = [seg.lower().split() for seg in template.split('<*>')]
-
-    def fullmatch(self, text_l):
-        r"""对已 strip + lower 的文本做全匹配（Unicode 全覆盖）。
-
-        审视#8 原建议"非 ASCII 回退原版编译正则"——实测该回退模式
-        （\s*.*?\s* 链）正是灾难性回溯的来源：日志行含任意一个中文
-        字符即触发回退，行尾失配 + 空格密集时 >15s 卡死。线性匹配器
-        本身可正确处理 Unicode，无需回退：
-        - 模板与文本双侧 lower，İ→i̇ 等长度变化两侧一致，匹配全程
-          在 lower 域内进行，无位置回映射；
-        - str.split() 原生支持 Unicode 空白（含全角空格）；
-        - Python re.IGNORECASE 与 str.lower() 同为简单大小写映射。
-        """
-        n = len(text_l)
-        segs = self.segments
-        # 首段：^ 锚定，从 0 起逐词确定性匹配
-        head = segs[0]
-        if head:
-            pos = self._match_words(text_l, n, head, 0)
-            if pos < 0:
-                return False
-        else:
-            pos = 0
-
-        if len(segs) == 1:
-            # 无通配：首段即末段，必须恰好覆盖全文
-            return pos == n
-
-        # 中间段：段首词在通配区后迭代出现位置（段内确定性匹配
-        # 失败才前进到下一出现位置；贪心最早成功为后续段留最大空间）
-        for i in range(1, len(segs) - 1):
-            words = segs[i]
-            if not words:
-                continue
-            p = text_l.find(words[0], pos)
-            while p != -1:
-                end = self._match_words(text_l, n, words, p)
-                if end >= 0:
-                    pos = end
-                    break
-                p = text_l.find(words[0], p + 1)
-            else:
-                return False
-
-        # 末段：$ 锚定并入出现位置迭代——段内匹配成功且恰好结束于
-        # 文本末尾才算命中（等价于正则对 .*? 的回溯推尾）
-        tail = segs[-1]
-        if not tail:
-            return True   # 模板以 <*> 结尾，无尾部锚
-        p = text_l.find(tail[0], pos)
-        while p != -1:
-            if self._match_words(text_l, n, tail, p) == n:
-                return True
-            p = text_l.find(tail[0], p + 1)
-        return False
-
-    @staticmethod
-    def _match_words(text_l, n, words, start):
-        """从 start 起确定性匹配词序列，返回末位置（已跳过词间空白），
-        失败返回 -1。首词必须恰在 start 处开始。"""
-        pos = start
-        for w in words:
-            if not text_l.startswith(w, pos):
-                return -1
-            pos += len(w)
-            # 词间/词后跳过空白串：下一词首字符非空白，起点唯一确定
-            while pos < n and text_l[pos].isspace():
-                pos += 1
-        return pos
-
-
-def _fixed_brackets_balanced(candidate):
-    """检查候选 token 固定部分（去除 <*> 后）的三类括号是否配对平衡。"""
-    stack = []
-    pairs = {')': '(', ']': '[', '}': '{'}
-    for ch in candidate.replace('<*>', ''):
-        if ch in '([{':
-            stack.append(ch)
-        elif ch in ')]}':
-            if not stack or stack[-1] != pairs[ch]:
-                return False
-            stack.pop()
-    return not stack
-
-
-def _progressive_generalize(token, delimiters, max_candidates=6):
-    """渐进泛化生成器：沿完整逻辑边界逐步将 token 尾部常量替换为 <*>。
-
-    token 按 <*> 切分为常量段 p0..pn（n 个通配符）。每个候选保留
-    p0..p(k-1) 与 pk 的前缀（在非下划线分隔符之后切齐），其余塌缩为
-    单个尾部 <*>。按 (k, j) 从尾向头的字典序枚举，保证候选序列严格
-    逐步泛化（后者覆盖前者），且每个候选都覆盖原 token。
-
-    约束：
-    - 候选固定部分括号必须平衡（避免括号截断）；
-    - 去重，数量封顶 max_candidates（避免无限增长）；
-    - 只在非下划线分隔符边界切分（下划线连接的子部分通常是变量，
-      不作为保留边界）。
-
-    例如 '(xnet_<*>:<*>)(num:<*>)server' 依次产生：
-      '(xnet_<*>:<*>)(num:<*>)<*>'
-      '(xnet_<*>:<*>)<*>'          （吸收 )(num: 段，仅保留配对的 ) ）
-      '<*>'
-    """
-    parts = token.split('<*>')
-    if len(parts) < 2:
-        return
-    last = len(parts) - 1
-    seen = set()
-    count = 0
-    for k in range(last, -1, -1):
-        seg = parts[k]
-        # 段内切点：各非下划线分隔符之后（从后往前），最后补段首
-        cut_points = [d + 1 for d in range(len(seg) - 1, -1, -1)
-                      if seg[d] in delimiters and seg[d] != '_']
-        cut_points.append(0)
-        for j in cut_points:
-            prefix = ''.join(p + '<*>' for p in parts[:k])
-            cand = prefix + seg[:j] + '<*>'
-            # 合并尾部连续通配符（如 <*>：<*> 形式的退化）
-            while cand.endswith('<*><*>'):
-                cand = cand[:-3]
-            if cand in seen or cand == token:
-                continue
-            if not _fixed_brackets_balanced(cand):
-                continue
-            seen.add(cand)
-            yield cand
-            count += 1
-            if cand == '<*>' or count >= max_candidates:
-                return
-
-
 def _structure_aware_merge(t1, t2, delimiters):
-    """结构感知的 token 合并：保留共同前/后缀中到分隔符边界的稳定部分。
-
-    核心不变量：合并结果必须同时覆盖 t1 和 t2（作为模板语言，二者都
-    是合并结果的特例）。若一侧已含 <*> 且能覆盖另一侧，直接返回覆盖
-    侧——不叠加仅单侧出现的分隔符（如 merge('<*>','0,') 不得产出
-    '<*>,'，那会丢失原先可接受的 '7'）；双方共有的分隔符由 LCP/LCS
-    路径自然保留（merge('0,','5,') → '<*>,'）。
-
-    合并路径（按序尝试）：
-    1. 完全相同 → 原样返回
-    2. kv 结构（key:value / key=value，同字段名）→ 值合并（数字组边界）
-    3. 裸复合标识符/数字链（双方含数字、无通配）→ merge_values
-       （保留完整公共前/后缀，括号失衡时回退 LCP/LCS）
-    4. 通配覆盖检查：一侧含 <*> 且能覆盖另一侧 → 返回覆盖侧
-    5. 双方都含 <*>：渐进泛化；仅得 <*> 时优先 LCP/LCS 结果（可能
-       保留中缀结构，如 (xnet_<*>:0)）
-    6. LCP/LCS 字符级合并（head/middle/tail + 括号平衡 + 重叠保护）
-    """
-
-    # 完全相同则直接返回
+    """保留分隔符边界的共同前缀、后缀及同位置中段。"""
     if t1 == t2:
         return t1
 
-    # kv 结构合并：同字段名的复合值（key:value / key=value），不依赖业务掩码。
-    # 仅在双方均无 <*> 时启用；含 <*> 的组合走下方通配覆盖与渐进泛化。
-    kv_merged = merge_kv_tokens(t1, t2)
-    if kv_merged is not None:
-        return kv_merged
+    def covers(general, specific):
+        pattern = '.*?'.join(re.escape(p) for p in general.split('<*>'))
+        return re.fullmatch(pattern, specific, re.DOTALL) is not None
 
-    # 裸复合标识符/数字链（无 kv 上下文）：保留完整公共前/后缀并做
-    # 数字组边界修剪（fsi_snap_fs5041_1058676 → fsi_snap_fs<*>）。
-    # 仅在双方均无 <*> 时启用；括号失衡时（结构在中段，如 cap:[a_b][c_d]）
-    # 回退 LCP/LCS 路径。
-    if ('<*>' not in t1 and '<*>' not in t2
-            and any(c.isdigit() for c in t1) and any(c.isdigit() for c in t2)):
-        bare = merge_values(t1, t2)
-        if _fixed_brackets_balanced(bare):
-            return bare
+    # 已有通配模板覆盖新 token 时保持不变，避免收窄历史匹配范围。
+    # 例如 <*> + 0, 仍为 <*>；仅当两侧都有逗号时才保留逗号。
+    for general, specific in ((t1, t2), (t2, t1)):
+        if '<*>' in general and covers(general, specific):
+            return general
 
-    def _covers(general, specific):
-        """general（含 <*>）作为模板是否能覆盖 specific 字符串。"""
-        return _token_covers(general, specific)
-
-    has_wild_1 = '<*>' in t1
-    has_wild_2 = '<*>' in t2
-    if has_wild_1 and not has_wild_2:
-        if _covers(t1, t2):
-            return t1
-    elif has_wild_2 and not has_wild_1:
-        if _covers(t2, t1):
-            return t2
-    elif has_wild_1 and has_wild_2:
-        # 双方都含 <*>，互相检查是否一方能覆盖另一方
-        if _covers(t1, t2):
-            return t1
-        if _covers(t2, t1):
-            return t2
-
-        # 渐进泛化：当双方都含 <*> 但互不覆盖时（如结尾不同 server vs client），
-        # 尝试将一侧尾部的常量段逐级替换为 <*>，直到覆盖另一侧。
-        # 仅得到平凡解 <*> 时不立即采用：先记录，若下方 LCP/LCS 路径
-        # 能给出更具体且同样覆盖双方的结果（如 (xnet_<*>:0) 保留中缀），
-        # 则优先 LCP/LCS。
-        trivial = None
-        for gen_token in _progressive_generalize(t1, delimiters):
-            if _covers(gen_token, t2) and _covers(gen_token, t1):
-                if gen_token != '<*>':
-                    return gen_token
-                trivial = '<*>'
-                break
-        if trivial is None:
-            for gen_token in _progressive_generalize(t2, delimiters):
-                if _covers(gen_token, t1) and _covers(gen_token, t2):
-                    if gen_token != '<*>':
-                        return gen_token
-                    trivial = '<*>'
-                    break
-        if trivial is not None:
-            lcp_result = _lcp_lcs_merge(t1, t2, delimiters)
-            if (lcp_result != '<*>'
-                    and _covers(lcp_result, t1) and _covers(lcp_result, t2)):
-                return lcp_result
-            return trivial
-
-    return _lcp_lcs_merge(t1, t2, delimiters)
-
-
-def _lcp_lcs_merge(t1, t2, delimiters):
-    """LCP/LCS 字符级合并：head/middle/tail + 括号平衡 + 重叠保护。"""
-    # Step 1-2: LCP → 回退到分隔符边界
     lcp_len = 0
     for c1, c2 in zip(t1, t2):
-        if c1 == c2:
-            lcp_len += 1
-        else:
+        if c1 != c2:
             break
+        lcp_len += 1
 
-    head = ''
-    if lcp_len > 0:
-        # 从 lcp_len 向前找最近的非下划线分隔符
-        # 下划线 _ 连接的标识符子部分（如 xnet_r0_0_14 中的 r0、0、14）通常是变量，
-        # 不应作为 head 边界，否则 head 会过拟合到 (xnet_r0_0_ 而非 (xnet_
-        head_end = -1
-        for i in range(lcp_len - 1, -1, -1):
-            if t1[i] in delimiters and t1[i] != '_':
+    head_end = -1
+    for i in range(lcp_len - 1, -1, -1):
+        if t1[i] in delimiters and t1[i] != '_':
+            head_end = i
+            break
+    if head_end >= 0:
+        for i in range(head_end + 1, lcp_len):
+            if t1[i] == '_' and '_' in delimiters:
+                if i < lcp_len - 1:
+                    head_end = i
+                break
+    else:
+        for i in range(lcp_len):
+            if t1[i] in delimiters:
                 head_end = i
                 break
-        if head_end >= 0:
-            # 在非下划线分隔符之后，找第一个下划线作为 head 边界
-            # 但仅当该下划线不是 LCP 的最后一个字符时才保留标识符前缀：
-            # - name(DMI_SysPowerCheckThread) vs name(DMI_CpuFreqOptThread)
-            #   LCP = name(DMI_ → _ 在末尾 → DMI_ 后就分叉 → head = name( (泛化)
-            # - (xnet_r0_0_14) vs (xnet_r0_0_50)
-            #   LCP = (xnet_r0_0_1 → _ 后还有 r0_0_1 → head = (xnet_ (保留前缀)
-            for i in range(head_end + 1, lcp_len):
-                if t1[i] == '_':
-                    if i < lcp_len - 1:
-                        head_end = i
-                    break
-            head = t1[:head_end + 1]
-        else:
-            # LCP 中无非下划线分隔符，从前往后找第一个下划线作为 head 边界
-            # xnet_r0_0_14 vs xnet_r0_0_50 → head = xnet_（保留标识符首段，泛化后续变量）
-            for i in range(lcp_len):
-                if t1[i] in delimiters:
-                    head_end = i
-                    break
-            if head_end >= 0:
-                head = t1[:head_end + 1]
+    head = t1[:head_end + 1]
 
-    # Step 3-4: LCS → 前进到分隔符边界
     lcs_len = 0
     for c1, c2 in zip(reversed(t1), reversed(t2)):
-        if c1 == c2:
-            lcs_len += 1
-        else:
+        if c1 != c2:
             break
-
+        lcs_len += 1
     tail = ''
-    if lcs_len > 0:
-        # 在 LCS 区域内从前往后找第一个分隔符，取从该分隔符到末尾的全部作为 tail
-        # 原因：LCS 是尾部共同部分，应尽可能完整地保留
-        # 例如 GlobalInfo;) vs FrameInfo;) → LCS=Info;) → 找第一个分隔符 ; → tail=;)'
-        # 而不是从后往前找最后一个分隔符 ) → tail=)（丢失 Info;）
-        lcs_start = len(t1) - lcs_len
-        tail_start = -1
-        for i in range(lcs_start, len(t1)):
+    if lcs_len:
+        start = len(t1) - lcs_len
+        tail = t1[start:]
+        for i in range(start, len(t1)):
             if t1[i] in delimiters:
-                tail_start = i
+                tail = t1[i:]
                 break
-        if tail_start >= 0:
-            tail = t1[tail_start:]
-        else:
-            # LCS 区域内无分隔符：tail 仅为纯字母/数字片段，不承载结构
-            # 信息（分隔符是结构边界的证据）。保留会产生 <*>e、<*>er、
-            # <*>ate 等无意义残留——这些短后缀通配 token 在 seqDist 中
-            # 经 _token_covers 对任何同尾词给 0.9 分，引发过度归并。
-            tail = ''
 
-    # Step 4.5: 中段补偿 — tail 为空时，在 LCP 之后寻找以非下划线分隔符开头的最长共同子串
-    # 下划线 _ 连接的子部分（如 _14）通常是变量，不应作为中段起始边界，
-    # 否则会导致后续合并时字符位置错位（<*> 3字符 vs 原始值 N字符不对齐）
     middle = ''
-    if not tail and lcp_len < min(len(t1), len(t2)):
-        best_mid = ''
+    if not tail:
         i = lcp_len
         while i < min(len(t1), len(t2)):
             if t1[i] in delimiters and t1[i] != '_' and t1[i] == t2[i]:
-                # 找到共同非下划线分隔符，计算从这里开始的最长共同子串
-                j = i
+                j = i + 1
                 while j < min(len(t1), len(t2)) and t1[j] == t2[j]:
                     j += 1
-                mid = t1[i:j]
-                if len(mid) > len(best_mid):
-                    best_mid = mid
-                i = j + 1
+                if j - i > max(1, len(middle)):
+                    middle = t1[i:j]
+                i = j
             else:
                 i += 1
-        if best_mid and len(best_mid) > 1:
-            middle = best_mid
 
-    # Step 5: 括号平衡检查
-    # 考虑 head 和 tail 中所有的括号，而非仅 head 的开括号 vs tail 的闭括号
-    # tail 内部可能含有 ( )，如 :<*>)(num:<*>) 中 ) 和 ( 都是结构的一部分
-    #
-    # 关键修正：当 head 为空时，<*> 区域可能包含对应的开括号
-    # 例如 GlobalInfo;) vs FrameInfo;) → head='', tail=;)' → ) 对应原始 token 中的 (
-    # 此时 tail 中的闭括号属于 <*> 区域的结构，不应删除。
-    # 只有当 head 非空（head 中有开括号可抵消）时才做括号平衡。
-    if head:
-        open_count = head.count('(') + head.count('[') + head.count('{') + \
-                     tail.count('(') + tail.count('[') + tail.count('{')
-        close_count = head.count(')') + head.count(']') + head.count('}') + \
-                      tail.count(')') + tail.count(']') + tail.count('}')
-        if close_count > open_count:
-            # 从 tail 前端逐字符移除多余的关闭括号
-            excess = close_count - open_count
-            new_tail = ''
-            removed = 0
-            for ch in tail:
-                if removed < excess and ch in (')', ']', '}'):
-                    removed += 1
-                else:
-                    new_tail += ch
-            tail = new_tail
-
-    # Step 6: 重叠保护
-    total_fixed = len(head) + len(middle) + len(tail)
-    if total_fixed >= min(len(t1), len(t2)):
+    # 不按括号计数删补字符：开括号可能在 <*> 中，或在相邻 token 中。
+    # 保留双方共有的闭括号及完整嵌套后缀，交给覆盖校验保证结果有效。
+    if len(head) + len(middle) + len(tail) >= min(len(t1), len(t2)):
         return '<*>'
-
-    # Step 7: 组装结果
-    result = head + '<*>'
-    if middle:
-        result += middle + '<*>'
-    result += tail
+    result = head + '<*>' + (middle + '<*>' if middle else '') + tail
+    # 防止 LCP/LCS 切开已有 <*>，以及中段和前后缀重叠。
+    if not all(covers(result, token) for token in (t1, t2)):
+        return '<*>'
     return result
 
 
@@ -477,22 +110,13 @@ class Logcluster:
         self.templateList = [correct_single_template(' '.join(logTemplate))]
         self.br_thresh = br_thresh
         self.hit_time = 1
-        # templateList 世代计数：每次模板列表变化时递增，
-        # 供簇级已编译模式缓存做失效判断（见 _get_cluster_patterns）
-        self._tpl_version = 0
-
-    def _mark_templates_changed(self):
-        """templateList 变化的唯一入口（审视#1：统一兼容处理，
-        避免部分位置 getattr 兜底、部分位置直接 += 报错）。"""
-        self._tpl_version = getattr(self, '_tpl_version', 0) + 1
 
     # Check whether template1 can describe template2 (template2 can be merged into template1)
     @staticmethod
     def templateMatches(template1, template2):
-        # 与 _token_covers 共用已编译模式缓存：原实现每次调用重跑
-        # split+escape+join 并触发编译，是解析热路径的最大热点。
-        # fullmatch 已隐含首尾锚定（原实现的 ^ $ 对 fullmatch 是冗余的）。
-        return _wildcard_fullmatch(template1, template2)
+        parts = re.split(r"<\*>", template1)
+        pattern = ".*?".join(re.escape(part) for part in parts)
+        return re.fullmatch(f"^{pattern}$", template2, re.DOTALL) is not None
     
     def seqSimilarity(self, seq1, seq2):
         sim = 0
@@ -500,65 +124,6 @@ class Logcluster:
             if t1 == t2 or '<*>' in t1: sim += 1
         return sim/len(seq1)
     
-    def _merge_single_diff_path(self, seq):
-        """单位置差异路径合并（未满容量分支）：新序列与某条已有路径仅
-        在一个位置存在实质差异时，把该位置合并出的 token 写回路径列表。
-
-        返回 True 表示已合并（调用方跳过追加）。
-
-        - 路径 token 已覆盖 seq token 的位置不算差异（'<*>'/'name:<*>'
-          等对同类新值是透明位）；
-        - 合并 token 优先复用簇级已泛化形式（与容量满合并分支同源）；
-        - 守卫一：合并 token 必须覆盖两侧原值；
-        - 守卫二：合并 token 须保留 ≥3 个非通配字符——'VER.<*>'、
-          '210305920810L<*>' 这类同族证据放行，'<*>'（open/close、
-          start/stop 等无共同结构的词对）拒绝，防止语义不同的事件
-          在路径层被无结构塌缩；
-        - 写回范围：合并 token 覆盖全部路径在该位置的现值时写全部
-          （与容量满合并分支语义一致），否则只写目标路径（保守）。
-        """
-        target = None
-        diff_pos = -1
-        for p in self.pathList:
-            diffs = [i for i in range(len(p))
-                     if not (p[i] == seq[i] or _token_covers(p[i], seq[i]))]
-            if len(diffs) == 1:
-                target, diff_pos = p, diffs[0]
-                break
-        if target is None:
-            return False
-
-        t1, t2 = target[diff_pos], seq[diff_pos]
-        lt = (self.logTemplate[diff_pos]
-              if diff_pos < len(self.logTemplate) else None)
-        if (lt is not None and lt != t1 and lt != t2
-                and _token_covers(lt, t1) and _token_covers(lt, t2)):
-            var = lt
-        else:
-            var = _structure_aware_merge(t1, t2, path_delimiters)
-
-        if not (_token_covers(var, t1) and _token_covers(var, t2)):
-            return False
-        if len(var.replace('<*>', '')) < 3:
-            return False
-        # 守卫三：kv 同键但值为普通词（状态词对 running/stopped）→
-        # 保持路径分离。设计判据 _is_variable_like：数字链/复合标识符
-        # 值（Cap:111_222）是变量型，合并为 <*> 是正确泛化不在此列；
-        # 普通词状态值仅字段名分，输出以多候选保留具体状态。
-        kv1, kv2 = split_kv(t1), split_kv(t2)
-        if (kv1 and kv2 and kv1[1] == kv2[1] and kv1[2] == kv2[2]
-                and not (_is_variable_like(kv1[3])
-                         and _is_variable_like(kv2[3]))):
-            return False
-
-        if all(p[diff_pos] == var or _token_covers(var, p[diff_pos])
-               for p in self.pathList):
-            for p in self.pathList:
-                p[diff_pos] = var
-        else:
-            target[diff_pos] = var
-        return True
-
     def updateSequence(self, seq):
         # --- 核心修复：废弃原生的破损启发式校验，改为严格正则覆盖校验 ---
         seq_str = ' '.join(seq)
@@ -576,17 +141,8 @@ class Logcluster:
 
         # Is the path list full?
         if len(self.pathList) < self.br_thresh:
-            # 单位置差异主动合并：新路径与某条已有路径仅差一个位置
-            # （路径 token 已覆盖新行 token 的位置不算差异）、且合并
-            # 结果保留固定证据（≥3 字符非通配部分）时，合并而非追加。
-            # 组合安全性：合并两条仅差一位的路径，不引入未观测的跨
-            # 位置取值组合（值域放宽到同前缀家族，如 eth<*> 亦接受
-            # eth999——有意的家族泛化，依据是共同前缀证据）。
-            # 证据守卫防止 open/close、start/stop 等语义不同的词对
-            # 被无结构塌缩。
-            if not self._merge_single_diff_path(seq):
-                # Add to the path list
-                self.pathList.append(seq)
+            # Add to the path list
+            self.pathList.append(seq)
         # If it is full, merge with the closest path
         else:
             maxSim, target = 0, None
@@ -595,58 +151,20 @@ class Logcluster:
                 if sim > maxSim:
                     maxSim = sim
                     target = t
-            # 审视#5/#6：先生成全部候选并校验，确认安全后再写回——
-            # 校验先于任何变更，不安全时整条拒收（返回 'rejected'），
-            # 不会出现"更新了一半再回退"。守卫与单位置分支一致：
-            # 容量不应决定状态词是否重要。
-            candidates = []  # [(pos, var)]
+            # Start merging
             for pos, (t1, t2) in enumerate(zip(target, seq)):
-                if t1 == t2 or _token_covers(t1, t2):
-                    continue
-                # 优先使用 logTemplate[pos]（增量合并出的最通用形式），
-                # 但仅在它同时覆盖 t1 与 t2 时采用（防归纳失效时排除
-                # 既有路径）；否则用结构感知合并。
-                lt = self.logTemplate[pos] if pos < len(self.logTemplate) else None
-                if (lt is not None and lt != t1 and lt != t2
-                        and _token_covers(lt, t1) and _token_covers(lt, t2)):
-                    var = lt
-                else:
+                if t1 != t2:
                     var = _structure_aware_merge(t1, t2, path_delimiters)
-                # 守卫一：合并结果必须覆盖两侧原值
-                if not (_token_covers(var, t1) and _token_covers(var, t2)):
-                    return 'rejected'
-                # 守卫二：保留同族固定证据（≥3 字符非通配部分）
-                if len(var.replace('<*>', '')) < 3:
-                    return 'rejected'
-                # 守卫三：kv 同键但值为普通词（状态词对 running/stopped）
-                # 拒收——设计判据 _is_variable_like（含数字=变量型）：
-                # 数字链/复合标识符值（Cap:111_222）合并为 <*> 是正确
-                # 泛化，不在此列
-                kv1, kv2 = split_kv(t1), split_kv(t2)
-                if (kv1 and kv2 and kv1[1] == kv2[1] and kv1[2] == kv2[2]
-                        and not (_is_variable_like(kv1[3])
-                                 and _is_variable_like(kv2[3]))):
-                    return 'rejected'
-                candidates.append((pos, var))
-            # 写回（审视#6）：var 覆盖全部路径在该位置的现值 → 统一写回；
-            # 只能覆盖目标路径 → 只改目标路径；两侧都不覆盖的情况已被
-            # 守卫一拒绝。避免无条件写回破坏其他路径对其来源行的覆盖。
-            for pos, var in candidates:
-                if all(p[pos] == var or _token_covers(var, p[pos])
-                       for p in self.pathList):
+                    # 下方会更新所有路径，保留的结构也必须覆盖其余历史路径。
                     for p in self.pathList:
-                        p[pos] = var
-                else:
-                    target[pos] = var
+                        var = _structure_aware_merge(var, p[pos], path_delimiters)
+
+                    # Update all lists
+                    for p in self.pathList: p[pos] = var
         
         # Clean the list (preserve sorted order equivalent to np.unique(axis=0))
         unique_tuples = sorted(set(tuple(p) for p in self.pathList))
         self.pathList = [list(t) for t in unique_tuples]
-        # 注意：不在容量未满时把 logTemplate 的簇级通配符同步进 pathList。
-        # pathList 保存具体路径差异，泛化只发生在上方容量满的合并分支
-        # （那里经 logTemplate[pos]/_structure_aware_merge 得到的 var 同时
-        # 覆盖所有路径值后再统一回写）。提前同步会抹平多路径信息，
-        # 使 templateList 提前塌缩为簇级概括，接受未出现过的取值组合。
         # Update the template list
         self.templateList = [correct_single_template(' '.join(t)) for t in self.pathList]
         # Clean the templates
@@ -658,8 +176,7 @@ class Logcluster:
                 if self.templateMatches(t2, t1): newList[i] = False; break
                 if self.templateMatches(t1, t2): newList[j] = False
         self.templateList = [item for i, item in enumerate(self.templateList) if newList[i]]
-        self._mark_templates_changed()
-
+        
         return True
 
 
@@ -734,107 +251,33 @@ class LogParser:
         self.template_cache = {}
         # 轻量归一化缓存：预处理前用数字替换做 CRC32，跳过全量预处理
         self.light_cache = {}
-        # 精确模板索引：logTemplate 元组 → 簇。树搜索在桶内是线性扫描，
-        # 模板数上千后每行都要做 O(桶) 次 seqDist（吞吐崩塌为百行/秒级，
-        # 表现为"卡死"）；完全相同的行先查此索引 O(1) 直达簇。
-        self._exact_index = {}
-        # seqDist 记忆化：扫桶时相同 (模板, 序列) 对的评分直接复用
-        self._seqdist_cache = {}
         # 初始化时执行且仅执行一次加载
         if self.use_cache:
             self.load_cache()
         self.debug = debug
 
-    # 缓存文件结构版本（审视#2）：与簇级 _tpl_version（某簇模板变化
-    # 次数）区分。版本不一致时按保守迁移处理（清查找缓存重新积累）。
-    _CACHE_SCHEMA_VERSION = 2
-
     def load_cache(self):
-        """反序列化：加载本地解析树（审视#1/#2 保守迁移策略）。
-
-        - 回填旧版本簇缺失的属性（_tpl_version 等），加载完成即可继续更新；
-        - 不按 logTemplate 去重——同模板不同路径的簇全部保留，
-          查找缓存（template_cache/light_cache）按 schema 版本决定
-          保留或清空（清的是加速记录，不是已学到的模板）；
-        - 保留已保存的桶归属（不重建路由），仅做一致性检查：
-          树中引用的簇必须存在于 logCluL，悬挂引用剔除；
-          logCluL 中不在任何桶的孤儿簇按当前路由重新入桶；
-        - 重建 _exact_index 辅助索引。
-        """
+        """反序列化：加载本地解析树，并清洗历史行号记录"""
         logger.debug("Loading previous parsing tree...")
         if os.path.exists(self.cache_path) and os.path.getsize(self.cache_path) > 0:
             try:
                 with open(self.cache_path, 'rb') as f:
                     cache_data = pickle.load(f)
+                    self.storage_tree = cache_data['storage_tree']
+                    self.shallow_tree = cache_data['shallow_tree']
+                    self.logCluL = cache_data['logCluL']
+                    if 'template_cache' in cache_data:
+                        self.template_cache = cache_data['template_cache']
+                    if 'light_cache' in cache_data:
+                        self.light_cache = cache_data['light_cache']
 
-                # 先完整读取到局部变量，通过必要字段校验后再一次性提交。
-                # 否则损坏/旧版本缓存若缺少中间字段，可能只覆盖 storage_tree
-                # 就抛异常，留下树与簇列表不一致的半加载状态。
-                storage_tree = cache_data['storage_tree']
-                shallow_tree = cache_data['shallow_tree']
-                log_clusters = cache_data['logCluL']
+                    # 强清空历史行号记录，防止流数据游标错位
+                    for cluster in self.logCluL:
+                        cluster.br_thresh = self.br_thresh
+                        cluster.logIDL = []
 
-                if not isinstance(storage_tree, dict) or not isinstance(shallow_tree, dict):
-                    raise TypeError("cache trees must be dictionaries")
-                if not isinstance(log_clusters, list):
-                    raise TypeError("cache logCluL must be a list")
-
-                # 审视#1：回填新版新增属性——加载完成不算成功，
-                # 还必须能继续更新（updateSequence 直接访问 _tpl_version）
-                for cluster in log_clusters:
-                    cluster.br_thresh = self.br_thresh
-                    cluster.logIDL = []
-                    cluster._tpl_version = getattr(cluster, '_tpl_version', 0)
-
-                # 查找缓存按 schema 版本决定保留或清空
-                schema_version = cache_data.get('cache_schema_version', 0)
-                if schema_version < self._CACHE_SCHEMA_VERSION:
-                    template_cache = {}
-                    light_cache = {}
-                else:
-                    template_cache = cache_data.get('template_cache', {})
-                    light_cache = cache_data.get('light_cache', {})
-                    if not isinstance(template_cache, dict) or not isinstance(light_cache, dict):
-                        template_cache, light_cache = {}, {}
-
-                # 一致性检查：树中引用的簇必须存在于 logCluL（剔除悬挂引用）
-                valid = set(log_clusters)
-                for const in list(storage_tree):
-                    for seq_len in list(storage_tree[const]):
-                        bucket = [c for c in storage_tree[const][seq_len] if c in valid]
-                        storage_tree[const][seq_len] = bucket
-                for const in list(shallow_tree):
-                    shallow_tree[const] = [c for c in shallow_tree[const] if c in valid]
-
-                # 孤儿簇（在 logCluL 但不在任何桶）：按当前路由重新入桶
-                referenced = set()
-                for sub in storage_tree.values():
-                    for bucket in sub.values():
-                        referenced.update(bucket)
-                for cluster in log_clusters:
-                    if cluster not in referenced:
-                        seq_len = len(cluster.logTemplate)
-                        storage_tree.setdefault('None', {}).setdefault(seq_len, []).append(cluster)
-                        shallow_tree.setdefault('None', []).append(cluster)
-
-                # 重建桶内精确索引（不去重：同模板簇共存，setdefault 保留
-                # 首个，与桶内扫描命中首个同模板簇的语义一致）
-                exact_index = {}
-                for const, sub in storage_tree.items():
-                    for bucket in sub.values():
-                        for cluster in bucket:
-                            exact_index.setdefault(
-                                (const, tuple(cluster.logTemplate)), cluster)
-
-                self.storage_tree = storage_tree
-                self.shallow_tree = shallow_tree
-                self.logCluL = log_clusters
-                self.template_cache = template_cache
-                self.light_cache = light_cache
-                self._exact_index = exact_index
-
-                logger.debug(
-                    f"[PIPLUP State] IO Load Triggered. Successfully loaded {len(self.logCluL)} clusters from cache.")
+                    logger.debug(
+                        f"[PIPLUP State] IO Load Triggered. Successfully loaded {len(self.logCluL)} clusters from cache.")
             except Exception as e:
                 logger.debug(f"Cache load failed: {e}. Degrading to empty cache.")
         else:
@@ -848,7 +291,6 @@ class LogParser:
             temp_path = self.cache_path + '.tmp'
             with open(temp_path, 'wb') as f:
                 pickle.dump({
-                    'cache_schema_version': self._CACHE_SCHEMA_VERSION,
                     'storage_tree': self.storage_tree,
                     'shallow_tree': self.shallow_tree,
                     'logCluL': self.logCluL,
@@ -861,161 +303,83 @@ class LogParser:
     @staticmethod
     def _compile_regex_patterns(templates: list) -> list:
         """
-        统一编译聚类簇的匹配模式，隔离分词器产生的特征畸变。
-
-        返回 _ClusterPattern 线性匹配器列表而非正则：原实现产出
-        \\s*.*?\\s* 重叠量词链（<*>→.*? 与模板空格→\\s* 均可匹配空白），
-        在"字面量前部吻合、结尾失配 + 空格对齐"的真实日志上发生组合
-        回溯（每行秒级以上，10 万行文件表现为卡死）。线性匹配器语义
-        等价且无回溯（等价性差分对拍见测试）。簇级缓存负责在模板变化
-        时失效，编译成本只发生在每个模板世代的第一次匹配。
+        统一编译聚类簇的正则匹配模式，隔离分词器产生的特征畸变
         """
-        return [_ClusterPattern(t) for t in templates]
-
-    # 簇级已编译模式缓存：WeakKeyDictionary，随簇对象回收自动释放，
-    # 不进入 pickle 持久化；以 templateList 世代计数（_tpl_version）失效。
-    # 空间成本与存活簇数同阶（每簇一份模式串列表）。
-    _PATTERN_CACHE = weakref.WeakKeyDictionary()
-
-    def _get_cluster_patterns(self, cluster):
-        """取簇模板的匹配器列表（带世代失效的复用）。"""
-        version = getattr(cluster, '_tpl_version', 0)
-        entry = self._PATTERN_CACHE.get(cluster)
-        if entry is not None and entry[0] == version:
-            return entry[1]
-        patterns = self._compile_regex_patterns(cluster.templateList)
-        self._PATTERN_CACHE[cluster] = (version, patterns)
-        return patterns
+        template_patterns = []
+        for template in templates:
+            pattern = re.escape(template).replace(re.escape("<*>"), ".*?")
+            pattern = pattern.replace(r"\ ", r"\s*")
+            pattern = f"^{pattern}$"
+            template_patterns.append(pattern)
+        return template_patterns
 
     @staticmethod
     def _regex_match_log(content: str, template_patterns: list) -> int:
         """
-        统一执行单行日志的模板比对
+        统一执行单行日志的正则比对
         返回: 命中模板在列表中的索引 index。若无命中，返回 -1。
         """
-        clean_content = str(content).strip().lower()
+        clean_content = str(content).strip()
         for j, pattern in enumerate(template_patterns):
-            if pattern.fullmatch(clean_content):
+            if bool(re.fullmatch(pattern, clean_content, re.DOTALL | re.IGNORECASE)):
                 return j
         return -1
 
-    def _bucket_constant(self, tokens):
-        """桶路由常量：按 shallow_tree 键**建立顺序**（原版语义）返回
-        第一个出现在 tokens 中的键，否则 'None'。
-
-        审视#4：路由优先级必须沿用原版的键建立顺序——此前改为沿
-        tokens 词序会改变候选集合（键序 alpha→beta、输入含 beta,alpha
-        时原版选 alpha、改后选 beta），不能作为无行为变化的性能优化
-        保留。用 set 做 O(1) 成员判断替代原版对线性列表的反复扫描。
-        """
-        tokens_set = set(tokens)
-        for key in self.shallow_tree:
-            if key in tokens_set:
-                return key
-        return 'None'
-
     def treeSearch(self, seq):
-        # Find the frequent word（先定桶：精确索引也只在桶内生效）
-        constant = self._bucket_constant(seq)
-
-        # ── 桶内 O(1) 精确命中快路径 ──
-        # 完全相同的模板序列直接定位簇，绕过桶内线性扫描（桶达数千簇时
-        # 每行 O(桶) 次 seqDist 是吞吐崩塌的根源）。审视#4：索引键含桶
-        # 常量——只在选定桶内快捷查找，不绕过原本的候选范围（跨桶命中
-        # 是行为变化，与性能优化分开评审）。语义与 fastMatch 的精确
-        # 匹配分支一致：maxSim=1，new_template 取等值新列表（副本避免
-        # logTemplate 与调用方列表对象别名）。
-        exact = self._exact_index.get((constant, tuple(seq)))
-        if exact is not None:
-            return exact, constant, seq[:]
-
         retLogClust = None
-
+        
+        # Find the frequent word
+        constant = 'None'
+        for token in self.shallow_tree.keys():
+            if token in seq: 
+                constant = token
+                break
+        
         # Search on the second layer
         seqLen = len(seq)
-
-        logClustL = self.storage_tree.get(constant, {}).get(seqLen)
-        if not logClustL:
+        
+        if seqLen not in self.storage_tree[constant].keys():
             return retLogClust, constant, seq
-
+        else:
+            logClustL = self.storage_tree[constant][seqLen]
+        
         retLogClust, new_template = self.fastMatch(logClustL, seq)
 
         return retLogClust, constant, new_template
 
     def addSeqToPrefixTree(self, logClust):
         seqLen = len(logClust.logTemplate)
-        constant = self._bucket_constant(logClust.logTemplate)
+        # Default first token is None
+        constant = 'None'
+        
+        for token in self.shallow_tree.keys(): 
+            if token in logClust.logTemplate: 
+                constant = token
+                break
 
-        self.storage_tree.setdefault(constant, {}).setdefault(seqLen, []).append(logClust)
-        self.shallow_tree.setdefault(constant, []).append(logClust)
-        # 桶内精确索引登记（setdefault 保留首个，与桶内扫描语义一致）
-        self._exact_index.setdefault((constant, tuple(logClust.logTemplate)), logClust)
+        if seqLen not in self.storage_tree[constant].keys():
+            self.storage_tree[constant][seqLen] = [logClust]
+        else:
+            self.storage_tree[constant][seqLen].append(logClust)
 
+        self.shallow_tree[constant].append(logClust)
+        
         return constant
 
+    #seq1 is template
     def seqDist(self, seq1, seq2):
-        """seqDist 记忆化包装：同 (模板, 序列) 对的评分结果直接复用。
-
-        说明为什么用记忆化而不是更细的候选索引来避免扫桶：失配 token
-        仍可通过通配覆盖/结构相似度拿到高达 0.9 的部分分，任何"先过滤
-        再精算"的候选索引都无法同时保证不漏簇（admissible）——除非改变
-        匹配语义。而相同形态的行会反复与同一批簇模板比较，记忆化把
-        重复扫描的每步成本降为一次元组哈希，且零行为变化。
-        """
-        key = (tuple(seq1), tuple(seq2))
-        cached = self._seqdist_cache.get(key)
-        if cached is not None:
-            return cached
-        result = self._seqdist_compute(key[0], key[1])
-        if len(self._seqdist_cache) >= _CACHE_LIMIT:
-            self._seqdist_cache.clear()
-        self._seqdist_cache[key] = result
-        return result
-
-    @staticmethod
-    def _seqdist_compute(seq1, seq2):
-        """簇模板与候选序列的 token 级相似度（原实现，被 seqDist 记忆化）。
-
-        token 相等计 1 分；不等时用共享的结构识别给部分分：
-        - 同字段名（key:value/key=value）：字段名固定证据 + 值相似度
-          （复合标识符/数字链 → 高分；普通词状态值 → 仅字段名分）
-        - 非 kv：括号/引号骨架对齐 + 固定文本证据（上限 0.5）
-        - 已含 <*> 的混合形式（如 name:xxx_<*>）：覆盖新值 → 0.9，
-          否则走结构相似度
-        纯 <*> token（不含任何字母数字）不计入分子，也从分母剔除：
-        它在两行中完全相同，对"是否同一模板"不提供任何证据，计入
-        分母只会无证据稀释相似度——token 越少的短行稀释越致命
-        （1/4=25% vs 1/20=5%），是短行簇分裂的根源之一。numOfPar
-        仍返回供 fastMatch 决胜。
-        """
         assert len(seq1) == len(seq2)
-        simTokens = 0.0
+        simTokens = 0
         numOfPar = 0
-        pure_wild = 0
         for token1, token2 in zip(seq1, seq2):
             if '<*>' in token1:
-                if not any(ch.isalnum() for ch in token1):
+                if not any(ch.isalnum() for ch in token1): 
                     numOfPar += 1
-                    pure_wild += 1
                     continue
-                if token1 == token2:
-                    simTokens += 1
-                    continue
-                if _token_covers(token1, token2):
-                    simTokens += 0.9
-                else:
-                    simTokens += structure_similarity(token1, token2)
-                continue
             if token1 == token2:
-                simTokens += 1
-            else:
-                simTokens += structure_similarity(token1, token2)
+                simTokens += 1 
 
-        denom = len(seq1) - pure_wild
-        if denom <= 0:
-            # 全部为纯通配位：两序列结构完全相同，无任何差异证据
-            return 1.0, numOfPar
-        retVal = float(simTokens) / denom
+        retVal = float(simTokens) / len(seq1)
         return retVal, numOfPar
 
 
@@ -1050,37 +414,16 @@ class LogParser:
 
     def getTemplate(self, seq1, seq2):
         assert len(seq1) == len(seq2)
-        result = []
-        for w1, w2 in zip(seq1, seq2):
-            if w1 == w2:
-                result.append(w1)
-            else:
-                result.append(_structure_aware_merge(w1, w2, path_delimiters))
-        return result
+        return [w1 if w1 == w2 else '<*>' for w1, w2 in zip(seq1, seq2)]
     
     def jaccardSimilarity(self, template1, template2):
-        set1 = self._get_word_set(template1)
-        set2 = self._get_word_set(template2)
+        set1 = set([item for item in template1.split() if any(ch.isalnum() for ch in item)])
+        set2 = set([item for item in template2.split() if any(ch.isalnum() for ch in item)])
 
         if len(set1.union(set2)) == 0: return 0
         return len(set1.intersection(set2))/len(set1.union(set2))
 
-    @staticmethod
-    def _get_word_set(template):
-        """模板 → 有效词集合（带缓存）。mergeTemplates 对同一模板反复
-        计算 split+过滤+建集；模板字符串有限，按字符串缓存。"""
-        word_set = _WORD_SET_CACHE.get(template)
-        if word_set is None:
-            word_set = frozenset(
-                item for item in template.split() if any(ch.isalnum() for ch in item))
-            if len(_WORD_SET_CACHE) >= _CACHE_LIMIT:
-                _WORD_SET_CACHE.clear()
-            _WORD_SET_CACHE[template] = word_set
-        return word_set
-
-    def mergeTemplates(self, cluster, constant, oldTemplateList=None):
-        if oldTemplateList is None:
-            oldTemplateList = ()
+    def mergeTemplates(self, cluster, constant, oldTemplateList=[]):
         # Find the cluster in the shallow tree
         cluster_list = self.shallow_tree[constant]
         # Iterate through the clusters with the same frequent word
@@ -1095,74 +438,13 @@ class LogParser:
                     if self.jaccardSimilarity(t1, t2) < 0.6: continue
                     # t1 described by t2
                     if len(t1.split()) >= len(t2.split()):
-                        if Logcluster.templateMatches(t2, t1):
+                        if Logcluster.templateMatches(t2, t1): 
                             cluster.templateList[i] = t2
-                            cluster._mark_templates_changed()
                             break
                     # t2 described by t1
                     if len(t1.split()) <= len(t2.split()):
-                        if Logcluster.templateMatches(t1, t2):
+                        if Logcluster.templateMatches(t1, t2): 
                             logClust.templateList[j] = t1
-                            logClust._mark_templates_changed()
-
-    def _reindex_from_none(self, cluster):
-        """把挂在 'None' 常量下的簇迁移到其首个常量 token 对应的桶。
-
-        触发条件（update_population 阈值或模板变化）由调用方判断；
-        迁移包含 shallow_tree['None'] 中含相同常量的其他簇。
-        返回迁移目标桶名（审视#3：调用方须用新桶名做后续 mergeTemplates
-        等桶内查询，避免搬桶后仍查询旧桶）。无迁移返回 'None'。
-        """
-        constant = 'None'
-        for token in cluster.logTemplate:
-            if '<*>' not in token:
-                constant = token
-                break
-        # 1. Initialize the buckets（storage/shallow 两树键必须成对创建，
-        # 键的建立顺序即路由优先级，见 _bucket_constant）
-        self.storage_tree.setdefault(constant, {}).setdefault(len(cluster.logTemplate), [])
-        self.shallow_tree.setdefault(constant, [])
-
-        # 2. Remove the clusters with the new constant from 'None' in both trees
-        # 一次性收集再重建列表（保持原有顺序），替换逐个 list.remove 的
-        # O(桶²) 实现——'None' 桶巨大时每次重索引可达秒级~分钟级
-        if constant != 'None':
-            moved = [cl for cl in self.shallow_tree['None'] if constant in cl.logTemplate]
-            if moved:
-                moved_set = set(moved)
-                for cl in moved:
-                    self.shallow_tree[constant].append(cl)
-                    self.storage_tree[constant].setdefault(
-                        len(cl.logTemplate), []).append(cl)
-                self.shallow_tree['None'] = [
-                    cl for cl in self.shallow_tree['None'] if cl not in moved_set]
-                for seq_len_key in list(self.storage_tree['None'].keys()):
-                    bucket = self.storage_tree['None'][seq_len_key]
-                    self.storage_tree['None'][seq_len_key] = [
-                        cl for cl in bucket if cl not in moved_set]
-                # 搬桶重键：精确索引从 ('None', tpl) 迁到 (新桶, tpl)
-                for cl in moved:
-                    old_key = ('None', tuple(cl.logTemplate))
-                    if self._exact_index.get(old_key) is cl:
-                        del self._exact_index[old_key]
-                    self._exact_index.setdefault(
-                        (constant, tuple(cl.logTemplate)), cl)
-        return constant
-
-    def _register_cache_hit(self, cluster, logID, hit_clusters):
-        """缓存命中共用维护：hit_time 递增、行号登记、阈值触发常量重索引。
-
-        缓存命中此前完全绕过这些维护，导致 update_population 阈值
-        （常量提取重索引）在缓存开启时永不触发。模板分配统一延迟到
-        批末输出循环，从最终 templateList 取值，结构性避免过期模板。
-        """
-        cluster.hit_time += 1
-        cluster.logIDL.append(logID)
-        hit_clusters.add(cluster)
-        if (cluster.hit_time == self.update_population
-                and cluster in self.storage_tree.get('None', {}).get(
-                    len(cluster.logTemplate), [])):
-            self._reindex_from_none(cluster)
 
     def parse_list(self, log_list: list) -> list:
         """
@@ -1184,7 +466,7 @@ class LogParser:
         # 修改点 1：
         hit_clusters = set()  # 记录本批次涉及的聚类簇，缩小遍历域
 
-        # 预初始化结果列表，支持 CRC32 缓存命中时直接写入
+        # 预初始化结果列表；所有行在批末使用最终模板统一生成输出
         log_templates = [""] * total_lines
         cache_hits = 0
 
@@ -1197,24 +479,32 @@ class LogParser:
             content = log_list[idx]
 
             # ── Level 1: 轻量归一化 CRC32 缓存（预处理前） ──
-            # 命中必须做完整正则校验：all(part in raw_content) 的子串捷径
-            # 不验证顺序和锚点，不能作为最终覆盖证明。
-            cache_hit = False
             if self.use_template_cache:
                 light = _light_digit_re.sub('0', content)
                 light_crc = zlib.crc32(light.encode('utf-8')) & 0xffffffff
+                cached_hit = None
                 cached_clusters = self.light_cache.get(light_crc)
                 if cached_clusters:
                     raw_content = str(content).strip()
                     for cluster in cached_clusters:
                         templates_c = cluster.templateList
-                        template_patterns = self._get_cluster_patterns(cluster)
-                        if self._regex_match_log(raw_content, template_patterns) != -1:
-                            self._register_cache_hit(cluster, logID, hit_clusters)
-                            cache_hits += 1
-                            cache_hit = True
-                            break
-                if cache_hit:
+                        if len(templates_c) == 1:
+                            # 快速子串校验：模板中非 <*> 部分必须都出现在原始行中
+                            parts = [p for p in templates_c[0].split('<*>') if p]
+                            if all(p in raw_content for p in parts):
+                                cached_hit = cluster
+                                break
+                        else:
+                            template_patterns = self._compile_regex_patterns(templates_c)
+                            match_idx = self._regex_match_log(raw_content, template_patterns)
+                            if match_idx != -1:
+                                cached_hit = cluster
+                                break
+                if cached_hit is not None:
+                    cached_hit.hit_time += 1
+                    cached_hit.logIDL.append(logID)
+                    hit_clusters.add(cached_hit)
+                    cache_hits += 1
                     continue
 
             # Add preprocess
@@ -1233,35 +523,22 @@ class LogParser:
                                          use_sequence=use_sequence).strip().split()
 
             # ── Level 2: 预处理形式 CRC32 缓存 ──
-            # CRC32 相等不足以认定命中（真实碰撞样例 816545939），
-            # 必须用模板对预处理后形式做完整覆盖校验；失败则安全回退完整解析。
+            # 对预处理后的日志消息计算 CRC32，O(1) 查表命中簇引用后直接取当前模板
             if self.use_template_cache:
-                preprocessed_str = ' '.join(logmessageL)
-                crc = zlib.crc32(preprocessed_str.encode('utf-8')) & 0xffffffff
+                crc = zlib.crc32(' '.join(logmessageL).encode('utf-8')) & 0xffffffff
                 cached_cluster = self.template_cache.get(crc)
                 if cached_cluster is not None:
-                    if any(Logcluster.templateMatches(t, preprocessed_str)
-                           for t in cached_cluster.templateList):
-                        # 回填 light_cache：确保同一 light form 的后续行能跳过预处理
-                        bucket = self.light_cache.setdefault(light_crc, [])
-                        if cached_cluster not in bucket:
-                            bucket.append(cached_cluster)
-                        self._register_cache_hit(cached_cluster, logID, hit_clusters)
-                        cache_hits += 1
-                        continue
-                    # 校验失败（碰撞或模板已演进）：视为未命中，走完整解析
+                    # 回填 light_cache：确保同一 light form 的后续行能跳过预处理
+                    bucket = self.light_cache.setdefault(light_crc, [])
+                    if cached_cluster not in bucket:
+                        bucket.append(cached_cluster)
+                    cached_cluster.hit_time += 1
+                    cached_cluster.logIDL.append(logID)
+                    hit_clusters.add(cached_cluster)
+                    cache_hits += 1
+                    continue
 
             matchCluster, first_constant, newTemplate = self.treeSearch(logmessageL)
-
-            # 审视#5：先判定路径更新是否安全（校验先于任何簇状态变更，
-            # 拒收时不留半更新状态）。容量满且无法安全合并时本簇拒收
-            # 该路径 → 按未命中处理（v1 直接新建簇，后续可扩展为尝试
-            # 其他候选簇）。
-            updated = False
-            if matchCluster is not None:
-                updated = matchCluster.updateSequence(logmessageL)
-                if updated == 'rejected':
-                    matchCluster = None
 
             # Match no existing log cluster
             if matchCluster is None:
@@ -1271,35 +548,54 @@ class LogParser:
                 constant = self.addSeqToPrefixTree(newCluster)
                 self.mergeTemplates(newCluster, constant)
                 self.unsaved_updates += 1  # 变更计数器累加
-                # 精确索引由 addSeqToPrefixTree 按桶登记，此处无需重复
 
             # Add the new log message to the existing cluster
             else:
-                constant = first_constant
-                oldTemplate = matchCluster.logTemplate
-                # 路径更新已通过安全校验（或无需变更），此处才提交吸收：
-                # 更新计数 / 模板重绑 / 索引维护 / 行号登记
+                # Increase the hit time
                 matchCluster.hit_time += 1
+                oldTemplate = matchCluster.logTemplate
                 matchCluster.logTemplate = newTemplate
-                # 维护精确模板索引：旧键仅在仍指向本簇时删除，
-                # 新键仅在未被占用时登记（保留先登记者）
-                old_key = (constant, tuple(oldTemplate))
-                if self._exact_index.get(old_key) is matchCluster:
-                    del self._exact_index[old_key]
-                new_key = (constant, tuple(newTemplate))
-                if new_key not in self._exact_index:
-                    self._exact_index[new_key] = matchCluster
+                constant = first_constant
                 # The template changed, update the list
                 oldTemplateList = matchCluster.templateList.copy()
                 matchCluster.logIDL.append(logID)
                 hit_clusters.add(matchCluster)  # 记录本批次命中
+                updated = matchCluster.updateSequence(logmessageL)
 
                 if (
                         oldTemplate != newTemplate or matchCluster.hit_time == self.update_population) and first_constant == 'None':
-                    reindexed = self._reindex_from_none(matchCluster)
-                    if reindexed != 'None':
-                        # 审视#3：搬桶后后续 mergeTemplates 必须查询新桶
-                        constant = reindexed
+                    # Find the first constant
+                    for token in newTemplate:
+                        if '<*>' not in token:
+                            constant = token
+                            break
+
+                    # Update the tree
+                    # 1. Initialize the clusters
+                    if constant in self.storage_tree.keys():
+                        if len(logmessageL) not in self.storage_tree[constant].keys():
+                            self.storage_tree[constant][len(logmessageL)] = []
+                    else:
+                        self.storage_tree[constant] = {len(logmessageL): []}
+                        self.shallow_tree[constant] = []
+
+                    # 2. remove the cluster from 'None' in both trees and update the other clusters
+                    if constant != 'None':
+                        # Find the clusters with the new constant
+                        shallowTreeCopy = self.shallow_tree['None'].copy()
+                        for cluster in self.shallow_tree['None']:
+                            if constant in cluster.logTemplate:
+                                self.shallow_tree[constant].append(cluster)
+                                if len(cluster.logTemplate) in self.storage_tree[constant].keys():
+                                    self.storage_tree[constant][len(cluster.logTemplate)].append(cluster)
+                                else:
+                                    self.storage_tree[constant][len(cluster.logTemplate)] = [cluster]
+
+                                index = self.storage_tree['None'][len(cluster.logTemplate)].index(cluster)
+                                self.storage_tree['None'][len(cluster.logTemplate)].pop(index)
+                                index = shallowTreeCopy.index(cluster)
+                                shallowTreeCopy.pop(index)
+                        self.shallow_tree['None'] = shallowTreeCopy
 
                 if updated:
                     self.mergeTemplates(matchCluster, constant, oldTemplateList)
@@ -1320,23 +616,20 @@ class LogParser:
 
 
         # --- 第三步：重构输出侧，生成并返回模板列表 ---
-        # log_templates 已在循环前预初始化，缓存命中的行已填入模板
+        # 缓存命中行也已登记到簇中，统一使用批末 templateList 输出
 
         for logClust in hit_clusters:
             templates = logClust.templateList
 
             if len(templates) == 1:
                 for logID in logClust.logIDL:
-                    if not log_templates[logID - 1]:
-                        log_templates[logID - 1] = templates[0]
+                    log_templates[logID - 1] = templates[0]
             else:
                 # 调用公共方法生成正则
-                template_patterns = self._get_cluster_patterns(logClust)
+                template_patterns = self._compile_regex_patterns(templates)
 
                 for logID in logClust.logIDL:
                     index = logID - 1
-                    if log_templates[index]:
-                        continue
                     content = str(log_list[index])
 
                     # 调用公共方法执行比对
