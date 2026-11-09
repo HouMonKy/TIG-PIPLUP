@@ -179,47 +179,24 @@ class AnomalyDetection:
                 parametric_data = parametric_result.get(module, {}).get(source, [])
                 datas, event = self.merge_results(semantic_data, parametric_data, quantitative_data)
                 template_cache = context.get_drain(module)
-                # 参数检测返回的 templateId 是配置人工 ID（如 2012），
-                # 与 id_to_cluster 的簇 ID（Drain 簇号 / PIPLUP crc32）
-                # 分属两套编号；查不到簇时回退到 outlier 自带模板文本
-                param_templates = {
-                    (str(o.get("template_id")), str(o.get("log_id"))):
-                        o.get("template")
-                    for o in parametric_data}
                 for ev in event:
-                    ev["template"] = [
-                        self._cluster_template(template_cache, tid)
-                        or param_templates.get((str(tid), str(lid)))
-                        for tid, lid in zip(ev["template_id"], ev["log_id"])]
+                    ev["template"] = [template_cache.extractor.id_to_cluster[int(templateId)].get_template() for
+                                      templateId in ev["template_id"]]
                 for data in datas:
-                    data["template"] = self._cluster_template(
-                        template_cache, data["templateId"]) \
-                        or param_templates.get(
-                            (str(data["templateId"]), str(data["logId"])))
+                    data["template"] = template_cache.extractor.id_to_cluster.get(
+                        int(data["templateId"])).get_template()
                 result.append({"module": module, "source": source, "detectLine": datas, "detectEvent": event})
         return result
-
-    @staticmethod
-    def _cluster_template(template_cache, template_id):
-        """按 templateId 查簇模板文本；非数字 ID 或查不到返回 None。"""
-        try:
-            cluster = template_cache.extractor.id_to_cluster.get(
-                int(template_id))
-        except (TypeError, ValueError):
-            return None
-        return cluster.get_template() if cluster is not None else None
 
     def _detect_all_parametric(self, context, end_time, repository, start_time, window_size) -> dict[str, dict[str, []]]:
         parametric_result: dict[str, dict[str, []]] = {}
         if self.mode == "all" or self.mode == "parametric":
             logs = repository.get_window_logs(start_time, end_time)
             for log in logs:
-                if log.template:
+                if len(log.param_list) == 0:
                     continue
                 drain = context.get_drain(log.module)
-                cluster = drain.extractor.id_to_cluster.get(log.template_id)
-                if cluster is not None:
-                    log.template = cluster.get_template()
+                log.template = drain.extractor.id_to_cluster.get(log.template_id).get_template()
             parametric_result = self._parameter_detector.detect_all_module_logs(
                 log_entries=logs, window_size=window_size)
         return parametric_result

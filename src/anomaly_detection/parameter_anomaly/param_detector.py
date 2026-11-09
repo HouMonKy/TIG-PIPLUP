@@ -14,10 +14,12 @@
         -> {module: {source: [outlier]}}
 
 输入日志条目字段（LogTemplateRelation）：source / time / log_id /
-template_id / module / template（解析模板）/ param_list（template_pos
-与 template_param）/ raw_content（原始正文，可选）。正文优先用
-raw_content（PIPLUP 链路），缺省由模板占位符按位回填重建（Drain
-旧兼容），供取值与缓存身份使用。
+template_id（解析模板 ID）/ module / template（首次解析模板）/
+param_list（旧 ID 对位形态，兼容保留）/ raw_content（去格式正文；
+PIPLUP 链路由 pipeline_adapter.attach_first_parse 挂载）。正文缺省
+为空串——稀疏参数位无法可靠还原原文，缺证据以 unresolved 呈现。
+业务异常输出 template_id 回写输入日志的解析模板 ID（旧合并按它
+查 id_to_cluster），规则配置 ID 见 source_template_id（审计）。
 """
 
 import json
@@ -29,7 +31,6 @@ from typing import Any, Dict, List, Tuple
 
 from .contracts import LogEntry, MODE_ENABLED
 from .detector import VariantParamAnomalyDetector
-from .position_mapper import tokenize_for_params
 from .rule_catalog import RuleCatalog
 
 _PKG_DIR = Path(__file__).resolve().parent
@@ -122,7 +123,11 @@ class ParamAnomalyDetector:
                 outliers.append({
                     "time": ts,
                     "log_id": anom.get("log_id"),
-                    "template_id": anom.get("template_id"),
+                    # 业务契约：template_id 回写输入日志的解析模板
+                    # ID（旧合并按它查 id_to_cluster）；规则配置 ID
+                    # 见 source_template_id（审计）
+                    "template_id": getattr(entry, "template_id", None),
+                    "source_template_id": anom.get("template_id"),
                     "template": anom.get("template"),
                     "param_value": anom.get("param_value"),
                     "param_position": anom.get("param_position"),
@@ -145,13 +150,13 @@ class ParamAnomalyDetector:
     def _to_log_entry(self, entry) -> LogEntry:
         """业务日志条目 -> 检测入口 LogEntry。
 
-        正文优先取上游 raw_content（PIPLUP 链路，适配器写入的
-        原始日志）；缺省按 param_list 回填模板重建（Drain 旧兼容）。
+        正文取上游挂载的 raw_content（PIPLUP 链路首次解析结果，
+        由 pipeline_adapter.attach_first_parse 写入）；缺省为
+        空串，不由模板占位符重建（稀疏参数位无法可靠还原原文）。
         """
         template = getattr(entry, "template", None) or ""
         params = getattr(entry, "param_list", None) or []
-        raw_text = getattr(entry, "raw_content", None) or \
-            self._rebuild_raw_text(template, params)
+        raw_text = getattr(entry, "raw_content", None) or ""
         return LogEntry(
             raw_text=raw_text,
             module=getattr(entry, "module", ""),
@@ -160,24 +165,6 @@ class ParamAnomalyDetector:
             param_list=params,
             log_id=getattr(entry, "log_id", ""),
             timestamp=getattr(entry, "time", 0) or 0)
-
-    @staticmethod
-    def _rebuild_raw_text(template: str, param_list) -> str:
-        """解析模板 + 参数位值 -> 重建日志正文。
-
-        模板 token 与正文 token 在旧分词坐标下按位对齐（占位符位即
-        参数值位），param_list 的 template_pos 即该坐标。
-        """
-        if not template:
-            return ""
-        tokens = tokenize_for_params(template)
-        values = {}
-        for p in param_list or []:
-            values[str(getattr(p, "template_pos", ""))] = \
-                str(getattr(p, "template_param", ""))
-        rebuilt = [values.get(str(i), tok)
-                   for i, tok in enumerate(tokens)]
-        return " ".join(rebuilt)
 
     # 结果落盘（与旧实现一致）
 

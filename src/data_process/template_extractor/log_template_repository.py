@@ -5,17 +5,14 @@ from src.data_process.template_extractor.parsing_algorithm import TemplateMiner
 
 
 class LogTemplateRelation:
-    def __init__(self, source, create_time, log_id, template_id, module, param_list,
-                 template=None, raw_content=None):
+    def __init__(self, source, create_time, log_id, template_id, module, param_list):
         self.source = source
         self.time = create_time
         self.log_id = log_id
         self.template_id = template_id
         self.module = module
-        self.template = template
+        self.template = None
         self.param_list = param_list
-        # 原始日志正文（去格式后），供新版参数异常检测器自主取值
-        self.raw_content = raw_content
 
     def to_dict(self):
         param_arr = []

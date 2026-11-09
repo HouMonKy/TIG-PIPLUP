@@ -14,8 +14,7 @@ from typing import List
 import zlib
 import pandas as pd
 
-from src.anomaly_detection.parameter_anomaly.configuration.load_param_config import load_param_config, ParamInfo
-from src.common.atomic_op import get_content_as_tokens
+from src.anomaly_detection.parameter_anomaly.pipeline_adapter import attach_first_parse
 from src.data_process.data_basic_structs.basic_structs import LRUCache
 from src.data_process.log_context import LogContext
 from src.data_process.template_extractor.log_template_repository import LogTemplateRelation
@@ -81,7 +80,6 @@ def parse_logs_piplup_adapter(log_info, context: LogContext, start_time=0, end_t
             format_parse = LogFormatParser(format_dict)
     else:
         format_parse = None
-    param_config = context.get_template_param()
 
     if use_LLM:
         engine = LogExtractionEngine(format_parse, llm_client_stream)
@@ -220,32 +218,19 @@ def parse_logs_piplup_adapter(log_info, context: LogContext, start_time=0, end_t
         # 保证模板命中次数的真实性
         drain.extractor.id_to_cluster[template_id].size += 1
 
-        # 参数提取机制
+        # 首次解析结果直通：use_params 开启时把解析模板与送入解析器
+        # 的去格式正文挂到 relation 实例（公共类不扩展），参数检测
+        # 按模板坐标从正文自主取值
         param_list = []
+        relation = LogTemplateRelation(
+            meta['source'], meta['timestamp'], meta['log_id'], template_id, module, param_list
+        )
         if use_params:
-            split_result = re.split(r'([:=,\[\]\(\)])', target_content)
-            split_content = target_content.strip()
-            if len(split_result) > 1:
-                split_content = ' '.join(split_result)
-
-            content_tokens = get_content_as_tokens(split_content)
-
-            if (module in param_config) and (template_id in param_config[module]):
-                for each_pos in param_config[module][template_id]:
-                    pos_idx = int(each_pos)
-                    if pos_idx < len(content_tokens):
-                        single_ParamInfo = ParamInfo(
-                            template_id=template_id,
-                            template_pos=each_pos,
-                            template_param=content_tokens[pos_idx]
-                        )
-                        param_list.append(single_ParamInfo)
+            attach_first_parse(relation, template=template,
+                               raw_content=target_content)
 
         # 持久化
-        context.log_repository.add(LogTemplateRelation(
-            meta['source'], meta['timestamp'], meta['log_id'], template_id, module, param_list,
-            template=template, raw_content=target_content
-        ))
+        context.log_repository.add(relation)
 
         parse_results.append({
             'module': module,
