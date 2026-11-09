@@ -1,0 +1,812 @@
+[
+ {
+  "module": "ccdb",
+  "group_id": "ccdb|1",
+  "template": "Sqlite step sql fail(return code=10"
+ },
+ {
+  "module": "ccdb",
+  "group_id": "ccdb|1",
+  "template": "extra_13: 15 Sqlite step sql fail(return code=10"
+ },
+ {
+  "module": "ccdb",
+  "group_id": "ccdb|1",
+  "template": "return code=49 Sqlite step sql fail("
+ },
+ {
+  "module": "ccdb",
+  "group_id": "ccdb|2",
+  "template": "Cm create the RR pthread failed, ret=-1"
+ },
+ {
+  "module": "ccdb",
+  "group_id": "ccdb|2",
+  "template": "extra_17: 19 Cm create the RR pthread failed, ret=-1"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10305",
+  "template": "Get ns async failed ret(-99999). extra_26: 28"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10305",
+  "template": "extra_13: 15 Get ns async failed ret(-99999)."
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10306",
+  "template": "is_mgr_last:1 Get ns async failed, ret(44)."
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10307",
+  "template": "[KVS]: readFPI failed of the status is 5, sgl is ((nil))"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10307",
+  "template": "[KVS]: readFPI failed of the status is 5, sgl is ((nil)) extra_34: 36"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10307",
+  "template": "extra_17: 19 [KVS]: readFPI failed of the status is 5, sgl is ((nil))"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10308",
+  "template": "Failed to get block data from DB, s:[15, ERROR]"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10308",
+  "template": "Failed to get block data from DB, s:[15, ERROR] extra_34: 36"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10308",
+  "template": "extra_17: 19 Failed to get block data from DB, s:[15, ERROR]"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10309",
+  "template": "extra_13: 15 Get ns async failed, mode(0, 0), restore(1) ret(3)."
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10310",
+  "template": "INDEX_ART art read plog fail ret=[4]."
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10310",
+  "template": "extra_17: 19 INDEX_ART art read plog fail ret=[4]."
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1024)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1024) extra_34: 36"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1060) extra_35: 37"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1061) extra_36: 38"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1062) extra_37: 39"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1063) extra_38: 40"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1064) extra_39: 41"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1066) extra_41: 43"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1067) extra_42: 44"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1068) extra_43: 45"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1069) extra_44: 46"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1070) extra_45: 47"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1071) extra_46: 48"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1072) extra_47: 49"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1073) extra_48: 50"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "dci_size(1074) extra_49: 51"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_17: 19 dci_size(1024)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_18: 20 dci_size(1043)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_19: 21 dci_size(1044)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_20: 22 dci_size(1045)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_21: 23 dci_size(1046)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_22: 24 dci_size(1047)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_23: 25 dci_size(1048)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_24: 26 dci_size(1049)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_25: 27 dci_size(1050)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_26: 28 dci_size(1051)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_27: 29 dci_size(1052)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_28: 30 dci_size(1053)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_29: 31 dci_size(1054)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_30: 32 dci_size(1055)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_31: 33 dci_size(1056)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_32: 34 dci_size(1057)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|10311",
+  "template": "extra_33: 35 dci_size(1058)"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|108",
+  "template": "extra_13: 15 print: 6992 messages suppressed.ReadSingleGrainFromDB,line=812"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|108",
+  "template": "print: 6992 messages suppressed.ReadSingleGrainFromDB,line=798"
+ },
+ {
+  "module": "eds",
+  "group_id": "eds|108",
+  "template": "print: 6992 messages suppressed.ReadSingleGrainFromDB,line=798 extra_26: 28"
+ },
+ {
+  "module": "kmm-server",
+  "group_id": "kmm-server|1",
+  "template": "Local setup link succ, id (0)."
+ },
+ {
+  "module": "kmm-server",
+  "group_id": "kmm-server|1",
+  "template": "Local setup link succ, id (35). extra_34: 36"
+ },
+ {
+  "module": "kmm-server",
+  "group_id": "kmm-server|1",
+  "template": "extra_17: 19 Local setup link succ, id (0)."
+ },
+ {
+  "module": "kmm-server",
+  "group_id": "kmm-server|2",
+  "template": "Local setup link fail, ret (10). extra_34: 36"
+ },
+ {
+  "module": "kmm-server",
+  "group_id": "kmm-server|2",
+  "template": "extra_17: 19 Local setup link fail, ret (10)."
+ },
+ {
+  "module": "message_log",
+  "group_id": "message_log|2",
+  "template": "Active Func 0xaaaad802e008 Trampoline proc failed."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2001",
+  "template": "CLS_STATUS: (<*>) free memory is (<*>), alarm type(<*>)(<*>: fault, <*>:resume)."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2001",
+  "template": "CLS_STATUS: Controllers (<*>) alarm type(<*>, free memory is (<*>))(<*>: fault, <*>:resume)."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2001",
+  "template": "CLS_STATUS: Controllers (<*>) free memory is (<*>), alarm type(<*>)(<*>: fault, <*>:resume). zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2001",
+  "template": "CLS_STATUS: Controllers (<*>) free memory is (<*>), ttl=<*> alarm type(<*>)(<*>: fault, <*>:resume)."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2001",
+  "template": "mark=<*> CLS_STATUS: Controllers (<*>) free memory is (<*>), alarm type(<*>)(<*>: fault, <*>:resume)."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2002",
+  "template": "Disk sn:2102313EDH10PA100245, : change state:<*> to state:<*>,be abnormal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2002",
+  "template": "Disk sn:2102313EDH10PA100245,dev: change state:<*> to state:<*>,be abnormal. zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2002",
+  "template": "Disk sn:2102313EDH10PA100245,dev: to state:<*> change state:<*>,be abnormal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2002",
+  "template": "Disk sn:2102313EDH10PA100245,dev: ttl=<*> change state:<*> to state:<*>,be abnormal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2002",
+  "template": "mark=<*> Disk sn:2102313EDH10PA100245,dev: change state:<*> to state:<*>,be abnormal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2003",
+  "template": "VBC: blk rq fail, bd state <*> bd <*> is invalid."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2004",
+  "template": "Get device(<*>) link down status is <*> not expected, read try agin. zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2004",
+  "template": "Get device(<*>) link down status is <*> not expected, ttl=<*> read try agin."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2004",
+  "template": "Get link down status is <*> not expected, read try agin."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2004",
+  "template": "mark=<*> Get device(<*>) link down status is <*> not expected, read try agin."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2005",
+  "template": "CLS_FENCING: Node sche timeout(<*>) block timeout(<*>) abnormal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2005",
+  "template": "CLS_FENCING: Node xnet block timeout(<*> sche timeout(<*>)) abnormal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2005",
+  "template": "CLS_FENCING: Node xnet sche timeout(<*>) block timeout(<*>) abnormal. zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2005",
+  "template": "CLS_FENCING: Node xnet ttl=<*> sche timeout(<*>) block timeout(<*>) abnormal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2005",
+  "template": "mark=<*> CLS_FENCING: Node xnet sche timeout(<*>) block timeout(<*>) abnormal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2006",
+  "template": "CACHE_CTRL: flow(<*>), phase(<*>) ."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2006",
+  "template": "CACHE_CTRL: flow(<*>), phase(<*>) illegal. zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2006",
+  "template": "CACHE_CTRL: phase(<*>, flow(<*>)) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2006",
+  "template": "CACHE_CTRL: ttl=<*> flow(<*>), phase(<*>) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2006",
+  "template": "mark=<*> CACHE_CTRL: flow(<*>), phase(<*>) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2007",
+  "template": "RSF_FLOW: flow(<*>), phase(<*>) ."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2007",
+  "template": "RSF_FLOW: flow(<*>), phase(<*>) illegal. zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2007",
+  "template": "RSF_FLOW: phase(<*>, flow(<*>)) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2007",
+  "template": "RSF_FLOW: ttl=<*> flow(<*>), phase(<*>) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2007",
+  "template": "mark=<*> RSF_FLOW: flow(<*>), phase(<*>) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2008",
+  "template": "VAF:(INST::<*>)VAF_FLOW_CTRL: flowId(<*>), phase(<*>) ."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2008",
+  "template": "VAF:(INST::<*>)VAF_FLOW_CTRL: flowId(<*>), phase(<*>) illegal. zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2008",
+  "template": "VAF:(INST::<*>)VAF_FLOW_CTRL: flowId(<*>), ttl=<*> phase(<*>) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2008",
+  "template": "VAF:(INST::<*>)VAF_FLOW_CTRL: phase(<*>, flowId(<*>)) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2008",
+  "template": "mark=<*> VAF:(INST::<*>)VAF_FLOW_CTRL: flowId(<*>), phase(<*>) illegal."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2010",
+  "template": "PROTOCOL:MOD_FS-SHIM:(<*>): gfp_fs_shim_query_attr(), Error: <*> (SHM_STATUS_OK), OpStatus: <*> (SHM_STATUS_INVALID_WORKCTL)"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2010",
+  "template": "PROTOCOL:MOD_FS-SHIM:(<*>): gfp_fs_shim_query_attr(), Error: <*> (SHM_STATUS_OK), OpStatus: <*> (SHM_STATUS_INVALID_WORKCTL) zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2010",
+  "template": "PROTOCOL:MOD_FS-SHIM:(<*>): gfp_fs_shim_query_attr(), OpStatus: <*> (SHM_STATUS_INVALID_WORKCTL)"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2010",
+  "template": "PROTOCOL:MOD_FS-SHIM:(<*>): gfp_fs_shim_query_attr(), ttl=<*> Error: <*> (SHM_STATUS_OK), OpStatus: <*> (SHM_STATUS_INVALID_WORKCTL)"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2010",
+  "template": "mark=<*> PROTOCOL:MOD_FS-SHIM:(<*>): gfp_fs_shim_query_attr(), Error: <*> (SHM_STATUS_OK), OpStatus: <*> (SHM_STATUS_INVALID_WORKCTL)"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2011",
+  "template": "PROTOCOL:MOD_FS-SHIM: : gfpFsSvrProcessOpFast() FAILED: {Error: <*> (SHM_STATUS_INVALID_WORKCTL)}"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2012",
+  "template": "DEVM FAILOVER: failover(reason:<*>) dest port(<*>) is invalid."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2012",
+  "template": "DEVM FAILOVER:Lif(<*>) failover(reason:<*>) dest port(<*>) is invalid. zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2012",
+  "template": "DEVM FAILOVER:Lif(<*>) failover(reason:<*>) ttl=<*> dest port(<*>) is invalid."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2012",
+  "template": "DEVM FAILOVER:dest port(<*> failover(reason:<*>) Lif(<*>)) is invalid."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2012",
+  "template": "DEVM FAILOVER:reason:<*> failover(Lif(<*>)) dest port(<*>) is invalid."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2012",
+  "template": "mark=<*> DEVM FAILOVER:Lif(<*>) failover(reason:<*>) dest port(<*>) is invalid."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2013",
+  "template": "(Lwp:<*>)storagePool status abnormal, id(<*>) state(<*>). zone=<*>"
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2013",
+  "template": "(Lwp:<*>)storagePool status abnormal, state(<*> id(<*>))."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2013",
+  "template": "(Lwp:<*>)storagePool status abnormal, state(<*>)."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2013",
+  "template": "(Lwp:<*>)storagePool status abnormal, ttl=<*> id(<*>) state(<*>)."
+ },
+ {
+  "module": "messages",
+  "group_id": "messages|2013",
+  "template": "mark=<*> (Lwp:<*>)storagePool status abnormal, id(<*>) state(<*>)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_13: 15 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121020)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_14: 16 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121021)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_15: 17 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121022)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_16: 18 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121023)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_17: 19 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121024)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_18: 20 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121025)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_19: 21 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121026)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_20: 22 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121027)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_21: 23 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121028)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_22: 24 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121029)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_23: 25 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121030)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_24: 26 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121031)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "extra_25: 27 req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121032)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_38: 40 offset(8192),dlen(4096),ret(-121006)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_39: 41 offset(8192),dlen(4096),ret(-121046)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_40: 42 offset(8192),dlen(4096),ret(-121047)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_41: 43 offset(8192),dlen(4096),ret(-121048)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_42: 44 offset(8192),dlen(4096),ret(-121049)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_43: 45 offset(8192),dlen(4096),ret(-121050)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_44: 46 offset(8192),dlen(4096),ret(-121051)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_45: 47 offset(8192),dlen(4096),ret(-121052)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_46: 48 offset(8192),dlen(4096),ret(-121053)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_47: 49 offset(8192),dlen(4096),ret(-121054)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_48: 50 offset(8192),dlen(4096),ret(-121055)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),extra_49: 51 offset(8192),dlen(4096),ret(-121056)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121006)."
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121033). extra_26: 28"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121034). extra_27: 29"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121035). extra_28: 30"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121036). extra_29: 31"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121037). extra_30: 32"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121038). extra_31: 33"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121039). extra_32: 34"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121040). extra_33: 35"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121041). extra_34: 36"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121042). extra_35: 37"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121043). extra_36: 38"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|2180",
+  "template": "req(9511883956703120396),plog(9223372037379106158),offset(8192),dlen(4096),ret(-121044). extra_37: 39"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|746",
+  "template": "extra_9: 11 pool id:16 osd idx:12 begin to start check [auto_repair=1]"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|746",
+  "template": "id:49 pool osd idx:12 begin to start check [auto_repair=44]"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|746",
+  "template": "pool id:25 osd idx:12 begin to start check [auto_repair=20] extra_18: 20"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|746",
+  "template": "pool id:33 osd idx:12 extra_26: 28 begin to start check [auto_repair=28]"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|746",
+  "template": "pool id:41 begin to start check [auto_repair=36]"
+ },
+ {
+  "module": "osd",
+  "group_id": "osd|746",
+  "template": "pool id:7 osd idx:12 begin to start check [auto_repair=1]"
+ },
+ {
+  "module": "vbs",
+  "group_id": "vbs|4029",
+  "template": "Critical fault: pid=3611291 thrd=[NULL] sig=[46] SIGSEGV"
+ },
+ {
+  "module": "vbs",
+  "group_id": "vbs|4029",
+  "template": "Critical fault: pid=3611291 tid=3612652 extra_26: 28 thrd=[NULL] sig=[11] SIGSEGV"
+ },
+ {
+  "module": "vbs",
+  "group_id": "vbs|4029",
+  "template": "Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[11] SIGSEGV extra_18: 20"
+ },
+ {
+  "module": "vbs",
+  "group_id": "vbs|4029",
+  "template": "Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[12] SIGSEGV"
+ },
+ {
+  "module": "vbs",
+  "group_id": "vbs|4029",
+  "template": "extra_9: 11 Critical fault: pid=3611291 tid=3612652 thrd=[NULL] sig=[21] SIGSEGV"
+ },
+ {
+  "module": "vbs",
+  "group_id": "vbs|4029",
+  "template": "fault: pid Critical =3611291 tid=3612652 thrd=[NULL] sig=[54] SIGSEGV"
+ },
+ {
+  "module": "vbs",
+  "group_id": "vbs|4029",
+  "template": "tid=3612652 Critical fault: pid=3611291 thrd=[NULL] sig=[55] SIGSEGV"
+ }
+]

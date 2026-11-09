@@ -8,8 +8,8 @@ import time
 from collections import Counter
 from pathlib import Path
 
-KNOWLEDGE_DB = Path(__file__).resolve().parent / "knowledge" / \
-    "initial_variants.db"
+ROUTE_TEMPLATES = Path(__file__).resolve().parent / "knowledge" / \
+    "route_templates.json"
 
 def _write_jsonl(path, rows):
     with path.open("w", encoding="utf-8") as f:
@@ -69,8 +69,9 @@ def main(argv=None):
         description="真实业务数据批量检测")
     parser.add_argument("--input", required=True)
     parser.add_argument("--output-dir", required=True)
+    # --mode 保留 CLI 兼容：empty 关闭知识库路由模板，其余等价
     parser.add_argument("--mode", choices=("online", "empty",
-                                           "readonly"),
+                                            "readonly"),
                         default="online")
     parser.add_argument("--module", default=None,
                         help="纯文本输入的固定 module")
@@ -78,8 +79,8 @@ def main(argv=None):
                         help="行首模块提取正则（含 module 命名组）")
     parser.add_argument("--strip-timestamp", default=None,
                         help="消息体裁剪正则（行首时间戳等）")
-    parser.add_argument("--knowledge", default=str(KNOWLEDGE_DB),
-                        help="预载知识库路径（none 关闭）")
+    parser.add_argument("--knowledge", default=str(ROUTE_TEMPLATES),
+                        help="知识库路由模板 json（none 关闭）")
     parser.add_argument("--config", default=None,
                         help="规则配置 json（缺省 config/config_build_dme.json）")
     parser.add_argument("--metadata", default=None,
@@ -95,12 +96,10 @@ def main(argv=None):
 
     out_dir = Path(args.output_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "state").mkdir(exist_ok=True)
 
-    from .contracts import LogEntry, MODE_ENABLED
+    from .contracts import LogEntry
     from .lexical_matcher import LexicalMultisetMatcher
-    from .detector import (
-        VariantParamAnomalyDetector)
+    from .detector import ParamAnomalyCoreDetector
     from .parsing import ParserBridge
     from .rule_catalog import RuleCatalog
 
@@ -114,21 +113,13 @@ def main(argv=None):
               file=sys.stderr)
 
     matcher = LexicalMultisetMatcher(
-        tau=0.75, scoring_method="minhash", strip_query_values=True)
-    for g in catalog.groups:
-        matcher.register_group(g)
-    matcher.bind_groups(catalog.groups)
-
-    store_db = out_dir / "state" / "variants.db"
-    if args.mode in ("online", "readonly") and \
-            args.knowledge.lower() != "none":
-        import shutil
-        shutil.copy2(args.knowledge, store_db)
-
-    detector = VariantParamAnomalyDetector(
-        catalog, matcher=matcher, variant_mode=MODE_ENABLED,
-        store_path=str(store_db),
-        store_read_only=(args.mode == "readonly"))
+        tau=0.75, strip_query_values=True)
+    route_templates = "none" \
+        if args.mode == "empty" or args.knowledge.lower() == "none" \
+        else args.knowledge
+    detector = ParamAnomalyCoreDetector(
+        catalog, matcher=matcher,
+        route_templates_path=route_templates)
     parser = ParserBridge()
 
     rows, anomalies = [], []
@@ -148,8 +139,6 @@ def main(argv=None):
             rec["template_detected"] = parsed.template_detected
             rec["route"] = result.route
             rec["matched_group"] = result.group_id
-            rec["cache"] = result.cache_status
-            rec["cache_reason"] = result.cache_reason
             rec["rules"] = [
                 {"param_name": rr.rule.param_name,
                  "value": rr.value_raw,
@@ -197,27 +186,11 @@ def main(argv=None):
                        "mean": round(sum(lat) / len(lat), 2)
                        if lat else 0},
         "mode": args.mode,
-        "knowledge_preloaded": (args.mode in ("online", "readonly")
-                                and args.knowledge.lower() != "none"),
+        "route_templates_loaded": route_templates != "none",
     }
     (out_dir / "summary.json").write_text(
         json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
         "utf-8")
-
-    # 运行后模板表（导出失败显式告警，不静默吞——曾因此漏出
-    # 陈旧 rule_id 变体导致的导出失败）
-    try:
-        from .catalog_format import (
-            export_final_catalog, variants_by_group_from_store)
-        fake_inputs = [{"module": m, "raw_text": r}
-                       for m, r in lines]
-        by_group = variants_by_group_from_store(
-            detector._store.lookup_all(), fake_inputs)
-        export_final_catalog(catalog, by_group, "realdata",
-                             out_dir / "templates_final.json")
-    except Exception as exc:
-        print(f"WARNING: templates_final.json export failed: "
-              f"{type(exc).__name__}: {exc}", file=sys.stderr)
 
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     return out_dir

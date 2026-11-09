@@ -4,7 +4,7 @@
 """参数异常检测对外接口（业务契约不变）。
 
 内部实现为参数异常检测系统（正则版）：模板/词面匹配路由 +
-通用正则与模板槽位锚定两级取值 + 变体位置缓存，零模型调用。
+通用正则与模板槽位锚定两级取值，零模型调用。
 
 对外接口（与 anomaly_detection.py 的调用约定一致）：
     ParamAnomalyDetector(product)
@@ -23,14 +23,13 @@ PIPLUP 链路由 pipeline_adapter.attach_first_parse 挂载）。正文缺省
 """
 
 import json
-import shutil
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
-from .contracts import LogEntry, MODE_ENABLED
-from .detector import VariantParamAnomalyDetector
+from .contracts import LogEntry
+from .detector import ParamAnomalyCoreDetector
 from .rule_catalog import RuleCatalog
 
 _PKG_DIR = Path(__file__).resolve().parent
@@ -38,12 +37,10 @@ _PKG_DIR = Path(__file__).resolve().parent
 class ParamAnomalyDetector:
     """参数异常检测器（业务总接口的实现方）。"""
 
-    def __init__(self, product: str, store_path: str = None):
+    def __init__(self, product: str):
         """
         参数:
             product: 产品名称，如 'DME'（配置 configuration/config_build_{product}.json）
-            store_path: 变体缓存库路径（可选，默认本包 data/variants.db，
-                        供测试与部署覆盖；不传即业务标准用法）
         """
         self.product = product
         config_name = f"config_build_{product.lower()}.json"
@@ -61,17 +58,7 @@ class ParamAnomalyDetector:
             self.config_path,
             str(_PKG_DIR / "configuration" / "template_metadata.json"))
 
-        if store_path is None:
-            store_path = str(_PKG_DIR / "data" / "variants.db")
-        store_file = Path(store_path)
-        store_file.parent.mkdir(parents=True, exist_ok=True)
-        knowledge = _PKG_DIR / "knowledge" / "initial_variants.db"
-        if knowledge.exists() and not store_file.exists():
-            shutil.copy2(knowledge, store_file)
-
-        self._detector = VariantParamAnomalyDetector(
-            self.catalog, variant_mode=MODE_ENABLED,
-            store_path=str(store_file))
+        self._detector = ParamAnomalyCoreDetector(self.catalog)
 
     # 对外检测接口
 
