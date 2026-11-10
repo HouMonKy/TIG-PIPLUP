@@ -117,9 +117,13 @@ def main(argv=None):
     route_templates = "none" \
         if args.mode == "empty" or args.knowledge.lower() == "none" \
         else args.knowledge
+    learn = args.mode != "readonly"
     detector = ParamAnomalyCoreDetector(
         catalog, matcher=matcher,
-        route_templates_path=route_templates)
+        route_templates_path=route_templates, learn=learn,
+        learned_templates_path=str(out_dir / "state" /
+                                   "learned_templates.json")
+        if learn else None)
     parser = ParserBridge()
 
     rows, anomalies = [], []
@@ -166,6 +170,21 @@ def main(argv=None):
     wall = time.time() - t_start
     _write_jsonl(out_dir / "results_all.jsonl", rows)
     _write_jsonl(out_dir / "anomalies.jsonl", anomalies)
+    if learn:
+        detector.save_learned()
+
+    # 未路由模板聚合（按出现次数）：知识库增补的输入清单——
+    # 无法路由的"没见过的"形态在此暴露，人工确认归属后可并入
+    # knowledge/route_templates.json
+    unres = Counter(
+        (r.get("module"), r.get("template_detected"))
+        for r in rows if r.get("route") == "unresolved"
+        and r.get("template_detected"))
+    (out_dir / "unresolved_templates.json").write_text(
+        json.dumps(
+            [{"module": m, "template": t, "count": c}
+             for (m, t), c in unres.most_common(50)],
+            ensure_ascii=False, indent=1) + "\n", "utf-8")
 
     lat = sorted(r["latency_ms"] for r in rows)
 

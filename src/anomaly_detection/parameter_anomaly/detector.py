@@ -11,6 +11,7 @@
 
 import json
 import logging
+import os
 import re
 from dataclasses import replace
 from pathlib import Path
@@ -35,6 +36,9 @@ _UNSET = object()   # 槽位锚定编译缓存哨兵（区分"未编译"与"编�
 
 _ROUTE_TEMPLATES_DEFAULT = Path(__file__).resolve().parent / \
     "knowledge" / "route_templates.json"
+
+# 学习模板落盘刷新阈值（新增条数）
+_LEARN_FLUSH_THRESHOLD = 200
 
 class RuleConfigError(RuntimeError):
     pass
@@ -180,7 +184,8 @@ class ParamAnomalyCoreDetector:
     """精确（原模板）优先；词法双臂匹配；正则/槽位锚定取值。"""
 
     def __init__(self, catalog, matcher=None,
-                 route_templates_path=None):
+                 route_templates_path=None, learn=True,
+                 learned_templates_path=None):
         """
         参数:
             catalog: RuleCatalog
@@ -188,6 +193,11 @@ class ParamAnomalyCoreDetector:
                     tau=0.75）
             route_templates_path: 知识库静态变体模板 JSON；
                     None 用包内默认，"none" 关闭
+            learn: 冷路径命中即把解析模板登记为匹配候选（家族
+                    边缘形态的路由跳板）。只学路由模板，不学
+                    位置——取值按参数名现算，位置无消费者
+            learned_templates_path: 学习模板落盘 JSON；给定路径
+                    则启动加载、每 200 条新增原子刷新
         """
         self.catalog = catalog
         self.matcher = matcher or LexicalMultisetMatcher(
@@ -199,7 +209,14 @@ class ParamAnomalyCoreDetector:
             bind(catalog.groups)
         # 模板槽位锚定编译缓存：(group_id, rule_id) -> SlotAnchor|None
         self._slot_anchors: Dict[Tuple[str, str], Any] = {}
+        self.learn = learn
+        self._learned_templates_path = \
+            Path(learned_templates_path) \
+            if learned_templates_path else None
+        self._learned: Dict[str, Dict[str, str]] = {}
+        self._learned_new = 0
         self._load_route_templates(route_templates_path)
+        self._load_learned_templates()
 
     def _load_route_templates(self, route_templates_path):
         """知识库静态变体模板注册为匹配候选。"""
@@ -220,6 +237,59 @@ class ParamAnomalyCoreDetector:
                 continue
             self.matcher.register_routed_template(
                 group, item["template"])
+
+    def _load_learned_templates(self):
+        """加载历史学习模板（损坏文件告警后从零开始，不阻断）。"""
+        path = self._learned_templates_path
+        if path is None or not path.exists():
+            return
+        try:
+            items = json.loads(path.read_text("utf-8"))
+        except (OSError, ValueError) as exc:
+            logger.warning("learned templates load failed: %s", exc)
+            return
+        for item in items:
+            group = self.catalog.group(item.get("group_id", ""))
+            if group is None:
+                continue
+            tpl = item.get("template", "")
+            self._learned.setdefault(
+                item.get("module", ""), {})[tpl] = group.group_id
+            self.matcher.register_routed_template(group, tpl)
+
+    def _learn_form(self, group, template_detected):
+        """冷路径命中后把解析模板登记为匹配候选（内存，可落盘）。
+
+        只登记路由归属：取值由后续日志按参数名现算，无需位置/
+        签名等缓存正确性防御。重复模板去重。
+        """
+        if not template_detected:
+            return
+        mod = self._learned.setdefault(group.module, {})
+        if template_detected in mod:
+            return
+        mod[template_detected] = group.group_id
+        self.matcher.register_routed_template(group, template_detected)
+        self._learned_new += 1
+        if (self._learned_templates_path is not None
+                and self._learned_new >= _LEARN_FLUSH_THRESHOLD):
+            self.save_learned()
+
+    def save_learned(self):
+        """学习模板落盘（原子替换）。"""
+        if self._learned_templates_path is None:
+            return
+        items = [
+            {"module": module, "group_id": group_id, "template": tpl}
+            for module, forms in self._learned.items()
+            for tpl, group_id in forms.items()]
+        path = self._learned_templates_path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_name(path.name + ".tmp")
+        tmp.write_text(
+            json.dumps(items, ensure_ascii=False, indent=1), "utf-8")
+        os.replace(tmp, path)
+        self._learned_new = 0
 
     # ------------------------------------------------------------
 
@@ -364,6 +434,8 @@ class ParamAnomalyCoreDetector:
                 reason_code=outcome.reason_code,
                 matching_evidence=outcome.evidence)
         group = outcome.group
+        if self.learn:
+            self._learn_form(group, entry.template_detected)
 
         # ---- 按目标名取值（正则 -> 槽位锚定）----
         rule_results: List[RuleResult] = []

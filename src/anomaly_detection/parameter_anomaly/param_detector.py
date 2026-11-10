@@ -37,10 +37,14 @@ _PKG_DIR = Path(__file__).resolve().parent
 class ParamAnomalyDetector:
     """参数异常检测器（业务总接口的实现方）。"""
 
-    def __init__(self, product: str):
+    def __init__(self, product: str, learn: bool = True,
+                 learned_templates_path=None):
         """
         参数:
             product: 产品名称，如 'DME'（配置 configuration/config_build_{product}.json）
+            learn: 冷路径命中即把解析模板登记为匹配候选（变体学习）
+            learned_templates_path: 学习模板落盘 JSON（缺省本包
+                        data/learned_templates.json，供部署覆盖）
         """
         self.product = product
         config_name = f"config_build_{product.lower()}.json"
@@ -58,7 +62,10 @@ class ParamAnomalyDetector:
             self.config_path,
             str(_PKG_DIR / "configuration" / "template_metadata.json"))
 
-        self._detector = ParamAnomalyCoreDetector(self.catalog)
+        self._detector = ParamAnomalyCoreDetector(
+            self.catalog, learn=learn,
+            learned_templates_path=learned_templates_path or
+            str(_PKG_DIR / "data" / "learned_templates.json"))
 
     # 对外检测接口
 
