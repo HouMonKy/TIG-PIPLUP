@@ -33,17 +33,16 @@ def _strip_values(tokens: List[str]) -> List[str]:
 
 class _Entry:
     __slots__ = ("entry_key", "module", "group_id",
-                 "source_template_id", "variant_id",
+                 "source_template_id",
                  "token_set", "protected_context")
 
     def __init__(self, entry_key, module, group_id,
-                 source_template_id, variant_id,
+                 source_template_id,
                  token_set, protected_context=frozenset()):
         self.entry_key = entry_key
         self.module = module
         self.group_id = group_id
         self.source_template_id = source_template_id
-        self.variant_id = variant_id
         self.token_set = token_set
         self.protected_context = protected_context
 
@@ -71,12 +70,11 @@ class LexicalMultisetMatcher:
         self._prepared: Dict[str, List[_Entry]] = {}
         self._groups: Dict[str, RuleGroup] = {}
         self._dirty = True
-        self.index_version = 0
 
     def register_group(self, group: RuleGroup,
                        semantic_text: Optional[str] = None) -> None:
         self._register(group.module, group.group_id,
-                       group.source_template_id, None,
+                       group.source_template_id,
                        group.template_raw,
                        f"group:{group.group_id}",
                        protected_context=group.protected_context)
@@ -85,12 +83,12 @@ class LexicalMultisetMatcher:
                                  template_text: str) -> None:
         """知识库静态变体模板：与规则组模板同为匹配候选。"""
         self._register(group.module, group.group_id,
-                       group.source_template_id, None, template_text,
+                       group.source_template_id, template_text,
                        f"routed:{group.module}:{template_text}",
                        protected_context=group.protected_context)
 
     def _register(self, module, group_id, source_template_id,
-                  variant_id, template_text, entry_key,
+                  template_text, entry_key,
                   protected_context=frozenset()):
         toks = _n1_tokens(template_text)
         if self.strip_query_values:
@@ -98,12 +96,9 @@ class LexicalMultisetMatcher:
         if not toks:
             return
         mod = self._registered.setdefault(module, {})
-        if entry_key not in mod:
-            self.index_version += 1
         mod[entry_key] = {
             "group_id": group_id,
             "source_template_id": source_template_id,
-            "variant_id": variant_id,
             "template_text": template_text, "tokens": toks,
             "protected_context": frozenset(protected_context)}
         self._dirty = True
@@ -117,7 +112,7 @@ class LexicalMultisetMatcher:
             for key, info in items.items():
                 entries.append(_Entry(
                     key, module, info["group_id"],
-                    info["source_template_id"], info["variant_id"],
+                    info["source_template_id"],
                     frozenset(info["tokens"]),
                     info.get("protected_context", frozenset())))
             self._prepared[module] = entries
@@ -181,7 +176,7 @@ class LexicalMultisetMatcher:
                     entry_key=e.entry_key, module=module,
                     group_id=e.group_id,
                     source_template_id=e.source_template_id,
-                    variant_id=e.variant_id, score=float(s)))
+                    score=float(s)))
         if not scored:
             return SemanticMatchOutcome(False, NO_CANDIDATE,
                                         evidence=evidence)
@@ -261,7 +256,6 @@ class LexicalMultisetMatcher:
                 entry_key=e.entry_key, module=module,
                 group_id=e.group_id,
                 source_template_id=e.source_template_id,
-                variant_id=e.variant_id,
                 score=float(s)).as_dict()
             for s, _, e in scored[:self.top_k]]
         evidence.best_score = scored[0][0]

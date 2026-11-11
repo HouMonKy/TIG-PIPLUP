@@ -39,14 +39,12 @@ class SemanticMatchCandidate:
     module: str
     group_id: str
     source_template_id: Any = None
-    variant_id: Optional[str] = None
     score: float = 0.0
 
     def as_dict(self) -> Dict[str, Any]:
         return {"entry_key": self.entry_key, "module": self.module,
                 "group_id": self.group_id,
                 "source_template_id": self.source_template_id,
-                "variant_id": self.variant_id,
                 "score": round(self.score, 4)}
 
 @dataclass

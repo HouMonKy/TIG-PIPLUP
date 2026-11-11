@@ -15,7 +15,8 @@ import os
 import re
 from dataclasses import replace
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import (TYPE_CHECKING, Any, Dict, List, Optional, Tuple,
+                    Union)
 
 from .contracts import (
     LogEntry, RuleResult, DetectionResult, ROUTE_EXACT_ORIGINAL,
@@ -29,6 +30,10 @@ from .slot_anchor import compile_slot_anchor
 from .utils import exact_template_key
 
 logger = logging.getLogger("parameter_anomaly.detector")
+
+if TYPE_CHECKING:
+    from .contracts import ParamInfoPort
+    from .rule_catalog import RuleCatalog
 
 RSTRIP_CHARS = "!.:_-?*@}"
 
@@ -130,7 +135,7 @@ __all__ = ["legacy_is_anomaly", "tokenize_for_params",
 
 def build_runtime_param_list(raw_text: str, positions: List[Any],
                              template_id: Any = None
-                             ) -> List:
+                             ) -> List["ParamInfoPort"]:
     """按配置位置生成运行时 param_list（旧系统语义复刻）。"""
     from .contracts import ParamInfoPort
     tokens = tokenize_for_params(raw_text)
@@ -183,9 +188,11 @@ def _legacy_anomaly_dict(entry: LogEntry, rule_value: Any,
 class ParamAnomalyCoreDetector:
     """精确（原模板）优先；词法双臂匹配；正则/槽位锚定取值。"""
 
-    def __init__(self, catalog, matcher=None,
-                 route_templates_path=None, learn=True,
-                 learned_templates_path=None):
+    def __init__(self, catalog: "RuleCatalog",
+                 matcher: Optional[Any] = None,
+                 route_templates_path: Optional[Union[str, Path]] = None,
+                 learn: bool = True,
+                 learned_templates_path: Optional[Union[str, Path]] = None):
         """
         参数:
             catalog: RuleCatalog
@@ -231,7 +238,12 @@ class ParamAnomalyCoreDetector:
                 raise FileNotFoundError(
                     f"route templates not found: {path}")
             return
-        for item in json.loads(path.read_text("utf-8")):
+        try:
+            items = json.loads(path.read_text("utf-8"))
+        except (OSError, ValueError) as exc:
+            logger.warning("route templates load failed: %s", exc)
+            return
+        for item in items:
             group = self.catalog.group(item["group_id"])
             if group is None:
                 continue
@@ -276,7 +288,7 @@ class ParamAnomalyCoreDetector:
             self.save_learned()
 
     def save_learned(self):
-        """学习模板落盘（原子替换）。"""
+        """学习模板落盘（原子替换；IO 失败告警不阻断检测）。"""
         if self._learned_templates_path is None:
             return
         items = [
@@ -284,11 +296,15 @@ class ParamAnomalyCoreDetector:
             for module, forms in self._learned.items()
             for tpl, group_id in forms.items()]
         path = self._learned_templates_path
-        path.parent.mkdir(parents=True, exist_ok=True)
-        tmp = path.with_name(path.name + ".tmp")
-        tmp.write_text(
-            json.dumps(items, ensure_ascii=False, indent=1), "utf-8")
-        os.replace(tmp, path)
+        try:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            tmp = path.with_name(path.name + ".tmp")
+            tmp.write_text(
+                json.dumps(items, ensure_ascii=False, indent=1), "utf-8")
+            os.replace(tmp, path)
+        except OSError as exc:
+            logger.warning("learned templates save failed: %s", exc)
+            return
         self._learned_new = 0
 
     # ------------------------------------------------------------
