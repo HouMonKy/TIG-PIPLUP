@@ -42,9 +42,11 @@ class ParamAnomalyDetector:
         """
         参数:
             product: 产品名称，如 'DME'（配置 configuration/config_build_{product}.json）
-            learn: 冷路径命中即把解析模板登记为匹配候选（变体学习）
-            learned_templates_path: 学习模板落盘 JSON（缺省本包
-                        data/learned_templates.json，供部署覆盖）
+            learn: 冷路径命中即把解析模板登记为匹配候选（变体学习，
+                        内存登记，进程生命周期内有效）
+            learned_templates_path: 学习模板落盘 JSON（缺省不落盘；
+                        给定路径则启动加载、每 200 条新增原子刷新，
+                        适合批量工具显式启用）
         """
         self.product = product
         config_name = f"config_build_{product.lower()}.json"
@@ -64,8 +66,7 @@ class ParamAnomalyDetector:
 
         self._detector = ParamAnomalyCoreDetector(
             self.catalog, learn=learn,
-            learned_templates_path=learned_templates_path or
-            str(_PKG_DIR / "data" / "learned_templates.json"))
+            learned_templates_path=learned_templates_path)
 
     # 对外检测接口
 

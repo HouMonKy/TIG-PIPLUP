@@ -561,12 +561,13 @@ class ParamAnomalyCoreDetector:
         ev = result.matching_evidence
         logger.info(
             "parameter_anomaly: log_id=%s module=%s route=%s "
-            "detected=%s group=%s best=%s tau=%s status=%s "
-            "reason=%s values=%s",
+            "detected=%s group=%s best=%s tau=%s rep=%s "
+            "status=%s reason=%s values=%s",
             entry.log_id, entry.module, result.route,
             entry.template_id, result.group_id,
             ev.best_score if ev else None,
             ev.tau if ev else None,
+            ev.representation if ev else None,
             result.status, result.reason_code,
             {r.rule.param_name: r.value_raw
              for r in result.rule_results})

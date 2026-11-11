@@ -96,12 +96,19 @@ class LexicalMultisetMatcher:
         if not toks:
             return
         mod = self._registered.setdefault(module, {})
+        is_new = entry_key not in mod
         mod[entry_key] = {
             "group_id": group_id,
             "source_template_id": source_template_id,
             "template_text": template_text, "tokens": toks,
             "protected_context": frozenset(protected_context)}
-        self._dirty = True
+        if not self._dirty and is_new:
+            # 索引已构建：增量追加，避免全量重建（学习热路径）
+            self._prepared.setdefault(module, []).append(_Entry(
+                entry_key, module, group_id, source_template_id,
+                frozenset(toks), frozenset(protected_context)))
+        else:
+            self._dirty = True
 
     def _ensure_prepared(self):
         if not self._dirty:
