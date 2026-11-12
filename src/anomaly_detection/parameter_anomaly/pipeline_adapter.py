@@ -42,7 +42,7 @@ def attach_first_parse(relation, *, template, raw_content,
         if slot is not None and not slot.sub_token:
             pos = slot.token_index
             params[str(pos)] = ParamInfo(
-                template_id=relation.template_id,
+                template_id=getattr(relation, "template_id", None),
                 template_pos=pos, template_param=tokens[pos])
     relation.param_list = list(params.values())
     return relation

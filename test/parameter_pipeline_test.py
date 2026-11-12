@@ -3,6 +3,7 @@ import json
 import shutil
 import time
 from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 import pytest
@@ -14,12 +15,21 @@ from src.data_process.template_extractor.log_template_parsing_process_piplup imp
 from src.anomaly_detection.anomaly_detection import AnomalyDetection
 from src.anomaly_detection.parameter_anomaly.contracts import LogEntry, ParamInfoPort
 from src.anomaly_detection.parameter_anomaly.param_detector import ParamAnomalyDetector
+from src.anomaly_detection.parameter_anomaly.pipeline_adapter import attach_first_parse
 from src.data_process.offline_data_plugin.offline_detection_tool_with_piplup import main
 
 
 BAD = 'DEVM FAILOVER:Lif(0x40090000ff000003) failover(reason:0) dest port(748600) is invalid.'
 GOOD = BAD.replace('reason:0', 'reason:3')
 RAWS = [BAD, GOOD, 'mark=334800 ' + BAD, GOOD + ' zone=300300']
+
+
+def test_partial_relation_can_share_first_parse():
+    relation = SimpleNamespace(template=None, param_list=[])
+    attach_first_parse(relation, template='a <*>', raw_content='a 5')
+    assert relation.template == 'a <*>'
+    assert relation.param_list[0].template_param == '5'
+    assert relation.param_list[0].template_id is None
 
 
 @pytest.fixture
