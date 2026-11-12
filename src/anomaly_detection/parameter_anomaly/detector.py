@@ -318,7 +318,8 @@ class ParamAnomalyCoreDetector:
         params = coerce_param_list(entry.param_list)
 
         # ---- 1. 旧兼容 ID 路径（调用方显式绑定人工模板 ID）----
-        if (entry.template_id is not None and entry.template_id != ""
+        if (entry.template_id_namespace == "rule"
+                and entry.template_id is not None and entry.template_id != ""
                 and entry.module and params):
             config = self.catalog.exact_config(entry.module,
                                                entry.template_id)
@@ -394,28 +395,11 @@ class ParamAnomalyCoreDetector:
 
     def _detect_exact_original_text(self, entry,
                                     record) -> DetectionResult:
-        """精确键命中原模板：按配置位置从当前原文取值。"""
+        """模板精确命中只确定规则组；取值仍验证当前正文中的字段。"""
         group = self.catalog.group(
             f"{record.module}|{record.source_template_id}")
-        tokens = tokenize_for_params(entry.raw_text)
-        rule_results, anomalies = [], []
-        for rule in group.rules:
-            try:
-                pos_int = int(rule.param_pos)
-                value = tokens[pos_int]
-            except (IndexError, ValueError, TypeError):
-                rule_results.append(RuleResult(
-                    rule=rule, outcome=RULE_UNRESOLVED,
-                    reason_code=TARGET_MISSING,
-                    detail=f"position {rule.param_pos!r} out of range"))
-                continue
-            if not value:
-                rule_results.append(RuleResult(
-                    rule=rule, outcome=RULE_UNRESOLVED,
-                    reason_code=TARGET_MISSING))
-                continue
-            self._eval_rule(entry, rule, value, pos_int, rule_results,
-                            anomalies, route="exact_original")
+        rule_results, anomalies, _ = self._evaluate_group(
+            entry, group, route="exact_original")
         return DetectionResult(
             route="exact_original",
             status=aggregate_status(rule_results),
@@ -453,43 +437,7 @@ class ParamAnomalyCoreDetector:
         if self.learn:
             self._learn_form(group, entry.template_detected)
 
-        # ---- 按目标名取值（正则 -> 槽位锚定）----
-        rule_results: List[RuleResult] = []
-        anomalies: List[Dict[str, Any]] = []
-        tokens, spans = tokenize_for_params_with_spans(entry.raw_text)
-        slot_hit = False
-        for rule in group.rules:
-            value: Optional[str] = None
-            got = regex_fallback_span(entry.raw_text, rule.param_name)
-            if got is not None:
-                value = got[0]
-            from_slot = False
-            if value is None:
-                slot = self._locate_slot(group, rule, tokens, spans)
-                if slot is not None:
-                    if not _FALLBACK_VALUE_RE.match(slot.value):
-                        rule_results.append(RuleResult(
-                            rule=rule, outcome=RULE_UNRESOLVED,
-                            value_raw=None,
-                            reason_code="SLOT_SHAPE_GATE",
-                            detail=f"slot value not value-shaped: "
-                                   f"{slot.value!r}"))
-                        continue
-                    value = slot.value
-                    from_slot = True
-                    slot_hit = True
-            if value is None:
-                rule_results.append(RuleResult(
-                    rule=rule, outcome=RULE_UNRESOLVED,
-                    reason_code=TARGET_MISSING,
-                    detail=f"param_name '{rule.param_name}' not "
-                           f"located by regex/slot"))
-                continue
-            self._eval_rule(entry, rule, value, None, rule_results,
-                            anomalies,
-                            route="semantic_template_slot"
-                            if from_slot else "semantic_regex")
-
+        rule_results, anomalies, slot_hit = self._evaluate_group(entry, group)
         result = DetectionResult(
             route="semantic_template_slot" if slot_hit
             else "semantic_regex",
@@ -504,6 +452,57 @@ class ParamAnomalyCoreDetector:
             catalog_version=self.catalog.catalog_version)
         self._log_detection(entry, result)
         return result
+
+    def _evaluate_group(self, entry, group, route=None):
+        """共用当前字段定位；优先消费上游参数及分词，避免配置坐标漂移。"""
+        rule_results: List[RuleResult] = []
+        anomalies: List[Dict[str, Any]] = []
+        if entry.content_tokens is not None and entry.token_spans is not None:
+            tokens, spans = entry.content_tokens, entry.token_spans
+        else:
+            tokens, spans = tokenize_for_params_with_spans(entry.raw_text)
+        positions = {tuple(span): i for i, span in enumerate(spans)}
+        params = {str(p.template_pos): p.template_param
+                  for p in coerce_param_list(entry.param_list)}
+        slot_hit = False
+        for rule in group.rules:
+            value: Optional[str] = None
+            value_span = None
+            got = regex_fallback_span(entry.raw_text, rule.param_name)
+            if got is not None:
+                value, value_span = got
+            from_slot = False
+            if value is None:
+                slot = self._locate_slot(group, rule, tokens, spans)
+                if slot is not None:
+                    if not _FALLBACK_VALUE_RE.match(slot.value):
+                        rule_results.append(RuleResult(
+                            rule=rule, outcome=RULE_UNRESOLVED,
+                            value_raw=None,
+                            reason_code="SLOT_SHAPE_GATE",
+                            detail=f"slot value not value-shaped: "
+                                   f"{slot.value!r}"))
+                        continue
+                    value = slot.value
+                    value_span = slot.span
+                    from_slot = True
+                    slot_hit = True
+            if value is None:
+                rule_results.append(RuleResult(
+                    rule=rule, outcome=RULE_UNRESOLVED,
+                    reason_code=TARGET_MISSING,
+                    detail=f"param_name '{rule.param_name}' not "
+                           f"located by regex/slot"))
+                continue
+            position = positions.get(value_span)
+            shared = params.get(str(position)) if position is not None else None
+            if shared is not None and shared == tokens[position] == value:
+                value = shared
+            self._eval_rule(entry, rule, value, position, rule_results,
+                            anomalies,
+                            route=route or ("semantic_template_slot"
+                                            if from_slot else "semantic_regex"))
+        return rule_results, anomalies, slot_hit
 
     # ------------------------------------------------------------
 

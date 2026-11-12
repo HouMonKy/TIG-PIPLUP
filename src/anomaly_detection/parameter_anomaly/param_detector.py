@@ -15,7 +15,8 @@
 
 输入日志条目字段（LogTemplateRelation）：source / time / log_id /
 template_id（解析模板 ID）/ module / template（首次解析模板）/
-param_list（旧 ID 对位形态，兼容保留）/ raw_content（去格式正文；
+param_list（当前正文参数位置和值，兼容旧人工 ID 形态）/
+content_tokens、token_spans（首次提取的共享分词）/ raw_content（去格式正文；
 PIPLUP 链路由 pipeline_adapter.attach_first_parse 挂载）。正文缺省
 为空串——稀疏参数位无法可靠还原原文，缺证据以 unresolved 呈现。
 业务异常输出 template_id 回写输入日志的解析模板 ID（旧合并按它
@@ -159,7 +160,11 @@ class ParamAnomalyDetector:
             template_detected=template or None,
             param_list=params,
             log_id=getattr(entry, "log_id", ""),
-            timestamp=getattr(entry, "time", 0) or 0)
+            timestamp=getattr(entry, "time", 0) or 0,
+            source=getattr(entry, "source", ""),
+            content_tokens=getattr(entry, "content_tokens", None),
+            token_spans=getattr(entry, "token_spans", None),
+            template_id_namespace=getattr(entry, "template_id_namespace", "rule"))
 
     # 结果落盘（与旧实现一致）
 

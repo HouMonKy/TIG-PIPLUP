@@ -258,7 +258,7 @@ def main():
         print(f"\nProcessing file: {filepath}")
 
         # 每次循环实例化一个新的 tool，确保不同文件之间的检测上下文完全隔离
-        tool = OfflineDMEDetectionToolFlash(mode="all")
+        tool = OfflineDMEDetectionToolFlash(mode="parametric")
 
         # 时间范围计算与过滤逻辑
         if is_filter_by_time_range:
@@ -287,8 +287,7 @@ def main():
 
         log_infos = LogFileConverter.read_and_convert_single_file(str(filepath), module, module)
         log_infos = [{**log_info, "rawLog": log_info["rawLog"].replace("] [", "][")} for log_info in log_infos]
-        # use_params：挂载首次解析证据（模板+去格式正文）供参数检测取值
-        parse_results = parse_logs_piplup_adapter(log_infos, tool.context, start_time, end_time, use_params=True)
+        parse_results = parse_logs_piplup_adapter(log_infos, tool.context, start_time, end_time)
 
         # 记录单文件处理结束时间并计算指标
         file_end_time = time.perf_counter()

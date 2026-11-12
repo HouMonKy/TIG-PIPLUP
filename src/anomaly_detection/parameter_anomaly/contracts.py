@@ -224,7 +224,7 @@ class DetectionResult:
 
 @dataclass
 class ParamInfoPort:
-    """旧系统 ParamInfo 的对等结构（template_pos 为配置位置）。"""
+    """参数位值；共享解析链路的 template_pos 属于当前正文 token 坐标。"""
     template_pos: Any            # int 或 str
     template_param: str
     template_id: Any = None
@@ -245,6 +245,9 @@ class LogEntry:
     log_id: Any = None
     timestamp: Any = None
     source: str = ""
+    content_tokens: Optional[List[str]] = None
+    token_spans: Optional[List[Tuple[int, int]]] = None
+    template_id_namespace: str = "rule"  # 旧人工 ID 接口；解析管线显式传 parser
 
     def as_dict(self) -> Dict[str, Any]:
         return {
@@ -256,6 +259,9 @@ class LogEntry:
             "log_id": self.log_id,
             "timestamp": self.timestamp,
             "source": self.source,
+            "content_tokens": self.content_tokens,
+            "token_spans": self.token_spans,
+            "template_id_namespace": self.template_id_namespace,
         }
 
 def coerce_param_list(entries: List[Any]) -> List[ParamInfoPort]:

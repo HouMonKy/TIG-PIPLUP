@@ -1,25 +1,48 @@
-"""首次解析结果直通（业务解析管线 → 参数检测共享输入）。
+"""保存首次解析证据和当前正文坐标下的参数，不创建模板解析器。"""
 
-业务适配器（log_template_parsing_process_piplup.py）在组装日志
-relation 时调用 attach_first_parse，把首次 PIPLUP 解析得到的模板
-文本与送入解析器的去格式正文挂到 relation 实例上——公共 relation
-类不扩展，兼容处理收敛在本包内；ParamAnomalyDetector._to_log_entry
-优先读取 raw_content 完成取值。
+from functools import lru_cache
 
-规则身份用配置人工编号，解析模板 ID（crc32）与之分属两套命名
-空间：路由按模板文本、取值按模板坐标在检测器内完成，两阶段
-不共享位置坐标。
-"""
+from .configuration.load_param_config import ParamInfo
+from .position_mapper import (
+    template_tokens_for_alignment, tokenize_for_params_with_spans)
+from .slot_anchor import compile_slot_anchor
 
 __all__ = ["attach_first_parse"]
 
 
-def attach_first_parse(relation, *, template, raw_content):
-    """把首次解析结果挂到业务日志 relation 实例上，返回该实例。
+@lru_cache(maxsize=512)
+def _slot_anchors(template):
+    anchors = []
+    for i, token in enumerate(template_tokens_for_alignment(template)):
+        if "<" in token and ">" in token:
+            anchor = compile_slot_anchor(template, i)
+            if anchor is not None:
+                anchors.append(anchor)
+    return tuple(anchors)
 
-    template 写入 relation.template（供模板回填与规则路由）；
-    raw_content 写入 relation.raw_content（供参数取值）。
+
+def attach_first_parse(relation, *, template, raw_content,
+                       content_tokens=None, token_spans=None):
+    """保留旧参数列表，补充能唯一定位的单 token 槽位及共享分词。
+
+    param_list 的位置属于当前正文；多词/子 token 槽位不伪造位置，
+    检测器仍可使用同一份正文和 span 按规则定位。
     """
     relation.template = template
     relation.raw_content = raw_content
+    if content_tokens is None or token_spans is None:
+        content_tokens, token_spans = tokenize_for_params_with_spans(raw_content)
+    tokens, spans = content_tokens, token_spans
+    relation.content_tokens = tokens
+    relation.token_spans = spans
+    relation.template_id_namespace = "parser"
+    params = {str(p.template_pos): p for p in relation.param_list}
+    for anchor in _slot_anchors(template):
+        slot = anchor.locate(tokens, spans)
+        if slot is not None and not slot.sub_token:
+            pos = slot.token_index
+            params[str(pos)] = ParamInfo(
+                template_id=relation.template_id,
+                template_pos=pos, template_param=tokens[pos])
+    relation.param_list = list(params.values())
     return relation
