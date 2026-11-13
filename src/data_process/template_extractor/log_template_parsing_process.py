@@ -6,7 +6,8 @@ from typing import List
 import pandas as pd
 
 from src.anomaly_detection.parameter_anomaly.configuration.load_param_config import load_param_config, ParamInfo
-from src.common.atomic_op import get_content_as_tokens
+from src.anomaly_detection.parameter_anomaly.pipeline_adapter import attach_first_parse
+from src.anomaly_detection.parameter_anomaly.position_mapper import tokenize_for_params_with_spans
 from src.data_process.data_basic_structs.basic_structs import LRUCache
 from src.data_process.log_context import LogContext
 from src.data_process.template_extractor.log_template_repository import LogTemplateRelation
@@ -61,11 +62,7 @@ def parse_logs(log_info, context: LogContext) -> List[dict]:
             template = drain.extractor.id_to_cluster.get(template_id).get_template()
         if template == '<*>':
             template = '<Short Template>'
-        split_result = re.split(r'([:=,\[\]\(\)])', content)
-        split_content = content.strip()
-        if len(split_result) > 1:
-            split_content = ' '.join(split_result)
-        content_tokens = get_content_as_tokens(split_content)
+        content_tokens, token_spans = tokenize_for_params_with_spans(content)
         param_list = []
         param_config = context.get_template_param()
         # 根据template_id按需获取参数信息，并存储
@@ -78,7 +75,10 @@ def parse_logs(log_info, context: LogContext) -> List[dict]:
                     template_param=content_tokens[int(each_pos)]
                 )
                 param_list.append(single_ParamInfo)
-        context.log_repository.add(LogTemplateRelation(source, timestamp, log_id, template_id, module, param_list))
+        relation = LogTemplateRelation(source, timestamp, log_id, template_id, module, param_list)
+        attach_first_parse(relation, template=template, raw_content=content,
+                           content_tokens=content_tokens, token_spans=token_spans)
+        context.log_repository.add(relation)
     return parse_results
 
 def parse_logs_no_header(log_info, context: LogContext) -> List[dict]:
@@ -93,8 +93,7 @@ def parse_logs_no_header(log_info, context: LogContext) -> List[dict]:
         cache: LRUCache = context.get_lru_cache(module)
         log_id = log_data['logId']
         content = log_data['rawLog'].strip()
-        if "timestamp" in log_data:
-            timestamp = log_data['timestamp']
+        timestamp = log_data.get('timestamp', 0)
         parsed_log.append(content)
         masked_content = drain.masker.mask(content)
 
@@ -118,11 +117,7 @@ def parse_logs_no_header(log_info, context: LogContext) -> List[dict]:
 
         if template == '<*>':
             template = '<Short Template>'
-        split_result = re.split(r'([:=,\[\]\(\)])', content)
-        split_content = content.strip()
-        if len(split_result) > 1:
-            split_content = ' '.join(split_result)
-        content_tokens = get_content_as_tokens(split_content)
+        content_tokens, token_spans = tokenize_for_params_with_spans(content)
         parse_result = {'module': module, 'log_id': log_id, 'template': template, 'template_id': template_id}
         parse_results.append(parse_result)
         param_list = []
@@ -136,7 +131,10 @@ def parse_logs_no_header(log_info, context: LogContext) -> List[dict]:
                     template_param=content_tokens[int(each_pos)]
                 )
                 param_list.append(single_ParamInfo)
-        context.log_repository.add(LogTemplateRelation(source, timestamp, log_id, template_id, module, param_list))
+        relation = LogTemplateRelation(source, timestamp, log_id, template_id, module, param_list)
+        attach_first_parse(relation, template=template, raw_content=content,
+                           content_tokens=content_tokens, token_spans=token_spans)
+        context.log_repository.add(relation)
     return parse_results
 
 def parse_logs_dem(log_info, context: LogContext, abn_type = "", abn_inject_excel = "") -> List[dict]:
@@ -193,11 +191,7 @@ def parse_logs_dem(log_info, context: LogContext, abn_type = "", abn_inject_exce
 
         if template == '<*>':
             template = '<Short Template>'
-        split_result = re.split(r'([:=,\[\]\(\)])', content)
-        split_content = content.strip()
-        if len(split_result) > 1:
-            split_content = ' '.join(split_result)
-        content_tokens = get_content_as_tokens(split_content)
+        content_tokens, token_spans = tokenize_for_params_with_spans(content)
         parse_result = {'module': module, 'log_id': log_id, 'template': template, 'template_id': template_id}
         parse_results.append(parse_result)
         param_list = []
@@ -211,7 +205,10 @@ def parse_logs_dem(log_info, context: LogContext, abn_type = "", abn_inject_exce
                     template_param=content_tokens[int(each_pos)]
                 )
                 param_list.append(single_ParamInfo)
-        context.log_repository.add(LogTemplateRelation(source, timestamp, log_id, template_id, module, param_list))
+        relation = LogTemplateRelation(source, timestamp, log_id, template_id, module, param_list)
+        attach_first_parse(relation, template=template, raw_content=content,
+                           content_tokens=content_tokens, token_spans=token_spans)
+        context.log_repository.add(relation)
     return parse_results
 
 

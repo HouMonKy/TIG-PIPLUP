@@ -224,7 +224,11 @@ class DetectionResult:
 
 @dataclass
 class ParamInfoPort:
-    """参数位值；共享解析链路的 template_pos 属于当前正文 token 坐标。"""
+    """参数位值。
+
+    template_pos 为非负整数索引或其十进制字符串，属于当前正文
+    token 坐标；它不是参数名（参数名由规则的 param_name 表达）。
+    """
     template_pos: Any            # int 或 str
     template_param: str
     template_id: Any = None
@@ -255,7 +259,7 @@ class LogEntry:
             "module": self.module,
             "template_id": self.template_id,
             "template_detected": self.template_detected,
-            "param_list": [p.as_dict() for p in self.param_list],
+            "param_list": [p.as_dict() for p in coerce_param_list(self.param_list)],
             "log_id": self.log_id,
             "timestamp": self.timestamp,
             "source": self.source,

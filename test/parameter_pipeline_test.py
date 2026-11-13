@@ -128,3 +128,50 @@ def test_offline_main_writes_real_parameter_results(context, tmp_path, monkeypat
     assert formatted
     monkeypatch.setattr(entry + '.Path', lambda path: tmp_path / 'nonexistent')
     assert main() is None
+
+
+@pytest.mark.parametrize('parser_name', ['parse_logs', 'parse_logs_no_header', 'parse_logs_dem'])
+def test_legacy_drain_shares_evidence_and_detects(context, parser_name):
+    from datetime import datetime
+    from src.data_process.template_extractor import log_template_parsing_process as legacy
+    from src.data_process.template_extractor.log_formatter_parse import LogFormatParser
+
+    module = 'kmm-server'
+    context.log_format[module] = {
+        'log_format': [r'\[<Time>\]<Content>'], 'delimiter': [','],
+        'time': ['Time'], 'time_format': '%Y-%m-%d %H:%M:%S.%f'}
+    context.parser = LogFormatParser(context.log_format)
+    now = time.time() * 1000
+    stamp = datetime.fromtimestamp(now / 1000).strftime('%Y-%m-%d %H:%M:%S.%f')
+    bodies = ['Local setup link fail ret(10).', 'Local setup link fail ret(99).']
+    logs = [dict(module=module, source='legacy', logId=str(i), timestamp=now,
+                 rawLog=body if parser_name == 'parse_logs_no_header' else f'[{stamp}]{body}')
+            for i, body in enumerate(bodies)]
+    miner = context.get_drain(module)
+    with patch.object(miner, 'add_log_message', wraps=miner.add_log_message) as add, \
+            patch.object(miner, 'match', wraps=miner.match) as match:
+        getattr(legacy, parser_name)(logs, context)
+        before = (add.call_count, match.call_count)
+        relation = context.log_repository.logs[module]['0']
+        assert relation.raw_content == bodies[0]
+        assert relation.template and relation.template_id_namespace == 'parser'
+        assert '10' in [p.template_param for p in relation.param_list]
+        with patch('src.anomaly_detection.parameter_anomaly.detector.tokenize_for_params_with_spans',
+                   side_effect=AssertionError('repeated parameter tokenization')):
+            result = AnomalyDetection(mode='parametric', product='DME').all_detect(
+                0, float('inf'), 60000, context.log_repository, context)
+        assert (add.call_count, match.call_count) == before
+    lines = [line for group in result for line in group['detectLine']]
+    assert {line['logId'] for line in lines} == {'0'}
+
+
+def test_legacy_missing_timestamp_never_leaks_previous_timestamp(context):
+    from src.data_process.template_extractor.log_template_parsing_process import parse_logs_no_header
+
+    now = time.time() * 1000
+    logs = [dict(module='kmm-server', source='legacy', logId=str(i),
+                 rawLog='Local setup link fail ret(10).') for i in range(3)]
+    logs[1]['timestamp'] = now
+    parse_logs_no_header(logs, context)
+    stored = context.log_repository.logs['kmm-server']
+    assert [stored[str(i)].time for i in range(3)] == [0, now, 0]
